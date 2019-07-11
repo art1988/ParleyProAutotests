@@ -2,6 +2,7 @@ package com.parley.testing.pages;
 
 import com.parley.testing.exceptions.IllegalPageException;
 import com.parley.testing.pages.impl.*;
+import com.parley.testing.pages.impl.dashboard.*;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -21,6 +22,10 @@ public class PageFactory {
     private InProgressContractPage inProgressContractPage;
     private ExecutedContractsPage executedContractsPage;
     private ExecutedContractPage executedContractPage;
+    private DashboardPage dashboardPage;
+    private AdministrationPage administrationPage;
+    private TemplatesPage templatesPage;
+    private CreateInProgressContractPage createInProgressContractPage;
 
     public PageFactory(WebDriver webDriverProvider, String baseUrl) {
         this.webDriverProvider = webDriverProvider;
@@ -49,7 +54,6 @@ public class PageFactory {
         if (inProgressContractsPage == null || inProgressContractsPage.isSessionLost()) {
             inProgressContractsPage = new InProgressContractsPage(webDriverProvider);
         }
-        inProgressContractsPage.checkCurrentPage();
         return inProgressContractsPage;
     }
 
@@ -73,4 +77,33 @@ public class PageFactory {
         }
         return executedContractPage;
     }
+
+    public DashboardPage dashboardPage() throws IllegalPageException {
+        if (dashboardPage == null || dashboardPage.isSessionLost()) {
+            dashboardPage = new DashboardPage(webDriverProvider);
+        }
+        return dashboardPage;
+    }
+
+    public AdministrationPage administrationPage() throws IllegalPageException {
+        if (administrationPage == null || administrationPage.isSessionLost()) {
+            administrationPage = new AdministrationPage(webDriverProvider);
+        }
+        return administrationPage;
+    }
+
+    public TemplatesPage templatesPage() throws IllegalPageException {
+        if (templatesPage == null || templatesPage.isSessionLost()) {
+            templatesPage = new TemplatesPage(webDriverProvider);
+        }
+        return templatesPage;
+    }
+
+    public CreateInProgressContractPage createInProgressContractPage() throws IllegalPageException {
+        if (createInProgressContractPage == null || createInProgressContractPage.isSessionLost()) {
+            createInProgressContractPage = new CreateInProgressContractPage(webDriverProvider);
+        }
+        return createInProgressContractPage;
+    }
+
 }

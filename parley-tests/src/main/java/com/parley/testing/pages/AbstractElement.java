@@ -22,7 +22,7 @@ import static org.springframework.util.ReflectionUtils.invokeMethod;
 
 public abstract class AbstractElement {
 
-    private static final int WAIT_TIMEOUT = 20;
+    private static final int WAIT_TIMEOUT = 50;
 
     private static final String ELEMENT_IS_VISIBLE_ERR_MSG = "Element visible but should not exist";
     private static final String ELEMENT_IS_NOT_VISIBLE_ERR_MSG = "Element isn't visible but should exist";
@@ -37,6 +37,18 @@ public abstract class AbstractElement {
     public final void checkElementDoesNotExist(final By byXpath) {
         try {
             WebElement element = driver.findElement(byXpath);
+            assertFalse(ELEMENT_IS_VISIBLE_ERR_MSG, element.isDisplayed());
+        } catch (FluentExecutionStopped e) {
+            return;
+        } catch (NoSuchElementException e) {
+            return;
+        }
+        //throw new AssertionError(ELEMENT_EXISTS_ERR_MSG);
+    }
+
+    public final void checkRelativeElementDoesNotExist(WebElement parent, final By byXpath) {
+        try {
+            WebElement element = parent.findElement(byXpath);
             assertFalse(ELEMENT_IS_VISIBLE_ERR_MSG, element.isDisplayed());
         } catch (FluentExecutionStopped e) {
             return;
