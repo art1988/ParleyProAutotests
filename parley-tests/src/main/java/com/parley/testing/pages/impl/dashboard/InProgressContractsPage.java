@@ -1,9 +1,7 @@
-package com.parley.testing.pages.impl;
+package com.parley.testing.pages.impl.dashboard;
 
 import com.google.common.base.Strings;
-import com.parley.testing.model.InProgressContract;
-import com.parley.testing.pages.AbstractPage;
-import org.codehaus.plexus.util.ExceptionUtils;
+import com.parley.testing.model.contracts.InProgressContract;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,15 +10,12 @@ import org.testng.Assert;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.parley.testing.utils.AsyncAssert.waitForSuccess;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 import static java.lang.String.format;
 import static org.testng.Assert.fail;
 
-public class InProgressContractsPage extends AbstractPage {
-
-    private static final int TRY_TIMES = 40;
-    private static final int TRY_DELAY = 3000;
+public class InProgressContractsPage extends AbstractDashboardPage {
 
     public static final By IN_PROGRESS_MENU = By.xpath("//a[contains(@class, 'page-menu__item_contracts') and contains(@class ,'state_active')]");
     public static final By CREATE_CONTRACT_BUTTON =  By.xpath("//button[contains(text(), 'NEW CONTRACT')]");
@@ -33,20 +28,12 @@ public class InProgressContractsPage extends AbstractPage {
     public static final By CONTRACT_STAGE = By.xpath(".//div[contains(@class, 'contracts-list__cell-stage')]/div/div");
     public static final By CONTRACT_DISCUSSION_COUNT = By.xpath(".//span[contains(@class, 'discussion-indicator__count')]");
 
-    public InProgressContractsPage(WebDriver webDriverProvider) {
-        super(webDriverProvider);
-    }
+    //sort options
 
-    @Override
-    public void checkCurrentPage() {
-        try {
-            waitForSuccess(TRY_TIMES, TRY_DELAY, () -> assertTrue(findElement(IN_PROGRESS_MENU).isDisplayed()));
-        } catch (AssertionError e) {
-            fail("Current page is not In-Progress Contracts Page!");
-        } catch (Throwable e) {
-            fail(format("Got an unexpected exception: '%1$s' with stack trace: %2$s",
-                    e, ExceptionUtils.getFullStackTrace(e)));
-        }
+    public static final By SORT_BY_LAST_ACTIVITY = By.xpath("//div[contains(text(), 'Last activity')]");
+
+    public InProgressContractsPage(WebDriver webDriverProvider) {
+        super(webDriverProvider, IN_PROGRESS_MENU);
     }
 
     public void checkCreateContractButtonExists(){
@@ -57,8 +44,9 @@ public class InProgressContractsPage extends AbstractPage {
         checkElementDoesNotExist(CREATE_CONTRACT_BUTTON);
     }
 
-    public List<InProgressContract> getInProgressContracts(){
+    public List<InProgressContract> getInProgressContracts() throws InterruptedException {
         List<InProgressContract> list = new ArrayList<InProgressContract>();
+        Thread.sleep(3000);
         List<WebElement> webElements = findElements(CONTRACT_LIST_ITEM);
         for(WebElement element : webElements){
             InProgressContract inProgressContract = new InProgressContract();
@@ -77,6 +65,7 @@ public class InProgressContractsPage extends AbstractPage {
     }
 
     public void checkContractRequiredFieldsNotEmpty(List<InProgressContract> inProgressContracts){
+        Assert.assertTrue((inProgressContracts != null) && (!inProgressContracts.isEmpty()));
         for(InProgressContract contract : inProgressContracts){
             Assert.assertTrue(!Strings.isNullOrEmpty(contract.getTitle()));
             Assert.assertTrue(!Strings.isNullOrEmpty(contract.getChiefNegotiator()));
@@ -88,6 +77,15 @@ public class InProgressContractsPage extends AbstractPage {
         for(InProgressContract contract : inProgressContracts){
             Assert.assertEquals(chiefNegotiator, contract.getChiefNegotiator());
         }
+    }
+
+    public void clickCreateContractButton(){
+        move(CREATE_CONTRACT_BUTTON);
+    }
+
+    public void sortByLastActivity() throws InterruptedException {
+        waitUntilElementIsDisplayed(SORT_BY_LAST_ACTIVITY);
+        findElement(SORT_BY_LAST_ACTIVITY).click();
     }
 
 }

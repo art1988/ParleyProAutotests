@@ -6,7 +6,7 @@ import com.parley.testing.runner.AbstractIT;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Test(groups = "common")
+@Test(groups = "dashboard")
 //@Listeners(UITestListener.class)
 public class LoginTest extends AbstractIT {
 

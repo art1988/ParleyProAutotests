@@ -1,10 +1,12 @@
-package com.parley.testing.model;
+package com.parley.testing.model.contracts;
 
-public class ExecutedContract {
+public class InProgressContract {
     private String link;
     private String title;
     private String counterparty;
+    private String chiefNegotiator;
     private String stage;
+    private Integer discussionCount;
 
     public String getLink() {
         return link;
@@ -30,11 +32,27 @@ public class ExecutedContract {
         this.counterparty = counterparty;
     }
 
+    public String getChiefNegotiator() {
+        return chiefNegotiator;
+    }
+
+    public void setChiefNegotiator(String chiefNegotiator) {
+        this.chiefNegotiator = chiefNegotiator;
+    }
+
     public String getStage() {
         return stage;
     }
 
     public void setStage(String stage) {
         this.stage = stage;
+    }
+
+    public Integer getDiscussionCount() {
+        return discussionCount;
+    }
+
+    public void setDiscussionCount(Integer discussionCount) {
+        this.discussionCount = discussionCount;
     }
 }

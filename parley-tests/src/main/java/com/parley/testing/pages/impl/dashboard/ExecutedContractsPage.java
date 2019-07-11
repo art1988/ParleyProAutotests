@@ -1,10 +1,7 @@
-package com.parley.testing.pages.impl;
+package com.parley.testing.pages.impl.dashboard;
 
 import com.google.common.base.Strings;
-import com.parley.testing.model.ExecutedContract;
-import com.parley.testing.model.InProgressContract;
-import com.parley.testing.pages.AbstractPage;
-import org.codehaus.plexus.util.ExceptionUtils;
+import com.parley.testing.model.contracts.ExecutedContract;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,15 +10,12 @@ import org.testng.Assert;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.parley.testing.utils.AsyncAssert.waitForSuccess;
 import static java.lang.String.format;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 import static org.testng.Assert.fail;
 
-public class ExecutedContractsPage extends AbstractPage {
-
-    private static final int TRY_TIMES = 40;
-    private static final int TRY_DELAY = 3000;
+public class ExecutedContractsPage extends AbstractDashboardPage {
 
     private static final By EXECUTED_MENU = By.xpath("//a[contains(@class,'page-menu__item_executed-contracts')]");
     private static final By CREATE_CONTRACT_BUTTON =  By.xpath("//button[contains(text(), 'NEW CONTRACT')]");
@@ -33,23 +27,12 @@ public class ExecutedContractsPage extends AbstractPage {
     public static final By CONTRACT_STAGE = By.xpath(".//div[contains(@class, 'contracts-list__cell-stage')]/div/div");
 
     public ExecutedContractsPage(WebDriver webDriverProvider) {
-        super(webDriverProvider);
+        super(webDriverProvider, EXECUTED_MENU);
     }
 
-    @Override
-    public void checkCurrentPage() {
-        try {
-            waitForSuccess(TRY_TIMES, TRY_DELAY, () -> assertTrue(findElement(EXECUTED_MENU).isDisplayed()));
-        } catch (AssertionError e) {
-            fail("Current page is not In-Progress Contracts Page!");
-        } catch (Throwable e) {
-            fail(format("Got an unexpected exception: '%1$s' with stack trace: %2$s",
-                    e, ExceptionUtils.getFullStackTrace(e)));
-        }
-    }
-
-    public List<ExecutedContract> getExecutedContracts(){
+    public List<ExecutedContract> getExecutedContracts() throws InterruptedException {
         List<ExecutedContract> list = new ArrayList<ExecutedContract>();
+        Thread.sleep(3000);
         List<WebElement> webElements = findElements(CONTRACT_LIST_ITEM);
         for(WebElement element : webElements){
             ExecutedContract executedContract = new ExecutedContract();
@@ -72,14 +55,12 @@ public class ExecutedContractsPage extends AbstractPage {
     }
 
     public void checkContractRequiredFieldsNotEmpty(List<ExecutedContract> executedContracts){
+        Assert.assertTrue((executedContracts != null) && (!executedContracts.isEmpty()));
         for(ExecutedContract contract : executedContracts){
             Assert.assertTrue(!Strings.isNullOrEmpty(contract.getTitle()));
             Assert.assertTrue(!Strings.isNullOrEmpty(contract.getStage()));
         }
     }
 
-    public void moveToExecutedContracts(){
-        findElement(EXECUTED_MENU).click();
-    }
 
 }
