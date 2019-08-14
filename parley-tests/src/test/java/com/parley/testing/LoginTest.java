@@ -14,7 +14,6 @@ public class LoginTest extends AbstractIT {
     @Test
     public void testSuccessfulLogin() throws Throwable {
         LoginPage loginPage = pageFactory.loginPage();
-        loginPage.getDriver().manage().deleteAllCookies();
         loginPage.login("victoria@parleypro.com","Parley650!");
 
     }
@@ -23,7 +22,6 @@ public class LoginTest extends AbstractIT {
     public void testInvalidPasswordLogin() throws Throwable {
 //        throw new SkipException("message");
         LoginPage loginPage = pageFactory.loginPage();
-        loginPage.getDriver().manage().deleteAllCookies();
         loginPage.login("victoria@parleypro.com","Test123");
         loginPage.checkLoginContainsErrorMessage();
 
@@ -32,7 +30,6 @@ public class LoginTest extends AbstractIT {
     @Test
     public void testInvalidUsernameLogin() throws Throwable {
         LoginPage loginPage = pageFactory.loginPage();
-        loginPage.getDriver().manage().deleteAllCookies();
         loginPage.login("1111@parleypro.com","Test123");
         loginPage.checkLoginContainsErrorMessage();
     }

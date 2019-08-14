@@ -15,6 +15,7 @@ public class LoginPage extends AbstractPage {
     private static final By LOGIN_BTN = By.xpath("//button[text()='SIGN IN']");
     private static final By LOGIN_ERROR_MESSAGE_ELEMENT = By.xpath("//div[contains(@class,'auth__error')]");
     private static final String LOGIN_ERROR_MESSAGE_TEXT = "Oops! That email/password combination is not valid";
+    private static final String PAGE_URL = "http://app.parleypro.net/master/index.html#/login";
 
 
     public LoginPage(WebDriver webDriver) {
@@ -34,6 +35,8 @@ public class LoginPage extends AbstractPage {
     }
 
     public void login(String userName, String password) {
+        getDriver().navigate().to(PAGE_URL);
+        getDriver().manage().deleteAllCookies();
         waitUntilElementIsDisplayed(LOGIN_BTN);
         findElement(USERNAME).clear();
         findElement(USERNAME).sendKeys(userName);
