@@ -8,15 +8,15 @@ jobs:
 
       - run:
           name: Build project
-          working_directory: ./
+          working_directory: ./parley-tests
           command: mvn clean install -U -DskipTests=true
       - run:
           name: Run IU tests
-          working_directory: ./
+          working_directory: ./parley-tests
           command: mvn test
 
       - store_test_results:
-          path: ./target/surefire-reports
+          path: ./parley-tests/target/surefire-reports
 
 
 workflows:
