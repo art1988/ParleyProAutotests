@@ -4,12 +4,15 @@ import com.parley.testing.configuration.TestsConfiguration;
 import com.parley.testing.model.contracts.ExecutedContract;
 import com.parley.testing.model.contracts.InProgressContract;
 import com.parley.testing.pages.PageFactory;
+import com.parley.testing.pages.impl.InProgressContractPage;
+import com.parley.testing.pages.impl.dashboard.InProgressContractsPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.*;
+import org.testng.annotations.BeforeTest;
 
 import java.io.File;
 import java.util.List;
