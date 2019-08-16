@@ -111,7 +111,7 @@
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <configuration>
                         <forkMode>once</forkMode>
-                        <argLine>-Xms1512m -Xmx1512m</argLine>
+                        <argLine>-Xms1512m -Xmx1512m -Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
                         <includes>
                             <include>${test.filter}.java</include>
                         </includes>
