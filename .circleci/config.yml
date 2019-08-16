@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:jessie-browsers
+      - image: circleci/openjdk:8-jdk-node-browsers
     steps:
       - checkout
 
@@ -24,7 +24,7 @@ workflows:
   nightly:
     triggers:
       - schedule:
-          cron: "0 0 * * *"
+          cron: "*/10 * * * *"
           filters:
             branches:
               only:
