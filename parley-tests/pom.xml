@@ -91,6 +91,13 @@
     <profile>
         <id>integration-tests</id>
         <build>
+            <finalName>${project.name}-${version}</finalName>
+            <testResources>
+                <testResource>
+                    <directory>${basedir}/src/test/resources</directory>
+                    <filtering>true</filtering>
+                </testResource>
+            </testResources>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -119,5 +126,8 @@
         </build>
     </profile>
     </profiles>
-
+<build>
+    <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+    <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+</build>
 </project>
