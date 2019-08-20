@@ -87,54 +87,27 @@
         </dependency>
 
     </dependencies>
-<profiles>
-    <profile>
-        <id>integration-tests</id>
-        <build>
-            <finalName>${project.name}-${version}</finalName>
-            <testResources>
-                <testResource>
-                    <directory>${basedir}/src/test/resources</directory>
-                    <filtering>true</filtering>
-                </testResource>
-            </testResources>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-                        <useSystemClassLoader>false</useSystemClassLoader>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <configuration>
-                        <forkMode>once</forkMode>
-                        <argLine>-Xms1512m -Xmx1512m -Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-                        <includes>
-                            <include>${test.filter}.java</include>
-                        </includes>
-                        <excludes>
-                        </excludes>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>failsafe-integration-tests</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>integration-test</goal>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
+    <profiles>
+        <profile>
+            <id>integration-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.18.1</version>
+                        <configuration>
+                            <useSystemClassLoader>false</useSystemClassLoader>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.maven.surefire</groupId>
+                                <artifactId>surefire-testng</artifactId>
+                                <version>2.18.1</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
-<build>
-    <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-    <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
-</build>
 </project>
