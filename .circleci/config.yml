@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Run IU tests
           working_directory: ./parley-tests
-          command: mvn test
+          command: JAVA_OPTIONS=-Djdk.net.URLClassPath.disableClassPathURLCheck=true mvn test
 
       - store_test_results:
           path: ./parley-tests/target/surefire-reports
