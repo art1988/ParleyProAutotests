@@ -97,6 +97,7 @@
                         <version>2.22.0</version>
                         <configuration>
                             <useSystemClassLoader>false</useSystemClassLoader>
+                            <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
                         </configuration>
                     </plugin>
                 </plugins>
