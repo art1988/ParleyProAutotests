@@ -1,7 +1,7 @@
 package com.parley.testing.listener;
 
 import com.parley.testing.context.ApplicationContextHolder;
-import org.apache.maven.surefire.shade.org.apache.maven.shared.utils.io.FileUtils;
+import org.apache.maven.surefire.shade.common.org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;

@@ -360,7 +360,7 @@ public class RolesTest extends AbstractIT {
         inProgressContract.checkShareButtonIsDisplayed();
 
         inProgressContract.clickOnContractMenu();
-        inProgressContract.checkContractInfoNotDisplayed();
+        inProgressContract.checkContractInfoDisplayed();
         inProgressContract.checkAuditTrailNotDisplayed();
         inProgressContract.checkDeleteContractNotDisplayed();
         inProgressContract.checkCancelContractNotDisplayed();
