@@ -2,16 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk-node-browsers
+      - image: circleci/openjdk:8u222-stretch-browsers
     steps:
       - run:
-            name: Install openjdk-8 8u181-b13-1
-            command: |
-              wget -c http://snapshot.debian.org/archive/debian/20180804T145752Z/pool/main/o/openjdk-8/openjdk-8_8u181-b13.orig.tar.gz
-              sudo mkdir /opt/java
-              sudo tar -zxf openjdk-8_8u181-b13.orig.tar.gz -C /opt/java
-              sudo update-alternatives --install /usr/bin/java java /opt/java/openjdk-8-8u181-b13/bin/java 100
-              sudo update-alternatives --config java
       - checkout
 
       - run:
