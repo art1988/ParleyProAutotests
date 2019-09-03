@@ -105,7 +105,7 @@ public class RolesTest extends AbstractIT {
         executedContractPage.checkContractInfoDisplayed();
         executedContractPage.checkAuditTrailDisplayed();
         executedContractPage.checkDeleteContractDisplayed();
-        executedContractPage.checkCancelContractDisplayed();
+        executedContractPage.checkCancelContractNotDisplayed();
 
 
         //Validate dashboard is available
@@ -360,7 +360,7 @@ public class RolesTest extends AbstractIT {
         inProgressContract.checkShareButtonIsDisplayed();
 
         inProgressContract.clickOnContractMenu();
-        inProgressContract.checkContractInfoDisplayed();
+        inProgressContract.checkContractInfoNotDisplayed();
         inProgressContract.checkAuditTrailNotDisplayed();
         inProgressContract.checkDeleteContractNotDisplayed();
         inProgressContract.checkCancelContractNotDisplayed();
