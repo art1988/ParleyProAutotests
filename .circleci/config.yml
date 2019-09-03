@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Run IU tests
           working_directory: ./parley-tests
-          command: JAVA_OPTIONS=-Djdk.net.URLClassPath.disableClassPathURLCheck=true mvn test
+          command: mvn test -Dwebdriver.gecko.driver=/usr/local/bin/geckodriver
 
       - store_test_results:
           path: ./parley-tests/target/surefire-reports
