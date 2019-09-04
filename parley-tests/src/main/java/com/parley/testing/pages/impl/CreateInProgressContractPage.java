@@ -82,5 +82,12 @@ public class CreateInProgressContractPage extends AbstractPage {
         createContract(fields);
     }
 
+    public void createSimpleContract(){
+        List<ContractField> fields = new ArrayList<ContractField>();
+        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_TITLE, "TestContract"));
+        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_ORGANIZATION, "RomanArt"));
+        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_CN, "victoria+ccn@parleypro.com"));
+        createContract(fields);
+    }
 
 }

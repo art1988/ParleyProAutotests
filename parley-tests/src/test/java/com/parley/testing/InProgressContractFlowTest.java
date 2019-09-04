@@ -28,7 +28,7 @@ public class InProgressContractFlowTest extends AbstractIT {
         inProgressContractsPage.clickCreateContractButton();
         CreateInProgressContractPage createInProgressContractPage = pageFactory.createInProgressContractPage();
         createInProgressContractPage.checkCurrentPage();
-        createInProgressContractPage.createAcmeContract();
+        createInProgressContractPage.createSimpleContract();
 
         InProgressContractPage inProgressContract = pageFactory.inProgressContractPage();
         inProgressContract.checkUploadDocumentMenuIsAvailable();
@@ -60,7 +60,7 @@ public class InProgressContractFlowTest extends AbstractIT {
 
         //Login as CCN
         loginPage.getDriver().manage().deleteAllCookies();
-        loginPage.login("victoria+classic@parleypro.com","Parley650!");
+        loginPage.login("victoria+ccn@parleypro.com","Parley650!");
 
         inProgressContractsPage.checkCurrentPage();
         inProgressContractsPage.checkCreateContractButtonNotDisplayed();
