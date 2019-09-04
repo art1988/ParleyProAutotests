@@ -341,7 +341,7 @@ public class RolesTest extends AbstractIT {
     public void testCCNPermissions() throws Throwable {
         LoginPage loginPage = pageFactory.loginPage();
         loginPage.getDriver().manage().deleteAllCookies();
-        loginPage.login("victoria+classic@parleypro.com","Parley650!");
+        loginPage.login("victoria+ccn@parleypro.com","Parley650!");
 
         //Validate in-progress contract list
 
