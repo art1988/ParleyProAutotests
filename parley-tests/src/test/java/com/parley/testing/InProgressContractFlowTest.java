@@ -28,7 +28,7 @@ public class InProgressContractFlowTest extends AbstractIT {
         inProgressContractsPage.clickCreateContractButton();
         CreateInProgressContractPage createInProgressContractPage = pageFactory.createInProgressContractPage();
         createInProgressContractPage.checkCurrentPage();
-        createInProgressContractPage.createSimpleContract();
+        createInProgressContractPage.createAcmeContract();
 
         InProgressContractPage inProgressContract = pageFactory.inProgressContractPage();
         inProgressContract.checkUploadDocumentMenuIsAvailable();

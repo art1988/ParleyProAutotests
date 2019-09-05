@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -44,7 +43,7 @@ public class CreateInProgressContractPage extends AbstractPage {
         waitUntilElementIsEnabled(COUNTERPARTY_ORGANIZATION);
     }
 
-    public void createContract(List<ContractField> fields) {
+    public void createContract(List<ContractField> fields) throws InterruptedException {
         for (ContractField contractField : fields) {
             WebElement webElement = findElement(contractField.getSelector());
             if (ContractField.ContractFieldType.SELECT.equals(contractField.getType())) {
@@ -55,6 +54,7 @@ public class CreateInProgressContractPage extends AbstractPage {
             } else if (ContractField.ContractFieldType.MULTI_SELECT.equals(contractField.getType())) {
                 String [] values = contractField.getValue().split(",");
                 for(String value : values){
+                    Thread.sleep(3000);
                     webElement.click();
                     webElement.sendKeys(contractField.getValue());
                     webElement.findElement(MULTISELECT_ITEM).click();
@@ -68,11 +68,11 @@ public class CreateInProgressContractPage extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(InProgressContractPage.CONTRACT_MENU));
     }
 
-    public void createAcmeContract(){
+    public void createAcmeContract() throws InterruptedException {
         List<ContractField> fields = new ArrayList<ContractField>();
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_TITLE, "TestContract"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_ORGANIZATION, "Roman art"));
-        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_CN, "victoria+classic@parleypro.com"));
+        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_CN, "victoria+ccn@parleypro.com"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_REGION, "NNAM - North America"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_COUNTRY, "CCA - Canada"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_ENTITY, "AACME Inc Air, Limited"));
@@ -82,7 +82,7 @@ public class CreateInProgressContractPage extends AbstractPage {
         createContract(fields);
     }
 
-    public void createSimpleContract(){
+    public void createSimpleContract() throws InterruptedException {
         List<ContractField> fields = new ArrayList<ContractField>();
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_TITLE, "TestContract"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_ORGANIZATION, "RomanArt"));
