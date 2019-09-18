@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.core.IsNull.nullValue;
 
 public class RolesTest extends AbstractIT {
 
@@ -395,6 +396,96 @@ public class RolesTest extends AbstractIT {
 
         AdministrationPage administrationPage = pageFactory.administrationPage();
         administrationPage.checkPageIconNotExists();
+
+    }
+
+    @Test
+    public void testChiefNegotiatorAndAdminPermissions() throws Throwable {
+        LoginPage loginPage = pageFactory.loginPage();
+        loginPage.getDriver().manage().deleteAllCookies();
+        loginPage.login("victoria+admincn@parleypro.com","Parley650!");
+        InProgressContractsPage inProgressContractsPage = pageFactory.inProgressContractsPage();
+        inProgressContractsPage.checkCurrentPage();
+
+        inProgressContractsPage.checkCreateContractButtonExists();
+
+        //Validate in-progress contract list
+        List<InProgressContract> list = inProgressContractsPage.getInProgressContracts();
+        inProgressContractsPage.checkContractRequiredFieldsNotEmpty(list);
+
+        //Validate in-progress contract
+        String contractLink = getContractLinkByTitle(list, "CNAdminTestContract");
+        assertThat(contractLink, notNullValue());
+
+        //Validate contract with another CN is not visible
+        String anotherCNContract = getContractLinkByTitle(list, "TestContract");
+        assertThat(anotherCNContract, nullValue());
+
+        inProgressContractsPage.getDriver().get(contractLink);
+        InProgressContractPage inProgressContract = pageFactory.inProgressContractPage();
+        inProgressContract.checkNewDocumentButtonDisplayed();
+
+        inProgressContract.clickOnContractMenu();
+        inProgressContract.checkContractInfoDisplayed();
+        inProgressContract.checkAuditTrailDisplayed();
+        inProgressContract.checkDeleteContractDisplayed();
+        inProgressContract.checkCancelContractDisplayed();
+
+        //Validate executed contract list
+
+        ExecutedContractsPage executedContractsPage = pageFactory.executedContractsPage();
+        executedContractsPage.checkCurrentPage();
+        executedContractsPage.moveToPage();
+        executedContractsPage.checkCreateContractButtonExists();
+        List<ExecutedContract> executedContracts = executedContractsPage.getExecutedContracts();
+        executedContractsPage.checkContractRequiredFieldsNotEmpty(executedContracts);
+
+        //Validate executed contract
+        String executedContractLink = getExecutedContractLinkByTitle(executedContracts, "CNAdminExecutedContract");
+        assertThat(executedContractLink, notNullValue());
+
+        String anotherCNExecutedContract = getExecutedContractLinkByTitle(executedContracts, "Test online");
+        assertThat(anotherCNExecutedContract, nullValue());
+
+        executedContractsPage.getDriver().get(executedContractLink);
+        ExecutedContractPage executedContractPage = pageFactory.executedContractPage();
+
+        executedContractPage.clickOnContractMenu();
+        executedContractPage.checkContractInfoDisplayed();
+        executedContractPage.checkAuditTrailDisplayed();
+        executedContractPage.checkDeleteContractDisplayed();
+        executedContractPage.checkCancelContractDisplayed();
+
+
+        //Validate dashboard is available
+
+        DashboardPage dashboardPage = pageFactory.dashboardPage();
+        dashboardPage.checkCurrentPage();
+
+        ///Validate administration page is available
+
+        AdministrationPage administrationPage = pageFactory.administrationPage();
+        administrationPage.checkCurrentPage();
+        administrationPage.moveToPage();
+
+        administrationPage.checkManageUsersTabExists();
+        administrationPage.checkNewUserButtonExists();
+
+        administrationPage.checkIntegrationsTabExists();
+
+        administrationPage.checkWorkFlowsTabExists();
+        administrationPage.checkNewWorkFlowButtonExists();
+
+        //Validate templates page is available
+
+        TemplatesPage templatesPage = pageFactory.templatesPage();
+        templatesPage.checkCurrentPage();
+        templatesPage.moveToPage();
+        templatesPage.checkNewTemplateButtonExists();
+
+        //Validate templates list
+        List<Template> templates = templatesPage.getTemplates();
+        templatesPage.checkContractRequiredFieldsNotEmpty(templates);
 
     }
 
