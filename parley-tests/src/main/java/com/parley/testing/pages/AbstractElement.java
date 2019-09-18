@@ -22,7 +22,7 @@ import static org.springframework.util.ReflectionUtils.invokeMethod;
 
 public abstract class AbstractElement {
 
-    private static final int WAIT_TIMEOUT = 50;
+    private static final int WAIT_TIMEOUT = 60;
 
     private static final String ELEMENT_IS_VISIBLE_ERR_MSG = "Element visible but should not exist";
     private static final String ELEMENT_IS_NOT_VISIBLE_ERR_MSG = "Element isn't visible but should exist";

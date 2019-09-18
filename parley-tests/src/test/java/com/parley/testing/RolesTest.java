@@ -489,5 +489,72 @@ public class RolesTest extends AbstractIT {
 
     }
 
+    @Test
+    public void testContractManagerAndAdminPermissions() throws Throwable {
+        LoginPage loginPage = pageFactory.loginPage();
+        loginPage.getDriver().manage().deleteAllCookies();
+        loginPage.login("victoria+admincm@parleypro.com","Parley650!");
+
+        //Validate executed contracts
+
+        ExecutedContractsPage executedContractsPage = pageFactory.executedContractsPage();
+        executedContractsPage.checkCurrentPage();
+        executedContractsPage.checkCreateContractButtonExists();
+        List<ExecutedContract> executedContracts = executedContractsPage.getExecutedContracts();
+        executedContractsPage.checkContractRequiredFieldsNotEmpty(executedContracts);
+
+        //Validate executed contract
+        String executedContractLink = getExecutedContractLinkByTitle(executedContracts, "CNAdminExecutedContract");
+        assertThat(executedContractLink, notNullValue());
+
+        executedContractLink = getExecutedContractLinkByTitle(executedContracts, "Test online");
+        assertThat(executedContractLink, notNullValue());
+        executedContractsPage.getDriver().get(executedContractLink);
+        ExecutedContractPage executedContractPage = pageFactory.executedContractPage();
+
+        executedContractPage.clickOnContractMenu();
+        executedContractPage.checkContractInfoDisplayed();
+        executedContractPage.checkAuditTrailDisplayed();
+        executedContractPage.checkDeleteContractDisplayed();
+        executedContractPage.checkCancelContractNotDisplayed();
+
+
+        //Validate dashboard is available
+
+        DashboardPage dashboardPage = pageFactory.dashboardPage();
+        dashboardPage.checkCurrentPage();
+
+        ///Validate administration page is available
+
+        AdministrationPage administrationPage = pageFactory.administrationPage();
+        administrationPage.checkCurrentPage();
+        administrationPage.moveToPage();
+
+        administrationPage.checkManageUsersTabExists();
+        administrationPage.checkNewUserButtonExists();
+
+        administrationPage.checkIntegrationsTabExists();
+
+        administrationPage.checkWorkFlowsTabExists();
+        administrationPage.checkNewWorkFlowButtonExists();
+
+        //Validate templates page is available
+
+        TemplatesPage templatesPage = pageFactory.templatesPage();
+        templatesPage.checkCurrentPage();
+        templatesPage.moveToPage();
+        templatesPage.checkNewTemplateButtonExists();
+
+        //Validate templates list
+        List<Template> templates = templatesPage.getTemplates();
+        templatesPage.checkContractRequiredFieldsNotEmpty(templates);
+
+        //Validate in-progress contract page isn't available
+
+        InProgressContractsPage inProgressContractsPage = pageFactory.inProgressContractsPage();
+        inProgressContractsPage.checkPageIconNotExists();
+
+    }
+
 
 }
