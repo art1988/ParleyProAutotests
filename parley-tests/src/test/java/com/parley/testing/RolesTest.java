@@ -556,5 +556,70 @@ public class RolesTest extends AbstractIT {
 
     }
 
+    @Test
+    public void testViewerAndAdminPermissions() throws Throwable {
+        LoginPage loginPage = pageFactory.loginPage();
+        loginPage.getDriver().manage().deleteAllCookies();
+        loginPage.login("victoria+adminviewer@parleypro.com","Parley650!");
+
+        //Validate in-progress contract list
+
+        InProgressContractsPage inProgressContractsPage = pageFactory.inProgressContractsPage();
+        inProgressContractsPage.checkCurrentPage();
+        inProgressContractsPage.checkCreateContractButtonNotDisplayed();
+        List<InProgressContract> list = inProgressContractsPage.getInProgressContracts();
+        inProgressContractsPage.checkContractRequiredFieldsNotEmpty(list);
+
+        //Validate documents actions menu and new document button don't exist
+
+        String contractLink = getContractLinkByTitle(list, "TestContract");
+        assertThat(contractLink, notNullValue());
+        inProgressContractsPage.getDriver().get(contractLink);
+        InProgressContractPage inProgressContract = pageFactory.inProgressContractPage();
+        inProgressContract.checkNewDocumentButtonNotDisplayed();
+        inProgressContract.checkDocumentActionsMenuNotDisplayed();
+
+        //Validate executed contract list
+
+        ExecutedContractsPage executedContractsPage = pageFactory.executedContractsPage();
+        executedContractsPage.moveToPage();
+        executedContractsPage.checkCurrentPage();
+        executedContractsPage.checkCreateContractButtonNotDisplayed();
+        List<ExecutedContract> executedContracts = executedContractsPage.getExecutedContracts();
+        executedContractsPage.checkContractRequiredFieldsNotEmpty(executedContracts);
+
+        //Validate dashboard is available
+
+        DashboardPage dashboardPage = pageFactory.dashboardPage();
+        dashboardPage.checkCurrentPage();
+
+        ///Validate administration page is available
+
+        AdministrationPage administrationPage = pageFactory.administrationPage();
+        administrationPage.checkCurrentPage();
+        administrationPage.moveToPage();
+
+        administrationPage.checkManageUsersTabExists();
+        administrationPage.checkNewUserButtonExists();
+
+        administrationPage.checkIntegrationsTabExists();
+
+        administrationPage.checkWorkFlowsTabExists();
+        administrationPage.checkNewWorkFlowButtonExists();
+
+        //Validate templates page is available
+
+        TemplatesPage templatesPage = pageFactory.templatesPage();
+        templatesPage.checkCurrentPage();
+        templatesPage.moveToPage();
+        templatesPage.checkNewTemplateButtonExists();
+
+        //Validate templates list
+        List<Template> templates = templatesPage.getTemplates();
+        templatesPage.checkContractRequiredFieldsNotEmpty(templates);
+
+
+    }
+
 
 }
