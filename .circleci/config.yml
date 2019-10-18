@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Run IU tests
           working_directory: ./parley-tests
-          command: mvn test -Dwebdriver.gecko.driver=/usr/local/bin/geckodriver
+          command: mvn test -Dwebdriver.gecko.driver=/usr/local/bin/geckodriver -Dsent.to.aws=true
 
       - store_test_results:
           path: ./parley-tests/target/surefire-reports

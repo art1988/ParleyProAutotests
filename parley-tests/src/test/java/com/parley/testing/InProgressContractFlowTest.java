@@ -1,11 +1,13 @@
 package com.parley.testing;
 
+import com.parley.testing.listener.UITestListener;
 import com.parley.testing.model.contracts.InProgressContract;
 import com.parley.testing.pages.impl.CreateInProgressContractPage;
 import com.parley.testing.pages.impl.InProgressContractPage;
 import com.parley.testing.pages.impl.LoginPage;
 import com.parley.testing.pages.impl.dashboard.InProgressContractsPage;
 import com.parley.testing.runner.AbstractIT;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
 
+@Listeners(UITestListener.class)
 public class InProgressContractFlowTest extends AbstractIT {
 
     @Test

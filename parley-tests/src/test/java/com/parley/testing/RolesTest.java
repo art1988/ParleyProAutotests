@@ -1,11 +1,13 @@
 package com.parley.testing;
 
+import com.parley.testing.listener.UITestListener;
 import com.parley.testing.model.Template;
 import com.parley.testing.model.contracts.ExecutedContract;
 import com.parley.testing.model.contracts.InProgressContract;
 import com.parley.testing.pages.impl.*;
 import com.parley.testing.pages.impl.dashboard.*;
 import com.parley.testing.runner.AbstractIT;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -14,6 +16,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
 
+@Listeners(UITestListener.class)
 public class RolesTest extends AbstractIT {
 
     @Test
