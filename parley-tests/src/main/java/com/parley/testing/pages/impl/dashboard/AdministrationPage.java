@@ -33,7 +33,7 @@ public class AdministrationPage extends AbstractDashboardPage  {
     }
 
     public void checkNewUserButtonExists(){
-        waitUntilElementIsDisplayed(MANAGE_USERS_TAB);
+        waitUntilElementIsEnabled(MANAGE_USERS_TAB);
         move(MANAGE_USERS_TAB);
         waitUntilElementIsDisplayed(NEW_USER_BUTTON);
     }
