@@ -74,7 +74,7 @@ public class CreateInProgressContractPage extends AbstractPage {
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_ORGANIZATION, "Roman art"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_CN, "victoria+ccn@parleypro.com"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_REGION, "NNAM - North America"));
-        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_COUNTRY, "CCA - Canada"));
+        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_COUNTRY, "CA - Canada"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_ENTITY, "AACME Inc Air, Limited"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_DEPARTMENT, "GGlobal Operations"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_CATEGORY, "CConsultancy"));
