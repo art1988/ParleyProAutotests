@@ -10,8 +10,8 @@ import static junit.framework.Assert.assertEquals;
 
 public class LoginPage extends AbstractPage {
 
-    private static final By USERNAME = By.id("1");
-    private static final By PSSWD = By.id("2");
+    private static final By USERNAME = By.id("email");
+    private static final By PSSWD = By.id("password");
     private static final By LOGIN_BTN = By.xpath("//button[text()='SIGN IN']");
     private static final By LOGIN_ERROR_MESSAGE_ELEMENT = By.xpath("//div[contains(@class,'auth__error')]");
     private static final String LOGIN_ERROR_MESSAGE_TEXT = "Oops! That email/password combination is not valid";

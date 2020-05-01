@@ -17,7 +17,7 @@ import java.util.List;
 
 public class CreateInProgressContractPage extends AbstractPage {
 
-    private static final By CONTRACT_TITLE = By.id("contractTitle");
+    private static final By CONTRACT_TITLE = By.cssSelector("input[inputid='contractTitle']");
     private static final By CONTRACT_DUE_DATE = By.id("dueDate");
     private static final By CONTRACT_VALUE_INPUT = By.id("contractValue");
     private static final By COUNTERPARTY_PAPER_CHECKBOX = By.id("counterpartyPaper");
@@ -28,7 +28,7 @@ public class CreateInProgressContractPage extends AbstractPage {
     private static final By CONTRACT_ENTITY = By.id("contractEntity");
     private static final By CONTRACTING_DEPARTMENT = By.id("ContractingDepartment");
     private static final By CONTRACT_CATEGORY = By.id("contractCategory");
-    private static final By CONTRACT_TYPE = By.id("contractType");
+    private static final By CONTRACT_TYPE = By.cssSelector("input[inputid='contractType']");
     private static final By MULTISELECT_ITEM = By.xpath("//div[contains(@class, 'multi-select') and contains(@class ,'option')]/label/div");
 
     private static final By SAVE_BUTTON = By.xpath("//button[contains(text(), 'SAVE')]");
@@ -44,7 +44,9 @@ public class CreateInProgressContractPage extends AbstractPage {
     }
 
     public void createContract(List<ContractField> fields) throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(getDriver(), 5);
         for (ContractField contractField : fields) {
+            wait.until(ExpectedConditions.elementToBeClickable(contractField.getSelector()));
             WebElement webElement = findElement(contractField.getSelector());
             if (ContractField.ContractFieldType.SELECT.equals(contractField.getType())) {
                 Select select = new Select(webElement);
@@ -64,7 +66,7 @@ public class CreateInProgressContractPage extends AbstractPage {
             }
         }
         click(SAVE_BUTTON);
-        WebDriverWait wait = new WebDriverWait(getDriver(), 5);
+
         wait.until(ExpectedConditions.elementToBeClickable(InProgressContractPage.CONTRACT_MENU));
     }
 
@@ -73,11 +75,11 @@ public class CreateInProgressContractPage extends AbstractPage {
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_TITLE, "TestContract"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_ORGANIZATION, "Roman art"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_CN, "victoria+ccn@parleypro.com"));
-        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_REGION, "NNAM - North America"));
+        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_REGION, "NAM - North America"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_COUNTRY, "CA - Canada"));
-        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_ENTITY, "AACME Inc Air, Limited"));
-        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_DEPARTMENT, "GGlobal Operations"));
-        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_CATEGORY, "CConsultancy"));
+        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_ENTITY, "ACME Inc Air, Limited"));
+        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_DEPARTMENT, "Global Operations"));
+        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_CATEGORY, "Consultancy"));
         fields.add(new ContractField(ContractField.ContractFieldType.MULTI_SELECT, CONTRACT_TYPE, "Consolidation Services"));
         createContract(fields);
     }
