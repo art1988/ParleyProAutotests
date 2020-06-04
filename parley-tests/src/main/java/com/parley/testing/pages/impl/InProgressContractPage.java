@@ -246,12 +246,13 @@ public class InProgressContractPage extends AbstractPage {
        waitUntilElementIsDisplayed(REVIEW_ACTIVE);
     }
 
-    public void moveToNegotiate() {
+    public void moveToNegotiate() throws InterruptedException {
         findElement(NEGOTIATON).click();
         getDriver().switchTo().activeElement();
         waitUntilElementIsDisplayed(NEXT_BUTTON);
         findElement(NEXT_BUTTON).click();
         getDriver().switchTo().activeElement();
+        Thread.sleep(2000);
         waitUntilElementIsDisplayed(START_BUTTON);
         findElement(START_BUTTON).click();
     }

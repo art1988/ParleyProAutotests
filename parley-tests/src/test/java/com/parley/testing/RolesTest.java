@@ -294,7 +294,7 @@ public class RolesTest extends AbstractIT {
     public void testApproverPermissions() throws Throwable {
         LoginPage loginPage = pageFactory.loginPage();
         loginPage.getDriver().manage().deleteAllCookies();
-        loginPage.login("victoria+approver@parleypro.com","Parley650!");
+        loginPage.login("victoria+approver1@parleypro.com","Parley650!");
 
         //Validate in-progress contract list
 
