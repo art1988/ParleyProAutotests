@@ -5,7 +5,6 @@ import com.parley.testing.pages.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static com.parley.testing.utils.AsyncAssert.waitForSuccess;
 import static junit.framework.Assert.assertEquals;
 
 public class LoginPage extends AbstractPage {
@@ -38,10 +37,8 @@ public class LoginPage extends AbstractPage {
         getDriver().navigate().to(PAGE_URL);
         getDriver().manage().deleteAllCookies();
         waitUntilElementIsDisplayed(LOGIN_BTN);
-        findElement(USERNAME).clear();
-        findElement(USERNAME).sendKeys(userName);
-        findElement(PSSWD).clear();
-        findElement(PSSWD).sendKeys(password);
+        clearAndEnterValue(USERNAME, userName);
+        clearAndEnterValue(PSSWD, password);
         findElement(LOGIN_BTN).click();
     }
 

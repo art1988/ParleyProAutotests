@@ -100,6 +100,13 @@ public abstract class AbstractElement {
                 || !driver.findElement(bySelector).isDisplayed());
     }
 
+    public final void clearAndEnterValue(final By bySelector, String value){
+        waitUntilElementIsEnabled(bySelector);
+        WebElement element = driver.findElement(bySelector);
+        element.clear();
+        element.sendKeys(value);
+    }
+
     /**
      * Wait until select located by given locator has options for selection.
      *

@@ -5,6 +5,9 @@ import com.parley.testing.model.Template;
 import com.parley.testing.model.contracts.ExecutedContract;
 import com.parley.testing.model.contracts.InProgressContract;
 import com.parley.testing.pages.impl.*;
+import com.parley.testing.pages.impl.admin.IntegrationsPage;
+import com.parley.testing.pages.impl.admin.UserManagementPage;
+import com.parley.testing.pages.impl.admin.WorkflowsPage;
 import com.parley.testing.pages.impl.dashboard.*;
 import com.parley.testing.runner.AbstractIT;
 import org.testng.annotations.Listeners;
@@ -164,13 +167,16 @@ public class RolesTest extends AbstractIT {
         administrationPage.checkCurrentPage();
         administrationPage.moveToPage();
 
-        administrationPage.checkManageUsersTabExists();
-        administrationPage.checkNewUserButtonExists();
+        UserManagementPage userManagementPage = pageFactory.userManagementPage();
+        userManagementPage.checkManageUsersTabExists();
+        userManagementPage.checkNewUserButtonExists();
 
-        administrationPage.checkIntegrationsTabExists();
+        IntegrationsPage integrationsPage = pageFactory.integrationsPage();
+        integrationsPage.checkIntegrationsTabExists();
 
-        administrationPage.checkWorkFlowsTabExists();
-        administrationPage.checkNewWorkFlowButtonExists();
+        WorkflowsPage workflowsPage = pageFactory.workflowsPage();
+        workflowsPage.checkWorkFlowsTabExists();
+        workflowsPage.checkNewWorkFlowButtonExists();
 
         //Validate templates page is available
 
@@ -472,13 +478,16 @@ public class RolesTest extends AbstractIT {
         administrationPage.checkCurrentPage();
         administrationPage.moveToPage();
 
-        administrationPage.checkManageUsersTabExists();
-        administrationPage.checkNewUserButtonExists();
+        UserManagementPage userManagementPage = pageFactory.userManagementPage();
+        userManagementPage.checkManageUsersTabExists();
+        userManagementPage.checkNewUserButtonExists();
 
-        administrationPage.checkIntegrationsTabExists();
+        IntegrationsPage integrationsPage = pageFactory.integrationsPage();
+        integrationsPage.checkIntegrationsTabExists();
 
-        administrationPage.checkWorkFlowsTabExists();
-        administrationPage.checkNewWorkFlowButtonExists();
+        WorkflowsPage workflowsPage = pageFactory.workflowsPage();
+        workflowsPage.checkWorkFlowsTabExists();
+        workflowsPage.checkNewWorkFlowButtonExists();
 
         //Validate templates page is available
 
@@ -534,13 +543,16 @@ public class RolesTest extends AbstractIT {
         administrationPage.checkCurrentPage();
         administrationPage.moveToPage();
 
-        administrationPage.checkManageUsersTabExists();
-        administrationPage.checkNewUserButtonExists();
+        UserManagementPage userManagementPage = pageFactory.userManagementPage();
+        userManagementPage.checkManageUsersTabExists();
+        userManagementPage.checkNewUserButtonExists();
 
-        administrationPage.checkIntegrationsTabExists();
+        IntegrationsPage integrationsPage = pageFactory.integrationsPage();
+        integrationsPage.checkIntegrationsTabExists();
 
-        administrationPage.checkWorkFlowsTabExists();
-        administrationPage.checkNewWorkFlowButtonExists();
+        WorkflowsPage workflowsPage = pageFactory.workflowsPage();
+        workflowsPage.checkWorkFlowsTabExists();
+        workflowsPage.checkNewWorkFlowButtonExists();
 
         //Validate templates page is available
 
@@ -603,13 +615,16 @@ public class RolesTest extends AbstractIT {
         administrationPage.checkCurrentPage();
         administrationPage.moveToPage();
 
-        administrationPage.checkManageUsersTabExists();
-        administrationPage.checkNewUserButtonExists();
+        UserManagementPage userManagementPage = pageFactory.userManagementPage();
+        userManagementPage.checkManageUsersTabExists();
+        userManagementPage.checkNewUserButtonExists();
 
-        administrationPage.checkIntegrationsTabExists();
+        IntegrationsPage integrationsPage = pageFactory.integrationsPage();
+        integrationsPage.checkIntegrationsTabExists();
 
-        administrationPage.checkWorkFlowsTabExists();
-        administrationPage.checkNewWorkFlowButtonExists();
+        WorkflowsPage workflowsPage = pageFactory.workflowsPage();
+        workflowsPage.checkWorkFlowsTabExists();
+        workflowsPage.checkNewWorkFlowButtonExists();
 
         //Validate templates page is available
 

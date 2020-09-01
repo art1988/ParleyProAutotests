@@ -2,6 +2,9 @@ package com.parley.testing.pages;
 
 import com.parley.testing.exceptions.IllegalPageException;
 import com.parley.testing.pages.impl.*;
+import com.parley.testing.pages.impl.admin.IntegrationsPage;
+import com.parley.testing.pages.impl.admin.UserManagementPage;
+import com.parley.testing.pages.impl.admin.WorkflowsPage;
 import com.parley.testing.pages.impl.dashboard.*;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +29,9 @@ public class PageFactory {
     private AdministrationPage administrationPage;
     private TemplatesPage templatesPage;
     private CreateInProgressContractPage createInProgressContractPage;
+    private UserManagementPage userManagementPage;
+    private IntegrationsPage integrationsPage;
+    private WorkflowsPage workflowsPage;
 
     public PageFactory(WebDriver webDriverProvider, String baseUrl) {
         this.webDriverProvider = webDriverProvider;
@@ -97,6 +103,27 @@ public class PageFactory {
             templatesPage = new TemplatesPage(webDriverProvider);
         }
         return templatesPage;
+    }
+
+    public UserManagementPage userManagementPage() throws IllegalPageException {
+        if (userManagementPage == null || userManagementPage.isSessionLost()) {
+            userManagementPage = new UserManagementPage(webDriverProvider);
+        }
+        return userManagementPage;
+    }
+
+    public IntegrationsPage integrationsPage() throws IllegalPageException {
+        if (integrationsPage == null || integrationsPage.isSessionLost()) {
+            integrationsPage = new IntegrationsPage(webDriverProvider);
+        }
+        return integrationsPage;
+    }
+
+    public WorkflowsPage workflowsPage() throws IllegalPageException {
+        if (workflowsPage == null || workflowsPage.isSessionLost()) {
+            workflowsPage = new WorkflowsPage(webDriverProvider);
+        }
+        return workflowsPage;
     }
 
     public CreateInProgressContractPage createInProgressContractPage() throws IllegalPageException {
