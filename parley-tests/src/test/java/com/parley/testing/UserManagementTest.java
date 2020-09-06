@@ -16,7 +16,7 @@ import java.util.Map;
 @Listeners(UITestListener.class)
 public class UserManagementTest extends AbstractIT {
 
-    @Test
+    @Test(enabled = false)
     public void testAddAndDeleteUser() throws Throwable {
         LoginPage loginPage = pageFactory.loginPage();
         loginPage.getDriver().manage().deleteAllCookies();

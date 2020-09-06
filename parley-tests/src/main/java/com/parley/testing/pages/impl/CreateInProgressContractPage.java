@@ -2,10 +2,7 @@ package com.parley.testing.pages.impl;
 
 import com.parley.testing.model.contracts.ContractField;
 import com.parley.testing.pages.AbstractPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -30,6 +27,7 @@ public class CreateInProgressContractPage extends AbstractPage {
     private static final By CONTRACT_CATEGORY = By.id("contractCategory");
     private static final By CONTRACT_TYPE = By.cssSelector("input[inputid='contractType']");
     private static final By MULTISELECT_ITEM = By.xpath("//div[contains(@class, 'multi-select') and contains(@class ,'option')]/label/div");
+    private static final By CLASSIC_NEGOTIATION_MODE = By.id("classicNegotiationMode");
 
     private static final By SAVE_BUTTON = By.xpath("//button[contains(text(), 'SAVE')]");
 
@@ -46,13 +44,17 @@ public class CreateInProgressContractPage extends AbstractPage {
     public void createContract(List<ContractField> fields) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(getDriver(), 5);
         for (ContractField contractField : fields) {
-            wait.until(ExpectedConditions.elementToBeClickable(contractField.getSelector()));
+            getDriver().switchTo().activeElement();
+            if(!ContractField.ContractFieldType.CHECKBOX.equals(contractField.getType())){
+                wait.until(ExpectedConditions.elementToBeClickable(contractField.getSelector()));
+            }
             WebElement webElement = findElement(contractField.getSelector());
             if (ContractField.ContractFieldType.SELECT.equals(contractField.getType())) {
                 Select select = new Select(webElement);
                 select.selectByVisibleText(contractField.getValue());
             } else if (ContractField.ContractFieldType.CHECKBOX.equals(contractField.getType()) || ContractField.ContractFieldType.RADIO_BUTTON.equals(contractField.getType())) {
-                webElement.click();
+                JavascriptExecutor js = (JavascriptExecutor) getDriver();
+                js.executeScript("arguments[0].click();",webElement);
             } else if (ContractField.ContractFieldType.MULTI_SELECT.equals(contractField.getType())) {
                 String [] values = contractField.getValue().split(",");
                 for(String value : values){
@@ -65,14 +67,22 @@ public class CreateInProgressContractPage extends AbstractPage {
                 webElement.sendKeys(contractField.getValue());
             }
         }
+        waitUntilElementIsDisplayed(SAVE_BUTTON);
         click(SAVE_BUTTON);
 
         wait.until(ExpectedConditions.elementToBeClickable(InProgressContractPage.CONTRACT_MENU));
     }
 
     public void createAcmeContract() throws InterruptedException {
+        createAcmeContract(false, "TestContract");
+    }
+
+    public void createAcmeContract(Boolean isClassic, String contractName) throws InterruptedException {
         List<ContractField> fields = new ArrayList<ContractField>();
-        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_TITLE, "TestContract"));
+        fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACT_TITLE, contractName));
+        if(isClassic){
+            fields.add(new ContractField(ContractField.ContractFieldType.CHECKBOX, CLASSIC_NEGOTIATION_MODE, ""));
+        }
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_ORGANIZATION, "Roman art"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, COUNTERPARTY_CN, "victoria+ccn@parleypro.com"));
         fields.add(new ContractField(ContractField.ContractFieldType.INPUT, CONTRACTING_REGION, "NAM - North America"));

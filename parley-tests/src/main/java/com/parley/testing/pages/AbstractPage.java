@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.List;
 
 public abstract class AbstractPage extends AbstractElement implements Page {
@@ -45,6 +46,16 @@ public abstract class AbstractPage extends AbstractElement implements Page {
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
+    }
+
+    public void uploadDocument(String name, By selector) throws Throwable {
+        File file = new File(
+                getClass().getClassLoader().getResource(name).getFile()
+        );
+        waitUntilElementIsDisplayed(selector);
+        findElement(selector).click();
+        getDriver().findElement(selector).sendKeys(file.getAbsolutePath());
+
     }
 
 

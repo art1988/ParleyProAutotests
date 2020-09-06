@@ -1,8 +1,8 @@
 package com.parley.testing.configuration;
 
+import com.parley.testing.aspose.WordChangesValidator;
 import com.parley.testing.aws.AwsService;
 import com.parley.testing.configuration.properties.PropertiesConfiguration;
-import com.parley.testing.listener.UITestListener;
 import com.parley.testing.pages.PageFactory;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,6 +53,11 @@ public class TestsConfiguration {
     @Bean
     PageFactory pageFactory() {
         return new PageFactory(driver(), baseUrl);
+    }
+
+    @Bean
+    WordChangesValidator changesValidator(){
+        return new WordChangesValidator();
     }
 
 

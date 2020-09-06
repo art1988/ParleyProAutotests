@@ -13,6 +13,7 @@ import javax.print.DocFlavor;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,7 @@ public class InProgressContractPage extends AbstractPage {
     public static final By DOCUMENT_LIST = By.xpath("//a[contains(@class, 'documents__list-content')]");
     public static final By NEW_DOCUMENT_BUTTON = By.xpath("//button[text()='NEW DOCUMENT']");
     public static final By EMAIL_CONTRACT_BUTTON = By.xpath("//button[text()='EMAIL CONTRACT']");
-    public static final By MY_TEAM_DOCUMENT = By.xpath("//button[text()='Upload my team documents']");
+    public static final By MY_TEAM_DOCUMENT = By.cssSelector(".documents-add-upload__cell:first-child input[type=file]");
     public static final By CP_DOCUMENT = By.xpath("//button[text()='Upload Counterparty documents']");
     public static final By ATTACHEMENT_DOCUMENT = By.xpath("//button[text()='UPLOAD FROM YOUR COMPUTER']");
     public static final By SHARE_BUTTON = By.xpath("//button[text()='SHARE']");
@@ -38,6 +39,7 @@ public class InProgressContractPage extends AbstractPage {
     public static final By START_BUTTON = By.xpath("//button[text()='START']");
     public static final By NEXT_BUTTON = By.xpath("//button[text()='NEXT']");
     public static final By READY_FOR_SIGNATURE_BUTTON = By.xpath("//button[text()='READY FOR SIGNATURE']");
+    public static final By UPLOAD_NEW_VERSION = By.xpath("//div[contains(text(), 'Upload new version')]");
 
     public static final By APPROVE_BUTTON = By.xpath("//button[text()='APPROVE']");
     public static final By REJECT_BUTTON = By.xpath("//button[text()='REJECT']");
@@ -139,9 +141,11 @@ public class InProgressContractPage extends AbstractPage {
     public void checkDeleteContractDisplayed() {
         waitUntilElementIsDisplayed(DELETE_CONTRACT);
     }
+
     public void checkReassignCNIsDisplayed() {
         waitUntilElementIsDisplayed(REASSIGN_CN);
     }
+
     public void checkDeleteContractNotDisplayed() {
         checkElementDoesNotExist(DELETE_CONTRACT);
     }
@@ -161,12 +165,15 @@ public class InProgressContractPage extends AbstractPage {
     public void checkFormatDocumentIsDisplayed() {
         waitUntilElementIsDisplayed(FORMAT_DOCUMENT);
     }
+
     public void checkDownloadDocumentIsDisplayed() {
         waitUntilElementIsDisplayed(DOWNLOAD_DOCUMENT);
     }
+
     public void checkCancelDocumentIsDisplayed() {
         waitUntilElementIsDisplayed(CANCEL_DOCUMENT);
     }
+
     public void checkDeleteDocumentIsDisplayed() {
         waitUntilElementIsDisplayed(DELETE_DOCUMENT);
     }
@@ -174,12 +181,15 @@ public class InProgressContractPage extends AbstractPage {
     public void checkFormatDocumentNotDisplayed() {
         checkElementDoesNotExist(FORMAT_DOCUMENT);
     }
+
     public void checkCancelDocumentNotDisplayed() {
         checkElementDoesNotExist(CANCEL_DOCUMENT);
     }
+
     public void checkDeleteDocumentNotDisplayed() {
         checkElementDoesNotExist(DELETE_DOCUMENT);
     }
+
     public void checkDocumentActionsMenuNotDisplayed() {
         checkElementDoesNotExist(DOCUMENT_MENU);
     }
@@ -195,6 +205,7 @@ public class InProgressContractPage extends AbstractPage {
     public void checkReadyForSignatureButtonIsDisplayed() {
         waitUntilElementIsDisplayed(READY_FOR_SIGNATURE_BUTTON);
     }
+
     public void clickReadyForSignatureButton() {
         findElement(READY_FOR_SIGNATURE_BUTTON).click();
     }
@@ -222,12 +233,34 @@ public class InProgressContractPage extends AbstractPage {
         waitUntilElementIsDisplayed(TEMPLATES);
         Map<String, WebElement> templates = getTemplates();
         WebElement element = templates.get(name);
-        if(element != null){
+        if (element != null) {
             element.click();
             checkShareButtonIsDisplayed();
         }
     }
 
+    public void uploadMyTeamDocument(String fileName) throws Throwable {
+        getDriver().switchTo().activeElement();
+        uploadDocument(fileName, MY_TEAM_DOCUMENT);
+    }
+
+    public void uploadCPDocument(String fileName) throws Throwable {
+        getDriver().switchTo().activeElement();
+        uploadDocument(fileName, CP_DOCUMENT);
+    }
+
+    public void uploadNewVersion(String fileName) throws Throwable {
+        waitUntilElementIsDisplayed(UPLOAD_NEW_VERSION);
+        findElement(UPLOAD_NEW_VERSION).click();
+        getDriver().switchTo().activeElement();
+        uploadDocument(fileName, CP_DOCUMENT);
+    }
+
+    public File downloadDocument(){
+        //TODO implement method for downloading file
+        File file = new File("");
+        return file;
+    }
 
     public Map<String, WebElement> getTemplates() {
         Map<String, WebElement> templates = new HashMap<String, WebElement>();
@@ -239,11 +272,11 @@ public class InProgressContractPage extends AbstractPage {
     }
 
     public void moveToReview() {
-       findElement(REVIEW).click();
-       getDriver().switchTo().activeElement();
-       waitUntilElementIsDisplayed(START_BUTTON);
-       findElement(START_BUTTON).click();
-       waitUntilElementIsDisplayed(REVIEW_ACTIVE);
+        findElement(REVIEW).click();
+        getDriver().switchTo().activeElement();
+        waitUntilElementIsDisplayed(START_BUTTON);
+        findElement(START_BUTTON).click();
+        waitUntilElementIsDisplayed(REVIEW_ACTIVE);
     }
 
     public void moveToNegotiate() throws InterruptedException {
