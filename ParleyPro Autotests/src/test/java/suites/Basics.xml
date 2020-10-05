@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Basics" configfailurepolicy="continue">
+    <test name = "Basic contract lifecycle" preserve-order="true">
+        <classes>
+            <class name = "tests.SetupLogger"/>
+            <class name = "tests.LoginToDashboard"/>
+            <class name = "tests.AddNewContract"/>
+            <class name = "tests.UploadContract"/>
+            <class name = "tests.ProceedThroughLifecycleStages"/>
+            <class name = "tests.DeleteContract"/>
+        </classes>
+    </test>
+</suite>
