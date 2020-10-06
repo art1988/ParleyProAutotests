@@ -29,7 +29,7 @@ public class UploadContract
 
         AddDocuments addDocuments = new AddDocuments();
 
-        addDocuments.clickUploadMyTeamDocuments( Const.CONTRACT_SAMPLE );
+        addDocuments.clickUploadMyTeamDocuments( Const.CONTRACT_LIFECYCLE_SAMPLE );
 
         logger.info("Assert upload notification...");
         $(".notification-stack").waitUntil(Condition.visible, 25_000).shouldHave(Condition.exactText("Document pramata has been successfully uploaded."));
