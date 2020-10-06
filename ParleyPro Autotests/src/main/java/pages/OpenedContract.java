@@ -9,6 +9,7 @@ import forms.StartNegotiation;
 import forms.StartReview;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import pages.subelements.ParagraphActionsPopup;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -90,5 +91,33 @@ public class OpenedContract
         logger.info("COMPLETE SIGN was clicked");
 
         return new CompleteSign(contractName.text());
+    }
+
+    /**
+     * Perform hover over paragraph that contains certain text
+     * @param paragraph - text that contains in paragraph
+     * @return
+     */
+    public ParagraphActionsPopup hover(String paragraph)
+    {
+        StringBuffer jsCode = new StringBuffer("var deleteMeP = $('.document-paragraph__content-text:contains(\"" + paragraph + "\")');");
+        jsCode.append("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
+        jsCode.append("deleteMeP[0].dispatchEvent(event);");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        return new ParagraphActionsPopup();
+    }
+
+    /**
+     * Click by discussion icon of the given paragraph
+     * @param paragraph - text that contains in paragraph
+     * @return
+     */
+    public OpenedDiscussion clickByDiscussionIcon(String paragraph)
+    {
+        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"" + paragraph + "\")').prev().click()");
+
+        return new OpenedDiscussion(paragraph);
     }
 }
