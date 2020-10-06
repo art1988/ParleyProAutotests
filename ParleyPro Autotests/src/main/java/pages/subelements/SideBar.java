@@ -1,5 +1,6 @@
 package pages.subelements;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -21,6 +22,7 @@ public class SideBar
     private SelenideElement templates           = $("a[href*='#/templates']");
     private SelenideElement administration      = $("a[href*='#/admin/usermanagement']");
     private SelenideElement userGuide           = $("a[href='http://help.parleypro.com/articles']");
+    private SelenideElement userIcon            = $("#page-menu-account");
 
 
     private static Logger logger = Logger.getLogger(LoginPage .class);
@@ -59,5 +61,15 @@ public class SideBar
         logger.info("Executed contracts button was clicked");
 
         return new ExecutedContractsPage();
+    }
+
+    public LoginPage logout()
+    {
+        userIcon.click();
+        Selenide.executeJavaScript("$('.dropdown-menu a')[0].click()");
+
+        logger.info("Logout was clicked");
+
+        return new LoginPage();
     }
 }
