@@ -1,11 +1,10 @@
 package tests;
 
-import com.codeborne.selenide.Browsers;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import constants.Const;
 import org.apache.log4j.Logger;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
@@ -18,7 +17,7 @@ public class LoginToDashboard
     private static Logger logger = Logger.getLogger(LoginToDashboard.class);
 
 
-    @BeforeMethod
+    @BeforeSuite
     private void setup()
     {
         Configuration.proxyEnabled = true;
