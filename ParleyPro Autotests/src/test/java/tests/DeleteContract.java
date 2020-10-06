@@ -11,7 +11,6 @@ import pages.ExecutedContractsPage;
 import utils.Screenshoter;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
 import static com.codeborne.selenide.Selenide.$;
 
