@@ -2,6 +2,8 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import forms.CloseDiscussion;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -11,6 +13,7 @@ import pages.subelements.CKEditorActive;
 import pages.subelements.MultipleDeleteOverlay;
 import pages.subelements.ParagraphActionsPopup;
 import utils.Screenshoter;
+import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -44,7 +47,7 @@ public class ParagraphActions
 
         OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(paragraphTitle);
 
-        $(".documents-discussion-panel__close").waitUntil(Condition.visible, 5_000);
+        Waiter.smartWaitUntilVisible("$('.discussion2-original')");
         Assert.assertEquals(Integer.parseInt(openedDiscussion.getCountOfPosts()), 1); // we should see only one post
         Assert.assertEquals($("div[class*='post__comment'] div").text(), comment);  // check that comment is present
 
@@ -168,6 +171,8 @@ public class ParagraphActions
 
         multipleDeleteOverlay.markParagraph("Paragraph 6: Multiple delete second");
 
+        Screenshoter.makeScreenshot();
+
         multipleDeleteOverlay.clickPost();
 
         logger.info("Assert that 'External discussion on deleted paragraph...' notification was shown...");
@@ -177,5 +182,34 @@ public class ParagraphActions
         logger.info("Assert that redlines were applied for both paragraphs...");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Paragraph 5\")').find(\"del\").attr(\"style\") === \"color:#b5082e\""));
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Paragraph 6\")').find(\"del\").attr(\"style\") === \"color:#b5082e\""));
+    }
+
+    @Test(priority = 6)
+    public void discardDiscussion() throws InterruptedException
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        String paragraphTitle = "Paragraph 1: Hello, delete me please";
+
+        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(paragraphTitle);
+
+        CloseDiscussion closeDiscussionForm = openedDiscussion.clickDiscardDiscussion();
+
+        closeDiscussionForm.clickDiscardDiscussion();
+
+        logger.info("Assert that 'discussion closed' notification was shown...");
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Discussion " + paragraphTitle + " has been closed."));
+
+        openedDiscussion.close();
+
+        $(".paragraph-discussions").waitUntil(Condition.disappear, 5_000); // wait until right panel disappear
+
+        Thread.sleep(1_000); // explicit wait for test stability
+
+        logger.info("Assert that there are no more redlines for Paragraph 1...");
+        boolean isColorStillRed = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').find(\"del\").attr(\"style\") === \"color:#b5082e\")");
+        Assert.assertFalse(isColorStillRed);
+
+        Screenshoter.makeScreenshot();
     }
 }
