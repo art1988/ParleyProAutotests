@@ -51,4 +51,22 @@ public class ParagraphActionsPopup
 
         return new CKEditorActive();
     }
+
+    public CKEditorActive clickAddParagraphBelow()
+    {
+        insertBelowButton.click();
+
+        logger.info("Add paragraph below was clicked...");
+
+        return new CKEditorActive();
+    }
+
+    public MultipleDeleteOverlay clickDeleteMultipleParagraphs()
+    {
+        deleteMultipleButton.click();
+
+        logger.info("Delete multiple paragraphs was clicked...");
+
+        return new MultipleDeleteOverlay();
+    }
 }
