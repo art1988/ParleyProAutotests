@@ -23,6 +23,7 @@ public class LoginToDashboard
     {
         Configuration.proxyEnabled = true;
         Configuration.fileDownload = FileDownloadMode.PROXY;
+        Configuration.startMaximized = true;
 
         Const.DOWNLOAD_DIR.mkdirs();
 
