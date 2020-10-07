@@ -10,6 +10,7 @@ import pages.DashboardPage;
 import pages.LoginPage;
 import utils.Screenshoter;
 
+import static com.codeborne.selenide.Browsers.*;
 import static com.codeborne.selenide.Selenide.open;
 
 public class LoginToDashboard
