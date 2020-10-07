@@ -112,6 +112,9 @@ public class ParagraphActions
         openedDiscussion.close(); // Close right panel with opened discussions
         $(".intercom-launcher").waitUntil(Condition.appear, 6_000);
 
+        logger.info("Assert that added paragraph has blue color...");
+        Assert.assertTrue( $("ins").getCssValue("color").equals("rgba(68, 120, 208, 1)") );
+
         logger.info("Assert that 'Paragraph 3' is below of just added paragraph...");
         String textFromParagraph3 = Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + addedText + "\")').parent().parent().parent().next().text()");
         Assert.assertEquals(textFromParagraph3, "arrow_forward Paragraph 3: Insert something above me ");
