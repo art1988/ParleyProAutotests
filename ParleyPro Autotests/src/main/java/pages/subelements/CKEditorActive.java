@@ -23,6 +23,30 @@ public class CKEditorActive
     }
 
     /**
+     * Sets text inside active CKEDITOR
+     * @param text
+     */
+    public void setText(String text)
+    {
+        StringBuffer jsCode = new StringBuffer("var names = [];");
+        jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
+        jsCode.append("var editor_instance = names[0];");
+        jsCode.append("var comment_instance = names[1];");
+        jsCode.append("editor_instance.setData('" + text + "')");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        try
+        {
+            Thread.sleep(1_000); // 1 second delay - necessary for correct saving of text
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
+    }
+
+    /**
      * Sets comment inside active CKEDITOR
      * @param comment
      */
