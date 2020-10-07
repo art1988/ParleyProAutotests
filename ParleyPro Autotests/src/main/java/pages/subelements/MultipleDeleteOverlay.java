@@ -10,9 +10,9 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 /**
- * Appears when user click on 'Delete multiple paragraphs' button
- * Represents from that appears  in footer (comment field, POST button etc.) and radio buttons from the left side
- * of each paragraph
+ * Appears when user click on 'Delete multiple paragraphs' button.
+ * Represents form that appears in footer (with comment field, POST button etc.) and radio buttons from the left side
+ * of each paragraph.
  */
 public class MultipleDeleteOverlay
 {
