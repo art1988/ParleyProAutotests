@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class ParagraphActionsPopup
 {
-    private SelenideElement insertAboveButton    = $(".js-paragraph-tooltip-delete");
+    private SelenideElement insertAboveButton    = $(".js-paragraph-tooltip-insert-above");
     private SelenideElement insertBelowButton    = $(".js-paragraph-tooltip-insert-below");
     private SelenideElement deleteButton         = $(".js-paragraph-tooltip-delete");
     private SelenideElement deleteMultipleButton = $(".js-paragraph-tooltip-delete-multiple");
@@ -39,6 +39,15 @@ public class ParagraphActionsPopup
         commentButton.click();
 
         logger.info("Add comment button was clicked...");
+
+        return new CKEditorActive();
+    }
+
+    public CKEditorActive clickAddParagraphAbove()
+    {
+        insertAboveButton.click();
+
+        logger.info("Add paragraph above was clicked...");
 
         return new CKEditorActive();
     }
