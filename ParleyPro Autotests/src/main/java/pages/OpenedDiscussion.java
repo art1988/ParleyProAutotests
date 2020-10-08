@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import constants.AcceptTypes;
 import forms.AcceptPost;
 import forms.DiscardDiscussion;
+import forms.RevertToOriginal;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -21,7 +22,7 @@ public class OpenedDiscussion
 
     public OpenedDiscussion(String title)
     {
-        $(".discussion-header__title-name").shouldBe(Condition.visible).shouldHave(Condition.exactText(title));
+        $(".discussion-header__title-name").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText(title));
     }
 
     /**
@@ -59,5 +60,12 @@ public class OpenedDiscussion
         logger.info("DISCARD DISCUSSION was clicked...");
 
         return new DiscardDiscussion();
+    }
+
+    public RevertToOriginal clickRevertToOriginal()
+    {
+        Selenide.executeJavaScript("$('.discussion2-post__foot-action.accept:contains(\"REVERT TO ORIGINAL\")').click()");
+
+        return new RevertToOriginal();
     }
 }
