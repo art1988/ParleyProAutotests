@@ -49,7 +49,7 @@ public class ParagraphActions
 
         Waiter.smartWaitUntilVisible("$('.discussion2-original')");
         Assert.assertEquals(Integer.parseInt(openedDiscussion.getCountOfPosts()), 1); // we should see only one post
-        Assert.assertEquals($("div[class*='post__comment'] div").text(), comment);  // check that comment is present
+        $("div[class*='post__comment'] div").waitUntil(Condition.visible, 9_000).shouldHave(Condition.exactText(comment)); // check that comment is present
 
         Screenshoter.makeScreenshot();
 
@@ -80,7 +80,7 @@ public class ParagraphActions
         OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(paragraphTitle);
 
         Assert.assertEquals(Integer.parseInt(openedDiscussion.getCountOfPosts()), 1); // we should see only one post
-        Assert.assertEquals($("div[class*='post__comment'] div").text(), comment);  // check that comment is present
+        $("div[class*='post__comment'] div").waitUntil(Condition.visible, 9_000).shouldHave(Condition.exactText(comment)); // check that comment is present
 
         Screenshoter.makeScreenshot();
 
@@ -109,7 +109,7 @@ public class ParagraphActions
         OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(addedText);
 
         Assert.assertEquals(Integer.parseInt(openedDiscussion.getCountOfPosts()), 1); // we should see only one post
-        Assert.assertEquals($("div[class*='post__comment'] div").text(), comment);  // check that comment is present
+        $("div[class*='post__comment'] div").waitUntil(Condition.visible, 9_000).shouldHave(Condition.exactText(comment)); // check that comment is present
 
         Screenshoter.makeScreenshot();
 
@@ -145,7 +145,7 @@ public class ParagraphActions
         OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(addedText);
 
         Assert.assertEquals(Integer.parseInt(openedDiscussion.getCountOfPosts()), 1); // we should see only one post
-        Assert.assertEquals($("div[class*='post__comment'] div").text(), comment);  // check that comment is present
+        $("div[class*='post__comment'] div").waitUntil(Condition.visible, 9_000).shouldHave(Condition.exactText(comment)); // check that comment is present
 
         Screenshoter.makeScreenshot();
 
