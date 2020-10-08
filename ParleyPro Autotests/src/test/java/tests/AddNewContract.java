@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
@@ -8,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.InProgressContractsPage;
 import utils.Screenshoter;
+import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -39,7 +41,9 @@ public class AddNewContract
 
         logger.info("Assert that contract present in the list and 'Contract title', 'Chief Negotiator' and 'Stage' have correct values");
 
-        $(".contracts-list__contract-name").shouldHave(Condition.exactText("Contract lifecycle autotest"));
+        Waiter.smartWaitUntilVisible("$('.contracts-list__contract-name')");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.contracts-list__contract-name').text()"), "Contract lifecycle autotest");
+
         $("a .contracts-list__chief-negotiator-cell").shouldHave(Condition.exactText(Const.PREDEFINED_USER_CN_ROLE.getFirstName() + " " + Const.PREDEFINED_USER_CN_ROLE.getLastName()));
         $("a .contracts-list__cell-stage").shouldHave(Condition.exactText("Draft"));
 
