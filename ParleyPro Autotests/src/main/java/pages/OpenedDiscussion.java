@@ -3,6 +3,8 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import constants.AcceptTypes;
+import forms.AcceptPost;
 import forms.CloseDiscussion;
 import org.apache.log4j.Logger;
 
@@ -35,6 +37,19 @@ public class OpenedDiscussion
     public String getCountOfPosts()
     {
         return Selenide.executeJavaScript("return $('.documents-discussion-panel .discussion-indicator span').text()");
+    }
+
+    /**
+     * Finds post that contains certain text and click ACCEPT button
+     * @param type - type of Accept form
+     * @param post - text of post which need to be accepted
+     * @return
+     */
+    public AcceptPost clickAccept(AcceptTypes type, String post)
+    {
+        Selenide.executeJavaScript("$('.paragraph-discussions .discussion2-post .discussion2-post__text:contains(\"" + post + "\")').parent().next().find(\"i\").click()");
+
+        return new AcceptPost(type);
     }
 
     public CloseDiscussion clickDiscardDiscussion()
