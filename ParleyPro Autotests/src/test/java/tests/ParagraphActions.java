@@ -243,4 +243,27 @@ public class ParagraphActions
         boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + addedText + "\")').find(\"ins\").length === 0)");
         Assert.assertTrue(colorTagDoestExist);
     }
+
+    @Test(priority = 8)
+    @Description("This test accepts added below paragraph via hover tooltip")
+    public void acceptAddedBelowViaTooltip()
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        String addedText  = "Paragraph that was added BELOW from autotest";
+
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover(addedText);
+
+        AcceptPost acceptPostForm = paragraphActionsPopup.clickAcceptChangesOnParagraph(AcceptTypes.INSERT);
+
+        acceptPostForm.clickAcceptText();
+
+        logger.info("Assert notification...");
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        logger.info("Assert that paragraph's color become black...");
+        boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + addedText + "\")').find(\"ins\").length === 0)");
+        Assert.assertTrue(colorTagDoestExist);
+    }
 }
