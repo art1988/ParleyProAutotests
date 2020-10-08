@@ -2,6 +2,8 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import constants.AcceptTypes;
+import forms.AcceptPost;
 import forms.CloseDiscussion;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
@@ -211,5 +213,34 @@ public class ParagraphActions
         Assert.assertFalse(isColorStillRed);
 
         Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 7)
+    @Description("This test accepts added above paragraph via opened discussion")
+    public void acceptAddedAbove() throws InterruptedException
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        String addedText = "Paragraph that was added ABOVE from autotest";
+
+        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(addedText);
+
+        AcceptPost acceptPostForm = openedDiscussion.clickAccept(AcceptTypes.INSERT, addedText);
+
+        acceptPostForm.clickAcceptText();
+
+        logger.info("Assert notification...");
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        openedDiscussion.close();
+
+        Thread.sleep(1_000); // explicit wait for test stability
+
+        logger.info("Assert that paragraph's color become black...");
+        // Recording to jQuery documentation if length == 0 it means that element doesn't exist
+        // see: https://learn.jquery.com/using-jquery-core/faq/how-do-i-test-whether-an-element-exists/
+        boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + addedText + "\")').find(\"ins\").length === 0)");
+        Assert.assertTrue(colorTagDoestExist);
     }
 }
