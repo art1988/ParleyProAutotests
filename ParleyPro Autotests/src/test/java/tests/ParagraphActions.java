@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.AcceptTypes;
 import forms.AcceptPost;
-import forms.CloseDiscussion;
+import forms.DiscardDiscussion;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -195,9 +195,9 @@ public class ParagraphActions
 
         OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(paragraphTitle);
 
-        CloseDiscussion closeDiscussionForm = openedDiscussion.clickDiscardDiscussion();
+        DiscardDiscussion discardDiscussionForm = openedDiscussion.clickDiscardDiscussion();
 
-        closeDiscussionForm.clickDiscardDiscussion();
+        discardDiscussionForm.clickDiscardDiscussion();
 
         logger.info("Assert that 'discussion closed' notification was shown...");
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Discussion " + paragraphTitle + " has been closed."));

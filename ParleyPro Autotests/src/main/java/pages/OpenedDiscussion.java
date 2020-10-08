@@ -5,7 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import constants.AcceptTypes;
 import forms.AcceptPost;
-import forms.CloseDiscussion;
+import forms.DiscardDiscussion;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -52,12 +52,12 @@ public class OpenedDiscussion
         return new AcceptPost(type);
     }
 
-    public CloseDiscussion clickDiscardDiscussion()
+    public DiscardDiscussion clickDiscardDiscussion()
     {
         discardDiscussionButton.click();
 
         logger.info("DISCARD DISCUSSION was clicked...");
 
-        return new CloseDiscussion();
+        return new DiscardDiscussion();
     }
 }

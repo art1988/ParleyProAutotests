@@ -10,15 +10,15 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Confirmation form that appears after clicking on DISCARD DISCUSSION button
  */
-public class CloseDiscussion
+public class DiscardDiscussion
 {
     private SelenideElement title         = $(".modal-body-title");
     private SelenideElement discardButton = $(".js-close-discussion-confirm");
 
 
-    private static Logger logger = Logger.getLogger(CloseDiscussion.class);
+    private static Logger logger = Logger.getLogger(DiscardDiscussion.class);
 
-    public CloseDiscussion()
+    public DiscardDiscussion()
     {
         title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Are you sure you want to close this discussion?"));
 
