@@ -2,6 +2,8 @@ package pages.subelements;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
+import constants.AcceptTypes;
+import forms.AcceptPost;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -14,6 +16,7 @@ public class ParagraphActionsPopup
     private SelenideElement deleteButton         = $(".js-paragraph-tooltip-delete");
     private SelenideElement deleteMultipleButton = $(".js-paragraph-tooltip-delete-multiple");
     private SelenideElement commentButton        = $(".js-paragraph-tooltip-comment");
+    private SelenideElement acceptButton         = $(".js-paragraph-tooltip-accept");
 
 
 
@@ -21,8 +24,8 @@ public class ParagraphActionsPopup
 
     public ParagraphActionsPopup()
     {
-        // Assert that there are 5 buttons
-        $$(".rc-tooltip-inner button").shouldHave(CollectionCondition.size(5));
+        // Assert that there are 3, 4 or 5 buttons. Depends on paragraph or logged user
+        $$(".rc-tooltip-inner button").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(3));
     }
 
     public CKEditorActive clickDelete()
@@ -68,5 +71,14 @@ public class ParagraphActionsPopup
         logger.info("Delete multiple paragraphs was clicked...");
 
         return new MultipleDeleteOverlay();
+    }
+
+    public AcceptPost clickAcceptChangesOnParagraph(AcceptTypes acceptType)
+    {
+        acceptButton.click();
+
+        logger.info("Accept changes on paragraph was clicked...");
+
+        return new AcceptPost(acceptType);
     }
 }
