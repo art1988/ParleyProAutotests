@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import constants.AcceptTypes;
 import forms.AcceptPost;
 import forms.DiscardDiscussion;
+import forms.RevertToOriginal;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -242,6 +243,8 @@ public class ParagraphActions
         // see: https://learn.jquery.com/using-jquery-core/faq/how-do-i-test-whether-an-element-exists/
         boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + addedText + "\")').find(\"ins\").length === 0)");
         Assert.assertTrue(colorTagDoestExist);
+
+        Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 8)
@@ -264,6 +267,32 @@ public class ParagraphActions
 
         logger.info("Assert that paragraph's color become black...");
         boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + addedText + "\")').find(\"ins\").length === 0)");
+        Assert.assertTrue(colorTagDoestExist);
+
+        Screenshoter.makeScreenshot();
+    }
+
+    // this test temporarily disabled due to https://parley.atlassian.net/browse/PAR-12374
+    @Test(priority = 9, enabled = false)
+    @Description("This test revert to original the 5th paragraph")
+    public void revertChanges()
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        String paragraphTitle = "Paragraph 5: Multiple delete first";
+
+        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(paragraphTitle);
+
+        RevertToOriginal revertToOriginalForm = openedDiscussion.clickRevertToOriginal();
+
+        revertToOriginalForm.clickCloseDiscussion();
+
+        logger.info("Assert notification...");
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        logger.info("Assert that paragraph's color become black...");
+        boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').find(\"del\").length === 0)");
         Assert.assertTrue(colorTagDoestExist);
     }
 }
