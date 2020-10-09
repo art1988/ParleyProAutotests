@@ -2,15 +2,16 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
+import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Dimension;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import utils.Screenshoter;
 
-import static com.codeborne.selenide.Browsers.*;
 import static com.codeborne.selenide.Selenide.open;
 
 public class LoginToDashboard
@@ -24,6 +25,7 @@ public class LoginToDashboard
         Configuration.proxyEnabled = true;
         Configuration.fileDownload = FileDownloadMode.PROXY;
         Configuration.startMaximized = true;
+        //Configuration.headless = true; headless off
 
         Const.DOWNLOAD_DIR.mkdirs();
 
@@ -31,6 +33,8 @@ public class LoginToDashboard
 
 
         open(Const.QA_TENANT_URL);
+        // headless mode: need to set window size for correct running
+        // WebDriverRunner.getWebDriver().manage().window().setSize(new Dimension(1920, 1080));
     }
 
     @Test
