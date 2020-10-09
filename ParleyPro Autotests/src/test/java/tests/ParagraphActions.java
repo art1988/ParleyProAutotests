@@ -304,7 +304,7 @@ public class ParagraphActions
     }
 
     @Test(priority = 10)
-    @Description("This test adds high priority tag and non-standard term")
+    @Description("This test adds high priority tag and non-standard term for Paragraph 2")
     public void addTagAndTerm() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();

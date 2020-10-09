@@ -25,7 +25,7 @@ public class LoginToDashboard
         Configuration.proxyEnabled = true;
         Configuration.fileDownload = FileDownloadMode.PROXY;
         Configuration.startMaximized = true;
-        //Configuration.headless = true; headless off
+        //Configuration.headless = true; //headless off
 
         Const.DOWNLOAD_DIR.mkdirs();
 
@@ -34,7 +34,7 @@ public class LoginToDashboard
 
         open(Const.QA_TENANT_URL);
         // headless mode: need to set window size for correct running
-        // WebDriverRunner.getWebDriver().manage().window().setSize(new Dimension(1920, 1080));
+        //WebDriverRunner.getWebDriver().manage().window().setSize(new Dimension(1920, 1080));
     }
 
     @Test
