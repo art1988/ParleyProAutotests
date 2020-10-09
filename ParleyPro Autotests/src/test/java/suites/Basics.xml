@@ -3,22 +3,26 @@
 
 <suite name = "Basics" configfailurepolicy="continue">
     <test name = "Basic contract lifecycle" preserve-order="true">
+        <parameter name="contractName" value="Contract lifecycle autotest"></parameter>
         <classes>
             <class name = "tests.SetupLogger"/>
             <class name = "tests.LoginToDashboard"/>
             <class name = "tests.AddNewContract"/>
             <class name = "tests.UploadContract"/>
             <class name = "tests.ProceedThroughLifecycleStages"/>
-            <class name = "tests.DeleteContract"/>
+            <class name = "tests.DeleteContractFromExecuted"/>
             <class name = "tests.Logout"/>
         </classes>
     </test>
 
     <test name="Core discussions functionality" preserve-order="true">
+        <parameter name="contractName" value="Contract discussions autotest"></parameter>
         <classes>
             <class name = "tests.LoginToDashboard"/>
             <class name = "tests.CreateContractForDiscussions"/>
             <class name = "tests.ParagraphActions"/>
+            <class name = "tests.DeleteContractFromInProgress"/>
+            <class name = "tests.Logout"/>
         </classes>
     </test>
 </suite>
