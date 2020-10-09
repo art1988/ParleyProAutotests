@@ -202,12 +202,13 @@ public class ParagraphActions
 
         logger.info("Assert that 'discussion closed' notification was shown...");
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Discussion " + paragraphTitle + " has been closed."));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         openedDiscussion.close();
 
         $(".paragraph-discussions").waitUntil(Condition.disappear, 5_000); // wait until right panel disappear
 
-        Thread.sleep(1_000); // explicit wait for test stability
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")')");
 
         logger.info("Assert that there are no more redlines for Paragraph 1...");
         boolean isColorStillRed = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').find(\"del\").attr(\"style\") === \"color:#b5082e\")");
@@ -236,7 +237,7 @@ public class ParagraphActions
 
         openedDiscussion.close();
 
-        Thread.sleep(1_000); // explicit wait for test stability
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + addedText + "\")')");
 
         logger.info("Assert that paragraph's color become black...");
         // Recording to jQuery documentation if length == 0 it means that element doesn't exist
@@ -272,7 +273,7 @@ public class ParagraphActions
         Screenshoter.makeScreenshot();
     }
 
-    // this test temporarily disabled due to https://parley.atlassian.net/browse/PAR-12374
+    // TODO: this test temporarily disabled due to PAR-12374
     @Test(priority = 9, enabled = false)
     @Description("This test revert to original the 5th paragraph")
     public void revertChanges()
@@ -294,5 +295,44 @@ public class ParagraphActions
         logger.info("Assert that paragraph's color become black...");
         boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').find(\"del\").length === 0)");
         Assert.assertTrue(colorTagDoestExist);
+    }
+
+    @Test(priority = 10)
+    @Description("This test adds high priority tag and non-standard term")
+    public void addTagAndTerm() throws InterruptedException
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        String paragraphTitle = "Paragraph 2: Create comment here";
+
+        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(paragraphTitle);
+
+        openedDiscussion.clickPriorityButton();
+
+        logger.info("Assert that High priority post appeared...");
+        $(".discussion2-post__priority").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("High priority"));
+
+        logger.info("Check that paragraph has high priority mark from the left...");
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".tumbler-wrapper__priority\")"); // wait until icon appear
+        boolean hasHighPriorityMark = Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".tumbler-wrapper__priority\").length === 1");
+        Assert.assertTrue(hasHighPriorityMark);
+
+        String addedTag = "Autotest TAG";
+        openedDiscussion.clickTermButton(addedTag);
+
+        // Wait until post with Non-standard tag appear
+        $(".discussion2-post__term-name").waitUntil(Condition.visible, 5_000);
+
+        logger.info("Assert that Non-standard post appeared...");
+        // TODO: fix after fixing of PAR-12377. It should be 1 instead of 2
+        Long countOfNonStandardPosts = Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard: " + addedTag + "\")').length");
+        Assert.assertEquals(countOfNonStandardPosts.longValue(), 2);
+
+        logger.info("Check that paragraph has tag from the left...");
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".tumbler-wrapper__term\")"); // wait until icon appear
+        boolean hasNonStandardMark = Selenide.executeJavaScript("return ( $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".tumbler-wrapper__term\").length === 1 )");
+        Assert.assertTrue(hasNonStandardMark);
+
+        Screenshoter.makeScreenshot();
     }
 }
