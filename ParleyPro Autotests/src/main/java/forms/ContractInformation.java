@@ -27,8 +27,7 @@ public class ContractInformation
 
     private boolean isInit()
     {
-        $(".contract-create__title").waitUntil(Condition.visible, 5_000).
-                shouldBe(Condition.visible).shouldHave(Condition.exactText("Contract information"));
+        $(".contract-create__title").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("Contract information"));
 
         return ( contractTitleField.isDisplayed() );
     }

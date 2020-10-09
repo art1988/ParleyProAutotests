@@ -19,8 +19,7 @@ public class EmailWillBeSentToTheCounterparty
 
     public EmailWillBeSentToTheCounterparty()
     {
-        title.waitUntil(Condition.visible, 5_000).shouldBe(Condition.visible);
-        title.shouldHave(Condition.exactText("The email will be sent to the Counterparty Chief Negotiator."));
+        title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("The email will be sent to the Counterparty Chief Negotiator."));
 
         counterpartyOrganizationField.waitUntil(Condition.visible, 6_000);
         counterpartyChiefNegotiatorField.waitUntil(Condition.visible, 6_000);

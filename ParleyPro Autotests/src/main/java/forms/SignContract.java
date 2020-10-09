@@ -18,8 +18,7 @@ public class SignContract
 
     public SignContract(String contractName)
     {
-        title.waitUntil(Condition.visible, 5_000);
-        title.shouldBe(Condition.visible).shouldHave(Condition.exactText("You have requested to manually sign contract “" + contractName + "”."));
+        title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("You have requested to manually sign contract “" + contractName + "”."));
     }
 
     public void clickStart() throws FileNotFoundException

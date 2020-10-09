@@ -17,8 +17,7 @@ public class StartNegotiation
 
     public StartNegotiation(String contractName)
     {
-        title.waitUntil(Condition.visible, 5_000);
-        title.shouldBe(Condition.visible).shouldHave(Condition.exactText("You are about to start negotiation for contract \"" + contractName + "\"."));
+        title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("You are about to start negotiation for contract \"" + contractName + "\"."));
 
         $(".share-documents__message").shouldBe(Condition.visible).shouldHave(Condition.text("Once started, selected documents will be visible to the Counterparty"));
     }
