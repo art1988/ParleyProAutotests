@@ -28,6 +28,8 @@ public class CKEditorActive
      */
     public void setText(String text)
     {
+        Waiter.smartWaitUntilVisible("$('.editor-area').eq(1)");
+
         StringBuffer jsCode = new StringBuffer("var names = [];");
         jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
         jsCode.append("var editor_instance = names[0];");
@@ -52,6 +54,8 @@ public class CKEditorActive
      */
     public void setComment(String comment)
     {
+        Waiter.smartWaitUntilVisible("$('.editor-area').eq(1)");
+
         StringBuffer jsCode = new StringBuffer("var names = [];");
         jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
         jsCode.append("var editor_instance = names[0];");
