@@ -16,6 +16,7 @@ public class InProgressContractsPage
 {
     private SideBar sideBar;
     private SelenideElement newContractButton = $(".contracts__create button[type='button']");
+    private SelenideElement searchBar = $(".contracts-search-input__text");
 
 
     private static Logger logger = Logger.getLogger(InProgressContractsPage.class);
@@ -63,7 +64,7 @@ public class InProgressContractsPage
 
     /**
      * Click by contract title.
-     * May return new page with 'Add Documents' or already uploaded contract
+     * May return new page with 'Add Documents' or already uploaded contract ( OpenedContract )
      * @param contractName
      */
     public void selectContract(String contractName)
@@ -76,5 +77,11 @@ public class InProgressContractsPage
     public SideBar getSideBar()
     {
         return sideBar;
+    }
+
+    public void search(String searchString)
+    {
+        searchBar.setValue(searchString);
+        searchBar.pressEnter();
     }
 }
