@@ -26,6 +26,7 @@ public class ParagraphActions
 
 
     @Test(priority = 1)
+    @Description("This test deletes Paragraph 1 and check redlines")
     public void deleteParagraph()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -61,6 +62,7 @@ public class ParagraphActions
     }
 
     @Test(priority = 2)
+    @Description("This test leaves a comment for Paragraph 2")
     public void commentParagraph()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -92,6 +94,7 @@ public class ParagraphActions
     }
 
     @Test(priority = 3)
+    @Description("This test adds paragraph ABOVE Paragraph 3")
     public void addParagraphAbove()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -128,6 +131,7 @@ public class ParagraphActions
     }
 
     @Test(priority = 4)
+    @Description("This test adds paragraph BELOW Paragraph 4")
     public void addParagraphBelow()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -164,6 +168,7 @@ public class ParagraphActions
     }
 
     @Test(priority = 5)
+    @Description("This test deletes multiple paragraphs: Paragraph 5 and Paragraph 6")
     public void multipleDeleteAction()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -188,7 +193,8 @@ public class ParagraphActions
     }
 
     @Test(priority = 6)
-    public void discardDiscussion() throws InterruptedException
+    @Description("This test discards discussion for Paragraph 1")
+    public void discardDiscussion()
     {
         OpenedContract openedContract = new OpenedContract();
 
@@ -218,8 +224,8 @@ public class ParagraphActions
     }
 
     @Test(priority = 7)
-    @Description("This test accepts added above paragraph via opened discussion")
-    public void acceptAddedAbove() throws InterruptedException
+    @Description("This test accepts added above paragraph via opened discussion. As a result Paragraph ABOVE has black color")
+    public void acceptAddedAbove()
     {
         OpenedContract openedContract = new OpenedContract();
 
@@ -249,7 +255,7 @@ public class ParagraphActions
     }
 
     @Test(priority = 8)
-    @Description("This test accepts added below paragraph via hover tooltip")
+    @Description("This test accepts added below paragraph via hover tooltip. As a result Paragraph BELOW has black color")
     public void acceptAddedBelowViaTooltip()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -275,7 +281,7 @@ public class ParagraphActions
 
     // TODO: this test temporarily disabled due to PAR-12374
     @Test(priority = 9, enabled = false)
-    @Description("This test revert to original the 5th paragraph")
+    @Description("This test reverts to original the 5th paragraph")
     public void revertChanges()
     {
         OpenedContract openedContract = new OpenedContract();
