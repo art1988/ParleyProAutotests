@@ -15,7 +15,9 @@ public class OpenedDiscussion
 {
     private SelenideElement closeButton             = $(".documents-discussion-panel__close");
     private SelenideElement discardDiscussionButton = $(".discussion-close-button");
-
+    private SelenideElement priorityButton          = $(".discussion-header__menu .label_priority");
+    private SelenideElement termButton              = $(".discussion-header__menu .label_term");
+    private SelenideElement termInput               = $(".select__input.input__input");
 
 
     private static Logger logger = Logger.getLogger(OpenedDiscussion.class);
@@ -38,6 +40,34 @@ public class OpenedDiscussion
     public String getCountOfPosts()
     {
         return Selenide.executeJavaScript("return $('.documents-discussion-panel .discussion-indicator span').text()");
+    }
+
+    /**
+     * Click by "Mark as high priority" button
+     */
+    public void clickPriorityButton()
+    {
+        priorityButton.click();
+
+        logger.info("Mark as high priority button was clicked");
+    }
+
+    /**
+     * Click by "Non-standard term" button
+     * @param tag
+     */
+    public void clickTermButton(String tag)
+    {
+        termButton.click();
+
+        logger.info("Non-standard term button was clicked");
+
+        termInput.waitUntil(Condition.enabled, 5_000);
+        termInput.setValue(tag);
+
+        // Wait until popup with added tag is visible
+        $("#react-autowhatever-1").waitUntil(Condition.visible, 5_000);
+        termInput.pressEnter();
     }
 
     /**
