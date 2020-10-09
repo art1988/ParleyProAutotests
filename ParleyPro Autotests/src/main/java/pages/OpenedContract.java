@@ -3,12 +3,10 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import forms.CompleteSign;
-import forms.SignContract;
-import forms.StartNegotiation;
-import forms.StartReview;
+import forms.*;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import pages.subelements.ContractActionsMenu;
 import pages.subelements.ParagraphActionsPopup;
 import utils.Waiter;
 
@@ -17,6 +15,8 @@ import static com.codeborne.selenide.Selenide.$;
 public class OpenedContract
 {
     private SelenideElement contractName = $(".contract-header__name");
+    private SelenideElement actionsMenu  = $(".contract-header__menu .actions-menu button");
+
 
 
     private static Logger logger = Logger.getLogger(OpenedContract.class);
@@ -28,7 +28,7 @@ public class OpenedContract
 
     private boolean isInit()
     {
-        $(".contract-header__status").shouldBe(Condition.visible);
+        $(".contract-header__status").waitUntil(Condition.visible, 7_000);
 
         return ( contractName.isDisplayed() );
     }
@@ -119,5 +119,16 @@ public class OpenedContract
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"" + paragraph + "\")').prev().click()");
 
         return new OpenedDiscussion(paragraph);
+    }
+
+    /**
+     * Click by button with 3 dots
+     * @return
+     */
+    public ContractActionsMenu clickActionsMenu()
+    {
+        actionsMenu.click();
+
+        return new ContractActionsMenu(contractName.text());
     }
 }
