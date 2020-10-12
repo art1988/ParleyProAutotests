@@ -6,8 +6,8 @@ import com.codeborne.selenide.SelenideElement;
 import forms.*;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import pages.subelements.ContractActionsMenu;
-import pages.subelements.ParagraphActionsPopup;
+import pages.tooltips.ContractActionsMenu;
+import pages.tooltips.ParagraphActionsPopup;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;

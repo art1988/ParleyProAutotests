@@ -14,7 +14,7 @@ import pages.OpenedContract;
 import pages.OpenedDiscussion;
 import pages.subelements.CKEditorActive;
 import pages.subelements.MultipleDeleteOverlay;
-import pages.subelements.ParagraphActionsPopup;
+import pages.tooltips.ParagraphActionsPopup;
 import utils.Screenshoter;
 import utils.Waiter;
 

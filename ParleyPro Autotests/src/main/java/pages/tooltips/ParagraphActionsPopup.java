@@ -1,10 +1,12 @@
-package pages.subelements;
+package pages.tooltips;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import constants.AcceptTypes;
 import forms.AcceptPost;
 import org.apache.log4j.Logger;
+import pages.subelements.CKEditorActive;
+import pages.subelements.MultipleDeleteOverlay;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;

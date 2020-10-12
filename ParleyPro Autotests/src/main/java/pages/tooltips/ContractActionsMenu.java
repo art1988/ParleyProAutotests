@@ -1,4 +1,4 @@
-package pages.subelements;
+package pages.tooltips;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
