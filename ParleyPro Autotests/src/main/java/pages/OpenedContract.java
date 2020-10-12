@@ -7,6 +7,7 @@ import forms.*;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import pages.tooltips.ContractActionsMenu;
+import pages.tooltips.DocumentActionsMenu;
 import pages.tooltips.ParagraphActionsPopup;
 import utils.Waiter;
 
@@ -14,9 +15,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class OpenedContract
 {
-    private SelenideElement contractName = $(".contract-header__name");
-    private SelenideElement actionsMenu  = $(".contract-header__menu .actions-menu button");
-
+    private SelenideElement contractName       = $(".contract-header__name");
+    private SelenideElement actionsMenu        = $(".contract-header__menu .actions-menu button");
 
 
     private static Logger logger = Logger.getLogger(OpenedContract.class);
@@ -84,6 +84,18 @@ public class OpenedContract
         return new SignContract(contractName.text());
     }
 
+    /**
+     * Click by EDIT DOCUMENT button. Available in Draft stage
+     */
+    public EditDocumentPage clickEditDocument(String documentName)
+    {
+        Selenide.executeJavaScript("$('.document__title button:contains(\"EDIT\")').click()");
+
+        logger.info("Edit Document was clicked");
+
+        return new EditDocumentPage(documentName, false);
+    }
+
     public CompleteSign clickCompleteSign()
     {
         Selenide.executeJavaScript("$('.document__title button[spinnersize=\"xs\"]').click()");
@@ -122,13 +134,25 @@ public class OpenedContract
     }
 
     /**
-     * Click by button with 3 dots
+     * Click by button with 3 dots for opened contract
      * @return
      */
-    public ContractActionsMenu clickActionsMenu()
+    public ContractActionsMenu clickContractActionsMenu()
     {
         actionsMenu.click();
 
         return new ContractActionsMenu(contractName.text());
+    }
+
+    /**
+     * Click by button with 3 dots for chosen document
+     * @param documentName - name of document for which document actions menu should be invoked
+     * @return
+     */
+    public DocumentActionsMenu clickDocumentActionsMenu(String documentName)
+    {
+        Selenide.executeJavaScript("$('.document__title:contains(\"" + documentName + "\")').parent().find(\"div[class='document__menu']\").find(\"button\").click()");
+
+        return new DocumentActionsMenu(documentName);
     }
 }
