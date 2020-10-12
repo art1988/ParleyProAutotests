@@ -27,7 +27,7 @@ public class DeleteContractFromInProgress
 
         OpenedContract openedContract = new OpenedContract();
 
-        openedContract.clickActionsMenu().clickDeleteContract().clickDelete();
+        openedContract.clickContractActionsMenu().clickDeleteContract().clickDelete();
 
         logger.info("Assert delete notification...");
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract " + contractName + " has been deleted."));
