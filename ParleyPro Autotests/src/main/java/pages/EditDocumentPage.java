@@ -13,6 +13,8 @@ import static com.codeborne.selenide.Selenide.$;
 public class EditDocumentPage
 {
     private SelenideElement documentName = $(".editor-popup__name");
+
+    private SelenideElement cancelButton = $(".button.btn-small.btn-link-pseudo.btn.btn-link");
     private SelenideElement saveButton   = $(".button.btn-common.btn.btn-primary");
 
 
@@ -38,5 +40,12 @@ public class EditDocumentPage
         saveButton.click();
 
         logger.info("Save button was clicked");
+    }
+
+    public void clickCancel()
+    {
+        cancelButton.click();
+
+        logger.info("Cancel button was clicked");
     }
 }
