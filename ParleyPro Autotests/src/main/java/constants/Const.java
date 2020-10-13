@@ -11,6 +11,7 @@ public class Const
 
     public static final File   CONTRACT_LIFECYCLE_SAMPLE    = new File(System.getProperty("user.dir") + "/Contracts/pramata.docx");
     public static final File   CONTRACT_DISCUSSIONS_SAMPLE  = new File(System.getProperty("user.dir") + "/Contracts/AT-14.docx");
+    public static final File   CONTRACT_FORMATTING_SAMPLE   = new File(System.getProperty("user.dir") + "/Contracts/Formatting.docx");
 
     public static final File   DOWNLOAD_DIR                 = new File(System.getProperty("user.dir") + "/Downloads");
 
