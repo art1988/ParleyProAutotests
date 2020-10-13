@@ -25,4 +25,14 @@
             <class name = "tests.Logout"/>
         </classes>
     </test>
+
+    <test name="Formatting of just uploaded document" preserve-order="true">
+        <parameter name="contractName" value="Contract formatting autotest"></parameter>
+        <classes>
+            <class name="tests.LoginToDashboard"></class>
+            <class name="tests.CreateContractForFormatting"></class>
+            <class name="tests.CheckFormattingByEditDocument"></class>
+            <class name="tests.DeleteContractFromInProgress"></class>
+        </classes>
+    </test>
 </suite>
