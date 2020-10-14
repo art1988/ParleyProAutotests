@@ -89,9 +89,9 @@ public class OpenedContract
      */
     public EditDocumentPage clickEditDocument(String documentName)
     {
-        Selenide.executeJavaScript("$('.document__title button:contains(\"EDIT\")').click()");
+        Selenide.executeJavaScript("$('.document__title span:contains(\"" + documentName + "\")').parent().parent().next().click()");
 
-        logger.info("Edit Document was clicked");
+        logger.info("Edit Document was clicked for: " + documentName);
 
         return new EditDocumentPage(documentName, false);
     }
