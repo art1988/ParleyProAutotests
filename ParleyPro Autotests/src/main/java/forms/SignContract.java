@@ -21,6 +21,10 @@ public class SignContract
         title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("You have requested to manually sign contract “" + contractName + "”."));
     }
 
+    /**
+     * Clicking by Start button will download document
+     * @throws FileNotFoundException
+     */
     public void clickStart() throws FileNotFoundException
     {
         $("#manual-sign-start-button").download();
