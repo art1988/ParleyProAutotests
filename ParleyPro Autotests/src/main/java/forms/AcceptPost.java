@@ -1,5 +1,6 @@
 package forms;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import constants.AcceptTypes;
@@ -24,11 +25,8 @@ public class AcceptPost
     {
         this.acceptType = acceptType;
 
-        Waiter.smartWaitUntilVisible("$('.modal-title')");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.modal-title').text()"), acceptType.getTitle());
-
-        Waiter.smartWaitUntilVisible("$('.modal-description')");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.modal-description').text()"), acceptType.getMessage());
+        $(".modal-title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText(acceptType.getTitle()));
+        $(".modal-description").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText(acceptType.getMessage()));
     }
 
     public void clickAcceptText()
