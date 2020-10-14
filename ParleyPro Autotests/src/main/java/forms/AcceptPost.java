@@ -1,12 +1,9 @@
 package forms;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import constants.AcceptTypes;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
-import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 

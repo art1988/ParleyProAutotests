@@ -2,6 +2,7 @@ package tests;
 
 import constants.Const;
 import forms.ContractInformation;
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
@@ -11,6 +12,7 @@ import utils.Waiter;
 public class CreateContractForFormatting
 {
     @Test
+    @Description("Precondition: this test creates new contract and uploads CONTRACT_FORMATTING_SAMPLE document.")
     public void createContractForFormatting()
     {
         // 1. + NEW CONTRACT

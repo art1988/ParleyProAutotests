@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
 import forms.StartReview;
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
@@ -20,6 +21,7 @@ import static com.codeborne.selenide.Selenide.$$;
 public class CreateContractForDiscussions
 {
     @Test
+    @Description("Precondition: this test creates new contract and uploads CONTRACT_DISCUSSIONS_SAMPLE document.")
     public void createContractForDiscussions()
     {
         // 1. + NEW CONTRACT
