@@ -6,6 +6,7 @@ import constants.Const;
 import forms.ContractInformation;
 import forms.StartReview;
 import io.qameta.allure.Description;
+import org.apache.commons.io.FilenameUtils;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
@@ -51,7 +52,7 @@ public class CreateContractForDiscussions
         // 3. Move to Review stage
         OpenedContract openedContract = new OpenedContract();
 
-        StartReview startReviewForm = openedContract.switchDocumentToReview();
+        StartReview startReviewForm = openedContract.switchDocumentToReview(FilenameUtils.removeExtension(Const.CONTRACT_DISCUSSIONS_SAMPLE.getName()));
 
         startReviewForm.clickStart();
 

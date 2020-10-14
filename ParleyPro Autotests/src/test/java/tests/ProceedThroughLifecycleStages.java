@@ -6,6 +6,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import forms.*;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -25,15 +26,17 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class ProceedThroughLifecycleStages
 {
-    private static Logger logger = Logger.getLogger(ProceedThroughLifecycleStages.class);
+    private final String DOCUMENT_NAME = FilenameUtils.removeExtension(Const.CONTRACT_LIFECYCLE_SAMPLE.getName());
 
+
+    private static Logger logger = Logger.getLogger(ProceedThroughLifecycleStages.class);
 
     @Test(priority = 1)
     public void switchToReview()
     {
         OpenedContract openedContract = new OpenedContract();
 
-        StartReview startReviewForm = openedContract.switchDocumentToReview();
+        StartReview startReviewForm = openedContract.switchDocumentToReview(DOCUMENT_NAME);
 
         startReviewForm.clickStart();
 
@@ -56,7 +59,7 @@ public class ProceedThroughLifecycleStages
     {
         OpenedContract openedContract = new OpenedContract();
 
-        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate();
+        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate(DOCUMENT_NAME);
 
         EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext();
 
@@ -88,7 +91,7 @@ public class ProceedThroughLifecycleStages
     {
         OpenedContract openedContract = new OpenedContract();
 
-        SignContract signContractForm = openedContract.switchDocumentToSign();
+        SignContract signContractForm = openedContract.switchDocumentToSign(DOCUMENT_NAME);
 
         try
         {
@@ -97,7 +100,7 @@ public class ProceedThroughLifecycleStages
             logger.info("Assert that file was downloaded...");
 
             new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
-                    until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "pramata.pdf").toFile().exists());
+                    until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), DOCUMENT_NAME + ".pdf").toFile().exists());
         }
         catch (FileNotFoundException e)
         {
@@ -126,7 +129,7 @@ public class ProceedThroughLifecycleStages
     {
         OpenedContract openedContract = new OpenedContract();
 
-        CompleteSign completeSignForm = openedContract.clickCompleteSign();
+        CompleteSign completeSignForm = openedContract.clickCompleteSign(DOCUMENT_NAME);
 
         ContractInfo signContractInfo = completeSignForm.clickComplete();
 
