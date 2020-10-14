@@ -33,51 +33,57 @@ public class OpenedContract
         return ( contractName.isDisplayed() );
     }
 
-    public StartReview switchDocumentToReview()
+    public StartReview switchDocumentToReview(String documentName)
     {
+        String documentLifecycleString = "$('.document__title span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
+
         // hover over DRAFT
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-        jsCode.append("$('.document__header-info .lifecycle')[0].dispatchEvent(event);");
+        jsCode.append(documentLifecycleString + "[0].dispatchEvent(event)");
 
         Selenide.executeJavaScript(jsCode.toString());
 
-        Waiter.smartWaitUntilVisible("$('.document__header-info .lifecycle').find(\"div:contains('REVIEW')\")");
+        Waiter.smartWaitUntilVisible(documentLifecycleString + ".find(\"div:contains('REVIEW')\")");
 
-        Selenide.executeJavaScript("$('.document__header-info .lifecycle').find(\"div:contains('REVIEW')\").click()");
+        Selenide.executeJavaScript(documentLifecycleString + ".find(\"div:contains('REVIEW')\").click()");
 
         logger.info("REVIEW was clicked");
 
         return new StartReview(contractName.text());
     }
 
-    public StartNegotiation switchDocumentToNegotiate()
+    public StartNegotiation switchDocumentToNegotiate(String documentName)
     {
+        String documentLifecycleString = "$('.document__title span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
+
         // hover over DRAFT
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-        jsCode.append("$('.document__header-info .lifecycle')[0].dispatchEvent(event);");
+        jsCode.append(documentLifecycleString + "[0].dispatchEvent(event);");
 
         Selenide.executeJavaScript(jsCode.toString());
 
-        Waiter.smartWaitUntilVisible("$('.document__header-info .lifecycle').find(\"div:contains('NEGOTIATE')\")");
+        Waiter.smartWaitUntilVisible(documentLifecycleString+ ".find(\"div:contains('NEGOTIATE')\")");
 
-        Selenide.executeJavaScript("$('.document__header-info .lifecycle').find(\"div:contains('NEGOTIATE')\").click()");
+        Selenide.executeJavaScript(documentLifecycleString + ".find(\"div:contains('NEGOTIATE')\").click()");
 
         logger.info("NEGOTIATE was clicked");
 
         return new StartNegotiation(contractName.text());
     }
 
-    public SignContract switchDocumentToSign()
+    public SignContract switchDocumentToSign(String documentName)
     {
+        String documentLifecycleString = "$('.document__title span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
+
         // hover over DRAFT
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-        jsCode.append("$('.document__header-info .lifecycle')[0].dispatchEvent(event);");
+        jsCode.append(documentLifecycleString + "[0].dispatchEvent(event);");
 
         Selenide.executeJavaScript(jsCode.toString());
 
-        Waiter.smartWaitUntilVisible("$('.document__header-info .lifecycle').find(\"div:contains('SIGN')\")");
+        Waiter.smartWaitUntilVisible(documentLifecycleString + ".find(\"div:contains('SIGN')\")");
 
-        Selenide.executeJavaScript("$('.document__header-info .lifecycle').find(\"div:contains('SIGN')\").click()");
+        Selenide.executeJavaScript(documentLifecycleString + ".find(\"div:contains('SIGN')\").click()");
 
         logger.info("SIGN was clicked");
 
@@ -96,9 +102,9 @@ public class OpenedContract
         return new EditDocumentPage(documentName, false);
     }
 
-    public CompleteSign clickCompleteSign()
+    public CompleteSign clickCompleteSign(String documentName)
     {
-        Selenide.executeJavaScript("$('.document__title button[spinnersize=\"xs\"]').click()");
+        Selenide.executeJavaScript("$('.document__title span[title]:contains(\"" + documentName + "\")').parent().parent().parent().find(\"button[spinnersize='xs']\").click()");
 
         logger.info("COMPLETE SIGN was clicked");
 
