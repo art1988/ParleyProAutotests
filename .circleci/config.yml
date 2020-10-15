@@ -7,27 +7,18 @@ jobs:
       - checkout
 
       - run:
-          name: Build project
-          working_directory: ./parley-tests
-          command: mvn clean install -U -DskipTests=true
-      - run:
-          name: Run IU tests
-          working_directory: ./parley-tests
-          command: mvn test -Dwebdriver.gecko.driver=/usr/local/bin/geckodriver -Dsent.to.aws=true
+          name: Run UI tests
+          working_directory: "./ParleyPro Autotests"
+          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
 
       - store_test_results:
           path: ./parley-tests/target/surefire-reports
 
 
 workflows:
-  version: 2
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
+  build_and_deploy:
+    jobs:
+      - build:
           filters:
             branches:
-              only:
-                - master
-    jobs:
-      - build
+              only: master
