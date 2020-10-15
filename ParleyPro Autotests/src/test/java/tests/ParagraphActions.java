@@ -331,6 +331,7 @@ public class ParagraphActions
 
         logger.info("Assert that Non-standard post appeared...");
         // TODO: fix after fixing of PAR-12377. It should be 1 instead of 2
+        Waiter.smartWaitUntilVisible("$('.discussion2-post:contains(\"Non-standard: " + addedTag + "\")')");
         Long countOfNonStandardPosts = Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard: " + addedTag + "\")').length");
         Assert.assertEquals(countOfNonStandardPosts.longValue(), 2);
 
