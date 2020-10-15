@@ -1,4 +1,8 @@
 version: 2.1
+
+orbs:
+  allure: ayte/allure@0.1.3
+
 jobs:
   build:
     docker:
@@ -12,7 +16,12 @@ jobs:
           command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
 
       - store_test_results:
-          path: ./parley-tests/target/surefire-reports
+          path: "./ParleyPro Autotests/target/allure-results"
+          
+      - run:
+          name: Allure Report
+          command: mvn allure:report
+          when: always
 
 
 workflows:
