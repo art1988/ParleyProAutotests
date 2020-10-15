@@ -58,7 +58,7 @@ public class ParagraphActions
         Screenshoter.makeScreenshot();
 
         openedDiscussion.close(); // Close right panel with opened discussions
-        $(".intercom-launcher").waitUntil(Condition.appear, 6_000);
+        $(".documents-pdf-discussion__container").waitUntil(Condition.disappear, 6_000);
     }
 
     @Test(priority = 2)
@@ -90,7 +90,7 @@ public class ParagraphActions
         Screenshoter.makeScreenshot();
 
         openedDiscussion.close(); // Close right panel with opened discussions
-        $(".intercom-launcher").waitUntil(Condition.appear, 6_000);
+        $(".documents-pdf-discussion__container").waitUntil(Condition.disappear, 6_000);
     }
 
     @Test(priority = 3)
@@ -120,7 +120,7 @@ public class ParagraphActions
         Screenshoter.makeScreenshot();
 
         openedDiscussion.close(); // Close right panel with opened discussions
-        $(".intercom-launcher").waitUntil(Condition.appear, 6_000);
+        $(".documents-pdf-discussion__container").waitUntil(Condition.disappear, 6_000);
 
         logger.info("Assert that added paragraph has blue color...");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph ins:contains(\"" + addedText + "\")').css(\"color\") === \"rgb(68, 120, 208)\""));
@@ -157,7 +157,7 @@ public class ParagraphActions
         Screenshoter.makeScreenshot();
 
         openedDiscussion.close(); // Close right panel with opened discussions
-        $(".intercom-launcher").waitUntil(Condition.appear, 6_000);
+        $(".documents-pdf-discussion__container").waitUntil(Condition.disappear, 6_000);
 
         logger.info("Assert that added paragraph has blue color...");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph ins:contains(\"" + addedText + "\")').css(\"color\") === \"rgb(68, 120, 208)\""));
@@ -332,7 +332,6 @@ public class ParagraphActions
         logger.info("Assert that Non-standard post appeared...");
         // TODO: fix after fixing of PAR-12377. It should be 1 instead of 2
         Waiter.smartWaitUntilVisible("$('.discussion2-post:contains(\"Non-standard: " + addedTag + "\")')");
-        Thread.sleep(1500); // Sleep for test stability
         Long countOfNonStandardPosts = Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard: " + addedTag + "\")').length");
         Assert.assertEquals(countOfNonStandardPosts.longValue(), 2);
 
