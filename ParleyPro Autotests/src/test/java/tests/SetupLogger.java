@@ -16,6 +16,6 @@ public class SetupLogger
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hhmmss");
         System.setProperty("current_date", dateFormat.format(new Date()));
 
-        PropertyConfigurator.configure(System.getProperty("user.dir") + "\\src\\main\\resources\\log4j.properties");
+        PropertyConfigurator.configure(System.getProperty("user.dir") + "/src/main/resources/log4j.properties");
     }
 }
