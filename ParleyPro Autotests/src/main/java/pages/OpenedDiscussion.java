@@ -54,7 +54,7 @@ public class OpenedDiscussion
 
     /**
      * Click by "Non-standard term" button
-     * @param tag
+     * @param tag - tag that will be added
      */
     public void clickTermButton(String tag)
     {

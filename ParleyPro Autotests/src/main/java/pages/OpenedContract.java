@@ -91,7 +91,9 @@ public class OpenedContract
     }
 
     /**
-     * Click by EDIT DOCUMENT button. Available in Draft stage
+     * Click by EDIT DOCUMENT button for the given documentName. Available in Draft stage
+     * @param documentName
+     * @return
      */
     public EditDocumentPage clickEditDocument(String documentName)
     {
@@ -102,6 +104,11 @@ public class OpenedContract
         return new EditDocumentPage(documentName, false);
     }
 
+    /**
+     * Click by COMPLETE SIGN button for the given documentName.
+     * @param documentName
+     * @return
+     */
     public CompleteSign clickCompleteSign(String documentName)
     {
         Selenide.executeJavaScript("$('.document__title span[title]:contains(\"" + documentName + "\")').parent().parent().parent().find(\"button[spinnersize='xs']\").click()");
