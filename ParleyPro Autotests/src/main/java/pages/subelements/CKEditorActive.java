@@ -34,7 +34,7 @@ public class CKEditorActive
         jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
         jsCode.append("var editor_instance = names[0];");
         jsCode.append("var comment_instance = names[1];");
-        jsCode.append("editor_instance.setData('" + text + "')");
+        jsCode.append("editor_instance.insertText('" + text + "')");
 
         Selenide.executeJavaScript(jsCode.toString());
 
@@ -60,7 +60,7 @@ public class CKEditorActive
         jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
         jsCode.append("var editor_instance = names[0];");
         jsCode.append("var comment_instance = names[1];");
-        jsCode.append("comment_instance.setData('" + comment + "')");
+        jsCode.append("comment_instance.insertText('" + comment + "')");
 
         Selenide.executeJavaScript(jsCode.toString());
 
