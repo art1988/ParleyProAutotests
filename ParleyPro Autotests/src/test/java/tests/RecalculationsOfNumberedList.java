@@ -134,7 +134,7 @@ public class RecalculationsOfNumberedList
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        logger.info("Assert recalculation of the first list after adding...");
+        logger.info("Assert recalculation of the first list after deletion...");
 
         String actual = getFirstList("6."); // changed to 6.
 
@@ -166,7 +166,7 @@ public class RecalculationsOfNumberedList
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        logger.info("Assert recalculation of the first list after adding...");
+        logger.info("Assert recalculation of the first list after deletion...");
 
         String actual = getFirstList("6."); // still 6.
 
@@ -176,6 +176,72 @@ public class RecalculationsOfNumberedList
                 "3.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1," +
                 "3.1.3.|L2_Number_Point_2_2_2,3.2.|L1_Number_Point_2_3,3.3.|L1_Number_Point_2_4,4.|L0_Number_Point_3," +
                 "5.|L0_Number_Point_4,6.|L0_Number_Point_5");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 6)
+    @Description("This test adds line above the first item and check recalculations")
+    public void addLineAboveFirstItem() throws InterruptedException
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        // hover over the very _first_ list item
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Number_Point_1");
+
+        String addedItem = "above first item";
+        CKEditorActive ckEditorActive = paragraphActionsPopup.clickAddParagraphAbove();
+        Thread.sleep(1_000);
+        ckEditorActive.setText(addedItem);
+        ckEditorActive.clickPost();
+
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        logger.info("Assert recalculation of the first list after adding...");
+
+        String actual = getFirstList("7."); // changed to 7.
+
+        Assert.assertEquals(actual, "1.|" + addedItem + ",2.|L0_Number_Point_1,3.|new added item - L0_Number_Point_A," +
+                "4.|L0_Number_Point_B with sublevels,4.1.|L1_Number_Point_2_1,4.1.1.|L2_Number_Point_C in sublevel," +
+                "4.1.2.|L2_Number_Point_2_2_1,4.1.2.1.|L3_Number_Point_2_2_1_1,4.1.2.1.1.|L4_Number_Point_2_2_1_1_1," +
+                "4.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1,4.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1," +
+                "4.1.3.|L2_Number_Point_2_2_2,4.2.|L1_Number_Point_2_3,4.3.|L1_Number_Point_2_4,5.|L0_Number_Point_3," +
+                "6.|L0_Number_Point_4,7.|L0_Number_Point_5");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 7)
+    @Description("This test adds line below the last item and check recalculations")
+    public void addLineBelowLastItem() throws InterruptedException
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        // hover over the very _last_ list item
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Number_Point_5");
+
+        String addedItem = "below last item";
+        CKEditorActive ckEditorActive = paragraphActionsPopup.clickAddParagraphBelow();
+        Thread.sleep(1_000);
+        ckEditorActive.setText(addedItem);
+        ckEditorActive.clickPost();
+
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        logger.info("Assert recalculation of the first list after adding...");
+
+        String actual = getFirstList("8."); // changed to 8.
+
+        Assert.assertEquals(actual, "1.|above first item,2.|L0_Number_Point_1,3.|new added item - L0_Number_Point_A," +
+                "4.|L0_Number_Point_B with sublevels,4.1.|L1_Number_Point_2_1,4.1.1.|L2_Number_Point_C in sublevel," +
+                "4.1.2.|L2_Number_Point_2_2_1,4.1.2.1.|L3_Number_Point_2_2_1_1,4.1.2.1.1.|L4_Number_Point_2_2_1_1_1," +
+                "4.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1,4.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1," +
+                "4.1.3.|L2_Number_Point_2_2_2,4.2.|L1_Number_Point_2_3,4.3.|L1_Number_Point_2_4,5.|L0_Number_Point_3," +
+                "6.|L0_Number_Point_4,7.|L0_Number_Point_5,8.|" + addedItem);
 
         Screenshoter.makeScreenshot();
     }
