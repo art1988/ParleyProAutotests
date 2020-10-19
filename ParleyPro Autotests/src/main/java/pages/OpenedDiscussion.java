@@ -24,7 +24,7 @@ public class OpenedDiscussion
 
     public OpenedDiscussion(String title)
     {
-        $(".discussion-header__title-name").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText(title));
+        $(".discussion-header__title-name").waitUntil(Condition.visible, 7_000).shouldHave(Condition.text(title));
     }
 
     /**
