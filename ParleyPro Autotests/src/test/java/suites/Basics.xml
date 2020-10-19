@@ -41,6 +41,7 @@
         <classes>
             <class name="tests.LoginToDashboard"></class>
             <class name="tests.CreateContractForNumberedList"></class>
+            <class name="tests.RecalculationsOfNumberedList"></class>
         </classes>
     </test>
 </suite>
