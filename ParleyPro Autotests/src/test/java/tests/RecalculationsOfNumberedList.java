@@ -2,11 +2,13 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import constants.AcceptTypes;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
+import pages.OpenedDiscussion;
 import pages.subelements.CKEditorActive;
 import pages.tooltips.ParagraphActionsPopup;
 import utils.Screenshoter;
@@ -242,6 +244,70 @@ public class RecalculationsOfNumberedList
                 "4.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1,4.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1," +
                 "4.1.3.|L2_Number_Point_2_2_2,4.2.|L1_Number_Point_2_3,4.3.|L1_Number_Point_2_4,5.|L0_Number_Point_3," +
                 "6.|L0_Number_Point_4,7.|L0_Number_Point_5,8.|" + addedItem);
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 8)
+    @Description("This test deletes the first list item and check recalculations")
+    public void deleteFirstListItem()
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        // hover over the very _first_ list item
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("above first item");
+
+        paragraphActionsPopup.clickAcceptChangesOnParagraph(AcceptTypes.INSERT).clickAcceptText(); // and click accept via tooltip
+
+        paragraphActionsPopup = openedContract.hover("above first item"); // hover again over the first item
+
+        CKEditorActive ckEditorActive = paragraphActionsPopup.clickDelete(); // and click delete icon
+        ckEditorActive.clickPost();
+
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        logger.info("Assert recalculation of the first list after deletion...");
+
+        String actual = getFirstList("7."); // changed to 7.
+
+        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A," +
+                "3.|L0_Number_Point_B with sublevels,3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel," +
+                "3.1.2.|L2_Number_Point_2_2_1,3.1.2.1.|L3_Number_Point_2_2_1_1,3.1.2.1.1.|L4_Number_Point_2_2_1_1_1," +
+                "3.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.|L2_Number_Point_2_2_2,3.2.|L1_Number_Point_2_3,3.3.|L1_Number_Point_2_4,4.|L0_Number_Point_3," +
+                "5.|L0_Number_Point_4,6.|L0_Number_Point_5,7.|below last item");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 9)
+    @Description("This test discards added line and check recalculation")
+    public void discardAddedLine()
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon("new added item - L0_Number_Point_A");
+
+        openedDiscussion.clickDiscardDiscussion().clickDiscardDiscussion();
+
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        openedDiscussion.close();
+        $(".paragraph-discussions").waitUntil(Condition.disappear, 5_000); // wait until right panel disappear
+
+        logger.info("Assert recalculation of the first list after discard...");
+
+        String actual = getFirstList("6."); // changed to 6.
+
+        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_B with sublevels,2.1.|L1_Number_Point_2_1," +
+                "2.1.1.|L2_Number_Point_C in sublevel,2.1.2.|L2_Number_Point_2_2_1,2.1.2.1.|L3_Number_Point_2_2_1_1," +
+                "2.1.2.1.1.|L4_Number_Point_2_2_1_1_1,2.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
+                "2.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,2.1.3.|L2_Number_Point_2_2_2,2.2.|L1_Number_Point_2_3," +
+                "2.3.|L1_Number_Point_2_4,3.|L0_Number_Point_3,4.|L0_Number_Point_4,5.|L0_Number_Point_5,6.|below last item");
 
         Screenshoter.makeScreenshot();
     }
