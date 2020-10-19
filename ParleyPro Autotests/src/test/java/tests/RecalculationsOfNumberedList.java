@@ -118,6 +118,68 @@ public class RecalculationsOfNumberedList
         Screenshoter.makeScreenshot();
     }
 
+    @Test(priority = 4)
+    @Description("This test deletes line in level 1 (without sublevels) and check recalculations")
+    public void deleteLineInLevel1WithoutSublevels()
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        // hover over the line that we want to delete
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Number_Point_2");
+
+        CKEditorActive ckEditorActive = paragraphActionsPopup.clickDelete();
+        ckEditorActive.clickPost();
+
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        logger.info("Assert recalculation of the first list after adding...");
+
+        String actual = getFirstList("6."); // changed to 6.
+
+        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A," +
+                "3.|L0_Number_Point_B with sublevels,3.1.|L1_Number_Point_2_1,3.2.|L1_Number_Point_2_2," +
+                "3.2.1.|L2_Number_Point_C in sublevel,3.2.2.|L2_Number_Point_2_2_1,3.2.2.1.|L3_Number_Point_2_2_1_1," +
+                "3.2.2.1.1.|L4_Number_Point_2_2_1_1_1,3.2.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
+                "3.2.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,3.2.3.|L2_Number_Point_2_2_2,3.3.|L1_Number_Point_2_3," +
+                "3.4.|L1_Number_Point_2_4,4.|L0_Number_Point_3,5.|L0_Number_Point_4,6.|L0_Number_Point_5");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 5)
+    @Description("This test deletes line in sublevel and check recalculations")
+    public void deleteLineInSublevel()
+    {
+        refreshPage(); // Need to refresh again
+
+        OpenedContract openedContract = new OpenedContract();
+
+        // hover over the line that we want to delete
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L1_Number_Point_2_2");
+
+        CKEditorActive ckEditorActive = paragraphActionsPopup.clickDelete();
+        ckEditorActive.clickPost();
+
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        logger.info("Assert recalculation of the first list after adding...");
+
+        String actual = getFirstList("6."); // still 6.
+
+        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A," +
+                "3.|L0_Number_Point_B with sublevels,3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel," +
+                "3.1.2.|L2_Number_Point_2_2_1,3.1.2.1.|L3_Number_Point_2_2_1_1,3.1.2.1.1.|L4_Number_Point_2_2_1_1_1," +
+                "3.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.|L2_Number_Point_2_2_2,3.2.|L1_Number_Point_2_3,3.3.|L1_Number_Point_2_4,4.|L0_Number_Point_3," +
+                "5.|L0_Number_Point_4,6.|L0_Number_Point_5");
+
+        Screenshoter.makeScreenshot();
+    }
+
     /**
      * Get first numbered list
      * @param endOfList - the last item of the list. Indicates the end of the list. May be 6. or 7., etc.
