@@ -26,6 +26,15 @@ public class OpenedContract
         Assert.assertTrue( isInit() );
     }
 
+    /**
+     * Use this constructor in case if opened contract page was scrolled so no headings are not visible
+     * @param disableInitialAssert
+     */
+    public OpenedContract(boolean disableInitialAssert)
+    {
+        // ...
+    }
+
     private boolean isInit()
     {
         $(".contract-header__status").waitUntil(Condition.visible, 7_000);
