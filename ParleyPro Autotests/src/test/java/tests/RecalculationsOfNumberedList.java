@@ -399,7 +399,7 @@ public class RecalculationsOfNumberedList
 
     /**
      * Get first numbered list
-     * @param endOfList - the last item of the list. Indicates the end of the list. May be 6. or 7., etc.
+     * @param endOfList the last item of the list. Indicates the end of the list. May be 6. or 7., etc.
      * @return
      */
     private String getFirstList(String endOfList)
