@@ -312,6 +312,91 @@ public class RecalculationsOfNumberedList
         Screenshoter.makeScreenshot();
     }
 
+    @Test(priority = 10)
+    @Description("This test discards deleted line and check recalculation")
+    public void discardDeletedLine()
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        // open discussion for deleted line
+        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon("L0_Number_Point_2");
+
+        openedDiscussion.clickDiscardDiscussion().clickDiscardDiscussion();
+
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        openedDiscussion.close();
+        $(".paragraph-discussions").waitUntil(Condition.disappear, 5_000); // wait until right panel disappear
+
+        logger.info("Assert recalculation of the first list after discard...");
+
+        String actual = getFirstList("7."); // changed to 7.
+
+        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_2,3.|L0_Number_Point_B with sublevels," +
+                "3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel,3.1.2.|L2_Number_Point_2_2_1," +
+                "3.1.2.1.|L3_Number_Point_2_2_1_1,3.1.2.1.1.|L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
+                "3.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,3.1.3.|L2_Number_Point_2_2_2,3.2.|L1_Number_Point_2_3," +
+                "3.3.|L1_Number_Point_2_4,4.|L0_Number_Point_3,5.|L0_Number_Point_4,6.|L0_Number_Point_5,7.|below last item");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 11)
+    @Description("This test accepts added line and check recalculation")
+    public void acceptAddedLine()
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        // hover over line that was added
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Number_Point_B with sublevels");
+
+        paragraphActionsPopup.clickAcceptChangesOnParagraph(AcceptTypes.INSERT).clickAcceptText();
+
+        logger.info("Assert notification...");
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        logger.info("Assert recalculation after accepting...");
+        String actual = getFirstList("7."); // still 7.
+
+        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_2,3.|L0_Number_Point_B with sublevels," +
+                "3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel,3.1.2.|L2_Number_Point_2_2_1," +
+                "3.1.2.1.|L3_Number_Point_2_2_1_1,3.1.2.1.1.|L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
+                "3.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,3.1.3.|L2_Number_Point_2_2_2,3.2.|L1_Number_Point_2_3," +
+                "3.3.|L1_Number_Point_2_4,4.|L0_Number_Point_3,5.|L0_Number_Point_4,6.|L0_Number_Point_5,7.|below last item");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 12)
+    @Description("This test accepts deleted line and check recalculation")
+    public void acceptDeletedLine()
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        // hover over line that was deleted
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L1_Number_Point_2_2");
+
+        paragraphActionsPopup.clickAcceptChangesOnParagraph(AcceptTypes.DELETE).clickAcceptText();
+
+        logger.info("Assert notification...");
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        logger.info("Assert recalculation after accepting...");
+        String actual = getFirstList("7."); // still 7.
+
+        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_2,3.|L0_Number_Point_B with sublevels," +
+                "3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel,3.1.2.|L2_Number_Point_2_2_1," +
+                "3.1.2.1.|L3_Number_Point_2_2_1_1,3.1.2.1.1.|L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
+                "3.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,3.1.3.|L2_Number_Point_2_2_2,3.2.|L1_Number_Point_2_3," +
+                "3.3.|L1_Number_Point_2_4,4.|L0_Number_Point_3,5.|L0_Number_Point_4,6.|L0_Number_Point_5,7.|below last item");
+
+        Screenshoter.makeScreenshot();
+    }
+
     /**
      * Get first numbered list
      * @param endOfList - the last item of the list. Indicates the end of the list. May be 6. or 7., etc.
