@@ -108,9 +108,6 @@ public class SupportedNumberingFormats
     @Description("This test removes the first item of roman capital list, accepts and check recalculation")
     public void removeAndAcceptFirstItemOfRomanCapitalList()
     {
-        // scroll to bottom of page
-        Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,document.body.scrollHeight)");
-
         OpenedContract openedContract = new OpenedContract(true);
 
         ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Roman_capital_I");
@@ -139,9 +136,6 @@ public class SupportedNumberingFormats
     @Description("This test inserts at the end of roman lowered list and check recalculation")
     public void insertAtTheEndOfRomanLoweredList() throws InterruptedException
     {
-        // scroll to bottom of page
-        Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,document.body.scrollHeight)");
-
         OpenedContract openedContract = new OpenedContract(true);
 
         ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Roman_lower_iii");
@@ -169,9 +163,6 @@ public class SupportedNumberingFormats
     @Description("This test inserts item in sublevel of roman lowered list, accepts and check recalculation")
     public void insertAndAcceptInSublevelOfRomanLoweredList() throws InterruptedException
     {
-        // scroll to bottom of page
-        Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,document.body.scrollHeight)");
-
         OpenedContract openedContract = new OpenedContract(true);
 
         ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L1_Roman_lower_ii_1");
