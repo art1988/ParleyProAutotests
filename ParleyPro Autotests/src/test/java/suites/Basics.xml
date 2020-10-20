@@ -42,6 +42,7 @@
             <class name="tests.LoginToDashboard"></class>
             <class name="tests.CreateContractForNumberedList"></class>
             <class name="tests.RecalculationsOfNumberedList"></class>
+            <class name="tests.SupportedNumberingFormats"></class>
         </classes>
     </test>
 </suite>
