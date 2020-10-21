@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Basics" configfailurepolicy="continue">
+    <!--
     <test name = "Basic contract lifecycle" preserve-order="true">
         <parameter name="contractName" value="Contract lifecycle autotest"></parameter>
         <classes>
@@ -14,8 +15,8 @@
             <class name = "tests.Logout"/>
         </classes>
     </test>
+    -->
 
-    <!--
     <test name="Core discussions functionality" preserve-order="true">
         <parameter name="contractName" value="Contract discussions autotest"></parameter>
         <classes>
@@ -27,6 +28,7 @@
         </classes>
     </test>
 
+    <!--
     <test name="Formatting of just uploaded document" preserve-order="true">
         <parameter name="contractName" value="Contract formatting autotest"></parameter>
         <classes>
