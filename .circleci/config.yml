@@ -12,8 +12,7 @@ jobs:
           command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
 
       - store_test_results:
-          
-          path: "./target/allure-results"
+          path: "target/allure-results"
             
 
 workflows:
