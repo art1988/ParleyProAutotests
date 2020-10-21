@@ -15,7 +15,6 @@
             <class name = "tests.Logout"/>
         </classes>
     </test>
-    -->
 
     <test name="Core discussions functionality" preserve-order="true">
         <parameter name="contractName" value="Contract discussions autotest"></parameter>
@@ -27,7 +26,7 @@
             <class name = "tests.Logout"/>
         </classes>
     </test>
-
+    -->
     <!--
     <test name="Formatting of just uploaded document" preserve-order="true">
         <parameter name="contractName" value="Contract formatting autotest"></parameter>
@@ -38,7 +37,7 @@
             <class name="tests.DeleteContractFromInProgress"></class>
             <class name="tests.Logout"></class>
         </classes>
-    </test>
+    </test> -->
 
     <test name="Numbered list recalculation" preserve-order="true">
         <classes>
@@ -47,5 +46,5 @@
             <class name="tests.RecalculationsOfNumberedList"></class>
             <class name="tests.SupportedNumberingFormats"></class>
         </classes>
-    </test> -->
+    </test>
 </suite>
