@@ -18,7 +18,7 @@ jobs:
           command: tar -czvf allure-results.tar.gz ./target/allure-results
 
       - store_artifacts:
-          path: "ParleyPro Autotests/target/allure-results"
+          path: "ParleyPro Autotests/allure-results.tar.gz"
             
 
 workflows:
