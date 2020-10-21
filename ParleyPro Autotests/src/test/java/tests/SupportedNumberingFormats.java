@@ -2,10 +2,12 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.testng.ScreenShooter;
 import constants.AcceptTypes;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
 import pages.subelements.CKEditorActive;
@@ -14,6 +16,7 @@ import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
+@Listeners({ ScreenShooter.class})
 public class SupportedNumberingFormats
 {
     private static Logger logger = Logger.getLogger(SupportedNumberingFormats.class);
