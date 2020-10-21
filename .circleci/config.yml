@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Run UI tests
           working_directory: "./ParleyPro Autotests"
-          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          command: mvn clean integration-test -DtestSuite=./src/test/java/suites/Basics
 
       - run:
           name: ZIP allure results
