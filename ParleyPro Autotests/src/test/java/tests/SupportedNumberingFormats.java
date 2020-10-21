@@ -99,6 +99,10 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
         logger.info("Assert recalculation after removing...");
         String actual = getList("(a)", "(b)");
 
