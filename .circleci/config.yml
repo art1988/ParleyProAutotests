@@ -11,7 +11,7 @@ jobs:
           working_directory: "./ParleyPro Autotests"
           command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
 
-      - store_test_results:
+      - store_artifacts:
           path: "ParleyPro Autotests/target/allure-results"
             
 
