@@ -4,16 +4,17 @@ jobs:
     docker:
       - image: circleci/openjdk:8u222-stretch-browsers
       
-    working_directory: "./ParleyPro Autotests"
     steps:
       - checkout
 
       - run:
           name: Run UI tests
+          working_directory: "./ParleyPro Autotests"
           command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
 
       - run:
           name: ZIP allure results
+          working_directory: "./ParleyPro Autotests"
           command: tar -czvf allure-results.tar.gz ./target/allure-results
 
       - store_artifacts:
