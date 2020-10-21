@@ -52,6 +52,11 @@
                             <value>${project.build.directory}/allure-results</value>
                         </property>
                     </systemProperties>
+
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/java/suites/Basics.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/java/suites/NumberedList.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
 
                 <dependencies>
