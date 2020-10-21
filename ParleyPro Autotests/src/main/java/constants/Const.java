@@ -15,6 +15,7 @@ public class Const
     public static final File   CONTRACT_NUMBERED_LIST_SAMPLE = new File(System.getProperty("user.dir") + "/Contracts/NumberedList.docx");
 
     public static final File   DOWNLOAD_DIR                 = new File(System.getProperty("user.dir") + "/Downloads");
+    public static final File   SCREENSHOTS_DIR              = new File(System.getProperty("user.dir") + "/Screenshots");
 
 
     private Const() {}

@@ -22,15 +22,16 @@ public class LoginToDashboard
     @BeforeSuite
     private void setup()
     {
-        Configuration.proxyEnabled = true;
-        Configuration.fileDownload = FileDownloadMode.PROXY;
+        Configuration.proxyEnabled   = true;
+        Configuration.fileDownload   = FileDownloadMode.PROXY;
         Configuration.startMaximized = true;
         //Configuration.headless = true; //headless off
 
         Const.DOWNLOAD_DIR.mkdirs();
+        Const.SCREENSHOTS_DIR.mkdirs();
 
         Configuration.downloadsFolder = Const.DOWNLOAD_DIR.getAbsolutePath();
-
+        Configuration.reportsFolder   = Const.SCREENSHOTS_DIR.getAbsolutePath();
 
         open(Const.QA_TENANT_URL);
         // headless mode: need to set window size for correct running
