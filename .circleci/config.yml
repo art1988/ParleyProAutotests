@@ -11,11 +11,6 @@ jobs:
           working_directory: "./ParleyPro Autotests"
           command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
 
-      - run:
-          name: Generate allure reports
-          working_directory: "./ParleyPro Autotests"
-          command: mvn allure:serve
-
       - store_test_results:
           path: "./ParleyPro Autotests/target/allure-results"
             
