@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class CKEditorActive
 {
     private SelenideElement editorArea = $(".editor-area");
+    private SelenideElement postButton = $("#create-discussion__submit");
 
 
     private static Logger logger = Logger.getLogger(CKEditorActive.class);
@@ -106,7 +107,7 @@ public class CKEditorActive
 
     public void clickPost()
     {
-        Selenide.executeJavaScript("$('.create-discussion__foot-content button[class*=create-discussion__submit]').click()");
+        postButton.waitUntil(Condition.enabled, 6_000).click();
 
         logger.info("POST button was clicked...");
     }
