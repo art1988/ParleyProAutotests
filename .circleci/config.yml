@@ -19,6 +19,9 @@ jobs:
 
       - store_artifacts:
           path: "ParleyPro Autotests/allure-results.tar.gz"
+          
+      - store_artifacts:
+          path: "ParleyPro Autotests/Screenshots"
             
 
 workflows:
