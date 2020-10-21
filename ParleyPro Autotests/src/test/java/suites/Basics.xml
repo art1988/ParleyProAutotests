@@ -15,6 +15,7 @@
         </classes>
     </test>
 
+    <!--
     <test name="Core discussions functionality" preserve-order="true">
         <parameter name="contractName" value="Contract discussions autotest"></parameter>
         <classes>
@@ -44,5 +45,5 @@
             <class name="tests.RecalculationsOfNumberedList"></class>
             <class name="tests.SupportedNumberingFormats"></class>
         </classes>
-    </test>
+    </test> -->
 </suite>
