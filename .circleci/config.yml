@@ -30,6 +30,10 @@ jobs:
             
 
 workflows:
+  commit:
+    jobs:
+      - build
+
   build_and_runTests:
     triggers:
       - schedule:
