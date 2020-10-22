@@ -3,19 +3,19 @@
 
 <suite name = "Basics" configfailurepolicy="continue">
     <test name="Numbered list recalculation" preserve-order="true">
-        <parameter name="contractName" value="Contract numbered list autotest"></parameter>
+        <parameter name="contractName" value="Contract numbered list autotest"/>
         <classes>
-            <class name="tests.LoginToDashboard"></class>
-            <class name="tests.CreateContractForNumberedList"></class>
-            <class name="tests.RecalculationsOfNumberedList"></class>
-            <class name="tests.SupportedNumberingFormats"></class>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.CreateContractForNumberedList"/>
+            <class name="tests.RecalculationsOfNumberedList"/>
+            <class name="tests.SupportedNumberingFormats"/>
             <class name = "tests.DeleteContractFromInProgress"/>
             <class name = "tests.Logout"/>
         </classes>
     </test>
 
     <test name = "Basic contract lifecycle" preserve-order="true">
-        <parameter name="contractName" value="Contract lifecycle autotest"></parameter>
+        <parameter name="contractName" value="Contract lifecycle autotest"/>
         <classes>
             <class name = "tests.SetupLogger"/>
             <class name = "tests.LoginToDashboard"/>
@@ -28,7 +28,7 @@
     </test>
 
     <test name="Core discussions functionality" preserve-order="true">
-        <parameter name="contractName" value="Contract discussions autotest"></parameter>
+        <parameter name="contractName" value="Contract discussions autotest"/>
         <classes>
             <class name = "tests.LoginToDashboard"/>
             <class name = "tests.CreateContractForDiscussions"/>
@@ -39,13 +39,13 @@
     </test>
 
     <test name="Formatting of just uploaded document" preserve-order="true">
-        <parameter name="contractName" value="Contract formatting autotest"></parameter>
+        <parameter name="contractName" value="Contract formatting autotest"/>
         <classes>
-            <class name="tests.LoginToDashboard"></class>
-            <class name="tests.CreateContractForFormatting"></class>
-            <class name="tests.CheckFormattingByEditDocument"></class>
-            <class name="tests.DeleteContractFromInProgress"></class>
-            <class name="tests.Logout"></class>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.CreateContractForFormatting"/>
+            <class name="tests.CheckFormattingByEditDocument"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
