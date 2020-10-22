@@ -3,11 +3,14 @@
 
 <suite name = "Basics" configfailurepolicy="continue">
     <test name="Numbered list recalculation" preserve-order="true">
+        <parameter name="contractName" value="Contract numbered list autotest"></parameter>
         <classes>
             <class name="tests.LoginToDashboard"></class>
             <class name="tests.CreateContractForNumberedList"></class>
             <class name="tests.RecalculationsOfNumberedList"></class>
             <class name="tests.SupportedNumberingFormats"></class>
+            <class name = "tests.DeleteContractFromInProgress"/>
+            <class name = "tests.Logout"/>
         </classes>
     </test>
 
