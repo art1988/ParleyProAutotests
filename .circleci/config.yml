@@ -31,8 +31,11 @@ jobs:
 
 workflows:
   build_and_runTests:
-    jobs:
-      - build:
+    triggers:
+      - schedule:
+          cron: "0 2 * * *"
           filters:
             branches:
               only: master
+    jobs:
+      - build
