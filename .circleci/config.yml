@@ -20,13 +20,13 @@ jobs:
       - run: 
           name: ZIP Screenshots directory
           working_directory: "./ParleyPro Autotests"
-          command: tar -czvf Screenshots.tar.gz ./Screenshots
+          command: tar -czvf ScreenshotsOfFailedTests.tar.gz ./ScreenshotsOfFailedTests
 
       - store_artifacts:
           path: "ParleyPro Autotests/allure-results.tar.gz"
           
       - store_artifacts:
-          path: "ParleyPro Autotests/Screenshots.tar.gz"
+          path: "ParleyPro Autotests/ScreenshotsOfFailedTests.tar.gz"
             
 
 workflows:
