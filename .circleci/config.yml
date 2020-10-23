@@ -33,7 +33,6 @@ jobs:
       - slack/notify:
           channel: qa
           event: fail
-          color: "#42e2f4"
           
             
 
