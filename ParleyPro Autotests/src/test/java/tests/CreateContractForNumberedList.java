@@ -92,7 +92,8 @@ public class CreateContractForNumberedList
                 "c.|L0_Letter_lowercase_c,A.|L0_Letter_capital_A,B.|L0_Letter_capital_B,B.1.|L1_Letter_capital_B_1," +
                 "C.|L0_Letter_capital_C,(a)|L0_Letter_braces_a,(b)|L0_Letter_braces_b,b.1.|L1_Letter_braces_b_1," +
                 "(c)|L0_Letter_braces_c,I.|L0_Roman_capital_I,II.|L0_Roman_capital_II,II.1.|L1_Roman_capital_II_1," +
-                "III.|L0_Roman_capital_III,i.|L0_Roman_lower_i,ii.|L0_Roman_lower_ii,ii.1.|L1_Roman_lower_ii_1,iii.|L0_Roman_lower_iii");
+                "III.|L0_Roman_capital_III,i.|L0_Roman_lower_i,ii.|L0_Roman_lower_ii,ii.1.|L1_Roman_lower_ii_1," +
+                "iii.|L0_Roman_lower_iii,•|L0_Bullet_1,•|L0_Bullet_2,o|L1_Bullet_2_1,•|L0_Bullet_3");
 
         String bulletSymbol = "•";
         logger.info("Assert bullet list formatting...");
