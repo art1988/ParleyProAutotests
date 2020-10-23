@@ -32,6 +32,19 @@ jobs:
           
       - slack/notify:
           channel: qa
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": 
+                  {
+                    "type": "mrkdwn",
+                    "text": ":warning: ParleyPro Autotests : *Failure* happened !"
+                  }
+                }
+              ]
+            }
           event: fail
           
             
