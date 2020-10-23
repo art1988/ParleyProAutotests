@@ -207,7 +207,11 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
+        String actual = getList("•", ""); // get whole bulleted list
 
+        Assert.assertEquals(actual, "•|L0_Bullet_1,•|L0_Bullet_2,•|L0_Bullet_added_new,o|L1_Bullet_2_1,•|L0_Bullet_3");
+
+        Screenshoter.makeScreenshot();
     }
 
     /**
