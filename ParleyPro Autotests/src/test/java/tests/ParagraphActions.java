@@ -30,7 +30,7 @@ public class ParagraphActions
 
     @Test(priority = 1)
     @Description("This test deletes Paragraph 1 and check redlines")
-    public void deleteParagraph()
+    public void deleteParagraph() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();
 
@@ -38,6 +38,7 @@ public class ParagraphActions
 
         String comment = "Delete paragraph example";
         CKEditorActive ckEditorActive = paragraphActionsPopup.clickDelete();
+        Thread.sleep(2_000);
         ckEditorActive.setComment(comment);
         ckEditorActive.clickPost();
 
