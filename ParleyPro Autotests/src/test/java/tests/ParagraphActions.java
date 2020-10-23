@@ -7,6 +7,7 @@ import forms.AcceptPost;
 import forms.DiscardDiscussion;
 import forms.RevertToOriginal;
 import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -285,6 +286,7 @@ public class ParagraphActions
     // TODO: this test temporarily disabled due to PAR-12374
     @Test(priority = 9, enabled = false)
     @Description("This test reverts to original the 5th paragraph")
+    @Issue(value = "PAR-12374")
     public void revertChanges()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -308,6 +310,7 @@ public class ParagraphActions
 
     @Test(priority = 10)
     @Description("This test adds high priority tag and non-standard term for Paragraph 2")
+    @Issue(value = "PAR-12377")
     public void addTagAndTerm()
     {
         OpenedContract openedContract = new OpenedContract();
