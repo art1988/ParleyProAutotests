@@ -32,7 +32,6 @@ public class SupportedNumberingFormats
         String addedItem = "L0_Letter_lowercase_ABOVE_a";
 
         CKEditorActive ckEditorActive = paragraphActionsPopup.clickAddParagraphAbove();
-        Thread.sleep(2_000);
         ckEditorActive.setText(addedItem);
         ckEditorActive.clickPost();
 
@@ -59,7 +58,6 @@ public class SupportedNumberingFormats
 
         String addedItem = "L1_Letter_capital_ABOVE_B_1";
         CKEditorActive ckEditorActive = paragraphActionsPopup.clickAddParagraphAbove();
-        Thread.sleep(1_000);
         ckEditorActive.setText(addedItem);
         ckEditorActive.clickPost();
 
@@ -145,7 +143,6 @@ public class SupportedNumberingFormats
 
         String addedItem = "last_added_roman_lowered";
         CKEditorActive ckEditorActive = paragraphActionsPopup.clickAddParagraphBelow();
-        Thread.sleep(1_000);
         ckEditorActive.setText(addedItem);
         ckEditorActive.clickPost();
 
@@ -172,7 +169,6 @@ public class SupportedNumberingFormats
 
         String addedItem = "L1_Roman_lower_sublevel";
         CKEditorActive ckEditorActive = paragraphActionsPopup.clickAddParagraphBelow();
-        Thread.sleep(1_000);
         ckEditorActive.setText(addedItem);
         ckEditorActive.clickPost();
 
@@ -192,6 +188,26 @@ public class SupportedNumberingFormats
                 "ii.2.|" + addedItem + ",iii.|L0_Roman_lower_iii,iv.|last_added_roman_lowered");
 
         Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 7)
+    @Description("This test insert item in Level 1 of bullet list and check recalculation")
+    public void insertNewBulletAtLevel1() throws InterruptedException
+    {
+        OpenedContract openedContract = new OpenedContract(true);
+
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Bullet_2");
+
+        String addedItem = "L0_Bullet_added_new";
+        CKEditorActive ckEditorActive = paragraphActionsPopup.clickAddParagraphBelow();
+        ckEditorActive.setText(addedItem);
+        ckEditorActive.clickPost();
+
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+
     }
 
     /**

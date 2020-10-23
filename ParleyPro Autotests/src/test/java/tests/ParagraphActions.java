@@ -38,7 +38,6 @@ public class ParagraphActions
 
         String comment = "Delete paragraph example";
         CKEditorActive ckEditorActive = paragraphActionsPopup.clickDelete();
-        Thread.sleep(2_000);
         ckEditorActive.setComment(comment);
         ckEditorActive.clickPost();
 
@@ -67,7 +66,7 @@ public class ParagraphActions
 
     @Test(priority = 2)
     @Description("This test leaves a comment for Paragraph 2")
-    public void commentParagraph()
+    public void commentParagraph() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();
 
@@ -99,7 +98,7 @@ public class ParagraphActions
 
     @Test(priority = 3)
     @Description("This test adds paragraph ABOVE Paragraph 3")
-    public void addParagraphAbove()
+    public void addParagraphAbove() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();
 
@@ -136,7 +135,7 @@ public class ParagraphActions
 
     @Test(priority = 4)
     @Description("This test adds paragraph BELOW Paragraph 4")
-    public void addParagraphBelow()
+    public void addParagraphBelow() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();
 

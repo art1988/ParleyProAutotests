@@ -27,9 +27,11 @@ public class CKEditorActive
      * Sets text inside active CKEDITOR
      * @param text
      */
-    public void setText(String text)
+    public void setText(String text) throws InterruptedException
     {
         Waiter.smartWaitUntilVisible("$('.editor-area').eq(1)");
+
+        Thread.sleep(1_000);
 
         StringBuffer jsCode = new StringBuffer("var names = [];");
         jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
@@ -39,23 +41,18 @@ public class CKEditorActive
 
         Selenide.executeJavaScript(jsCode.toString());
 
-        try
-        {
-            Thread.sleep(1_000); // 1 second delay - necessary for correct saving of text
-        }
-        catch (InterruptedException e)
-        {
-            logger.error("InterruptedException", e);
-        }
+        Thread.sleep(1_000); // 1 second delay - necessary for correct saving of text
     }
 
     /**
      * Sets comment inside active CKEDITOR
      * @param comment
      */
-    public void setComment(String comment)
+    public void setComment(String comment) throws InterruptedException
     {
         Waiter.smartWaitUntilVisible("$('.editor-area').eq(1)");
+
+        Thread.sleep(1_000);
 
         StringBuffer jsCode = new StringBuffer("var names = [];");
         jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
@@ -65,14 +62,7 @@ public class CKEditorActive
 
         Selenide.executeJavaScript(jsCode.toString());
 
-        try
-        {
-            Thread.sleep(1_000); // 1 second delay - necessary for correct saving of comment
-        }
-        catch (InterruptedException e)
-        {
-            logger.error("InterruptedException", e);
-        }
+        Thread.sleep(1_000); // 1 second delay - necessary for correct saving of comment
     }
 
     /**
