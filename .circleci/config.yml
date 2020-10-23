@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  slack: circleci/slack@4.0.2
 jobs:
   build:
     docker:
@@ -27,6 +29,12 @@ jobs:
           
       - store_artifacts:
           path: "ParleyPro Autotests/ScreenshotsOfFailedTests.tar.gz"
+          
+      - slack/notify:
+          channel: qa
+          event: fail
+          color: "#42e2f4"
+          
             
 
 workflows:
