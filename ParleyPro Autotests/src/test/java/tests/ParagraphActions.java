@@ -2,7 +2,6 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.testng.ScreenShooter;
 import constants.AcceptTypes;
 import forms.AcceptPost;
 import forms.DiscardDiscussion;
@@ -17,12 +16,13 @@ import pages.OpenedDiscussion;
 import pages.subelements.CKEditorActive;
 import pages.subelements.MultipleDeleteOverlay;
 import pages.tooltips.ParagraphActionsPopup;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ ScreenShooter.class})
+@Listeners({ ScreenShotOnFailListener.class})
 public class ParagraphActions
 {
     private static Logger logger = Logger.getLogger(ParagraphActions.class);

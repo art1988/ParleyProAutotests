@@ -9,7 +9,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Util class that helps to make screenshots
+ * Util class that helps to make screenshots at any place of test execution.
+ * Also it attaches screenshot for Allure reports.
  */
 public class Screenshoter
 {

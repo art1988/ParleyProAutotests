@@ -1,7 +1,6 @@
 package tests;
 
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.testng.ScreenShooter;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -9,9 +8,10 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.EditDocumentPage;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-@Listeners({ ScreenShooter.class})
+@Listeners({ ScreenShotOnFailListener.class})
 public class CheckFormattingByEditDocument
 {
     private static Logger logger = Logger.getLogger(CheckFormattingByEditDocument.class);

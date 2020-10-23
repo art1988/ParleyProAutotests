@@ -2,7 +2,6 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.testng.ScreenShooter;
 import constants.AcceptTypes;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
@@ -13,12 +12,13 @@ import pages.OpenedContract;
 import pages.OpenedDiscussion;
 import pages.subelements.CKEditorActive;
 import pages.tooltips.ParagraphActionsPopup;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ ScreenShooter.class})
+@Listeners({ ScreenShotOnFailListener.class})
 public class RecalculationsOfNumberedList
 {
     private static Logger logger = Logger.getLogger(RecalculationsOfNumberedList.class);
