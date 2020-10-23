@@ -308,7 +308,7 @@ public class ParagraphActions
 
     @Test(priority = 10)
     @Description("This test adds high priority tag and non-standard term for Paragraph 2")
-    public void addTagAndTerm() throws InterruptedException
+    public void addTagAndTerm()
     {
         OpenedContract openedContract = new OpenedContract();
 
@@ -322,8 +322,8 @@ public class ParagraphActions
         $(".discussion2-post__priority").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("High priority"));
 
         logger.info("Check that paragraph has high priority mark from the left...");
-        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".tumbler-wrapper__priority\")"); // wait until icon appear
-        boolean hasHighPriorityMark = Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".tumbler-wrapper__priority\").length === 1");
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_priority\")"); // wait until icon appear
+        boolean hasHighPriorityMark = Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_priority\").length === 1");
         Assert.assertTrue(hasHighPriorityMark);
 
         String addedTag = "Autotest TAG";
@@ -339,8 +339,8 @@ public class ParagraphActions
         Assert.assertEquals(countOfNonStandardPosts.longValue(), 2);
 
         logger.info("Check that paragraph has tag from the left...");
-        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".tumbler-wrapper__term\")"); // wait until icon appear
-        boolean hasNonStandardMark = Selenide.executeJavaScript("return ( $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".tumbler-wrapper__term\").length === 1 )");
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_term\")"); // wait until icon appear
+        boolean hasNonStandardMark = Selenide.executeJavaScript("return ( $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_term\").length === 1 )");
         Assert.assertTrue(hasNonStandardMark);
 
         Screenshoter.makeScreenshot();
