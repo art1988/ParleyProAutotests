@@ -209,7 +209,86 @@ public class SupportedNumberingFormats
 
         String actual = getList("•", ""); // get whole bulleted list
 
-        Assert.assertEquals(actual, "•|L0_Bullet_1,•|L0_Bullet_2,•|L0_Bullet_added_new,o|L1_Bullet_2_1,•|L0_Bullet_3");
+        Assert.assertEquals(actual, "•|L0_Bullet_1,•|L0_Bullet_2,•|" + addedItem + ",o|L1_Bullet_2_1,•|L0_Bullet_3");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 8)
+    @Description("This test insert item in Level 2 of bullet list, accept and check recalculation")
+    public void insertNewBulletAtLevel2AndAccept() throws InterruptedException
+    {
+        OpenedContract openedContract = new OpenedContract(true);
+
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L1_Bullet_2_1");
+
+        String addedItem = "L1_Bullet_newSublevel";
+        CKEditorActive ckEditorActive = paragraphActionsPopup.clickAddParagraphBelow();
+        ckEditorActive.setText(addedItem);
+        ckEditorActive.clickPost();
+
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        openedContract.hover(addedItem).clickAcceptChangesOnParagraph(AcceptTypes.INSERT).clickAcceptText();
+
+        logger.info("Assert insert notification...");
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        String actual = getList("•", "");
+
+        Assert.assertEquals(actual, "•|L0_Bullet_1,•|L0_Bullet_2,•|L0_Bullet_added_new,o|L1_Bullet_2_1,o|" + addedItem + ",•|L0_Bullet_3");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 9)
+    @Description("This test deletes bullet item in level 1 and check recalculation")
+    public void deleteBulletAtLevel1()
+    {
+        OpenedContract openedContract = new OpenedContract(true);
+
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Bullet_2");
+
+        paragraphActionsPopup.clickDelete().clickPost();
+
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        String actual = getList("•", "");
+
+        Assert.assertEquals(actual, "•|L0_Bullet_1,•|L0_Bullet_added_new,o|L1_Bullet_2_1,o|L1_Bullet_newSublevel,•|L0_Bullet_3");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 10)
+    @Description("This test deletes bullet item in level 2, accept and check recalculation")
+    public void deleteBulletAtLevel2AndAccept()
+    {
+        OpenedContract openedContract = new OpenedContract(true);
+
+        String itemToDelete = "L1_Bullet_2_1";
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover(itemToDelete);
+
+        paragraphActionsPopup.clickDelete().clickPost();
+
+        logger.info("Assert that notification popup was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        openedContract.hover(itemToDelete).clickAcceptChangesOnParagraph(AcceptTypes.DELETE).clickAcceptText();
+
+        logger.info("Assert delete notification...");
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        String actual = getList("•", "");
+
+        Assert.assertEquals(actual, "•|L0_Bullet_1,•|L0_Bullet_added_new,o|L1_Bullet_newSublevel,•|L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
