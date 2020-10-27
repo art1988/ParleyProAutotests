@@ -34,37 +34,31 @@ public class ContractInformation
 
     public void setContractTitle(String title)
     {
-        contractTitleField.clear();
         contractTitleField.setValue(title);
     }
 
     public void setContractingRegion(String region)
     {
-        contractingRegionField.clear();
         contractingRegionField.setValue(region);
     }
 
     public void setContractingCountry(String country)
     {
-        contractingCountryField.clear();
         contractingCountryField.setValue(country);
     }
 
     public void setContractEntity(String entity)
     {
-        contractEntityField.clear();
         contractEntityField.setValue(entity);
     }
 
     public void setContractingDepartment(String department)
     {
-        contractingDepartmentField.clear();
         contractingDepartmentField.setValue(department);
     }
 
     public void setContractCategory(String category)
     {
-        contractCategoryField.clear();
         contractCategoryField.setValue(category);
     }
 
