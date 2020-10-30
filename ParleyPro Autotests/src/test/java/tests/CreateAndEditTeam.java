@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import pages.AdministrationPage;
 import pages.DashboardPage;
 import pages.administration.Teams;
-import pages.subelements.SideBar;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -92,6 +92,8 @@ public class CreateAndEditTeam
         Assert.assertEquals(Selenide.executeJavaScript("return $('.teams-list__row td:nth(\"1\")').text()"), teamName); // assert team name
         Assert.assertEquals(Selenide.executeJavaScript("return $('.teams-list__row td:nth(\"2\")').text()"), teamDescription); // assert team description
         Assert.assertEquals(Selenide.executeJavaScript("return $('.teams-list__row td:nth(\"3\")').text()"), "3"); // assert member count
+
+        Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 2)
@@ -121,6 +123,8 @@ public class CreateAndEditTeam
         Assert.assertEquals(Selenide.executeJavaScript("return $('.teams-list tr').length"), Long.valueOf(3)); // check row count
         Assert.assertEquals(Selenide.executeJavaScript("return $('.teams-list__row').eq(1).find(\"td:nth('1')\").text()"), teamName); // assert second team name
         Assert.assertEquals(Selenide.executeJavaScript("return $('.teams-list__row').eq(1).find(\"td:nth('3')\").text()"), "2"); // assert member count
+
+        Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 3)
@@ -143,5 +147,7 @@ public class CreateAndEditTeam
 
         // Assert that we see "you haven't added teams yet span"
         $(".teams-list__empty").shouldBe(Condition.visible);
+
+        Screenshoter.makeScreenshot();
     }
 }
