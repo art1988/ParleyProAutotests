@@ -44,7 +44,7 @@ public class OpenedContract
 
     public StartReview switchDocumentToReview(String documentName)
     {
-        String documentLifecycleString = "$('.document__title span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
+        String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
 
         // hover over DRAFT
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
@@ -63,7 +63,7 @@ public class OpenedContract
 
     public StartNegotiation switchDocumentToNegotiate(String documentName)
     {
-        String documentLifecycleString = "$('.document__title span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
+        String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
 
         // hover over DRAFT
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
@@ -82,7 +82,7 @@ public class OpenedContract
 
     public SignContract switchDocumentToSign(String documentName)
     {
-        String documentLifecycleString = "$('.document__title span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
+        String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
 
         // hover over DRAFT
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
@@ -106,7 +106,7 @@ public class OpenedContract
      */
     public EditDocumentPage clickEditDocument(String documentName)
     {
-        Selenide.executeJavaScript("$('.document__title span:contains(\"" + documentName + "\")').parent().parent().next().click()");
+        Selenide.executeJavaScript("$('.document__header-row span:contains(\"" + documentName + "\")').parent().parent().next().click()");
 
         logger.info("Edit Document was clicked for: " + documentName);
 
@@ -120,7 +120,7 @@ public class OpenedContract
      */
     public CompleteSign clickCompleteSign(String documentName)
     {
-        Selenide.executeJavaScript("$('.document__title span[title]:contains(\"" + documentName + "\")').parent().parent().parent().find(\"button[spinnersize='xs']\").click()");
+        Selenide.executeJavaScript("$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().find(\"#COMPLETE_MANUAL_DOCUMENT\").click()");
 
         logger.info("COMPLETE SIGN was clicked");
 

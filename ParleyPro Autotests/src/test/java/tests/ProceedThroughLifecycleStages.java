@@ -111,7 +111,7 @@ public class ProceedThroughLifecycleStages
         }
 
         // Wait until Complete Sign is visible...
-        $(".document__title button[spinnersize=\"xs\"]").waitUntil(Condition.visible, 15_000);
+        $("#COMPLETE_MANUAL_DOCUMENT").waitUntil(Condition.visible, 15_000);
 
         logger.info("Assert that status was changed to SIGN...");
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("SIGN\n(1)", "SIGN"));
@@ -121,8 +121,8 @@ public class ProceedThroughLifecycleStages
         $$(".lifecycle__item.active").last().getCssValue("background-color").equals("#7f6fcf;");
 
         logger.info("Assert that we see buttons COMPLETE SIGN and VOID SIGN...");
-        $(".document__title button[spinnersize=\"xs\"]").shouldBe(Condition.visible).shouldHave(Condition.exactText("COMPLETE SIGN"));
-        $(".document__title button[spinnersize=\"s\"]").shouldBe(Condition.visible).shouldHave(Condition.exactText("VOID SIGN"));
+        $("#COMPLETE_MANUAL_DOCUMENT").shouldBe(Condition.visible).shouldHave(Condition.exactText("COMPLETE SIGN"));
+        $("#VOID_DOCUMENT").shouldBe(Condition.visible).shouldHave(Condition.exactText("VOID SIGN"));
 
         Screenshoter.makeScreenshot();
     }
