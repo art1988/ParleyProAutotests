@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class RevertToOriginal
 {
-    private SelenideElement title = $(".modal-body-title");
+    private SelenideElement title = $(".modal-title");
 
 
 
@@ -20,13 +20,14 @@ public class RevertToOriginal
     {
         title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Are you sure you want to close this discussion?"));
 
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.modal-body-description').text()"),
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.modal-description').text()"),
                 "The contents of the document won't change because no text changes have been requested as a result of this discussion");
     }
 
     public void clickCloseDiscussion()
     {
-        Selenide.executeJavaScript("$('.discussion2-close-confirm__body .btn-primary').click()");
+        // TODO: change after fixing of PAR-12609
+        Selenide.executeJavaScript("$('.modal-footer button').eq(1).click()"); // as temporary solution
 
         logger.info("Close discussion button was clicked...");
     }
