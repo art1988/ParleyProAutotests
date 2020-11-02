@@ -283,10 +283,8 @@ public class ParagraphActions
         Screenshoter.makeScreenshot();
     }
 
-    // TODO: this test temporarily disabled due to PAR-12374
-    @Test(priority = 9, enabled = false)
+    @Test(priority = 9)
     @Description("This test reverts to original the 5th paragraph")
-    @Issue(value = "PAR-12374")
     public void revertChanges()
     {
         OpenedContract openedContract = new OpenedContract();
