@@ -24,8 +24,9 @@ public class RevertToOriginal
                 "The contents of the document won't change because no text changes have been requested as a result of this discussion");
     }
 
-    public void clickCloseDiscussion()
+    public void clickCloseDiscussion() throws InterruptedException
     {
+        Thread.sleep(1_000);
         // TODO: change after fixing of PAR-12609
         Selenide.executeJavaScript("$('.modal-footer button').eq(1).click()"); // as temporary solution
 
