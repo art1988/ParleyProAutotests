@@ -76,7 +76,7 @@ public class SideBar
     public LoginPage logout()
     {
         userIcon.click();
-        Selenide.executeJavaScript("$('.dropdown-menu a')[0].click()");
+        Selenide.executeJavaScript("$('.page-menu .dropdown-menu a')[0].click()");
 
         logger.info("Logout was clicked");
 
