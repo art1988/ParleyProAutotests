@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
 import pages.administration.Teams;
+import pages.administration.Workflows;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -29,6 +30,14 @@ public class AdministrationPage
         $(".landing-administration-subheaders").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Manage usersIntegrationsWorkflowsFieldsTeams"));
     }
 
+    public Workflows clickWorkflowsTab()
+    {
+        workflowsTab.click();
+
+        logger.info("Workflows tab was clicked");
+
+        return new Workflows();
+    }
 
     public Teams clickTeamsTab()
     {
