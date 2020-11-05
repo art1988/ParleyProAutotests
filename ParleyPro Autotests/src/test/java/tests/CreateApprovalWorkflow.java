@@ -27,6 +27,20 @@ public class CreateApprovalWorkflow
         approvalWorkflowForm.setCategory("category2");
         approvalWorkflowForm.setType("type2");
         approvalWorkflowForm.setDepartment("department2");
+        approvalWorkflowForm.setCurrency("GBP");
+        approvalWorkflowForm.setMinValue("250");
+        approvalWorkflowForm.setMaxValue("1300");
+
+        approvalWorkflowForm.clickPriorToNegotiate();
+        approvalWorkflowForm.setPriorToNegotiateParticipant("Autotest_TEAM_3 [EDITED]");
+        approvalWorkflowForm.setPriorToNegotiateParticipant("Approval_User_1");
+
+        approvalWorkflowForm.clickPriorToSign();
+        approvalWorkflowForm.setPriorToSignParticipant("Team #2");
+        approvalWorkflowForm.setPriorToSignParticipant("Approval_User_2");
+
+        approvalWorkflowForm.switchTumblerApprovalOrderOfPriorToSign();
+        approvalWorkflowForm.switchTumblerAllowToModifyApproversOfPriorToSign();
 
         Thread.sleep(5_000);
     }
