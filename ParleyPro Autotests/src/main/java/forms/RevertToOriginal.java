@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class RevertToOriginal
 {
     private SelenideElement title = $(".modal-title");
-
+    private SelenideElement closeDiscussionButton = $("._button.scheme_blue.size_lg");
 
 
     private static Logger logger = Logger.getLogger(RevertToOriginal.class);
@@ -24,11 +24,9 @@ public class RevertToOriginal
                 "The contents of the document won't change because no text changes have been requested as a result of this discussion");
     }
 
-    public void clickCloseDiscussion() throws InterruptedException
+    public void clickCloseDiscussion()
     {
-        Thread.sleep(1_000);
-        // TODO: change after fixing of PAR-12609
-        Selenide.executeJavaScript("$('.modal-footer button').eq(1).click()"); // as temporary solution
+        closeDiscussionButton.waitUntil(Condition.visible, 6_000).click();
 
         logger.info("Close discussion button was clicked...");
     }
