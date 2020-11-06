@@ -285,7 +285,7 @@ public class ParagraphActions
 
     @Test(priority = 9)
     @Description("This test reverts to original the 5th paragraph")
-    public void revertChanges() throws InterruptedException
+    public void revertChanges()
     {
         OpenedContract openedContract = new OpenedContract();
 
