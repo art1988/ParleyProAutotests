@@ -9,11 +9,14 @@ import org.apache.log4j.Logger;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class WorkflowActionsMenu
+/**
+ * Popup that appears after clicking on +NEW WORKFLOW button
+ */
+public class NewWorkflowActionsMenu
 {
-    private Logger logger = Logger.getLogger(WorkflowActionsMenu.class);
+    private Logger logger = Logger.getLogger(NewWorkflowActionsMenu.class);
 
-    public WorkflowActionsMenu()
+    public NewWorkflowActionsMenu()
     {
         $(".dropdown-menu.dropdown-menu-right").waitUntil(Condition.visible, 6_000);
         $$(".dropdown-menu.dropdown-menu-right li").shouldHaveSize(2).shouldHave(CollectionCondition.exactTexts("Contract routing", "Approval"));
