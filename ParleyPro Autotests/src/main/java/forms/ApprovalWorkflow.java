@@ -3,6 +3,7 @@ package forms;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -11,12 +12,15 @@ public class ApprovalWorkflow
 {
     private SelenideElement nameField      = $("#workflows-approval-name");
     private SelenideElement minValueField  = $("#contractValueRange");
-    private SelenideElement maxValueField  = $("input[value='MAX']");
+    private SelenideElement maxValueField  = $("#contractValueRange_max");
 
     private SelenideElement priorToNegotiateParticipantField = $("#workfowApprovalUsers_Prior-to-Negotiate");
     private SelenideElement priorToSignParticipantField      = $("#workfowApprovalUsers_Prior-to-Sign");
 
+    private SelenideElement saveButton = $("button[type='submit']");
 
+
+    private static Logger logger = Logger.getLogger(ApprovalWorkflow.class);
 
     public ApprovalWorkflow()
     {
@@ -28,12 +32,24 @@ public class ApprovalWorkflow
         nameField.setValue(workflowName);
     }
 
+    public String getName()
+    {
+        return nameField.getValue();
+    }
+
     public void setCategory(String category)
     {
         Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-cate\"]')[0].click()"); // open dropdown
         Selenide.executeJavaScript("$('.multi-select .dropdown-menu').eq(0).find(\"label:contains('All')\").click()"); // uncheck All
         Selenide.executeJavaScript("$('.multi-select .dropdown-menu').eq(0).find(\"label:contains('" + category + "')\").click()"); // select
         Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-cate\"]')[0].click()"); // close dropdown
+    }
+
+    public String getCategory()
+    {
+        String str = Selenide.executeJavaScript("return $('input[data-id=\"workflows-approval-cate\"]').val()");
+
+        return str;
     }
 
     public void setType(String type)
@@ -44,6 +60,13 @@ public class ApprovalWorkflow
         Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-cate\"]')[0].click()"); // close dropdown
     }
 
+    public String getType()
+    {
+        String str = Selenide.executeJavaScript("return $('input[data-id=\"workflows-approval-type\"]').val()");
+
+        return str;
+    }
+
     public void setDepartment(String department)
     {
         Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-department\"]')[0].click()"); // open dropdown
@@ -52,10 +75,24 @@ public class ApprovalWorkflow
         Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-department\"]')[0].click()"); // close dropdown
     }
 
+    public String getDepartment()
+    {
+        String str = Selenide.executeJavaScript("return $('input[data-id=\"workflows-approval-department\"]').val()");
+
+        return str;
+    }
+
     public void setCurrency(String currency)
     {
         Selenide.executeJavaScript("$('.currency-input-range__group button').click()");
         Selenide.executeJavaScript("$('.currency-input-range__group button').next().find(\"a:contains('" + currency + "')\")[0].click()");
+    }
+
+    public String getCurrency()
+    {
+        String str = Selenide.executeJavaScript("return $('.currency-input-range__group button').text().trim()");
+
+        return str;
     }
 
     public void setMinValue(String minValue)
@@ -63,14 +100,26 @@ public class ApprovalWorkflow
         minValueField.setValue(minValue);
     }
 
+    public String getMinValue()
+    {
+        return minValueField.getValue();
+    }
+
     public void setMaxValue(String maxValue)
     {
         maxValueField.setValue(maxValue);
     }
 
+    public String getMaxValue()
+    {
+        return maxValueField.getValue();
+    }
+
     public void clickPriorToNegotiate()
     {
         Selenide.executeJavaScript("$('.workflows-approval-events__item div:contains(\"Prior to Negotiate\")').click()");
+
+        logger.info("Prior to Negotiate was clicked");
     }
 
     public void setPriorToNegotiateParticipant(String participant)
@@ -83,6 +132,8 @@ public class ApprovalWorkflow
     public void clickPriorToSign()
     {
         Selenide.executeJavaScript("$('.workflows-approval-events__item div:contains(\"Prior to Sign\")').click()");
+
+        logger.info("Prior to Sign was clicked");
     }
 
     public void setPriorToSignParticipant(String participant)
@@ -95,10 +146,21 @@ public class ApprovalWorkflow
     public void switchTumblerApprovalOrderOfPriorToSign()
     {
         Selenide.executeJavaScript("$('.workflows-approval-events-event__title:contains(\"Prior to Sign\")').next().find(\"div:contains('Set')\").children().children().click()");
+
+        logger.info("'Set approval order' of 'Prior to Sign' was switched");
     }
 
     public void switchTumblerAllowToModifyApproversOfPriorToSign()
     {
         Selenide.executeJavaScript("$('.workflows-approval-events-event__title:contains(\"Prior to Sign\")').next().find(\"div:contains('Allow')\").children().children().click()");
+
+        logger.info("'Allow to modify approvers' of 'Prior to Sign' was switched");
+    }
+
+    public void clickSave()
+    {
+        saveButton.click();
+
+        logger.info("Save button was clicked");
     }
 }
