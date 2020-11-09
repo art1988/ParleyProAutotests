@@ -1,4 +1,4 @@
-package tests;
+package tests.approval_workflow;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
@@ -37,6 +37,7 @@ public class CreateApprovalWorkflow
 
         String workflowName = "Approval_WFL_AT";
 
+        // Settings of Approval workflow
         approvalWorkflowForm.setName(workflowName);
         approvalWorkflowForm.setCategory("category2");
         approvalWorkflowForm.setType("type2");
@@ -69,6 +70,8 @@ public class CreateApprovalWorkflow
         administrationPage = dashboardPage.getSideBar().clickAdministration();
         workflowsTabPage = administrationPage.clickWorkflowsTab();
 
+        logger.info("Click Edit of just created workflow...;");
+
         workflowsTabPage.editApprovalWorkflow(workflowName).clickEdit();
         approvalWorkflowForm = new ApprovalWorkflow();
 
@@ -82,8 +85,14 @@ public class CreateApprovalWorkflow
         Assert.assertEquals(approvalWorkflowForm.getMaxValue(), "1,300.00");
 
         String listOfParticipants = Selenide.executeJavaScript("return $('.workflows-approval-users-list__item-name').text()");
-        Assert.assertEquals(listOfParticipants, "Autotest_TEAM_3 [EDITED] (3 members)Approval_User_1 (arthur.khasanov+approval1@parleypro.com)Approval_User_2 (arthur.khasanov+approval2@parleypro.com)Team #2 (2 members)");
+        boolean containsParticipants = listOfParticipants.contains("Autotest_TEAM_3 [EDITED] (3 members)") &&
+                                       listOfParticipants.contains("Approval_User_1 (arthur.khasanov+approval1@parleypro.com)") &&
+                                       listOfParticipants.contains("Approval_User_2 (arthur.khasanov+approval2@parleypro.com)") &&
+                                       listOfParticipants.contains("Team #2 (2 members)");
+        Assert.assertTrue(containsParticipants);
 
         Screenshoter.makeScreenshot();
+
+        approvalWorkflowForm.clickCancel();
     }
 }
