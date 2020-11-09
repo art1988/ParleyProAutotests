@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class ContractInformation
 {
     private SelenideElement contractTitleField         = $("input[inputid='contractTitle']");
+    private SelenideElement contractValueField         = $("#contractValue");
     private SelenideElement contractingRegionField     = $("#contractingRegion");
     private SelenideElement contractingCountryField    = $("#contractingCountry");
     private SelenideElement contractEntityField        = $("#contractEntity");
@@ -35,6 +36,23 @@ public class ContractInformation
     public void setContractTitle(String title)
     {
         contractTitleField.setValue(title);
+    }
+
+    /**
+     * Set contract currency
+     * @param currency may be USD, EUR, GBP, etc.
+     */
+    public void setContractCurrency(String currency)
+    {
+        Selenide.executeJavaScript("$('.currency-input.input button').click()"); // Open currency dropdown
+        Selenide.executeJavaScript("$('.currency-input.input button').next().find(\"a:contains('" + currency + "')\")[0].click()"); // Set currency
+
+        logger.info("The following currency was selected: " + currency);
+    }
+
+    public void setContractValue(String value)
+    {
+        contractValueField.setValue(value);
     }
 
     public void setContractingRegion(String region)
