@@ -8,15 +8,18 @@ import forms.AddNewTeam;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AdministrationPage;
 import pages.DashboardPage;
 import pages.administration.Teams;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+@Listeners({ ScreenShotOnFailListener.class})
 public class CreateAndEditTeam
 {
     private static Logger logger = Logger.getLogger(CreateAndEditTeam.class);
@@ -127,7 +130,7 @@ public class CreateAndEditTeam
         Screenshoter.makeScreenshot();
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3, enabled = false)
     @Description("This test deletes two teams that were created in previous tests")
     public void deleteTeams()
     {
