@@ -17,7 +17,8 @@ public class ApprovalWorkflow
     private SelenideElement priorToNegotiateParticipantField = $("#workfowApprovalUsers_Prior-to-Negotiate");
     private SelenideElement priorToSignParticipantField      = $("#workfowApprovalUsers_Prior-to-Sign");
 
-    private SelenideElement saveButton = $("button[type='submit']");
+    private SelenideElement cancelButton = $(".button.btn-common.btn-link-pseudo.btn.btn-link");
+    private SelenideElement saveButton   = $("button[type='submit']");
 
 
     private static Logger logger = Logger.getLogger(ApprovalWorkflow.class);
@@ -162,5 +163,12 @@ public class ApprovalWorkflow
         saveButton.click();
 
         logger.info("Save button was clicked");
+    }
+
+    public void clickCancel()
+    {
+        cancelButton.click();
+
+        logger.info("Cancel button was clicked");
     }
 }
