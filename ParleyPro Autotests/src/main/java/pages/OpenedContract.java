@@ -65,7 +65,7 @@ public class OpenedContract
     {
         String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
 
-        // hover over DRAFT
+        // hover over REVIEW
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
         jsCode.append(documentLifecycleString + "[0].dispatchEvent(event);");
 
@@ -97,6 +97,29 @@ public class OpenedContract
         logger.info("SIGN was clicked");
 
         return new SignContract(contractName.text());
+    }
+
+    /**
+     * Click by pre-negotiate approval button ( green one )
+     * @param documentName
+     */
+    public ConfirmApprovers switchDocumentToPreNegotiateApproval(String documentName)
+    {
+        String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
+
+        // hover over REVIEW
+        StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
+        jsCode.append(documentLifecycleString + "[0].dispatchEvent(event);");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        Waiter.smartWaitUntilVisible(documentLifecycleString + ".find(\"div:contains('APPROVAL')\")");
+
+        Selenide.executeJavaScript(documentLifecycleString + ".find('.lifecycle__item.review:contains(\"APPROVAL\")').click()");
+
+        logger.info("Pre-Negotiate APPROVAL was clicked");
+
+        return new ConfirmApprovers(documentName);
     }
 
     /**
