@@ -35,4 +35,13 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="Approval workflow positive case" preserve-order="true">
+        <parameter name="contractName" value="Approval workflow positive"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.approval_workflow.CreateContractPositiveForApprovalWorkflow"/>
+            <class name="tests.approval_workflow.StartPreNegotiateApproval"/>
+        </classes>
+    </test>
 </suite>
