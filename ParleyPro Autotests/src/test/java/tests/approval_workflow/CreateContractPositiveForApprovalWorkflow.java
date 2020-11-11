@@ -9,14 +9,18 @@ import forms.StartReview;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$$;
 
+@Listeners({ ScreenShotOnFailListener.class})
 public class CreateContractPositiveForApprovalWorkflow
 {
     private static Logger logger = Logger.getLogger(CreateContractPositiveForApprovalWorkflow.class);
@@ -61,8 +65,10 @@ public class CreateContractPositiveForApprovalWorkflow
 
         Waiter.smartWaitUntilVisible(documentLifecycleString+ ".find(\"div:contains('REVIEW')\")");
 
-        logger.info("Assert that _document_ header doesn't have APPROVE option...");
+        logger.info("Assert that _document_ header have APPROVE option...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-info .lifecycle').text()"), "DRAFTREVIEWAPPROVALAPPROVAL");
+
+        Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 2)
@@ -76,10 +82,12 @@ public class CreateContractPositiveForApprovalWorkflow
         startReviewForm.clickStart();
 
         // Wait until status was changed to REVIEW
-        $$(".lifecycle__item.active").first().waitUntil(Condition.visible, 7_000);
-        $$(".lifecycle__item.active").last().waitUntil(Condition.visible, 7_000);
+        $$(".lifecycle__item.active").first().waitUntil(Condition.visible, 14_000);
+        $$(".lifecycle__item.active").last().waitUntil(Condition.visible, 14_000);
 
         logger.info("Assert that status was changed to REVIEW...");
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("REVIEW\n(1)", "REVIEW"));
+
+        Screenshoter.makeScreenshot();
     }
 }
