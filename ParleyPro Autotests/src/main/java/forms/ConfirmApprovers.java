@@ -51,6 +51,9 @@ public class ConfirmApprovers
         addParticipantField.setValue(participantName);
         addParticipantField.sendKeys(Keys.DOWN);
         addParticipantField.sendKeys(Keys.ENTER);
+
+        // press Tab key to switch focus and close dropdown
+        addParticipantField.sendKeys(Keys.TAB);
     }
 
     public void clickStartApproval()
