@@ -57,13 +57,14 @@ public class CreateApprovalWorkflow
         approvalWorkflowForm.switchTumblerApprovalOrderOfPriorToSign();
         approvalWorkflowForm.switchTumblerAllowToModifyApproversOfPriorToSign();
 
-        // Perform drag & drop between 'Team #2' and 'Approval_User_2'
+        // Perform drag & drop between 'Team #2' and 'Approval_User_2' so that Approval_User_2 will be first
+        // and Team #2 will be second. This will be checked in test StartPreSignApproval test
         Actions actions = new Actions(WebDriverRunner.getWebDriver());
-        SelenideElement firstItem  = $$(".workflows-approval-users-list__item-drag-handle").first(),
-                        secondItem = $$(".workflows-approval-users-list__item-drag-handle").last();
+        SelenideElement team2         = $$(".workflows-approval-users-list__item-drag-handle").first(),
+                        approvalUser2 = $$(".workflows-approval-users-list__item-drag-handle").last();
 
-        actions.clickAndHold(firstItem).build().perform();
-        actions.moveToElement(secondItem).build().perform();
+        actions.clickAndHold(team2).build().perform();
+        actions.moveToElement(approvalUser2).build().perform();
 
         approvalWorkflowForm.clickSave();
 
