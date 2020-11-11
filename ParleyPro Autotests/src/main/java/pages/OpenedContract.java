@@ -15,8 +15,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class OpenedContract
 {
-    private SelenideElement contractName       = $(".contract-header__name");
-    private SelenideElement actionsMenu        = $(".contract-header__menu .actions-menu button");
+    private SelenideElement contractName          = $(".contract-header__name");
+    private SelenideElement actionsMenu           = $(".contract-header__menu .actions-menu button");
+    private SelenideElement approveDocumentButton = $("#APPROVE_DOCUMENT");
 
 
     private static Logger logger = Logger.getLogger(OpenedContract.class);
@@ -120,6 +121,39 @@ public class OpenedContract
         logger.info("Pre-Negotiate APPROVAL was clicked");
 
         return new ConfirmApprovers(documentName);
+    }
+
+    /**
+     * Click by pre-sign approval button ( purple one )
+     * @param documentName
+     * @return
+     */
+    public ConfirmApprovers switchDocumentToPreSignApproval(String documentName)
+    {
+        String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
+
+        // hover over NEGOTIATE
+        StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
+        jsCode.append(documentLifecycleString + "[0].dispatchEvent(event);");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        Waiter.smartWaitUntilVisible(documentLifecycleString + ".find(\"div:contains('APPROVAL')\")");
+
+        Selenide.executeJavaScript(documentLifecycleString + ".find('.lifecycle__item:contains(\"APPROVAL\")').click()");
+
+        logger.info("Pre-Sign APPROVAL was clicked");
+
+        return new ConfirmApprovers(documentName);
+    }
+
+    public ApproveDocument clickApproveButton(String documentName)
+    {
+        approveDocumentButton.click();
+
+        logger.info("Approve button was clicked");
+
+        return new ApproveDocument(documentName);
     }
 
     /**
