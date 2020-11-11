@@ -42,6 +42,7 @@
             <class name="tests.LoginToDashboard"/>
             <class name="tests.approval_workflow.CreateContractPositiveForApprovalWorkflow"/>
             <class name="tests.approval_workflow.StartPreNegotiateApproval"/>
+            <class name="tests.approval_workflow.StartPreSignApproval"/>
         </classes>
     </test>
 </suite>
