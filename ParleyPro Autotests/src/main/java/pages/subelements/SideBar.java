@@ -37,8 +37,8 @@ public class SideBar
     {
         boolean hasLogo = $(".page-menu__item.page-menu__item_logo.state_active.state_active").isDisplayed();
 
-        return (  hasLogo && priorityDashboard.isDisplayed() && executedContracts.isDisplayed() && dashboard.isDisplayed() &&
-                templates.isDisplayed() && administration.isDisplayed() && userGuide.isDisplayed() );
+        return (  hasLogo && priorityDashboard.isDisplayed() && inProgressContracts.isDisplayed() &&
+                  executedContracts.isDisplayed() && dashboard.isDisplayed() && userGuide.isDisplayed() );
     }
 
     public void clickPriorityDashboard()
