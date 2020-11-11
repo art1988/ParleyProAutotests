@@ -10,6 +10,11 @@ public class Const
     public static final String PROD_TENANT_URL               = "http://qa-autotests.parleypro.com";
 
     public static final User   PREDEFINED_USER_CN_ROLE       = new User("autotest_cn fn", "ln", "arthur.khasanov+autotestcn@parleypro.com", "Parley650!");
+    public static final User   PREDEFINED_APPROVER_USER_1    = new User("Approval_User_1", "", "arthur.khasanov+approval1@parleypro.com", "Parley650!");
+    public static final User   PREDEFINED_APPROVER_USER_2    = new User("Approval_User_2", "", "arthur.khasanov+approval2@parleypro.com", "Parley650!");
+    public static final User   PREDEFINED_INTERNAL_USER_1    = new User("Internal user1", "Internal user1 last name", "arthur.khasanov+team1@parleypro.com", "Parley650!");
+    public static final User   PREDEFINED_INTERNAL_USER_2    = new User("Internal user2", "Internal user2 last name", "arthur.khasanov+team2@parleypro.com", "Parley650!");
+
     public static final File   CONTRACT_LIFECYCLE_SAMPLE     = new File(System.getProperty("user.dir") + "/Contracts/pramata.docx");
     public static final File   CONTRACT_DISCUSSIONS_SAMPLE   = new File(System.getProperty("user.dir") + "/Contracts/AT-14.docx");
     public static final File   CONTRACT_FORMATTING_SAMPLE    = new File(System.getProperty("user.dir") + "/Contracts/Formatting.docx");
