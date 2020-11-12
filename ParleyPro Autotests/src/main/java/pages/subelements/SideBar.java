@@ -1,5 +1,6 @@
 package pages.subelements;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
@@ -76,7 +77,7 @@ public class SideBar
     public LoginPage logout()
     {
         userIcon.click();
-        Selenide.executeJavaScript("$('.page-menu .dropdown-menu a')[0].click()");
+        $(".page-menu .dropdown-menu a").waitUntil(Condition.visible, 7_000).click();
 
         logger.info("Logout was clicked");
 
