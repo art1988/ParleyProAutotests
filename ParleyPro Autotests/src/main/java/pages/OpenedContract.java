@@ -16,6 +16,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class OpenedContract
 {
     private SelenideElement contractName          = $(".contract-header__name");
+    private SelenideElement auditTrailButton      = $("#contract-audit-trail-action");
     private SelenideElement actionsMenu           = $(".contract-header__menu .actions-menu button");
     private SelenideElement approveDocumentButton = $("#APPROVE_DOCUMENT");
 
@@ -210,6 +211,15 @@ public class OpenedContract
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"" + paragraph + "\")').prev().click()");
 
         return new OpenedDiscussion(paragraph);
+    }
+
+    public AuditTrail clickAuditTrail()
+    {
+        auditTrailButton.click();
+
+        logger.info("Audit trail button was clicked");
+
+        return new AuditTrail();
     }
 
     /**
