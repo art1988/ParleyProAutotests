@@ -42,12 +42,12 @@ public class StartPreNegotiateApproval
         confirmApproversForm.deleteApprover("TEAM");
         confirmApproversForm.clickStartApproval();
 
-        $(".header-users .user").waitUntil(Condition.appear, 15_000); // wait until users icons will appear
+        $(".header-users .user").waitUntil(Condition.appear, 25_000); // wait until users icons will appear
         logger.info("Assert that status was changed to APPROVAL for both contract and document...");
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
 
         logger.info("Assert that approvers icons are visible...");
-        $(".header-users .user").waitUntil(Condition.appear, 15_000); // wait until users icons will appear
+        $(".header-users .user").waitUntil(Condition.appear, 25_000); // wait until users icons will appear
         $$(".header-users .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("A", "A"));
         $$(".contract-header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.exactTexts("a", "A", "A"));
 
