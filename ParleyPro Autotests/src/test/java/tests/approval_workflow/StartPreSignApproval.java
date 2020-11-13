@@ -3,18 +3,20 @@ package tests.approval_workflow;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
-import forms.ConfirmApprovers;
-import forms.EmailWillBeSentToTheCounterparty;
-import forms.SignContract;
-import forms.StartNegotiation;
+import forms.*;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.Screenshoter;
 import utils.Waiter;
+
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -200,11 +202,43 @@ public class StartPreSignApproval
     }
 
     @Test(priority = 8)
-    @Description("This test move document to Sign stage and ")
+    @Description("This test move document to Sign stage and complete sign")
     public void moveAndCompleteSign()
     {
         OpenedContract openedContract = new OpenedContract();
 
-        SignContract signContractForm = openedContract.switchDocumentToSign("Approval workflow positive");
+        SignContract signContractForm = openedContract.switchDocumentToSign("pramata");
+
+        try
+        {
+            signContractForm.clickStart();
+
+            logger.info("Assert that file was downloaded...");
+
+            new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
+                    until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "pramata.pdf").toFile().exists());
+        }
+        catch (FileNotFoundException e)
+        {
+            logger.error("FileNotFoundException", e);
+        }
+
+        // Wait until Complete Sign is visible...
+        $("#COMPLETE_MANUAL_DOCUMENT").waitUntil(Condition.visible, 15_000);
+
+        CompleteSign completeSignForm = openedContract.clickCompleteSign("pramata");
+        ContractInfo signContractInfo = completeSignForm.clickComplete();
+
+        signContractInfo.setSignatureDate();
+        signContractInfo.setEffectiveDate();
+        signContractInfo.clickSave();
+
+        logger.info("Assert update notification...");
+        $(".notification-stack").waitUntil(Condition.visible, 10_000).shouldHave(Condition.exactText("Contract has been updated."));
+
+        logger.info("Assert that status was changed to MANAGED...");
+        $(".lifecycle").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("MANAGED"));
+
+        Screenshoter.makeScreenshot();
     }
 }
