@@ -3,10 +3,9 @@ package pages.administration;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import forms.ApprovalWorkflow;
 import org.apache.log4j.Logger;
-import pages.tooltips.EditWorkflowActionsMenu;
 import pages.tooltips.NewWorkflowActionsMenu;
+import pages.tooltips.WorkflowActionMenu;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -35,14 +34,14 @@ public class Workflows
     }
 
     /**
-     * Click 3 dots button for the given workflow name
-     * @param workflowName
+     * Invoke action menu for workflow by workflowName. Click by 3 dots button
+     * @param workflowName name of the workflow for which action menu should be invoked
      * @return
      */
-    public EditWorkflowActionsMenu editApprovalWorkflow(String workflowName)
+    public WorkflowActionMenu clickActionMenu(String workflowName)
     {
         Selenide.executeJavaScript("$('.workflows-list .workflows-list__row .type_name:contains(\"" + workflowName + "\")').parent().find(\".type_actions button\").click()");
 
-        return new EditWorkflowActionsMenu();
+        return new WorkflowActionMenu(workflowName);
     }
 }
