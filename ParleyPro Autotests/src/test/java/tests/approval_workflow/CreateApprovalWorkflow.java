@@ -73,7 +73,7 @@ public class CreateApprovalWorkflow
 
         logger.info("Click Edit of just created workflow...;");
 
-        workflowsTabPage.editApprovalWorkflow(workflowName).clickEdit();
+        workflowsTabPage.clickActionMenu(workflowName).clickEdit();
         approvalWorkflowForm = new ApprovalWorkflow();
 
         logger.info("Assert that just created Approval workflow has correct values...");
