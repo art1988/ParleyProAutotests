@@ -43,6 +43,7 @@
             <class name="tests.approval_workflow.CreateContractPositiveForApprovalWorkflow"/>
             <class name="tests.approval_workflow.StartPreNegotiateApproval"/>
             <class name="tests.approval_workflow.StartPreSignApproval"/>
+            <class name="tests.approval_workflow.CleanUp"/>
         </classes>
     </test>
 </suite>
