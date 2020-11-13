@@ -10,9 +10,14 @@ jobs:
       - checkout
 
       - run:
-          name: Run UI tests
+          name: Run Basics suite
           working_directory: "./ParleyPro Autotests"
           command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          
+      - run:
+          name: Run ApprovalWorkflow suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ApprovalWorkflow.xml
 
       - run:
           name: ZIP allure results
