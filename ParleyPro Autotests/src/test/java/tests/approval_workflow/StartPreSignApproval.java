@@ -235,6 +235,7 @@ public class StartPreSignApproval
 
         logger.info("Assert update notification...");
         $(".notification-stack").waitUntil(Condition.visible, 10_000).shouldHave(Condition.exactText("Contract has been updated."));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert that status was changed to MANAGED...");
         $(".lifecycle").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("MANAGED"));
