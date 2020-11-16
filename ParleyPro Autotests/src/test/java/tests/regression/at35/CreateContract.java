@@ -2,12 +2,15 @@ package tests.regression.at35;
 
 import constants.Const;
 import forms.ContractInformation;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
+@Listeners({ ScreenShotOnFailListener.class})
 public class CreateContract
 {
     @Test
