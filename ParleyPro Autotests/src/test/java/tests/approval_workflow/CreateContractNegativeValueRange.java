@@ -1,5 +1,6 @@
 package tests.approval_workflow;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractInformation;
@@ -13,6 +14,8 @@ import pages.InProgressContractsPage;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
+
+import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ ScreenShotOnFailListener.class})
 public class CreateContractNegativeValueRange
@@ -50,6 +53,10 @@ public class CreateContractNegativeValueRange
 
         // Wait until document is fully loaded...
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"PRAMATA\")')");
+
+        logger.info("Assert upload notification...");
+        $(".notification-stack").waitUntil(Condition.visible, 25_000).shouldHave(Condition.exactText("Document pramata has been successfully uploaded."));
+        $(".notification-stack").waitUntil(Condition.disappear, 25_000);
 
         logger.info("Assert that _contract_ header doesn't have APPROVE option...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.contract-header__status .lifecycle').text()"), "DRAFT(1)REVIEWNEGOTIATESIGNMANAGED");
