@@ -73,7 +73,7 @@ public class StartPreNegotiateApproval
         OpenedContract openedContract = new OpenedContract();
         logger.info("Assert that Approve and Reject buttons are not present...");
 
-        // Recording to jQuery documentation if length == 0 it means that element doesn't exist
+        // According to jQuery documentation if length == 0 it means that element doesn't exist
         boolean approveButtonDoesntExist = Selenide.executeJavaScript("return ($('#APPROVE_DOCUMENT').length === 0)"),
                 rejectButtonDoesntExist  = Selenide.executeJavaScript("return ($('#REJECT_DOCUMENT').length === 0)");
         Assert.assertTrue(approveButtonDoesntExist && rejectButtonDoesntExist);

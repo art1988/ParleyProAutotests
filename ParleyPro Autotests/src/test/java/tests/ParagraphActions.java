@@ -250,7 +250,7 @@ public class ParagraphActions
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + addedText + "\")')");
 
         logger.info("Assert that paragraph's color become black...");
-        // Recording to jQuery documentation if length == 0 it means that element doesn't exist
+        // According to jQuery documentation if length == 0 it means that element doesn't exist
         // see: https://learn.jquery.com/using-jquery-core/faq/how-do-i-test-whether-an-element-exists/
         boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + addedText + "\")').find(\"ins\").length === 0)");
         Assert.assertTrue(colorTagDoestExist);
