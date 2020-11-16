@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import forms.editor_toolbar.TableProperties;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -33,6 +34,15 @@ public class EditDocumentPage
 
         $(".editor-popup__body").waitUntil(Condition.visible, 7_000);
         $("#editor-toolbar").waitUntil(Condition.visible, 7_000);
+    }
+
+    public TableProperties insertTable()
+    {
+        $("#editor-toolbar a[title='Table']").waitUntil(Condition.visible, 7__000).click();
+
+        logger.info("Insert Table");
+
+        return new TableProperties();
     }
 
     public void clickSave()
