@@ -1,4 +1,4 @@
-package forms;
+package forms.workflows;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
@@ -116,6 +116,9 @@ public class ApprovalWorkflow
         return maxValueField.getValue();
     }
 
+    /**
+     * Click + Prior to Negotiate blue link
+     */
     public void clickPriorToNegotiate()
     {
         Selenide.executeJavaScript("$('.workflows-approval-events__item div:contains(\"Prior to Negotiate\")').click()");
@@ -130,6 +133,9 @@ public class ApprovalWorkflow
         priorToNegotiateParticipantField.sendKeys(Keys.ENTER);
     }
 
+    /**
+     * Click + Prior to Sign blue link
+     */
     public void clickPriorToSign()
     {
         Selenide.executeJavaScript("$('.workflows-approval-events__item div:contains(\"Prior to Sign\")').click()");
