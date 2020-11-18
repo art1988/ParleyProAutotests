@@ -3,7 +3,8 @@ package pages.tooltips;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import forms.ApprovalWorkflow;
+import forms.workflows.ApprovalWorkflow;
+import forms.workflows.ContractRoutingWorkflow;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -31,8 +32,12 @@ public class NewWorkflowActionsMenu
         return new ApprovalWorkflow();
     }
 
-    public void clickContractRouting()
+    public ContractRoutingWorkflow clickContractRouting()
     {
         Selenide.executeJavaScript("$('.dropdown-menu.dropdown-menu-right a:contains(\"Contract routing\")')[0].click()");
+
+        logger.info("Contract routing was clicked...");
+
+        return new ContractRoutingWorkflow();
     }
 }
