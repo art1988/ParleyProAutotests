@@ -29,6 +29,15 @@ public class AddMembers
         addParticipantField.setValue(nameOrEmail);
         addParticipantField.sendKeys(Keys.DOWN);
         addParticipantField.sendKeys(Keys.ENTER);
+
+        try
+        {
+            Thread.sleep(200);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public void clickAdd()
