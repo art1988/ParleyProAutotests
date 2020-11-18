@@ -3,7 +3,7 @@ package tests.approval_workflow;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import forms.ApprovalWorkflow;
+import forms.workflows.ApprovalWorkflow;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.interactions.Actions;
