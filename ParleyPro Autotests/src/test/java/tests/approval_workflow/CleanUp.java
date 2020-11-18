@@ -7,6 +7,7 @@ import io.qameta.allure.Description;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AdministrationPage;
 import pages.DashboardPage;
@@ -14,12 +15,13 @@ import pages.LoginPage;
 import pages.OpenedContract;
 import pages.administration.Teams;
 import pages.administration.Workflows;
-import pages.tooltips.TeamActionMenu;
+import utils.ScreenShotOnFailListener;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
+@Listeners({ ScreenShotOnFailListener.class})
 public class CleanUp
 {
     private static Logger logger = Logger.getLogger(CleanUp.class);
@@ -75,7 +77,8 @@ public class CleanUp
 
         Teams teamsTabPage = administrationPage.clickTeamsTab();
 
-        $(".teams-list__icon").waitUntil(Condition.visible, 6_000); // wait until gear icon will appear
+        // wait until spinner disappear and list of team should appear
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
 
         teamsTabPage.clickActionMenu("Autotest_TEAM_3 [EDITED]").clickDelete().clickDelete();
 
