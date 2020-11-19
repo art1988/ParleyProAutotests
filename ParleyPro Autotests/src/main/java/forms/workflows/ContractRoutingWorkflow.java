@@ -3,13 +3,14 @@ package forms.workflows;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class ContractRoutingWorkflow
 {
-    private SelenideElement nameField = $("#wf_autoAssignment_name");
+    private SelenideElement nameField      = $("#wf_autoAssignment_name");
     private SelenideElement minValueField  = $("#contractValueRange");
     private SelenideElement maxValueField  = $("#contractValueRange_max");
 
@@ -22,10 +23,14 @@ public class ContractRoutingWorkflow
     private SelenideElement contractRequestedParticipantField             = $("#workfowApprovalUsersAssignment_Contract-requested");
     private SelenideElement сontractCreatedViaIntegrationParticipantField = $("#workfowApprovalUsersAssignment_Contract-created-via-integration");
 
+    private SelenideElement saveButton = $("button[type='submit']");
 
+
+    private static Logger logger = Logger.getLogger(ContractRoutingWorkflow.class);
 
     public ContractRoutingWorkflow()
     {
+        // TODO: Rename after fixing of PAR-12780
         $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("New Workflow"));
     }
 
@@ -71,15 +76,15 @@ public class ContractRoutingWorkflow
 
     public void setDepartment(String department)
     {
-        Selenide.executeJavaScript("$('input[data-id=\"wf_autoAssignment_departnent\"]')[0].click()"); // open dropdown
+        Selenide.executeJavaScript("$('input[data-id=\"wf_autoAssignment_department\"]')[0].click()"); // open dropdown
         Selenide.executeJavaScript("$('.multi-select .dropdown-menu').eq(2).find(\"label:contains('All')\").click()"); // uncheck All
         Selenide.executeJavaScript("$('.multi-select .dropdown-menu').eq(2).find(\"label:contains('" + department + "')\").click()"); // select
-        Selenide.executeJavaScript("$('input[data-id=\"wf_autoAssignment_departnent\"]')[0].click()"); // close dropdown
+        Selenide.executeJavaScript("$('input[data-id=\"wf_autoAssignment_department\"]')[0].click()"); // close dropdown
     }
 
     public String getDepartment()
     {
-        String str = Selenide.executeJavaScript("return $('input[data-id=\"wf_autoAssignment_departnent\"]').val()");
+        String str = Selenide.executeJavaScript("return $('input[data-id=\"wf_autoAssignment_department\"]').val()");
 
         return str;
     }
@@ -123,6 +128,8 @@ public class ContractRoutingWorkflow
     public void clickDraftToReview()
     {
         Selenide.executeJavaScript("$('.workflows-autoassignment-events__item div:contains(\"Draft to review\")').click()");
+
+        logger.info("Draft to review was clicked");
     }
 
     public void setDraftToReviewParticipant(String participant)
@@ -138,6 +145,8 @@ public class ContractRoutingWorkflow
     public void clickTextChanged()
     {
         Selenide.executeJavaScript("$('.workflows-autoassignment-events__item div:contains(\"Text changed\")').click()");
+
+        logger.info("Text changed was clicked");
     }
 
     public void setTextChangedParticipant(String participant)
@@ -153,6 +162,8 @@ public class ContractRoutingWorkflow
     public void clickSignatureDeclined()
     {
         Selenide.executeJavaScript("$('.workflows-autoassignment-events__item div:contains(\"Signature declined\")').click()");
+
+        logger.info("Signature declined was clicked");
     }
 
     public void setSignatureDeclinedParticipant(String participant)
@@ -168,6 +179,8 @@ public class ContractRoutingWorkflow
     public void clickUploadCounterpartyDocument()
     {
         Selenide.executeJavaScript("$('.workflows-autoassignment-events__item div:contains(\"Upload Counterparty document\")').click()");
+
+        logger.info("Upload Counterparty document was clicked");
     }
 
     public void setUploadCounterpartyDocumentParticipant(String participant)
@@ -175,5 +188,24 @@ public class ContractRoutingWorkflow
         uploadCounterpartyDocumentParticipantField.setValue(participant);
         uploadCounterpartyDocumentParticipantField.sendKeys(Keys.DOWN);
         uploadCounterpartyDocumentParticipantField.sendKeys(Keys.ENTER);
+    }
+
+    /**
+     * Expand dropdown with roles for particular username and set role
+     * @param username name of the user for which we want set role
+     * @param role name of the role
+     */
+    public void setRoleForUser(String username, String role)
+    {
+        Selenide.executeJavaScript("$('.workflows-users-list__item:contains(\"" + username + "\")').find(\"button\").click()"); // expand dropdown
+
+        Selenide.executeJavaScript("$('.workflows-users-list__item:contains(\"" + username + "\")').find(\"button\").next().find(\"a:contains('" + role + "')\")[0].click()"); // choose role
+    }
+
+    public void clickSave()
+    {
+        saveButton.click();
+
+        logger.info("SAVE button was clicked");
     }
 }
