@@ -36,7 +36,7 @@ public class AddMembers
         }
         catch (InterruptedException e)
         {
-            e.printStackTrace();
+            logger.error("InterruptedException", e);
         }
     }
 
