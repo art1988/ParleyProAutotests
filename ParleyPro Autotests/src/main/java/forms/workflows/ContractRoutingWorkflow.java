@@ -23,7 +23,8 @@ public class ContractRoutingWorkflow
     private SelenideElement contractRequestedParticipantField             = $("#workfowApprovalUsersAssignment_Contract-requested");
     private SelenideElement сontractCreatedViaIntegrationParticipantField = $("#workfowApprovalUsersAssignment_Contract-created-via-integration");
 
-    private SelenideElement saveButton = $("button[type='submit']");
+    private SelenideElement cancelButton = $(".button.btn-common.btn-link-pseudo.btn.btn-link");
+    private SelenideElement saveButton   = $("button[type='submit']");
 
 
     private static Logger logger = Logger.getLogger(ContractRoutingWorkflow.class);
@@ -32,6 +33,13 @@ public class ContractRoutingWorkflow
     {
         // TODO: Rename after fixing of PAR-12780
         $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("New Workflow"));
+    }
+
+    // TODO: remove this constructor after fixing of PAR-12780
+    // Use this constructor in case of Edit workflow
+    public ContractRoutingWorkflow(boolean editMode)
+    {
+        $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Edit Workflow"));
     }
 
     public void setName(String workflowName)
@@ -200,6 +208,13 @@ public class ContractRoutingWorkflow
         Selenide.executeJavaScript("$('.workflows-users-list__item:contains(\"" + username + "\")').find(\"button\").click()"); // expand dropdown
 
         Selenide.executeJavaScript("$('.workflows-users-list__item:contains(\"" + username + "\")').find(\"button\").next().find(\"a:contains('" + role + "')\")[0].click()"); // choose role
+    }
+
+    public void clickCancel()
+    {
+        cancelButton.click();
+
+        logger.info("CANCEL button was clicked");
     }
 
     public void clickSave()
