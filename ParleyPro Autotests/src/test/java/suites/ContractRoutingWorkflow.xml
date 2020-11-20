@@ -2,10 +2,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Approval workflow" configfailurepolicy="continue">
-    <test name="Create and Edit Team" preserve-order="true">
+    <test name="Create Contract Routing Workflow" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.routing_workflow.CreateContractRoutingWorkflow"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Contract Routing Workflow positive case " preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.routing_workflow.CreateContractPositiveForContractRoutingWorkflow"/>
         </classes>
     </test>
 </suite>
