@@ -23,7 +23,7 @@ public class CreateApprovalWorkflow
 {
     private static Logger logger = Logger.getLogger(CreateApprovalWorkflow.class);
 
-    @Test(priority = 1)
+    @Test()
     @Description("This test go to Administration, creates new approval workflow")
     public void createApprovalWorkflow()
     {
