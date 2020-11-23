@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Approval workflow" configfailurepolicy="continue">
+<suite name="Contract routing workflow" configfailurepolicy="continue">
     <test name="Create Contract Routing Workflow" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -14,6 +14,7 @@
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.routing_workflow.CreateContractPositiveForContractRoutingWorkflow"/>
+            <class name="tests.routing_workflow.CleanUp"/>
         </classes>
     </test>
 </suite>
