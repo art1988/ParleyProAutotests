@@ -19,6 +19,7 @@ public class OpenedContract
     private SelenideElement auditTrailButton      = $("#contract-audit-trail-action");
     private SelenideElement actionsMenu           = $(".contract-header__menu .actions-menu button");
     private SelenideElement approveDocumentButton = $("#APPROVE_DOCUMENT");
+    private SelenideElement newDocumentButton     = $("button[tooltip='Add new document']");
 
 
     private static Logger logger = Logger.getLogger(OpenedContract.class);
@@ -243,5 +244,18 @@ public class OpenedContract
         Selenide.executeJavaScript("$('.document__title:contains(\"" + documentName + "\")').parent().find(\"div[class='document__menu']\").find(\"button\").click()");
 
         return new DocumentActionsMenu(documentName);
+    }
+
+    /**
+     * Click by + NEW DOCUMENT button
+     * @return
+     */
+    public AddDocuments clickNewDocument()
+    {
+        newDocumentButton.click();
+
+        logger.info("+ NEW DOCUMENT button was clicked");
+
+        return new AddDocuments();
     }
 }
