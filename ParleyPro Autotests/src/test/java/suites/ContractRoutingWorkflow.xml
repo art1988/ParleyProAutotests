@@ -15,6 +15,7 @@
             <class name="tests.LoginToDashboard"/>
             <class name="tests.routing_workflow.CreateContractPositiveForContractRoutingWorkflow"/>
             <class name="tests.routing_workflow.CleanUp"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
