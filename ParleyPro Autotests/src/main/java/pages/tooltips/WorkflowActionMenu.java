@@ -19,7 +19,7 @@ public class WorkflowActionMenu
     {
         try
         {
-            Thread.sleep(500);
+            Thread.sleep(1_000);
         }
         catch (InterruptedException e)
         {
