@@ -23,7 +23,8 @@ jobs:
           
       - run: sleep 10
       
-      - run: Run ContractRoutingWorkflow suite
+      - run: 
+          name: Run ContractRoutingWorkflow suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractRoutingWorkflow.xml
       
