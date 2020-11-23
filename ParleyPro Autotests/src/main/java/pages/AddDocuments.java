@@ -10,6 +10,12 @@ import java.io.File;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+/**
+ * This class represents Add Documents page with 2 upload buttons:
+ * Upload my team documents - green button
+ * and
+ * Upload Counterparty documents - purple button
+ */
 public class AddDocuments
 {
 
@@ -48,5 +54,22 @@ public class AddDocuments
         SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
         uploadMyTeamDocumentsButton.uploadFile(fileToUpload);
+    }
+
+    /**
+     * Click 'Upload counterparty documents' button
+     * @param fileToUpload
+     */
+    public void clickUploadCounterpartyDocuments(File fileToUpload)
+    {
+        // 1. make <input> visible
+        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
+
+        // 2. trying to upload...
+        SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+        uploadCounterpartyDocumentsButton.uploadFile(fileToUpload);
     }
 }
