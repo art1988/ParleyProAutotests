@@ -48,4 +48,12 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="User creation" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.AddNewUserTest"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
