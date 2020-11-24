@@ -3,30 +3,28 @@ package tests.routing_workflow;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
 import forms.StartReview;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.AuditTrail;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
 import pages.subelements.CKEditorActive;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
-
-import java.io.FileNotFoundException;
-import java.nio.file.Paths;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+@Listeners({ ScreenShotOnFailListener.class})
 public class CreateContractPositiveForContractRoutingWorkflow
 {
     private static String contractName = "Contract routing workflow positive";
