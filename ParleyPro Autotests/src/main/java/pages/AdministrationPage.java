@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
+import pages.administration.ManageUsers;
 import pages.administration.Teams;
 import pages.administration.Workflows;
 
@@ -28,6 +29,15 @@ public class AdministrationPage
 
         // check that tabs are exists
         $(".landing-administration-subheaders").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Manage usersIntegrationsWorkflowsFieldsTeams"));
+    }
+
+    public ManageUsers clickManageUsersTab()
+    {
+        manageUsersTab.click();
+
+        logger.info("Manage users tab was clicked");
+
+        return new ManageUsers();
     }
 
     public Workflows clickWorkflowsTab()
