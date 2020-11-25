@@ -68,7 +68,7 @@ public class AddNewUserTest
     @Description("This test checks that invitation email was sent")
     public void checkInvitationEmail()
     {
-        logger.info("Waiting for 15 seconds...");
+        logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
         try
         {
             Thread.sleep(15_000);
@@ -160,6 +160,15 @@ public class AddNewUserTest
         ManageUsers manageUsersTab = dashboardPage.getSideBar().clickAdministration().clickManageUsersTab();
 
         manageUsersTab.clickActionMenu(newUser.getFirstName()).clickDelete(newUser).clickDelete();
+
+        try
+        {
+            Thread.sleep(1_000);
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
 
         logger.info("Assert that user is no longer in the list...");
         Assert.assertFalse(Selenide.executeJavaScript("return $('.usermanagement__userlist_content_row_fullname:contains(\"AT User first_name\")').length === 1"));
