@@ -17,8 +17,7 @@ public class DeleteUser
 
     public DeleteUser(User user)
     {
-        // TODO: fix title after fixing of PAR-12824
-        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Are sure to delete " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")"));
+        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Are you sure to delete " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")"));
     }
 
     public void clickDelete()
