@@ -25,5 +25,7 @@ public class DeleteTeam
         deleteButton.click();
 
         logger.info("Delete button was clicked...");
+
+        title.waitUntil(Condition.disappear, 6_000);
     }
 }
