@@ -58,7 +58,7 @@ public class StartPreNegotiateApproval
 
     @Test(priority = 2)
     @Description("This test logins as Approval_User_2 and verifies that he can’t approve")
-    public void loginAsApproverUser2AndCheckThatApproveNotVisible()
+    public void loginAsApproverUser2AndCheckThatApproveNotVisible() throws InterruptedException
     {
         LoginPage loginPage = new LoginPage();
 
@@ -72,6 +72,8 @@ public class StartPreNegotiateApproval
         inProgressContractsPage.selectContract("Approval workflow positive");
         OpenedContract openedContract = new OpenedContract();
         logger.info("Assert that Approve and Reject buttons are not present...");
+
+        Thread.sleep(3_000);
 
         // According to jQuery documentation if length == 0 it means that element doesn't exist
         boolean approveButtonDoesntExist = Selenide.executeJavaScript("return ($('#APPROVE_DOCUMENT').length === 0)"),
@@ -100,6 +102,9 @@ public class StartPreNegotiateApproval
         OpenedContract openedContract = new OpenedContract();
 
         logger.info("Assert that Approve and Reject buttons are present...");
+        $("#APPROVE_DOCUMENT").waitUntil(Condition.visible, 5_000).shouldBe(Condition.visible);
+        $("#REJECT_DOCUMENT").waitUntil(Condition.visible, 5_000).shouldBe(Condition.visible);
+
         boolean approveButtonDoesntExist = Selenide.executeJavaScript("return ($('#APPROVE_DOCUMENT').length === 0)"),
                 rejectButtonDoesntExist  = Selenide.executeJavaScript("return ($('#REJECT_DOCUMENT').length === 0)");
         Assert.assertFalse(approveButtonDoesntExist && rejectButtonDoesntExist);
@@ -128,6 +133,9 @@ public class StartPreNegotiateApproval
         OpenedContract openedContract = new OpenedContract();
 
         logger.info("Assert that Approve and Reject buttons are present...");
+        $("#APPROVE_DOCUMENT").waitUntil(Condition.visible, 5_000).shouldBe(Condition.visible);
+        $("#REJECT_DOCUMENT").waitUntil(Condition.visible, 5_000).shouldBe(Condition.visible);
+
         boolean approveButtonDoesntExist = Selenide.executeJavaScript("return ($('#APPROVE_DOCUMENT').length === 0)"),
                 rejectButtonDoesntExist  = Selenide.executeJavaScript("return ($('#REJECT_DOCUMENT').length === 0)");
         Assert.assertFalse(approveButtonDoesntExist && rejectButtonDoesntExist);
