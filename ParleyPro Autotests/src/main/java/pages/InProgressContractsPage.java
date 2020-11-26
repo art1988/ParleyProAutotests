@@ -7,7 +7,6 @@ import com.codeborne.selenide.SelenideElement;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.SkipException;
 import pages.subelements.SideBar;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -32,14 +31,6 @@ public class InProgressContractsPage
      */
     public InProgressContractsPage(boolean isBlank)
     {
-        // Check for presence of 500 error
-        if( $(".contracts__empty-cell").waitUntil(Condition.visible, 5_000).getText()
-                .equals("Welcome to your contracts!You haven't been assigned a role in any contracts.You'll receive a notification when you're assigned a role.") )
-        {
-            logger.error("Looks like master is down ! 500 http code");
-            throw new SkipException("Looks like master is down ! 500 http code"); // Skip all test suite
-        }
-
         if( isBlank )
         {
             boolean hasImage = $(".contracts__empty-image").getCssValue("background").contains("images/2a54d69eccf09694948ac7afd0eea951.svg");
