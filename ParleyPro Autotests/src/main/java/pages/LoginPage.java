@@ -42,6 +42,8 @@ public class LoginPage
 
     public DashboardPage clickSignIn()
     {
+        logger.info("Trying to login as: " + emailField.getText());
+
         signInButton.click();
 
         logger.info("Sign In button was clicked");
