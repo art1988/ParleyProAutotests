@@ -7,6 +7,7 @@ import com.codeborne.selenide.SelenideElement;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.SkipException;
 import pages.subelements.SideBar;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -33,6 +34,14 @@ public class InProgressContractsPage
     {
         if( isBlank )
         {
+            // Check for presence of 500 error
+            // If button + NEW CONTRACT doesn't exist - it means that 500 occurred
+            if( newContractButton.waitUntil(Condition.visible, 5_000).isDisplayed() == false )
+            {
+                logger.error("Looks like master is down ! 500 http code");
+                throw new SkipException("Looks like master is down ! 500 http code"); // Skip all test suite
+            }
+
             boolean hasImage = $(".contracts__empty-image").getCssValue("background").contains("images/2a54d69eccf09694948ac7afd0eea951.svg");
 
             // Check that blank page has greeting text "Welcome to your contracts!" ...
