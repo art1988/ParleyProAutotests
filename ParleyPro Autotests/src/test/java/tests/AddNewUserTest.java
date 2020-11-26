@@ -137,7 +137,7 @@ public class AddNewUserTest
 
             if( !found ) // Email was not found !
             {
-                logger.error("Email with subject Role assignment: Requester was not found !!!");
+                Assert.fail("Email with subject Role assignment: Requester was not found !!!");
             }
 
             inbox.close(false);
