@@ -16,7 +16,7 @@ public class ApproveDocument
 
     public ApproveDocument(String documentName)
     {
-        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Are you sure you want to approve document “" + documentName + "”?"));
+        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Are you sure you want to approve document \"" + documentName + "\"?"));
     }
 
     public void clickApproveButton()
