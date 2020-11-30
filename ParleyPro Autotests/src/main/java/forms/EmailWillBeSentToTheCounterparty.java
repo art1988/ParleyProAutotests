@@ -6,6 +6,11 @@ import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Form that appears after clicking on Next button in Negotiate status.
+ * If it is not classic contract => Title would be "The email will be sent to the Counterparty Chief Negotiator."
+ * If it is classic contract => Title would be "The Counterparty information is missing."
+ */
 public class EmailWillBeSentToTheCounterparty
 {
     private SelenideElement title                            = $(".modal-body-title");
@@ -17,9 +22,16 @@ public class EmailWillBeSentToTheCounterparty
 
     private static Logger logger = Logger.getLogger(EmailWillBeSentToTheCounterparty.class);
 
-    public EmailWillBeSentToTheCounterparty()
+    public EmailWillBeSentToTheCounterparty(boolean isClassic)
     {
-        title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("The email will be sent to the Counterparty Chief Negotiator."));
+        if( isClassic )
+        {
+            title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("The Counterparty information is missing."));
+        }
+        else
+        {
+            title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("The email will be sent to the Counterparty Chief Negotiator."));
+        }
 
         counterpartyOrganizationField.waitUntil(Condition.visible, 6_000);
         counterpartyChiefNegotiatorField.waitUntil(Condition.visible, 6_000);
