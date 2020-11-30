@@ -18,7 +18,10 @@ public class OpenedContract
     private SelenideElement contractName          = $(".contract-header__name");
     private SelenideElement auditTrailButton      = $("#contract-audit-trail-action");
     private SelenideElement actionsMenu           = $(".contract-header__menu .actions-menu button");
-    private SelenideElement approveDocumentButton = $("#APPROVE_DOCUMENT");
+
+    private SelenideElement approveDocumentButton  = $("#APPROVE_DOCUMENT");
+    private SelenideElement uploadNewVersionButton = $("#UPLOAD_VERSION_DOCUMENT");
+
     private SelenideElement newDocumentButton     = $("button[tooltip='Add new document']");
 
 
@@ -64,7 +67,7 @@ public class OpenedContract
         return new StartReview(contractName.text());
     }
 
-    public StartNegotiation switchDocumentToNegotiate(String documentName)
+    public StartNegotiation switchDocumentToNegotiate(String documentName, boolean isClassic)
     {
         String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
 
@@ -80,7 +83,7 @@ public class OpenedContract
 
         logger.info("NEGOTIATE was clicked");
 
-        return new StartNegotiation(contractName.text());
+        return new StartNegotiation(contractName.text(), isClassic);
     }
 
     public SignContract switchDocumentToSign(String documentName)
@@ -156,6 +159,15 @@ public class OpenedContract
         logger.info("Approve button was clicked");
 
         return new ApproveDocument(documentName);
+    }
+
+    public UploadNewVersionOfDocument clickUploadNewVersionButton(String documentName)
+    {
+        uploadNewVersionButton.click();
+
+        logger.info("Upload new version button was clicked");
+
+        return new UploadNewVersionOfDocument(documentName);
     }
 
     /**
