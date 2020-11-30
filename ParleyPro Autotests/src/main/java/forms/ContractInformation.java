@@ -30,6 +30,9 @@ public class ContractInformation
     {
         $(".contract-create__title").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("Contract information"));
 
+        // wait until spinner disappears - that will indicate that form is fully loaded
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
+
         return ( contractTitleField.isDisplayed() );
     }
 
@@ -84,6 +87,13 @@ public class ContractInformation
     {
         Selenide.executeJavaScript("$('input[inputid=\"contractType\"]').click()");
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('" + type + "')\").click()");
+    }
+
+    public void checkClassicNegotiationModeCheckbox()
+    {
+        Selenide.executeJavaScript("$('#classicNegotiationMode').parent('label').click()");
+
+        logger.info("Classic negotiation mode checkbox was clicked");
     }
 
     public String getChiefNegotiator()
