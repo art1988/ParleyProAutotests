@@ -15,19 +15,26 @@ public class StartNegotiation
 
     private static Logger logger = Logger.getLogger(StartNegotiation.class);
 
-    public StartNegotiation(String contractName)
+    public StartNegotiation(String contractName, boolean isClassic)
     {
         title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("You are about to start negotiation for contract \"" + contractName + "\"."));
 
-        $(".share-documents__message").shouldBe(Condition.visible).shouldHave(Condition.text("Once started, selected documents will be visible to the Counterparty"));
+        if( isClassic )
+        {
+            $(".share-documents__message").shouldBe(Condition.visible).shouldHave(Condition.text("Your Counterparty will not be notified and no contract will be emailed at this point"));
+        }
+        else
+        {
+            $(".share-documents__message").shouldBe(Condition.visible).shouldHave(Condition.text("Once started, selected documents will be visible to the Counterparty"));
+        }
     }
 
-    public EmailWillBeSentToTheCounterparty clickNext()
+    public EmailWillBeSentToTheCounterparty clickNext(boolean isClassic)
     {
         Selenide.executeJavaScript("$('.modal-footer button:contains(\"NEXT\")').click()");
 
         logger.info("Next button was clicked");
 
-        return new EmailWillBeSentToTheCounterparty();
+        return new EmailWillBeSentToTheCounterparty(isClassic);
     }
 }
