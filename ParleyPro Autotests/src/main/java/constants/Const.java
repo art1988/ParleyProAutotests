@@ -20,6 +20,9 @@ public class Const
     public static final File   CONTRACT_FORMATTING_SAMPLE    = new File(System.getProperty("user.dir") + "/Contracts/Formatting.docx");
     public static final File   CONTRACT_NUMBERED_LIST_SAMPLE = new File(System.getProperty("user.dir") + "/Contracts/NumberedList.docx");
 
+    public static final File   CONTRACT_CLASSIC_AT40         = new File(System.getProperty("user.dir") + "/Contracts/AT-40.docx");
+    public static final File   CONTRACT_CLASSIC_AT40_2       = new File(System.getProperty("user.dir") + "/Contracts/AT-40_2.docx");
+
     public static final File   DOWNLOAD_DIR                  = new File(System.getProperty("user.dir") + "/Downloads");
 
     // Dir for screenshots of failed tests
