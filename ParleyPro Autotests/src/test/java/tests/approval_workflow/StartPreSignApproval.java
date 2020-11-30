@@ -34,10 +34,10 @@ public class StartPreSignApproval
     {
         OpenedContract openedContract = new OpenedContract();
 
-        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate("pramata");
-        startNegotiationForm.clickNext();
+        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate("pramata", false);
+        startNegotiationForm.clickNext(false);
 
-        EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext();
+        EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext(false);
         emailWillBeSentToTheCounterpartyForm.setCounterpartyOrganization("CounterpartyAT");
         Thread.sleep(1_000);
         emailWillBeSentToTheCounterpartyForm.setCounterpartyChiefNegotiator("arthur.khasanov+cpat@parleypro.com");
