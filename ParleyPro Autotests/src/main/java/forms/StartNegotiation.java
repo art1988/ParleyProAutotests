@@ -21,11 +21,11 @@ public class StartNegotiation
 
         if( isClassic )
         {
-            $(".share-documents__message").shouldBe(Condition.visible).shouldHave(Condition.text("Your Counterparty will not be notified and no contract will be emailed at this point"));
+            $(".share-documents__message").shouldBe(Condition.visible).shouldHave(Condition.exactText("Your Counterparty will not be notified and no contract will be emailed at this point"));
         }
         else
         {
-            $(".share-documents__message").shouldBe(Condition.visible).shouldHave(Condition.text("Once started, selected documents will be visible to the Counterparty"));
+            $(".share-documents__message").shouldBe(Condition.visible).shouldHave(Condition.exactText("Once started, selected documents will be visible to the Counterparty"));
         }
     }
 
