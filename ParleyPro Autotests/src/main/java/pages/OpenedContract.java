@@ -43,6 +43,7 @@ public class OpenedContract
 
     private boolean isInit()
     {
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
         $(".contract-header__status").waitUntil(Condition.visible, 7_000);
 
         return ( contractName.isDisplayed() );
@@ -253,7 +254,7 @@ public class OpenedContract
      */
     public DocumentActionsMenu clickDocumentActionsMenu(String documentName)
     {
-        Selenide.executeJavaScript("$('.document__title:contains(\"" + documentName + "\")').parent().find(\"div[class='document__menu']\").find(\"button\").click()");
+        Selenide.executeJavaScript("$('.document__header-row span:contains(\"" + documentName + "\")').parent().parent().parent().find(\"div[class='document__menu']\").find(\"button\").click()");
 
         return new DocumentActionsMenu(documentName);
     }
