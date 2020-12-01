@@ -42,12 +42,12 @@ public class DocumentComparePreview
         return $(".update-document__deleted").getText();
     }
 
-    public Discussions clickUpload()
+    public DiscussionsOfSingleContract clickUpload()
     {
         uploadButton.click();
 
         logger.info("UPLOAD button was clicked");
 
-        return new Discussions(contractName);
+        return new DiscussionsOfSingleContract(contractName);
     }
 }
