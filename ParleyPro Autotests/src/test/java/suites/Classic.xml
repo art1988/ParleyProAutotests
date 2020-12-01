@@ -3,10 +3,13 @@
 
 <suite name = "Classic negotiation mode suite" configfailurepolicy="continue">
     <test name="Upload new version with redlines for my team documents" preserve-order="true">
+        <parameter name="contractName" value="AT40 Classic contract"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.classic.CreateClassicContractAT40"/>
             <class name="tests.classic.UploadNewVersionAndCheckChanges"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
