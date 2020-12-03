@@ -7,15 +7,13 @@ import constants.Const;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
 import forms.StartReview;
+import forms.workflows.ContractRoutingWorkflow;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.AddDocuments;
-import pages.AuditTrail;
-import pages.InProgressContractsPage;
-import pages.OpenedContract;
+import pages.*;
 import pages.subelements.CKEditorActive;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -207,5 +205,34 @@ public class CreateContractPositiveForContractRoutingWorkflow
         Screenshoter.makeScreenshot();
 
         auditTrail.clickOk();
+    }
+
+    @Test(priority = 7)
+    @Description("This test goes to workflow settings, removes 'Draft to review' event, change users in Text changed event, saves workflow and validate saving")
+    public void checkEventRemovingInWorkflow() throws InterruptedException
+    {
+        DashboardPage dashboardPage = new DashboardPage();
+
+        dashboardPage.getSideBar().clickAdministration().clickWorkflowsTab().clickActionMenu("Contract_routing_WFL_AT").clickEdit();
+
+        ContractRoutingWorkflow contractRoutingWorkflow = new ContractRoutingWorkflow(true);
+
+        contractRoutingWorkflow.deleteEvent("Draft to review");
+        contractRoutingWorkflow.setTextChangedParticipant( Const.PREDEFINED_INTERNAL_USER_1.getFirstName() );
+        contractRoutingWorkflow.clickSave();
+
+        logger.info("Edit workflow again and assert that changes were applied...");
+        dashboardPage.getSideBar().clickAdministration().clickWorkflowsTab().clickActionMenu("Contract_routing_WFL_AT").clickEdit();
+        Thread.sleep(2_000);
+        boolean draftToReviewEventExist = Selenide.executeJavaScript("return $('.workflows-autoassignment-events-event__title:contains(\"Draft to review\")').length === 1");
+        // TODO: uncomment after fixing of PAR-12894
+        // Assert.assertFalse(draftToReviewEventExist); // it should not exist
+        String usersOfTextChangedEvent = Selenide.executeJavaScript("return $('.workflows-autoassignment-events-event__title:contains(\"Text changed\")').parent().parent().find(\".workflows-users-list .workflows-users-list__item-name\").text()");
+        Assert.assertEquals(usersOfTextChangedEvent, "Internal user2 Internal user2 last nameInternal user1 Internal user1 last name");
+
+        contractRoutingWorkflow.clickCancel();
+
+        InProgressContractsPage inProgressContractsPage = dashboardPage.getSideBar().clickInProgressContracts(false);
+        inProgressContractsPage.selectContract(contractName);
     }
 }
