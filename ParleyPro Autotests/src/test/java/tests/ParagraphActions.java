@@ -308,7 +308,6 @@ public class ParagraphActions
 
     @Test(priority = 10)
     @Description("This test adds high priority tag and non-standard term for Paragraph 2")
-    @Issue(value = "PAR-12377")
     public void addTagAndTerm()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -334,10 +333,9 @@ public class ParagraphActions
         $(".discussion2-post__term-name").waitUntil(Condition.visible, 5_000);
 
         logger.info("Assert that Non-standard post appeared...");
-        // TODO: fix after fixing of PAR-12377. It should be 1 instead of 2
         Waiter.smartWaitUntilVisible("$('.discussion2-post:contains(\"Non-standard: " + addedTag + "\")')");
         Long countOfNonStandardPosts = Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard: " + addedTag + "\")').length");
-        Assert.assertEquals(countOfNonStandardPosts.longValue(), 2);
+        Assert.assertEquals(countOfNonStandardPosts.longValue(), 1);
 
         logger.info("Check that paragraph has tag from the left...");
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_term\")"); // wait until icon appear
