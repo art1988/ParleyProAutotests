@@ -210,6 +210,17 @@ public class ContractRoutingWorkflow
         Selenide.executeJavaScript("$('.workflows-users-list__item:contains(\"" + username + "\")').find(\"button\").next().find(\"a:contains('" + role + "')\")[0].click()"); // choose role
     }
 
+    /**
+     * Delete event by it's name
+     * @param eventName
+     */
+    public void deleteEvent(String eventName)
+    {
+        Selenide.executeJavaScript("$('.workflows-autoassignment-events-event__title:contains(\"" + eventName + "\")').find(\"i\").click()");
+
+        logger.info("Event " + eventName + " was deleted");
+    }
+
     public void clickCancel()
     {
         cancelButton.click();
