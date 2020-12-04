@@ -38,6 +38,8 @@ public class CleanUp
     @Description("This test delete contract: Approval workflow positive")
     public void deleteContract()
     {
+        new DashboardPage().getSideBar().clickExecutedContracts().selectContract("Approval workflow positive");
+
         OpenedContract openedContract = new OpenedContract();
 
         openedContract.clickContractActionsMenu().clickDeleteContract().clickDelete();
