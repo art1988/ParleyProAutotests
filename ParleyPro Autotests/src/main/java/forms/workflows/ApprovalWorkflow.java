@@ -164,6 +164,17 @@ public class ApprovalWorkflow
         logger.info("'Allow to modify approvers' of 'Prior to Sign' was switched");
     }
 
+    /**
+     * Delete condition by it's name
+     * @param conditionName
+     */
+    public void deleteCondition(String conditionName)
+    {
+        Selenide.executeJavaScript("$('.workflows-approval-events-event__title:contains(\"" + conditionName + "\")').find(\"i\").click()");
+
+        logger.info("Condition " + conditionName + " was deleted");
+    }
+
     public void clickSave()
     {
         saveButton.click();
