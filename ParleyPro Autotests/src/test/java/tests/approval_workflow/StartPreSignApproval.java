@@ -6,6 +6,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import forms.*;
+import forms.workflows.ApprovalWorkflow;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,8 +21,7 @@ import utils.Waiter;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 @Listeners({ ScreenShotOnFailListener.class})
 public class StartPreSignApproval
@@ -252,5 +252,33 @@ public class StartPreSignApproval
         $(".lifecycle").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("MANAGED"));
 
         Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 9)
+    @Description("Check of PAR-12894: This test goes to workflow settings, removes 'Prior to Sign' condition add new user for Prior to negotiate saves workflow and validate saving")
+    public void checkConditionRemovingInWorkflow() throws InterruptedException
+    {
+        DashboardPage dashboardPage = new DashboardPage();
+
+        dashboardPage.getSideBar().clickAdministration().clickWorkflowsTab().clickActionMenu("Approval_WFL_AT").clickEdit();
+
+        ApprovalWorkflow approvalWorkflow = new ApprovalWorkflow();
+        approvalWorkflow.deleteCondition("Prior to Sign");
+        approvalWorkflow.setPriorToNegotiateParticipant( Const.PREDEFINED_INTERNAL_USER_1.getFirstName() );
+        approvalWorkflow.clickSave();
+
+        logger.info("Edit workflow again and assert that changes were applied...");
+        dashboardPage.getSideBar().clickAdministration().clickWorkflowsTab().clickActionMenu("Approval_WFL_AT").clickEdit();
+        Thread.sleep(2_000);
+
+        boolean priorToSignExists = Selenide.executeJavaScript("return $('.workflows-approval-events-event__title:contains(\"Prior to Sign\")').length === 1");
+        Assert.assertFalse(priorToSignExists);
+
+        String usersOfPriorToNegotiateCondition = Selenide.executeJavaScript("return $('.workflows-approval-events-event__title:contains(\"Prior to Negotiate\")').parent().parent().find(\".workflows-approval-users-list .workflows-approval-users-list__item-name\").text()");
+        Assert.assertTrue(usersOfPriorToNegotiateCondition.contains("Internal user1 Internal user1 last name (arthur.khasanov+team1@parleypro.com)") &&
+                                   usersOfPriorToNegotiateCondition.contains("Autotest_TEAM_3 [EDITED] (3 members)") &&
+                                   usersOfPriorToNegotiateCondition.contains("Approval_User_1 (arthur.khasanov+approval1@parleypro.com)"));
+
+        approvalWorkflow.clickCancel();
     }
 }
