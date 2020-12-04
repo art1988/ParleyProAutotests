@@ -24,6 +24,15 @@ public class DocumentFormattingOption
         $(".modal-footer").waitUntil(Condition.visible, 7_000);
     }
 
+    public FormatDocumentInWord clickMsWord()
+    {
+        Selenide.executeJavaScript("$('.modal-footer button:contains(\"MS Word\")').click()");
+
+        logger.info("MS Word was clicked...");
+
+        return new FormatDocumentInWord(documentName);
+    }
+
     public EditDocumentPage clickOnline()
     {
         Selenide.executeJavaScript("$('.modal-footer button:contains(\"Online\")').click()");
