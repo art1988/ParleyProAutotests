@@ -271,6 +271,8 @@ public class StartPreSignApproval
         dashboardPage.getSideBar().clickAdministration().clickWorkflowsTab().clickActionMenu("Approval_WFL_AT").clickEdit();
         Thread.sleep(2_000);
 
+        Screenshoter.makeScreenshot();
+
         boolean priorToSignExists = Selenide.executeJavaScript("return $('.workflows-approval-events-event__title:contains(\"Prior to Sign\")').length === 1");
         Assert.assertFalse(priorToSignExists);
 

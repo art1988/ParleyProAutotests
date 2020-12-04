@@ -224,6 +224,9 @@ public class CreateContractPositiveForContractRoutingWorkflow
         logger.info("Edit workflow again and assert that changes were applied...");
         dashboardPage.getSideBar().clickAdministration().clickWorkflowsTab().clickActionMenu("Contract_routing_WFL_AT").clickEdit();
         Thread.sleep(2_000);
+
+        Screenshoter.makeScreenshot();
+
         boolean draftToReviewEventExist = Selenide.executeJavaScript("return $('.workflows-autoassignment-events-event__title:contains(\"Draft to review\")').length === 1");
         // TODO: uncomment after fixing of PAR-12894
         // Assert.assertFalse(draftToReviewEventExist); // it should not exist
