@@ -208,7 +208,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
     }
 
     @Test(priority = 7)
-    @Description("This test goes to workflow settings, removes 'Draft to review' event, change users in Text changed event, saves workflow and validate saving")
+    @Description("Check of PAR-12894: This test goes to workflow settings, removes 'Draft to review' event, change users in Text changed event, saves workflow and validate saving")
     public void checkEventRemovingInWorkflow() throws InterruptedException
     {
         DashboardPage dashboardPage = new DashboardPage();
