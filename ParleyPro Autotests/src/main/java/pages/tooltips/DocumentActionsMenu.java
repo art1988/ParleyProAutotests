@@ -2,14 +2,24 @@ package pages.tooltips;
 
 import com.codeborne.selenide.Selenide;
 import forms.DocumentFormattingOption;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import pages.DownloadForInternalOrCounterparty;
 import utils.Waiter;
 
+/**
+ * Represents context menu that appears after clicking by 3 dotted button for document.
+ * Menu Items may vary from stage of the document.
+ *
+ * So, for example DRAFT have: Format, Download, Cancel, Delete
+ * Classic contract in NEGOTIATE have: Upload new version, Format, Download, Cancel, Delete
+ */
 public class DocumentActionsMenu
 {
     private String documentName;
 
+
+    private static Logger logger = Logger.getLogger(DocumentActionsMenu.class);
 
     public DocumentActionsMenu(String documentName)
     {
@@ -25,7 +35,16 @@ public class DocumentActionsMenu
     {
         Selenide.executeJavaScript("$('.document__menu .dropdown-menu.dropdown-menu-right:visible li:contains(\"Format\")').find(\"a\")[0].click()");
 
+        logger.info("Format menu item was clicked");
+
         return new DocumentFormattingOption(documentName);
+    }
+
+    public void clickCancelFormatting()
+    {
+        Selenide.executeJavaScript("$('.document__menu .dropdown-menu.dropdown-menu-right:visible li:contains(\"Cancel formatting\")').find(\"a\")[0].click()");
+
+        logger.info("Cancel formatting menu item was clicked");
     }
 
     /**
@@ -34,6 +53,8 @@ public class DocumentActionsMenu
     public DownloadForInternalOrCounterparty clickDownload()
     {
         Selenide.executeJavaScript("$('.document__menu .dropdown-menu.dropdown-menu-right:visible li:contains(\"Download\")').find(\"a\")[0].click()");
+
+        logger.info("Download menu item was clicked");
 
         return new DownloadForInternalOrCounterparty();
     }
