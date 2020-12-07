@@ -228,8 +228,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
         Screenshoter.makeScreenshot();
 
         boolean draftToReviewEventExist = Selenide.executeJavaScript("return $('.workflows-autoassignment-events-event__title:contains(\"Draft to review\")').length === 1");
-        // TODO: uncomment after fixing of PAR-12894
-        // Assert.assertFalse(draftToReviewEventExist); // it should not exist
+        Assert.assertFalse(draftToReviewEventExist); // it should not exist
         String usersOfTextChangedEvent = Selenide.executeJavaScript("return $('.workflows-autoassignment-events-event__title:contains(\"Text changed\")').parent().parent().find(\".workflows-users-list .workflows-users-list__item-name\").text()");
         Assert.assertEquals(usersOfTextChangedEvent, "Internal user2 Internal user2 last nameInternal user1 Internal user1 last name");
 
