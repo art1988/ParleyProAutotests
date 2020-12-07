@@ -3,10 +3,13 @@
 
 <suite name = "Formatting suite" configfailurepolicy="continue">
     <test name="AT-20 Online formatting" preserve-order="true">
+        <parameter name="contractName" value="AT20 online formatting contract"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.formatting.CreateContractForOnlineFormattingAT20"/>
             <class name="tests.formatting.OnlineFormat"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
