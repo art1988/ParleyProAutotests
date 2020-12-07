@@ -78,6 +78,8 @@ public class DocumentActionsMenu
 
         if( isClassic )
         {
+            downloadMenuItem.click();
+
             return new DownloadForInternalOrCounterparty(); // if document is in negotiate status and contract is classic
         }
         else
