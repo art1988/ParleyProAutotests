@@ -18,6 +18,11 @@ public class DocumentComparePreview
 
     private static Logger logger = Logger.getLogger(DocumentComparePreview.class);
 
+    /**
+     * Use this constructor for classic contract
+     * @param documentName
+     * @param contractName
+     */
     public DocumentComparePreview(String documentName, String contractName)
     {
         $(".spinner").waitUntil(Condition.disappear, 15_000);
@@ -25,6 +30,17 @@ public class DocumentComparePreview
         title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("\"" + documentName + "\" document compare preview"));
 
         this.contractName = contractName;
+    }
+
+    /**
+     * Use this constructor for non-classic contract
+     * @param documentName
+     */
+    public DocumentComparePreview(String documentName)
+    {
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
+
+        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("\"" + documentName + "\" document compare preview"));
     }
 
     public String getCounterAdded()
@@ -42,12 +58,22 @@ public class DocumentComparePreview
         return $(".update-document__deleted").getText();
     }
 
-    public DiscussionsOfSingleContract clickUpload()
+    /**
+     * Click Upload button. If contract is in classic mode then it will show DISCUSSIONS tab, otherwise - opened contract
+     * @param isClassic
+     * @return DiscussionsOfSingleContract if contract is in classic mode, null otherwise
+     */
+    public DiscussionsOfSingleContract clickUpload(boolean isClassic)
     {
         uploadButton.click();
 
         logger.info("UPLOAD button was clicked");
 
-        return new DiscussionsOfSingleContract(contractName);
+        if( isClassic )
+        {
+            return new DiscussionsOfSingleContract(contractName);
+        }
+
+        return null;
     }
 }
