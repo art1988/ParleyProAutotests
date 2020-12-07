@@ -56,7 +56,7 @@ public class UploadNewVersionAndCheckChanges
         Assert.assertEquals(Selenide.executeJavaScript(jsCode.toString()), "deletedaddedaddededitededited");
 
         logger.info("Assert that there are only 4 opened discussions");
-        DiscussionsOfSingleContract discussionsInContract = comparePreview.clickUpload();
+        DiscussionsOfSingleContract discussionsInContract = comparePreview.clickUpload(true);
         Assert.assertEquals(discussionsInContract.getDiscussionCount(), "4");
         $$(".discussion-list .discussion2.discussion2_collapsed_yes").shouldHave(CollectionCondition.size(4));
 
@@ -99,7 +99,7 @@ public class UploadNewVersionAndCheckChanges
 
         try
         {
-            openedContract.clickDocumentActionsMenu(documentName).clickDownload().clickDownloadForMyTeam();
+            openedContract.clickDocumentActionsMenu(documentName).clickDownload(true).clickDownloadForMyTeam();
 
             logger.info("Assert that file was downloaded [ my team ]...");
             Thread.sleep(10_000);
@@ -119,7 +119,7 @@ public class UploadNewVersionAndCheckChanges
 
         try
         {
-            openedContract.clickDocumentActionsMenu(documentName).clickDownload().clickDownloadForCounterparty();
+            openedContract.clickDocumentActionsMenu(documentName).clickDownload(true).clickDownloadForCounterparty();
 
             logger.info("Assert that file was downloaded [ counterparty ]...");
 
