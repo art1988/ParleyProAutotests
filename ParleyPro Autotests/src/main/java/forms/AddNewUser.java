@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Represent form that appears after clicking on + NEW USER or Edit user
+ */
 public class AddNewUser
 {
     private SelenideElement title          = $(".modal-body-title");
@@ -80,6 +83,9 @@ public class AddNewUser
         return emailField.getValue();
     }
 
+    /**
+     * Click by + Add role blue link
+     */
     public void clickAddRole()
     {
         addRoleButton.click();
@@ -101,6 +107,17 @@ public class AddNewUser
         return Selenide.executeJavaScript(jsCode.toString());
     }
 
+    /**
+     * Delete role by role name
+     * @param roleName
+     */
+    public void deleteRole(String roleName)
+    {
+        Selenide.executeJavaScript("$('.ui-tr input[value=\"" + roleName + "\"]').parent().parent().parent().parent().parent().parent().find('.contract-execute-form__remove').click()");
+
+        logger.info("Role " + roleName + " was removed...");
+    }
+
     public void clickCancel()
     {
         cancelButton.click();
@@ -113,5 +130,14 @@ public class AddNewUser
         addUserButton.click();
 
         logger.info("ADD USER button was clicked");
+    }
+
+    public void clickUpdateUser()
+    {
+        addUserButton.click(); // button UPDATE USER has the same classname as ADD USER
+
+        logger.info("UPDATE USER button was clicked");
+
+        $(".modal-body").waitUntil(Condition.disappear, 7_000);
     }
 }
