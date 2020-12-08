@@ -6,15 +6,13 @@ import forms.DocumentFormattingOption;
 import forms.UploadDocument;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
 import pages.DownloadForInternalOrCounterparty;
 import utils.Waiter;
 
 import java.io.FileNotFoundException;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.$;
 
 /**
  * Represents context menu that appears after clicking by 3 dotted button for document.
@@ -71,8 +69,8 @@ public class DocumentActionsMenu
      */
     public DownloadForInternalOrCounterparty clickDownload(boolean isClassic) throws FileNotFoundException
     {
-        // Find only one menu item with 'Download' text
-        SelenideElement downloadMenuItem = $$("li[role='presentation']").filterBy(text("Download")).first();
+        WebElement downloadMenuItem_webElem = Selenide.executeJavaScript("return $('.document__menu .dropdown-menu.dropdown-menu-right:visible li:contains(\"Download\")').find(\"a\")[0]");
+        SelenideElement downloadMenuItem = $(downloadMenuItem_webElem);
 
         logger.info("Download menu item was clicked");
 
