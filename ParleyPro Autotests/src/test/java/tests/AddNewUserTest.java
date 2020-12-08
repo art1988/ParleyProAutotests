@@ -22,6 +22,10 @@ import java.util.Properties;
 @Listeners({ ScreenShotOnFailListener.class})
 public class AddNewUserTest
 {
+    private String host = "imap.gmail.com";
+    private String username = "arthur.khasanov@parleypro.com";
+    private String password = "ParGd881";
+
     // User that will be added
     private User newUser = new User("AT User first_name", "last_name AT", "arthur.khasanov+at_user@parleypro.com", "");
 
@@ -78,15 +82,70 @@ public class AddNewUserTest
             logger.error("InterruptedException", e);
         }
 
-        String host = "imap.gmail.com";
-        String mailStoreType = "imap";
-        String username = "arthur.khasanov@parleypro.com";
-        String password = "ParGd881";
-
-        check(host, mailStoreType, username, password);
+        check(host, username, password, "Role assignment: Requester");
     }
 
-    private static void check(String host, String storeType, String user, String password)
+    @Test(priority = 3)
+    @Description("This test adds CN role to existing user")
+    public void addNewRole()
+    {
+        ManageUsers manageUsersTab = new DashboardPage().getSideBar().clickAdministration().clickManageUsersTab();
+
+        AddNewUser editUser = manageUsersTab.clickActionMenu(newUser.getFirstName()).clickEdit();
+
+        editUser.clickAddRole();
+        editUser.setRole("Chief Negotiator");
+        editUser.clickUpdateUser();
+
+        logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
+        try
+        {
+            Thread.sleep(15_000);
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
+
+        check(host, username, password, "Role assignment: Chief Negotiator");
+    }
+
+    @Test(priority = 4)
+    @Description("This test delete all previous roles, add new role Contract Manager and checks that email was delivered")
+    public void deleteAllRolesAndAddContractManagerRole()
+    {
+        ManageUsers manageUsersTab = new DashboardPage().getSideBar().clickAdministration().clickManageUsersTab();
+
+        AddNewUser editUser = manageUsersTab.clickActionMenu(newUser.getFirstName()).clickEdit();
+
+        editUser.deleteRole("Requester");
+        editUser.deleteRole("Chief Negotiator");
+
+        editUser.clickAddRole();
+        editUser.setRole("Contract Manager");
+        editUser.clickUpdateUser();
+
+        logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
+        try
+        {
+            Thread.sleep(15_000);
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
+
+        check(host, username, password, "Role assignment: Contract Manager");
+    }
+
+    /**
+     * Helper method that allows to get emails from Gmail
+     * @param host
+     * @param user
+     * @param password
+     * @param emailSubject subject of email to verify
+     */
+    private static void check(String host, String user, String password, String emailSubject)
     {
         try
         {
@@ -121,7 +180,7 @@ public class AddNewUserTest
             boolean found = false;
             for ( Message message : messages )
             {
-                if( message.getSubject().equals("Role assignment: Requester") )
+                if( message.getSubject().equals(emailSubject) )
                 {
                     found = true;
                     logger.info("Email was found: " + message.getSubject() + " , " + message.getReceivedDate());
@@ -151,7 +210,7 @@ public class AddNewUserTest
         }
     }
 
-    @Test(priority = 3)
+    @Test(priority = 5)
     @Description("This test delete user")
     public void cleanUp()
     {
