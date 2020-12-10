@@ -5,10 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import pages.AdministrationPage;
-import pages.ExecutedContractsPage;
-import pages.InProgressContractsPage;
-import pages.LoginPage;
+import pages.*;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -63,6 +60,15 @@ public class SideBar
         logger.info("Executed contracts button was clicked");
 
         return new ExecutedContractsPage();
+    }
+
+    public TemplatesPage clickTemplates(boolean isBlank)
+    {
+        templates.click();
+
+        logger.info("Templates button was clicked");
+
+        return new TemplatesPage(isBlank);
     }
 
     public AdministrationPage clickAdministration()
