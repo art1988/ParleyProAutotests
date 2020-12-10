@@ -23,6 +23,8 @@ public class Const
     public static final File   CONTRACT_CLASSIC_AT40         = new File(System.getProperty("user.dir") + "/Contracts/AT-40.docx");
     public static final File   CONTRACT_CLASSIC_AT40_2       = new File(System.getProperty("user.dir") + "/Contracts/AT-40_2.docx");
 
+    public static final File   TEMPLATE_AT48                 = new File(System.getProperty("user.dir") + "/Contracts/Template_AT48.docx");
+
     public static final File   DOWNLOAD_DIR                  = new File(System.getProperty("user.dir") + "/Downloads");
 
     // Dir for screenshots of failed tests
