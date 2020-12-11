@@ -3,6 +3,8 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.apache.log4j.Logger;
+import pages.tooltips.TemplatesActionMenu;
 
 import java.io.File;
 
@@ -10,6 +12,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class TemplatesPage
 {
+
+    private static Logger logger = Logger.getLogger(TemplatesPage.class);
 
     /**
      * @param isBlank if true then no any template records were added.
@@ -57,6 +61,8 @@ public class TemplatesPage
     {
         Selenide.executeJavaScript("$('.templates-board tbody .template__title:contains(\"" + templateName + "\")').click()");
 
+        logger.info(templateName + " was selected");
+
         return new EditTemplatePage();
     }
 
@@ -64,8 +70,17 @@ public class TemplatesPage
      * Invoke action menu by clicking of 3 dotted button for given template name
      * @param templateName
      */
-    public void clickActionMenu(String templateName)
+    public TemplatesActionMenu clickActionMenu(String templateName)
     {
+        // First of all - make button visible
+        Selenide.executeJavaScript("$('.template__title:contains(\"" + templateName + "\")').next().next().next().find(\"button\").css('visibility', 'visible');");
 
+        // Second, click that button
+        Selenide.executeJavaScript("$('.template__title:contains(\"" + templateName + "\")').next().next().next().find(\"button\").click()");
+
+        // Third, make context menu visible
+        Selenide.executeJavaScript("$('.template__title:contains(\"" + templateName + "\")').next().next().next().find(\"button\").next().css('visibility', 'visible')");
+
+        return new TemplatesActionMenu();
     }
 }
