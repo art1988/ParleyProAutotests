@@ -11,11 +11,12 @@ import static com.codeborne.selenide.Selenide.$;
 public class TemplateInformation
 {
     private SelenideElement templateNameField     = $("input[label='Template name']");
-    private SelenideElement regionField           = $("#react-select-2--value input");
-    private SelenideElement categoryField         = $("#react-select-4--value input");
+    private SelenideElement regionField           = $("#template_region input");
+    private SelenideElement categoryField         = $("#template_category input");
     private SelenideElement descriptionTextArea   = $(".modal-content textarea");
 
-    private SelenideElement saveButton = $(".button.btn-common.btn.btn-primary");
+    private SelenideElement cancelButton = $(".button.btn-common.btn-link-pseudo.btn.btn-link");
+    private SelenideElement saveButton   = $(".button.btn-common.btn.btn-primary");
 
 
     private static Logger logger = Logger.getLogger(TemplateInformation.class);
@@ -53,7 +54,7 @@ public class TemplateInformation
 
     public String getRegion()
     {
-        return Selenide.executeJavaScript("return $('#react-select-2--value-item').text()");
+        return Selenide.executeJavaScript("return $('#template_region .Select-value').text()");
     }
 
     public void setCategory(String categoryName) throws InterruptedException
@@ -67,7 +68,7 @@ public class TemplateInformation
 
     public String getCategory()
     {
-        return Selenide.executeJavaScript("return $('#react-select-4--value .Select-value').text()");
+        return Selenide.executeJavaScript("return $('#template_category .Select-value').text()");
     }
 
     public void setType(String type) throws InterruptedException
@@ -100,6 +101,13 @@ public class TemplateInformation
     public String getDescription()
     {
         return descriptionTextArea.getText();
+    }
+
+    public void clickCancel()
+    {
+        cancelButton.click();
+
+        logger.info("CANCEL button was clicked...");
     }
 
     public void clickSave()
