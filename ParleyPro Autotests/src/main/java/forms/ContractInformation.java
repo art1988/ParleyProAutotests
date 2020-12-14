@@ -4,10 +4,15 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Represents form that appears after clicking on + NEW CONTRACT button
+ * or by clicking on Contract info icon
+ */
 public class ContractInformation
 {
     private SelenideElement contractTitleField         = $("input[inputid='contractTitle']");
@@ -24,6 +29,17 @@ public class ContractInformation
     public ContractInformation()
     {
         Assert.assertTrue(isInit());
+    }
+
+    /**
+     * Use this constructor if ContractInformation was opened via Contract Info button
+     * @param openedViaContractInfo just marker to indicate that it was opened via Contract Info button
+     */
+    public ContractInformation(boolean openedViaContractInfo)
+    {
+        $(".spinner").waitUntil(Condition.disappear, 10_000);
+
+        $(".contract-edit__title").shouldHave(Condition.exactText("Contract Info"));
     }
 
     private boolean isInit()
@@ -60,6 +76,7 @@ public class ContractInformation
 
     public void setContractingRegion(String region)
     {
+        contractingRegionField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
         contractingRegionField.setValue(region);
     }
 
@@ -80,12 +97,18 @@ public class ContractInformation
 
     public void setContractCategory(String category)
     {
+        contractCategoryField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
         contractCategoryField.setValue(category);
     }
 
     public void setContractType(String type)
     {
         Selenide.executeJavaScript("$('input[inputid=\"contractType\"]').click()");
+
+        // Select All Types twice to reset all previous selections
+        Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
+        Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
+
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('" + type + "')\").click()");
     }
 
