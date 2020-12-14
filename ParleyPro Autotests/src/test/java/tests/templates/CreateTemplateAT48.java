@@ -14,6 +14,7 @@ import pages.DashboardPage;
 import pages.EditTemplatePage;
 import pages.TemplatesPage;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -62,15 +63,16 @@ public class CreateTemplateAT48
         logger.info("Assert that template name was changes and description was added in table view...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.template__title:contains(\"AT48\")').text()"), templateName + description);
 
+        Screenshoter.makeScreenshot();
+
         logger.info("Edit just added template and check that all fields are saved...");
         templateInformation = templatesPage.clickActionMenu(templateName).clickTemplateInfo();
 
         Assert.assertEquals(templateInformation.getTemplateName(), templateName);
-        String reg = templateInformation.getRegion();
-        System.out.println(reg);
-        Thread.sleep(60_000 * 2);
-        //Assert.assertEquals(templateInformation.getRegion(), "region1");
-        //Assert.assertEquals(templateInformation.getCategory(), "category1");
+        Assert.assertEquals(templateInformation.getRegion(), "region1");
+        Assert.assertEquals(templateInformation.getCategory(), "category1");
         Assert.assertEquals(templateInformation.getType(), "type1");
+
+        templateInformation.clickCancel();
     }
 }
