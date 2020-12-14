@@ -17,6 +17,7 @@ public class OpenedContract
 {
     private SelenideElement contractName          = $(".contract-header__name");
     private SelenideElement auditTrailButton      = $("#contract-audit-trail-action");
+    private SelenideElement contractInfoButton    = $("#contract-info-action");
     private SelenideElement actionsMenu           = $(".contract-header__menu .actions-menu button");
 
     private SelenideElement approveDocumentButton  = $("#APPROVE_DOCUMENT");
@@ -234,6 +235,15 @@ public class OpenedContract
         logger.info("Audit trail button was clicked");
 
         return new AuditTrail();
+    }
+
+    public ContractInformation clickContractInfo()
+    {
+        contractInfoButton.click();
+
+        logger.info("Contract info button was clicked");
+
+        return new ContractInformation(true);
     }
 
     /**
