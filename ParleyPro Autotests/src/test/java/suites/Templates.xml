@@ -6,6 +6,8 @@
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.templates.CreateTemplateAT48"/>
+            <class name="tests.templates.CreateContract"/>
+            <class name="tests.templates.AddDocumentFromTemplate"/>
         </classes>
     </test>
 </suite>
