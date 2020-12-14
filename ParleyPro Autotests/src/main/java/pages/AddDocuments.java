@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 
@@ -18,6 +19,9 @@ import static com.codeborne.selenide.Selenide.$$;
  */
 public class AddDocuments
 {
+
+    private static Logger logger = Logger.getLogger(AddDocuments.class);
+
 
     public AddDocuments()
     {
@@ -37,6 +41,21 @@ public class AddDocuments
 
         // Check upload buttons
         $$(".upload__button").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.texts("Upload my team documents", "Upload Counterparty documents"));
+    }
+
+    public void clickUploadDocumentTab()
+    {
+        $(".js-upload-document-tab").waitUntil(Condition.visible, 7_000).click();
+
+        logger.info("'Upload document' tab was selected");
+    }
+
+    public void clickSelectTemplateTab()
+    {
+        $(".js-select-template-tab").waitUntil(Condition.visible, 7_000).click();
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
+
+        logger.info("'Select template' tab was selected");
     }
 
     /**
@@ -71,5 +90,16 @@ public class AddDocuments
         SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
         uploadCounterpartyDocumentsButton.uploadFile(fileToUpload);
+    }
+
+    /**
+     * Select template from list in active Select template tab. Select template tab should be active.
+     * @param templateName name of template
+     */
+    public void selectTemplate(String templateName)
+    {
+        Selenide.executeJavaScript("$('.documents-add-templates__list .documents-add-templates-item__title:contains(\"" + templateName + "\")').click()");
+
+        logger.info(templateName + " was selected...");
     }
 }
