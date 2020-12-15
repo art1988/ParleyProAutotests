@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import forms.*;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import pages.subelements.FieldsPanel;
 import pages.tooltips.ContractActionsMenu;
 import pages.tooltips.DocumentActionsMenu;
 import pages.tooltips.ParagraphActionsPopup;
@@ -24,6 +25,9 @@ public class OpenedContract
     private SelenideElement uploadNewVersionButton = $("#UPLOAD_VERSION_DOCUMENT");
 
     private SelenideElement newDocumentButton     = $("button[tooltip='Add new document']");
+
+    // In case if document was created from template
+    private FieldsPanel fieldsPanel;
 
 
     private static Logger logger = Logger.getLogger(OpenedContract.class);
@@ -280,5 +284,19 @@ public class OpenedContract
         logger.info("+ NEW DOCUMENT button was clicked");
 
         return new AddDocuments();
+    }
+
+    /**
+     * Get Fields panel. Invoke only if you are sure that panel is active.
+     * @return
+     */
+    public FieldsPanel getFieldsPanel()
+    {
+        if( fieldsPanel == null )
+        {
+            fieldsPanel = new FieldsPanel();
+        }
+
+        return fieldsPanel;
     }
 }
