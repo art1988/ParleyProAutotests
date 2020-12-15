@@ -34,6 +34,7 @@ public class CreateContract
         contractInformation.setContractCategory("category2");
         contractInformation.setContractType("type2");
 
+        contractInformation.setDueDate();
         contractInformation.setContractingCountry("country1");
         contractInformation.setContractEntity("entity1");
         contractInformation.setContractingDepartment("department1");
