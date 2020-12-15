@@ -58,6 +58,15 @@ public class ContractInformation
     }
 
     /**
+     * Always sets current date. TODO: re-implement later for any value
+     */
+    public void setDueDate()
+    {
+        Selenide.executeJavaScript("$('#dueDate').click()");
+        Selenide.executeJavaScript("$('.react-datepicker__day--today').click()");
+    }
+
+    /**
      * Set contract currency
      * @param currency may be USD, EUR, GBP, etc.
      */
