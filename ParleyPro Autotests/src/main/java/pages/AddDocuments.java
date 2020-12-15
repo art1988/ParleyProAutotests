@@ -96,10 +96,12 @@ public class AddDocuments
      * Select template from list in active Select template tab. Select template tab should be active.
      * @param templateName name of template
      */
-    public void selectTemplate(String templateName)
+    public OpenedContract selectTemplate(String templateName)
     {
         Selenide.executeJavaScript("$('.documents-add-templates__list .documents-add-templates-item__title:contains(\"" + templateName + "\")').click()");
 
         logger.info(templateName + " was selected...");
+
+        return new OpenedContract();
     }
 }
