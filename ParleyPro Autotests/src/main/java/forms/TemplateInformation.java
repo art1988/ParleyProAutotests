@@ -30,10 +30,12 @@ public class TemplateInformation
 
     public void setTemplateName(String name) throws InterruptedException
     {
+        Thread.sleep(1000);
+
         // Clear field first
         Selenide.executeJavaScript("$('input[label=\"Template name\"]').val('')");
 
-        Thread.sleep(1000);
+        Thread.sleep(1500);
 
         templateNameField.setValue(name);
     }
