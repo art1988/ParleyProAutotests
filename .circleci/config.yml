@@ -45,6 +45,13 @@ jobs:
       - run: sleep 10
       
       - run:
+          name: Run Templates suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Templates.xml
+      
+      - run: sleep 10
+      
+      - run:
           name: Run Regression suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
