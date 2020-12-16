@@ -36,7 +36,7 @@ public class TemplatesPage
             $(".spinner").waitUntil(Condition.disappear, 10_000);
 
             // Assert that heading of table is visible
-            $(".templates-board__list thead").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Template nameStatusLast activity"));
+            $(".templates-board__list thead").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Template name Status Last activity"));
         }
     }
 
@@ -81,6 +81,6 @@ public class TemplatesPage
         // Third, make context menu visible
         Selenide.executeJavaScript("$('.template__title:contains(\"" + templateName + "\")').next().next().next().find(\"button\").next().css('visibility', 'visible')");
 
-        return new TemplatesActionMenu();
+        return new TemplatesActionMenu(templateName);
     }
 }
