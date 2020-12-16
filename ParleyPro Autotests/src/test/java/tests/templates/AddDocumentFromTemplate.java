@@ -24,6 +24,7 @@ import static com.codeborne.selenide.Selenide.$$;
 @Listeners({ScreenShotOnFailListener.class})
 public class AddDocumentFromTemplate
 {
+    private String yesterdayDate;
     private static Logger logger = Logger.getLogger(AddDocumentFromTemplate.class);
 
     @Test(priority = 1)
@@ -45,11 +46,11 @@ public class AddDocumentFromTemplate
 
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/YY");
-        String yesterdayDate = LocalDate.now().minusDays(1).format(formatter);
+        yesterdayDate = LocalDate.now().minusDays(1).format(formatter);
 
         logger.info("Making sure that fields are match contact info...");
         Assert.assertEquals(fieldsPanel.getContractName(), "ContractThatDoesNotMatchTemplate_AT48");
-        Assert.assertEquals(fieldsPanel.getContractDueDate(), yesterdayDate); // because of Time Zone it will be (current day - 1)
+        Assert.assertEquals(fieldsPanel.getContractDueDate(), yesterdayDate); // because of Time Zone it will be (current day - 1) TODO: change after fixing of PAR-12765
         Assert.assertEquals(fieldsPanel.getContractCategory(), "category1");
         Assert.assertEquals(fieldsPanel.getContractRegion(), "region1");
 
@@ -70,7 +71,7 @@ public class AddDocumentFromTemplate
         logger.info("Assert that changes were affected document view...");
         $$("span[data-placeholder-id]")
                 .shouldHave(CollectionCondition.size(5))
-                .shouldHave(CollectionCondition.exactTexts("ContractThatDoesNotMatchTemplate_AT48", "12/14/20", "category1", "region1", "Some value for custom field"));
+                .shouldHave(CollectionCondition.exactTexts("ContractThatDoesNotMatchTemplate_AT48", yesterdayDate, "category1", "region1", "Some value for custom field"));
 
         Screenshoter.makeScreenshot();
     }
@@ -100,6 +101,6 @@ public class AddDocumentFromTemplate
 
         logger.info("Assert that green placeholders disappeared...");
         $$("span[data-placeholder-id]").shouldHave(CollectionCondition.size(0)); // no green placeholders
-        $$("span[style*='text-decoration:underline']").first().shouldHave(Condition.exactText("ContractThatDoesNotMatchTemplate_AT4812/14/20category1region1Some value for custom fieldProduction of Products"));
+        $$("span[style*='text-decoration:underline']").first().shouldHave(Condition.exactText("ContractThatDoesNotMatchTemplate_AT48" + yesterdayDate + "category1region1Some value for custom fieldProduction of Products"));
     }
 }
