@@ -2,9 +2,13 @@ package tests.templates;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.WebDriverRunner;
+import constants.Const;
 import forms.StartReview;
 import io.qameta.allure.Description;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -15,6 +19,8 @@ import pages.subelements.FieldsPanel;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -102,5 +108,34 @@ public class AddDocumentFromTemplate
         logger.info("Assert that green placeholders disappeared...");
         $$("span[data-placeholder-id]").shouldHave(CollectionCondition.size(0)); // no green placeholders
         $$("span[style*='text-decoration:underline']").first().shouldHave(Condition.exactText("ContractThatDoesNotMatchTemplate_AT48" + yesterdayDate + "category1region1Some value for custom fieldProduction of Products"));
+    }
+
+    @Test(priority = 3)
+    public void downloadTemplate() throws IOException
+    {
+        new DashboardPage().getSideBar().clickTemplates(false).clickActionMenu("Template_AT48[ EDITED ]").clickDownload();
+
+        logger.info("Assert that template was downloaded...");
+
+        new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
+                until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "Template_AT48[ EDITED ].docx").toFile().exists());
+
+        Assert.assertTrue(Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "Template_AT48[ EDITED ].docx").toFile().exists());
+    }
+
+    @Test(priority = 4)
+    public void deleteTemplate()
+    {
+        new DashboardPage().getSideBar().clickTemplates(false).clickActionMenu("Template_AT48[ EDITED ]").clickDelete().clickDelete();
+
+        logger.info("Assert that delete template notification was shown...");
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Template Template_AT48[ EDITED ] has been deleted."));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+    }
+
+    @Test(priority = 5)
+    public void clearDownloadsFolder() throws IOException
+    {
+        FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
     }
 }
