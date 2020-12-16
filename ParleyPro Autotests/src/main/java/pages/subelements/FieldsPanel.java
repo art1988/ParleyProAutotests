@@ -31,22 +31,22 @@ public class FieldsPanel
 
     public String getContractName()
     {
-        return Selenide.executeJavaScript("return $('.input__label:contains(\"Contract name\")').next().next().text()");
+        return Selenide.executeJavaScript("return $('.input__label:contains(\"Contract name\")').parent().find(\"textarea\").text()");
     }
 
     public String getContractDueDate()
     {
-        return Selenide.executeJavaScript("return $('.input__label:contains(\"Contract due date\")').next().next().text()");
+        return Selenide.executeJavaScript("return $('.input__label:contains(\"Contract due date\")').parent().find(\"textarea\").text()");
     }
 
     public String getContractCategory()
     {
-        return Selenide.executeJavaScript("return $('.input__label:contains(\"Contract category\")').next().next().text()");
+        return Selenide.executeJavaScript("return $('.input__label:contains(\"Contract category\")').parent().find(\"textarea\").text()");
     }
 
     public String getContractRegion()
     {
-        return Selenide.executeJavaScript("return $('.input__label:contains(\"Contract region\")').next().next().text()");
+        return Selenide.executeJavaScript("return $('.input__label:contains(\"Contract region\")').parent().find(\"textarea\").text()");
     }
 
     /**
