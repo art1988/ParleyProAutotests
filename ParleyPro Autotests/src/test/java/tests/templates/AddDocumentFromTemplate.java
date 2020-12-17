@@ -113,7 +113,7 @@ public class AddDocumentFromTemplate
         Assert.assertTrue(firstParagraph.contains("ContractThatDoesNotMatchTemplate_AT48") &&
                                    firstParagraph.contains("category1") &&
                                    firstParagraph.contains("region1") &&
-                firstParagraph.contains("Some value for custom fieldProduction of Products"));
+                                   firstParagraph.contains("Some value for custom fieldProduction of Products"));
     }
 
     @Test(priority = 3)
