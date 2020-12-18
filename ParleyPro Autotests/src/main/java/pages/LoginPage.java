@@ -40,6 +40,10 @@ public class LoginPage
         passwordField.setValue(password);
     }
 
+    /**
+     * Use this method if you are sure that no Select tenant will appear afterwards
+     * @return
+     */
     public DashboardPage clickSignIn()
     {
         logger.info("Trying to login as: " + emailField.getValue());
@@ -49,5 +53,21 @@ public class LoginPage
         logger.info("Sign In button was clicked");
 
         return new DashboardPage();
+    }
+
+    /**
+     * Use this method if you are sure that Select tenant will appear on the next page
+     * @param withSelectTenant just marker. Has no meaning
+     * @return
+     */
+    public SelectTenantPage clickSignIn(boolean withSelectTenant)
+    {
+        logger.info("Trying to login as: " + emailField.getValue());
+
+        signInButton.click();
+
+        logger.info("Sign In button was clicked");
+
+        return new SelectTenantPage();
     }
 }
