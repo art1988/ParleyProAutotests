@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -11,6 +12,8 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class SelectTenantPage
 {
+    private static Logger logger = Logger.getLogger(SelectTenantPage.class);
+
     public SelectTenantPage()
     {
         boolean hasLogo = $(".auth__head").getCssValue("background").contains("images/cc8124f8be69a02e7221cfaabe5a0ef1.svg");
@@ -26,6 +29,8 @@ public class SelectTenantPage
     {
         // Exact match by tenantName
         Selenide.executeJavaScript("$('.auth-sign-in-tenants__table .auth-sign-in-tenants__cell').filter(function() { return $(this).text() === '" + tenantName + "'; }).click()");
+
+        logger.info(tenantName + " was selected");
 
         return new DashboardPage();
     }
