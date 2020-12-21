@@ -17,6 +17,7 @@ public class ExecutedContractsPage
 
     public ExecutedContractsPage()
     {
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
         title.waitUntil(Condition.visible, 6_000).shouldHave(Condition.text("Executed contracts"));
     }
 
