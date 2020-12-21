@@ -1,0 +1,172 @@
+package tests.migration;
+
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Description;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+import pages.DashboardPage;
+import pages.ExecutedContractsPage;
+import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
+@Listeners({ScreenShotOnFailListener.class})
+public class CheckContracts
+{
+    private static Logger logger = Logger.getLogger(CheckContracts.class);
+
+    @Test(priority = 1)
+    @Description("This test checks that both contracts are in the list, and all icons are in place and linked contracts are present")
+    public void checkContractsThatAreInProgress()
+    {
+        logger.info("Assert the first row of table...");
+        $$(".contracts-list__table a").get(0).shouldHave(Condition.exactText("Classic\nEugene's Counterparty Organization Parley Pro\nnegotiate\nchat_bubble_outline2 Today at 4:04 PM USD 12,345.00"));
+
+        logger.info("Assert the second row of table...");
+        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Normal contract\nEugene's Counterparty Organization Parley Pro\ndraft\nNov 30, 2022"));
+
+        logger.info("Assert the third row of table...");
+        $$(".contracts-list__table a").get(2).shouldHave(Condition.exactText("Online Contract One With a Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Title\n" +
+                "Eugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc. Parley Pro\nnegotiate\nToday at 3:56 PM USD 100,000,000.00 Jan 1, 2031"));
+
+
+        logger.info("Assert that link icons are visible for two contracts...");
+        $$(".glyphicon-link").shouldHave(CollectionCondition.size(2));
+        // get first icon
+        Assert.assertEquals(Selenide.executeJavaScript("return window.getComputedStyle( document.querySelectorAll('.glyphicon-link')[0], ':before').getPropertyValue('content')"), "\"\ue144\"");
+        // get second icon
+        Assert.assertEquals(Selenide.executeJavaScript("return window.getComputedStyle( document.querySelectorAll('.glyphicon-link')[1], ':before').getPropertyValue('content')"), "\"\ue144\"");
+
+
+        // Check svg icons of Stage columns for all contracts
+        logger.info("Assert that first contract has word icon for Stage...");
+        WebElement we = Selenide.executeJavaScript("return $('.contract-status').eq(0).find(\"path[fill-rule='evenodd']\")[0]");
+        Assert.assertEquals($(we).getAttribute("d"), "M11 3v14.64l-9-1.901V4.702L11 3zm-1 4.83l-1.363.058-.724 3.574-.902-3.505-1.27.053-.855 3.367-.724-3.3L3 8.127l1.14 4.537 1.229.047.92-3.379.898 3.448 1.319.05 1.494-5zm2 0h3v1h-3v-1zm3 2h-3v1h3v-1zm-3 2h3v1h-3v-1zm0-6h3.5a.5.5 0 01.5.5v8a.5.5 0 01-.5.5H12v1h3.5a1.5 1.5 0 001.5-1.5v-8a1.5 1.5 0 00-1.5-1.5H12v1z");
+
+        logger.info("Assert that second contract has pencil icon for Stage...");
+        we = Selenide.executeJavaScript("return $('.contract-status').eq(1).find(\"path[fill-rule='evenodd']\")[0]");
+        Assert.assertEquals($(we).getAttribute("d"), "M13.566 7.598l-1.414-1.414-.707.707 1.414 1.414.707-.707zm-1.06 1.061L11.09 7.245 6.995 11.34l-.354 1.768 1.768-.354 4.096-4.096z");
+
+        logger.info("Assert that third contract has people icon for Stage...");
+        we = Selenide.executeJavaScript("return $('.contract-status').eq(2).find(\"path[fill='#fff']\")[0]");
+        Assert.assertEquals($(we).getAttribute("d"), "M11.628 10.223c.357 0 .746.053 1.168.16.421.108.81.283 1.168.524.357.242.536.517.536.826V12.8h-2.451v-1.067c0-.59-.268-1.088-.804-1.49.089-.014.217-.02.383-.02zm-4.424.16c.422-.107.81-.16 1.168-.16.358 0 .747.053 1.168.16.422.108.805.283 1.15.524.357.242.536.517.536.826V12.8H5.5v-1.067c0-.309.179-.584.536-.826a3.704 3.704 0 011.168-.523zm2.01-1.389c-.229.255-.51.383-.842.383a1.15 1.15 0 01-.861-.383 1.27 1.27 0 01-.364-.906c0-.349.121-.65.364-.906a1.15 1.15 0 01.861-.382c.332 0 .613.127.843.382.242.255.364.557.364.906 0 .35-.122.651-.364.906zm3.275 0a1.15 1.15 0 01-.861.383 1.15 1.15 0 01-.862-.383 1.27 1.27 0 01-.364-.906c0-.349.121-.65.364-.906a1.15 1.15 0 01.862-.382c.332 0 .619.127.861.382.243.255.364.557.364.906 0 .35-.121.651-.364.906z");
+
+        Screenshoter.makeScreenshot();
+
+        // 1
+        logger.info("Hover over _first_ link icon and check data...");
+        StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
+        jsCode.append("$('.glyphicon-link')[0].dispatchEvent(event);");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".rc-tooltip-content").waitUntil(Condition.visible, 7_000).shouldBe(Condition.visible);
+        $(".js-linked-contracts-title").shouldHave(Condition.exactText("Linked contracts: 1"));
+        $(".js-linked-contracts-head").shouldHave(Condition.exactText("Child to:\nOnline Contract One With a Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Title"));
+        $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Negotiate"));
+
+        Screenshoter.makeScreenshot();
+
+        Selenide.refresh(); // Reload page to reset hover popup
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
+
+        // 2
+        logger.info("Hover over _second_ link icon and check data...");
+        jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
+        jsCode.append("$('.glyphicon-link')[1].dispatchEvent(event);");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".rc-tooltip-content").waitUntil(Condition.visible, 7_000).shouldBe(Condition.visible);
+
+        $(".js-linked-contracts-title").shouldHave(Condition.exactText("Linked contracts: 2"));
+
+        $$(".js-linked-contracts-head").shouldHave(CollectionCondition.size(2));
+        $$(".js-linked-contracts-head").first().shouldHave(Condition.exactText("Supplemented by:\nShort"));
+        $$(".js-linked-contracts-head").last().shouldHave(Condition.exactText("Parent to:\nClassic"));
+
+        $$(".js-linked-contracts-stage").shouldHave(CollectionCondition.size(2));
+        $$(".js-linked-contracts-stage").first().shouldHave(Condition.exactText("Managed"));
+        $$(".js-linked-contracts-stage").last().shouldHave(Condition.exactText("Negotiate"));
+
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nSupplemented by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nJan 18, 2021\nExpiration date:\nFeb 17, 2021\nParent to:\nClassic\nStage:\nNegotiate"));
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 2)
+    public void checkExecutedContracts()
+    {
+        ExecutedContractsPage executedContractsPage = new DashboardPage().getSideBar().clickExecutedContracts();
+
+        logger.info("Assert _first_ row in a table...");
+        $$(".contracts-list__table a").get(0).shouldHave(Condition.exactText("Long values and that is a long long " +
+                "long long long long long long long long long long long long long long long long long long long long long long " +
+                "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nFeb 17, 2021"));
+
+        logger.info("Assert _second_ row in a table...");
+        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 18, 2020 Dec 18, 2020 Jan 18, 2021 Feb 17, 2021"));
+
+        logger.info("Assert _third_ row in a table...");
+        $$(".contracts-list__table a").get(2).shouldHave(Condition.exactText("Normal values in contract\nEugene's Counterparty Organization\nmanaged\nUSD 10,000.00 Dec 17, 2020 Jan 1, 2021"));
+
+        logger.info("Assert that link icons are visible for two contracts...");
+        $$(".glyphicon-link").shouldHave(CollectionCondition.size(2));
+
+        // Check svg icons of Stage columns for all contracts
+        // 1st row
+        WebElement we = Selenide.executeJavaScript("return $('.contract-status').eq(0).find(\"path[fill-rule='evenodd']\")[0]");
+        Assert.assertEquals($(we).getAttribute("d"), "M14.008 7.981l-4.729 5-3.25-2.964.942-1.034 2.235 2.037 3.785-4.001 1.017.962z");
+
+        // 2nd row
+        we = Selenide.executeJavaScript("return $('.contract-status').eq(1).find(\"path[fill-rule='evenodd']\")[0]");
+        Assert.assertEquals($(we).getAttribute("d"), "M6 6.8l4-1.6 4 1.6v3.333c0 3.2-2.667 4.445-4 4.667-1.333-.222-4-1.467-4-4.667V6.8z");
+        we = Selenide.executeJavaScript("return $('.contract-status').eq(1).find(\"path[fill-rule='evenodd']\")[1]");
+        Assert.assertEquals($(we).getAttribute("d"), "M13.158 8.681l-3.665 3.874-2.565-2.338.943-1.034 1.55 1.412 2.72-2.876 1.017.962z");
+
+        //3rd row
+        we = Selenide.executeJavaScript("return $('.contract-status').eq(2).find(\"path[fill-rule='evenodd']\")[0]");
+        Assert.assertEquals($(we).getAttribute("d"), "M6 6.8l4-1.6 4 1.6v3.333c0 3.2-2.667 4.445-4 4.667-1.333-.222-4-1.467-4-4.667V6.8z");
+        we = Selenide.executeJavaScript("return $('.contract-status').eq(2).find(\"path[fill-rule='evenodd']\")[1]");
+        Assert.assertEquals($(we).getAttribute("d"), "M13.158 8.681l-3.665 3.874-2.565-2.338.943-1.034 1.55 1.412 2.72-2.876 1.017.962z");
+
+        logger.info("Hover over question mark and check data...");
+        StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
+        jsCode.append("$('.contracts-list__new-expiration-date svg')[0].dispatchEvent(event);");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".rc-tooltip-content").waitUntil(Condition.visible, 7_000).shouldBe(Condition.visible);
+        $(".js-linked-contracts-title").shouldHave(Condition.exactText("Contract was amended: 1"));
+        $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
+        $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nJan 18, 2021\nExpiration date:\nFeb 17, 2021"));
+
+        Selenide.refresh(); // Reload page to reset hover popup
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
+
+        // 1
+        logger.info("Hover over _first_ link icon and check data...");
+        jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
+        jsCode.append("$('.glyphicon-link')[0].dispatchEvent(event);");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".rc-tooltip-content").waitUntil(Condition.visible, 7_000).shouldBe(Condition.visible);
+        $(".js-linked-contracts-title").shouldHave(Condition.exactText("Linked contracts: 1"));
+        $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
+        $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 1\nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nJan 18, 2021\nExpiration date:\nFeb 17, 2021"));
+    }
+}

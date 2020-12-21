@@ -1,18 +1,20 @@
 package tests.migration;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.FileDownloadMode;
 import constants.Const;
-import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginToAT50Tenant
 {
     private static Logger logger = Logger.getLogger(LoginToAT50Tenant.class);
@@ -33,7 +35,7 @@ public class LoginToAT50Tenant
         open( Const.AT50_TENANT_URL );
     }
 
-    @Test(priority = 1)
+    @Test()
     public void loginToAT50Tenant()
     {
         LoginPage loginPage = new LoginPage();
@@ -47,37 +49,5 @@ public class LoginToAT50Tenant
         dashboardPage.getSideBar().clickInProgressContracts(false);
 
         Screenshoter.makeScreenshot();
-    }
-
-    @Test(priority = 2)
-    @Description("This test checks that both contracts are in the list, and all icons are in place")
-    public void checkContracts()
-    {
-        logger.info("Assert the first row of table...");
-        $$(".contracts-list__table a").first().shouldHave(Condition.exactText("Second linked contract\nTest Counterparty, Inc. Parley Pro\ndraft\nDec 15, 2020 1:06 PM USD 100,000.00 Jan 2, 2026"));
-
-        logger.info("Assert the second row of table...");
-        $$(".contracts-list__table a").last().shouldHave(Condition.exactText("This is an In-Progress Contract_Online_Jan/02/2031\n Test Counterparty, Inc. Parley Pro\ndraft\nDec 15, 2020 1:01 PM USD 1,000,234.00 Jan 2, 2031"));
-
-        logger.info("Assert that link icons are visible for both contracts...");
-        $$(".contracts-list__labels-content").shouldHave(CollectionCondition.size(2));
-        // get first icon
-        Assert.assertEquals(Selenide.executeJavaScript("return window.getComputedStyle( document.querySelectorAll('.contracts-list__labels-content .glyphicon.glyphicon-link')[0], ':before').getPropertyValue('content')"), "\"\ue144\"");
-        // get second icon
-        Assert.assertEquals(Selenide.executeJavaScript("return window.getComputedStyle( document.querySelectorAll('.contracts-list__labels-content .glyphicon.glyphicon-link')[1], ':before').getPropertyValue('content')"), "\"\ue144\"");
-
-        logger.info("Assert that both green circles of draft status are visible...");
-        $$(".contract-status circle").shouldHave(CollectionCondition.size(2));
-
-
-        logger.info("Hover over first link icon and check data...");
-        StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-                     jsCode.append("$('.contracts-list__labels-content')[0].dispatchEvent(event);");
-
-        Selenide.executeJavaScript(jsCode.toString());
-
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
-        $(".rc-tooltip-content").waitUntil(Condition.visible, 7_000).shouldBe(Condition.visible);
-
     }
 }
