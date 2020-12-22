@@ -9,8 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import pages.ContractInfo;
 import pages.DashboardPage;
-import pages.ExecutedContractsPage;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -127,9 +127,10 @@ public class CheckContracts
     }
 
     @Test(priority = 2)
+    @Description("This test goes to Executed contracts and verifies that all 3 contracts have correct text, have linked icons, one have question mark")
     public void checkExecutedContracts()
     {
-        ExecutedContractsPage executedContractsPage = new DashboardPage().getSideBar().clickExecutedContracts();
+        new DashboardPage().getSideBar().clickExecutedContracts();
 
         logger.info("Assert _first_ row in a table...");
         $$(".contracts-list__table a").get(0).shouldHave(Condition.exactText("Long values and that is a long long " +
@@ -217,5 +218,22 @@ public class CheckContracts
         $$(".js-linked-contracts-stage").last().shouldHave(Condition.exactText("Negotiate"));
 
         $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nAmendment to:\nLong values and that is a long long long long long long long long long long long long long long long long long long long long long long long long long title\nStage:\nSigned\nAddendum to:\nOnline Contract One With a Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Title\nStage:\nNegotiate"));
+    }
+
+    @Test(priority = 3)
+    @Description("This test click 'Short' contract in Executed contracts and validate all fields in Post-execution tab")
+    public void checkValuesOfManagedContract()
+    {
+        ContractInfo contractInfo = new DashboardPage().getSideBar().clickExecutedContracts().selectContract("Short");
+
+        System.out.println(contractInfo.getSignatureDate());
+        System.out.println(contractInfo.getEffectiveDate());
+        System.out.println(contractInfo.getInitialTerm());
+        System.out.println(contractInfo.getInitialTermDuration());
+        System.out.println(contractInfo.getAutoRenewalState());
+
+        // $('label span:contains("Number of renewals")')  should be visible
+
+
     }
 }
