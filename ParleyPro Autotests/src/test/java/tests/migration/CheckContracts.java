@@ -26,16 +26,39 @@ public class CheckContracts
     @Description("This test checks that both contracts are in the list, and all icons are in place and linked contracts are present")
     public void checkContractsThatAreInProgress()
     {
+        // 1 start
         logger.info("Assert the first row of table...");
-        $$(".contracts-list__table a").get(0).shouldHave(Condition.exactText("Classic\nEugene's Counterparty Organization Parley Pro\nnegotiate\nchat_bubble_outline2 Today at 4:04 PM USD 12,345.00"));
+        StringBuffer jsCode = new StringBuffer("var firstRow = $('.contracts-list__table a').eq(0).text();");
+                     jsCode.append("var lastActivity = $('.contracts-list__table a').eq(0).find(\".contracts-list__cell-activity\").text();");
+                     jsCode.append("var res = firstRow.replace(lastActivity, \"\");");
+                     jsCode.append("return res;");
+
+        String rowWithoutLastActivity = Selenide.executeJavaScript(jsCode.toString());
+
+        Assert.assertEquals(rowWithoutLastActivity, "ClassicEugene's Counterparty OrganizationParley ProNEGOTIATEchat_bubble_outline2USD 12,345.00");
+        // check that LastActivity has some text too...
+        jsCode = new StringBuffer("var lastActivity = $('.contracts-list__table a').eq(0).find(\".contracts-list__cell-activity\").text(); return lastActivity.length > 0;");
+        Assert.assertTrue(Selenide.executeJavaScript(jsCode.toString()));
+        // 1 end
 
         logger.info("Assert the second row of table...");
         $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Normal contract\nEugene's Counterparty Organization Parley Pro\ndraft\nNov 30, 2022"));
 
+        // 3 start
         logger.info("Assert the third row of table...");
-        $$(".contracts-list__table a").get(2).shouldHave(Condition.exactText("Online Contract One With a Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Title\n" +
-                "Eugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc. Parley Pro\nnegotiate\nToday at 3:56 PM USD 100,000,000.00 Jan 1, 2031"));
+        jsCode = new StringBuffer("var firstRow = $('.contracts-list__table a').eq(2).text();");
+        jsCode.append("var lastActivity = $('.contracts-list__table a').eq(2).find(\".contracts-list__cell-activity\").text();");
+        jsCode.append("var res = firstRow.replace(lastActivity, \"\");");
+        jsCode.append("return res;");
 
+        rowWithoutLastActivity = Selenide.executeJavaScript(jsCode.toString());
+
+        Assert.assertEquals(rowWithoutLastActivity, "Online Contract One With a Long Long Long Long Long Long Long Long Long Long " +
+                "Long Long Long Long Long Long Long TitleEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.Parley ProNEGOTIATEUSD 100,000,000.00Jan 1, 2031");
+        // check that LastActivity has some text too...
+        jsCode = new StringBuffer("var lastActivity = $('.contracts-list__table a').eq(2).find(\".contracts-list__cell-activity\").text(); return lastActivity.length > 0;");
+        Assert.assertTrue(Selenide.executeJavaScript(jsCode.toString()));
+        // 3 end
 
         logger.info("Assert that link icons are visible for two contracts...");
         $$(".glyphicon-link").shouldHave(CollectionCondition.size(2));
@@ -62,7 +85,7 @@ public class CheckContracts
 
         // 1
         logger.info("Hover over _first_ link icon and check data...");
-        StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
+        jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
         jsCode.append("$('.glyphicon-link')[0].dispatchEvent(event);");
 
         Selenide.executeJavaScript(jsCode.toString());
