@@ -162,6 +162,7 @@ public class CheckContracts
         we = Selenide.executeJavaScript("return $('.contract-status').eq(2).find(\"path[fill-rule='evenodd']\")[1]");
         Assert.assertEquals($(we).getAttribute("d"), "M13.158 8.681l-3.665 3.874-2.565-2.338.943-1.034 1.55 1.412 2.72-2.876 1.017.962z");
 
+        // Check question mark
         logger.info("Hover over question mark and check data...");
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
         jsCode.append("$('.contracts-list__new-expiration-date svg')[0].dispatchEvent(event);");
@@ -191,5 +192,30 @@ public class CheckContracts
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
         $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 1\nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nJan 18, 2021\nExpiration date:\nFeb 17, 2021"));
+
+        Selenide.refresh(); // Reload page to reset hover popup
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
+
+        // 2
+        logger.info("Hover over _second_ link icon and check data...");
+        jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
+        jsCode.append("$('.glyphicon-link')[1].dispatchEvent(event);");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".rc-tooltip-content").waitUntil(Condition.visible, 7_000).shouldBe(Condition.visible);
+
+        $(".js-linked-contracts-title").shouldHave(Condition.exactText("Linked contracts: 2"));
+
+        $$(".js-linked-contracts-head").shouldHave(CollectionCondition.size(2));
+        $$(".js-linked-contracts-head").first().shouldHave(Condition.exactText("Amendment to:\nLong values and that is a long long long long long long long long long long long long long long long long long long long long long long long long long title"));
+        $$(".js-linked-contracts-head").last().shouldHave(Condition.exactText("Addendum to:\nOnline Contract One With a Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Title"));
+
+        $$(".js-linked-contracts-stage").shouldHave(CollectionCondition.size(2));
+        $$(".js-linked-contracts-stage").first().shouldHave(Condition.exactText("Signed"));
+        $$(".js-linked-contracts-stage").last().shouldHave(Condition.exactText("Negotiate"));
+
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nAmendment to:\nLong values and that is a long long long long long long long long long long long long long long long long long long long long long long long long long title\nStage:\nSigned\nAddendum to:\nOnline Contract One With a Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Title\nStage:\nNegotiate"));
     }
 }
