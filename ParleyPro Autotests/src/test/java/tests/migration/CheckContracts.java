@@ -222,18 +222,40 @@ public class CheckContracts
 
     @Test(priority = 3)
     @Description("This test click 'Short' contract in Executed contracts and validate all fields in Post-execution tab")
-    public void checkValuesOfManagedContract()
+    public void checkValuesOfManagedContract() throws InterruptedException
     {
         ContractInfo contractInfo = new DashboardPage().getSideBar().clickExecutedContracts().selectContract("Short");
+        Thread.sleep(2_000);
 
-        System.out.println(contractInfo.getSignatureDate());
-        System.out.println(contractInfo.getEffectiveDate());
-        System.out.println(contractInfo.getInitialTerm());
-        System.out.println(contractInfo.getInitialTermDuration());
-        System.out.println(contractInfo.getAutoRenewalState());
+        logger.info("Asserting all fields on Contract Info -> Post-execution tab...");
 
-        // $('label span:contains("Number of renewals")')  should be visible
+        // The following expected values are all hardcoded and are correct only for 'Short' contract
+        Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 18, 2020");
+        Assert.assertEquals(contractInfo.getEffectiveDate(), "Dec 18, 2020");
+        Assert.assertEquals(contractInfo.getInitialTerm(), "1");
+        Assert.assertTrue(contractInfo.getAutoRenewalState());
+        Assert.assertTrue( Selenide.executeJavaScript("return $('label span:contains(\"Number of renewals\")').is(':visible')") );
+        Assert.assertTrue(contractInfo.getAutoRenewalState());
 
+        Assert.assertEquals(contractInfo.getSubsequentTermMonths(), "1");
+        Assert.assertEquals(contractInfo.getRenewal(), "Jan 18, 2021");
+        Assert.assertEquals(contractInfo.getRenewalEmailTo(), "you@example.commy@example.com");
+        Assert.assertEquals(contractInfo.getNoticeOfNonRenewal(), "15");
+        Assert.assertEquals(contractInfo.getNotice(), "Jan 3, 2021");
+        Assert.assertEquals(contractInfo.getNoticeEmailTo(), "you@example.commy@example.com");
+        Assert.assertEquals(contractInfo.getExpirationDate(), "Feb 17, 2021");
+        Assert.assertEquals(contractInfo.getExpirationEmailTo(), "you@example.commy@example.com");
 
+        // Scroll to Notes field
+        Selenide.executeJavaScript("$('label:contains(\"Notes\")').parent().find(\"textarea\")[0].scrollIntoView({});");
+
+        // Assert Custom fields
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select One"), "Yes");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select Two"), "1");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Multi Select"), "A very long long long long long long long long long long long long long long long long long long long long long long long value");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("Some strange date"), "Dec 1, 2020");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("Title"), "Custom Field");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("Value"), "1");
+        Assert.assertEquals(contractInfo.getNotes(), "Note from me.");
     }
 }
