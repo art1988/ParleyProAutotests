@@ -74,6 +74,77 @@ public class ContractInfo
         return Selenide.executeJavaScript("return $('.tumbler-wrapper').find(\"div\").hasClass('checked')");
     }
 
+    public String getSubsequentTermMonths()
+    {
+        return Selenide.executeJavaScript("return $('label:contains(\"Subsequent term (months)\")').parent().find(\"input\").val()");
+    }
+
+    public String getRenewal()
+    {
+        return Selenide.executeJavaScript("return $('label').filter(function() { return $(this).text() === 'Renewal'; }).parent().find(\"input\").val()");
+    }
+
+    /**
+     *
+     * @return emails in one string like "you@example.commy@example.com"
+     */
+    public String getRenewalEmailTo()
+    {
+        return Selenide.executeJavaScript("return $('label:contains(\"Renewal email to\")').parent().find(\".tags-input__tag\").text()");
+    }
+
+    public String getNoticeOfNonRenewal()
+    {
+        return Selenide.executeJavaScript("return $('label:contains(\"Notice of non-renewal\")').parent().find(\"input\").val()");
+    }
+
+    public String getNotice()
+    {
+        return Selenide.executeJavaScript("return $('label').filter(function() { return $(this).text() === 'Notice'; }).parent().find(\"input\").val()");
+    }
+
+    /**
+     *
+     * @return emails in one string like "you@example.commy@example.com"
+     */
+    public String getNoticeEmailTo()
+    {
+        return Selenide.executeJavaScript("return $('label:contains(\"Notice email to\")').parent().find(\".tags-input__tag\").text()");
+    }
+
+    public String getExpirationDate()
+    {
+        return Selenide.executeJavaScript("return $('label:contains(\"Expiration date\")').parent().find(\"input\").val()");
+    }
+
+    /**
+     *
+     * @return emails in one string like "you@example.commy@example.com"
+     */
+    public String getExpirationEmailTo()
+    {
+        return Selenide.executeJavaScript("return $('label:contains(\"Expiration email to\")').parent().find(\".tags-input__tag\").text()");
+    }
+
+    /**
+     * Get value from arbitrary Custom Field
+     * @param customFieldName name of custom field value of which we want to obtain
+     * @return
+     */
+    public String getValueFromCustomField(String customFieldName)
+    {
+        return Selenide.executeJavaScript("return $('label:contains(\"" + customFieldName + "\")').parent().find(\"input:visible\").val()");
+    }
+
+    /**
+     * Get text from Notes textarea
+     * @return
+     */
+    public String getNotes()
+    {
+        return Selenide.executeJavaScript("return $('label:contains(\"Notes\")').parent().find(\"textarea\").text()");
+    }
+
     public void clickSave()
     {
         Selenide.executeJavaScript("$('.contract-execute-form button:contains(\"SAVE\")').click()");
