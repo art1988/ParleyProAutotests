@@ -23,9 +23,16 @@ public class ApprovalWorkflow
 
     private static Logger logger = Logger.getLogger(ApprovalWorkflow.class);
 
-    public ApprovalWorkflow()
+    public ApprovalWorkflow(boolean inEditMode)
     {
-        $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Approval workflow"));
+        if ( inEditMode )
+        {
+            $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Edit Approval Workflow"));
+        }
+        else
+        {
+            $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Approval workflow"));
+        }
     }
 
     public void setName(String workflowName)

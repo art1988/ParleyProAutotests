@@ -33,7 +33,7 @@ public class CreateApprovalWorkflow
 
         Workflows workflowsTabPage = administrationPage.clickWorkflowsTab();
 
-        ApprovalWorkflow approvalWorkflowForm = workflowsTabPage.clickAddNewWorkflow().clickApproval();
+        ApprovalWorkflow approvalWorkflowForm = workflowsTabPage.clickAddNewWorkflow().clickApproval(false);
 
         String workflowName = "Approval_WFL_AT";
 
@@ -74,7 +74,7 @@ public class CreateApprovalWorkflow
         logger.info("Click Edit of just created workflow...;");
 
         workflowsTabPage.clickActionMenu(workflowName).clickEdit();
-        approvalWorkflowForm = new ApprovalWorkflow();
+        approvalWorkflowForm = new ApprovalWorkflow(true);
 
         logger.info("Assert that just created Approval workflow has correct values...");
         Assert.assertEquals(approvalWorkflowForm.getName(), workflowName);

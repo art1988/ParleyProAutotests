@@ -23,21 +23,21 @@ public class NewWorkflowActionsMenu
         $$(".dropdown-menu.dropdown-menu-right li").shouldHaveSize(2).shouldHave(CollectionCondition.exactTexts("Contract routing", "Approval"));
     }
 
-    public ApprovalWorkflow clickApproval()
+    public ApprovalWorkflow clickApproval(boolean inEditMode)
     {
         Selenide.executeJavaScript("$('.dropdown-menu.dropdown-menu-right a:contains(\"Approval\")')[0].click()");
 
         logger.info("Approval was clicked...");
 
-        return new ApprovalWorkflow();
+        return new ApprovalWorkflow(inEditMode);
     }
 
-    public ContractRoutingWorkflow clickContractRouting()
+    public ContractRoutingWorkflow clickContractRouting(boolean inEditMode)
     {
         Selenide.executeJavaScript("$('.dropdown-menu.dropdown-menu-right a:contains(\"Contract routing\")')[0].click()");
 
         logger.info("Contract routing was clicked...");
 
-        return new ContractRoutingWorkflow();
+        return new ContractRoutingWorkflow(inEditMode);
     }
 }
