@@ -29,17 +29,16 @@ public class ContractRoutingWorkflow
 
     private static Logger logger = Logger.getLogger(ContractRoutingWorkflow.class);
 
-    public ContractRoutingWorkflow()
+    public ContractRoutingWorkflow(boolean inEditMode)
     {
-        // TODO: Rename after fixing of PAR-12780
-        $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("New Workflow"));
-    }
-
-    // TODO: remove this constructor after fixing of PAR-12780
-    // Use this constructor in case of Edit workflow
-    public ContractRoutingWorkflow(boolean editMode)
-    {
-        $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Edit Workflow"));
+        if( inEditMode )
+        {
+            $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Edit Routing Workflow"));
+        }
+        else
+        {
+            $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Routing Workflow"));
+        }
     }
 
     public void setName(String workflowName)

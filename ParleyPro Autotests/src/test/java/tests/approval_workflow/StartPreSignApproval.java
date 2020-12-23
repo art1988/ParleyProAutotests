@@ -262,7 +262,7 @@ public class StartPreSignApproval
 
         dashboardPage.getSideBar().clickAdministration().clickWorkflowsTab().clickActionMenu("Approval_WFL_AT").clickEdit();
 
-        ApprovalWorkflow approvalWorkflow = new ApprovalWorkflow();
+        ApprovalWorkflow approvalWorkflow = new ApprovalWorkflow(true);
         approvalWorkflow.deleteCondition("Prior to Sign");
         approvalWorkflow.setPriorToNegotiateParticipant( Const.PREDEFINED_INTERNAL_USER_1.getFirstName() );
         approvalWorkflow.clickSave();

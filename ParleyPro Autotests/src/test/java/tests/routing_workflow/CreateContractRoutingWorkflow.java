@@ -28,7 +28,7 @@ public class CreateContractRoutingWorkflow
     {
         Workflows workflowsTabPage = new DashboardPage().getSideBar().clickAdministration().clickWorkflowsTab();
 
-        ContractRoutingWorkflow contractRoutingWorkflowForm = workflowsTabPage.clickAddNewWorkflow().clickContractRouting();
+        ContractRoutingWorkflow contractRoutingWorkflowForm = workflowsTabPage.clickAddNewWorkflow().clickContractRouting(false);
 
         String workflowName = "Contract_routing_WFL_AT";
 
@@ -57,7 +57,7 @@ public class CreateContractRoutingWorkflow
 
         logger.info("Edit of just created workflow and assert that is was saved correctly...");
         workflowsTabPage.clickActionMenu(workflowName).clickEdit();
-        contractRoutingWorkflowForm = new ContractRoutingWorkflow(true); // TODO: change after fixing of PAR-12780
+        contractRoutingWorkflowForm = new ContractRoutingWorkflow(true);
         $$(".workflows-users-list").shouldHave(CollectionCondition.size(4)); // wait until list of participants is fully loaded
 
         Assert.assertEquals(contractRoutingWorkflowForm.getName(), workflowName);
