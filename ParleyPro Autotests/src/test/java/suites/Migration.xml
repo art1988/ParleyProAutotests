@@ -6,6 +6,7 @@
         <classes>
             <class name="tests.migration.LoginToAT50Tenant"/>
             <class name="tests.migration.CheckContracts"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
