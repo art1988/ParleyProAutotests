@@ -222,10 +222,13 @@ public class CheckContracts
 
     @Test(priority = 3)
     @Description("This test click 'Short' contract in Executed contracts and validate all fields in Post-execution tab")
-    public void checkValuesOfManagedContract() throws InterruptedException
+    public void checkValuesOfManagedContractShort() throws InterruptedException
     {
         ContractInfo contractInfo = new DashboardPage().getSideBar().clickExecutedContracts().selectContract("Short");
         Thread.sleep(2_000);
+
+        // Check 3 icons of contract header
+        $$(".contract-header__right > div").shouldHave(CollectionCondition.size(3));
 
         logger.info("Asserting all fields on Contract Info -> Post-execution tab...");
 
@@ -233,6 +236,7 @@ public class CheckContracts
         Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 18, 2020");
         Assert.assertEquals(contractInfo.getEffectiveDate(), "Dec 18, 2020");
         Assert.assertEquals(contractInfo.getInitialTerm(), "1");
+        Assert.assertEquals(contractInfo.getInitialTermDuration(), "Months");
         Assert.assertTrue(contractInfo.getAutoRenewalState());
         Assert.assertTrue( Selenide.executeJavaScript("return $('label span:contains(\"Number of renewals\")').is(':visible')") );
         Assert.assertTrue(contractInfo.getAutoRenewalState());
@@ -257,5 +261,30 @@ public class CheckContracts
         Assert.assertEquals(contractInfo.getValueFromCustomField("Title"), "Custom Field");
         Assert.assertEquals(contractInfo.getValueFromCustomField("Value"), "1");
         Assert.assertEquals(contractInfo.getNotes(), "Note from me.");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 4)
+    @Description("This test click 'Normal values in contract' contract in Executed contracts and validate all fields in Post-execution tab")
+    public void checkValuesOfManagedContractNormal() throws InterruptedException
+    {
+        ContractInfo contractInfo = new DashboardPage().getSideBar().clickExecutedContracts().selectContract("Normal values in contract");
+        Thread.sleep(2_000);
+
+        Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 17, 2020");
+        Assert.assertEquals(contractInfo.getEffectiveDate(), "Jan 1, 2021");
+        Assert.assertEquals(contractInfo.getInitialTerm(), "");
+        Assert.assertEquals(contractInfo.getInitialTermDuration(), "Months");
+        Assert.assertFalse(contractInfo.getAutoRenewalState());
+        Assert.assertEquals(contractInfo.getExpirationDate(), "");
+        Assert.assertEquals(contractInfo.getExpirationEmailTo(), "");
+
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select One"), "");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select Two"), "");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Multi Select"), "");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("Some strange date"), "");
+
+        Assert.assertEquals(contractInfo.getNotes(), "");
     }
 }
