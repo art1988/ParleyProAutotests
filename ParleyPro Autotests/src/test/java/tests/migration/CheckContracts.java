@@ -3,9 +3,13 @@ package tests.migration;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
+import constants.Const;
 import io.qameta.allure.Description;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -13,6 +17,11 @@ import pages.ContractInfo;
 import pages.DashboardPage;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -272,6 +281,7 @@ public class CheckContracts
         ContractInfo contractInfo = new DashboardPage().getSideBar().clickExecutedContracts().selectContract("Normal values in contract");
         Thread.sleep(2_000);
 
+        logger.info("Asserting all fields of 'Normal values in contract' contract...");
         Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 17, 2020");
         Assert.assertEquals(contractInfo.getEffectiveDate(), "Jan 1, 2021");
         Assert.assertEquals(contractInfo.getInitialTerm(), "");
@@ -286,5 +296,64 @@ public class CheckContracts
         Assert.assertEquals(contractInfo.getValueFromCustomField("Some strange date"), "");
 
         Assert.assertEquals(contractInfo.getNotes(), "");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 5)
+    @Description("This test click 'Classic' contract in In-progress contracts and validate values")
+    public void checkValuesOfClassicContract() throws IOException
+    {
+        new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("Classic");
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
+
+        $(".contract-header__company").shouldHave(Condition.exactText("Eugene's Counterparty Organization\nUSD 12,345.00"));
+        $(".contract-header__name .rename").shouldHave(Condition.exactText("Classic"));
+        Assert.assertEquals(Selenide.executeJavaScript("return $('button:contains(\"Manage discussions\")').find(\"opened\").text()"), "2");
+        $$(".contract-header-general__right button").shouldHave(CollectionCondition.size(5));
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.lifecycle__item.active').text()"), "REVIEW(1)NEGOTIATE(1)REVIEWNEGOTIATE");
+        $(".contract-header__status .discussion-indicator").shouldBe(Condition.visible).shouldHave(Condition.exactText("chat_bubble_outline2"));
+        $(".label_theme_orange").shouldBe(Condition.visible).shouldHave(Condition.exactText("WITH MY TEAM"));
+        $$(".contract-header-users > div").shouldHave(CollectionCondition.size(2)); // check my team and counterparty circle icons in contract header
+
+        // Check document titles in this contract...
+        $$(".document__header-rename").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("Big Test Document v1", "wiki_article"));
+
+        // Assert that for document Big Test Document v1 amount of discussions = 2
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-row:contains(\"Big Test\")').next().find(\".discussion-indicator__count\").text()"), "2");
+
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-row:contains(\"Big Test\")').next().find(\".document__score\").text()"), "P SHARE");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-row:contains(\"wiki\")').next().find(\".document__score\").text()"), "P( SHARE");
+
+        $(".label_theme_dgray").shouldBe(Condition.visible).shouldHave(Condition.exactText("3RD PARTY"));
+        $("#UPLOAD_VERSION_DOCUMENT").shouldBe(Condition.visible).shouldHave(Condition.exactText("Upload new version"));
+
+        // Assert that attach icon and title are visible
+        $(".supporting-documents__title").shouldBe(Condition.visible).shouldHave(Condition.exactText("attach_fileAttachments"));
+
+        // Assert that file itself is attached
+        $(".supporting-documents__list").shouldBe(Condition.visible).shouldHave(Condition.exactText("Faro_-_July_2014_(7).jpg\n7.04 KB"));
+
+        // Assert that Attachment icon is visible
+        $(".supporting-documents__document-ico").shouldBe(Condition.visible).getCssValue("background").contains("images/f6b1a648d4931fe261ab371a6bc9151d.svg");
+
+        Screenshoter.makeScreenshot();
+
+        logger.info("Trying to download Attachment...");
+        try
+        {
+            $(".supporting-documents__document-ico").download();
+
+            new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
+                    until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "Faro_-_July_2014_(7).jpg").toFile().exists());
+
+            Assert.assertTrue(new File(Const.DOWNLOAD_DIR.getAbsolutePath() + "/Faro_-_July_2014_(7).jpg").exists());
+        }
+        catch (FileNotFoundException e)
+        {
+            logger.error("FileNotFoundException", e);
+        }
+
+        FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
     }
 }
