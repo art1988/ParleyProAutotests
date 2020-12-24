@@ -56,6 +56,13 @@ jobs:
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
 
+      - run: sleep 10
+      
+      - run: 
+          name: Run Migration suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
+
       - run:
           name: ZIP allure results
           working_directory: "./ParleyPro Autotests"
