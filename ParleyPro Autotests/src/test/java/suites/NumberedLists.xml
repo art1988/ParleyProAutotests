@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Numbered lists" configfailurepolicy="continue">
+    <test name="Numbered list recalculation" preserve-order="true">
+        <parameter name="contractName" value="Contract numbered list autotest"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.numbered_lists.CreateContractForNumberedList"/>
+            <class name="tests.numbered_lists.RecalculationsOfNumberedList"/>
+            <class name="tests.numbered_lists.SupportedNumberingFormats"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+
+</suite>
