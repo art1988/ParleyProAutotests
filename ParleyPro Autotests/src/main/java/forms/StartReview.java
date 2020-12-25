@@ -11,9 +11,8 @@ public class StartReview
 {
     private SelenideElement title = $(".modal-body-title");
 
-
-
     private static Logger logger = Logger.getLogger(StartReview.class);
+
 
     public StartReview(String contractName)
     {
