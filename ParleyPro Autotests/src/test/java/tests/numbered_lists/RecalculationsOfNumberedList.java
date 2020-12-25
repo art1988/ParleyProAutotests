@@ -1,4 +1,4 @@
-package tests;
+package tests.numbered_lists;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;

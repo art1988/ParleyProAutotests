@@ -1,4 +1,4 @@
-package tests;
+package tests.basics;
 
 import com.codeborne.selenide.Selenide;
 import forms.AddNewUser;

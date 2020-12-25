@@ -1,4 +1,4 @@
-package tests;
+package tests.basics;
 
 import constants.Const;
 import forms.ContractInformation;

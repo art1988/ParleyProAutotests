@@ -1,4 +1,4 @@
-package tests;
+package tests.basics;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
@@ -7,7 +7,6 @@ import forms.AcceptPost;
 import forms.DiscardDiscussion;
 import forms.RevertToOriginal;
 import io.qameta.allure.Description;
-import io.qameta.allure.Issue;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;

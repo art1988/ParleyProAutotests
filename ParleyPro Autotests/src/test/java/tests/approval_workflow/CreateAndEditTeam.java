@@ -1,4 +1,4 @@
-package tests;
+package tests.approval_workflow;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
