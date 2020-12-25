@@ -6,13 +6,22 @@
         <parameter name="contractName" value="Contract numbered list autotest"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.numbered_lists.CreateContractForNumberedList"/>
-            <class name="tests.numbered_lists.RecalculationsOfNumberedList"/>
-            <class name="tests.numbered_lists.SupportedNumberingFormats"/>
+            <class name="tests.numbered_lists.at25.CreateContractForNumberedList"/>
+            <class name="tests.numbered_lists.at25.RecalculationsOfNumberedList"/>
+            <class name="tests.numbered_lists.at25.SupportedNumberingFormats"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
 
-
+    <test name="Numbered list recalculation with multiple sub-lists" preserve-order="true">
+        <parameter name="contractName" value="Contract numbered list with sub-lists"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.numbered_lists.at53.CreateContractAT53"/>
+            <class name="tests.numbered_lists.at53.RecalculationChecks"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
