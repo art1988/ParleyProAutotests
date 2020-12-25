@@ -10,6 +10,13 @@ jobs:
       - checkout
 
       - run:
+          name: Run Numbered lists suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/NumberedLists.xml
+
+      - run: sleep 10  
+
+      - run:
           name: Run Basics suite
           working_directory: "./ParleyPro Autotests"
           command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
