@@ -1,4 +1,4 @@
-package tests.numbered_lists;
+package tests.numbered_lists.at25;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
@@ -16,7 +16,7 @@ import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ ScreenShotOnFailListener.class})
+@Listeners({ScreenShotOnFailListener.class})
 public class SupportedNumberingFormats
 {
     private static Logger logger = Logger.getLogger(SupportedNumberingFormats.class);
