@@ -191,6 +191,19 @@ public class OpenedContract
     }
 
     /**
+     * Click by SHARE button for the given documentName
+     * @param documentName
+     */
+    public ShareForm clickSHARE(String documentName)
+    {
+        Selenide.executeJavaScript("$('.document__header-row span:contains(\"" + documentName + "\")').parent().parent().parent().next().find(\"button:contains('SHARE')\").click()");
+
+        logger.info("SHARE button was clicked for: " + documentName);
+
+        return new ShareForm(documentName);
+    }
+
+    /**
      * Click by COMPLETE SIGN button for the given documentName.
      * @param documentName
      * @return
