@@ -36,7 +36,7 @@ public class CreateContractRoutingWorkflow
         contractRoutingWorkflowForm.setCategory("category1");
         contractRoutingWorkflowForm.setType("type2");
         contractRoutingWorkflowForm.setDepartment("department1");
-        contractRoutingWorkflowForm.setCurrency("EUR"); // TODO: switch back to JPY after fixing of PAR-12786
+        contractRoutingWorkflowForm.setCurrency("JPY");
         contractRoutingWorkflowForm.setMinValue("15400");
         contractRoutingWorkflowForm.setMaxValue("32700");
 
@@ -64,9 +64,9 @@ public class CreateContractRoutingWorkflow
         Assert.assertEquals(contractRoutingWorkflowForm.getCategory(), "category1");
         Assert.assertEquals(contractRoutingWorkflowForm.getType(), "type2");
         Assert.assertEquals(contractRoutingWorkflowForm.getDepartment(), "department1");
-        Assert.assertEquals(contractRoutingWorkflowForm.getCurrency(), "EUR");
-        Assert.assertEquals(contractRoutingWorkflowForm.getMinValue(), "15,400.00");
-        Assert.assertEquals(contractRoutingWorkflowForm.getMaxValue(), "32,700.00");
+        Assert.assertEquals(contractRoutingWorkflowForm.getCurrency(), "JPY");
+        Assert.assertEquals(contractRoutingWorkflowForm.getMinValue(), "15,400");
+        Assert.assertEquals(contractRoutingWorkflowForm.getMaxValue(), "32,700");
 
         String listOfParticipants = Selenide.executeJavaScript("return $('.workflows-users-list__item-name').text()");
         boolean containsParticipants = listOfParticipants.contains(PREDEFINED_INTERNAL_USER_1.getFirstName() + " " + PREDEFINED_INTERNAL_USER_1.getLastName()) &&

@@ -39,7 +39,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
         ContractInformation contractInformationForm = inProgressContractsPage.clickNewContractButton();
 
         contractInformationForm.setContractTitle(contractName);
-        contractInformationForm.setContractCurrency("EUR");
+        contractInformationForm.setContractCurrency("JPY");
         contractInformationForm.setContractValue("22450"); // in appropriate range between [15400, 32700]
         contractInformationForm.setContractingRegion("region1");
         contractInformationForm.setContractingCountry("country1");
