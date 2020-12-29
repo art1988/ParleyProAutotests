@@ -84,6 +84,11 @@ public class ContractInfo
         return Selenide.executeJavaScript("return $('label').filter(function() { return $(this).text() === 'Renewal'; }).parent().find(\"input\").val()");
     }
 
+    public String getSubsequentTermNotification()
+    {
+        return Selenide.executeJavaScript("return $('input[inputid=\"subsequent-term-input\"]').val()");
+    }
+
     /**
      *
      * @return emails in one string like "you@example.commy@example.com"
@@ -103,6 +108,11 @@ public class ContractInfo
         return Selenide.executeJavaScript("return $('label').filter(function() { return $(this).text() === 'Notice'; }).parent().find(\"input\").val()");
     }
 
+    public String getNoticeNonRenewalNotification()
+    {
+        return Selenide.executeJavaScript("return $('input[inputid=\"cancellation-notice-input\"]').val()");
+    }
+
     /**
      *
      * @return emails in one string like "you@example.commy@example.com"
@@ -115,6 +125,11 @@ public class ContractInfo
     public String getExpirationDate()
     {
         return Selenide.executeJavaScript("return $('label:contains(\"Expiration date\")').parent().find(\"input\").val()");
+    }
+
+    public String getExpirationDateNotification()
+    {
+        return Selenide.executeJavaScript("return $('input[inputid=\"expiration-date-input\"]').val()");
     }
 
     /**
