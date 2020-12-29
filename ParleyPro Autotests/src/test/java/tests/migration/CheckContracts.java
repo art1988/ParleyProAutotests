@@ -238,6 +238,9 @@ public class CheckContracts
 
         // Check 3 icons of contract header
         $$(".contract-header__right > div").shouldHave(CollectionCondition.size(3));
+        $(".private-label").shouldBe(Condition.visible).shouldHave(Condition.exactText("visibility_off"));
+        $(".linked-contracts-label").shouldBe(Condition.visible).shouldHave(Condition.exactText("link 2"));
+        $(".contract-header-users").shouldBe(Condition.visible).shouldHave(Condition.exactText("("));
 
         logger.info("Asserting all fields on Contract Info -> Post-execution tab...");
 
@@ -252,11 +255,14 @@ public class CheckContracts
 
         Assert.assertEquals(contractInfo.getSubsequentTermMonths(), "1");
         Assert.assertEquals(contractInfo.getRenewal(), "Jan 18, 2021");
+        Assert.assertEquals(contractInfo.getSubsequentTermNotification(), "1d");
         Assert.assertEquals(contractInfo.getRenewalEmailTo(), "you@example.commy@example.com");
         Assert.assertEquals(contractInfo.getNoticeOfNonRenewal(), "15");
         Assert.assertEquals(contractInfo.getNotice(), "Jan 3, 2021");
+        Assert.assertEquals(contractInfo.getNoticeNonRenewalNotification(), "1d");
         Assert.assertEquals(contractInfo.getNoticeEmailTo(), "you@example.commy@example.com");
         Assert.assertEquals(contractInfo.getExpirationDate(), "Feb 17, 2021");
+        Assert.assertEquals(contractInfo.getExpirationDateNotification(), "1d");
         Assert.assertEquals(contractInfo.getExpirationEmailTo(), "you@example.commy@example.com");
 
         // Scroll to Notes field
