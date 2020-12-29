@@ -6,10 +6,13 @@ import java.io.File;
 
 public class Const
 {
+    // Tenants
     public static final String QA_TENANT_URL                 = "http://qa-autotests.parleypro.net/master/index.html";
     public static final String PROD_TENANT_URL               = "http://qa-autotests.parleypro.com";
     public static final String AT50_TENANT_URL               = "https://at50.parleypro.net/master/index.html";
+    public static final String RC_TENANT_URL                 = "https://qa-autotests.parleypro.net/rc/index.html";
 
+    // Users
     public static final User   PREDEFINED_USER_CN_ROLE       = new User("autotest_cn fn", "ln", "arthur.khasanov+autotestcn@parleypro.com", "Parley650!");
     public static final User   PREDEFINED_APPROVER_USER_1    = new User("Approval_User_1", "", "arthur.khasanov+approval1@parleypro.com", "Parley650!");
     public static final User   PREDEFINED_APPROVER_USER_2    = new User("Approval_User_2", "", "arthur.khasanov+approval2@parleypro.com", "Parley650!");
@@ -18,6 +21,7 @@ public class Const
 
     public static final User   EVHEN_AT50_USER               = new User("Parley", "Pro", "yevhen.uvin+at50@parleypro.com", "Parley650!");
 
+    // Contract samples
     public static final File   CONTRACT_LIFECYCLE_SAMPLE     = new File(System.getProperty("user.dir") + "/Contracts/pramata.docx");
     public static final File   CONTRACT_DISCUSSIONS_SAMPLE   = new File(System.getProperty("user.dir") + "/Contracts/AT-14.docx");
     public static final File   CONTRACT_FORMATTING_SAMPLE    = new File(System.getProperty("user.dir") + "/Contracts/Formatting.docx");
@@ -30,8 +34,9 @@ public class Const
 
     public static final File   TEMPLATE_AT48                 = new File(System.getProperty("user.dir") + "/Contracts/Template_AT48.docx");
 
-    public static final File   DOWNLOAD_DIR                  = new File(System.getProperty("user.dir") + "/Downloads");
 
+    // Directories
+    public static final File   DOWNLOAD_DIR                  = new File(System.getProperty("user.dir") + "/Downloads");
     // Dir for screenshots of failed tests
     public static final File   SCREENSHOTS_DIR               = new File(System.getProperty("user.dir") + "/ScreenshotsOfFailedTests");
 
