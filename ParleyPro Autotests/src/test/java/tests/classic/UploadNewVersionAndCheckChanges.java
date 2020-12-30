@@ -46,14 +46,14 @@ public class UploadNewVersionAndCheckChanges
         logger.info("Assert that counters are correct...");
         Assert.assertEquals(comparePreview.getCounterAdded(), "2");
         Assert.assertEquals(comparePreview.getCounterEdited(), "2");
-        Assert.assertEquals(comparePreview.getCounterDeleted(), "1");
+        Assert.assertEquals(comparePreview.getCounterDeleted(), "2");
 
         logger.info("Assert that icons are correct for corresponded paragraphs");
         StringBuffer jsCode = new StringBuffer("var ar = $('.update-document__changes.ui-td .icon');");
         jsCode.append("var string = \"\";");
         jsCode.append("for( var i = 0; i < ar.length; i++ ) { string += ar[i].getAttribute(\"value\"); } ");
         jsCode.append("return string;");
-        Assert.assertEquals(Selenide.executeJavaScript(jsCode.toString()), "deletedaddedaddededitededited");
+        Assert.assertEquals(Selenide.executeJavaScript(jsCode.toString()), "deleteddeletedaddedaddededitededited");
 
         logger.info("Assert that there are only 4 opened discussions");
         DiscussionsOfSingleContract discussionsInContract = comparePreview.clickUpload(true);
@@ -70,7 +70,7 @@ public class UploadNewVersionAndCheckChanges
 
     @Test(priority = 2)
     @Description("This test verify changes in document view")
-    public void checkChangesInDocumentView() throws FileNotFoundException
+    public void checkChangesInDocumentView()
     {
         OpenedContract openedContract = new OpenedContract();
 
