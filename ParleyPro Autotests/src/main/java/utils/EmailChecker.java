@@ -81,8 +81,6 @@ public class EmailChecker
             logger.error("NoSuchProviderException", e);
         } catch (MessagingException e) {
             logger.error("MessagingException", e);
-        } catch (Exception e) {
-            logger.error("Exception", e);
         }
     }
 }
