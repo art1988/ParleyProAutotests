@@ -3,14 +3,17 @@ package tests.document_sharing;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 
+@Listeners({ScreenShotOnFailListener.class})
 public class AddContractAndUploadDocument
 {
     @Test
