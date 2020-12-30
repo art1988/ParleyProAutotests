@@ -77,7 +77,7 @@ public class AddNewUserTest
             logger.error("InterruptedException", e);
         }
 
-        EmailChecker.checkEmailSubject(host, username, password, "Role assignment: Requester");
+        EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Requester");
     }
 
     @Test(priority = 3)
@@ -102,7 +102,7 @@ public class AddNewUserTest
             logger.error("InterruptedException", e);
         }
 
-        EmailChecker.checkEmailSubject(host, username, password, "Role assignment: Chief Negotiator");
+        EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Chief Negotiator");
     }
 
     @Test(priority = 4)
@@ -130,7 +130,7 @@ public class AddNewUserTest
             logger.error("InterruptedException", e);
         }
 
-        EmailChecker.checkEmailSubject(host, username, password, "Role assignment: Contract Manager");
+        EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Contract Manager");
     }
 
     @Test(priority = 5)
