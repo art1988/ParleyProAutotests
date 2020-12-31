@@ -53,6 +53,11 @@ public class DocumentComparePreview
         return $(".update-document__edited").getText();
     }
 
+    public String getCounterCommented()
+    {
+        return $(".update-document__commented").getText();
+    }
+
     public String getCounterDeleted()
     {
         return $(".update-document__deleted").getText();
