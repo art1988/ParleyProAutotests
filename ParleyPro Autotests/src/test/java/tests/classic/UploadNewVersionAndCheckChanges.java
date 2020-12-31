@@ -16,6 +16,7 @@ import pages.DocumentComparePreview;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
+import utils.Waiter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,10 +43,10 @@ public class UploadNewVersionAndCheckChanges
         DocumentComparePreview comparePreview = openedContract.clickUploadNewVersionButton(documentName).
                 clickUploadCounterpartyDocument(Const.CONTRACT_CLASSIC_AT40_2, documentName, contractName);
 
-        // TODO: add check of added comments after fixing of PAR-12858
         logger.info("Assert that counters are correct...");
         Assert.assertEquals(comparePreview.getCounterAdded(), "2");
         Assert.assertEquals(comparePreview.getCounterEdited(), "2");
+        Assert.assertEquals(comparePreview.getCounterCommented(), "1");
         Assert.assertEquals(comparePreview.getCounterDeleted(), "2");
 
         logger.info("Assert that icons are correct for corresponded paragraphs");
@@ -53,19 +54,21 @@ public class UploadNewVersionAndCheckChanges
         jsCode.append("var string = \"\";");
         jsCode.append("for( var i = 0; i < ar.length; i++ ) { string += ar[i].getAttribute(\"value\"); } ");
         jsCode.append("return string;");
-        Assert.assertEquals(Selenide.executeJavaScript(jsCode.toString()), "deleteddeletedaddedaddededitededited");
+        Assert.assertEquals(Selenide.executeJavaScript(jsCode.toString()), "deleteddeletedcommentedaddedaddededitededited");
 
         logger.info("Assert that there are only 4 opened discussions");
         DiscussionsOfSingleContract discussionsInContract = comparePreview.clickUpload(true);
-        Assert.assertEquals(discussionsInContract.getDiscussionCount(), "4");
-        $$(".discussion-list .discussion2.discussion2_collapsed_yes").shouldHave(CollectionCondition.size(4));
+        Assert.assertEquals(discussionsInContract.getDiscussionCount(), "5");
+        $$(".discussion-list .discussion2.discussion2_collapsed_yes").shouldHave(CollectionCondition.size(5));
 
         logger.info("Assert that all discussions and indicator have new icon...");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.discussion-indicator.has-new.negotiating').length"), Long.valueOf(5));
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.discussion-indicator.has-new.negotiating').length"), Long.valueOf(6));
 
         Screenshoter.makeScreenshot();
 
         openedContract = discussionsInContract.clickDocumentsTab();
+
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Unused extra\")')");
     }
 
     @Test(priority = 2)
