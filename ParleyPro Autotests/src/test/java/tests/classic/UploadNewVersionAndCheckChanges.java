@@ -56,7 +56,7 @@ public class UploadNewVersionAndCheckChanges
         jsCode.append("return string;");
         Assert.assertEquals(Selenide.executeJavaScript(jsCode.toString()), "deleteddeletedcommentedaddedaddededitededited");
 
-        logger.info("Assert that there are only 4 opened discussions");
+        logger.info("Assert that there are only 5 opened discussions");
         DiscussionsOfSingleContract discussionsInContract = comparePreview.clickUpload(true);
         Assert.assertEquals(discussionsInContract.getDiscussionCount(), "5");
         $$(".discussion-list .discussion2.discussion2_collapsed_yes").shouldHave(CollectionCondition.size(5));
