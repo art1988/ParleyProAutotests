@@ -13,6 +13,8 @@ public class DashboardPage
 
     public DashboardPage()
     {
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
+
         Assert.assertTrue(isInit());
 
         sideBar = new SideBar();
