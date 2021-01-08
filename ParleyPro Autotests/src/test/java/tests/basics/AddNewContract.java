@@ -50,7 +50,7 @@ public class AddNewContract
         contractInformationForm.clickSave();
         /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy").withLocale(Locale.US);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy").withLocale(Locale.US);
 
         logger.info("Open Contract Info and assert that all fields were saved...");
         contractInformationForm = new OpenedContract().clickContractInfo();
