@@ -44,15 +44,15 @@ public class CreateContractRoutingWorkflow
         contractRoutingWorkflowForm.setDraftToReviewParticipant( PREDEFINED_INTERNAL_USER_1.getFirstName() ); // As User #1
 
         contractRoutingWorkflowForm.clickTextChanged();
-        contractRoutingWorkflowForm.setTextChangedParticipant( Const.PREDEFINED_INTERNAL_USER_2.getFirstName() ); // As User #2
+        contractRoutingWorkflowForm.setTextChangedParticipant( USER_MARY.getFirstName() ); // As User #2
 
         contractRoutingWorkflowForm.clickSignatureDeclined();
-        contractRoutingWorkflowForm.setSignatureDeclinedParticipant( Const.PREDEFINED_APPROVER_USER_1.getFirstName() ); // As User #3
+        contractRoutingWorkflowForm.setSignatureDeclinedParticipant( PREDEFINED_APPROVER_USER_1.getFirstName() ); // As User #3
 
         contractRoutingWorkflowForm.clickUploadCounterpartyDocument();
-        contractRoutingWorkflowForm.setUploadCounterpartyDocumentParticipant( Const.PREDEFINED_APPROVER_USER_2.getFirstName() ); // As User #4
+        contractRoutingWorkflowForm.setUploadCounterpartyDocumentParticipant( PREDEFINED_APPROVER_USER_2.getFirstName() ); // As User #4
 
-        contractRoutingWorkflowForm.setRoleForUser(Const.PREDEFINED_APPROVER_USER_2.getFirstName(), "Lead");
+        contractRoutingWorkflowForm.setRoleForUser( PREDEFINED_APPROVER_USER_2.getFirstName(), "Lead");
         contractRoutingWorkflowForm.clickSave();
 
         logger.info("Edit of just created workflow and assert that is was saved correctly...");
@@ -70,7 +70,7 @@ public class CreateContractRoutingWorkflow
 
         String listOfParticipants = Selenide.executeJavaScript("return $('.workflows-users-list__item-name').text()");
         boolean containsParticipants = listOfParticipants.contains(PREDEFINED_INTERNAL_USER_1.getFirstName() + " " + PREDEFINED_INTERNAL_USER_1.getLastName()) &&
-                                       listOfParticipants.contains(PREDEFINED_INTERNAL_USER_2.getFirstName() + " " + PREDEFINED_INTERNAL_USER_2.getLastName()) &&
+                                       listOfParticipants.contains(USER_MARY.getFirstName() + " " + USER_MARY.getLastName()) &&
                                        listOfParticipants.contains(PREDEFINED_APPROVER_USER_1.getFirstName()) &&
                                        listOfParticipants.contains(PREDEFINED_APPROVER_USER_2.getFirstName());
 

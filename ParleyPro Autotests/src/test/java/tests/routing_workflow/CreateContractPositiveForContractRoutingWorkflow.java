@@ -126,16 +126,16 @@ public class CreateContractPositiveForContractRoutingWorkflow
 
         logger.info("Assert that user icons are visible...");
         $(".header-users .user").waitUntil(Condition.appear, 25_000); // wait until users icons will appear
-        $$(".header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.exactTexts("A", "I", "I"));
+        $$(".header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.exactTexts("A", "I", "M"));
 
         // Hover over second I user icon
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-        jsCode.append("$('.header-users span:contains(\"I\")')[1].dispatchEvent(event);");
+        jsCode.append("$('.header-users span:contains(\"M\")')[0].dispatchEvent(event);");
         Selenide.executeJavaScript(jsCode.toString());
 
         $(".contract-user__status").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Reviewer"));
         $(".contract-user__name").waitUntil(Condition.visible, 6_000)
-                .shouldHave(Condition.exactText(Const.PREDEFINED_INTERNAL_USER_2.getFirstName() + " " + Const.PREDEFINED_INTERNAL_USER_2.getLastName()));
+                .shouldHave(Condition.exactText(Const.USER_MARY.getFirstName() + " " + Const.USER_MARY.getLastName()));
 
         Screenshoter.makeScreenshot();
 
@@ -200,7 +200,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
         logger.info("Assert that there are 3 'Document user assigned' events...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.timeline-title:contains(\"Document user assigned\")').length"), Long.valueOf(3));
         Assert.assertEquals(Selenide.executeJavaScript("return $('.timeline-title:contains(\"Document user assigned\")').parent().parent().find('.timeline-body:contains(\"User\")').text()"),
-                "User: arthur.khasanov+approval2@parleypro.comUser: arthur.khasanov+team2@parleypro.comUser: arthur.khasanov+team1@parleypro.com");
+                "User: arthur.khasanov+approval2@parleypro.comUser: arthur.khasanov+mary@parleypro.comUser: arthur.khasanov+team1@parleypro.com");
 
         Screenshoter.makeScreenshot();
 
@@ -230,7 +230,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
         boolean draftToReviewEventExist = Selenide.executeJavaScript("return $('.workflows-autoassignment-events-event__title:contains(\"Draft to review\")').length === 1");
         Assert.assertFalse(draftToReviewEventExist); // it should not exist
         String usersOfTextChangedEvent = Selenide.executeJavaScript("return $('.workflows-autoassignment-events-event__title:contains(\"Text changed\")').parent().parent().find(\".workflows-users-list .workflows-users-list__item-name\").text()");
-        Assert.assertEquals(usersOfTextChangedEvent, "Internal user2 Internal user2 last name (arthur.khasanov+team2@parleypro.com)Internal user1 Internal user1 last name (arthur.khasanov+team1@parleypro.com)");
+        Assert.assertEquals(usersOfTextChangedEvent, "Mary Jones (arthur.khasanov+mary@parleypro.com)Internal user1 Internal user1 last name (arthur.khasanov+team1@parleypro.com)");
 
         contractRoutingWorkflow.clickCancel();
 
