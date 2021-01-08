@@ -26,7 +26,7 @@ public class AddMembers
      */
     public void addParticipant(String nameOrEmail)
     {
-        addParticipantField.setValue(nameOrEmail);
+        addParticipantField.sendKeys(nameOrEmail);
         addParticipantField.sendKeys(Keys.DOWN);
         addParticipantField.sendKeys(Keys.ENTER);
 
