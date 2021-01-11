@@ -55,6 +55,15 @@ public class ShareForm
         return new RoleSelectorTooltip(username);
     }
 
+    public ShareForm disableUser(String username)
+    {
+        Selenide.executeJavaScript("$('.active .manage-users-user__fullname:contains(\"" + username + "\")').parent().parent().next().next().find(\".tumbler\").click()");
+
+        logger.info("User " + username + " was disabled...");
+
+        return this;
+    }
+
     /**
      * Click Resend invite button for given user
      * @param username
