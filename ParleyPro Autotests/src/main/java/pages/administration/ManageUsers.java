@@ -18,6 +18,7 @@ public class ManageUsers
 
     public ManageUsers()
     {
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
         $(".usermanagement__userlist_header").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("User\nEmailRoleLast loginEnable"));
     }
 
@@ -39,6 +40,18 @@ public class ManageUsers
     {
         Selenide.executeJavaScript("$('.usermanagement__userlist_content_row_fullname:contains(\"" + userName + "\")').parent().find(\".usermanagement__userlist_content_row_menu button\").click()");
 
-        return new UserActionMenu(userName);
+        return new UserActionMenu();
+    }
+
+    /**
+     * Sometimes username was not set, except email. Use this method to delete user only by email
+     * @param userEmail
+     * @return
+     */
+    public UserActionMenu clickActionMenuByEmail(String userEmail)
+    {
+        Selenide.executeJavaScript("$('.usermanagement__userlist_content_row_email:contains(\"" + userEmail + "\")').parent().find(\".usermanagement__userlist_content_row_menu button[id='dropdown-icon']\").click()");
+
+        return new UserActionMenu();
     }
 }
