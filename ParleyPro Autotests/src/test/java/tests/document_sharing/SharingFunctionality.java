@@ -169,18 +169,18 @@ public class SharingFunctionality
             switch( $$(cssClassName + " .user").get(i).getText() )
             {
                 case "G": // as Greg
-                    $(".contract-user__name").shouldHave(Condition.exactText(Const.USER_GREG.getFirstName() + " " + Const.USER_GREG.getLastName()));
-                    $(".contract-user__status").shouldHave(Condition.exactText(roles.get(Const.USER_GREG.getFirstName())));
+                    $(".contract-user__name").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText(Const.USER_GREG.getFirstName() + " " + Const.USER_GREG.getLastName()));
+                    $(".contract-user__status").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText(roles.get(Const.USER_GREG.getFirstName())));
                     break;
 
                 case "M": // as Mary
-                    $(".contract-user__name").shouldHave(Condition.exactText(Const.USER_MARY.getFirstName() + " " + Const.USER_MARY.getLastName()));
-                    $(".contract-user__status").shouldHave(Condition.exactText(roles.get(Const.USER_MARY.getFirstName())));
+                    $(".contract-user__name").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText(Const.USER_MARY.getFirstName() + " " + Const.USER_MARY.getLastName()));
+                    $(".contract-user__status").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText(roles.get(Const.USER_MARY.getFirstName())));
                     break;
 
                 case "A": // as unique, because email starts with 'a' symbol
-                    $(".contract-user__name").shouldHave(Condition.exactText(uniqueEmail));
-                    $(".contract-user__status").shouldHave(Condition.exactText(roles.get("unique")));
+                    $(".contract-user__name").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText(uniqueEmail));
+                    $(".contract-user__status").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText(roles.get("unique")));
                     break;
             }
         }
