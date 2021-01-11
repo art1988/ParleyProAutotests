@@ -48,7 +48,10 @@ public class SharingFunctionality
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Email has been successfully sent."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        // TODO: add email check after fixing of PAR-13145
+        logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
+        Thread.sleep(15_000);
+
+        EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request");
 
         // Add second user
         shareForm.addParticipant( Const.USER_MARY.getFirstName() ).changeRoleOfInternalUser( Const.USER_MARY.getFirstName() ).setLeadRole();
