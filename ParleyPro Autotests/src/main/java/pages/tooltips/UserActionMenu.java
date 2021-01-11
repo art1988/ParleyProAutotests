@@ -16,15 +16,10 @@ import static com.codeborne.selenide.Selenide.$$;
  */
 public class UserActionMenu
 {
-    private String user;
-
-
     private static Logger logger = Logger.getLogger(UserActionMenu.class);
 
-    public UserActionMenu(String user)
+    public UserActionMenu()
     {
-        this.user = user;
-
         $(".dropdown.open.btn-group ul").waitUntil(Condition.visible, 6_000);
         $$(".dropdown.open.btn-group ul li").shouldHaveSize(2).shouldHave(CollectionCondition.exactTexts("Edit", "Delete"));
     }
