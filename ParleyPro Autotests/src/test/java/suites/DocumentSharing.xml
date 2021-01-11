@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Document sharing suite" configfailurepolicy="continue">
+    <test name="Sharing functionality" preserve-order="true">
+        <parameter name="contractName" value="Contract DOCUMENT Sharing"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.document_sharing.AddContractAndUploadDocument"/>
+            <class name="tests.document_sharing.SharingFunctionality"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+        </classes>
+    </test>
+</suite>
