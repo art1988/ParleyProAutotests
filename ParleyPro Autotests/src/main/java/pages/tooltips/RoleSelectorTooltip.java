@@ -22,20 +22,20 @@ public class RoleSelectorTooltip
     {
         this.username = username;
 
-        $(".active ul").waitUntil(Condition.visible, 5_000);
-        $$(".active ul li").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("Lead", "Reviewer"));
+        $(".open ul").waitUntil(Condition.visible, 5_000);
+        $$(".open ul li").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("Lead", "Reviewer"));
     }
 
     public void setLeadRole()
     {
-        $$(".active ul li").filter(Condition.exactText("Lead")).first().click();
+        $$(".open ul li").filter(Condition.exactText("Lead")).first().click();
 
         logger.info("Lead role was set for user: " + username);
     }
 
     public void setReviewerRole()
     {
-        $$(".active ul li").filter(Condition.exactText("Reviewer")).first().click();
+        $$(".open ul li").filter(Condition.exactText("Reviewer")).first().click();
 
         logger.info("Reviewer role was set for user: " + username);
     }
