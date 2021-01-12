@@ -9,6 +9,7 @@ import forms.*;
 import forms.workflows.ApprovalWorkflow;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -65,7 +66,8 @@ public class StartPreSignApproval
 
         confirmApproversForm.clickStartApproval();
 
-        Waiter.smartWaitUntilVisible("$('.document__header-row span[title]:contains(\"pramata\")').parent().parent().parent().next().find('.lifecycle:contains(\"APPROVAL\")')");
+        $((WebElement) Selenide.executeJavaScript("return $('.document__header-row span[title]:contains(\"pramata\")').parent().parent().parent().next().find('.lifecycle:contains(\"APPROVAL\")')[0]"))
+                .waitUntil(Condition.visible, 8_000);
 
         logger.info("Assert that approvers icons are visible: Approval_User_2 and Team#2");
         $(".header-users .user").waitUntil(Condition.appear, 15_000); // wait until users icons will appear
