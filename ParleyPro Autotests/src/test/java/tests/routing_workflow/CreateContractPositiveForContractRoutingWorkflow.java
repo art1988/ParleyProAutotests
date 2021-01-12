@@ -15,6 +15,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
 import pages.subelements.CKEditorActive;
+import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
@@ -31,7 +32,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
 
     @Test(priority = 1)
     @Description("This test creates contract that satisfies Contract Routing Workflow settings")
-    public void createContractPositiveForContractRoutingWorkflow() throws InterruptedException
+    public void createContractPositiveForContractRoutingWorkflow()
     {
         // 1. + NEW CONTRACT
         InProgressContractsPage inProgressContractsPage = new InProgressContractsPage(true);
@@ -126,16 +127,16 @@ public class CreateContractPositiveForContractRoutingWorkflow
 
         logger.info("Assert that user icons are visible...");
         $(".header-users .user").waitUntil(Condition.appear, 25_000); // wait until users icons will appear
-        $$(".header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.exactTexts("A", "I", "M"));
+        $$(".header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("A", "I", "F"));
 
-        // Hover over second I user icon
+        // Hover over F user icon
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-        jsCode.append("$('.header-users span:contains(\"M\")')[0].dispatchEvent(event);");
+        jsCode.append("$('.header-users span:contains(\"F\")')[0].dispatchEvent(event);");
         Selenide.executeJavaScript(jsCode.toString());
 
         $(".contract-user__status").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Reviewer"));
         $(".contract-user__name").waitUntil(Condition.visible, 6_000)
-                .shouldHave(Condition.exactText(Const.USER_MARY.getFirstName() + " " + Const.USER_MARY.getLastName()));
+                .shouldHave(Condition.exactText(Const.USER_FELIX.getFirstName() + " " + Const.USER_FELIX.getLastName()));
 
         Screenshoter.makeScreenshot();
 
@@ -145,7 +146,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
 
     @Test(priority = 5)
     @Description("This test uploads Counterparty document and verifies that Approval_User_2 was added to document and has Lead role")
-    public void uploadCounterpartyDocument()
+    public void uploadCounterpartyDocument() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();
 
@@ -165,7 +166,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-rename:contains(\"Formatting\")').parent().parent().parent().find(\".header-users .user\").text()"),
                 "aA");
 
-        // Hover over second I user icon
+        // Hover over second user icon
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
         jsCode.append("$('.document__header-rename:contains(\"Formatting\")').parent().parent().parent().find(\".header-users .user\")[1].dispatchEvent(event);");
         Selenide.executeJavaScript(jsCode.toString());
@@ -187,6 +188,11 @@ public class CreateContractPositiveForContractRoutingWorkflow
 
         logger.info("Assert that contract header has 4 added users...");
         $$(".contract-header__status .user").shouldHave(CollectionCondition.size(4));
+
+        logger.info("Check that email with 'Role assignment: Lead' subject was received...");
+        logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
+        Thread.sleep(15_000);
+        EmailChecker.assertEmailBySubject("imap.gmail.com", "arthur.khasanov@parleypro.com", "ParGd881", "Role assignment: Lead");
     }
 
     @Test(priority = 6)
@@ -200,7 +206,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
         logger.info("Assert that there are 3 'Document user assigned' events...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.timeline-title:contains(\"Document user assigned\")').length"), Long.valueOf(3));
         Assert.assertEquals(Selenide.executeJavaScript("return $('.timeline-title:contains(\"Document user assigned\")').parent().parent().find('.timeline-body:contains(\"User\")').text()"),
-                "User: arthur.khasanov+approval2@parleypro.comUser: arthur.khasanov+mary@parleypro.comUser: arthur.khasanov+team1@parleypro.com");
+                "User: arthur.khasanov+approval2@parleypro.comUser: arthur.khasanov+felix@parleypro.comUser: arthur.khasanov+team1@parleypro.com");
 
         Screenshoter.makeScreenshot();
 
@@ -230,7 +236,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
         boolean draftToReviewEventExist = Selenide.executeJavaScript("return $('.workflows-autoassignment-events-event__title:contains(\"Draft to review\")').length === 1");
         Assert.assertFalse(draftToReviewEventExist); // it should not exist
         String usersOfTextChangedEvent = Selenide.executeJavaScript("return $('.workflows-autoassignment-events-event__title:contains(\"Text changed\")').parent().parent().find(\".workflows-users-list .workflows-users-list__item-name\").text()");
-        boolean contains = usersOfTextChangedEvent.contains("Mary Jones (arthur.khasanov+mary@parleypro.com)") &&
+        boolean contains = usersOfTextChangedEvent.contains("Felix Wilson (arthur.khasanov+felix@parleypro.com)") &&
                            usersOfTextChangedEvent.contains("Internal user1 Internal user1 last name (arthur.khasanov+team1@parleypro.com)");
         Assert.assertTrue(contains);
 

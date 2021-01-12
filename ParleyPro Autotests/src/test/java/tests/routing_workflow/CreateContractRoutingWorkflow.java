@@ -17,7 +17,7 @@ import utils.Screenshoter;
 import static com.codeborne.selenide.Selenide.$$;
 import static constants.Const.*;
 
-@Listeners({ ScreenShotOnFailListener.class})
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContractRoutingWorkflow
 {
     private static Logger logger = Logger.getLogger(CreateContractRoutingWorkflow.class);
@@ -44,7 +44,7 @@ public class CreateContractRoutingWorkflow
         contractRoutingWorkflowForm.setDraftToReviewParticipant( PREDEFINED_INTERNAL_USER_1.getFirstName() ); // As User #1
 
         contractRoutingWorkflowForm.clickTextChanged();
-        contractRoutingWorkflowForm.setTextChangedParticipant( USER_MARY.getFirstName() ); // As User #2
+        contractRoutingWorkflowForm.setTextChangedParticipant( USER_FELIX.getFirstName() ); // As User #2
 
         contractRoutingWorkflowForm.clickSignatureDeclined();
         contractRoutingWorkflowForm.setSignatureDeclinedParticipant( PREDEFINED_APPROVER_USER_1.getFirstName() ); // As User #3
@@ -70,7 +70,7 @@ public class CreateContractRoutingWorkflow
 
         String listOfParticipants = Selenide.executeJavaScript("return $('.workflows-users-list__item-name').text()");
         boolean containsParticipants = listOfParticipants.contains(PREDEFINED_INTERNAL_USER_1.getFirstName() + " " + PREDEFINED_INTERNAL_USER_1.getLastName()) &&
-                                       listOfParticipants.contains(USER_MARY.getFirstName() + " " + USER_MARY.getLastName()) &&
+                                       listOfParticipants.contains(USER_FELIX.getFirstName() + " " + USER_FELIX.getLastName()) &&
                                        listOfParticipants.contains(PREDEFINED_APPROVER_USER_1.getFirstName()) &&
                                        listOfParticipants.contains(PREDEFINED_APPROVER_USER_2.getFirstName());
 
