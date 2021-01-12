@@ -9,6 +9,18 @@
             <class name="tests.document_sharing.AddContractAndUploadDocument"/>
             <class name="tests.document_sharing.SharingFunctionality"/>
             <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Adding of new users via share modal" preserve-order="true">
+        <parameter name="contractName" value="Contract DOCUMENT Sharing"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.document_sharing.AddContractAndUploadDocument"/>
+            <class name="tests.document_sharing.AddingOfNewUsersViaShareModal"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
