@@ -23,4 +23,15 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="Canceling added users in document sharing" preserve-order="true">
+        <parameter name="contractName" value="Contract DOCUMENT Sharing"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.document_sharing.AddContractAndUploadDocument"/>
+            <class name="tests.document_sharing.CancelingOfAddedUsers"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
