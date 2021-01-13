@@ -44,4 +44,15 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="Deletion and canceling of documents" preserve-order="true">
+        <parameter name="contractName" value="Contract - [delete and cancel documents AT]"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.basics.CreateContractAndUploadTwoDocumentsAT61"/>
+            <class name="tests.basics.DeleteAndCancelDocuments"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
