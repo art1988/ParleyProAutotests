@@ -2,6 +2,8 @@ package pages.tooltips;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import forms.CancelDocument;
+import forms.DeleteDocument;
 import forms.DocumentFormattingOption;
 import forms.UploadDocument;
 import org.apache.log4j.Logger;
@@ -23,7 +25,7 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class DocumentActionsMenu
 {
-    private String documentName;
+    private String documentName; // the name of the document for which action menu was invoked
 
 
     private static Logger logger = Logger.getLogger(DocumentActionsMenu.class);
@@ -47,7 +49,7 @@ public class DocumentActionsMenu
         return new DocumentFormattingOption(documentName);
     }
 
-    public UploadDocument clickUploadDocument(String documentName)
+    public UploadDocument clickUploadDocument()
     {
         Selenide.executeJavaScript("$('.document__menu .dropdown-menu.dropdown-menu-right:visible li:contains(\"Upload document\")').find(\"a\")[0].click()");
 
@@ -86,5 +88,31 @@ public class DocumentActionsMenu
 
             return null;
         }
+    }
+
+    /**
+     * Click Cancel menu item.
+     * @return
+     */
+    public CancelDocument clickCancel()
+    {
+        Selenide.executeJavaScript("$('.document__menu .dropdown-menu.dropdown-menu-right:visible li:contains(\"Cancel\")').find(\"a\")[0].click()");
+
+        logger.info("Cancel menu item was clicked");
+
+        return new CancelDocument(documentName);
+    }
+
+    /**
+     * Click delete menu item.
+     * @return
+     */
+    public DeleteDocument clickDelete()
+    {
+        Selenide.executeJavaScript("$('.document__menu .dropdown-menu.dropdown-menu-right:visible li:contains(\"Delete\")').find(\"a\")[0].click()");
+
+        logger.info("Delete menu item was clicked");
+
+        return new DeleteDocument(documentName);
     }
 }
