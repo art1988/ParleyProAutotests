@@ -43,6 +43,7 @@ public class ShareForm
         addParticipantField.sendKeys(Keys.ARROW_DOWN);
         addParticipantField.pressEnter();
 
+        logger.info(nameOrEmail + " was added as participant");
         Thread.sleep(1_000); // some sleep during slide animation
 
         return this; // we are on the same form
@@ -60,6 +61,20 @@ public class ShareForm
         Selenide.executeJavaScript("$('.active .manage-users-user__fullname:contains(\"" + username + "\")').parent().parent().next().next().find(\".tumbler\").click()");
 
         logger.info("User " + username + " was disabled...");
+
+        return this;
+    }
+
+    /**
+     * Click by x button to remove user from list of internal users
+     */
+    public ShareForm removeUser(String username) throws InterruptedException
+    {
+        Selenide.executeJavaScript("$('.active .manage-users-user__fullname:contains(\"" + username + "\")').parent().parent().next().next().find(\".manage-users-user__remove\").click()");
+
+        logger.info("User " + username + " was removed from list of internal users");
+
+        Thread.sleep(500);
 
         return this;
     }
