@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import forms.UploadDocumentDetectedChanges;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -73,6 +74,26 @@ public class AddDocuments
         SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
         uploadMyTeamDocumentsButton.uploadFile(fileToUpload);
+    }
+
+    /**
+     * Upload document with revisions
+     * @param fileToUpload
+     * @return
+     */
+    public UploadDocumentDetectedChanges clickUploadMyTeamDocumentsWithDetectedChanges(File fileToUpload)
+    {
+        // 1. make <input> visible
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
+
+        // 2. trying to upload...
+        SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+        uploadMyTeamDocumentsButton.uploadFile(fileToUpload);
+
+        return new UploadDocumentDetectedChanges();
     }
 
     /**
