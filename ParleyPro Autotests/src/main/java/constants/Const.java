@@ -38,6 +38,8 @@ public class Const
 
     public static final File   TEMPLATE_AT48                 = new File(System.getProperty("user.dir") + "/Contracts/Template_AT48.docx");
 
+    // Directory of docs from clients
+    public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Contracts/classicClientDocs");
 
     // Directories
     public static final File   DOWNLOAD_DIR                  = new File(System.getProperty("user.dir") + "/Downloads");
