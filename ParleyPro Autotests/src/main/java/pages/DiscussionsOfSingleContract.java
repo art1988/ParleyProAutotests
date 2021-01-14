@@ -19,8 +19,8 @@ public class DiscussionsOfSingleContract
 
     public DiscussionsOfSingleContract(String contractName)
     {
-        $(".spinner").waitUntil(Condition.disappear, 15_000);
-        contractTitle.waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(contractName));
+        $(".spinner").waitUntil(Condition.disappear, 25_000);
+        contractTitle.waitUntil(Condition.visible, 25_000).shouldHave(Condition.exactText(contractName));
     }
 
     public String getDiscussionCount()
