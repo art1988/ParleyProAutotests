@@ -6,8 +6,63 @@
         <parameter name="contractName" value="AT40 Classic contract"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.CreateClassicContractAT40"/>
-            <class name="tests.classic.UploadNewVersionAndCheckChanges"/>
+            <class name="tests.classic.at40.CreateClassicContractAT40"/>
+            <class name="tests.classic.at40.UploadNewVersionAndCheckChanges"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <!-- The following bunch of tests uploads client's document -->
+    <test name="Client doc #1" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Video Sponsorship Master Agreement (Editable).docx"/>
+        <parameter name="cpDocumentName" value="Video Sponsorship Master Agreement (Editable) Kyle Edits.docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="13"/>
+        <parameter name="textOnFirstPage" value="VIDEO SPONSORSHIP MANAGEMENT AGREEMENT"/>
+        <parameter name="textOnLastPage" value="The remainder of this page left intentionally blank"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
+            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Client doc #2" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="ERGO_Verpflichtungserklaerung_Vertraulichkeit (1)(1).docx"/>
+        <parameter name="cpDocumentName" value="2020-11-09_ERGO_Verpflichtungserklaerung_Vertraulichkeit_ERGO(1).docx"/>
+        <parameter name="documentHasRevisions" value="true"/>
+        <parameter name="numberOfDiscussions" value="14"/>
+        <parameter name="textInFirstRow" value="Verpflichtungserklärung zur Vertraulichkeit"/>
+        <parameter name="textInLastRow" value="Firmenbezeichnung des Informationsempfängers"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
+            <class name="tests.classic.upload_clients_docs.CheckTableAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Client doc #3" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="2021 3Q SOW for SEM and Consulting(2).docx"/>
+        <parameter name="cpDocumentName" value="2021 3Q SOW for SEM and Consulting [FB edits](2).docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="24"/>
+        <parameter name="textOnFirstPage" value="Statement of Work for 3Q Digital Search Engine Marketing and Consulting"/>
+        <parameter name="textOnLastPage" value="Babysitters or house-sitters"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
+            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
