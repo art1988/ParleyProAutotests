@@ -13,6 +13,8 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class UploadDocumentDetectedChanges
 {
+    private SelenideElement cpOrganizationField    = $("#cp-organization");
+    private SelenideElement cpNegotiatorEmailField = $("#cp-email");
     private SelenideElement okButton = $(".button.btn-common.btn.btn-primary");
 
     private static Logger logger = Logger.getLogger(DocumentFormattingOption.class);
@@ -26,14 +28,12 @@ public class UploadDocumentDetectedChanges
 
     public void setCounterpartyOrganization(String cpOrganization)
     {
-        // TODO: change after fixing of PAR-13260
-        $((WebElement) Selenide.executeJavaScript("return $('.select__input.input__input')[0]")).sendKeys(cpOrganization);
+        cpOrganizationField.sendKeys(cpOrganization);
     }
 
     public void setCounterpartyNegotiatorEmail(String cpNegotiatorEmail)
     {
-        // TODO: change after fixing of PAR-13260
-        $((WebElement) Selenide.executeJavaScript("return $('.select__input.input__input')[1]")).sendKeys(cpNegotiatorEmail);
+        cpNegotiatorEmailField.sendKeys(cpNegotiatorEmail);
     }
 
     public void clickOk()
