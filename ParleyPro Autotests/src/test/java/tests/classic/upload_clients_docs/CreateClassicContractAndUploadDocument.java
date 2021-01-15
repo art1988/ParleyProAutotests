@@ -2,6 +2,7 @@ package tests.classic.upload_clients_docs;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractInformation;
 import forms.EmailWillBeSentToTheCounterparty;
@@ -73,8 +74,18 @@ public class CreateClassicContractAndUploadDocument
             addDocuments.clickUploadMyTeamDocuments( new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + documentName) );
 
             $(".spinner").waitUntil(Condition.disappear, 25_000);
+
+            if( $(".notification-stack").getText().contains("unsupported formatting attributes were found") )
+            {
+                $(".notification-stack .notification__close").click(); // Close that warning popup
+            }
+
             $(".notification-stack").waitUntil(Condition.appear, 6_000).shouldHave(Condition.exactText("Document " + docNameWithoutExtension + " has been successfully uploaded."));
             $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+
+            logger.info("Scroll to top of page...");
+            Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,0)");
+            Thread.sleep(1_000);
 
             StartNegotiation startNegotiationForm = new OpenedContract().switchDocumentToNegotiate(docNameWithoutExtension, true);
             EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext(true);
