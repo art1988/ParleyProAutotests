@@ -7,7 +7,8 @@ import org.apache.log4j.Logger;
 import static com.codeborne.selenide.Selenide.$;
 
 /**
- * Represents opened DISCUSSIONS tab within one selected contract
+ * Represents opened DISCUSSIONS tab within one selected contract.
+ * Usually appears after uploading of new version of document.
  */
 public class DiscussionsOfSingleContract
 {
