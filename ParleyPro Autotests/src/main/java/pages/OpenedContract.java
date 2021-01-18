@@ -50,6 +50,7 @@ public class OpenedContract
     {
         $(".spinner").waitUntil(Condition.disappear, 15_000);
         $(".contract-header__status").waitUntil(Condition.visible, 7_000);
+        $(".document__body .spinner").waitUntil(Condition.disappear, 30_000);
 
         return ( contractName.isDisplayed() );
     }
