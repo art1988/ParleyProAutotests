@@ -55,6 +55,7 @@ public class CreateClassicContractAndUploadDocument
         contractInformationForm.clickSave();
 
         String docNameWithoutExtension = documentName.substring(0, documentName.indexOf("."));
+        logger.info("Uploading the following client's document: " + docNameWithoutExtension);
         // 2. UPLOAD MY TEAM DOCUMENTS
         AddDocuments addDocuments = new AddDocuments();
         if( documentHasRevisions == true ) // if document has revisions then after uploading it should be in Negotiate status
