@@ -70,6 +70,7 @@ public class CreateClassicContractAT40
 
         EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext(true);
 
+        Thread.sleep(1_000);
         emailWillBeSentToTheCounterpartyForm.setCounterpartyOrganization("CounterpartyAT");
         Thread.sleep(1_000);
         emailWillBeSentToTheCounterpartyForm.setCounterpartyChiefNegotiator("arthur.khasanov+cpat@parleypro.com");

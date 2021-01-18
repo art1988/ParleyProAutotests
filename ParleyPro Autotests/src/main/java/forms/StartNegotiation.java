@@ -17,6 +17,7 @@ public class StartNegotiation
 
     public StartNegotiation(String contractName, boolean isClassic)
     {
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
         title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("You are about to start negotiation for contract \"" + contractName + "\"."));
 
         if( isClassic )
