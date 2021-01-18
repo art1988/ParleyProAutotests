@@ -19,7 +19,7 @@
         <parameter name="documentName" value="Video Sponsorship Master Agreement (Editable).docx"/>
         <parameter name="cpDocumentName" value="Video Sponsorship Master Agreement (Editable) Kyle Edits.docx"/>
         <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="13"/>
+        <parameter name="numberOfDiscussions" value="10"/>
         <parameter name="textOnFirstPage" value="VIDEO SPONSORSHIP MANAGEMENT AGREEMENT"/>
         <parameter name="textOnLastPage" value="The remainder of this page left intentionally blank"/>
         <classes>
@@ -32,12 +32,12 @@
         </classes>
     </test>
 
-    <test name="Client doc #2" preserve-order="true">
+    <test name="Client doc #2 [Learnship]" preserve-order="true">
         <parameter name="contractName" value="Classic contract - client docs"/>
         <parameter name="documentName" value="ERGO_Verpflichtungserklaerung_Vertraulichkeit (1)(1).docx"/>
         <parameter name="cpDocumentName" value="2020-11-09_ERGO_Verpflichtungserklaerung_Vertraulichkeit_ERGO(1).docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="14"/>
+        <parameter name="numberOfDiscussions" value="10"/>
         <parameter name="textInFirstRow" value="Verpflichtungserklärung zur Vertraulichkeit"/>
         <parameter name="textInLastRow" value="Firmenbezeichnung des Informationsempfängers"/>
         <classes>
@@ -50,14 +50,104 @@
         </classes>
     </test>
 
-    <test name="Client doc #3" preserve-order="true">
+    <test name="Client doc #3 [3QDigital]" preserve-order="true">
         <parameter name="contractName" value="Classic contract - client docs"/>
         <parameter name="documentName" value="2021 3Q SOW for SEM and Consulting(2).docx"/>
         <parameter name="cpDocumentName" value="2021 3Q SOW for SEM and Consulting [FB edits](2).docx"/>
         <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="24"/>
+        <parameter name="numberOfDiscussions" value="20"/>
         <parameter name="textOnFirstPage" value="Statement of Work for 3Q Digital Search Engine Marketing and Consulting"/>
         <parameter name="textOnLastPage" value="Babysitters or house-sitters"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
+            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Client doc #4" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Manufacturing Agreement (4).docx"/>
+        <parameter name="cpDocumentName" value="Manufacturing Agreement_note (1) (1).docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="1"/>
+        <parameter name="textOnFirstPage" value="MANUFACTURING AGREEMENT"/>
+        <parameter name="textOnLastPage" value="Quality Standards"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
+            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Client doc #5 [Nurix]" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Dana Farber Cancer Institute MCDA Draft 110620.docx"/>
+        <parameter name="cpDocumentName" value="Dana Farber Cancer Institute MCDA Draft 110620 QIS edits.docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="10"/>
+        <parameter name="textOnFirstPage" value="MUTUAL CONFIDENTIAL DISCLOSURE AGREEMENT"/>
+        <parameter name="textOnLastPage" value="Read and Acknowledged:"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
+            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Client doc #6 [Earnin]" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Taboola_com US Sponsored Content V 3 IO + Terms (2).docx"/>
+        <parameter name="cpDocumentName" value="Earnin Media IO (Taboola Draft).docx"/>
+        <parameter name="documentHasRevisions" value="true"/>
+        <parameter name="numberOfDiscussions" value="50"/>
+        <parameter name="textOnFirstPage" value="DIGITAL ADVERTISING INSERTION ORDER"/>
+        <parameter name="textOnLastPage" value="Miscellaneous"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
+            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Client doc #7 [Watermark]" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="ACCTTWO MASTER SERVICES AGREEMENT_WM Comments 6_3_20.docx"/>
+        <parameter name="cpDocumentName" value="ACCTTWO MASTER SERVICES AGREEMENT_A2 comments 06_22 (1).docx"/>
+        <parameter name="documentHasRevisions" value="true"/>
+        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="textOnFirstPage" value="ACCTTWO MASTER SERVICES AGREEMENT"/>
+        <parameter name="textOnLastPage" value="ADDENDUM B: California Consumer Privacy Act"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
+            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Client doc #8" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Parley Pro DPA (5).docx"/>
+        <parameter name="cpDocumentName" value="Parley Pro DPA (Copy 010421)_LK 20210111 (1).docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="textOnFirstPage" value="Addendum"/>
+        <parameter name="textOnLastPage" value="For All Customers"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
