@@ -40,13 +40,15 @@ public class EmailWillBeSentToTheCounterparty
     public void setCounterpartyOrganization(String organization)
     {
         counterpartyOrganizationField.clear();
-        counterpartyOrganizationField.setValue(organization);
+        counterpartyOrganizationField.sendKeys(organization);
+        counterpartyOrganizationField.pressEnter();
     }
 
     public void setCounterpartyChiefNegotiator(String chiefNegotiator)
     {
         counterpartyChiefNegotiatorField.clear();
-        counterpartyChiefNegotiatorField.setValue(chiefNegotiator);
+        counterpartyChiefNegotiatorField.sendKeys(chiefNegotiator);
+        counterpartyChiefNegotiatorField.pressEnter();
     }
 
     public void clickStart()
