@@ -130,7 +130,7 @@ public class CheckContracts
         $$(".js-linked-contracts-stage").first().shouldHave(Condition.exactText("Managed"));
         $$(".js-linked-contracts-stage").last().shouldHave(Condition.exactText("Negotiate"));
 
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nSupplemented by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nJan 18, 2021\nExpiration date:\nFeb 17, 2021\nParent to:\nClassic\nStage:\nNegotiate"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nSupplemented by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nDec 18, 2021\nExpiration date:\nJan 17, 2022\nParent to:\nClassic\nStage:\nNegotiate"));
 
         Screenshoter.makeScreenshot();
     }
@@ -144,10 +144,10 @@ public class CheckContracts
         logger.info("Assert _first_ row in a table...");
         $$(".contracts-list__table a").get(0).shouldHave(Condition.exactText("Long values and that is a long long " +
                 "long long long long long long long long long long long long long long long long long long long long long long " +
-                "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nFeb 17, 2021"));
+                "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nJan 17, 2022"));
 
         logger.info("Assert _second_ row in a table...");
-        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 18, 2020 Dec 18, 2020 Jan 18, 2021 Feb 17, 2021"));
+        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 18, 2020 Dec 18, 2020 Dec 18, 2021 Jan 17, 2022"));
 
         logger.info("Assert _third_ row in a table...");
         $$(".contracts-list__table a").get(2).shouldHave(Condition.exactText("Normal values in contract\nEugene's Counterparty Organization\nmanaged\nUSD 10,000.00 Dec 17, 2020 Jan 1, 2021"));
@@ -184,7 +184,7 @@ public class CheckContracts
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Contract was amended: 1"));
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nJan 18, 2021\nExpiration date:\nFeb 17, 2021"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nDec 18, 2021\nExpiration date:\nJan 17, 2022"));
 
         Selenide.refresh(); // Reload page to reset hover popup
         $(".spinner").waitUntil(Condition.disappear, 7_000);
@@ -201,7 +201,7 @@ public class CheckContracts
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Linked contracts: 1"));
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 1\nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nJan 18, 2021\nExpiration date:\nFeb 17, 2021"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 1\nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nDec 18, 2021\nExpiration date:\nJan 17, 2022"));
 
         Selenide.refresh(); // Reload page to reset hover popup
         $(".spinner").waitUntil(Condition.disappear, 7_000);
@@ -248,22 +248,22 @@ public class CheckContracts
         Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 18, 2020");
         Assert.assertEquals(contractInfo.getEffectiveDate(), "Dec 18, 2020");
         Assert.assertEquals(contractInfo.getInitialTerm(), "1");
-        Assert.assertEquals(contractInfo.getInitialTermDuration(), "Months");
+        Assert.assertEquals(contractInfo.getInitialTermDuration(), "Years");
         Assert.assertTrue(contractInfo.getAutoRenewalState());
         Assert.assertTrue( Selenide.executeJavaScript("return $('label span:contains(\"Number of renewals\")').is(':visible')") );
         Assert.assertTrue(contractInfo.getAutoRenewalState());
 
         Assert.assertEquals(contractInfo.getSubsequentTermMonths(), "1");
-        Assert.assertEquals(contractInfo.getRenewal(), "Jan 18, 2021");
+        Assert.assertEquals(contractInfo.getRenewal(), "Dec 18, 2021");
         Assert.assertEquals(contractInfo.getSubsequentTermNotification(), "1d");
-        Assert.assertEquals(contractInfo.getRenewalEmailTo(), "you@example.commy@example.com");
+        Assert.assertTrue(contractInfo.getRenewalEmailTo().contains("you@example.com") && contractInfo.getRenewalEmailTo().contains("my@example.com"));
         Assert.assertEquals(contractInfo.getNoticeOfNonRenewal(), "15");
-        Assert.assertEquals(contractInfo.getNotice(), "Feb 3, 2021");
+        Assert.assertEquals(contractInfo.getNotice(), "Dec 3, 2021");
         Assert.assertEquals(contractInfo.getNoticeNonRenewalNotification(), "1d");
-        Assert.assertEquals(contractInfo.getNoticeEmailTo(), "you@example.commy@example.com");
-        Assert.assertEquals(contractInfo.getExpirationDate(), "Feb 17, 2021");
+        Assert.assertTrue(contractInfo.getNoticeEmailTo().contains("you@example.com") && contractInfo.getNoticeEmailTo().contains("my@example.com"));
+        Assert.assertEquals(contractInfo.getExpirationDate(), "Jan 17, 2022");
         Assert.assertEquals(contractInfo.getExpirationDateNotification(), "1d");
-        Assert.assertEquals(contractInfo.getExpirationEmailTo(), "you@example.commy@example.com");
+        Assert.assertTrue(contractInfo.getExpirationEmailTo().contains("you@example.com") && contractInfo.getExpirationEmailTo().contains("my@example.com"));
 
         // Scroll to Notes field
         Selenide.executeJavaScript("$('label:contains(\"Notes\")').parent().find(\"textarea\")[0].scrollIntoView({});");
