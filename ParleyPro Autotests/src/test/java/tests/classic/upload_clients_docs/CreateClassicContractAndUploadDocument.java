@@ -73,14 +73,14 @@ public class CreateClassicContractAndUploadDocument
         {
             addDocuments.clickUploadMyTeamDocuments( new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + documentName) );
 
-            $(".spinner").waitUntil(Condition.disappear, 25_000);
+            $(".spinner").waitUntil(Condition.disappear, 60_000);
 
             if( $(".notification-stack").getText().contains("unsupported formatting attributes were found") )
             {
                 $(".notification-stack .notification__close").click(); // Close that warning popup
             }
 
-            $(".notification-stack").waitUntil(Condition.appear, 6_000).shouldHave(Condition.exactText("Document " + docNameWithoutExtension + " has been successfully uploaded."));
+            $(".notification-stack").waitUntil(Condition.appear, 60_000).shouldHave(Condition.exactText("Document " + docNameWithoutExtension + " has been successfully uploaded."));
             $(".notification-stack").waitUntil(Condition.disappear, 25_000);
 
             logger.info("Scroll to top of page...");
