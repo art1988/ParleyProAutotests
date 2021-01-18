@@ -54,7 +54,6 @@ public class ParagraphActions
 
         OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(paragraphTitle);
 
-        Waiter.smartWaitUntilVisible("$('.discussion2-original')");
         Assert.assertEquals(Integer.parseInt(openedDiscussion.getCountOfPosts()), 1); // we should see only one post
         $("div[class*='post__comment'] div").waitUntil(Condition.visible, 9_000).shouldHave(Condition.exactText(comment)); // check that comment is present
 
