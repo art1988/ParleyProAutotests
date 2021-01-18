@@ -1,6 +1,7 @@
 package tests.classic.at40;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
@@ -24,6 +25,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ ScreenShotOnFailListener.class})
@@ -68,6 +70,7 @@ public class UploadNewVersionAndCheckChanges
 
         openedContract = discussionsInContract.clickDocumentsTab();
 
+        $(".spinner").waitUntil(Condition.disappear, 10_000);
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Unused extra\")')");
     }
 
@@ -81,7 +84,8 @@ public class UploadNewVersionAndCheckChanges
         Assert.assertEquals(Selenide.executeJavaScript("return $('del').eq(0).text()"), "Paragraph 1: Hello, delete me please");
         Assert.assertEquals(Selenide.executeJavaScript("return $('del')[0].style.color"), "rgb(181, 8, 46)");
 
-        // TODO: Second paragraph was commented (after fixing). Add after fixing of PAR-12858
+        openedContract.clickByDiscussionIcon("Paragraph 2: Create comment here");
+        $(".discussion2-post__comment p").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("Hello"));
 
         logger.info("Assert that third paragraph was inserted");
         Assert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(0).text()"), "Insert paragraph");
@@ -125,11 +129,12 @@ public class UploadNewVersionAndCheckChanges
             openedContract.clickDocumentActionsMenu(documentName).clickDownload(true).clickDownloadForCounterparty();
 
             logger.info("Assert that file was downloaded [ counterparty ]...");
+            Thread.sleep(10_000);
 
             new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
                     until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), documentName + ".docx").toFile().exists());
         }
-        catch (FileNotFoundException e)
+        catch (FileNotFoundException | InterruptedException e)
         {
             logger.error("FileNotFoundException", e);
         }
