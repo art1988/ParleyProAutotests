@@ -228,8 +228,8 @@ public class StartPreSignApproval
 
             logger.info("Assert that file was downloaded...");
 
-            new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
-                    until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "pramata.pdf").toFile().exists());
+            Assert.assertTrue(new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
+                    until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "pramata.pdf").toFile().exists()));
         }
         catch (FileNotFoundException e)
         {
