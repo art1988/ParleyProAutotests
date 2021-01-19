@@ -66,8 +66,14 @@ public class CreateClassicContractAndUploadDocument
             detectedChangesForm.setCounterpartyNegotiatorEmail("cpName cpLastName (arthur.khasanov+cpat@parleypro.com)");
             detectedChangesForm.clickOk();
 
-            $(".spinner").waitUntil(Condition.disappear, 25_000);
-            $(".notification-stack").waitUntil(Condition.appear, 6_000).shouldHave(Condition.exactText("Document " + docNameWithoutExtension + " has been successfully uploaded."));
+            $(".spinner").waitUntil(Condition.disappear, 60_000);
+
+            if( $(".notification-stack").getText().contains("unsupported formatting attributes were found") )
+            {
+                $(".notification-stack .notification__close").click(); // Close that warning popup
+            }
+
+            $(".notification-stack").waitUntil(Condition.appear, 60_000).shouldHave(Condition.exactText("Document " + docNameWithoutExtension + " has been successfully uploaded."));
             $(".notification-stack").waitUntil(Condition.disappear, 25_000);
         }
         else // else move it to Negotiate status
