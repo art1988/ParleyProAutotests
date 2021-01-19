@@ -1,6 +1,8 @@
 version: 2.1
+
 orbs:
   slack: circleci/slack@4.0.2
+  
 jobs:
   runNumberedLists:
     docker:
@@ -8,7 +10,6 @@ jobs:
       
     steps:
       - checkout
-      
       - run:
           name: Run Numbered lists suite
           working_directory: "./ParleyPro Autotests"
@@ -20,7 +21,6 @@ jobs:
       
     steps:
       - checkout
-      
       - run:
           name: Run Basics suite
           working_directory: "./ParleyPro Autotests"
@@ -32,7 +32,6 @@ jobs:
       
     steps:
       - checkout
-      
       - run:
           name: Run ApprovalWorkflow suite
           working_directory: "./ParleyPro Autotests"
@@ -69,7 +68,9 @@ workflows:
   commit:
     jobs:
       - runBasics
-      - runApprovalWorkflow
+      - runApprovalWorkflow:
+          requires:
+            - runBasics
 
   runTests:
     triggers:
@@ -80,4 +81,7 @@ workflows:
               only: master
     jobs:
       - runBasics
-      - runApprovalWorkflow
+      - runApprovalWorkflow:
+          requires:
+            - runBasics
+      
