@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: circleci/openjdk:8u222-stretch-browsers
       
-      steps:
+    steps:
       - checkout
       
       - run:
@@ -18,7 +18,7 @@ jobs:
     docker:
       - image: circleci/openjdk:8u222-stretch-browsers
       
-      steps:
+    steps:
       - checkout
       
       - run:
@@ -30,7 +30,7 @@ jobs:
     docker:
       - image: circleci/openjdk:8u222-stretch-browsers
       
-      steps:
+    steps:
       - checkout
       
       - run:
