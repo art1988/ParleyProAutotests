@@ -15,13 +15,13 @@ import utils.Waiter;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class UploadContract
+public class UploadDocument
 {
-    private static Logger logger = Logger.getLogger(UploadContract.class);
+    private static Logger logger = Logger.getLogger(UploadDocument.class);
 
 
     @Test
-    public void uploadContract()
+    public void uploadDocument()
     {
         InProgressContractsPage inProgressContractsPage = new InProgressContractsPage(false);
 
