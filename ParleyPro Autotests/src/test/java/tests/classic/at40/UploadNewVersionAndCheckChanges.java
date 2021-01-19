@@ -131,8 +131,8 @@ public class UploadNewVersionAndCheckChanges
             logger.info("Assert that file was downloaded [ counterparty ]...");
             Thread.sleep(10_000);
 
-            new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
-                    until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), documentName + ".docx").toFile().exists());
+            Assert.assertTrue(new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
+                    until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), documentName + ".docx").toFile().exists()));
         }
         catch (FileNotFoundException | InterruptedException e)
         {
