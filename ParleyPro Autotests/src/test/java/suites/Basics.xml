@@ -8,7 +8,7 @@
             <class name="tests.SetupLogger"/>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.basics.AddNewContract"/>
-            <class name="tests.basics.UploadContract"/>
+            <class name="tests.basics.UploadDocument"/>
             <class name="tests.basics.ProceedThroughLifecycleStages"/>
             <class name="tests.DeleteContractFromExecuted"/>
             <class name="tests.Logout"/>
@@ -51,6 +51,30 @@
             <class name="tests.LoginToDashboard"/>
             <class name="tests.basics.CreateContractAndUploadTwoDocumentsAT61"/>
             <class name="tests.basics.DeleteAndCancelDocuments"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="PDF uploading #1" preserve-order="true">
+        <parameter name="contractName" value="Contract lifecycle autotest"/>
+        <parameter name="documentName" value="Address_as_the_ABA_president.pdf"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.basics.AddNewContract"/>
+            <class name="tests.basics.pdf_upload.UploadAndDownloadPDFDocument"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="PDF uploading #2" preserve-order="true">
+        <parameter name="contractName" value="Contract lifecycle autotest"/>
+        <parameter name="documentName" value="wiki_article.pdf"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.basics.AddNewContract"/>
+            <class name="tests.basics.pdf_upload.UploadAndDownloadPDFDocument"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
