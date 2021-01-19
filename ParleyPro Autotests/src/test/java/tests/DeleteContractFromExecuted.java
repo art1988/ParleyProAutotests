@@ -19,7 +19,7 @@ public class DeleteContractFromExecuted
 {
     private static Logger logger = Logger.getLogger(DeleteContractFromExecuted.class);
 
-    @Test(priority = 0)
+    @Test(priority = 1)
     @Parameters("contractName")
     public void deleteContractFromExecuted(String contractName)
     {
@@ -41,7 +41,7 @@ public class DeleteContractFromExecuted
         Screenshoter.makeScreenshot();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void clearDownloadFolder() throws IOException
     {
         FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
