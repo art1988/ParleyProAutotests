@@ -40,6 +40,8 @@ public class Const
 
     // Directory of docs from clients
     public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Contracts/classicClientDocs");
+    // Directory of pdf documents
+    public static final File   PDF_DOCS_DIR                  = new File(System.getProperty("user.dir") + "/Contracts/pdfDocs");
 
     // Directories
     public static final File   DOWNLOAD_DIR                  = new File(System.getProperty("user.dir") + "/Downloads");
