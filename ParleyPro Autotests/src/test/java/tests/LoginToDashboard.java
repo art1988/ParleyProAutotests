@@ -1,19 +1,20 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.FileDownloadMode;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.*;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Dimension;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.open;
 
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginToDashboard
 {
     private static Logger logger = Logger.getLogger(LoginToDashboard.class);
