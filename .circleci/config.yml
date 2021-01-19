@@ -2,122 +2,76 @@ version: 2.1
 orbs:
   slack: circleci/slack@4.0.2
 jobs:
-  build:
+  runNumberedLists:
     docker:
       - image: circleci/openjdk:8u222-stretch-browsers
       
-    steps:
+      steps:
       - checkout
       
       - run:
           name: Run Numbered lists suite
           working_directory: "./ParleyPro Autotests"
           command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/NumberedLists.xml
-
-      - run: sleep 10  
-
+          
+  runBasics:
+    docker:
+      - image: circleci/openjdk:8u222-stretch-browsers
+      
+      steps:
+      - checkout
+      
       - run:
           name: Run Basics suite
           working_directory: "./ParleyPro Autotests"
           command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
           
-      - run: sleep 10
-          
+  runApprovalWorkflow:
+    docker:
+      - image: circleci/openjdk:8u222-stretch-browsers
+      
+      steps:
+      - checkout
+      
       - run:
           name: Run ApprovalWorkflow suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ApprovalWorkflow.xml
+  
+      
+  uploadArtifacts:    
+    - store_artifacts:
+      path: "ParleyPro Autotests/allure-results.tar.gz"
           
-      - run: sleep 10
-      
-      - run: 
-          name: Run ContractRoutingWorkflow suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractRoutingWorkflow.xml
-      
-      - run: sleep 10
-      
-      - run:
-          name: Run Classic suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
-      
-      - run: sleep 10
-      
-      - run:
-          name: Run Formatting suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Formatting.xml
-      
-      - run: sleep 10
-      
-      - run:
-          name: Run Templates suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Templates.xml
+    - store_artifacts:
+      path: "ParleyPro Autotests/ScreenshotsOfFailedTests.tar.gz"
           
-      - run: sleep 10
-      
-      - run:
-          name: Run Document Sharing suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/DocumentSharing.xml
-      
-      - run: sleep 10
-      
-      - run:
-          name: Run Regression suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
-
-      - run: sleep 10
-      
-      - run: 
-          name: Run Migration suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
-
-      - run:
-          name: ZIP allure results
-          working_directory: "./ParleyPro Autotests"
-          command: tar -czvf allure-results.tar.gz ./target/allure-results
-
-      - run: 
-          name: ZIP Screenshots directory
-          working_directory: "./ParleyPro Autotests"
-          command: tar -czvf ScreenshotsOfFailedTests.tar.gz ./ScreenshotsOfFailedTests
-
-      - store_artifacts:
-          path: "ParleyPro Autotests/allure-results.tar.gz"
-          
-      - store_artifacts:
-          path: "ParleyPro Autotests/ScreenshotsOfFailedTests.tar.gz"
-          
-      - slack/notify:
-          channel: qa
-          custom: |
-            {
-              "blocks": [
+    - slack/notify:
+        channel: qa
+        custom: |
+          {
+            "blocks": [
+              {
+                "type": "section",
+                "text": 
                 {
-                  "type": "section",
-                  "text": 
-                  {
-                    "type": "mrkdwn",
-                    "text": ":warning: ParleyPro Autotests : *Failure* happened !"
-                  }
+                  "type": "mrkdwn",
+                  "text": ":warning: ParleyPro Autotests : *Failure* happened !"
                 }
-              ]
-            }
-          event: fail
+              }
+            ]
+          }
+        event: fail
           
             
 
 workflows:
   commit:
     jobs:
-      - build
+      - runBasics
+      - runApprovalWorkflow
 
-  build_and_runTests:
+  runTests:
     triggers:
       - schedule:
           cron: "0 2 * * *"
