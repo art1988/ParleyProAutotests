@@ -79,4 +79,5 @@ workflows:
             branches:
               only: master
     jobs:
-      - build
+      - runBasics
+      - runApprovalWorkflow
