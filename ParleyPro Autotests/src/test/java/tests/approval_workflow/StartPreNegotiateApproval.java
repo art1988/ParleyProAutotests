@@ -27,7 +27,7 @@ public class StartPreNegotiateApproval
 
     @Test(priority = 1)
     @Description("This test starts pre-negotiation approval. The order of approvers are: Approval_User_1, Approval_User_2")
-    public void startPreNegotiateApproval()
+    public void startPreNegotiateApproval() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();
 
@@ -43,6 +43,8 @@ public class StartPreNegotiateApproval
         confirmApproversForm.clickStartApproval();
 
         $(".header-users .user").waitUntil(Condition.appear, 25_000); // wait until users icons will appear
+        Thread.sleep(2_000);
+
         logger.info("Assert that status was changed to APPROVAL for both contract and document...");
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
 
