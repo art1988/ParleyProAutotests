@@ -59,6 +59,13 @@ public class AddDocuments
         logger.info("'Select template' tab was selected");
     }
 
+    public void clickUploadAttachmentTab()
+    {
+        $(".js-upload-attachment-tab").waitUntil(Condition.visible, 7_000).click();
+
+        logger.info("'Upload attachment' tab was selected");
+    }
+
     /**
      * Click 'Upload my team documents' button
      * @param fileToUpload
@@ -111,6 +118,23 @@ public class AddDocuments
         SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
         uploadCounterpartyDocumentsButton.uploadFile(fileToUpload);
+    }
+
+    /**
+     * Click 'UPLOAD FROM YOUR COMPUTER' button on 'Upload attachment' tab
+     * @param filesToUpload
+     */
+    public void clickUploadFromYourComputer(File[] filesToUpload)
+    {
+        // 1. make <input> visible
+        Selenide.executeJavaScript("$('.upload__button button').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+        Selenide.executeJavaScript("$('.upload__button button').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+        Selenide.executeJavaScript("$('.upload__button button').parent().parent().find(\"input\").css(\"display\",\"block\")");
+
+        // 2. trying to upload...
+        SelenideElement uploadFromYourComputerButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+        uploadFromYourComputerButton.uploadFile(filesToUpload);
     }
 
     /**
