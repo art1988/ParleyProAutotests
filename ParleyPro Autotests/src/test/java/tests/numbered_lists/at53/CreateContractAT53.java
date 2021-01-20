@@ -46,14 +46,14 @@ public class CreateContractAT53
         contractInformationForm.clickSave();
 
         // 2. UPLOAD MY TEAM DOCUMENTS
-        new AddDocuments().clickUploadMyTeamDocuments( Const.CONTRACT_NUMBERED_WITH_SUBLISTS );
+        new AddDocuments().clickUploadMyTeamDocuments( Const.DOCUMENT_NUMBERED_WITH_SUBLISTS );
 
         // Wait until document is fully loaded...
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"L0_Num_Point_1\")')");
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"L2_Bullet_3\")')");
 
         // 3. Move to Review stage
-        StartReview startReviewForm = new OpenedContract().switchDocumentToReview(FilenameUtils.removeExtension(Const.CONTRACT_NUMBERED_WITH_SUBLISTS.getName()));
+        StartReview startReviewForm = new OpenedContract().switchDocumentToReview(FilenameUtils.removeExtension(Const.DOCUMENT_NUMBERED_WITH_SUBLISTS.getName()));
 
         startReviewForm.clickStart();
 

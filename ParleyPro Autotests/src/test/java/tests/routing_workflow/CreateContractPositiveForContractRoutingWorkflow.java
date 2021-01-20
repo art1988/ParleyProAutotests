@@ -54,7 +54,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
         // 2. UPLOAD MY TEAM DOCUMENTS
         AddDocuments addDocuments = new AddDocuments();
 
-        addDocuments.clickUploadMyTeamDocuments( Const.CONTRACT_DISCUSSIONS_SAMPLE );
+        addDocuments.clickUploadMyTeamDocuments( Const.DOCUMENT_DISCUSSIONS_SAMPLE );
 
         // Wait until document is fully loaded...
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"delete me\")')");
@@ -153,7 +153,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
         AddDocuments addDocumentsPage = openedContract.clickNewDocument();
 
         // Upload Counterparty documents
-        addDocumentsPage.clickUploadCounterpartyDocuments( Const.CONTRACT_FORMATTING_SAMPLE );
+        addDocumentsPage.clickUploadCounterpartyDocuments( Const.DOCUMENT_FORMATTING_SAMPLE );
 
         logger.info("Assert upload notification...");
         $(".notification-stack").waitUntil(Condition.visible, 25_000).shouldHave(Condition.exactText("Document Formatting has been successfully uploaded."));

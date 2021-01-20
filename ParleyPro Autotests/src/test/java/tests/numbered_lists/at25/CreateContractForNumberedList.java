@@ -48,7 +48,7 @@ public class CreateContractForNumberedList
         // 2. UPLOAD MY TEAM DOCUMENTS
         AddDocuments addDocuments = new AddDocuments();
 
-        addDocuments.clickUploadMyTeamDocuments(Const.CONTRACT_NUMBERED_LIST_SAMPLE);
+        addDocuments.clickUploadMyTeamDocuments(Const.DOCUMENT_NUMBERED_LIST_SAMPLE);
 
         // Wait until document is fully loaded...
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"L0_Number_Point_1\")')");
@@ -57,7 +57,7 @@ public class CreateContractForNumberedList
         // 3. Move to Review stage
         OpenedContract openedContract = new OpenedContract();
 
-        StartReview startReviewForm = openedContract.switchDocumentToReview(FilenameUtils.removeExtension(Const.CONTRACT_NUMBERED_LIST_SAMPLE.getName()));
+        StartReview startReviewForm = openedContract.switchDocumentToReview(FilenameUtils.removeExtension(Const.DOCUMENT_NUMBERED_LIST_SAMPLE.getName()));
 
         startReviewForm.clickStart();
 

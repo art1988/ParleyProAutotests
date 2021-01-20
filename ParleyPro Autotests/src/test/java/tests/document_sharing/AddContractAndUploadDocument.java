@@ -35,7 +35,7 @@ public class AddContractAndUploadDocument
         contractInformationForm.clickSave();
 
         // 2. UPLOAD MY TEAM DOCUMENTS
-        new AddDocuments().clickUploadMyTeamDocuments( Const.CONTRACT_FORMATTING_SAMPLE );
+        new AddDocuments().clickUploadMyTeamDocuments( Const.DOCUMENT_FORMATTING_SAMPLE );
 
         // Wait until document is fully loaded...
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Times new roman bold 14 size\")')");

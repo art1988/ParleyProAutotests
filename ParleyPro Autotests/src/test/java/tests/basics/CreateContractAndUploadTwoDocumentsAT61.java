@@ -37,7 +37,7 @@ public class CreateContractAndUploadTwoDocumentsAT61
 
         // 1
         logger.info("Uploading first document (AT-40)...");
-        new AddDocuments().clickUploadMyTeamDocuments( Const.CONTRACT_CLASSIC_AT40 );
+        new AddDocuments().clickUploadMyTeamDocuments( Const.DOCUMENT_CLASSIC_AT40 );
 
         // Wait until document is fully loaded...
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"delete me\")')");
@@ -49,7 +49,7 @@ public class CreateContractAndUploadTwoDocumentsAT61
 
         // 2
         logger.info("Uploading second document (Formatting)...");
-        new OpenedContract().clickNewDocument().clickUploadMyTeamDocuments( Const.CONTRACT_FORMATTING_SAMPLE );
+        new OpenedContract().clickNewDocument().clickUploadMyTeamDocuments( Const.DOCUMENT_FORMATTING_SAMPLE );
 
         // Wait until document is fully loaded...
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Times new roman bold 14 size\")')");

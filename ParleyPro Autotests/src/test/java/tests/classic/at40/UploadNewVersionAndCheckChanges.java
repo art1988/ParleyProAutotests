@@ -43,7 +43,7 @@ public class UploadNewVersionAndCheckChanges
         OpenedContract openedContract = new OpenedContract();
 
         DocumentComparePreview comparePreview = openedContract.clickUploadNewVersionButton(documentName).
-                clickUploadCounterpartyDocument(Const.CONTRACT_CLASSIC_AT40_2, documentName, contractName);
+                clickUploadCounterpartyDocument(Const.DOCUMENT_CLASSIC_AT40_2, documentName, contractName);
 
         logger.info("Assert that counters are correct...");
         Assert.assertEquals(comparePreview.getCounterAdded(), "2");

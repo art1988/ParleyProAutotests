@@ -37,7 +37,7 @@ public class CreateContractForOnlineFormattingAT20
         // 2. UPLOAD MY TEAM DOCUMENTS
         AddDocuments addDocuments = new AddDocuments();
 
-        addDocuments.clickUploadMyTeamDocuments( Const.CONTRACT_CLASSIC_AT40 );
+        addDocuments.clickUploadMyTeamDocuments( Const.DOCUMENT_CLASSIC_AT40 );
 
         // Wait until document is fully loaded...
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"delete me\")')");

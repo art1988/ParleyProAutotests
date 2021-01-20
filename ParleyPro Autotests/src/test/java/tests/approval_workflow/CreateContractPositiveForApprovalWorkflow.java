@@ -50,7 +50,7 @@ public class CreateContractPositiveForApprovalWorkflow
         // 2. UPLOAD MY TEAM DOCUMENTS
         AddDocuments addDocuments = new AddDocuments();
 
-        addDocuments.clickUploadMyTeamDocuments( Const.CONTRACT_LIFECYCLE_SAMPLE );
+        addDocuments.clickUploadMyTeamDocuments( Const.DOCUMENT_LIFECYCLE_SAMPLE );
 
         // Wait until document is fully loaded...
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"PRAMATA\")')");

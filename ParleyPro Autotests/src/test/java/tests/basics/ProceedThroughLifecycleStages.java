@@ -29,7 +29,7 @@ import static com.codeborne.selenide.Selenide.$$;
 @Listeners({ ScreenShotOnFailListener.class})
 public class ProceedThroughLifecycleStages
 {
-    private final String DOCUMENT_NAME = FilenameUtils.removeExtension(Const.CONTRACT_LIFECYCLE_SAMPLE.getName());
+    private final String DOCUMENT_NAME = FilenameUtils.removeExtension(Const.DOCUMENT_LIFECYCLE_SAMPLE.getName());
 
 
     private static Logger logger = Logger.getLogger(ProceedThroughLifecycleStages.class);

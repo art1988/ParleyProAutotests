@@ -33,7 +33,7 @@ public class CreateContractForFormatting
         // 2. UPLOAD MY TEAM DOCUMENTS
         AddDocuments addDocuments = new AddDocuments();
 
-        addDocuments.clickUploadMyTeamDocuments(Const.CONTRACT_FORMATTING_SAMPLE);
+        addDocuments.clickUploadMyTeamDocuments(Const.DOCUMENT_FORMATTING_SAMPLE);
 
         // Wait until document is fully loaded...
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Times new roman bold 14 size\")')");

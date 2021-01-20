@@ -93,7 +93,7 @@ public class OnlineFormat
         $(".label.label_theme_lblue").waitUntil(Condition.visible, 16_000).shouldHave(Condition.exactText("FORMATTING"));
 
         DocumentComparePreview documentComparePreview = openedContract.clickDocumentActionsMenu("AT-40")
-                .clickUploadDocument().clickUploadDocumentButton( Const.CONTRACT_CLASSIC_AT40_2 );
+                .clickUploadDocument().clickUploadDocumentButton( Const.DOCUMENT_CLASSIC_AT40_2 );
 
         documentComparePreview.clickUpload(false);
     }

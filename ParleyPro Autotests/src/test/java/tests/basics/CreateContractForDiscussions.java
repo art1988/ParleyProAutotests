@@ -43,7 +43,7 @@ public class CreateContractForDiscussions
         // 2. UPLOAD MY TEAM DOCUMENTS
         AddDocuments addDocuments = new AddDocuments();
 
-        addDocuments.clickUploadMyTeamDocuments(Const.CONTRACT_DISCUSSIONS_SAMPLE);
+        addDocuments.clickUploadMyTeamDocuments(Const.DOCUMENT_DISCUSSIONS_SAMPLE);
 
         // Wait until document is fully loaded...
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"delete me\")')");
@@ -52,7 +52,7 @@ public class CreateContractForDiscussions
         // 3. Move to Review stage
         OpenedContract openedContract = new OpenedContract();
 
-        StartReview startReviewForm = openedContract.switchDocumentToReview(FilenameUtils.removeExtension(Const.CONTRACT_DISCUSSIONS_SAMPLE.getName()));
+        StartReview startReviewForm = openedContract.switchDocumentToReview(FilenameUtils.removeExtension(Const.DOCUMENT_DISCUSSIONS_SAMPLE.getName()));
 
         startReviewForm.clickStart();
 

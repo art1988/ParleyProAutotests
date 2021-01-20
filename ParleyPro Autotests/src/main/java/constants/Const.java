@@ -25,25 +25,27 @@ public class Const
 
     public static final User   EVHEN_AT50_USER               = new User("Parley", "Pro", "yevhen.uvin+at50@parleypro.com", "Parley650!");
 
-    // Contract samples
-    public static final File   CONTRACT_LIFECYCLE_SAMPLE     = new File(System.getProperty("user.dir") + "/Contracts/pramata.docx");
-    public static final File   CONTRACT_DISCUSSIONS_SAMPLE   = new File(System.getProperty("user.dir") + "/Contracts/AT-14.docx");
-    public static final File   CONTRACT_FORMATTING_SAMPLE    = new File(System.getProperty("user.dir") + "/Contracts/Formatting.docx");
-    public static final File   CONTRACT_NUMBERED_LIST_SAMPLE = new File(System.getProperty("user.dir") + "/Contracts/NumberedList.docx");
+    // Document samples
+    public static final File   DOCUMENT_LIFECYCLE_SAMPLE     = new File(System.getProperty("user.dir") + "/Documents/pramata.docx");
+    public static final File   DOCUMENT_DISCUSSIONS_SAMPLE   = new File(System.getProperty("user.dir") + "/Documents/AT-14.docx");
+    public static final File   DOCUMENT_FORMATTING_SAMPLE    = new File(System.getProperty("user.dir") + "/Documents/Formatting.docx");
+    public static final File   DOCUMENT_NUMBERED_LIST_SAMPLE = new File(System.getProperty("user.dir") + "/Documents/NumberedList.docx");
 
-    public static final File   CONTRACT_NUMBERED_WITH_SUBLISTS = new File(System.getProperty("user.dir") + "/Contracts/NumberedWithMultipleSubs.docx");
+    public static final File   DOCUMENT_NUMBERED_WITH_SUBLISTS = new File(System.getProperty("user.dir") + "/Documents/NumberedWithMultipleSubs.docx");
 
-    public static final File   CONTRACT_CLASSIC_AT40         = new File(System.getProperty("user.dir") + "/Contracts/AT-40.docx");
-    public static final File   CONTRACT_CLASSIC_AT40_2       = new File(System.getProperty("user.dir") + "/Contracts/AT-40_2.docx");
+    public static final File   DOCUMENT_CLASSIC_AT40         = new File(System.getProperty("user.dir") + "/Documents/AT-40.docx");
+    public static final File   DOCUMENT_CLASSIC_AT40_2       = new File(System.getProperty("user.dir") + "/Documents/AT-40_2.docx");
 
-    public static final File   TEMPLATE_AT48                 = new File(System.getProperty("user.dir") + "/Contracts/Template_AT48.docx");
-
-    // Directory of docs from clients
-    public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Contracts/classicClientDocs");
-    // Directory of pdf documents
-    public static final File   PDF_DOCS_DIR                  = new File(System.getProperty("user.dir") + "/Contracts/pdfDocs");
+    public static final File   TEMPLATE_AT48                 = new File(System.getProperty("user.dir") + "/Documents/Template_AT48.docx");
 
     // Directories
+    // Directory of docs from clients. Used in Classic
+    public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Documents/classicClientDocs");
+    // Directory of pdf documents. Used in Basics
+    public static final File   PDF_DOCS_DIR                  = new File(System.getProperty("user.dir") + "/Documents/pdfDocs");
+
+    public static final File   ATTACHMENTS_DOCS_DIR          = new File(System.getProperty("user.dir") + "/Documents/attachmentDocs");
+
     public static final File   DOWNLOAD_DIR                  = new File(System.getProperty("user.dir") + "/Downloads");
     // Dir for screenshots of failed tests
     public static final File   SCREENSHOTS_DIR               = new File(System.getProperty("user.dir") + "/ScreenshotsOfFailedTests");
