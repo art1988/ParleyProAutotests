@@ -45,7 +45,7 @@ public class UploadAndDownloadPDFDocument
 
         docName = documentName.substring(0, documentName.indexOf("."));
         logger.info("Assert upload notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 25_000).shouldHave(Condition.text("Document " + docName + " has been successfully uploaded."));
+        $(".notification-stack").waitUntil(Condition.visible, 25_000).shouldHave(Condition.exactText("Document " + docName + " has been successfully uploaded."));
 
         new ContractInNegotiation("Contract lifecycle autotest").clickOk();
 
