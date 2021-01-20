@@ -67,6 +67,7 @@ public class CreateClassicContractAndUploadDocument
             detectedChangesForm.clickOk();
 
             $(".spinner").waitUntil(Condition.disappear, 60_000);
+            $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
 
             if( $(".notification-stack").getText().contains("unsupported formatting attributes were found") )
             {
@@ -81,6 +82,7 @@ public class CreateClassicContractAndUploadDocument
             addDocuments.clickUploadMyTeamDocuments( new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + documentName) );
 
             $(".spinner").waitUntil(Condition.disappear, 60_000);
+            $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
 
             if( $(".notification-stack").getText().contains("unsupported formatting attributes were found") )
             {
