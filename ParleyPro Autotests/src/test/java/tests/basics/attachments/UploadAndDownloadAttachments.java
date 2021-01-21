@@ -1,21 +1,24 @@
 package tests.basics.attachments;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.*;
 import constants.Const;
+import forms.DeleteAttachment;
 import io.qameta.allure.Description;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
+import pages.AuditTrail;
 import pages.InProgressContractsPage;
+import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Paths;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -75,14 +78,58 @@ public class UploadAndDownloadAttachments
             }
             catch (FileNotFoundException | InterruptedException e)
             {
-                logger.error("FileNotFoundException", e);
+                logger.error("FileNotFoundException or InterruptedException", e);
             }
         }
     }
 
     @Test(priority = 3)
-    public void deleteFirstAttachment()
+    @Description("This test deletes attachment that ends with .doc")
+    public void deleteAttachment() throws InterruptedException
     {
+        for( int i = 0; i < 3; i++ )
+        {
+            SelenideElement attachment = $$(".supporting-documents__list .supporting-documents__document .supporting-documents__document-name").get(i);
 
+            if( attachment.getText().endsWith(".doc") )
+            {
+                attachment.parent().parent().hover().find(".supporting-documents__document-remove").click();
+                new DeleteAttachment(attachment.getText()).clickDelete();
+
+                Thread.sleep(3_000);
+
+                logger.info("Checking that only 2 attachments are present in the list...");
+                $$(".supporting-documents__document.allow_download").shouldHave(CollectionCondition.size(2));
+
+                Screenshoter.makeScreenshot();
+
+                return;
+            }
+        }
+
+        Assert.fail("Attachment with .doc wasn't found !");
+    }
+
+    @Test(priority = 4)
+    public void checkAuditTrail()
+    {
+        AuditTrail auditTrail = new OpenedContract().clickAuditTrail();
+
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.timeline-title').text()"),
+                "Attachment DeletedAttachment UploadedAttachment UploadedAttachment UploadedContract taggedContract created");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.timeline-title:contains(\"Attachment Deleted\")').parent().parent().find(\".timeline-body\").text()"),
+                "Document name: file-sample_100kB.doc");
+        $$(".timeline-title").filter(Condition.exactText("Attachment Uploaded")).shouldHave(CollectionCondition.size(3));
+
+        Screenshoter.makeScreenshot();
+
+        auditTrail.clickOk();
+    }
+
+    @Test(priority = 5)
+    @Description("This test clean up download dir")
+    public void cleanUpDownloadDir() throws IOException
+    {
+        FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
     }
 }
