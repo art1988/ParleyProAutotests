@@ -79,4 +79,15 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="Attachments: upload and download" preserve-order="true">
+        <parameter name="contractName" value="Contract lifecycle autotest"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.basics.AddNewContract"/>
+            <class name="tests.basics.attachments.UploadAndDownloadAttachments"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
