@@ -22,6 +22,7 @@ public class OpenedContract
     private SelenideElement actionsMenu           = $(".contract-header__menu .actions-menu button");
 
     private SelenideElement approveDocumentButton  = $("#APPROVE_DOCUMENT");
+    private SelenideElement rejectDocumentButton   = $("#REJECT_DOCUMENT");
     private SelenideElement uploadNewVersionButton = $("#UPLOAD_VERSION_DOCUMENT");
 
     private SelenideElement newDocumentButton     = $("button[tooltip='Add new document']");
@@ -166,6 +167,15 @@ public class OpenedContract
         logger.info("Approve button was clicked");
 
         return new ApproveDocument(documentName);
+    }
+
+    public RejectDocument clickRejectButton(String documentName)
+    {
+        rejectDocumentButton.click();
+
+        logger.info("Reject button was clicked");
+
+        return new RejectDocument(documentName);
     }
 
     public UploadNewVersionOfDocument clickUploadNewVersionButton(String documentName)
