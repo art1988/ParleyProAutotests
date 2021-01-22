@@ -68,14 +68,6 @@ public class CreateClassicContractAndUploadDocument
 
             $(".spinner").waitUntil(Condition.disappear, 60_000);
             $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
-
-            if( $(".notification-stack").getText().contains("unsupported formatting attributes were found") )
-            {
-                $(".notification-stack .notification__close").click(); // Close that warning popup
-            }
-
-            $(".notification-stack").waitUntil(Condition.appear, 60_000).shouldHave(Condition.exactText("Document " + docNameWithoutExtension + " has been successfully uploaded."));
-            $(".notification-stack").waitUntil(Condition.disappear, 25_000);
         }
         else // else move it to Negotiate status
         {
@@ -83,14 +75,7 @@ public class CreateClassicContractAndUploadDocument
 
             $(".spinner").waitUntil(Condition.disappear, 60_000);
             $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
-
-            if( $(".notification-stack").getText().contains("unsupported formatting attributes were found") )
-            {
-                $(".notification-stack .notification__close").click(); // Close that warning popup
-            }
-
-            $(".notification-stack").waitUntil(Condition.appear, 60_000).shouldHave(Condition.exactText("Document " + docNameWithoutExtension + " has been successfully uploaded."));
-            $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+            Thread.sleep(2_000);
 
             logger.info("Scroll to top of page...");
             Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,0)");
@@ -105,9 +90,6 @@ public class CreateClassicContractAndUploadDocument
 
             emailWillBeSentToTheCounterpartyForm.clickStart();
 
-            logger.info("Assert visible to the counterparty notification...");
-            $(".notification-stack").waitUntil(Condition.visible, 10_000).shouldHave(Condition.exactText("Contract Classic contract - client docs is now in negotiation. No notification was sent to the Counterparty."));
-
             logger.info("Assert that status was changed to NEGOTIATE...");
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("NEGOTIATE\n(1)", "NEGOTIATE"));
 
@@ -115,6 +97,19 @@ public class CreateClassicContractAndUploadDocument
             $(".label_theme_orange").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("WITH MY TEAM"));
 
             Screenshoter.makeScreenshot();
+        }
+    }
+
+    @Test(priority = 2)
+    public void closeNotificationsPopups()
+    {
+        // close all notification popups if they are present
+        if( $(".notification-stack").is(Condition.visible) )
+        {
+            for( int i = 0; i < $$(".notification-stack .notification-stack__item").size(); i++ )
+            {
+                $$(".notification-stack .notification-stack__item").get(i).find(".notification__close").click();
+            }
         }
     }
 }
