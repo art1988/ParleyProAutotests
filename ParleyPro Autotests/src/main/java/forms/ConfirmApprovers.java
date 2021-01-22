@@ -37,6 +37,8 @@ public class ConfirmApprovers
     public void deleteApprover(String approverName)
     {
         Selenide.executeJavaScript("$('.document-approval__user-info:contains(\"" + approverName + "\")').next().find(\".document-approval__user-remove\").click()");
+
+        logger.info("The following approver was deleted " + approverName);
     }
 
     public void switchTumblerSetApprovalOrder()
