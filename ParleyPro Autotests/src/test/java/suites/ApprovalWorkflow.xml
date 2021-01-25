@@ -44,6 +44,19 @@
             <class name="tests.approval_workflow.StartPreNegotiateApproval"/>
             <class name="tests.approval_workflow.StartPreSignApproval"/>
             <class name="tests.approval_workflow.CleanUp"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Approval rejection" preserve-order="true">
+        <parameter name="contractName" value="Approval rejection contract"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.approval_workflow.reject.CreateContractAndStartApproval"/>
+            <class name="tests.approval_workflow.reject.LoginAsApproverAndReject"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.approval_workflow.reject.RemoveWorkflowAndTeams"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
