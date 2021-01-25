@@ -21,9 +21,11 @@ public class RejectDocument
         rejectButton.waitUntil(Condition.visible, 7_000);
     }
 
-    public void setComments(String comment)
+    public void setComments(String comment) throws InterruptedException
     {
         commentsTextArea.sendKeys(comment);
+
+        Thread.sleep(500);
     }
 
     public void clickReject()
