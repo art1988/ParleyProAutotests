@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class AcceptPost
 {
-    private AcceptTypes acceptType;
     private SelenideElement acceptTextButton = $(".js-discssion-accept-confirm");
 
 
@@ -20,8 +19,6 @@ public class AcceptPost
 
     public AcceptPost(AcceptTypes acceptType)
     {
-        this.acceptType = acceptType;
-
         $(".modal-title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText(acceptType.getTitle()));
         $(".modal-description").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText(acceptType.getMessage()));
     }
