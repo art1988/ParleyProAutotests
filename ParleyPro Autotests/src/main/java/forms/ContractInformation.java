@@ -54,7 +54,7 @@ public class ContractInformation
         $(".contract-create__title").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("Contract information"));
 
         // wait until spinner disappears - that will indicate that form is fully loaded
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".spinner").waitUntil(Condition.disappear, 25_000);
 
         return ( contractTitleField.isDisplayed() );
     }
