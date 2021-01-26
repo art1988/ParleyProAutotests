@@ -12,4 +12,15 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-70: Bumblebee Foods: text that is entered is only visible in the discussion pop-out, not in the document" preserve-order="true">
+        <parameter name="contractName" value="Paste two paragraphs"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at70.CreateContract"/>
+            <class name="tests.regression.at70.PasteTextOverParagraph"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
