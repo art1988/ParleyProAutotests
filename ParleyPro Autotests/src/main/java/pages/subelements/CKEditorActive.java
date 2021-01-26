@@ -25,7 +25,7 @@ public class CKEditorActive
     }
 
     /**
-     * Sets text inside active CKEDITOR
+     * Sets text inside active CKEDITOR via insertText() method
      * @param text
      */
     public void setText(String text) throws InterruptedException
@@ -39,6 +39,27 @@ public class CKEditorActive
         jsCode.append("var editor_instance = names[0];");
         jsCode.append("var comment_instance = names[1];");
         jsCode.append("editor_instance.insertText('" + text + "')");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        Thread.sleep(1_000); // 1 second delay - necessary for correct saving of text
+    }
+
+    /**
+     * Sets html text inside active CKEDITOR via insertHtml() method
+     * @param htmlText
+     */
+    public void insertHtml(String htmlText) throws InterruptedException
+    {
+        Waiter.smartWaitUntilVisible("$('.editor-area').eq(1)");
+
+        Thread.sleep(1_000);
+
+        StringBuffer jsCode = new StringBuffer("var names = [];");
+        jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
+        jsCode.append("var editor_instance = names[0];");
+        jsCode.append("var comment_instance = names[1];");
+        jsCode.append("editor_instance.insertHtml('" + htmlText + "')");
 
         Selenide.executeJavaScript(jsCode.toString());
 
