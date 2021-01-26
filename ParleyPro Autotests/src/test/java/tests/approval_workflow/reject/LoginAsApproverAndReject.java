@@ -37,8 +37,7 @@ public class LoginAsApproverAndReject
         InProgressContractsPage inProgressContractsPage = dashboardPage.getSideBar().clickInProgressContracts(false);
 
         inProgressContractsPage.selectContract("Approval rejection contract");
-        OpenedContract openedContract = new OpenedContract();
-        logger.info("Assert that Approve and Reject buttons are not present...");
+        logger.info("Checking that [Approve] and [Reject] buttons are present...");
 
         Thread.sleep(3_000);
 
@@ -47,15 +46,15 @@ public class LoginAsApproverAndReject
                 rejectButtonDoesntExist  = Selenide.executeJavaScript("return ($('#REJECT_DOCUMENT').length === 0)");
         Assert.assertFalse(approveButtonDoesntExist && rejectButtonDoesntExist);
 
-        RejectDocument rejectDocument = openedContract.clickRejectButton("pramata");
+        RejectDocument rejectDocumentForm = new OpenedContract().clickRejectButton("pramata");
 
         logger.info("Assert that REJECT button is disabled without comment...");
         Assert.assertTrue($(".button.btn-common.btn.btn-primary").is(Condition.disabled));
         Assert.assertTrue(Selenide.executeJavaScript("return $('.button.btn-common.btn.btn-primary')[0].hasAttribute(\"disabled\")"));
 
         String rejectComment = "This is simple comment to make reject button available.";
-        rejectDocument.setComments(rejectComment);
-        rejectDocument.clickReject();
+        rejectDocumentForm.setComments(rejectComment);
+        rejectDocumentForm.clickReject();
 
         Screenshoter.makeScreenshot();
 
