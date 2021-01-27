@@ -23,4 +23,14 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-46: 3Q Numbering" preserve-order="true">
+        <parameter name="contractName" value="3Q Numbering Contract based on template"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at46.CreateTemplateAndDocumentAndCheckNumber"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
