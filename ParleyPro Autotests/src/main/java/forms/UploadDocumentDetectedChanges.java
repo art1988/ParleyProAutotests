@@ -21,6 +21,7 @@ public class UploadDocumentDetectedChanges
 
     public UploadDocumentDetectedChanges()
     {
+        $(".select__loading").waitUntil(Condition.disappear, 7_000);
         $(".modal-body-title").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Upload document"));
         $(".modal-body-description").waitUntil(Condition.visible, 7_000)
                 .shouldHave(Condition.exactText("We detected changes in the document. Parley Pro will create discussions based on these changes."));
@@ -28,12 +29,16 @@ public class UploadDocumentDetectedChanges
 
     public void setCounterpartyOrganization(String cpOrganization)
     {
+        cpOrganizationField.clear();
         cpOrganizationField.sendKeys(cpOrganization);
+        cpOrganizationField.pressEnter();
     }
 
     public void setCounterpartyNegotiatorEmail(String cpNegotiatorEmail)
     {
+        cpNegotiatorEmailField.clear();
         cpNegotiatorEmailField.sendKeys(cpNegotiatorEmail);
+        cpNegotiatorEmailField.pressEnter();
     }
 
     public void clickOk()

@@ -24,6 +24,8 @@ public class EmailWillBeSentToTheCounterparty
 
     public EmailWillBeSentToTheCounterparty(boolean isClassic)
     {
+        $(".select__loading").waitUntil(Condition.disappear, 7_000);
+
         if( isClassic )
         {
             title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("The Counterparty information is missing."));
@@ -56,6 +58,8 @@ public class EmailWillBeSentToTheCounterparty
         startButton.click();
 
         logger.info("Start button was clicked");
+
+        title.waitUntil(Condition.disappear, 15_000);
     }
 
 }
