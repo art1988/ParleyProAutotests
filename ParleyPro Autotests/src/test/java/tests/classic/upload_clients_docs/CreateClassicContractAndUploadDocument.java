@@ -63,7 +63,7 @@ public class CreateClassicContractAndUploadDocument
             UploadDocumentDetectedChanges detectedChangesForm = addDocuments.clickUploadMyTeamDocumentsWithDetectedChanges( new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + documentName) );
 
             detectedChangesForm.setCounterpartyOrganization("CounterpartyAT");
-            detectedChangesForm.setCounterpartyNegotiatorEmail("cpName cpLastName (arthur.khasanov+cpat@parleypro.com)");
+            detectedChangesForm.setCounterpartyNegotiatorEmail("arthur.khasanov+cpat@parleypro.com");
             detectedChangesForm.clickOk();
 
             $(".spinner").waitUntil(Condition.disappear, 60_000);
@@ -85,7 +85,6 @@ public class CreateClassicContractAndUploadDocument
             EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext(true);
 
             emailWillBeSentToTheCounterpartyForm.setCounterpartyOrganization("CounterpartyAT");
-            Thread.sleep(1_000);
             emailWillBeSentToTheCounterpartyForm.setCounterpartyChiefNegotiator("arthur.khasanov+cpat@parleypro.com");
 
             emailWillBeSentToTheCounterpartyForm.clickStart();
