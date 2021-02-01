@@ -3,6 +3,7 @@ package forms;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -39,18 +40,26 @@ public class EmailWillBeSentToTheCounterparty
         counterpartyChiefNegotiatorField.waitUntil(Condition.visible, 6_000);
     }
 
-    public void setCounterpartyOrganization(String organization)
+    public void setCounterpartyOrganization(String organization) throws InterruptedException
     {
         counterpartyOrganizationField.clear();
         counterpartyOrganizationField.sendKeys(organization);
+        Thread.sleep(500);
+        counterpartyOrganizationField.sendKeys(Keys.DOWN);
+        Thread.sleep(500);
         counterpartyOrganizationField.pressEnter();
+        Thread.sleep(500);
     }
 
-    public void setCounterpartyChiefNegotiator(String chiefNegotiator)
+    public void setCounterpartyChiefNegotiator(String chiefNegotiator) throws InterruptedException
     {
         counterpartyChiefNegotiatorField.clear();
         counterpartyChiefNegotiatorField.sendKeys(chiefNegotiator);
+        Thread.sleep(500);
+        counterpartyChiefNegotiatorField.sendKeys(Keys.DOWN);
+        Thread.sleep(500);
         counterpartyChiefNegotiatorField.pressEnter();
+        Thread.sleep(500);
     }
 
     public void clickStart()

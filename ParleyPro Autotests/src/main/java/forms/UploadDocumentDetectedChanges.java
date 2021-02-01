@@ -1,10 +1,9 @@
 package forms;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -27,18 +26,26 @@ public class UploadDocumentDetectedChanges
                 .shouldHave(Condition.exactText("We detected changes in the document. Parley Pro will create discussions based on these changes."));
     }
 
-    public void setCounterpartyOrganization(String cpOrganization)
+    public void setCounterpartyOrganization(String cpOrganization) throws InterruptedException
     {
         cpOrganizationField.clear();
         cpOrganizationField.sendKeys(cpOrganization);
+        Thread.sleep(500);
+        cpOrganizationField.sendKeys(Keys.DOWN);
+        Thread.sleep(500);
         cpOrganizationField.pressEnter();
+        Thread.sleep(500);
     }
 
-    public void setCounterpartyNegotiatorEmail(String cpNegotiatorEmail)
+    public void setCounterpartyNegotiatorEmail(String cpNegotiatorEmail) throws InterruptedException
     {
         cpNegotiatorEmailField.clear();
         cpNegotiatorEmailField.sendKeys(cpNegotiatorEmail);
+        Thread.sleep(500);
+        cpNegotiatorEmailField.sendKeys(Keys.DOWN);
+        Thread.sleep(500);
         cpNegotiatorEmailField.pressEnter();
+        Thread.sleep(500);
     }
 
     public void clickOk()
