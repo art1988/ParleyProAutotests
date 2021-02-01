@@ -39,6 +39,8 @@ public class Const
     public static final File   TEMPLATE_AT48                 = new File(System.getProperty("user.dir") + "/Documents/Template_AT48.docx");
     public static final File   REGRESSION_DOC_AT70           = new File(System.getProperty("user.dir") + "/Documents/Numbered_manual testing MAIN short.docx");
     public static final File   REGRESSION_TEMPLATE_AT46      = new File(System.getProperty("user.dir") + "/Documents/Template_Regression_AT_46.docx");
+    public static final File   REGRESSION_DOC_AT75_V1        = new File(System.getProperty("user.dir") + "/Documents/MSW_v1.docx");
+    public static final File   REGRESSION_DOC_AT75_V2        = new File(System.getProperty("user.dir") + "/Documents/MSW_v2.docx");
 
     // Directories
     // Directory of docs from clients. Used in Classic
