@@ -62,6 +62,10 @@ public class EmailWillBeSentToTheCounterparty
         Thread.sleep(500);
     }
 
+    /**
+     * Click START button.
+     * Or this button may have SEND name in case if Send Invite button was clicked.
+     */
     public void clickStart()
     {
         startButton.click();
