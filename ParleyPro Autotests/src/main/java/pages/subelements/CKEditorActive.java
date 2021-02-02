@@ -3,6 +3,7 @@ package pages.subelements;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import forms.StartExternalDiscussion;
 import org.apache.log4j.Logger;
 import utils.Waiter;
 
@@ -92,7 +93,7 @@ public class CKEditorActive
      */
     public void selectInternal()
     {
-        Selenide.executeJavaScript("$('.create-discussion__states label:contains(\"Internal\")').parent().find(\"input\").click()");
+        Selenide.executeJavaScript("$('.create-discussion__states input[id^=\"INT\"]').next().click()");
 
         logger.info("Internal radio button was selected...");
     }
@@ -102,7 +103,7 @@ public class CKEditorActive
      */
     public void selectQueued()
     {
-        Selenide.executeJavaScript("$('.create-discussion__states label:contains(\"Que\")').parent().find(\"input\").click()");
+        Selenide.executeJavaScript("$('.create-discussion__states input[id^=\"QUE\"]').next().click()");
 
         logger.info("Queued radio button was selected...");
     }
@@ -112,15 +113,33 @@ public class CKEditorActive
      */
     public void selectExternal()
     {
-        Selenide.executeJavaScript("$('.create-discussion__states label:contains(\"Exter\")').parent().find(\"input\").click()");
+        Selenide.executeJavaScript("$('.create-discussion__states input[id^=\"EXT\"]').next().click()");
 
         logger.info("External radio button was selected...");
     }
 
+    /**
+     * Use this method to post Internal or Queued discussion
+     */
     public void clickPost()
     {
         postButton.waitUntil(Condition.enabled, 6_000).click();
 
         logger.info("POST button was clicked...");
+    }
+
+    /**
+     * Use this method to post External discussion
+     * @param text
+     * @param cpOrganization
+     * @return
+     */
+    public StartExternalDiscussion clickPost(String text, String cpOrganization)
+    {
+        postButton.waitUntil(Condition.enabled, 6_000).click();
+
+        logger.info("POST button was clicked...");
+
+        return new StartExternalDiscussion(text, cpOrganization);
     }
 }
