@@ -19,6 +19,8 @@ public class ContractInformation
 {
     private SelenideElement contractTitleField         = $("input[inputid='contractTitle']");
     private SelenideElement contractValueField         = $("#contractValue");
+    private SelenideElement cpOrganizationField        = $("#counterpartyOrganization");
+    private SelenideElement cpChiefNegotiatorField     = $("#counterpartyChiefNegotiator");
     private SelenideElement contractingRegionField     = $("#contractingRegion");
     private SelenideElement contractingCountryField    = $("#contractingCountry");
     private SelenideElement contractEntityField        = $("#contractEntity");
@@ -137,6 +139,16 @@ public class ContractInformation
     public String getMyCompanyTemplateRadioButtonSelection()
     {
         return Selenide.executeJavaScript("return $('.radio-group__label:contains(\"My company template\")').next().find(\"input[checked]\").next().text()");
+    }
+
+    public void setCounterpartyOrganization(String cpOrganization)
+    {
+        cpOrganizationField.setValue(cpOrganization);
+    }
+
+    public void setCounterpartyChiefNegotiator(String cpChiefNegotiator)
+    {
+        cpChiefNegotiatorField.setValue(cpChiefNegotiator);
     }
 
     public void setContractingRegion(String region)
