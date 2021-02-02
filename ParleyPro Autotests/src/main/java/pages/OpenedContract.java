@@ -21,6 +21,8 @@ public class OpenedContract
     private SelenideElement contractInfoButton    = $("#contract-info-action");
     private SelenideElement actionsMenu           = $(".contract-header__menu .actions-menu button");
 
+    private SelenideElement sendInviteButton      = $("._button.scheme_blue.size_tier2");
+
     private SelenideElement approveDocumentButton  = $("#APPROVE_DOCUMENT");
     private SelenideElement rejectDocumentButton   = $("#REJECT_DOCUMENT");
     private SelenideElement uploadNewVersionButton = $("#UPLOAD_VERSION_DOCUMENT");
@@ -295,6 +297,15 @@ public class OpenedContract
         Selenide.executeJavaScript("$('.document__header-row span:contains(\"" + documentName + "\")').parent().parent().parent().find(\"div[class='document__menu']\").find(\"button\").click()");
 
         return new DocumentActionsMenu(documentName);
+    }
+
+    public SendInvitation clickSendInvite()
+    {
+        sendInviteButton.click();
+
+        logger.info("SEND INVITE button was clicked");
+
+        return new SendInvitation(contractName.text());
     }
 
     /**
