@@ -84,9 +84,10 @@ public class UploadAndDownloadPDFDocument
         try
         {
             openedContract.clickDocumentActionsMenu(docName).clickDownload(false);
+            $(".spinner").waitUntil(Condition.disappear, 20_000);
 
             logger.info("Assert that file was downloaded...");
-            Thread.sleep(10_000);
+            Thread.sleep(1_000);
 
             FilenameFilter filter = (f, name) -> name.endsWith(".pdf");
             String[] pathnames = Const.DOWNLOAD_DIR.list(filter);
