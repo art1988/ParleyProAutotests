@@ -55,6 +55,6 @@ public class EditTemplatePage
 
         logger.info("PUBLISH button was clicked");
 
-        $(".modal-content").waitUntil(Condition.disappear, 10_000);
+        $(".modal-content").waitUntil(Condition.disappear, 25_000);
     }
 }
