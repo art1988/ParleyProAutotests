@@ -42,6 +42,9 @@ public class Const
     public static final File   REGRESSION_DOC_AT75_V1        = new File(System.getProperty("user.dir") + "/Documents/MSW_v1.docx");
     public static final File   REGRESSION_DOC_AT75_V2        = new File(System.getProperty("user.dir") + "/Documents/MSW_v2.docx");
 
+    public static final File   REGRESSION_IMG_DOC            = new File(System.getProperty("user.dir") + "/Documents/imgDocs/image.docx");
+    public static final File   REGRESSION_TEXT_AND_IMG_DOC   = new File(System.getProperty("user.dir") + "/Documents/imgDocs/text_and_image.docx");
+
     // Directories
     // Directory of docs from clients. Used in Classic
     public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Documents/classicClientDocs");
