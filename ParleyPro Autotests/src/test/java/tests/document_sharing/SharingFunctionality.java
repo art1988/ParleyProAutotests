@@ -51,7 +51,8 @@ public class SharingFunctionality
 
         logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
         Thread.sleep(15_000);
-        EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),
+                "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
 
         logger.info("Assert that status was changed to REVIEW after sharing...");
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("REVIEW\n(1)", "REVIEW"));
@@ -65,7 +66,8 @@ public class SharingFunctionality
 
         logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
         Thread.sleep(15_000);
-        EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),
+                "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
 
         // Add second user [USER2] - MARY
         String emailMessage = "This is special message for Mary.";
@@ -77,7 +79,7 @@ public class SharingFunctionality
 
         logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
         Thread.sleep(15_000);
-        EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Lead");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Lead"), "Email with subject: Role assignment: Lead was not found !!!");
         EmailChecker.assertEmailBodyText("*Message:* " + emailMessage);
 
 
@@ -90,7 +92,8 @@ public class SharingFunctionality
 
         logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
         Thread.sleep(15_000);
-        EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),
+                "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
 
         Screenshoter.makeScreenshot();
 
@@ -124,10 +127,10 @@ public class SharingFunctionality
         logger.info("Waiting for 15 seconds to make sure that emails were sent to users...");
         Thread.sleep(15_000);
 
-        EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request");
-        EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Lead");
-
-        Selenide.refresh(); // TODO: remove after fixing of PAR-13216
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),
+                "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Lead"),
+                "Email with subject: Role assignment: Lead was not found !!!");
 
         // 3
         logger.info("Hovering over all icons in document header...");

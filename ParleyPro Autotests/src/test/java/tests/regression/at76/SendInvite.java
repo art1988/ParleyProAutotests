@@ -38,7 +38,8 @@ public class SendInvite
         logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
         Thread.sleep(15_000);
 
-        EmailChecker.assertEmailBySubject(host, username, password, "[qa-autotests] autotest_cn fn ln shared contract \"APLL: 50 emails\" with you");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "[qa-autotests] autotest_cn fn ln shared contract \"APLL: 50 emails\" with you"),
+                "Email with subject: [qa-autotests] autotest_cn fn ln shared contract \"APLL: 50 emails\" with you was not found !!!");
 
         logger.info("Assert that there is no more SEND INVITE button...");
         $("._button.scheme_blue.size_tier2").should(Condition.disappear);

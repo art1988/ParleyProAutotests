@@ -77,7 +77,8 @@ public class AddNewUserTest
             logger.error("InterruptedException", e);
         }
 
-        EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Requester");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Requester"),
+                "Email with subject: Role assignment: Requester was not found !!!");
     }
 
     @Test(priority = 3)
@@ -102,7 +103,8 @@ public class AddNewUserTest
             logger.error("InterruptedException", e);
         }
 
-        EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Chief Negotiator");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Chief Negotiator"),
+                "Email with subject: Role assignment: Chief Negotiator was not found !!!");
     }
 
     @Test(priority = 4)
@@ -130,7 +132,8 @@ public class AddNewUserTest
             logger.error("InterruptedException", e);
         }
 
-        EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Contract Manager");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Contract Manager"),
+                "Email with subject: Role assignment: Contract Manager was not found !!!");
     }
 
     @Test(priority = 5)

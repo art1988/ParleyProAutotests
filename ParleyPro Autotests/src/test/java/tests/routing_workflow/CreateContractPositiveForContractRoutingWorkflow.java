@@ -192,7 +192,8 @@ public class CreateContractPositiveForContractRoutingWorkflow
         logger.info("Check that email with 'Role assignment: Lead' subject was received...");
         logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
         Thread.sleep(15_000);
-        EmailChecker.assertEmailBySubject("imap.gmail.com", "arthur.khasanov@parleypro.com", "ParGd881", "Role assignment: Lead");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject("imap.gmail.com", "arthur.khasanov@parleypro.com", "ParGd881", "Role assignment: Lead"),
+                "Email with subject: Role assignment: Lead was not found !!!");
     }
 
     @Test(priority = 6)

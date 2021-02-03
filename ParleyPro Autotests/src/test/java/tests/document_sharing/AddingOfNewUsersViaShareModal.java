@@ -59,8 +59,10 @@ public class AddingOfNewUsersViaShareModal
 
         logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
         Thread.sleep(15_000);
-        EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Lead");
-        EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Lead"),
+                "Email with subject: Role assignment: Lead was not found !!!");
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),
+                "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
 
         logger.info("Check user icons in document header...");
         $(".header-users .user").waitUntil(Condition.appear, 25_000); // wait until users icons will appear
