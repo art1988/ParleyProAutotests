@@ -75,11 +75,11 @@ public class CreateClassicContractAndUploadDocument
 
             $(".spinner").waitUntil(Condition.disappear, 60_000);
             $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
-            Thread.sleep(2_000);
+            Thread.sleep(4_000);
 
             logger.info("Scroll to top of page...");
             Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,0)");
-            Thread.sleep(1_000);
+            Thread.sleep(3_000);
 
             StartNegotiation startNegotiationForm = new OpenedContract().switchDocumentToNegotiate(docNameWithoutExtension, true);
             EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext(true);
