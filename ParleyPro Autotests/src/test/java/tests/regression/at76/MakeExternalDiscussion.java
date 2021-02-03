@@ -62,7 +62,7 @@ public class MakeExternalDiscussion
     @Description("This test checks that no other emails were sent to CCN")
     public void checkThatNoEmailsWereSent()
     {
-        logger.info("Assert that CCN wasn't received email with subject [qa-autotests] autotest_cn fn ln shared contract \"APLL: 50 emails\" with you...");
+        logger.info("Assert that CCN didn't received email with subject [qa-autotests] autotest_cn fn ln shared contract \"APLL: 50 emails\" with you...");
 
         try
         {
