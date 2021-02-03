@@ -2,6 +2,7 @@ package tests.regression.at76;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -9,6 +10,7 @@ import org.testng.annotations.Test;
 import pages.AuditTrail;
 import pages.OpenedContract;
 import pages.subelements.CKEditorActive;
+import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -17,9 +19,14 @@ import static com.codeborne.selenide.Selenide.$;
 @Listeners({ScreenShotOnFailListener.class})
 public class MakeExternalDiscussion
 {
+    private String host     = "imap.gmail.com";
+    private String username = "arthur.khasanov@parleypro.com";
+    private String password = "ParGd881";
+
     private static Logger logger = Logger.getLogger(MakeExternalDiscussion.class);
 
     @Test(priority = 1)
+    @Description("This test makes new external discussion for Paragraph 2")
     public void makeExternalDiscussion() throws InterruptedException
     {
         String paragraph = "Paragraph 2: Create comment here";
@@ -49,5 +56,25 @@ public class MakeExternalDiscussion
         Screenshoter.makeScreenshot();
 
         auditTrailPage.clickOk();
+    }
+
+    @Test(priority = 3)
+    @Description("This test checks that no other emails were sent to CCN")
+    public void checkThatNoEmailsWereSent()
+    {
+        logger.info("Assert that CCN wasn't received email with subject [qa-autotests] autotest_cn fn ln shared contract \"APLL: 50 emails\" with you...");
+
+        try
+        {
+            logger.info("Waiting for 15 seconds...");
+            Thread.sleep(15_000);
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
+
+        Assert.assertFalse(EmailChecker.assertEmailBySubject(host, username, password, "[qa-autotests] autotest_cn fn ln shared contract \"APLL: 50 emails\" with you"),
+                "Email with subject: [qa-autotests] autotest_cn fn ln shared contract \"APLL: 50 emails\" with you was found, but shouldn't !!!");
     }
 }
