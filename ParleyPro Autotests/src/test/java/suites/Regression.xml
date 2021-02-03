@@ -44,4 +44,16 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-76: PROD ISSUE: APLL: ~50 emails sent to user" preserve-order="true">
+        <parameter name="contractName" value="APLL: 50 emails"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at76.CreateContractAndUploadDoc"/>
+            <class name="tests.regression.at76.SendInvite"/>
+            <class name="tests.regression.at76.MakeExternalDiscussion"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
