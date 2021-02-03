@@ -8,7 +8,7 @@ public class Const
 {
     // Tenants
     public static final String QA_TENANT_URL                 = "https://qa-autotests.parleypro.net/master/index.html";
-    public static final String PROD_TENANT_URL               = "https://qa-autotests.parleypro.com";
+    public static final String PROD_TENANT_URL               = "https://qa-autotests.parleypro.com/index.html";
     public static final String AT50_TENANT_URL               = "https://at50.parleypro.net/master/index.html";
     public static final String RC_TENANT_URL                 = "https://qa-autotests.parleypro.net/rc/index.html";
 
