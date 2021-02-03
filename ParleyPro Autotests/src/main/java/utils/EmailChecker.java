@@ -19,13 +19,17 @@ public class EmailChecker
 
     /**
      * Helper method that finds email by subject in Gmail Inbox folder and asserts subject.
+     * After that email will be deleted.
      * @param host
      * @param user
      * @param password
      * @param emailSubject subject of email that need to be verified
+     * @return true in case if email was found, false otherwise
      */
-    public static void assertEmailBySubject(String host, String user, String password, String emailSubject)
+    public static boolean assertEmailBySubject(String host, String user, String password, String emailSubject)
     {
+        boolean found = false;
+
         try
         {
             Properties properties = new Properties();
@@ -56,7 +60,6 @@ public class EmailChecker
                 }
             } );
 
-            boolean found = false;
             for ( Message message : messages )
             {
                 if( message.getSubject().equals(emailSubject) )
@@ -73,12 +76,9 @@ public class EmailChecker
 
                     logger.info("Delete this email from INBOX...");
                     message.setFlag(Flags.Flag.DELETED, true);
-                }
-            }
 
-            if( !found ) // Email was not found !
-            {
-                Assert.fail("Email with subject " + emailSubject + " was not found !!!");
+                    break;
+                }
             }
 
             inbox.close(false);
@@ -90,6 +90,8 @@ public class EmailChecker
         } catch (IOException e) {
             logger.error("IOException", e);
         }
+
+        return found;
     }
 
     /**
