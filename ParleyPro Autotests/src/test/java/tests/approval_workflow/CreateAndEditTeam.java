@@ -81,7 +81,7 @@ public class CreateAndEditTeam
 
         // add one more user to team
         addMembersForm = addNewTeam.clickAddMembersButton();
-        addMembersForm.addParticipant("cpName cpLastName");
+        addMembersForm.addParticipant("Felix");
         addMembersForm.clickAdd();
 
         // Save changes
