@@ -204,10 +204,10 @@ public class StartPreSignApproval
 
         logger.info("Assert that all messages are correct");
         String actual = Selenide.executeJavaScript("return $('.timeline-heading h4').text()");
-        Assert.assertEquals(actual, "Approval completedApproved by teamTeam request sentApprovedUser approve request was " +
-                "sentPre-signature approval startedDocument user assignedDocument user assignedDocument user assignedOnline negotiation " +
-                "startedApproval completedApprovedUser approve request was sentApprovedUser approve request was sentPre-negotiation approval " +
-                "startedDocument user assignedDocument user assignedDocument uploadedContract created");
+        Assert.assertEquals(actual, "Approval completedApproved by teamTeam request sentApprovedUser approve request was sent" +
+                "Pre-signature approval startedTeam assignedDocument user assignedOnline negotiation startedApproval completedApproved" +
+                "User approve request was sentApprovedUser approve request was sentPre-negotiation approval startedDocument user assigned" +
+                "Document user assignedDocument uploadedContract created");
 
         Screenshoter.makeScreenshot();
 
