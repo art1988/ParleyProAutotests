@@ -56,4 +56,15 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-78: Floating objects and images upload" preserve-order="true">
+        <parameter name="contractName" value="Floating objects and images"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at78.CreateContract"/>
+            <class name="tests.regression.at78.UploadDocsWithImage"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
