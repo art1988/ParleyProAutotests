@@ -44,6 +44,8 @@ public class Const
 
     public static final File   REGRESSION_IMG_DOC            = new File(System.getProperty("user.dir") + "/Documents/imgDocs/image.docx");
     public static final File   REGRESSION_TEXT_AND_IMG_DOC   = new File(System.getProperty("user.dir") + "/Documents/imgDocs/text_and_image.docx");
+    public static final File   REGRESSION_FLOATING_IMG_DOC   = new File(System.getProperty("user.dir") + "/Documents/imgDocs/Floating_image.docx");
+    public static final File   REGRESSION_FLOATING_TEXT_DOC  = new File(System.getProperty("user.dir") + "/Documents/imgDocs/Floating_text_box.docx");
 
     // Directories
     // Directory of docs from clients. Used in Classic
