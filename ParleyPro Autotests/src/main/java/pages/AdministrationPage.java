@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
+import pages.administration.Fields;
 import pages.administration.ManageUsers;
 import pages.administration.Teams;
 import pages.administration.Workflows;
@@ -47,6 +48,15 @@ public class AdministrationPage
         logger.info("Workflows tab was clicked");
 
         return new Workflows();
+    }
+
+    public Fields clickFieldsTab()
+    {
+        fieldsTab.click();
+
+        logger.info("Fields tab was clicked");
+
+        return new Fields();
     }
 
     public Teams clickTeamsTab()
