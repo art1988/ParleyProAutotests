@@ -60,7 +60,7 @@ public class CreateTemplateAndDocumentAndCheckNumber
         addDocuments.clickSelectTemplateTab();
         addDocuments.selectTemplate(templateName);
 
-        $(".notification-stack").waitUntil(Condition.appear, 25_000).shouldHave(Condition.exactText("Document " + templateName + " has been successfully uploaded."));
+        $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.exactText("Document " + templateName + " has been successfully uploaded."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         Screenshoter.makeScreenshot();
