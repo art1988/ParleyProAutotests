@@ -41,6 +41,7 @@ public class ShareForm
         Thread.sleep(1_000); // some sleep to make sure that values were populated in dropdown
 
         addParticipantField.sendKeys(Keys.ARROW_DOWN);
+        Thread.sleep(500);
         addParticipantField.pressEnter();
 
         logger.info(nameOrEmail + " was added as participant");
