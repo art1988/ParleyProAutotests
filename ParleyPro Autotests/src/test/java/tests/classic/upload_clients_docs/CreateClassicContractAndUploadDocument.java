@@ -105,6 +105,11 @@ public class CreateClassicContractAndUploadDocument
         // close all notification popups if they are present
         if( $(".notification-stack").is(Condition.visible) )
         {
+            if( $$(".notification-stack .notification-stack__item").size() == 0 )
+            {
+                return;
+            }
+
             for( int i = 0; i < $$(".notification-stack .notification-stack__item").size(); i++ )
             {
                 $$(".notification-stack .notification-stack__item").get(i).find(".notification__close").click();
