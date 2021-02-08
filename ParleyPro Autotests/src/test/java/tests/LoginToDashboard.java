@@ -4,6 +4,7 @@ import com.codeborne.selenide.*;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.remote.CapabilityType;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -26,6 +27,7 @@ public class LoginToDashboard
         Configuration.proxyEnabled   = true;
         Configuration.fileDownload   = FileDownloadMode.PROXY;
         Configuration.startMaximized = true;
+        Configuration.browserCapabilities.setCapability("acceptInsecureCerts", true);
         //Configuration.headless = true; //headless off
 
         Const.DOWNLOAD_DIR.mkdirs();
