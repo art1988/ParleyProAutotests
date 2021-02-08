@@ -51,6 +51,8 @@ public class TemplatesPage
         SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
         uploadCounterpartyDocumentsButton.uploadFile(fileToUpload);
+
+        $(".spinner").waitUntil(Condition.disappear, 35_000);
     }
 
     /**

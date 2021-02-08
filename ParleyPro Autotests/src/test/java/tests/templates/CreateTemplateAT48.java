@@ -31,8 +31,6 @@ public class CreateTemplateAT48
         TemplatesPage templatesPage = new DashboardPage().getSideBar().clickTemplates(true);
         templatesPage.clickUploadTemplatesButton( Const.TEMPLATE_AT48 );
 
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
-
         EditTemplatePage editTemplatePage = templatesPage.selectTemplate(templateName);
         editTemplatePage.addSmartField("Contract name");
         editTemplatePage.addSmartField("Contract due date");
