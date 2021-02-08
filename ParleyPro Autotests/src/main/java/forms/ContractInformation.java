@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import constants.FieldType;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
@@ -259,6 +260,20 @@ public class ContractInformation
     public String getNotes()
     {
         return notesField.getText();
+    }
+
+    /**
+     * General method of setting values for custom field
+     * @param fieldName
+     * @param fieldType
+     * @param value
+     */
+    // TODO: depending on fieldType need to choose appropriate html tag -> implement in the future
+    public void setValueForCustomField(String fieldName, FieldType fieldType, String value)
+    {
+        String id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('id')");
+
+        $("#" + id).setValue(value);
     }
 
     public void clickCancel()
