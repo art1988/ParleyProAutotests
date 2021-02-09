@@ -7,6 +7,7 @@ import pages.EditTemplatePage;
 import pages.TemplatesPage;
 import pages.subelements.SideBar;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class UploadAndPublishTemplate
@@ -16,9 +17,11 @@ public class UploadAndPublishTemplate
     {
         TemplatesPage templatesPage = new SideBar().clickTemplates(true);
 
-        templatesPage.clickUploadTemplatesButton(Const.TEMPLATE_AT58 );
+        templatesPage.clickUploadTemplatesButton( Const.TEMPLATE_AT58 );
 
         EditTemplatePage editTemplatePage = templatesPage.selectTemplate("nurix_date_problem");
         editTemplatePage.clickPublishButton();
+
+        Screenshoter.makeScreenshot();
     }
 }

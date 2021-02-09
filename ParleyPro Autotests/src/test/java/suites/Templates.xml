@@ -4,12 +4,29 @@
 <suite name = "Templates suite" configfailurepolicy="continue">
     <test name="AT-48: Create template with fields" preserve-order="true">
         <parameter name="contractName" value="ContractThatDoesNotMatchTemplate_AT48"/>
+        <parameter name="templateName" value="Template_AT48[ EDITED ]"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.templates.CreateTemplateAT48"/>
-            <class name="tests.templates.CreateContract"/>
-            <class name="tests.templates.AddDocumentFromTemplate"/>
+            <class name="tests.templates.at48.CreateTemplateAT48"/>
+            <class name="tests.templates.at48.CreateContract"/>
+            <class name="tests.templates.at48.AddDocumentFromTemplate"/>
+            <class name="tests.DeleteTemplate"/>
             <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-58: Nurix: getDateFromCustomField on template incorrectly converted when creating the document" preserve-order="true">
+        <parameter name="contractName" value="Nurix: getDateFromCustomField"/>
+        <parameter name="templateName" value="nurix_date_problem"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.templates.at58.AddCustomFiled"/>
+            <class name="tests.templates.at58.UploadAndPublishTemplate"/>
+            <class name="tests.templates.at58.CreateContractAndCheckDate"/>
+            <class name="tests.DeleteTemplate"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
