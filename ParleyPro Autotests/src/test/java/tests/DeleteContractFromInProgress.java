@@ -13,7 +13,10 @@ import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ ScreenShotOnFailListener.class})
+/**
+ * General test for deleting contracts from 'In-progress contracts' page
+ */
+@Listeners({ScreenShotOnFailListener.class})
 public class DeleteContractFromInProgress
 {
     private static Logger logger = Logger.getLogger(DeleteContractFromExecuted.class);
@@ -22,15 +25,10 @@ public class DeleteContractFromInProgress
     @Parameters("contractName")
     public void deleteContractFromInProgress(String contractName)
     {
-        DashboardPage dashboardPage = new DashboardPage();
-
-        InProgressContractsPage inProgressContractsPage = dashboardPage.getSideBar().clickInProgressContracts(false);
-
+        InProgressContractsPage inProgressContractsPage = new DashboardPage().getSideBar().clickInProgressContracts(false);
         inProgressContractsPage.selectContract(contractName);
 
-        OpenedContract openedContract = new OpenedContract();
-
-        openedContract.clickContractActionsMenu().clickDeleteContract().clickDelete();
+        new OpenedContract().clickContractActionsMenu().clickDeleteContract().clickDelete();
 
         logger.info("Assert delete notification...");
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract " + contractName + " has been deleted."));
