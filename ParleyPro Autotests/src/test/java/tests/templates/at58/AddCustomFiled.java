@@ -23,7 +23,7 @@ public class AddCustomFiled
         fieldTab.clickSave();
 
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
-        $(".notification-stack").waitUntil(Condition.disappear, 7_000);
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         Screenshoter.makeScreenshot();
     }
