@@ -1,4 +1,4 @@
-package tests.templates;
+package tests.templates.at48;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -130,16 +130,6 @@ public class AddDocumentFromTemplate
     }
 
     @Test(priority = 4)
-    public void deleteTemplate()
-    {
-        new DashboardPage().getSideBar().clickTemplates(false).clickActionMenu("Template_AT48[ EDITED ]").clickDelete().clickDelete();
-
-        logger.info("Assert that delete template notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Template Template_AT48[ EDITED ] has been deleted."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
-    }
-
-    @Test(priority = 5)
     public void clearDownloadsFolder() throws IOException
     {
         FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);

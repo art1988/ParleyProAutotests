@@ -1,6 +1,5 @@
-package tests.templates;
+package tests.templates.at48;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.TemplateInformation;
