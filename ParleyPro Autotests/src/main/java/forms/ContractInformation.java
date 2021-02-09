@@ -47,7 +47,7 @@ public class ContractInformation
      */
     public ContractInformation(boolean openedViaContractInfo)
     {
-        $(".spinner").waitUntil(Condition.disappear, 10_000);
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
 
         $(".contract-edit__title, .documents-contract-edit__title").shouldHave(Condition.exactText("Contract Info"));
     }
