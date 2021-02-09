@@ -49,7 +49,7 @@ public class ContractInformation
     {
         $(".spinner").waitUntil(Condition.disappear, 10_000);
 
-        $(".contract-edit__title").shouldHave(Condition.exactText("Contract Info"));
+        $(".contract-edit__title, .documents-contract-edit__title").shouldHave(Condition.exactText("Contract Info"));
     }
 
     private boolean isInit()
@@ -274,6 +274,16 @@ public class ContractInformation
         String id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('id')");
 
         $("#" + id).setValue(value);
+    }
+
+    /**
+     * Get value from arbitrary Custom Field
+     * @param customFieldName name of custom field value of which we want to obtain
+     * @return
+     */
+    public String getValueFromCustomField(String customFieldName)
+    {
+        return Selenide.executeJavaScript("return $('label:contains(\"" + customFieldName + "\")').parent().find(\"input:visible\").val()");
     }
 
     public void clickCancel()
