@@ -51,12 +51,14 @@ public class AddDocuments
         logger.info("'Upload document' tab was selected");
     }
 
-    public void clickSelectTemplateTab()
+    public AddDocuments clickSelectTemplateTab()
     {
         $(".js-select-template-tab").waitUntil(Condition.visible, 7_000).click();
         $(".spinner").waitUntil(Condition.disappear, 7_000);
 
         logger.info("'Select template' tab was selected");
+
+        return this;
     }
 
     public void clickUploadAttachmentTab()
