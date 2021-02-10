@@ -22,7 +22,7 @@ public class AddCustomFiled
         fieldTab.createNewFiledForSummary("Effective Date", FieldType.DATE, false);
         fieldTab.clickSave();
 
-        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
+        $(".notification-stack .notification-stack__item").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
         $(".notification-stack .notification-stack__item").waitUntil(Condition.disappear, 25_000);
 
         Screenshoter.makeScreenshot();
