@@ -61,11 +61,13 @@ public class AddDocuments
         return this;
     }
 
-    public void clickUploadAttachmentTab()
+    public AddDocuments clickUploadAttachmentTab()
     {
         $(".js-upload-attachment-tab").waitUntil(Condition.visible, 7_000).click();
 
         logger.info("'Upload attachment' tab was selected");
+
+        return this;
     }
 
     /**
