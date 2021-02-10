@@ -11,82 +11,20 @@ jobs:
     steps:
       - checkout
       
-      - run:
-          name: Run Numbered lists suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/NumberedLists.xml
-
-      - run: sleep 10  
-
-      - run:
-          name: Run Basics suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
-          
-      - run: sleep 10
-          
-      - run:
-          name: Run ApprovalWorkflow suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ApprovalWorkflow.xml
-          
-      - run: sleep 10
-      
-      - run: 
-          name: Run ContractRoutingWorkflow suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractRoutingWorkflow.xml
-      
-      - run: sleep 10
-      
-      - run:
-          name: Run Classic suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
-      
-      - run: sleep 10
-      
-      - run:
-          name: Run Formatting suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Formatting.xml
-      
-      - run: sleep 10
-      
-      - run:
-          name: Run Templates suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Templates.xml
-      
-      - run: sleep 10
-      
-      - run:
-          name: Run Regression suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
-
-      - run: sleep 10
-      
       - run: 
           name: Run Migration suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
 
       - run:
-          name: ZIP allure results
-          working_directory: "./ParleyPro Autotests"
-          command: tar -czvf allure-results.tar.gz ./target/allure-results
-
-      - run: 
-          name: ZIP Screenshots directory
-          working_directory: "./ParleyPro Autotests"
-          command: tar -czvf ScreenshotsOfFailedTests.tar.gz ./ScreenshotsOfFailedTests
+          name: Allure report generation
+          working_directory: "./ParleyPro Autotests/target"
+          command: allure generate --clean
 
       - store_artifacts:
-          path: "ParleyPro Autotests/allure-results.tar.gz"
-          
-      - store_artifacts:
-          path: "ParleyPro Autotests/ScreenshotsOfFailedTests.tar.gz"
+          path: "ParleyPro Autotests/allure-report"
+          destination: Report/Allure
+          when: always
           
       - slack/notify:
           channel: qa
