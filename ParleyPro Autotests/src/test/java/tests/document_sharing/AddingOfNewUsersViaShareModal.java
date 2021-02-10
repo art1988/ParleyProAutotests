@@ -57,8 +57,8 @@ public class AddingOfNewUsersViaShareModal
 
         shareForm.clickSend();
 
-        logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
-        Thread.sleep(15_000);
+        logger.info("Waiting for 20 seconds to make sure that email has been delivered...");
+        Thread.sleep(20_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Lead"),
                 "Email with subject: Role assignment: Lead was not found !!!");
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),

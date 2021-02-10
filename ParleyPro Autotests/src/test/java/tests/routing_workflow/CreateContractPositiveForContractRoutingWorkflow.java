@@ -190,8 +190,8 @@ public class CreateContractPositiveForContractRoutingWorkflow
         $$(".contract-header__status .user").shouldHave(CollectionCondition.size(4));
 
         logger.info("Check that email with 'Role assignment: Lead' subject was received...");
-        logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
-        Thread.sleep(15_000);
+        logger.info("Waiting for 20 seconds to make sure that email has been delivered...");
+        Thread.sleep(20_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject("imap.gmail.com", "arthur.khasanov@parleypro.com", "ParGd881", "Role assignment: Lead"),
                 "Email with subject: Role assignment: Lead was not found !!!");
     }

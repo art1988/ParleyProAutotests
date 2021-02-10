@@ -35,8 +35,8 @@ public class SendInvite
                 .shouldHave(Condition.exactText("Documents have been shared with the Counterparty.The notification email was sent to arthur.khasanov+cpat@parleypro.com."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        logger.info("Waiting for 15 seconds to make sure that email has been delivered...");
-        Thread.sleep(15_000);
+        logger.info("Waiting for 20 seconds to make sure that email has been delivered...");
+        Thread.sleep(20_000);
 
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "[qa-autotests] autotest_cn fn ln shared contract \"APLL: 50 emails\" with you"),
                 "Email with subject: [qa-autotests] autotest_cn fn ln shared contract \"APLL: 50 emails\" with you was not found !!!");

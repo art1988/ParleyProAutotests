@@ -66,8 +66,8 @@ public class MakeExternalDiscussion
 
         try
         {
-            logger.info("Waiting for 15 seconds...");
-            Thread.sleep(15_000);
+            logger.info("Waiting for 20 seconds...");
+            Thread.sleep(20_000);
         }
         catch (InterruptedException e)
         {
