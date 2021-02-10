@@ -64,6 +64,8 @@ public class CreateContractAndCheckDate
     {
         OpenedContract openedContract = new OpenedContract();
 
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
+
         logger.info("Assert that date in Contract Info page is equal to: Jul 1, 2020");
         Assert.assertEquals(openedContract.clickContractInfo().getValueFromCustomField("Effective Date"), "Jul 1, 2020");
 
@@ -80,7 +82,7 @@ public class CreateContractAndCheckDate
         fieldsPage.clickSave();
         Thread.sleep(1_000);
 
-        logger.info("Assert that filed was deleted...");
+        logger.info("Assert that field was deleted...");
         Assert.assertTrue(Selenide.executeJavaScript("return $('input[label=\"Field name\"][value=\"Effective Date\"]').length === 0"));
     }
 }
