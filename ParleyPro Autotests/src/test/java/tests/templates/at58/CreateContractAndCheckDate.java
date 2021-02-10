@@ -62,12 +62,12 @@ public class CreateContractAndCheckDate
     @Description("This test opens Contract Info and checks that 'Effective Date' field has value 'Jul 1, 2020'")
     public void checkContractInformation()
     {
-        OpenedContract openedContract = new OpenedContract();
+        ContractInformation contractInformation = new OpenedContract().clickContractInfo();
 
-        $(".spinner").waitUntil(Condition.disappear, 15_000);
+        Selenide.executeJavaScript("$('.input__label:contains(\"Effective Date\")')[0].scrollIntoView({});");
 
         logger.info("Assert that date in Contract Info page is equal to: Jul 1, 2020");
-        Assert.assertEquals(openedContract.clickContractInfo().getValueFromCustomField("Effective Date"), "Jul 1, 2020");
+        Assert.assertEquals(contractInformation.getValueFromCustomField("Effective Date"), "Jul 1, 2020");
 
         Screenshoter.makeScreenshot();
     }
