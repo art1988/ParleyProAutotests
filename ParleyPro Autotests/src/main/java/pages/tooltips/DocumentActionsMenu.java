@@ -3,7 +3,7 @@ package pages.tooltips;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import forms.CancelDocument;
-import forms.DeleteDocument;
+import forms.delete.DeleteDocument;
 import forms.DocumentFormattingOption;
 import forms.UploadDocument;
 import org.apache.log4j.Logger;

@@ -3,8 +3,8 @@ package pages.tooltips;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import forms.AddNewUser;
-import forms.DeleteUser;
+import forms.add.AddNewUser;
+import forms.delete.DeleteUser;
 import model.User;
 import org.apache.log4j.Logger;
 

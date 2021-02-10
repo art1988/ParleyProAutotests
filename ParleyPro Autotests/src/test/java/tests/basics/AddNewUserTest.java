@@ -1,7 +1,7 @@
 package tests.basics;
 
 import com.codeborne.selenide.Selenide;
-import forms.AddNewUser;
+import forms.add.AddNewUser;
 import io.qameta.allure.Description;
 import model.User;
 import org.apache.log4j.Logger;

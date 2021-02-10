@@ -2,7 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import forms.DeleteContract;
+import forms.delete.DeleteContract;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;

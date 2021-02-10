@@ -1,7 +1,7 @@
 package pages.tooltips;
 
 import com.codeborne.selenide.Selenide;
-import forms.DeleteWorkflow;
+import forms.delete.DeleteWorkflow;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 

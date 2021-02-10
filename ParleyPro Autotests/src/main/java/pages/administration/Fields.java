@@ -5,7 +5,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import constants.FieldType;
-import forms.DeleteField;
+import forms.delete.DeleteField;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;

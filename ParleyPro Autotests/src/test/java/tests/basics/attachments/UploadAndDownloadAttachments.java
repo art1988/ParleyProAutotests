@@ -2,7 +2,7 @@ package tests.basics.attachments;
 
 import com.codeborne.selenide.*;
 import constants.Const;
-import forms.DeleteAttachment;
+import forms.delete.DeleteAttachment;
 import io.qameta.allure.Description;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;

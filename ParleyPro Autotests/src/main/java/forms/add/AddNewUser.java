@@ -1,4 +1,4 @@
-package forms;
+package forms.add;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;

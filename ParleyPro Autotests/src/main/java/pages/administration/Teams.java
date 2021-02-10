@@ -3,7 +3,7 @@ package pages.administration;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import forms.AddNewTeam;
+import forms.add.AddNewTeam;
 import org.apache.log4j.Logger;
 import pages.tooltips.TeamActionMenu;
 

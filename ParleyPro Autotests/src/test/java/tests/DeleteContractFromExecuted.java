@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import constants.Const;
+import forms.delete.DeleteContract;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
@@ -35,7 +36,7 @@ public class DeleteContractFromExecuted
 
         ContractInfo contractInfoPage = executedContractsPage.selectContract(contractName);
 
-        forms.DeleteContract deleteContractPopup = contractInfoPage.deleteContract(contractName);
+        DeleteContract deleteContractPopup = contractInfoPage.deleteContract(contractName);
 
         deleteContractPopup.clickDelete();
 
