@@ -12,6 +12,14 @@ jobs:
       - checkout
       
       - run: 
+          name: install Java
+          command: |
+            sudo apt update
+            sudo apt install default-jre
+            
+      - allure/install
+      
+      - run: 
           name: Run Migration suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
