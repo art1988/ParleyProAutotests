@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Attachment runner suite" configfailurepolicy="continue">
+    <test name="Upload attachment #1" preserve-order="true">
+        <parameter name="contractName" value="AttachmentRunner Contract"/>
+        <parameter name="attachmentFileName" value="PMO-Project-Charter-template-1wesupk.pdf"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.attachment_runner.CreateContract"/>
+            <class name="tests.attachment_runner.UploadAttachmentAndCheckPresenceOnPageAndDownload"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Upload attachment #2" preserve-order="true">
+        <parameter name="contractName" value="AttachmentRunner Contract"/>
+        <parameter name="attachmentFileName" value="Copy of Copy of LION CAPITAL 2018 CSM.xlsx"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.attachment_runner.CreateContract"/>
+            <class name="tests.attachment_runner.UploadAttachmentAndCheckPresenceOnPageAndDownload"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+</suite>
