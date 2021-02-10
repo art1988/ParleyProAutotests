@@ -55,6 +55,7 @@ public class Const
     public static final File   PDF_DOCS_DIR                  = new File(System.getProperty("user.dir") + "/Documents/pdfDocs");
 
     public static final File   ATTACHMENTS_DOCS_DIR          = new File(System.getProperty("user.dir") + "/Documents/attachmentDocs");
+    public static final File   BAD_ATTACHMENTS_DOCS_DIR      = new File(System.getProperty("user.dir") + "/Documents/badAttachments");
 
     public static final File   DOWNLOAD_DIR                  = new File(System.getProperty("user.dir") + "/Downloads");
     // Dir for screenshots of failed tests
