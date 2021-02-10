@@ -75,7 +75,7 @@ public class CreateClassicContractAndUploadDocument
 
             $(".spinner").waitUntil(Condition.disappear, 60_000);
             $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
-            Thread.sleep(4_000);
+            Thread.sleep(5_000);
 
             logger.info("Scroll to top of page...");
             Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,0)");
