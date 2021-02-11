@@ -30,7 +30,7 @@ public class UploadAttachmentAndCheckPresenceOnPageAndDownload
     private static Logger logger = Logger.getLogger(UploadAttachmentAndCheckPresenceOnPageAndDownload.class);
 
     @Test(priority = 1)
-    @Description("This test uploads attachment and checks that it was added on page")
+    @Description("This test uploads attachment and checks notification.")
     @Parameters("attachmentFileName")
     public void uploadAttachment(String attachmentFileName)
     {
@@ -46,10 +46,12 @@ public class UploadAttachmentAndCheckPresenceOnPageAndDownload
         $(".notification-stack").waitUntil(Condition.visible, 20_000)
                 .shouldHave(Condition.exactText("Attachment " + attachmentFileName + " has been successfully uploaded."));
         $(".notification-stack").waitUntil(Condition.disappear, 30_000);
+
+        Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 2)
-    @Description("This test checks that attachment was added on page")
+    @Description("This test checks that attachment was added on page under 'Attachments' label.")
     public void checkPresenceOnPage()
     {
         logger.info("Assert that 'Attachments' label is visible...");
@@ -61,7 +63,7 @@ public class UploadAttachmentAndCheckPresenceOnPageAndDownload
     }
 
     @Test(priority = 3)
-    @Description("This test downloads just uploaded attachment and checks file size")
+    @Description("This test downloads just uploaded attachment and checks file size.")
     public void downloadAttachmentAndCheckSize()
     {
         try
@@ -77,7 +79,7 @@ public class UploadAttachmentAndCheckPresenceOnPageAndDownload
         }
         catch (FileNotFoundException | InterruptedException e)
         {
-            logger.error("FileNotFoundException", e);
+            logger.error("FileNotFoundException or InterruptedException", e);
         }
     }
 
