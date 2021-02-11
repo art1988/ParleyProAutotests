@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   slack: circleci/slack@4.0.2
-  allure: ryanisnan/allure@0.1.2
   
 jobs:
   build:
@@ -13,27 +12,9 @@ jobs:
       - checkout
       
       - run:
-          name: install Java
+          name: show info
           command: |
-            sudo apt update
-            sudo apt install default-jre
-            
-      - allure/install
-      
-      - run: 
-          name: Run Migration suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
-
-      - run:
-          name: Allure report generation
-          working_directory: "./ParleyPro Autotests/target"
-          command: allure generate --clean
-
-      - store_artifacts:
-          path: "ParleyPro Autotests/allure-report"
-          destination: Report/Allure
-          when: always
+             uname -a
           
       - slack/notify:
           channel: qa
