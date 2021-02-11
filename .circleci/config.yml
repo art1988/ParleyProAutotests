@@ -14,7 +14,7 @@ jobs:
       - run:
           name: show info
           command: |
-             uname -a
+             uname -a | echo 'Hello' | java -version
           
       - slack/notify:
           channel: qa
