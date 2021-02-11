@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Allure report generation
           working_directory: "./ParleyPro Autotests/target"
-          command: allure generate --clean
+          command: sudo allure generate --clean
 
       - store_artifacts:
           path: "ParleyPro Autotests/allure-report"
