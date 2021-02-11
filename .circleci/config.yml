@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   slack: circleci/slack@4.0.2
+  allure: ryanisnan/allure@0.1.2
   
 jobs:
   build:
@@ -11,13 +12,24 @@ jobs:
     steps:
       - checkout
       
+      - run: 
+          name: Install Allure
+          command: sudo curl -o allure-2.6.0.tgz -Ls https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.6.0/allure-2.6.0.tgz && sudo tar -zxvf allure-2.6.0.tgz -C /opt/ && sudo ln -s /opt/allure-2.6.0/bin/allure /usr/bin/allure && allure --version
+      
+      - run: 
+          name: Run Migration suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
+
       - run:
-          name: Install Allure 
-          command: |
-             sudo apt-get install -y software-properties-common
-             sudo apt-add-repository ppa:qameta/allure
-             sudo apt-get update
-             sudo apt-get install -y allure
+          name: Allure report generation
+          working_directory: "./ParleyPro Autotests/target"
+          command: allure generate --clean
+
+      - store_artifacts:
+          path: "ParleyPro Autotests/allure-report"
+          destination: Report/Allure
+          when: always
           
       - slack/notify:
           channel: qa
