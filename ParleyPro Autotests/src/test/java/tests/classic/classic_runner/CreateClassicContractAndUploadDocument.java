@@ -1,4 +1,4 @@
-package tests.classic.upload_clients_docs;
+package tests.classic.classic_runner;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -8,9 +8,7 @@ import forms.ContractInformation;
 import forms.EmailWillBeSentToTheCounterparty;
 import forms.StartNegotiation;
 import forms.UploadDocumentDetectedChanges;
-import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;

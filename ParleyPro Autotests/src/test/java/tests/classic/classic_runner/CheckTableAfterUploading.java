@@ -1,4 +1,4 @@
-package tests.classic.upload_clients_docs;
+package tests.classic.classic_runner;
 
 import com.codeborne.selenide.Selenide;
 import org.apache.log4j.Logger;

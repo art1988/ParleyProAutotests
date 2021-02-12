@@ -24,9 +24,9 @@
         <parameter name="textOnLastPage" value="The remainder of this page left intentionally blank"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
-            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -42,9 +42,9 @@
         <parameter name="textInLastRow" value="Firmenbezeichnung des Informationsempfängers"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
-            <class name="tests.classic.upload_clients_docs.CheckTableAfterUploading"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckTableAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -60,9 +60,9 @@
         <parameter name="textOnLastPage" value="Babysitters or house-sitters"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
-            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -78,9 +78,9 @@
         <parameter name="textOnLastPage" value="Quality Standards"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
-            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -96,9 +96,9 @@
         <parameter name="textOnLastPage" value="Read and Acknowledged:"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
-            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -114,9 +114,9 @@
         <parameter name="textOnLastPage" value="Miscellaneous"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
-            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -132,9 +132,9 @@
         <parameter name="textOnLastPage" value="ADDENDUM B: California Consumer Privacy Act"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
-            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -150,9 +150,9 @@
         <parameter name="textOnLastPage" value="For All Customers"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
-            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -168,9 +168,9 @@
         <parameter name="textOnLastPage" value="Scott Cameron"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
-            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -186,9 +186,9 @@
         <parameter name="textOnLastPage" value="Sincerely"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
-            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -204,9 +204,9 @@
         <parameter name="textOnLastPage" value="5.test"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
-            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
