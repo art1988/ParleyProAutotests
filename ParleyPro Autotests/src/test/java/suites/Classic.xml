@@ -193,4 +193,22 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="Client doc #10: AT-72" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="numbering_1_AT72.docx"/>
+        <parameter name="cpDocumentName" value="numbering_2_AT72.docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="1"/>
+        <parameter name="textOnFirstPage" value="Point one"/>
+        <parameter name="textOnLastPage" value="5.test"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
+            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
