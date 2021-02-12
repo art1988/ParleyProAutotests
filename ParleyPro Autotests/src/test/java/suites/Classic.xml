@@ -157,4 +157,40 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="Client doc #9: first Harold then Webco" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
+        <parameter name="cpDocumentName" value="Webco General Partnership - SuperFresh Frozen Assignment 3-12-15.doc"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="textOnFirstPage" value="Jan Rathbun"/>
+        <parameter name="textOnLastPage" value="Scott Cameron"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
+            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Reverse of #9: first Webco then Harold" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Webco General Partnership - SuperFresh Frozen Assignment 3-12-15.doc"/>
+        <parameter name="cpDocumentName" value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="textOnFirstPage" value="Dear Betsy:"/>
+        <parameter name="textOnLastPage" value="Sincerely"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.upload_clients_docs.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.upload_clients_docs.UploadNewVersionFromCP"/>
+            <class name="tests.classic.upload_clients_docs.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
