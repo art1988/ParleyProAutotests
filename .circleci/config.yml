@@ -13,7 +13,7 @@ jobs:
       
       - run:
           name: Install Allure
-          command: sudo curl -o allure-2.6.0.tgz -Ls https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.6.0/allure-2.6.0.tgz && sudo tar -zxvf allure-2.6.0.tgz -C /opt/ && sudo ln -s /opt/allure-2.6.0/bin/allure /usr/bin/allure && allure --version
+          command: sudo curl -o allure-2.13.8.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.tgz && sudo tar -zxvf allure-2.13.8.tgz -C /opt/ && sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure && allure --version
       
       - run:
           name: Run Numbered lists suite
