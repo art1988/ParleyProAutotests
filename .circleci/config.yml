@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Run Basics suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
           
       - run: sleep 10
           
