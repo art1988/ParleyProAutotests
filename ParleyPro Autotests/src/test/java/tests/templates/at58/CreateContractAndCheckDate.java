@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.OpenedContract;
 import pages.administration.Fields;
+import pages.administration.fields_breadcrumb.ContractFields;
 import pages.subelements.SideBar;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -76,10 +77,11 @@ public class CreateContractAndCheckDate
     @Description("This test goes to Administration -> Fields and remove just created custom field by the name 'Effective Date'")
     public void deleteCustomFileld() throws InterruptedException
     {
-        Fields fieldsPage = new SideBar().clickAdministration().clickFieldsTab();
+        Fields fieldsTab = new SideBar().clickAdministration().clickFieldsTab();
+        ContractFields contractFields = fieldsTab.clickContractFields();
 
-        fieldsPage.removeField("Effective Date").clickDelete();
-        fieldsPage.clickSave();
+        contractFields.removeField("Effective Date").clickDelete();
+        fieldsTab.clickSave();
         Thread.sleep(1_000);
 
         logger.info("Assert that field was deleted...");

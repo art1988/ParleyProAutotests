@@ -19,7 +19,7 @@ public class AddCustomFiled
     {
         Fields fieldTab = new SideBar().clickAdministration().clickFieldsTab();
 
-        fieldTab.createNewFiledForSummary("Effective Date", FieldType.DATE, false);
+        fieldTab.clickContractFields().createNewFiled("Summary", "Effective Date", FieldType.DATE, false);
         fieldTab.clickSave();
 
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
