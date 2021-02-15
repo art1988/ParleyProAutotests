@@ -2,11 +2,10 @@ package pages.administration;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import constants.FieldType;
-import forms.delete.DeleteField;
 import org.apache.log4j.Logger;
+import pages.administration.fields_breadcrumb.ContractFields;
+import pages.administration.fields_breadcrumb.FieldsRelations;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -16,7 +15,11 @@ import static com.codeborne.selenide.Selenide.$$;
  */
 public class Fields
 {
+    private SelenideElement contractFields = $(".admin-fields-navigation__item a[href='#/admin/fields']");
+    private SelenideElement fieldRelations = $(".admin-fields-navigation__item a[href='#/admin/fields/relations']");
+
     private SelenideElement saveButton = $(".button.btn-common.btn-light.btn.btn-link");
+    private SelenideElement nextButton = $(".button.btn-common.btn.btn-primary");
 
 
     private static Logger logger = Logger.getLogger(Fields.class);
@@ -35,38 +38,24 @@ public class Fields
 
         $$(".admin-fields-navigation a").shouldHave(CollectionCondition.size(3))
                 .shouldHave(CollectionCondition.exactTexts("CONTRACT FIELDS", "FIELD RELATIONS", "LAYOUT"));
-
-        $$(".admin-fields__title").shouldHave(CollectionCondition.size(3))
-                .shouldHave(CollectionCondition.exactTexts("Summary", "Post-execution", "Contract Request"));
     }
 
-    public void createNewFiledForSummary(String fieldName, FieldType fieldType, boolean isRequired)
+    public ContractFields clickContractFields()
     {
-        Selenide.executeJavaScript("$('.admin-fields__title:contains(\"Summary\")').parent().find('.admin-fields-add__button').click()");
+        logger.info("CONTRACT FIELDS was clicked");
 
-        // Set Field name
-        $("input[label='Field name'][value='']").waitUntil(Condition.visible, 5_000).sendKeys(fieldName);
+        contractFields.click();
 
-        // Set Field type
-        Selenide.executeJavaScript("$('.Select-control input').attr('id', 'fieldTypeID')");
-        $("#fieldTypeID").setValue(fieldType.getFieldType()).pressEnter();
-
-        // Set Required field
-        if( isRequired == true )
-        {
-            $("input[label='Field name'][value='" + fieldName + "']").parent().parent().parent().parent().find(".checkbox.with_label").click();
-        }
+        return new ContractFields();
     }
 
-    /**
-     * Removes field by it's name by clicking garbage icon.
-     * @param fieldName
-     */
-    public DeleteField removeField(String fieldName)
+    public FieldsRelations clickFieldsRelations()
     {
-        Selenide.executeJavaScript("$('input[label=\"Field name\"][value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"i\").click()");
+        logger.info("FIELD RELATIONS was clicked");
 
-        return new DeleteField();
+        fieldRelations.click();
+
+        return new FieldsRelations();
     }
 
     public void clickSave()
@@ -74,5 +63,14 @@ public class Fields
         saveButton.click();
 
         logger.info("SAVE button was clicked");
+    }
+
+    public Fields clickNext()
+    {
+        nextButton.click();
+
+        logger.info("NEXT button was clicked");
+
+        return this;
     }
 }
