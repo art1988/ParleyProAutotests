@@ -36,8 +36,6 @@ public class AddRequestFieldsAndAddRelatedField
         contractFields.createNewFiled("Contract Request", "Field1", FieldType.SELECT, false);
         contractFields.addValues("Field1", "Value1");
         contractFields.addValues("Field1", "Value2");
-        fieldsTab.clickSave();
-        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
 
         contractFields.clickHideValues();
 
