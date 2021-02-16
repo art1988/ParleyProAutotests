@@ -28,13 +28,6 @@ jobs:
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
           
       - run: sleep 10
-          
-      - run:
-          name: Run ApprovalWorkflow suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ApprovalWorkflow.xml
-          
-      - run: sleep 10
       
       - run: 
           name: Run ContractRoutingWorkflow suite
