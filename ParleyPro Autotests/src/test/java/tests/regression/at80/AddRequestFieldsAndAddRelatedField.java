@@ -37,7 +37,6 @@ public class AddRequestFieldsAndAddRelatedField
         contractFields.addValues("Field1", "Value2");
         fieldsTab.clickSave();
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         contractFields.clickHideValues();
 
@@ -46,7 +45,6 @@ public class AddRequestFieldsAndAddRelatedField
         contractFields.addValues("Field2", "MS2");
         fieldsTab.clickSave();
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         Screenshoter.makeScreenshot();
 
@@ -70,7 +68,6 @@ public class AddRequestFieldsAndAddRelatedField
 
         fieldsTab.clickSave();
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert that related field was added...");
         Assert.assertEquals($("div[class^='styles__field_value_header']").getText(), "Fields related to \nValue1\n value\n1\narrow_drop_down");
