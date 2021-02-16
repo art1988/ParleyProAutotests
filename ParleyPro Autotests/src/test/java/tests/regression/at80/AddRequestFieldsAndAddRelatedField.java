@@ -37,7 +37,7 @@ public class AddRequestFieldsAndAddRelatedField
         contractFields.addValues("Field1", "Value2");
         fieldsTab.clickSave();
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
-        $(".notification").waitUntil(Condition.disappear, 15_000);
+        $(".notification.notification_active_yes.notification_type_success").waitUntil(Condition.disappear, 15_000);
 
         contractFields.clickHideValues();
 
