@@ -17,6 +17,7 @@ import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class AddRequestFieldsAndAddRelatedField
@@ -37,7 +38,6 @@ public class AddRequestFieldsAndAddRelatedField
         contractFields.addValues("Field1", "Value2");
         fieldsTab.clickSave();
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
-        $(".notification.notification_active_yes.notification_type_success").waitUntil(Condition.disappear, 15_000);
 
         contractFields.clickHideValues();
 
@@ -49,6 +49,19 @@ public class AddRequestFieldsAndAddRelatedField
 
         Screenshoter.makeScreenshot();
 
+        // close all notification popups if they are present
+        if( $(".notification-stack").is(Condition.visible) )
+        {
+            if( $$(".notification-stack .notification-stack__item").size() == 0 )
+            {
+                return;
+            }
+
+            for( int i = 0; i < $$(".notification-stack .notification-stack__item").size(); i++ )
+            {
+                $$(".notification-stack .notification-stack__item").get(i).find(".notification__close").click();
+            }
+        }
         fieldsTab.clickNext();
     }
 
