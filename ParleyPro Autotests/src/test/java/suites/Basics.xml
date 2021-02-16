@@ -15,6 +15,7 @@
         </classes>
     </test>
 
+    <!--
     <test name="Core discussions functionality" preserve-order="true">
         <parameter name="contractName" value="Contract discussions autotest"/>
         <classes>
@@ -24,7 +25,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="Formatting of just uploaded document" preserve-order="true">
         <parameter name="contractName" value="Contract formatting autotest"/>
