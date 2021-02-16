@@ -38,5 +38,7 @@ public class AddNewParentField
         createButton.click();
 
         logger.info("CREATE button was clicked");
+
+        $(".modal-content").waitUntil(Condition.disappear, 7_000);
     }
 }
