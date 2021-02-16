@@ -67,7 +67,7 @@ public class Fields
 
     public Fields clickNext()
     {
-        nextButton.waitUntil(Condition.visible, 20_000).click();
+        nextButton.click();
 
         logger.info("NEXT button was clicked");
 
