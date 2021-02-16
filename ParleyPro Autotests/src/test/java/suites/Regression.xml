@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Regression" configfailurepolicy="continue">
+    <!--
     <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
@@ -64,6 +65,15 @@
             <class name="tests.regression.at78.CreateContract"/>
             <class name="tests.regression.at78.UploadDocsWithImage"/>
             <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test> -->
+
+    <test name="AT-80: Relations broken if field deleted" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at80.AddRequestFieldsAndAddRelatedField"/>
+            <class name="tests.regression.at80.RemoveFieldAndCheckUI"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
