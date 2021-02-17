@@ -51,7 +51,7 @@ public class MakeExternalDiscussion
                 "Online negotiation startedCounterparty document uploadedContract created");
 
         Assert.assertEquals(Selenide.executeJavaScript("return $('.timeline-body').text()"),
-                "Email sent to:arthur.khasanov+cpat@parleypro.com - NegotiatorDocuments:AT-14.docxDocument name: AT-14.docx");
+                "Email sent to:arthur.khasanov+cpat@parleypro.com - NegotiatorDocuments:AT-14.docxDocument name: AT-14.docx");
 
         Screenshoter.makeScreenshot();
 
