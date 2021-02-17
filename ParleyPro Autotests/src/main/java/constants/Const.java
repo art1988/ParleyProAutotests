@@ -48,6 +48,8 @@ public class Const
     public static final File   REGRESSION_FLOATING_IMG_DOC   = new File(System.getProperty("user.dir") + "/Documents/imgDocs/Floating_image.docx");
     public static final File   REGRESSION_FLOATING_TEXT_DOC  = new File(System.getProperty("user.dir") + "/Documents/imgDocs/Floating_text_box.docx");
 
+    public static final File   TEMPLATE_AT77                 = new File(System.getProperty("user.dir") + "/Documents/Template_AT-77_dummy.docx");
+
     // Directories
     // Directory of docs from clients. Used in Classic
     public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Documents/classicClientDocs");
