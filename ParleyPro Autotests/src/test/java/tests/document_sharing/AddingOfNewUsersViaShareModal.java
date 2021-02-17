@@ -49,9 +49,11 @@ public class AddingOfNewUsersViaShareModal
 
         shareForm.changeRoleOfInternalUser(uniqueEmailUser1).setLeadRole(); // Set Lead role for uniqueUser1
 
+        /* This assertion was commented because of PAR-13448
         logger.info("Asserting that Lead role is disabled for User2...");
         boolean noRolesDropdownForUser2 = Selenide.executeJavaScript("return $('.manage-users-user__fullname:contains(\"" + uniqueEmailUser2 + "\")').parent().parent().next().find(\"button\").length === 0");
-        Assert.assertTrue(noRolesDropdownForUser2);
+        Assert.assertTrue(noRolesDropdownForUser2, "Because only one Lead is acceptable");
+         */
 
         Screenshoter.makeScreenshot();
 
