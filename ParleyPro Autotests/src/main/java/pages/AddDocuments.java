@@ -26,7 +26,7 @@ public class AddDocuments
 
     public AddDocuments()
     {
-        $(".documents-add__title").waitUntil(Condition.visible, 7_000);
+        $(".documents-add__title").waitUntil(Condition.visible, 25_000);
 
         isInit();
     }
