@@ -21,10 +21,10 @@ public class EditTemplatePage
 
     public EditTemplatePage()
     {
-        $(".spinner").waitUntil(Condition.disappear, 10_000);
+        $(".spinner").waitUntil(Condition.disappear, 20_000);
 
-        $(".rename > span").waitUntil(Condition.visible, 10_000);
-        $(".cke_inner").waitUntil(Condition.visible, 10_000);
+        $(".rename > span").waitUntil(Condition.visible, 20_000);
+        $(".cke_inner").waitUntil(Condition.visible, 20_000);
     }
 
     /**
@@ -47,6 +47,22 @@ public class EditTemplatePage
         $("#editor-toolbar a[title='Field']").waitUntil(Condition.visible, 7__000).click();
 
         return new Field();
+    }
+
+    /**
+     * Adds text to the first line
+     * @param text
+     */
+    public void addText(String text) throws InterruptedException
+    {
+        StringBuffer jsCode = new StringBuffer("var names = [];");
+        jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
+        jsCode.append("var editor_instance = names[0];");
+        jsCode.append("editor_instance.insertText('" + text + "')");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        Thread.sleep(1_000); // 1 second delay - necessary for correct saving of text
     }
 
     public void clickPublishButton()
