@@ -1,10 +1,9 @@
 package pages.subelements;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -32,12 +31,15 @@ public class MultipleDeleteOverlay
     }
 
     /**
-     * Mark paragraph that contains text by selecting radio button
+     * Mark paragraph that contains text by selecting radio button. Use this method during mass deletion
      * @param text
      */
     public void markParagraph(String text)
     {
-        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"" + text + "\")').prev().find(\"input\")[0].click()");
+        WebElement paragraphCheckbox = Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + text + "\")').prev().find(\"input\")[0]");
+
+        Actions action = new Actions(WebDriverRunner.getWebDriver());
+        action.moveToElement(paragraphCheckbox).clickAndHold(paragraphCheckbox).release().build().perform();
 
         logger.info("Paragraph that contains text: " + text + " has been marked");
     }
