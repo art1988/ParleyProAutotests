@@ -40,6 +40,14 @@ public class MultipleDeleteOverlay
 
         Actions action = new Actions(WebDriverRunner.getWebDriver());
         action.moveToElement(paragraphCheckbox).clickAndHold(paragraphCheckbox).release().build().perform();
+        try
+        {
+            Thread.sleep(1_000);
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
 
         logger.info("Paragraph that contains text: " + text + " has been marked");
     }
