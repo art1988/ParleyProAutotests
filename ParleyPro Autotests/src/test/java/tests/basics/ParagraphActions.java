@@ -181,13 +181,13 @@ public class ParagraphActions
 
         multipleDeleteOverlay.markParagraph("Paragraph 6: Multiple delete second");
 
-        Screenshoter.makeScreenshot();
-
         multipleDeleteOverlay.clickPost();
 
         logger.info("Assert that 'External discussion on deleted paragraph...' notification was shown...");
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("External discussion on deleted paragraph has been successfully created."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        Screenshoter.makeScreenshot();
 
         logger.info("Assert that redlines were applied for both paragraphs...");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Paragraph 5\")').find(\"del\").attr(\"style\") === \"color:#b5082e\""));
