@@ -29,4 +29,13 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <!--
+    <test name="AT-77: Top of specific template disappears after publishing" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.templates.at77.CreateTemplateAndPasteText"/>
+        </classes>
+    </test>
+    -->
 </suite>
