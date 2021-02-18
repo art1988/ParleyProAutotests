@@ -61,10 +61,11 @@ public class CreateContractAndCheckDate
 
     @Test(priority = 3)
     @Description("This test opens Contract Info and checks that 'Effective Date' field has value 'Jul 1, 2020'")
-    public void checkContractInformation()
+    public void checkContractInformation() throws InterruptedException
     {
         ContractInformation contractInformation = new OpenedContract().clickContractInfo();
 
+        Thread.sleep(1_000);
         Selenide.executeJavaScript("$('.input__label:contains(\"Effective Date\")')[0].scrollIntoView({});");
 
         logger.info("Assert that date in Contract Info page is equal to: Jul 1, 2020");
