@@ -8,6 +8,9 @@ import java.io.File;
 
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Form that appears after clicking on 'Upload new version' button
+ */
 public class UploadNewVersionOfDocument
 {
     private SelenideElement title = $(".modal-body-title");
@@ -16,12 +19,12 @@ public class UploadNewVersionOfDocument
     public UploadNewVersionOfDocument(String documentName)
     {
         title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Upload a new version of document \"" + documentName + "\"."));
-        $(".upload__title").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Counterparty document"));
-        $(".upload__caption").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("All redlines will be created on behalf of the counterparty"));
     }
 
     public DocumentComparePreview clickUploadCounterpartyDocument(File fileToUpload, String documentName, String contractName)
     {
+        $(".js-upload-cp-document-btn").shouldBe(Condition.enabled).shouldHave(Condition.visible);
+
         // 1. make <input> visible
         Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
         Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
@@ -31,6 +34,28 @@ public class UploadNewVersionOfDocument
         SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
         uploadCounterpartyDocumentsButton.uploadFile(fileToUpload);
+
+        return new DocumentComparePreview(documentName, contractName);
+    }
+
+    /**
+     * Important! : Green button 'Upload my team document' may not present on this form.
+     * To make it available, issue setDomainConfig('')
+     * @param fileToUpload
+     */
+    public DocumentComparePreview clickUploadMyTeamDocument(File fileToUpload, String documentName, String contractName)
+    {
+        $(".js-upload-my-team-document-btn").shouldBe(Condition.enabled).shouldHave(Condition.visible);
+
+        // 1. make <input> visible
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
+
+        // 2. trying to upload...
+        SelenideElement uploadMyTeamDocumentButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+        uploadMyTeamDocumentButton.uploadFile(fileToUpload);
 
         return new DocumentComparePreview(documentName, contractName);
     }
