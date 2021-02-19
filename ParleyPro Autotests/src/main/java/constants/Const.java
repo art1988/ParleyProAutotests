@@ -50,6 +50,10 @@ public class Const
 
     public static final File   TEMPLATE_AT77                 = new File(System.getProperty("user.dir") + "/Documents/Template_AT-77_dummy.docx");
 
+    public static final File   REGRESSION_DOC_AT83_BDOC1     = new File(System.getProperty("user.dir") + "/Documents/bdoc1.docx");
+    public static final File   REGRESSION_DOC_AT83_BDOC2     = new File(System.getProperty("user.dir") + "/Documents/bdoc2.docx");
+    public static final File   REGRESSION_DOC_AT83_BDOC3     = new File(System.getProperty("user.dir") + "/Documents/bdoc3.docx");
+
     // Directories
     // Directory of docs from clients. Used in Classic
     public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Documents/classicClientDocs");
