@@ -23,7 +23,7 @@ public class UploadNewVersionOfDocument
 
     public DocumentComparePreview clickUploadCounterpartyDocument(File fileToUpload, String documentName, String contractName)
     {
-        $(".js-upload-cp-document-btn").shouldBe(Condition.enabled).shouldHave(Condition.visible);
+        $(".js-upload-cp-document-btn").shouldBe(Condition.enabled).shouldBe(Condition.visible);
 
         // 1. make <input> visible
         Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
@@ -39,13 +39,13 @@ public class UploadNewVersionOfDocument
     }
 
     /**
-     * Important! : Green button 'Upload my team document' may not present on this form.
-     * To make it available, issue setDomainConfig('')
+     * Important! : Green button 'Upload my team document' may not be present on this form.
+     * To make it available, issue setDomainConfig('<domain_name>')
      * @param fileToUpload
      */
     public DocumentComparePreview clickUploadMyTeamDocument(File fileToUpload, String documentName, String contractName)
     {
-        $(".js-upload-my-team-document-btn").shouldBe(Condition.enabled).shouldHave(Condition.visible);
+        $(".js-upload-my-team-document-btn").shouldBe(Condition.enabled).shouldBe(Condition.visible);
 
         // 1. make <input> visible
         Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
