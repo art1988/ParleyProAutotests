@@ -79,7 +79,7 @@ public class CreateClassicContractAndUploadDocument
             Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,0)");
             Thread.sleep(3_000);
 
-            StartNegotiation startNegotiationForm = new OpenedContract().switchDocumentToNegotiate(docNameWithoutExtension, true);
+            StartNegotiation startNegotiationForm = new OpenedContract().switchDocumentToNegotiate(docNameWithoutExtension, "", true);
             EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext(true);
 
             emailWillBeSentToTheCounterpartyForm.setCounterpartyOrganization("CounterpartyAT");

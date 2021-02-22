@@ -15,10 +15,24 @@ public class StartNegotiation
 
     private static Logger logger = Logger.getLogger(StartNegotiation.class);
 
-    public StartNegotiation(String contractName, boolean isClassic)
+    /**
+     *
+     * @param contractName name of the contract for which negotiation will be started
+     * @param counterparty name of the counterparty. Use "" if it wasn't set
+     * @param isClassic classic or not
+     */
+    public StartNegotiation(String contractName, String counterparty, boolean isClassic)
     {
         $(".spinner").waitUntil(Condition.disappear, 7_000);
-        title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("You are about to start negotiation for contract \"" + contractName + "\"."));
+
+        if( !counterparty.equals("") )
+        {
+            title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("You are about to start negotiation for contract \"" + contractName + "\" with " + counterparty + "."));
+        }
+        else
+        {
+            title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("You are about to start negotiation for contract \"" + contractName + "\"."));
+        }
 
         if( isClassic )
         {

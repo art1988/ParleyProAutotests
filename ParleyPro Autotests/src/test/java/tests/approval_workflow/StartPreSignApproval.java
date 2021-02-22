@@ -35,7 +35,7 @@ public class StartPreSignApproval
     {
         OpenedContract openedContract = new OpenedContract();
 
-        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate("pramata", false);
+        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate("pramata", "", false);
         startNegotiationForm.clickNext(false);
 
         EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext(false);

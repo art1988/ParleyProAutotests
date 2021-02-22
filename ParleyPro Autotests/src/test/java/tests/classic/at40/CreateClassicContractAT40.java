@@ -66,7 +66,7 @@ public class CreateClassicContractAT40
     {
         OpenedContract openedContract = new OpenedContract();
 
-        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate("AT-40", true);
+        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate("AT-40", "", true);
 
         EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext(true);
 

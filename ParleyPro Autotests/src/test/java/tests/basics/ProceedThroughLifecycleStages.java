@@ -62,7 +62,7 @@ public class ProceedThroughLifecycleStages
     {
         OpenedContract openedContract = new OpenedContract();
 
-        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate(DOCUMENT_NAME, false);
+        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate(DOCUMENT_NAME, "", false);
 
         EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext(false);
 

@@ -77,7 +77,7 @@ public class OpenedContract
         return new StartReview(contractName.text());
     }
 
-    public StartNegotiation switchDocumentToNegotiate(String documentName, boolean isClassic)
+    public StartNegotiation switchDocumentToNegotiate(String documentName, String counterparty, boolean isClassic)
     {
         String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
 
@@ -93,7 +93,7 @@ public class OpenedContract
 
         logger.info("NEGOTIATE was clicked");
 
-        return new StartNegotiation(contractName.text(), isClassic);
+        return new StartNegotiation(contractName.text(), counterparty, isClassic);
     }
 
     public SignContract switchDocumentToSign(String documentName)
