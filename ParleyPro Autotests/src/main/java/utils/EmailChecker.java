@@ -99,10 +99,12 @@ public class EmailChecker
      * Important: before use, need to invoke assertEmailBySubject first !
      * @param text is text that contains in body
      */
-    public static void assertEmailBodyText(String text)
+    public static String assertEmailBodyText(String text)
     {
         logger.info("Whole message text: " + messageText);
         Assert.assertTrue(messageText.contains(text));
+
+        return messageText;
     }
 
     // Below code is copy/paste from https://stackoverflow.com/questions/11240368/how-to-read-text-inside-body-of-mail-using-javax-mail
