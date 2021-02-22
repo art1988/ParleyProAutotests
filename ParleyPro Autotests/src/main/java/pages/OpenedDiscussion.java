@@ -99,4 +99,16 @@ public class OpenedDiscussion
 
         return new RevertToOriginal();
     }
+
+    /**
+     * Click by 'Make queued' button
+     * @param textInPost text of the post for which need to click
+     */
+    public void clickMakeQueued(String textInPost)
+    {
+        Selenide.executeJavaScript("$('.documents-discussion-panel .discussion2-post .discussion2-post__text:contains(\"" + textInPost + "\")').parent().parent().find(\".queued-post\").click()");
+        $(".spinner").waitUntil(Condition.disappear, 20_000);
+
+        logger.info("MAKE QUEUED was clicked");
+    }
 }
