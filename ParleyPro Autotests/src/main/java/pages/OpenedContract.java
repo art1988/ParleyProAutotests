@@ -334,4 +334,9 @@ public class OpenedContract
 
         return fieldsPanel;
     }
+
+    public String getContractName()
+    {
+        return contractName.getText();
+    }
 }
