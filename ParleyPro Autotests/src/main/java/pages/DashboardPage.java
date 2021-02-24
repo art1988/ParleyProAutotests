@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import constants.SideBarItems;
 import org.testng.Assert;
 import pages.subelements.SideBar;
 
@@ -18,6 +19,20 @@ public class DashboardPage
         Assert.assertTrue(isInit());
 
         sideBar = new SideBar();
+    }
+
+    /**
+     * Use this method to verify only certain icons on sidebar because different users
+     * with different roles may have different set of icons.
+     * @param sideBarItems
+     */
+    public DashboardPage(SideBarItems[] sideBarItems)
+    {
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
+
+        Assert.assertTrue(isInit());
+
+        sideBar = new SideBar(sideBarItems);
     }
 
     private boolean isInit()

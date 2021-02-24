@@ -1,11 +1,13 @@
 package pages.subelements;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import constants.SideBarItems;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import pages.*;
+
+import java.util.Arrays;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -14,14 +16,8 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class SideBar
 {
-    private SelenideElement priorityDashboard   = $("a[href*='#/priority-dashboard']");
-    private SelenideElement inProgressContracts = $("a[href*='#/contracts?filter=active']");
-    private SelenideElement executedContracts   = $("a[href*='contracts-executed?filter=executed']");
-    private SelenideElement dashboard           = $("a[href*='#/dashboard']");
-    private SelenideElement templates           = $("a[href*='#/templates']");
-    private SelenideElement administration      = $("a[href*='#/admin/usermanagement']");
-    private SelenideElement userGuide           = $("a[href='http://help.parleypro.com/articles']");
-    private SelenideElement userIcon            = $("#page-menu-account");
+    private SelenideElement logo     = $(".page-menu__item.page-menu__item_logo.state_active.state_active");
+    private SelenideElement userIcon = $("#page-menu-account");
 
 
     private static Logger logger = Logger.getLogger(LoginPage .class);
@@ -31,22 +27,36 @@ public class SideBar
         Assert.assertTrue(isInit());
     }
 
+    /**
+     * Use this constructor to set which sidebar items should be present on page because different users
+     * with different roles may have different set of icons.
+     * @param items
+     */
+    public SideBar(SideBarItems[] items)
+    {
+        Assert.assertTrue( logo.isDisplayed() );
+        Arrays.stream(items).forEach( item -> Assert.assertTrue( $(item.getLocator()).isDisplayed() ) );
+    }
+
     private boolean isInit()
     {
-        boolean hasLogo = $(".page-menu__item.page-menu__item_logo.state_active.state_active").isDisplayed();
-
-        return (  hasLogo && priorityDashboard.isDisplayed() && inProgressContracts.isDisplayed() &&
-                  executedContracts.isDisplayed() && dashboard.isDisplayed() && userGuide.isDisplayed() );
+        return (  logo.isDisplayed() &&
+                  $(SideBarItems.PRIORITY_DASHBOARD.getLocator()).isDisplayed() &&
+                  $(SideBarItems.IN_PROGRESS_CONTRACTS.getLocator()).isDisplayed() &&
+                  $(SideBarItems.EXECUTED_CONTRACTS.getLocator()).isDisplayed() &&
+                  $(SideBarItems.DASHBOARD.getLocator()).isDisplayed() &&
+                  $(SideBarItems.USER_GUIDE.getLocator()).isDisplayed()
+        );
     }
 
     public void clickPriorityDashboard()
     {
-        priorityDashboard.click();
+        $(SideBarItems.PRIORITY_DASHBOARD.getLocator()).click();
     }
 
     public InProgressContractsPage clickInProgressContracts(boolean isBlank)
     {
-        inProgressContracts.click();
+        $(SideBarItems.IN_PROGRESS_CONTRACTS.getLocator()).click();
 
         logger.info("In-progress contracts button was clicked");
 
@@ -55,7 +65,7 @@ public class SideBar
 
     public ExecutedContractsPage clickExecutedContracts()
     {
-        executedContracts.click();
+        $(SideBarItems.EXECUTED_CONTRACTS.getLocator()).click();
 
         logger.info("Executed contracts button was clicked");
 
@@ -64,7 +74,7 @@ public class SideBar
 
     public TemplatesPage clickTemplates(boolean isBlank)
     {
-        templates.click();
+        $(SideBarItems.TEMPLATES.getLocator()).click();
 
         logger.info("Templates button was clicked");
 
@@ -73,7 +83,7 @@ public class SideBar
 
     public AdministrationPage clickAdministration()
     {
-        administration.click();
+        $(SideBarItems.ADMINISTRATION.getLocator()).click();
 
         logger.info("Administration button was clicked");
 
