@@ -1,21 +1,27 @@
 package tests.ccn_tests.invite_ccn;
 
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
+import constants.SideBarItems;
 import forms.ContractInformation;
 import forms.StartNegotiation;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.AddDocuments;
-import pages.InProgressContractsPage;
-import pages.OpenedContract;
+import pages.*;
 import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 import utils.Waiter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class InviteCounterpartyChiefNegotiator
@@ -25,13 +31,15 @@ public class InviteCounterpartyChiefNegotiator
     private String password = "ParGd881";
     private String contractName = "Invite CCN";
     private String counterparty = "CounterpartyAT";
+    private String uniqueTimestamp;
 
     private static Logger logger = Logger.getLogger(InviteCounterpartyChiefNegotiator.class);
 
     @Test(priority = 1)
     public void createContractAndUploadDoc()
     {
-        String uniqueEmailOfCCN = "arthur.khasanov+ccn_" + new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime()) + "@parleypro.com";
+        uniqueTimestamp = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime());
+        String uniqueEmailOfCCN = "arthur.khasanov+ccn_" + uniqueTimestamp + "@parleypro.com";
 
         // Create new contract
         ContractInformation contractInformationForm = new InProgressContractsPage(true).clickNewContractButton();
@@ -49,11 +57,11 @@ public class InviteCounterpartyChiefNegotiator
         contractInformationForm.clickSave();
 
         // 2. UPLOAD MY TEAM DOCUMENTS
-        AddDocuments addDocuments = new AddDocuments();
-
-        addDocuments.clickUploadMyTeamDocuments( Const.REGRESSION_DOC_AT83_BDOC1 );
+        new AddDocuments().clickUploadMyTeamDocuments( Const.REGRESSION_DOC_AT83_BDOC1 );
 
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Services Agreement.\")')");
+
+        Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 2)
@@ -63,6 +71,8 @@ public class InviteCounterpartyChiefNegotiator
 
         StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate("bdoc1", counterparty, false);
         startNegotiationForm.clickNext(false).clickStart();
+
+        Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 3)
@@ -79,7 +89,53 @@ public class InviteCounterpartyChiefNegotiator
             end   = bodyText.indexOf(">");
 
         String URLOfRegistrationPage = bodyText.substring(start + 1, end);
+        URLOfRegistrationPage = URLOfRegistrationPage.replaceAll("amp;", ""); // replace amp; symbol
 
         Selenide.open(URLOfRegistrationPage);
+    }
+
+    @Test(priority = 4)
+    public void createCCNUser()
+    {
+        CreateParleyProAccountPage createParleyProAccountPage = new CreateParleyProAccountPage();
+
+        createParleyProAccountPage.setFirstName("CCN_Auto_FirstName_" + uniqueTimestamp);
+        createParleyProAccountPage.setLastName("CCN_Auto_LastName_" + uniqueTimestamp);
+        createParleyProAccountPage.setPassword("Parley650!");
+        createParleyProAccountPage.setConfirmPassword("Parley650!");
+
+        Screenshoter.makeScreenshot();
+
+        logger.info("Login as CCN...");
+        OpenedContract openedContract = createParleyProAccountPage.clickCreateAndSignIn();
+
+        Assert.assertEquals(openedContract.getContractName(), "Invite CCN");
+
+        $$(".header-users .user").shouldHave(CollectionCondition.size(2));
+        $$(".contract-header-users .user").shouldHave(CollectionCondition.size(2));
+
+        logger.info("Hover document's users...");
+        $$(".header-users .user").get(0).hover();
+        $(".rc-tooltip-inner .spinner").waitUntil(Condition.disappear, 8_000);
+        $(".contract-user__name").waitUntil(Condition.visible, 5_000).
+                    shouldHave(Condition.exactText("CCN_Auto_FirstName_" + uniqueTimestamp + " " + "CCN_Auto_LastName_" + uniqueTimestamp));
+        $(".contract-user__status").waitUntil(Condition.visible, 5_000).
+                    shouldHave(Condition.exactText("Chief Negotiator"));
+
+        Screenshoter.makeScreenshot();
+
+        $$(".header-users .user").get(1).hover();
+        $(".rc-tooltip-inner .spinner").waitUntil(Condition.disappear, 8_000);
+        $(".contract-user__name").waitUntil(Condition.visible, 5_000).
+                shouldHave(Condition.exactText("autotest_cn fn ln"));
+        $(".contract-user__status").waitUntil(Condition.visible, 5_000).
+                shouldHave(Condition.exactText("Chief Negotiator"));
+
+        new DashboardPage(new SideBarItems[]
+                {
+                    SideBarItems.IN_PROGRESS_CONTRACTS,
+                    SideBarItems.EXECUTED_CONTRACTS,
+                    SideBarItems.USER_GUIDE
+                }).getSideBar().logout();
     }
 }
