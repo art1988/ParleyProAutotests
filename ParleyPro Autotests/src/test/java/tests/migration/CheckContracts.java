@@ -51,7 +51,7 @@ public class CheckContracts
         // 1 end
 
         logger.info("Assert the second row of table...");
-        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Normal contract\nEugene's Counterparty Organization Parley Pro\ndraft\nNov 30, 2022"));
+        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Normal contract\nEugene's Counterparty Organization Parley Pro\ndraft\nNov 29, 2022"));
 
         // 3 start
         logger.info("Assert the third row of table...");
@@ -144,7 +144,7 @@ public class CheckContracts
         logger.info("Assert _first_ row in a table...");
         $$(".contracts-list__table a").get(0).shouldHave(Condition.exactText("Long values and that is a long long " +
                 "long long long long long long long long long long long long long long long long long long long long long long " +
-                "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nJan 17, 2022"));
+                "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nJan 16, 2022"));
 
         logger.info("Assert _second_ row in a table...");
         $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 18, 2020 Dec 18, 2020 Dec 18, 2021 Jan 17, 2022"));
@@ -245,8 +245,8 @@ public class CheckContracts
         logger.info("Asserting all fields on Contract Info -> Post-execution tab...");
 
         // The following expected values are all hardcoded and are correct only for 'Short' contract
-        Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 18, 2020");
-        Assert.assertEquals(contractInfo.getEffectiveDate(), "Dec 18, 2020");
+        Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 17, 2020");
+        Assert.assertEquals(contractInfo.getEffectiveDate(), "Dec 17, 2020");
         Assert.assertEquals(contractInfo.getInitialTerm(), "1");
         Assert.assertEquals(contractInfo.getInitialTermDuration(), "Years");
         Assert.assertTrue(contractInfo.getAutoRenewalState());
@@ -288,7 +288,7 @@ public class CheckContracts
         Thread.sleep(2_000);
 
         logger.info("Asserting all fields of 'Normal values in contract' contract...");
-        Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 17, 2020");
+        Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 16, 2020");
         Assert.assertEquals(contractInfo.getEffectiveDate(), "Jan 1, 2021");
         Assert.assertEquals(contractInfo.getInitialTerm(), "");
         Assert.assertEquals(contractInfo.getInitialTermDuration(), "Months");

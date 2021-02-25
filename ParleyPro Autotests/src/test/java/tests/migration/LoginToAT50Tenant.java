@@ -4,7 +4,6 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import constants.Const;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -23,8 +22,6 @@ public class LoginToAT50Tenant
     @BeforeSuite
     private void setup()
     {
-        Configuration.browserCapabilities = new DesiredCapabilities();
-        Configuration.browserCapabilities.setCapability("browserstack.timezone", "Yekaterinburg");
         Configuration.proxyEnabled   = true;
         Configuration.fileDownload   = FileDownloadMode.PROXY;
         Configuration.startMaximized = true;
