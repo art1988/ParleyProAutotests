@@ -95,7 +95,7 @@ public class InviteCounterpartyChiefNegotiator
     }
 
     @Test(priority = 4)
-    public void createCCNUser()
+    public void createCCNUserAndLogin()
     {
         CreateParleyProAccountPage createParleyProAccountPage = new CreateParleyProAccountPage();
 
@@ -109,8 +109,10 @@ public class InviteCounterpartyChiefNegotiator
         logger.info("Login as CCN...");
         OpenedContract openedContract = createParleyProAccountPage.clickCreateAndSignIn();
 
-        Assert.assertEquals(openedContract.getContractName(), "Invite CCN");
+        logger.info("Assert contract name...");
+        Assert.assertEquals(openedContract.getContractName(), contractName);
 
+        logger.info("Assert that it has only 1 invited person from each side...");
         $$(".header-users .user").shouldHave(CollectionCondition.size(2));
         $$(".contract-header-users .user").shouldHave(CollectionCondition.size(2));
 
@@ -131,6 +133,7 @@ public class InviteCounterpartyChiefNegotiator
         $(".contract-user__status").waitUntil(Condition.visible, 5_000).
                 shouldHave(Condition.exactText("Chief Negotiator"));
 
+        logger.info("CCN logout...");
         new DashboardPage(new SideBarItems[]
                 {
                     SideBarItems.IN_PROGRESS_CONTRACTS,
