@@ -63,7 +63,7 @@ public class CheckContracts
         rowWithoutLastActivity = Selenide.executeJavaScript(jsCode.toString());
 
         Assert.assertEquals(rowWithoutLastActivity, "Online Contract One With a Long Long Long Long Long Long Long Long Long Long " +
-                "Long Long Long Long Long Long Long TitleEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.Parley ProNEGOTIATEUSD 100,000,000.00Jan 1, 2031");
+                "Long Long Long Long Long Long Long TitleEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.Parley ProNEGOTIATEUSD 100,000,000.00Dec 31, 2030");
         // check that LastActivity has some text too...
         jsCode = new StringBuffer("var lastActivity = $('.contracts-list__table a').eq(2).find(\".contracts-list__cell-activity\").text(); return lastActivity.length > 0;");
         Assert.assertTrue(Selenide.executeJavaScript(jsCode.toString()));
@@ -147,7 +147,7 @@ public class CheckContracts
                 "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nJan 16, 2022"));
 
         logger.info("Assert _second_ row in a table...");
-        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 18, 2020 Dec 18, 2020 Dec 18, 2021 Jan 17, 2022"));
+        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 17, 2020 Dec 17, 2020 Dec 17, 2021 Jan 16, 2022"));
 
         logger.info("Assert _third_ row in a table...");
         $$(".contracts-list__table a").get(2).shouldHave(Condition.exactText("Normal values in contract\nEugene's Counterparty Organization\nmanaged\nUSD 10,000.00 Dec 17, 2020 Jan 1, 2021"));
@@ -254,7 +254,7 @@ public class CheckContracts
         Assert.assertTrue(contractInfo.getAutoRenewalState());
 
         Assert.assertEquals(contractInfo.getSubsequentTermMonths(), "1");
-        Assert.assertEquals(contractInfo.getRenewal(), "Dec 18, 2021");
+        Assert.assertEquals(contractInfo.getRenewal(), "Dec 17, 2021");
         Assert.assertEquals(contractInfo.getSubsequentTermNotification(), "1d");
         Assert.assertTrue(contractInfo.getRenewalEmailTo().contains("you@example.com") && contractInfo.getRenewalEmailTo().contains("my@example.com"));
         Assert.assertEquals(contractInfo.getNoticeOfNonRenewal(), "15");
@@ -289,7 +289,7 @@ public class CheckContracts
 
         logger.info("Asserting all fields of 'Normal values in contract' contract...");
         Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 16, 2020");
-        Assert.assertEquals(contractInfo.getEffectiveDate(), "Jan 1, 2021");
+        Assert.assertEquals(contractInfo.getEffectiveDate(), "Dec 31, 2020");
         Assert.assertEquals(contractInfo.getInitialTerm(), "");
         Assert.assertEquals(contractInfo.getInitialTermDuration(), "Months");
         Assert.assertFalse(contractInfo.getAutoRenewalState());
