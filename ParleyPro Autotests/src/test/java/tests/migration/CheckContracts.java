@@ -130,7 +130,7 @@ public class CheckContracts
         $$(".js-linked-contracts-stage").first().shouldHave(Condition.exactText("Managed"));
         $$(".js-linked-contracts-stage").last().shouldHave(Condition.exactText("Negotiate"));
 
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nSupplemented by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nDec 18, 2021\nExpiration date:\nJan 17, 2022\nParent to:\nClassic\nStage:\nNegotiate"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nSupplemented by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 16, 2022\nParent to:\nClassic\nStage:\nNegotiate"));
 
         Screenshoter.makeScreenshot();
     }
@@ -150,7 +150,7 @@ public class CheckContracts
         $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 17, 2020 Dec 17, 2020 Dec 17, 2021 Jan 16, 2022"));
 
         logger.info("Assert _third_ row in a table...");
-        $$(".contracts-list__table a").get(2).shouldHave(Condition.exactText("Normal values in contract\nEugene's Counterparty Organization\nmanaged\nUSD 10,000.00 Dec 17, 2020 Jan 1, 2021"));
+        $$(".contracts-list__table a").get(2).shouldHave(Condition.exactText("Normal values in contract\nEugene's Counterparty Organization\nmanaged\nUSD 10,000.00 Dec 16, 2020 Dec 31, 2020"));
 
         logger.info("Assert that link icons are visible for two contracts...");
         $$(".glyphicon-link").shouldHave(CollectionCondition.size(2));
@@ -258,10 +258,10 @@ public class CheckContracts
         Assert.assertEquals(contractInfo.getSubsequentTermNotification(), "1d");
         Assert.assertTrue(contractInfo.getRenewalEmailTo().contains("you@example.com") && contractInfo.getRenewalEmailTo().contains("my@example.com"));
         Assert.assertEquals(contractInfo.getNoticeOfNonRenewal(), "15");
-        Assert.assertEquals(contractInfo.getNotice(), "Dec 3, 2021");
+        Assert.assertEquals(contractInfo.getNotice(), "Dec 2, 2021");
         Assert.assertEquals(contractInfo.getNoticeNonRenewalNotification(), "1d");
         Assert.assertTrue(contractInfo.getNoticeEmailTo().contains("you@example.com") && contractInfo.getNoticeEmailTo().contains("my@example.com"));
-        Assert.assertEquals(contractInfo.getExpirationDate(), "Jan 17, 2022");
+        Assert.assertEquals(contractInfo.getExpirationDate(), "Jan 16, 2022");
         Assert.assertEquals(contractInfo.getExpirationDateNotification(), "1d");
         Assert.assertTrue(contractInfo.getExpirationEmailTo().contains("you@example.com") && contractInfo.getExpirationEmailTo().contains("my@example.com"));
 
