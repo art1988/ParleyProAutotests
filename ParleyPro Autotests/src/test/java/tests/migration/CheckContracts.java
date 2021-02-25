@@ -184,7 +184,7 @@ public class CheckContracts
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Contract was amended: 1"));
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 18, 2020\nRenewal date:\nDec 18, 2021\nExpiration date:\nJan 17, 2022"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 16, 2022"));
 
         Selenide.refresh(); // Reload page to reset hover popup
         $(".spinner").waitUntil(Condition.disappear, 7_000);
@@ -272,7 +272,7 @@ public class CheckContracts
         Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select One"), "Yes");
         Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select Two"), "1");
         Assert.assertEquals(contractInfo.getValueFromCustomField("PE Multi Select"), "A very long long long long long long long long long long long long long long long long long long long long long long long value");
-        Assert.assertEquals(contractInfo.getValueFromCustomField("Some strange date"), "Dec 1, 2020");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("Some strange date"), "Nov 30, 2020");
         Assert.assertEquals(contractInfo.getValueFromCustomField("Title"), "Custom Field");
         Assert.assertEquals(contractInfo.getValueFromCustomField("Value"), "1");
         Assert.assertEquals(contractInfo.getNotes(), "Note from me.");
