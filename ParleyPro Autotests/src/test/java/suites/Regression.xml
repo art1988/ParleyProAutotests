@@ -76,4 +76,14 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-83: Accepted, then deleted text is not tracked" preserve-order="true">
+        <parameter name="contractName" value="AT83 Classic"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at83.CreateClassicContractAndUploadDocs"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>

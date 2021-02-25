@@ -7,7 +7,9 @@ import constants.Const;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
 import io.qameta.allure.Description;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
@@ -16,6 +18,7 @@ import utils.Screenshoter;
 import utils.Waiter;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -84,9 +87,10 @@ public class CreateClassicContractAndUploadDocs
     @Description("This test make post as queued.")
     public void makeDiscussionQueued()
     {
-        logger.info("Scroll to B. Client’s Right to Terminate. discussion...");
+        logger.info("Scroll to 'B. Client’s Right to Terminate.' discussion...");
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"5. Termination\")')[0].scrollIntoView({})");
 
+        logger.info("Open discussion for 'Client’s Right to Terminate.' paragraph...");
         OpenedDiscussion openedDiscussion = new OpenedContract(true).clickByDiscussionIcon("Client’s Right to Terminate.");
         openedDiscussion.clickMakeQueued("Notwithstanding the foregoing");
 
@@ -129,7 +133,40 @@ public class CreateClassicContractAndUploadDocs
         DiscussionsOfSingleContract discussionsOfSingleContract = documentComparePreview.clickUpload(true);
 
         discussionsOfSingleContract.clickDocumentsTab();
+
+        Screenshoter.makeScreenshot();
     }
 
-    // TODO: finish when PAR-13578 will be fixed
+    @Test(priority = 7)
+    @Description("This test opens 'B. Client’s Right to Terminate.' discussion and checks that del post is present")
+    public void openDiscussion()
+    {
+        logger.info("Scroll to 'B. Client’s Right to Terminate.' discussion...");
+        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"5. Termination\")')[0].scrollIntoView({})");
+
+        logger.info("Assert that paragraph doest have del and ins tags...");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Client’s Right to Terminate.\")').find(\"ins\").length === 0"));
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Client’s Right to Terminate.\")').find(\"del\").length === 0"));
+
+        logger.info("Open discussion for 'Client’s Right to Terminate.' paragraph...");
+        OpenedDiscussion openedDiscussion = new OpenedContract(true).clickByDiscussionIcon("Client’s Right to Terminate.");
+
+        logger.info("Scroll discussion panel to the bottom...");
+        Selenide.executeJavaScript("document.querySelector('.discussion2__body__scrollable-body').scrollTo(0,document.querySelector('.discussion2__body__scrollable-body').scrollHeight)");
+
+        logger.info("Assert total number of posts...");
+        Assert.assertEquals(openedDiscussion.getCountOfPosts(), "4", "Number of post should be = 4 !");
+
+        logger.info("Assert that only one del present for the last post...");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.discussion2__body .discussion2-post').last().find(\"del\").length === 1"));
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 8)
+    public void cleanUpDownloadDir() throws IOException
+    {
+        // Clean download dir
+        FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
+    }
 }
