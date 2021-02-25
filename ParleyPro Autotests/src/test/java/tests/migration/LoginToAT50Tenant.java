@@ -22,6 +22,7 @@ public class LoginToAT50Tenant
     @BeforeSuite
     private void setup()
     {
+        Configuration.browserCapabilities.setCapability("browserstack.timezone", "Yekaterinburg");
         Configuration.proxyEnabled   = true;
         Configuration.fileDownload   = FileDownloadMode.PROXY;
         Configuration.startMaximized = true;
