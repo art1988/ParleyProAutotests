@@ -22,7 +22,7 @@ public class DashboardPage
     }
 
     /**
-     * Use this method to verify only certain icons on sidebar because different users
+     * Use this constructor to verify only certain icons of sidebar because different users
      * with different roles may have different set of icons.
      * @param sideBarItems
      */
