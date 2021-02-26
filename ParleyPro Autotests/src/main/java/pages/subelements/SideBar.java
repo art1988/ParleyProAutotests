@@ -22,7 +22,7 @@ public class SideBar
     private SelenideElement userIcon = $("#page-menu-account");
     private Map<SideBarItems, String> sideBarItems = new EnumMap<>(SideBarItems.class); // map each item to it's locator
 
-    private static Logger logger = Logger.getLogger(LoginPage .class);
+    private static Logger logger = Logger.getLogger(SideBar.class);
 
     /**
      * Constructs default sidebar with PRIORITY_DASHBOARD, IN_PROGRESS_CONTRACTS, EXECUTED_CONTRACTS,
