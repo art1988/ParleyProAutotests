@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import forms.add.AddTemplates;
 import org.apache.log4j.Logger;
 import pages.tooltips.TemplatesActionMenu;
 
@@ -12,6 +13,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class TemplatesPage
 {
+    private SelenideElement newTemplateButton = $("button[tooltip=\"Add new template\"]");
+
 
     private static Logger logger = Logger.getLogger(TemplatesPage.class);
 
@@ -37,6 +40,9 @@ public class TemplatesPage
 
             // Assert that heading of table is visible
             $(".templates-board__list thead").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Template name Status Last activity"));
+
+            // Make sure that + NEW TEMPLATE button is also visible
+            newTemplateButton.shouldBe(Condition.visible).shouldBe(Condition.enabled);
         }
     }
 
@@ -84,5 +90,14 @@ public class TemplatesPage
         Selenide.executeJavaScript("$('.template__title:contains(\"" + templateName + "\")').next().next().next().find(\"button\").next().css('visibility', 'visible')");
 
         return new TemplatesActionMenu(templateName);
+    }
+
+    public AddTemplates clickNewTemplate()
+    {
+        newTemplateButton.click();
+
+        logger.info("+ NEW TEMPLATE button was clicked");
+
+        return new AddTemplates();
     }
 }
