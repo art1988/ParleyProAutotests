@@ -37,5 +37,12 @@
             <class name="tests.templates.at77.CreateTemplateAndPasteText"/>
         </classes>
     </test>
-    -->
+
+    <test name="AT-86: Template text cuts off at the beginning of paragraph">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.templates.at86.UploadPublishDownloadTemplate"/>
+            <class name="tests.templates.at86.CreateContractAndSelectTemplate"/>
+        </classes>
+    </test> -->
 </suite>
