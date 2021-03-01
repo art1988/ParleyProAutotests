@@ -339,4 +339,13 @@ public class OpenedContract
     {
         return contractName.getText();
     }
+
+    /**
+     * Get total amount of discussion counter for this opened contract
+     * @return
+     */
+    public String getAmountOfContractDiscussion()
+    {
+        return $(".contract-header__status .discussion-indicator__count").getText();
+    }
 }
