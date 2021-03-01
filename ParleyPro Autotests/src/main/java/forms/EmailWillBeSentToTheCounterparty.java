@@ -51,6 +51,11 @@ public class EmailWillBeSentToTheCounterparty
         Thread.sleep(500);
     }
 
+    public String getCounterpartyOrganization()
+    {
+        return counterpartyOrganizationField.getValue();
+    }
+
     public void setCounterpartyChiefNegotiator(String chiefNegotiator) throws InterruptedException
     {
         counterpartyChiefNegotiatorField.clear();
@@ -60,6 +65,11 @@ public class EmailWillBeSentToTheCounterparty
         Thread.sleep(500);
         counterpartyChiefNegotiatorField.pressEnter();
         Thread.sleep(500);
+    }
+
+    public String getCounterpartyChiefNegotiator()
+    {
+        return counterpartyChiefNegotiatorField.getValue();
     }
 
     /**
