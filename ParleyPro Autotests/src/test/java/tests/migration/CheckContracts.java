@@ -240,7 +240,7 @@ public class CheckContracts
         $$(".contract-header__right > div").shouldHave(CollectionCondition.size(3));
         $(".private-label").shouldBe(Condition.visible).shouldHave(Condition.exactText("visibility_off"));
         $(".linked-contracts-label").shouldBe(Condition.visible).shouldHave(Condition.exactText("link 2"));
-        $(".contract-header-users").shouldBe(Condition.visible).shouldHave(Condition.exactText("("));
+        $(".contract-header-users").shouldBe(Condition.visible).shouldHave(Condition.exactText("(c"));
 
         logger.info("Asserting all fields on Contract Info -> Post-execution tab...");
 
@@ -328,7 +328,7 @@ public class CheckContracts
         // Assert that for document Big Test Document v1 amount of discussions = 2
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-row:contains(\"Big Test\")').next().find(\".discussion-indicator__count\").text()"), "2");
 
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-row:contains(\"Big Test\")').next().find(\".document__score\").text()"), "P SHARE");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-row:contains(\"Big Test\")').next().find(\".document__score\").text()"), "PP SHARE");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-row:contains(\"wiki\")').next().find(\".document__score\").text()"), "P( SHARE");
 
         $(".label_theme_dgray").shouldBe(Condition.visible).shouldHave(Condition.exactText("3RD PARTY"));

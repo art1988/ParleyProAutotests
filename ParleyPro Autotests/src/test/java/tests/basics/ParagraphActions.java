@@ -8,7 +8,6 @@ import forms.DiscardDiscussion;
 import forms.RevertToOriginal;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
