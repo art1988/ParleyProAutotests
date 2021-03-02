@@ -317,7 +317,7 @@ public class ParagraphActions
         openedDiscussion.clickPriorityButton();
 
         logger.info("Assert that High priority post appeared...");
-        $(".discussion2-post__priority").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("High priority"));
+        $(".discussion2-post__priority").waitUntil(Condition.visible, 10_000).shouldHave(Condition.exactText("High priority"));
 
         logger.info("Check that paragraph has high priority mark from the left...");
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_priority\")"); // wait until icon appear
@@ -328,7 +328,7 @@ public class ParagraphActions
         openedDiscussion.clickTermButton(addedTag);
 
         // Wait until post with Non-standard tag appear
-        $(".discussion2-post__term-name").waitUntil(Condition.visible, 5_000);
+        $(".discussion2-post__term-name").waitUntil(Condition.visible, 10_000);
 
         logger.info("Assert that Non-standard post appeared...");
         Waiter.smartWaitUntilVisible("$('.discussion2-post:contains(\"Non-standard: " + addedTag + "\")')");
