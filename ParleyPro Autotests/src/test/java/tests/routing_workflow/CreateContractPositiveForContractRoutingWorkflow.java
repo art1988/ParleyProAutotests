@@ -91,13 +91,13 @@ public class CreateContractPositiveForContractRoutingWorkflow
     {
         logger.info("Assert that user icons are visible...");
         $(".header-users .user").waitUntil(Condition.appear, 25_000); // wait until users icons will appear
-        $$(".header-users .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("a", "I"));
+        $$(".header-users .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("AL", "II"));
 
         logger.info("Assert that Internal user1 has Reviewer role...");
 
         // Hover over I user icon
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-        jsCode.append("$('.header-users span:contains(\"I\")')[0].dispatchEvent(event);");
+        jsCode.append("$('.header-users span:contains(\"II\")')[0].dispatchEvent(event);");
         Selenide.executeJavaScript(jsCode.toString());
 
         $(".contract-user__status").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Reviewer"));
@@ -164,7 +164,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
 
         logger.info("Assert that just uploaded document has 2 added user icons...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-rename:contains(\"Formatting\")').parent().parent().parent().find(\".header-users .user\").text()"),
-                "aA");
+                "ALAr");
 
         // Hover over second user icon
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");

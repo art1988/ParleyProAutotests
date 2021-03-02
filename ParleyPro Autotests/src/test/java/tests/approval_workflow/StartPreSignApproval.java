@@ -62,7 +62,7 @@ public class StartPreSignApproval
         ConfirmApprovers confirmApproversForm = openedContract.switchDocumentToPreSignApproval("pramata");
 
         logger.info("Assert that we see Approval_User_2 as first approver and Team #2 as second approver...");
-        $$(".document-approval__user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("1\nA\nApproval_User_2 (arthur.khasanov+approval2@parleypro.com)", "2\nTeam #2\n2 members"));
+        $$(".document-approval__user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("1\nAr\nApproval_User_2 (arthur.khasanov+approval2@parleypro.com)", "2\nTeam #2\n2 members"));
 
         confirmApproversForm.clickStartApproval();
 
@@ -71,7 +71,7 @@ public class StartPreSignApproval
 
         logger.info("Assert that approvers icons are visible: Approval_User_2 and Team#2");
         $(".header-users .user").waitUntil(Condition.appear, 15_000); // wait until users icons will appear
-        $$(".header-users .user").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("A")); // one User...
+        $$(".header-users .user").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("Ar")); // one User...
         $$(".header-users .team").shouldHave(CollectionCondition.size(1)); // ...and one Team
 
         Screenshoter.makeScreenshot();
@@ -189,7 +189,7 @@ public class StartPreSignApproval
         logger.info("Assert that approvers icons have checkmarks...");
         $(".header-users .user").waitUntil(Condition.appear, 10_000); // wait until users icons will appear
         Assert.assertTrue(Selenide.executeJavaScript("return $('.team-icon.team').hasClass(\"_show-checkbox_yes\")")); // team has checkmark
-        $$(".header-users .user .user__checkbox").shouldHave(CollectionCondition.size(1)); // user has checkmark
+        $$(".header-users .user .user-icon-checked").shouldHave(CollectionCondition.size(1)); // user has checkmark
 
         Screenshoter.makeScreenshot();
     }

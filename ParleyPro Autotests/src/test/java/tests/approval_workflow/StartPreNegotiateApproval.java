@@ -50,8 +50,8 @@ public class StartPreNegotiateApproval
 
         logger.info("Assert that approvers icons are visible...");
         $(".header-users .user").waitUntil(Condition.appear, 25_000); // wait until users icons will appear
-        $$(".header-users .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("A", "A"));
-        $$(".contract-header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.exactTexts("a", "A", "A"));
+        $$(".header-users .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("Ar", "Ar"));
+        $$(".contract-header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.exactTexts("AL", "Ar", "Ar"));
 
         Screenshoter.makeScreenshot();
 
@@ -167,7 +167,7 @@ public class StartPreNegotiateApproval
 
         logger.info("Assert that approvers icons have checkmarks...");
         $(".header-users .user").waitUntil(Condition.appear, 10_000); // wait until users icons will appear
-        $$(".header-users .user .user__checkbox").shouldHave(CollectionCondition.size(2)); // checkmarks checks
+        $$(".header-users .user .user-icon-checked").shouldHave(CollectionCondition.size(2)); // checkmarks checks
 
         Screenshoter.makeScreenshot();
     }
