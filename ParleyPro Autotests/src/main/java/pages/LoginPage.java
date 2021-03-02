@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import constants.SideBarItems;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 
@@ -41,7 +42,8 @@ public class LoginPage
     }
 
     /**
-     * Use this method if you are sure that no Select tenant will appear afterwards
+     * Use this method if you are sure that no Select tenant will appear afterwards.
+     * Setup default side bar.
      * @return
      */
     public DashboardPage clickSignIn()
@@ -53,6 +55,22 @@ public class LoginPage
         logger.info("Sign In button was clicked");
 
         return new DashboardPage();
+    }
+
+    /**
+     * Use this method to Sign In and setup custom sidebar.
+     * @param sideBarItems items of sidebar that should be present on page
+     * @return
+     */
+    public DashboardPage clickSignIn(SideBarItems[] sideBarItems)
+    {
+        logger.info("Trying to login as: " + emailField.getValue());
+
+        signInButton.click();
+
+        logger.info("Sign In button was clicked");
+
+        return new DashboardPage(sideBarItems);
     }
 
     /**
