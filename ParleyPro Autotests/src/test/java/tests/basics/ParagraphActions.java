@@ -8,6 +8,7 @@ import forms.DiscardDiscussion;
 import forms.RevertToOriginal;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -331,8 +332,9 @@ public class ParagraphActions
         $(".discussion2-post__term-name").waitUntil(Condition.visible, 10_000);
 
         logger.info("Assert that Non-standard post appeared...");
-        Waiter.smartWaitUntilVisible("$('.discussion2-post:contains(\"Non-standard: " + addedTag + "\")')");
-        Long countOfNonStandardPosts = Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard: " + addedTag + "\")').length");
+        Waiter.smartWaitUntilVisible("$('.discussion2-post:contains(\"Non-standard:\")')");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").text()"), addedTag);
+        Long countOfNonStandardPosts = Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").length");
         Assert.assertEquals(countOfNonStandardPosts.longValue(), 1);
 
         logger.info("Check that paragraph has tag from the left...");
