@@ -31,7 +31,7 @@ public class CancelingOfAddedUsers
         shareForm.removeUser( Const.USER_MARY.getFirstName() );
 
         logger.info("Checking that there are no added users left in share modal...");
-        $$(".manage-users-user").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("A\nautotest_cn fn ln\narthur.khasanov+autotestcn@parleypro.com\nChief Negotiator"));
+        $$(".manage-users-user").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("AL\nautotest_cn fn ln\narthur.khasanov+autotestcn@parleypro.com\nChief Negotiator"));
 
         Screenshoter.makeScreenshot();
 
