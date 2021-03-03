@@ -58,7 +58,7 @@ public class LoginAsCCNAndAcceptDiscussion
 
         OpenedContract openedContract = new OpenedContract();
         logger.info("Assert that URL starts with https://counterpartyat.parleypro");
-        Assert.assertTrue(WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://counterpartyat"));
+        Assert.assertTrue(WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://counterpartyat.parleypro"));
 
         logger.info("Assert that opened contract has name 'CCN: READY FOR SIGNATURE button contract'...");
         Assert.assertEquals(openedContract.getContractName(), "CCN: READY FOR SIGNATURE button contract");
