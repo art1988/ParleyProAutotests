@@ -329,7 +329,7 @@ public class CheckContracts
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-row:contains(\"Big Test\")').next().find(\".discussion-indicator__count\").text()"), "2");
 
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-row:contains(\"Big Test\")').next().find(\".document__score\").text()"), "PP SHARE");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-row:contains(\"wiki\")').next().find(\".document__score\").text()"), "P( SHARE");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.document__header-row:contains(\"wiki\")').next().find(\".document__score\").text()"), "PP(e SHARE");
 
         $(".label_theme_dgray").shouldBe(Condition.visible).shouldHave(Condition.exactText("3RD PARTY"));
         $("#UPLOAD_VERSION_DOCUMENT").shouldBe(Condition.visible).shouldHave(Condition.exactText("Upload new version"));
