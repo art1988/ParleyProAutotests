@@ -12,8 +12,10 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
+import pages.OpenedDiscussion;
 import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -27,6 +29,8 @@ public class LoginAsCCNAndAcceptDiscussion
     private String host = "imap.gmail.com";
     private String username = "arthur.khasanov@parleypro.com";
     private String password = "ParGd881";
+
+    private DashboardPage dashboardPage;
 
     private Logger logger = Logger.getLogger(LoginAsCCNAndAcceptDiscussion.class);
 
@@ -54,7 +58,7 @@ public class LoginAsCCNAndAcceptDiscussion
         LoginPage loginPage = new LoginPage();
         loginPage.setEmail( Const.PREDEFINED_CCN.getEmail() );
         loginPage.setPassword( Const.PREDEFINED_CCN.getPassword() );
-        loginPage.clickSignIn(new SideBarItems[] {SideBarItems.IN_PROGRESS_CONTRACTS, SideBarItems.EXECUTED_CONTRACTS});
+        dashboardPage = loginPage.clickSignIn(new SideBarItems[] {SideBarItems.IN_PROGRESS_CONTRACTS, SideBarItems.EXECUTED_CONTRACTS});
 
         OpenedContract openedContract = new OpenedContract();
         logger.info("Assert that URL starts with https://counterpartyat.parleypro");
@@ -78,16 +82,46 @@ public class LoginAsCCNAndAcceptDiscussion
     }
 
     @Test(priority = 2)
-    @Description("This test accept one discussion as CCN and verifies that button READY FOR SIGNATURE is enabled.")
+    @Description("This test accept one discussion as CCN and verifies that button READY FOR SIGNATURE becomes enabled.")
     public void acceptDiscussion()
     {
         OpenedContract openedContract = new OpenedContract();
 
         String paragraphToAccept = "Just new paragraph to initiate discussion";
-        openedContract.clickByDiscussionIcon(paragraphToAccept).clickAccept(AcceptTypes.INSERT, paragraphToAccept).clickAcceptText();
+        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(paragraphToAccept);
+        openedDiscussion.clickAccept(AcceptTypes.INSERT, paragraphToAccept).clickAcceptText();
 
         logger.info("Assert notification...");
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        openedDiscussion.close();
+
+        logger.info("Assert that READY FOR SIGNATURE button is enabled...");
+        $(".ready_to_sign").shouldBe(Condition.visible).shouldBe(Condition.enabled);
+
+        logger.info("Assert that number of discussions for contract is empty");
+        Assert.assertFalse($("user-icon-checked.contract-header__status .discussion-indicator__count").is(Condition.visible));
+
+        logger.info("But discussion icon is still on page...");
+        $$(".discussion-indicator").shouldHave(CollectionCondition.size(1));
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 3)
+    @Description("This test clicks Ready for signature button and checks that checkmark appears for user with CC avatar.")
+    public void clickReadyForSignature()
+    {
+        new OpenedContract().clickReadyForSignature().clickOk();
+
+        logger.info("Assert that checkmark was shown for CC...");
+        $(".contract-header-users .contract-header-users__list .user-icon-checked").waitUntil(Condition.visible, 7_000);
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.contract-header-users').find(\"span:contains('CC')\").find(\".user-icon-checked\").length"), Long.valueOf(1));
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.contract-header-users').find(\"span:contains('AL')\").find(\".user-icon-checked\").length"), Long.valueOf(0));
+
+        Screenshoter.makeScreenshot();
+
+        dashboardPage.getSideBar().logout();
     }
 }

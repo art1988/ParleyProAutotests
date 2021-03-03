@@ -5,6 +5,7 @@ import constants.Const;
 import forms.ContractInformation;
 import forms.EmailWillBeSentToTheCounterparty;
 import forms.StartNegotiation;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -60,7 +61,7 @@ public class CreateContractUploadDocAndMakeDiscussion
 
         logger.info("Assert that Counterparty organization and CCN email were fetched from contract info...");
         Assert.assertEquals(emailWillBeSentToTheCounterparty.getCounterpartyOrganization(), counterpartyOrganization);
-        Assert.assertEquals(emailWillBeSentToTheCounterparty.getCounterpartyChiefNegotiator(), "CCN AT fn CCN AT fn (" + Const.PREDEFINED_CCN.getEmail() + ")");
+        Assert.assertEquals(emailWillBeSentToTheCounterparty.getCounterpartyChiefNegotiator(), "CCN AT fn CCN AT ln (" + Const.PREDEFINED_CCN.getEmail() + ")");
 
         emailWillBeSentToTheCounterparty.clickStart();
 
@@ -71,6 +72,7 @@ public class CreateContractUploadDocAndMakeDiscussion
     }
 
     @Test(priority = 3)
+    @Description("This test adds one discussion and makes it external.")
     public void makeExternalDiscussion() throws InterruptedException
     {
         CKEditorActive ckEditorActive = new OpenedContract().hover("Unused extra").clickAddParagraphAbove();
