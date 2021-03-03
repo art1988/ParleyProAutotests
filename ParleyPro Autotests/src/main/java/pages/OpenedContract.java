@@ -27,7 +27,8 @@ public class OpenedContract
     private SelenideElement rejectDocumentButton   = $("#REJECT_DOCUMENT");
     private SelenideElement uploadNewVersionButton = $("#UPLOAD_VERSION_DOCUMENT");
 
-    private SelenideElement newDocumentButton     = $("button[tooltip='Add new document']");
+    private SelenideElement newDocumentButton       = $("button[tooltip='Add new document']");
+    private SelenideElement readyForSignatureButton = $(".ready_to_sign");
 
     // In case if document was created from template
     private FieldsPanel fieldsPanel;
@@ -319,6 +320,18 @@ public class OpenedContract
         logger.info("+ NEW DOCUMENT button was clicked");
 
         return new AddDocuments();
+    }
+
+    /**
+     * Click by READY FOR SIGNATURE button. CCN may have this button.
+     */
+    public ReadyToSign clickReadyForSignature()
+    {
+        readyForSignatureButton.click();
+
+        logger.info("READY FOR SIGNATURE button was clicked");
+
+        return new ReadyToSign();
     }
 
     /**
