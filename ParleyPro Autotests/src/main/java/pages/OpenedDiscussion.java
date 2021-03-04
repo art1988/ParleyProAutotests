@@ -8,6 +8,7 @@ import forms.AcceptPost;
 import forms.DiscardDiscussion;
 import forms.RevertToOriginal;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -26,6 +27,15 @@ public class OpenedDiscussion
     {
         $(".discussion2-original").waitUntil(Condition.visible, 15_000);
         $(".discussion-header__title-name").waitUntil(Condition.visible, 7_000).shouldHave(Condition.text(title));
+
+        try
+        {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
     }
 
     /**
@@ -106,7 +116,10 @@ public class OpenedDiscussion
      */
     public void clickMakeQueued(String textInPost)
     {
-        Selenide.executeJavaScript("$('.documents-discussion-panel .discussion2-post .discussion2-post__text:contains(\"" + textInPost + "\")').parent().parent().find(\".queued-post\").click()");
+        WebElement makeQueuedButton = Selenide.executeJavaScript("return $('.documents-discussion-panel .discussion2-post .discussion2-post__text:contains(\"" + textInPost + "\")').parent().parent().find(\".queued-post\")[0]");
+        $(makeQueuedButton).shouldBe(Condition.enabled).click();
+
+        $(".spinner").waitUntil(Condition.appear, 10_000);
         $(".spinner").waitUntil(Condition.disappear, 20_000);
 
         logger.info("MAKE QUEUED was clicked");
