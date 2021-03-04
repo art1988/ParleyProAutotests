@@ -23,7 +23,11 @@ public class CreateParleyProAccountPage
     {
         $(".auth__title").waitUntil(Condition.visible, 20_000).shouldHave(Condition.exactText("Create Parley Pro account"));
         Assert.assertEquals($(".auth__head").waitUntil(Condition.visible, 20_000).attr("href"), "http://parleypro.com/");
-        Assert.assertEquals($(".auth__head").getCssValue("background-image"), "url(\"https://counterpartyat.parleypro.net/master/images/cc8124f8be69a02e7221cfaabe5a0ef1.svg\")");
+
+        String backgroundImage = $(".auth__head").getCssValue("background-image");
+        System.out.println("backgroundImage = " + backgroundImage);
+        Assert.assertTrue(backgroundImage.endsWith("images/cc8124f8be69a02e7221cfaabe5a0ef1.svg\")"));
+                                                 // images/cc8124f8be69a02e7221cfaabe5a0ef1.svg
     }
 
     public void setFirstName(String firstName)
