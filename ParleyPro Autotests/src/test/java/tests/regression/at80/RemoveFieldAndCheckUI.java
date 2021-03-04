@@ -39,6 +39,7 @@ public class RemoveFieldAndCheckUI
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
         Screenshoter.makeScreenshot();
 
+        Thread.sleep(500);
         // close all notification popups if they are present
         if( $(".notification-stack").is(Condition.visible) )
         {
