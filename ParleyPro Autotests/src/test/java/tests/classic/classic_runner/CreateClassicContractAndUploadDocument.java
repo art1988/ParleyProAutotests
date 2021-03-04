@@ -73,11 +73,11 @@ public class CreateClassicContractAndUploadDocument
 
             $(".spinner").waitUntil(Condition.disappear, 60_000);
             $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
-            Thread.sleep(5_000);
 
-            logger.info("Scroll to top of page...");
-            Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,0)");
-            Thread.sleep(3_000);
+            Selenide.refresh();
+
+            $(".contract-header__name").waitUntil(Condition.visible, 20_000);
+            $(".contract-header__name").shouldBe(Condition.enabled);
 
             StartNegotiation startNegotiationForm = new OpenedContract().switchDocumentToNegotiate(docNameWithoutExtension, "", true);
             EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext(true);
