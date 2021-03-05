@@ -76,7 +76,7 @@ public class CreateContractAndCheckDate
 
     @Test(priority = 4)
     @Description("This test goes to Administration -> Fields and remove just created custom field by the name 'Effective Date'")
-    public void deleteCustomFileld() throws InterruptedException
+    public void deleteCustomField() throws InterruptedException
     {
         Fields fieldsTab = new SideBar().clickAdministration().clickFieldsTab();
         ContractFields contractFields = fieldsTab.clickContractFields();
