@@ -86,6 +86,8 @@ public class LoginAsApproverAndReject
         logger.info("Assert that document status was switched back to review...");
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("REVIEW\n(1)", "REVIEW"));
 
+        Screenshoter.makeScreenshot();
+
         logger.info("Checking audit trail events...");
         AuditTrail auditTrail = new OpenedContract().clickAuditTrail();
 
