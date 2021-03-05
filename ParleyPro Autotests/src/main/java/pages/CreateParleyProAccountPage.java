@@ -25,9 +25,7 @@ public class CreateParleyProAccountPage
         Assert.assertEquals($(".auth__head").waitUntil(Condition.visible, 20_000).attr("href"), "http://parleypro.com/");
 
         String backgroundImage = $(".auth__head").getCssValue("background-image");
-        System.out.println("backgroundImage = " + backgroundImage);
         Assert.assertTrue(backgroundImage.endsWith("images/cc8124f8be69a02e7221cfaabe5a0ef1.svg\")"));
-                                                 // images/cc8124f8be69a02e7221cfaabe5a0ef1.svg
     }
 
     public void setFirstName(String firstName)
