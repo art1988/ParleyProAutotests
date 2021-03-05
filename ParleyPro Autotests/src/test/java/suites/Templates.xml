@@ -30,14 +30,17 @@
         </classes>
     </test>
 
-    <!--
     <test name="AT-77: Top of specific template disappears after publishing" preserve-order="true">
+        <parameter name="templateName" value="Template_AT-77_dummy"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.templates.at77.CreateTemplateAndPasteText"/>
+            <class name="tests.templates.at77.CreateTemplatePasteTextAndVerify"/>
+            <class name="tests.DeleteTemplate"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 
+    <!--
     <test name="AT-86: Template text cuts off at the beginning of paragraph">
         <classes>
             <class name="tests.LoginToDashboard"/>
