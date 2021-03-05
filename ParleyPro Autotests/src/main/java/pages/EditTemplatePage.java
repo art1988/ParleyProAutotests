@@ -9,10 +9,11 @@ import org.apache.log4j.Logger;
 import static com.codeborne.selenide.Selenide.$;
 
 /**
- * Represents selected template page in Edit mode where editor is available
+ * Represents selected template page in 'Edit mode' where editor is available and active.
  */
 public class EditTemplatePage
 {
+    private SelenideElement cancelButton  = $(".button.btn-small.btn-link-pseudo.btn.btn-link");
     private SelenideElement publishButton = $(".button.btn-small.btn.btn-primary");
 
 
@@ -50,7 +51,7 @@ public class EditTemplatePage
     }
 
     /**
-     * Adds text to the first line
+     * Adds text as the first line in opened editor.
      * @param text
      */
     public void addText(String text) throws InterruptedException
@@ -65,6 +66,20 @@ public class EditTemplatePage
         Thread.sleep(1_000); // 1 second delay - necessary for correct saving of text
     }
 
+    /**
+     * Gets whole text ( as plain text ) from opened editor.
+     * @return
+     */
+    public String getText()
+    {
+        StringBuffer jsCode = new StringBuffer("var names = [];");
+        jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
+        jsCode.append("var editor_instance = names[0];");
+        jsCode.append("return editor_instance.editable().getText();");
+
+        return Selenide.executeJavaScript(jsCode.toString());
+    }
+
     public void clickPublishButton()
     {
         publishButton.click();
@@ -72,5 +87,14 @@ public class EditTemplatePage
         logger.info("PUBLISH button was clicked");
 
         $(".modal-content").waitUntil(Condition.disappear, 25_000);
+    }
+
+    public void clickCancelButton()
+    {
+        cancelButton.click();
+
+        logger.info("CANCEL button was clicked");
+
+        $(".modal-content").waitUntil(Condition.disappear, 10_000);
     }
 }
