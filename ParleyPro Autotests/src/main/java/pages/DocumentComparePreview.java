@@ -45,22 +45,30 @@ public class DocumentComparePreview
 
     public String getCounterAdded()
     {
-        return $(".update-document__added").getText();
+        SelenideElement counterAdded = $(".update-document__added");
+
+        return counterAdded.is(Condition.exist) ? counterAdded.getText() : "";
     }
 
     public String getCounterEdited()
     {
-        return $(".update-document__edited").getText();
+        SelenideElement counterEdited = $(".update-document__edited");
+
+        return counterEdited.is(Condition.exist) ? counterEdited.getText() : "";
     }
 
     public String getCounterCommented()
     {
-        return $(".update-document__commented").getText();
+        SelenideElement counterCommented = $(".update-document__commented");
+
+        return counterCommented.is(Condition.exist) ? counterCommented.getText() : "";
     }
 
     public String getCounterDeleted()
     {
-        return $(".update-document__deleted").getText();
+        SelenideElement counterDeleted = $(".update-document__deleted");
+
+        return counterDeleted.is(Condition.exist) ? counterDeleted.getText() : "";
     }
 
     /**
