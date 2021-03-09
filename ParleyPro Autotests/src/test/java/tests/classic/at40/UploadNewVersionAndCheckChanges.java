@@ -60,7 +60,7 @@ public class UploadNewVersionAndCheckChanges
 
         logger.info("Assert that there are only 5 opened discussions");
         DiscussionsOfSingleContract discussionsInContract = comparePreview.clickUpload(true);
-        Assert.assertEquals(discussionsInContract.getDiscussionCount(), "5");
+        Assert.assertEquals(discussionsInContract.getDiscussionCount(), "5", "Looks like that discussions are empty or not equal 5 !");
         $$(".discussion-list .discussion2.discussion2_collapsed_yes").shouldHave(CollectionCondition.size(5));
 
         logger.info("Assert that all discussions and indicator have new icon...");

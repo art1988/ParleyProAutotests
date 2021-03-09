@@ -144,9 +144,9 @@ public class CreateClassicContractAndUploadDocs
         logger.info("Scroll to 'B. Client’s Right to Terminate.' discussion...");
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"5. Termination\")')[0].scrollIntoView({})");
 
-        logger.info("Assert that paragraph doest have del and ins tags...");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Client’s Right to Terminate.\")').find(\"ins\").length === 0"));
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Client’s Right to Terminate.\")').find(\"del\").length === 0"));
+        logger.info("Assert that paragraph doesn't have del and ins tags...");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Client’s Right to Terminate.\")').find(\"ins\").length === 0"), "Paragraph shouldn't have insert tag !");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Client’s Right to Terminate.\")').find(\"del\").length === 0"), "Paragraph shouldn't have delete tag !");
 
         logger.info("Open discussion for 'Client’s Right to Terminate.' paragraph...");
         OpenedDiscussion openedDiscussion = new OpenedContract(true).clickByDiscussionIcon("Client’s Right to Terminate.");

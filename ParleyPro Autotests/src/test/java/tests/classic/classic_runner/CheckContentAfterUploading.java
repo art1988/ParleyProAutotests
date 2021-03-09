@@ -26,7 +26,8 @@ public class CheckContentAfterUploading
         DiscussionsOfSingleContract discussionsOfSingleContract = new DiscussionsOfSingleContract(contractName);
 
         logger.info("Checking number of discussions...");
-        Assert.assertTrue(Integer.parseInt(discussionsOfSingleContract.getDiscussionCount()) >= Integer.parseInt(numberOfDiscussions));
+        Assert.assertTrue(Integer.parseInt(discussionsOfSingleContract.getDiscussionCount()) >= Integer.parseInt(numberOfDiscussions),
+                "Looks like that discussions are empty or not greater or equal to " + numberOfDiscussions);
         //Assert.assertEquals(discussionsOfSingleContract.getDiscussionCount(), numberOfDiscussions);
 
         OpenedContract openedContract = discussionsOfSingleContract.clickDocumentsTab();
