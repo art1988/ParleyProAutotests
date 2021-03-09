@@ -16,6 +16,7 @@ public class CheckNumbering
     @Test
     public void checkNumbering()
     {
+        // TODO: add additional check ( that 'i' item starts from correct paragraph ) after fixing of PAR-13741
         logger.info("Scroll to necessary paragraph...");
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"[ORGANIZATION] will provide IEEE\")')[0].scrollIntoView({});");
 
