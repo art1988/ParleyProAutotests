@@ -211,4 +211,14 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-89: Classic - paragraphs cloning" preserve-order="true">
+        <parameter name="contractName" value="AT-89: paragraphs cloning"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.at89.ParagraphsCloning"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>

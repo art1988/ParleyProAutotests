@@ -1,6 +1,7 @@
 package tests.classic.at89;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractInformation;
 import io.qameta.allure.Description;
@@ -72,7 +73,11 @@ public class ParagraphsCloning
 
         documentComparePreview.clickUpload(true).clickDocumentsTab();
 
-        //.....
-        //logger.info("");
+        logger.info("Assert that paragraphs weren't duplicated...");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Chapter 1\")').length === 1"), "Looks like that 'Chapter 1' header was doubled !");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Second\")').length === 1"), "Looks like that 'Second paragraph.' was doubled !");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph .discussion-indicator').length === 1"), "Looks like that discussion icon was doubled !");
+
+        Screenshoter.makeScreenshot();
     }
 }
