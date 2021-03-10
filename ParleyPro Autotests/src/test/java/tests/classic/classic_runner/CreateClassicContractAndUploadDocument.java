@@ -76,6 +76,9 @@ public class CreateClassicContractAndUploadDocument
 
             Selenide.refresh();
 
+            $(".spinner").waitUntil(Condition.disappear, 60_000);
+            $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
+
             $(".contract-header__name").waitUntil(Condition.visible, 20_000);
             $(".contract-header__name").shouldBe(Condition.enabled);
 
