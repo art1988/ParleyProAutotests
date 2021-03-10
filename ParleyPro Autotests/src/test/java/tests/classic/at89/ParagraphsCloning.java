@@ -66,12 +66,14 @@ public class ParagraphsCloning
                 .clickUploadCounterpartyDocument( Const.DOC_PARAGRAPH_CLONING_AT89_V2, documentName, contractName );
 
         logger.info("Assert that only 3 comments were added. Other counters should be empty.");
-        Assert.assertEquals(documentComparePreview.getCounterCommented(), "3");
-        Assert.assertEquals(documentComparePreview.getCounterAdded(), "");
-        Assert.assertEquals(documentComparePreview.getCounterDeleted(), "");
-        Assert.assertEquals(documentComparePreview.getCounterEdited(), "");
+        Assert.assertEquals(documentComparePreview.getCounterCommented(), "3", "Number of comments is different ! Should be 3 !");
+        Assert.assertEquals(documentComparePreview.getCounterAdded(), "", "Number of added discussions should be empty !");
+        Assert.assertEquals(documentComparePreview.getCounterDeleted(), "", "Number of deleted discussions should be empty !");
+        Assert.assertEquals(documentComparePreview.getCounterEdited(), "", "Number of edited discussions should be empty !");
 
         documentComparePreview.clickUpload(true).clickDocumentsTab();
+
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Second\")')");
 
         logger.info("Assert that paragraphs weren't duplicated...");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Chapter 1\")').length === 1"), "Looks like that 'Chapter 1' header was doubled !");
