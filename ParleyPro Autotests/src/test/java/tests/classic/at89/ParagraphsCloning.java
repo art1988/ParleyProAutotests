@@ -60,7 +60,7 @@ public class ParagraphsCloning
 
     @Test(priority = 2)
     @Description("This test uploads doc2 as counterparty and verifies that paragraphs weren't duplicated.")
-    public void uploadDocV2AsCounterpartyAndCheckParagraphs()
+    public void uploadDocV2AsCounterpartyAndCheckParagraphs() throws InterruptedException
     {
         DocumentComparePreview documentComparePreview = new OpenedContract().clickUploadNewVersionButton(documentName)
                 .clickUploadCounterpartyDocument( Const.DOC_PARAGRAPH_CLONING_AT89_V2, documentName, contractName );
@@ -74,6 +74,7 @@ public class ParagraphsCloning
         documentComparePreview.clickUpload(true).clickDocumentsTab();
 
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Second\")')");
+        Thread.sleep(1_000);
 
         logger.info("Assert that paragraphs weren't duplicated...");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Chapter 1\")').length === 1"), "Looks like that 'Chapter 1' header was doubled !");
