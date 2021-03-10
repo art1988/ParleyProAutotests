@@ -93,6 +93,10 @@ public class AddNewUser
         logger.info("+ Add role was clicked");
     }
 
+    /**
+     * Set role.
+     * @param roleName may be 'Chief Negotiator', 'Contract Manager', 'Viewer Plus', 'Viewer', 'Admin' or 'Requester'
+     */
     public void setRole(String roleName)
     {
         $(".select.is_empty input").setValue(roleName);
@@ -116,6 +120,36 @@ public class AddNewUser
         Selenide.executeJavaScript("$('.ui-tr input[value=\"" + roleName + "\"]').parent().parent().parent().parent().parent().parent().find('.contract-execute-form__remove').click()");
 
         logger.info("Role " + roleName + " was removed...");
+    }
+
+    public void setRegion(String regionName)
+    {
+        Selenide.executeJavaScript("$('.modal-body .user-edit-roles__region input:visible').click()"); // Expand Region dropdown
+        Selenide.executeJavaScript("$('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\").click()"); // Uncheck all by clicking All regions
+        Selenide.executeJavaScript("$('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('" + regionName + "')\").click()"); // Check Region
+        Selenide.executeJavaScript("$('.modal-body .user-edit-roles__region input:visible').click()"); // Collapse Region dropdown
+
+        logger.info("Region: " + regionName + " was selected...");
+    }
+
+    public String getRegion()
+    {
+        return Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__region input:visible').val()");
+    }
+
+    public void setContractCategory(String categoryName)
+    {
+        Selenide.executeJavaScript("$('.modal-body .user-edit-roles__category input:visible').click()"); // Expand Contract category dropdown
+        Selenide.executeJavaScript("$('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\").click()"); // Uncheck all by clicking All regions
+        Selenide.executeJavaScript("$('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('" + categoryName + "')\").click()"); // Check Region
+        Selenide.executeJavaScript("$('.modal-body .user-edit-roles__category input:visible').click()"); // Collapse Contract category dropdown
+
+        logger.info("Contract category: " + categoryName + " was selected...");
+    }
+
+    public String getContractCategory()
+    {
+        return Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__category input:visible').val()");
     }
 
     public void clickCancel()
