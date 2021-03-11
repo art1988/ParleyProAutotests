@@ -55,10 +55,9 @@ public class CreateClassicContractAndUploadDocument
         String docNameWithoutExtension = documentName.substring(0, documentName.indexOf("."));
         logger.info("Uploading the following client's document: " + docNameWithoutExtension);
         // 2. UPLOAD MY TEAM DOCUMENTS
-        AddDocuments addDocuments = new AddDocuments();
         if( documentHasRevisions == true ) // if document has revisions then after uploading it should be in Negotiate status
         {
-            UploadDocumentDetectedChanges detectedChangesForm = addDocuments.clickUploadMyTeamDocumentsWithDetectedChanges( new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + documentName) );
+            UploadDocumentDetectedChanges detectedChangesForm = new AddDocuments().clickUploadMyTeamDocumentsWithDetectedChanges( new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + documentName) );
 
             detectedChangesForm.setCounterpartyOrganization("CounterpartyAT");
             detectedChangesForm.setCounterpartyNegotiatorEmail("arthur.khasanov+cpat@parleypro.com");
@@ -69,7 +68,7 @@ public class CreateClassicContractAndUploadDocument
         }
         else // else move it to Negotiate status
         {
-            addDocuments.clickUploadMyTeamDocuments( new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + documentName) );
+            new AddDocuments().clickUploadMyTeamDocuments( new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + documentName) );
 
             $(".spinner").waitUntil(Condition.disappear, 60_000);
             $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
