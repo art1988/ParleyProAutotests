@@ -19,8 +19,8 @@ public class CKEditorActive
 
     public CKEditorActive()
     {
-        $(".spinner").waitUntil(Condition.disappear, 10_000);
-        editorArea.waitUntil(Condition.visible, 5_000).shouldBe(Condition.visible);
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
+        editorArea.waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
 
         Waiter.smartWaitUntilVisible("$('.create-discussion__comment .editor-area')");
     }
