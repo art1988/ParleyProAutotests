@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 
@@ -124,10 +125,21 @@ public class AddNewUser
 
     public void setRegion(String regionName)
     {
-        Selenide.executeJavaScript("$('.modal-body .user-edit-roles__region input:visible').click()"); // Expand Region dropdown
-        Selenide.executeJavaScript("$('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\").click()"); // Uncheck all by clicking All regions
-        Selenide.executeJavaScript("$('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('" + regionName + "')\").click()"); // Check Region
-        Selenide.executeJavaScript("$('.modal-body .user-edit-roles__region input:visible').click()"); // Collapse Region dropdown
+        if( getRegion().equals("All regions") )
+        {
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__region input:visible')[0]")).click(); // Expand Region dropdown
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\")[0]")).click(); // Uncheck all by clicking All regions
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('" + regionName + "')\")[0]")).click(); // Check Region
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__region input:visible')[0]")).click(); // Collapse Region dropdown
+        }
+        else
+        {
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__region input:visible')[0]")).click(); // Expand Region dropdown
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\")[0]")).click(); // Click all regions first time to select all
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\")[0]")).click(); // Click all regions again to unselect all
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('" + regionName + "')\")[0]")).click(); // Check Region
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__region input:visible')[0]")).click(); // Collapse Region dropdown
+        }
 
         logger.info("Region: " + regionName + " was selected...");
     }
@@ -139,10 +151,21 @@ public class AddNewUser
 
     public void setContractCategory(String categoryName)
     {
-        Selenide.executeJavaScript("$('.modal-body .user-edit-roles__category input:visible').click()"); // Expand Contract category dropdown
-        Selenide.executeJavaScript("$('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\").click()"); // Uncheck all by clicking All regions
-        Selenide.executeJavaScript("$('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('" + categoryName + "')\").click()"); // Check Region
-        Selenide.executeJavaScript("$('.modal-body .user-edit-roles__category input:visible').click()"); // Collapse Contract category dropdown
+        if( getContractCategory().equals("All categories") )
+        {
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__category input:visible')[0]")).click(); // Expand Contract category dropdown
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\")[0]")).click(); // Uncheck all by clicking All categories
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('" + categoryName + "')\")[0]")).click(); // Check category
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__category input:visible')[0]")).click(); // Collapse Contract category dropdown
+        }
+        else
+        {
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__category input:visible')[0]")).click(); // Expand Contract category dropdown
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\")[0]")).click(); // Click all categories first time to select all
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\")[0]")).click(); // Click all categories again to unselect all
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('" + categoryName + "')\")[0]")).click(); // Check category
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__category input:visible')[0]")).click(); // Collapse Contract category dropdown
+        }
 
         logger.info("Contract category: " + categoryName + " was selected...");
     }
@@ -150,6 +173,32 @@ public class AddNewUser
     public String getContractCategory()
     {
         return Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__category input:visible').val()");
+    }
+
+    public void setDepartment(String department)
+    {
+        if( getDepartment().equals("All departments") )
+        {
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__department input:visible')[0]")).click(); // Expand Department dropdown
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\")[0]")).click(); // Uncheck all by clicking All departments
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('" + department + "')\")[0]")).click(); // Check Department
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__department input:visible')[0]")).click(); // Collapse Department dropdown
+        }
+        else
+        {
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__department input:visible')[0]")).click(); // Expand Department dropdown
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\")[0]")).click(); // Click all departments first time to select all
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('All')\")[0]")).click(); // Click all departments again to unselect all
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .dropdown-menu:visible').find(\".checkbox__label:contains('" + department + "')\")[0]")).click(); // Check Department
+            $((WebElement) Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__department input:visible')[0]")).click(); // Collapse Department dropdown
+        }
+
+        logger.info("Department: " + department + " was selected...");
+    }
+
+    public String getDepartment()
+    {
+        return Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__department input:visible').val()");
     }
 
     public void clickCancel()
