@@ -84,7 +84,7 @@ public class UploadAndDownloadPDFDocument
         try
         {
             openedContract.clickDocumentActionsMenu(docName).clickDownload(false);
-            $(".spinner").waitUntil(Condition.disappear, 20_000);
+            $(".spinner").waitUntil(Condition.disappear, 35_000);
 
             logger.info("Assert that file was downloaded...");
             Thread.sleep(1_000);
