@@ -1,24 +1,57 @@
 package pages;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import forms.ContractInformation;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class ExecutedContractsPage
 {
-    private SelenideElement title     = $(".page-head__left");
-    private SelenideElement searchBar = $(".contracts-search-input__text");
+    private SelenideElement searchBar         = $(".contracts-search-input__text");
+    private SelenideElement newContractButton = $(".js-create-contract-btn");
 
 
     private static Logger logger = Logger.getLogger(ExecutedContractsPage.class);
 
-    public ExecutedContractsPage()
+    /**
+     * If isBlank is true it means that no contracts were added.
+     * User should see message "Welcome to your contracts! There are no executed contracts. You can start a new executed contract by clicking the button below"
+     * and + NEW CONTRACT button.
+     *
+     * Otherwise user should see table of contracts that are executed
+     * @param isBlank
+     */
+    public ExecutedContractsPage(boolean isBlank)
     {
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
-        title.waitUntil(Condition.visible, 6_000).shouldHave(Condition.text("Executed contracts"));
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
+
+        if( isBlank )
+        {
+            $(".contracts__empty-greetings").waitUntil(Condition.visible, 7_000)
+                    .shouldHave(Condition.exactText("Welcome to your contracts!"));
+            $(".contracts__create").waitUntil(Condition.visible, 7_000)
+                    .shouldHave(Condition.exactText("There are no executed contracts.\nYou can start a new executed  contract by clicking the button below\nNEW CONTRACT"));
+        }
+        else
+        {
+            $(".page-head__left").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Executed contracts"));
+            $(".contracts-list__table").shouldBe(Condition.visible);
+            $$(".contracts-list__table a").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
+        }
+    }
+
+    public ContractInformation clickNewContractButton()
+    {
+        newContractButton.click();
+
+        logger.info("+ NEW CONTRACT button was clicked");
+
+        return new ContractInformation();
     }
 
     public void search(String searchString)
