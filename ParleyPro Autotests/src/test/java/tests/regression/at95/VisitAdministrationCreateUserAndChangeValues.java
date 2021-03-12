@@ -12,12 +12,12 @@ import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class VisitAdministrationAndCreateUser
+public class VisitAdministrationCreateUserAndChangeValues
 {
-    private static Logger logger = Logger.getLogger(VisitAdministrationAndCreateUser.class);
+    private static Logger logger = Logger.getLogger(VisitAdministrationCreateUserAndChangeValues.class);
 
     @Test(priority = 1)
-    @Description("This test clicks add new user in Administration, changes Region/Contract category/Department values and asserts that previous values re still the same.")
+    @Description("This test clicks add new user in Administration, changes Region/Contract category/Department values and asserts that previous values are still the same.")
     public void visitAdministrationAndCreateUser()
     {
         ManageUsers manageUsersTab = new DashboardPage().getSideBar().clickAdministration().clickManageUsersTab();
