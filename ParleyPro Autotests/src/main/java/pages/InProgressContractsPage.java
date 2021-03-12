@@ -17,7 +17,7 @@ public class InProgressContractsPage
 {
     private SideBar sideBar;
     private SelenideElement newContractButton = $(".contracts__create button[type='button']");
-    private SelenideElement searchBar = $(".contracts-search-input__text");
+    private SelenideElement searchBar         = $(".contracts-search-input__text");
 
 
     private static Logger logger = Logger.getLogger(InProgressContractsPage.class);
