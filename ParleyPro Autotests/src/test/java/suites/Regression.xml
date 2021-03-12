@@ -68,15 +68,6 @@
         </classes>
     </test>
 
-    <test name="AT-80: Relations broken if field deleted" preserve-order="true">
-        <classes>
-            <class name="tests.LoginToDashboard"/>
-            <class name="tests.regression.at80.AddRequestFieldsAndAddRelatedField"/>
-            <class name="tests.regression.at80.RemoveFieldAndCheckUI"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
-
     <test name="AT-83: Accepted, then deleted text is not tracked" preserve-order="true">
         <parameter name="contractName" value="AT83 Classic"/>
         <classes>
@@ -90,7 +81,7 @@
     <test name="AT-95: User Setup: Role Region, Category, Department reset upon choosing value in other field" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.regression.at95.VisitAdministrationAndCreateUser"/>
+            <class name="tests.regression.at95.VisitAdministrationCreateUserAndChangeValues"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
