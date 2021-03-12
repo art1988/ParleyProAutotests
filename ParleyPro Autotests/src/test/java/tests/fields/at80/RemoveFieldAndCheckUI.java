@@ -1,4 +1,4 @@
-package tests.regression.at80;
+package tests.fields.at80;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
