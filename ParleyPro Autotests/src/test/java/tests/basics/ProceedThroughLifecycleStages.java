@@ -154,7 +154,7 @@ public class ProceedThroughLifecycleStages
     {
         DashboardPage dashboardPage = new DashboardPage();
 
-        ExecutedContractsPage executedContractsPage = dashboardPage.getSideBar().clickExecutedContracts();
+        ExecutedContractsPage executedContractsPage = dashboardPage.getSideBar().clickExecutedContracts(false);
 
         executedContractsPage.search("Contract lifecycle autotest");
 

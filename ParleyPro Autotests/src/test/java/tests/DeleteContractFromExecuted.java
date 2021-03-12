@@ -32,7 +32,7 @@ public class DeleteContractFromExecuted
     {
         DashboardPage dashboardPage = new DashboardPage();
 
-        ExecutedContractsPage executedContractsPage = dashboardPage.getSideBar().clickExecutedContracts();
+        ExecutedContractsPage executedContractsPage = dashboardPage.getSideBar().clickExecutedContracts(false);
 
         ContractInfo contractInfoPage = executedContractsPage.selectContract(contractName);
 

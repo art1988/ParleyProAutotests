@@ -139,7 +139,7 @@ public class CheckContracts
     @Description("This test goes to Executed contracts and verifies that all 3 contracts have correct text, have linked icons, one have question mark")
     public void checkExecutedContracts()
     {
-        new DashboardPage().getSideBar().clickExecutedContracts();
+        new DashboardPage().getSideBar().clickExecutedContracts(false);
 
         logger.info("Assert _first_ row in a table...");
         $$(".contracts-list__table a").get(0).shouldHave(Condition.exactText("Long values and that is a long long " +
@@ -233,7 +233,7 @@ public class CheckContracts
     @Description("This test click 'Short' contract in Executed contracts and validate all fields in Post-execution tab")
     public void checkValuesOfManagedContractShort() throws InterruptedException
     {
-        ContractInfo contractInfo = new DashboardPage().getSideBar().clickExecutedContracts().selectContract("Short");
+        ContractInfo contractInfo = new DashboardPage().getSideBar().clickExecutedContracts(false).selectContract("Short");
         Thread.sleep(2_000);
 
         // Check 3 icons of contract header
@@ -284,7 +284,7 @@ public class CheckContracts
     @Description("This test click 'Normal values in contract' contract in Executed contracts and validate all fields in Post-execution tab")
     public void checkValuesOfManagedContractNormal() throws InterruptedException
     {
-        ContractInfo contractInfo = new DashboardPage().getSideBar().clickExecutedContracts().selectContract("Normal values in contract");
+        ContractInfo contractInfo = new DashboardPage().getSideBar().clickExecutedContracts(false).selectContract("Normal values in contract");
         Thread.sleep(2_000);
 
         logger.info("Asserting all fields of 'Normal values in contract' contract...");
