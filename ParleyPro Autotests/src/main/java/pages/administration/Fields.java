@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
 import pages.administration.fields_breadcrumb.ContractFields;
 import pages.administration.fields_breadcrumb.FieldsRelations;
+import pages.administration.fields_breadcrumb.Layout;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -17,6 +18,7 @@ public class Fields
 {
     private SelenideElement contractFields = $(".admin-fields-navigation__item a[href='#/admin/fields']");
     private SelenideElement fieldRelations = $(".admin-fields-navigation__item a[href='#/admin/fields/relations']");
+    private SelenideElement layout         = $(".admin-fields-navigation__item a[href='#/admin/fields/layout']");
 
     private SelenideElement saveButton = $(".button.btn-common.btn-light.btn.btn-link");
     private SelenideElement nextButton = $(".button.btn-common.btn.btn-primary");
@@ -42,20 +44,29 @@ public class Fields
 
     public ContractFields clickContractFields()
     {
-        logger.info("CONTRACT FIELDS was clicked");
-
         contractFields.click();
+
+        logger.info("CONTRACT FIELDS was clicked");
 
         return new ContractFields();
     }
 
     public FieldsRelations clickFieldsRelations()
     {
-        logger.info("FIELD RELATIONS was clicked");
-
         fieldRelations.click();
 
+        logger.info("FIELD RELATIONS was clicked");
+
         return new FieldsRelations();
+    }
+
+    public Layout clickLayout()
+    {
+        layout.click();
+
+        logger.info("LAYOUT was clicked");
+
+        return new Layout();
     }
 
     public void clickSave()
