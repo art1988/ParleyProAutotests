@@ -12,7 +12,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DocumentComparePreview;
 import pages.OpenedContract;
-import tests.DeleteContractFromExecuted;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -27,7 +26,7 @@ import static com.codeborne.selenide.Selenide.$;
 @Listeners({ScreenShotOnFailListener.class})
 public class OnlineFormat
 {
-    private static Logger logger = Logger.getLogger(DeleteContractFromExecuted.class);
+    private static Logger logger = Logger.getLogger(OnlineFormat.class);
 
     @Test(priority = 1)
     @Description("This test choose MS Word formatting, downloads document, cancels formatting, downloads again and Uploads new version")
