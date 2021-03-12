@@ -6,6 +6,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import forms.UploadDocumentDetectedChanges;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 
 import java.io.File;
 
@@ -13,35 +14,43 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 /**
- * This class represents Add Documents page with 2 upload buttons:
- * Upload my team documents - green button
- * and
- * Upload Counterparty documents - purple button
+ * This class represents Add Documents page.
+ * The amounts of buttons may vary.
+ * For example, for 'In-progress contracts' page it may have:
+ * Upload my team documents - green button and Upload Counterparty documents - purple button.
+ * For 'Executed contracts' page it may have only 'Upload executed documents' button - blue one.
  */
 public class AddDocuments
 {
-
     private static Logger logger = Logger.getLogger(AddDocuments.class);
-
 
     public AddDocuments()
     {
         $(".documents-add__title").waitUntil(Condition.visible, 25_000);
 
-        isInit();
+        Assert.assertTrue( isInit(), "Looks like that Add Documents page wasn't loaded correctly !");
     }
 
-    // void cuz shouldHave() methods have inbuilt assertions
-    private void isInit()
+    private boolean isInit()
     {
-        // Check title
-        $(".documents-add__title").shouldHave(Condition.exactText("Add Documents"));
+        $(".documents-add__title").shouldHave(Condition.exactText("Add Documents")); // Check title
 
-        // Check tabs
-        $$(".tab-menu span").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.texts("Upload document", "Select template", "Upload attachment"));
+        if( $$(".tab-menu span").size() == 3 ) // For 'In-progress contracts' page
+        {
+            $$(".tab-menu span").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.texts("Upload document", "Select template", "Upload attachment")); // check tabs
+            $$(".upload__button").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.texts("Upload my team documents", "Upload Counterparty documents")); // check buttons
+        }
+        else if( $$(".tab-menu span").size() == 2 ) // For 'Executed contracts' page
+        {
+            $$(".tab-menu span").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.texts("Upload executed", "Upload attachment")); // check tabs
+            $$(".upload__button").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("Upload executed documents")); // check buttons
+        }
+        else
+        {
+            return false;
+        }
 
-        // Check upload buttons
-        $$(".upload__button").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.texts("Upload my team documents", "Upload Counterparty documents"));
+        return true;
     }
 
     public void clickUploadDocumentTab()
@@ -139,6 +148,23 @@ public class AddDocuments
         SelenideElement uploadFromYourComputerButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
         uploadFromYourComputerButton.uploadFile(filesToUpload);
+    }
+
+    /**
+     * Click 'Upload executed documents' button. This button is available on 'Executed contracts' page
+     * @param fileToUpload
+     */
+    public void clickUploadExecutedDocuments(File fileToUpload)
+    {
+        // 1. make <input> visible
+        Selenide.executeJavaScript("$('.upload__button button').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+        Selenide.executeJavaScript("$('.upload__button button').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+        Selenide.executeJavaScript("$('.upload__button button').parent().parent().find(\"input\").css(\"display\",\"block\")");
+
+        // 2. trying to upload...
+        SelenideElement uploadExecutedDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+        uploadExecutedDocumentsButton.uploadFile(fileToUpload);
     }
 
     /**
