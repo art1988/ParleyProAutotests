@@ -12,6 +12,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
+import static constants.SideBarItems.*;
 
 /**
  * Left sidebar. Each page has it.
@@ -49,51 +50,51 @@ public class SideBar
     private boolean isInit()
     {
         return (  logo.isDisplayed() &&
-                  $(sideBarItems.get(SideBarItems.PRIORITY_DASHBOARD)).isDisplayed() &&
-                  $(sideBarItems.get(SideBarItems.IN_PROGRESS_CONTRACTS)).isDisplayed() &&
-                  $(sideBarItems.get(SideBarItems.EXECUTED_CONTRACTS)).isDisplayed() &&
-                  $(sideBarItems.get(SideBarItems.DASHBOARD)).isDisplayed() &&
-                  $(sideBarItems.get(SideBarItems.USER_GUIDE)).isDisplayed()
+                  $(sideBarItems.get(PRIORITY_DASHBOARD)).isDisplayed() &&
+                  $(sideBarItems.get(IN_PROGRESS_CONTRACTS)).isDisplayed() &&
+                  $(sideBarItems.get(EXECUTED_CONTRACTS)).isDisplayed() &&
+                  $(sideBarItems.get(DASHBOARD)).isDisplayed() &&
+                  $(sideBarItems.get(USER_GUIDE)).isDisplayed()
         );
     }
 
     private void initSideBarItems()
     {
-        sideBarItems.put(SideBarItems.PRIORITY_DASHBOARD,    "a[href*='#/priority-dashboard']");
-        sideBarItems.put(SideBarItems.IN_PROGRESS_CONTRACTS, "a[href*='#/contracts?filter=active']");
-        sideBarItems.put(SideBarItems.EXECUTED_CONTRACTS,    "a[href*='contracts-executed?filter=executed']");
-        sideBarItems.put(SideBarItems.DASHBOARD,             "a[href*='#/dashboard']");
-        sideBarItems.put(SideBarItems.TEMPLATES,             "a[href*='#/templates']");
-        sideBarItems.put(SideBarItems.ADMINISTRATION,        "a[href*='#/admin/usermanagement']");
-        sideBarItems.put(SideBarItems.USER_GUIDE,            "a[href^='http://help.parleypro.com/']");
+        sideBarItems.put(PRIORITY_DASHBOARD,    "a[href*='#/priority-dashboard']");
+        sideBarItems.put(IN_PROGRESS_CONTRACTS, "a[href*='#/contracts?filter=active']");
+        sideBarItems.put(EXECUTED_CONTRACTS,    "a[href*='contracts-executed?filter=executed']");
+        sideBarItems.put(DASHBOARD,             "a[href*='#/dashboard']");
+        sideBarItems.put(TEMPLATES,             "a[href*='#/templates']");
+        sideBarItems.put(ADMINISTRATION,        "a[href*='#/admin/usermanagement']");
+        sideBarItems.put(USER_GUIDE,            "a[href^='http://help.parleypro.com/']");
     }
 
     public void clickPriorityDashboard()
     {
-        $(sideBarItems.get(SideBarItems.PRIORITY_DASHBOARD)).click();
+        $(sideBarItems.get(PRIORITY_DASHBOARD)).click();
     }
 
     public InProgressContractsPage clickInProgressContracts(boolean isBlank)
     {
-        $(sideBarItems.get(SideBarItems.IN_PROGRESS_CONTRACTS)).click();
+        $(sideBarItems.get(IN_PROGRESS_CONTRACTS)).click();
 
         logger.info("In-progress contracts button was clicked");
 
         return new InProgressContractsPage(isBlank);
     }
 
-    public ExecutedContractsPage clickExecutedContracts()
+    public ExecutedContractsPage clickExecutedContracts(boolean isBlank)
     {
-        $(sideBarItems.get(SideBarItems.EXECUTED_CONTRACTS)).click();
+        $(sideBarItems.get(EXECUTED_CONTRACTS)).click();
 
         logger.info("Executed contracts button was clicked");
 
-        return new ExecutedContractsPage();
+        return new ExecutedContractsPage(isBlank);
     }
 
     public TemplatesPage clickTemplates(boolean isBlank)
     {
-        $(sideBarItems.get(SideBarItems.TEMPLATES)).click();
+        $(sideBarItems.get(TEMPLATES)).click();
 
         logger.info("Templates button was clicked");
 
@@ -102,7 +103,7 @@ public class SideBar
 
     public AdministrationPage clickAdministration()
     {
-        $(sideBarItems.get(SideBarItems.ADMINISTRATION)).click();
+        $(sideBarItems.get(ADMINISTRATION)).click();
 
         logger.info("Administration button was clicked");
 
