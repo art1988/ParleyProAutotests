@@ -49,39 +49,13 @@ public class AddFieldsChangeOrderAndSave
         WebElement field_1 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"f1\")').parent().parent()[0]"),
                    field_2 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"f2\")').parent().parent()[0]");
 
-        Actions actions = new Actions(WebDriverRunner.getWebDriver());
-
-        $(field_1).hover(); // to make drag-handle <i> element visible
-        Thread.sleep(500);
-        actions.clickAndHold($(field_1).find(".admin-fields-layout__drag-handle")).build().perform();
-        Thread.sleep(500);
-
-        $(field_2).hover(); // to make drag-handle <i> element visible
-        Thread.sleep(500);
-
-        logger.info("Perform drag&drop of summary fields f1 and f2...");
-        actions.moveToElement($(field_2).find(".admin-fields-layout__drag-handle")).build().perform();
-        Thread.sleep(500);
-        actions.release().build().perform();
-        Thread.sleep(500);
+        dragAndDropFields(field_1, field_2);
 
         // Post-execution fields
         field_1 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"pe_f1\")').parent().parent()[0]");
         field_2 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"pe_f2\")').parent().parent()[0]");
 
-        $(field_1).hover(); // to make drag-handle <i> element visible
-        Thread.sleep(500);
-        actions.clickAndHold($(field_1).find(".admin-fields-layout__drag-handle")).build().perform();
-        Thread.sleep(500);
-
-        $(field_2).hover(); // to make drag-handle <i> element visible
-        Thread.sleep(500);
-
-        logger.info("Perform drag&drop of post-execution fields pe_f1 and pe_f2...");
-        actions.moveToElement($(field_2).find(".admin-fields-layout__drag-handle")).build().perform();
-        Thread.sleep(500);
-        actions.release().build().perform();
-        Thread.sleep(500);
+        dragAndDropFields(field_1, field_2);
 
         logger.info("Check that order was changed on Layout page...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.row').find(\".admin-fields-layout__sortable\").parent().text()"),
@@ -92,5 +66,24 @@ public class AddFieldsChangeOrderAndSave
         fieldsTab.clickSave();
 
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
+    }
+
+    private void dragAndDropFields(WebElement field_1, WebElement field_2) throws InterruptedException
+    {
+        Actions actions = new Actions(WebDriverRunner.getWebDriver());
+
+        $(field_1).hover(); // to make drag-handle <i> element visible
+        Thread.sleep(500);
+        actions.clickAndHold($(field_1).find(".admin-fields-layout__drag-handle")).build().perform();
+        Thread.sleep(500);
+
+        $(field_2).hover(); // to make drag-handle <i> element visible
+        Thread.sleep(500);
+
+        logger.info("Perform drag&drop of fields...");
+        actions.moveToElement($(field_2).find(".admin-fields-layout__drag-handle")).build().perform();
+        Thread.sleep(500);
+        actions.release().build().perform();
+        Thread.sleep(500);
     }
 }
