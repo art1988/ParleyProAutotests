@@ -65,6 +65,13 @@ jobs:
       - run: sleep 10
       
       - run:
+          name: Run Fields suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Fields.xml
+          
+      - run: sleep 10
+      
+      - run:
           name: Run Document Sharing suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/DocumentSharing.xml
