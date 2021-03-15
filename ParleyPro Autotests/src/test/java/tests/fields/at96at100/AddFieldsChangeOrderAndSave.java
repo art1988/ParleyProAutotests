@@ -5,12 +5,12 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.FieldType;
 import io.qameta.allure.Description;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.log4testng.Logger;
 import pages.DashboardPage;
 import pages.administration.Fields;
 import pages.administration.fields_breadcrumb.ContractFields;
@@ -49,12 +49,14 @@ public class AddFieldsChangeOrderAndSave
         WebElement field_1 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"f1\")').parent().parent()[0]"),
                    field_2 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"f2\")').parent().parent()[0]");
 
+        logger.info("Perform drag&drop of summary fields...");
         dragAndDropFields(field_1, field_2);
 
         // Post-execution fields
         field_1 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"pe_f1\")').parent().parent()[0]");
         field_2 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"pe_f2\")').parent().parent()[0]");
 
+        logger.info("Perform drag&drop of post-execution fields...");
         dragAndDropFields(field_1, field_2);
 
         logger.info("Check that order was changed on Layout page...");
@@ -80,7 +82,6 @@ public class AddFieldsChangeOrderAndSave
         $(field_2).hover(); // to make drag-handle <i> element visible
         Thread.sleep(500);
 
-        logger.info("Perform drag&drop of fields...");
         actions.moveToElement($(field_2).find(".admin-fields-layout__drag-handle")).build().perform();
         Thread.sleep(500);
         actions.release().build().perform();
