@@ -27,7 +27,7 @@ public class AddFieldsChangeOrderAndSave
 
     @Test(priority = 1)
     @Description("This test goes to Administration -> Fields, adds 2 new fields for Summary and Post-execution and change the order of them on Layout page.")
-    public void AddFieldsAndDragThem()
+    public void AddFieldsAndDragThem() throws InterruptedException
     {
         Fields fieldsTab = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
 
@@ -52,26 +52,36 @@ public class AddFieldsChangeOrderAndSave
         Actions actions = new Actions(WebDriverRunner.getWebDriver());
 
         $(field_1).hover(); // to make drag-handle <i> element visible
+        Thread.sleep(500);
         actions.clickAndHold($(field_1).find(".admin-fields-layout__drag-handle")).build().perform();
+        Thread.sleep(500);
 
         $(field_2).hover(); // to make drag-handle <i> element visible
+        Thread.sleep(500);
 
         logger.info("Perform drag&drop of summary fields f1 and f2...");
         actions.moveToElement($(field_2).find(".admin-fields-layout__drag-handle")).build().perform();
+        Thread.sleep(500);
         actions.release().build().perform();
+        Thread.sleep(500);
 
         // Post-execution fields
         field_1 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"pe_f1\")').parent().parent()[0]");
         field_2 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"pe_f2\")').parent().parent()[0]");
 
         $(field_1).hover(); // to make drag-handle <i> element visible
+        Thread.sleep(500);
         actions.clickAndHold($(field_1).find(".admin-fields-layout__drag-handle")).build().perform();
+        Thread.sleep(500);
 
         $(field_2).hover(); // to make drag-handle <i> element visible
+        Thread.sleep(500);
 
         logger.info("Perform drag&drop of post-execution fields pe_f1 and pe_f2...");
         actions.moveToElement($(field_2).find(".admin-fields-layout__drag-handle")).build().perform();
+        Thread.sleep(500);
         actions.release().build().perform();
+        Thread.sleep(500);
 
         logger.info("Check that order was changed on Layout page...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.row').find(\".admin-fields-layout__sortable\").parent().text()"),
