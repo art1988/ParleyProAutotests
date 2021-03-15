@@ -27,6 +27,7 @@ public class AddDocuments
     public AddDocuments()
     {
         $(".documents-add__title").waitUntil(Condition.visible, 25_000);
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
 
         Assert.assertTrue( isInit(), "Looks like that Add Documents page wasn't loaded correctly !");
     }
