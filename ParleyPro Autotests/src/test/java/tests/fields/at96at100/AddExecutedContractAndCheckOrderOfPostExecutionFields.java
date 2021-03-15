@@ -23,7 +23,7 @@ public class AddExecutedContractAndCheckOrderOfPostExecutionFields
     private static Logger logger = Logger.getLogger(AddExecutedContractAndCheckOrderOfPostExecutionFields.class);
 
     @Test(priority = 1)
-    @Description("This test goes to Executed contracts, create new contract and checks order of post-execution fields.")
+    @Description("This test goes to Executed contracts, creates new contract and checks order of post-execution fields.")
     public void addExecutedContractAndCheckOrder()
     {
         // + new contract
