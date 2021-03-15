@@ -13,8 +13,6 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class ContractInfo
 {
-
-
     private static Logger logger = Logger.getLogger(ContractInfo.class);
 
     public ContractInfo()
@@ -22,8 +20,9 @@ public class ContractInfo
         $(".documents-contract-edit__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Contract Info"));
         $(".tab-menu__item.selected_yes").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Post-execution"));
         $(".contract-execute-form").waitUntil(Condition.visible, 10_000);
+
         $(".spinner").waitUntil(Condition.disappear, 10_000);
-        $(".document__body .spinner").waitUntil(Condition.disappear, 15_000);
+        $(".documents-contract-edit__content .spinner").waitUntil(Condition.disappear, 15_000);
     }
 
     public void setSignatureDate()
