@@ -91,10 +91,18 @@ public class AddDocuments
         Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
         Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
 
+        try
+        {
+            Thread.sleep(500); // necessary sleep ! Without this half-a-sec sleep test may become flaky.
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
         // 2. trying to upload...
         SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
-        uploadMyTeamDocumentsButton.uploadFile(fileToUpload);
+        uploadMyTeamDocumentsButton.shouldBe(Condition.visible).shouldBe(Condition.enabled).uploadFile(fileToUpload);
     }
 
     /**
