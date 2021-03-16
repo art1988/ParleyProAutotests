@@ -1,10 +1,10 @@
-package tests.fields.at96at100;
+package tests.fields.at96_99_100;
 
 import com.codeborne.selenide.Condition;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.log4testng.Logger;
 import pages.DashboardPage;
 import pages.administration.Fields;
 import pages.administration.fields_breadcrumb.ContractFields;
@@ -30,6 +30,9 @@ public class RemoveCreatedFields
         contractFields.removeField("pe_f2").clickDelete();
         contractFields.removeField("pe_f1").clickDelete();
 
+        contractFields.removeField("cr_f2").clickDelete();
+        contractFields.removeField("cr_f1").clickDelete();
+
         fieldsPage.clickSave();
 
         logger.info("Assert that fields were completely removed...");
@@ -39,5 +42,8 @@ public class RemoveCreatedFields
 
         Assert.assertFalse($("input[value='pe_f2']").isDisplayed());
         Assert.assertFalse($("input[value='pe_f1']").isDisplayed());
+
+        Assert.assertFalse($("input[value='cr_f2']").isDisplayed());
+        Assert.assertFalse($("input[value='cr_f1']").isDisplayed());
     }
 }

@@ -1,4 +1,4 @@
-package tests.fields.at96at100;
+package tests.fields.at96_99_100;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
@@ -27,7 +27,7 @@ public class AddFieldsChangeOrderAndSave
 
     @Test(priority = 1)
     @Description("This test goes to Administration -> Fields, adds 2 new fields for Summary and Post-execution and change the order of them on Layout page.")
-    public void AddFieldsAndDragThem() throws InterruptedException
+    public void addFieldsAndDragThem() throws InterruptedException
     {
         Fields fieldsTab = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
 
@@ -39,11 +39,15 @@ public class AddFieldsChangeOrderAndSave
         contractFields.createNewFiled("Post-execution", "pe_f1", FieldType.TEXT, false);
         contractFields.createNewFiled("Post-execution", "pe_f2", FieldType.TEXT, false);
 
+        contractFields.createNewFiled("Contract Request", "cr_f1", FieldType.TEXT, false);
+        contractFields.createNewFiled("Contract Request", "cr_f2", FieldType.TEXT, false);
+
         Layout layout = fieldsTab.clickLayout();
 
         logger.info("Check that order is default on Layout page...");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.row').find(\".admin-fields-layout__sortable\").parent().text()"),
-                "drag_indicatorf1drag_indicatorf2drag_indicatorpe_f1drag_indicatorpe_f2", "The default order of fields is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.row').find(\".admin-fields-layout__sortable .admin-fields-layout-field__label\").parent().text()"),
+                "f1f2pe_f1pe_f2cr_f1cr_f2",
+                "The default order of fields is wrong !!!");
 
         // Summary fields
         WebElement field_1 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"f1\")').parent().parent()[0]"),
@@ -59,9 +63,17 @@ public class AddFieldsChangeOrderAndSave
         logger.info("Perform drag&drop of post-execution fields...");
         dragAndDropFields(field_1, field_2);
 
+        // Contract Request fields
+        field_1 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"cr_f1\")').parent().parent()[0]");
+        field_2 = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"cr_f2\")').parent().parent()[0]");
+
+        logger.info("Perform drag&drop of contract request fields...");
+        dragAndDropFields(field_1, field_2);
+
         logger.info("Check that order was changed on Layout page...");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.row').find(\".admin-fields-layout__sortable\").parent().text()"),
-                "drag_indicatorf2drag_indicatorf1drag_indicatorpe_f2drag_indicatorpe_f1", "Order of fields wasn't changed !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.row').find(\".admin-fields-layout__sortable .admin-fields-layout-field__label\").parent().text()"),
+                "f2f1pe_f2pe_f1cr_f2cr_f1",
+                "Order of fields wasn't changed !!!");
 
         Screenshoter.makeScreenshot();
 

@@ -1,14 +1,14 @@
-package tests.fields.at96at100;
+package tests.fields.at96_99_100;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractInformation;
 import io.qameta.allure.Description;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.log4testng.Logger;
 import pages.AddDocuments;
 import pages.ContractInfo;
 import pages.DashboardPage;
