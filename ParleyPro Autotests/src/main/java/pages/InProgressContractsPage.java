@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import forms.ContractInformation;
+import forms.ContractRequest;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -16,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$$;
 public class InProgressContractsPage
 {
     private SideBar sideBar;
-    private SelenideElement newContractButton = $(".contracts__create button[type='button']");
+    private SelenideElement newContractButton = $(".contracts__create button[type='button']"); // the same css class represents + NEW REQUEST button
     private SelenideElement searchBar         = $(".contracts-search-input__text");
 
 
@@ -49,8 +50,20 @@ public class InProgressContractsPage
             // Check that blank page has greeting text "Welcome to your contracts!" ...
             $(".contracts__empty-greetings").shouldHave(Condition.exactText("Welcome to your contracts!"));
 
-            // ...and "You can start a new contract by clicking the button below"
-            $(".contracts__empty-message").shouldHave(Condition.exactText("You can start a new  contract by clicking the button below"));
+            // Check message on page. Depends of what role does user have: admin or requester
+            if( newContractButton.getText().equals("NEW CONTRACT") )
+            {
+                $(".contracts__empty-message").shouldHave(Condition.exactText("You can start a new  contract by clicking the button below"));
+            }
+            else if( newContractButton.getText().equals("NEW REQUEST") )
+            {
+                $(".contracts__empty-message").shouldHave(Condition.exactText("You can start a new request by clicking the button below"));
+            }
+            else
+            {
+                logger.error("There is no [+ NEW CONTRACT] or [+ NEW REQUEST] button on page !!!");
+                Assert.fail("There is no [+ NEW CONTRACT] or [+ NEW REQUEST] button on page !!!");
+            }
 
             // and also has image
             Assert.assertTrue(hasImage);
@@ -71,6 +84,15 @@ public class InProgressContractsPage
         logger.info("+ NEW CONTRACT button was clicked");
 
         return new ContractInformation();
+    }
+
+    public ContractRequest clickNewRequestButton()
+    {
+        newContractButton.click();
+
+        logger.info("+ NEW REQUEST button was clicked");
+
+        return new ContractRequest();
     }
 
     /**
