@@ -15,10 +15,11 @@
         <parameter name="contractName" value="executed for post-execution fields"></parameter>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.fields.at96at100.AddFieldsChangeOrderAndSave"/>
-            <class name="tests.fields.at96at100.CheckOrderOfSummaryFieldsOnContractInformation"/>
-            <class name="tests.fields.at96at100.AddExecutedContractAndCheckOrderOfPostExecutionFields"/>
-            <class name="tests.fields.at96at100.RemoveCreatedFields"/>
+            <class name="tests.fields.at96_99_100.AddFieldsChangeOrderAndSave"/>
+            <class name="tests.fields.at96_99_100.CheckOrderOfSummaryFieldsOnContractInformation"/>
+            <class name="tests.fields.at96_99_100.AddExecutedContractAndCheckOrderOfPostExecutionFields"/>
+            <class name="tests.fields.at96_99_100.LoginAsRequesterAndCheckOrder"/>
+            <class name="tests.fields.at96_99_100.RemoveCreatedFields"/>
             <class name="tests.DeleteContractFromExecuted"/>
             <class name="tests.Logout"/>
         </classes>
