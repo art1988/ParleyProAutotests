@@ -22,6 +22,8 @@ public class DeleteField
 
         $(".modal-body-description").waitUntil(Condition.visible, 7_000)
                 .shouldHave(Condition.exactText("The field will be removed from all contracts"));
+
+        deleteButton.shouldBe(Condition.visible).shouldBe(Condition.enabled);
     }
 
     public void clickDelete()
