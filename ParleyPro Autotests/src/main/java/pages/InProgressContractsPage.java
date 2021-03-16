@@ -32,6 +32,8 @@ public class InProgressContractsPage
      */
     public InProgressContractsPage(boolean isBlank)
     {
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
+
         if( isBlank )
         {
             // Check for presence of 500 error
