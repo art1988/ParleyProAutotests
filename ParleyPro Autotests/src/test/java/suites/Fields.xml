@@ -11,7 +11,7 @@
         </classes>
     </test>
 
-    <test name="AT-96, AT-99 and AT-100: Fields order should be preserved for Summary and Post-execution fields" preserve-order="true">
+    <test name="AT-96, AT-99 and AT-100: Fields order should be preserved for Summary, Post-execution and Request fields" preserve-order="true">
         <parameter name="contractName" value="executed for post-execution fields"></parameter>
         <classes>
             <class name="tests.LoginToDashboard"/>
