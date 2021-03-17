@@ -8,10 +8,10 @@ import org.apache.log4j.Logger;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class CKEditorActive
 {
-    private SelenideElement editorArea = $(".editor-area");
     private SelenideElement postButton = $("#create-discussion__submit");
 
 
@@ -20,9 +20,9 @@ public class CKEditorActive
     public CKEditorActive()
     {
         $(".spinner").waitUntil(Condition.disappear, 15_000);
-        editorArea.waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
 
-        Waiter.smartWaitUntilVisible("$('.create-discussion__comment .editor-area')");
+        $$(".editor-area").first().waitUntil(Condition.visible, 15_000).waitUntil(Condition.enabled, 15_000);
+        $$(".editor-area").last().waitUntil(Condition.visible, 15_000).waitUntil(Condition.enabled, 15_000);
     }
 
     /**
