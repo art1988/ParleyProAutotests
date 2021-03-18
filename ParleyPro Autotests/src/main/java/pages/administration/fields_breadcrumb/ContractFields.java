@@ -4,9 +4,11 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.FieldType;
+import forms.LinkedValues;
 import forms.delete.DeleteField;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -58,7 +60,7 @@ public class ContractFields
     /**
      * Click by 'Add values' link and sets Value field.
      * Important: if you want to add multiple values one after another, then invoke this method one after another.
-     * @param fieldName
+     * @param fieldName name of the field for which values will be added
      * @param value
      */
     public void addValues(String fieldName, String value)
@@ -66,7 +68,38 @@ public class ContractFields
         // Click by + Add values link
         Selenide.executeJavaScript("$('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"i:contains('add')\").click()");
 
-        $("input[label='Value " + valueIndex++ + "']").val(value);
+        WebElement input = Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"input[label='Value " + valueIndex++ + "']\")[0]");
+        $(input).val(value);
+    }
+
+    /**
+     * Sets [value] for field by the name [fieldName] and links to value [linkToValue]
+     * @param fieldName name of the field for which need to set value. Starts from Value 1
+     * @param value
+     * @param linkToValue
+     */
+    public void addValueAndLinkedValue(String fieldName, String value, String linkToValue)
+    {
+        $( (WebElement) Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"input[label='Value " + valueIndex + "']\")[0]")).val(value);
+
+        WebElement linkToInput = Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"input[label='Value " + valueIndex++ + "']\").parent().parent().next().find(\"input:visible\")[0]");
+        $(linkToInput).click(); // expand Link to dropdown
+        Selenide.executeJavaScript("return $('.dropdown-menu:visible').find(\".checkbox__label:contains('" + linkToValue + "')\").parent().find(\".checkbox__label\").click()");
+        $(linkToInput).click(); // close dropdown
+    }
+
+    /**
+     * Click by 'Add values' link then click by 'Link values' link for certain field
+     * @param fieldName
+     */
+    public LinkedValues clickLinkValues(String fieldName)
+    {
+        // Click by + Add values link
+        Selenide.executeJavaScript("$('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"i:contains('add')\").click()");
+        // Click 'Link values'
+        Selenide.executeJavaScript("$('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\".ui-link:contains('Link values')\").click()");
+
+        return new LinkedValues();
     }
 
     public void clickHideValues()
