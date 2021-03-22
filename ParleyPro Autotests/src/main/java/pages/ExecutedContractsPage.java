@@ -7,13 +7,16 @@ import com.codeborne.selenide.SelenideElement;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
 
+import java.io.FileNotFoundException;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class ExecutedContractsPage
 {
-    private SelenideElement searchBar         = $(".contracts-search-input__text");
-    private SelenideElement newContractButton = $(".js-create-contract-btn");
+    private SelenideElement searchBar                  = $(".contracts-search-input__text");
+    private SelenideElement newContractButton          = $(".js-create-contract-btn");
+    private SelenideElement downloadContractDataButton = $(".contracts-head__download");
 
 
     private static Logger logger = Logger.getLogger(ExecutedContractsPage.class);
@@ -58,6 +61,18 @@ public class ExecutedContractsPage
     {
         searchBar.setValue(searchString);
         searchBar.pressEnter();
+    }
+
+    /**
+     * Click by 'Download contract data' icon. Usually it download *.csv file
+     * @return
+     * @throws FileNotFoundException
+     */
+    public void clickDownloadContractData() throws FileNotFoundException
+    {
+        logger.info("Download contract data button was clicked.");
+
+        downloadContractDataButton.download();
     }
 
     /**
