@@ -1,4 +1,4 @@
-package tests.migration;
+package tests.migration.at52;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
