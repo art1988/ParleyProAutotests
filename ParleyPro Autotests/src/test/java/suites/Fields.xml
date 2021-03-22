@@ -34,4 +34,16 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-97: Linked values: fields order should be preserved - Post-execution fields" preserve-order="true">
+        <parameter name="contractName" value="Linked post-execution fields"></parameter>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.fields.at97.AddPostExecutionFields"/>
+            <class name="tests.fields.at97.AddExecutedContractAndCheckOrder"/>
+            <class name="tests.fields.at101.RemoveFields"/>
+            <class name="tests.DeleteContractFromExecuted"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>

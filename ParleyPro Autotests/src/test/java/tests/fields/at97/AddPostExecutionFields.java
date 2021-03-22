@@ -1,4 +1,4 @@
-package tests.fields.at101;
+package tests.fields.at97;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
@@ -21,30 +21,30 @@ import utils.Screenshoter;
 import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class AddSummaryFields
+public class AddPostExecutionFields
 {
-    private static Logger logger = Logger.getLogger(AddSummaryFields.class);
+    private static Logger logger = Logger.getLogger(AddPostExecutionFields.class);
 
     @Test
-    public void addSummaryFields() throws InterruptedException
+    public void addPostExecutionFields() throws InterruptedException
     {
         Fields fieldsTab = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
 
         ContractFields contractFields = fieldsTab.clickContractFields();
 
-        contractFields.createNewFiled("Summary", "ff1", FieldType.SELECT, false);
+        contractFields.createNewFiled("Post-execution", "ff1", FieldType.SELECT, false);
         contractFields.addValues("ff1", "a");
         contractFields.addValues("ff1", "b");
 
-        contractFields.createNewFiled("Summary", "ff2", FieldType.SELECT, false);
+        contractFields.createNewFiled("Post-execution", "ff2", FieldType.SELECT, false);
         contractFields.addValues("ff2", "c");
         contractFields.addValues("ff2", "d");
 
-        contractFields.createNewFiled("Summary", "linked1", FieldType.SELECT, false);
+        contractFields.createNewFiled("Post-execution", "linked1", FieldType.SELECT, false);
         contractFields.addValues("linked1", "1");
         contractFields.addValues("linked1", "2");
 
-        contractFields.createNewFiled("Summary", "linked2", FieldType.SELECT, false);
+        contractFields.createNewFiled("Post-execution", "linked2", FieldType.SELECT, false);
 
         LinkedValues linkedValuesForm = contractFields.clickLinkValues("linked2");
         linkedValuesForm.selectAssociatedField("linked1");
@@ -63,7 +63,7 @@ public class AddSummaryFields
         WebElement linked2_field = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"linked2\")').parent().parent()[0]"),
                    ff1_field     = Selenide.executeJavaScript("return $('.admin-fields-layout-field__label:contains(\"ff1\")').parent().parent()[0]");
 
-        logger.info("Perform drag&drop of linked2 and ff1 summary fields...");
+        logger.info("Perform drag&drop of linked2 and ff1 post-execution fields...");
         dragAndDropFields(linked2_field, ff1_field);
 
         logger.info("Check that order was changed on Layout page...");
