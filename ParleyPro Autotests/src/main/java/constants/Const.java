@@ -64,6 +64,9 @@ public class Const
     public static final File   CONTRACT_DATA_CSV_ORIGINAL_EXECUTED = new File(System.getProperty("user.dir") + "/Documents/executed-metadata_original.csv");
     public static final File   CONTRACT_DATA_CSV_ORIGINAL_ACTIVE   = new File(System.getProperty("user.dir") + "/Documents/active-metadata_original.csv");
 
+    public static final File   CLASSIC_AT92_V1               = new File(System.getProperty("user.dir") + "/Documents/Manufacturing_Agreement_draft_3.docx");
+    public static final File   CLASSIC_AT92_V2               = new File(System.getProperty("user.dir") + "/Documents/Manufacturing_Agreement_draft_2.docx");
+
     // Directories
     // Directory of docs from clients. Used in Classic
     public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Documents/classicClientDocs");
