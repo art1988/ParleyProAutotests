@@ -35,6 +35,7 @@ public class CheckCSVsFromExecutedAndInProgress
 
         try
         {
+            logger.info("Comparing CVS's from Executed contracts page...");
             Assert.assertTrue(isCSVTheSame(executedMetadataCSV.toPath(), Const.CONTRACT_DATA_CSV_ORIGINAL_EXECUTED.toPath()),
                     "Contract data CSV from Executed contracts page is not the same as before !");
         }
@@ -57,6 +58,7 @@ public class CheckCSVsFromExecutedAndInProgress
 
         try
         {
+            logger.info("Comparing CVS's from In-progress contracts page...");
             Assert.assertTrue(isCSVTheSame(activeMetadataCSV.toPath(), Const.CONTRACT_DATA_CSV_ORIGINAL_ACTIVE.toPath()),
                     "Contract data CSV from In-progress contracts page is not the same as before !");
         }
