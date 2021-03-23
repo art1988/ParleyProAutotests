@@ -2,13 +2,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Data migration suite" configfailurepolicy="continue">
+    <!--
     <test name="AT-52: Check all data on In-progress/Executed contracts page." preserve-order="true">
         <classes>
             <class name="tests.migration.at52.LoginToAT50Tenant"/>
             <class name="tests.migration.at52.CheckContracts"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="AT-91: Check CSV's from In-progress and Executed contracts pages." preserve-order="true">
         <classes>

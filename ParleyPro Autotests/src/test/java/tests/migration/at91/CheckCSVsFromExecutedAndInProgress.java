@@ -76,6 +76,7 @@ public class CheckCSVsFromExecutedAndInProgress
             // byte-to-byte comparing
             while ( (data = downloadedCSV.read()) != -1 )
             {
+                System.out.print((char) data);
                 if ( data != originalCSV.read() )
                 {
                     return false;
