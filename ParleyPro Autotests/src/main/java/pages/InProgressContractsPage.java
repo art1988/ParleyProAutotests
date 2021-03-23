@@ -11,14 +11,17 @@ import org.testng.Assert;
 import org.testng.SkipException;
 import pages.subelements.SideBar;
 
+import java.io.FileNotFoundException;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class InProgressContractsPage
 {
     private SideBar sideBar;
-    private SelenideElement newContractButton = $(".contracts__create button[type='button']"); // the same css class represents + NEW REQUEST button
-    private SelenideElement searchBar         = $(".contracts-search-input__text");
+    private SelenideElement newContractButton          = $(".contracts__create button[type='button']"); // the same css class represents + NEW REQUEST button
+    private SelenideElement searchBar                  = $(".contracts-search-input__text");
+    private SelenideElement downloadContractDataButton = $(".contracts-head__download");
 
 
     private static Logger logger = Logger.getLogger(InProgressContractsPage.class);
@@ -116,5 +119,17 @@ public class InProgressContractsPage
     {
         searchBar.setValue(searchString);
         searchBar.pressEnter();
+    }
+
+    /**
+     * Click by 'Download contract data' icon. Usually it download *.csv file
+     * @return
+     * @throws FileNotFoundException
+     */
+    public void clickDownloadContractData() throws FileNotFoundException
+    {
+        logger.info("Download contract data button was clicked.");
+
+        downloadContractDataButton.download();
     }
 }
