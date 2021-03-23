@@ -9,8 +9,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class StartNegotiation
 {
-    private SelenideElement title = $(".modal-body-title");
-
+    private SelenideElement title       = $(".modal-body-title");
+    private SelenideElement message     = $(".share-documents__message");
+    private SelenideElement startButton = $(".button.btn-common.btn.btn-primary");
 
 
     private static Logger logger = Logger.getLogger(StartNegotiation.class);
@@ -36,11 +37,11 @@ public class StartNegotiation
 
         if( isClassic )
         {
-            $(".share-documents__message").shouldBe(Condition.visible).shouldHave(Condition.exactText("Your Counterparty will not be notified and no contract will be emailed at this point"));
+            message.shouldBe(Condition.visible).shouldHave(Condition.exactText("Your Counterparty will not be notified and no contract will be emailed at this point"));
         }
         else
         {
-            $(".share-documents__message").shouldBe(Condition.visible).shouldHave(Condition.exactText("Once started, selected documents will be visible to the Counterparty"));
+            message.shouldBe(Condition.visible).shouldHave(Condition.exactText("Once started, selected documents will be visible to the Counterparty"));
         }
     }
 
@@ -51,5 +52,12 @@ public class StartNegotiation
         logger.info("Next button was clicked");
 
         return new EmailWillBeSentToTheCounterparty(isClassic);
+    }
+
+    public void clickStart()
+    {
+        startButton.click();
+
+        logger.info("START button was clicked");
     }
 }
