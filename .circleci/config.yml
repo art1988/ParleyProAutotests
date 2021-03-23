@@ -32,6 +32,10 @@ jobs:
           destination: Report/Allure
           when: always
           
+      - store_artifacts:
+          path: "./ParleyPro Autotests/Downloads"
+          destination: Downloads
+          
       - slack/notify:
           channel: qa
           custom: |
