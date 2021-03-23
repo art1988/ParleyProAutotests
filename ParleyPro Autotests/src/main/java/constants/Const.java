@@ -61,7 +61,8 @@ public class Const
     public static final File   DOC_PARAGRAPH_CLONING_AT89_V1 = new File(System.getProperty("user.dir") + "/Documents/ParagraphClonning_AT89.docx");
     public static final File   DOC_PARAGRAPH_CLONING_AT89_V2 = new File(System.getProperty("user.dir") + "/Documents/ParagraphClonning_AT89_with_responses.docx");
 
-    public static final File   CONTRACT_DATA_CSV_ORIGINAL    = new File(System.getProperty("user.dir") + "/Documents/executed-metadata_original.csv");
+    public static final File   CONTRACT_DATA_CSV_ORIGINAL_EXECUTED = new File(System.getProperty("user.dir") + "/Documents/executed-metadata_original.csv");
+    public static final File   CONTRACT_DATA_CSV_ORIGINAL_ACTIVE   = new File(System.getProperty("user.dir") + "/Documents/active-metadata_original.csv");
 
     // Directories
     // Directory of docs from clients. Used in Classic
