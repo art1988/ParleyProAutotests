@@ -73,8 +73,10 @@ public class UploadDocAndCheck
 
     @Test(priority = 3)
     @Description("This test checks that item '7. Test add' was added, item 'b.' under 8 was deleted and item 'b.' under 9 was added.")
-    public void checkDocument()
+    public void checkDocument() throws InterruptedException
     {
+        Thread.sleep(1_000);
+
         logger.info("Scroll to item 5. ...");
         Selenide.executeJavaScript("$('p span:contains(\"5.\")').filter(function() { return $(this).text() === '5.'; })[0].scrollIntoView({});");
 
