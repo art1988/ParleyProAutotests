@@ -1,11 +1,12 @@
 package tests.classic.at92;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractInformation;
-import forms.EmailWillBeSentToTheCounterparty;
-import forms.StartNegotiation;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
@@ -68,5 +69,36 @@ public class UploadDocAndCheck
                             .clickUploadCounterpartyDocument( Const.CLASSIC_AT92_V2, documentName, contractName )
                             .clickUpload(true)
                             .clickDocumentsTab();
+    }
+
+    @Test(priority = 3)
+    @Description("This test checks that item '7. Test add' was added, item 'b.' under 8 was deleted and item 'b.' under 9 was added.")
+    public void checkDocument()
+    {
+        logger.info("Scroll to item 5. ...");
+        Selenide.executeJavaScript("$('p span:contains(\"5.\")').filter(function() { return $(this).text() === '5.'; })[0].scrollIntoView({});");
+
+        logger.info("Assert that 7. item was added...");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('p ins span:contains(\"Test add\")').parent().parent().text().replace(/\\s/g, '')"),
+                "7.Testadd", "Looks like that 7. item wasn't added !!!");
+
+        Screenshoter.makeScreenshot();
+
+        logger.info("Scroll to item 8. ...");
+        Selenide.executeJavaScript("$('p span:contains(\"8.\")').filter(function() { return $(this).text() === '8.'; })[0].scrollIntoView({});");
+
+        logger.info("Assert that b. item was deleted...");
+
+        Assert.assertTrue(Selenide.executeJavaScript("return $('p del span:contains(\"b.\")').length === 1"), "Looks like that b. item wasn't deleted !!!");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('p del span:contains(\"On request Manufacturer shall furnish ABC\")').length === 1"), "Looks like that b. item wasn't deleted !!!");
+        Screenshoter.makeScreenshot();
+
+        logger.info("Scroll to item 9. ...");
+        Selenide.executeJavaScript("$('p span:contains(\"9.\")').filter(function() { return $(this).text() === '9.'; })[0].scrollIntoView({});");
+
+        logger.info("Assert that b. item was added...");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('p ins span:contains(\"b.\")').length === 1"), "Looks like that b. item wasn't added !!!");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('p ins span:contains(\"to ensure that Manufacturer has complied\")').length === 1"), "Looks like that b. item wasn't added !!!");
+        Screenshoter.makeScreenshot();
     }
 }
