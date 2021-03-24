@@ -8,6 +8,9 @@ import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Represents form that appears after clicking on '+ Add related field' link
+ */
 public class AddRelatedField
 {
     private SelenideElement makeRelatedButton = $("._button.scheme_blue");
@@ -23,6 +26,11 @@ public class AddRelatedField
                 .shouldHave(Condition.exactText("Select field value and relevant field you wish to relate it to"));
     }
 
+    /**
+     * Selects value from dropdown for chosen field ( left side dropdown )
+     * @param fieldName name of field
+     * @param value value to be set
+     */
     public void selectValueForField(String fieldName, String value)
     {
         // Set id dynamically for input
@@ -33,6 +41,10 @@ public class AddRelatedField
         $("#inp").pressEnter();
     }
 
+    /**
+     * Selects checkbox under Fields dropdown ( right side dropdown )
+     * @param field name of field to be checked
+     */
     public void selectFields(String field)
     {
         $("input[label='Fields']").click(); // click by input to expand dropdown
