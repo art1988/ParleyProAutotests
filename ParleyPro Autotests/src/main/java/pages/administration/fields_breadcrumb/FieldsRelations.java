@@ -37,7 +37,7 @@ public class FieldsRelations
      */
     public AddRelatedField addRelatedField(String fieldName)
     {
-        Selenide.executeJavaScript("$('.admin-fields-section div:contains(\"" + fieldName + "\")').find(\"i\").click()");
+        Selenide.executeJavaScript("$('.admin-fields-section div:contains(\"" + fieldName + "\")').find(\"i:contains('add')\").click()");
 
         logger.info("+ Add related field was clicked for: " + fieldName);
 
