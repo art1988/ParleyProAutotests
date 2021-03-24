@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Classic negotiation mode suite" configfailurepolicy="continue">
+    <!--
     <test name="Upload new version with redlines for my team documents" preserve-order="true">
         <parameter name="contractName" value="AT40 Classic contract"/>
         <classes>
@@ -13,7 +14,6 @@
         </classes>
     </test>
 
-    <!-- The following bunch of tests uploads client's document -->
     <test name="Client doc #1" preserve-order="true">
         <parameter name="contractName" value="Classic contract - client docs"/>
         <parameter name="documentName" value="Video Sponsorship Master Agreement (Editable).docx"/>
@@ -217,6 +217,16 @@
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.classic.at89.ParagraphsCloning"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test> -->
+
+    <test name="AT-92: Classic: Wrong comparing results in multilevel lists after adding/deleting whole paragraph." preserve-order="true">
+        <parameter name="contractName" value="Classic for AT-92"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.at92.UploadDocAndCheck"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
