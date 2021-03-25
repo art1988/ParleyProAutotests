@@ -1,5 +1,6 @@
 package tests.fields.at98;
 
+import com.codeborne.selenide.Condition;
 import constants.FieldType;
 import forms.add.AddNewParentField;
 import forms.add.AddRelatedField;
@@ -12,10 +13,12 @@ import pages.administration.fields_breadcrumb.FieldsRelations;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
+import static com.codeborne.selenide.Selenide.$;
+
 @Listeners({ScreenShotOnFailListener.class})
 public class AddRequestFieldsAndAddRelations
 {
-    @Test(priority = 1)
+    @Test()
     public void addRequestFieldsAndAddRelations()
     {
         Fields fieldsPage = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
@@ -47,6 +50,11 @@ public class AddRequestFieldsAndAddRelations
 
         fieldsPage.clickSave();
 
+        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
+
         Screenshoter.makeScreenshot();
+
+        // Logout
+        new DashboardPage().getSideBar().logout();
     }
 }
