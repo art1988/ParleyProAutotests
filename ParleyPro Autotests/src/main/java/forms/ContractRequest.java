@@ -1,11 +1,16 @@
 package forms;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Form that appears after clicking on '+ NEW REQUEST' button
+ */
 public class ContractRequest
 {
     private SelenideElement submitRequestButton = $("._button.scheme_blue.size_lg");
@@ -21,6 +26,15 @@ public class ContractRequest
 
         submitRequestButton.shouldBe(Condition.visible).shouldBe(Condition.enabled);
         cancelButton.shouldBe(Condition.visible).shouldBe(Condition.enabled);
+    }
+
+    public void selectValueForField(String fieldName, String value) throws InterruptedException
+    {
+        // set id = fieldName
+        Selenide.executeJavaScript("$('.row label:contains(\"" + fieldName + "\")').parent().find(\"input\").attr('id', '" + fieldName + "')");
+        $("#" + fieldName).click();
+        $("#" + fieldName).clear();
+        $("#" + fieldName).sendKeys(value); Thread.sleep(3_000);
     }
 
     public void clickCancel()
