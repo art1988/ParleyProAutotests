@@ -117,6 +117,8 @@ public class ContractFields
     {
         Selenide.executeJavaScript("$('input[label=\"Field name\"][value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"i\").click()");
 
+        logger.info("Trying to delete this field: " + fieldName);
+
         return new DeleteField();
     }
 }
