@@ -34,6 +34,7 @@ public class CheckContentAfterUploading
         //Assert.assertEquals(discussionsOfSingleContract.getDiscussionCount(), numberOfDiscussions);
 
         OpenedContract openedContract = discussionsOfSingleContract.clickDocumentsTab();
+        logger.info("Waiting until spinner will disappear [up to 1 minute]...");
         $(".spinner").waitUntil(Condition.disappear, 60_000);
         $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
 
@@ -48,5 +49,7 @@ public class CheckContentAfterUploading
 
         logger.info("Checking text on last page...");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + textOnLastPage + "\")').length >= 1"));
+
+        Screenshoter.makeScreenshot();
     }
 }

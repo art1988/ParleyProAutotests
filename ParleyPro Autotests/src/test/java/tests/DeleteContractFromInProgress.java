@@ -31,6 +31,7 @@ public class DeleteContractFromInProgress
         new OpenedContract().clickContractActionsMenu().clickDeleteContract().clickDelete();
 
         logger.info("Assert delete notification...");
+        logger.info("Waiting until notification will be visible [up to 1 minute]...");
         $(".notification-stack").waitUntil(Condition.visible, 60_000).shouldHave(Condition.exactText("Contract " + contractName + " has been deleted."));
 
         logger.info("Assert that In-progress contracts page has blank page with no contracts...");
