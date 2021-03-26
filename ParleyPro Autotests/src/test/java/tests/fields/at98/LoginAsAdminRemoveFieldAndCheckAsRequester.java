@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractRequest;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -41,6 +42,7 @@ public class LoginAsAdminRemoveFieldAndCheckAsRequester
     }
 
     @Test(priority = 2)
+    @Description("This test logins as requester and making sure that only f1 is present on the form.")
     public void loginAsRequesterAndCheckField()
     {
         LoginPage loginPage = new LoginPage();
