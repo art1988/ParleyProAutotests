@@ -12,7 +12,7 @@
     </test>
 
     <test name="AT-96, AT-99 and AT-100: Fields order should be preserved for Summary, Post-execution and Request fields" preserve-order="true">
-        <parameter name="contractName" value="executed for post-execution fields"></parameter>
+        <parameter name="contractName" value="executed for post-execution fields"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.fields.at96_99_100.AddFieldsChangeOrderAndSave"/>
@@ -36,7 +36,7 @@
     </test>
 
     <test name="AT-97: Linked values: fields order should be preserved - Post-execution fields" preserve-order="true">
-        <parameter name="contractName" value="Linked post-execution fields"></parameter>
+        <parameter name="contractName" value="Linked post-execution fields"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.fields.at97.AddPostExecutionFields"/>
