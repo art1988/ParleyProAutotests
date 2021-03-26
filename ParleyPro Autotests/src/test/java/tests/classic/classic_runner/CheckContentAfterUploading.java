@@ -1,5 +1,6 @@
 package tests.classic.classic_runner;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -10,6 +11,8 @@ import pages.DiscussionsOfSingleContract;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
+
+import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class CheckContentAfterUploading
@@ -31,7 +34,8 @@ public class CheckContentAfterUploading
         //Assert.assertEquals(discussionsOfSingleContract.getDiscussionCount(), numberOfDiscussions);
 
         OpenedContract openedContract = discussionsOfSingleContract.clickDocumentsTab();
-        Thread.sleep(3_000);
+        $(".spinner").waitUntil(Condition.disappear, 60_000);
+        $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
 
         logger.info("Checking text on first page...");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + textOnFirstPage + "\")').length >= 1"));

@@ -20,8 +20,8 @@ public class DiscussionsOfSingleContract
 
     public DiscussionsOfSingleContract(String contractName)
     {
-        $(".spinner").waitUntil(Condition.disappear, 35_000);
-        contractTitle.waitUntil(Condition.visible, 35_000).shouldHave(Condition.exactText(contractName));
+        $(".spinner").waitUntil(Condition.disappear, 60_000 * 3 + 45_000); // (3 minutes 45 sec) for very heavy docs with macros
+        contractTitle.waitUntil(Condition.visible, 60_000).shouldHave(Condition.exactText(contractName));
     }
 
     public String getDiscussionCount()

@@ -25,7 +25,7 @@ public class DocumentComparePreview
      */
     public DocumentComparePreview(String documentName, String contractName)
     {
-        $(".spinner").waitUntil(Condition.disappear, 60_000);
+        $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
 
         title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("\"" + documentName + "\" document compare preview"));
 
