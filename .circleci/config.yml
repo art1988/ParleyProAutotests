@@ -22,7 +22,12 @@ jobs:
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
       
-     
+      - run: sleep 10
+      
+     - run:
+          name: Run Fields suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Fields.xml
 
       - run:
           name: Allure report generation
