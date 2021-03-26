@@ -18,11 +18,11 @@ jobs:
      
       
       - run:
-          name: Run Fields suite
+          name: Run Classic suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Fields.xml
-          
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
       
+     
 
       - run:
           name: Allure report generation
