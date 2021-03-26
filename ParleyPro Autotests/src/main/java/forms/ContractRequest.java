@@ -32,6 +32,7 @@ public class ContractRequest
         // set id = fieldName
         Selenide.executeJavaScript("$('.row label:contains(\"" + fieldName + "\")').parent().find(\"input\").attr('id', '" + fieldName + "')");
         $("#" + fieldName).sendKeys(value);
+        $("#" + fieldName).pressEnter();
     }
 
     public void clickCancel()
