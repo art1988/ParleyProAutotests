@@ -56,4 +56,15 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-98: Field Relations in Request Module is not Working for 1 Category" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.fields.at98.AddRequestFieldsAndAddRelations"/>
+            <class name="tests.fields.at98.LoginAsRequesterAndCheck"/>
+            <class name="tests.fields.at98.LoginAsAdminRemoveFieldAndCheckAsRequester"/>
+            <class name="tests.fields.at98.RemoveFields"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>

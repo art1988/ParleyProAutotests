@@ -6,7 +6,6 @@ import constants.Const;
 import forms.ContractRequest;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -24,7 +23,7 @@ public class LoginAsRequesterAndCheck
 
     @Test
     @Description("This test logins as requester and checks that fields f1 and f2 are present on page after selecting of val1.")
-    public void loginAsRequesterAndCheck() throws InterruptedException
+    public void loginAsRequesterAndCheck()
     {
         LoginPage loginPage = new LoginPage();
 

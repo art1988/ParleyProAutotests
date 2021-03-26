@@ -41,7 +41,7 @@ public class LoginAsAdminRemoveFieldAndCheckAsRequester
     }
 
     @Test(priority = 2)
-    public void loginAsRequesterAndCheckField() throws InterruptedException
+    public void loginAsRequesterAndCheckField()
     {
         LoginPage loginPage = new LoginPage();
 

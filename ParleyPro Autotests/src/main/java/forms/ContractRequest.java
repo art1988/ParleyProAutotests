@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -28,13 +27,11 @@ public class ContractRequest
         cancelButton.shouldBe(Condition.visible).shouldBe(Condition.enabled);
     }
 
-    public void selectValueForField(String fieldName, String value) throws InterruptedException
+    public void selectValueForField(String fieldName, String value)
     {
         // set id = fieldName
         Selenide.executeJavaScript("$('.row label:contains(\"" + fieldName + "\")').parent().find(\"input\").attr('id', '" + fieldName + "')");
-        $("#" + fieldName).click();
-        $("#" + fieldName).clear();
-        $("#" + fieldName).sendKeys(value); Thread.sleep(3_000);
+        $("#" + fieldName).sendKeys(value);
     }
 
     public void clickCancel()
