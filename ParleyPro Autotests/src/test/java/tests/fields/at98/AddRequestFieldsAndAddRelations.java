@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class AddRequestFieldsAndAddRelations
 {
     @Test()
-    public void addRequestFieldsAndAddRelations()
+    public void addRequestFieldsAndAddRelations() throws InterruptedException
     {
         Fields fieldsPage = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
 
@@ -54,6 +54,7 @@ public class AddRequestFieldsAndAddRelations
 
         Screenshoter.makeScreenshot();
 
+        Thread.sleep(1_000);
         // Logout
         new DashboardPage().getSideBar().logout();
     }
