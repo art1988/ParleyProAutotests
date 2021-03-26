@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Classic negotiation mode suite" configfailurepolicy="continue">
+    <!--
     <test name="Upload new version with redlines for my team documents" preserve-order="true">
         <parameter name="contractName" value="AT40 Classic contract"/>
         <classes>
@@ -209,8 +210,27 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
+    </test> -->
+
+    <test name="Client doc #11 [DHL]: AT-107: Document with macros" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="201104_FA_eLearning_Training_Learnship_updated.doc"/>
+        <parameter name="cpDocumentName" value="2021-03-17_KV-00184_Deutsche Post AG__Framework Agreement_vDPDHL_2.docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="380"/>
+        <parameter name="textOnFirstPage" value="Learnship Contract Number:"/>
+        <parameter name="textOnLastPage" value="Senior Sourcing Manager"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
     </test>
 
+    <!--
     <test name="AT-89: Classic - paragraphs cloning" preserve-order="true">
         <parameter name="contractName" value="AT-89: paragraphs cloning"/>
         <classes>
@@ -229,5 +249,5 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test> -->
 </suite>
