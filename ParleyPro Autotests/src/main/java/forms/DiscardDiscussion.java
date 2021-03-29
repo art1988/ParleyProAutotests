@@ -8,12 +8,13 @@ import utils.Waiter;
 import static com.codeborne.selenide.Selenide.$;
 
 /**
- * Confirmation form that appears after clicking on DISCARD DISCUSSION button
+ * Confirmation form that appears after clicking by DISCARD DISCUSSION button
+ * or by RESOLVE DISCUSSION button
  */
 public class DiscardDiscussion
 {
     private SelenideElement title         = $(".modal-body-title");
-    private SelenideElement discardButton = $(".js-close-discussion-confirm");
+    private SelenideElement discardButton = $(".js-close-discussion-confirm"); // the same css locator has RESOLVE DISCUSSION button
 
 
     private static Logger logger = Logger.getLogger(DiscardDiscussion.class);
@@ -39,5 +40,12 @@ public class DiscardDiscussion
         discardButton.click();
 
         logger.info("Discard discussion was clicked");
+    }
+
+    public void clickResolveDiscussion()
+    {
+        discardButton.click();
+
+        logger.info("Resolve discussion was clicked");
     }
 }
