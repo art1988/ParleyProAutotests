@@ -12,10 +12,13 @@ import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Represents right sidebar that appears after clicking by discussions icon
+ */
 public class OpenedDiscussion
 {
     private SelenideElement closeButton             = $(".documents-discussion-panel__close");
-    private SelenideElement discardDiscussionButton = $(".discussion-close-button");
+    private SelenideElement discardDiscussionButton = $(".discussion-close-button"); // the same locator has Resolve discussion button
     private SelenideElement priorityButton          = $(".discussion-header__menu .label_priority");
     private SelenideElement termButton              = $(".discussion-header__menu .label_term");
     private SelenideElement termInput               = $(".select__input.input__input");
@@ -92,6 +95,15 @@ public class OpenedDiscussion
         Selenide.executeJavaScript("$('.paragraph-discussions .discussion2-post .discussion2-post__text:contains(\"" + post + "\")').parent().next().find(\"i\").click()");
 
         return new AcceptPost(type);
+    }
+
+    public DiscardDiscussion clickResolveDiscussion()
+    {
+        discardDiscussionButton.click();
+
+        logger.info("RESOLVE DISCUSSION was clicked...");
+
+        return new DiscardDiscussion();
     }
 
     public DiscardDiscussion clickDiscardDiscussion()
