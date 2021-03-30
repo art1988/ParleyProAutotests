@@ -30,5 +30,7 @@ public class StartExternalDiscussion
         postExternallyButton.click();
 
         logger.info("POST EXTERNALLY button was clicked...");
+
+        $(".modal-content").should(Condition.disappear);
     }
 }
