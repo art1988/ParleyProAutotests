@@ -78,11 +78,9 @@ public class RecalculationChecks
     @Description("This test removes line in level 2 and check recalculations")
     public void removeItemInLevel2()
     {
-        OpenedContract openedContract = new OpenedContract();
-        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L1_Letter_capital_B");
-
-        CKEditorActive ckEditorActive = paragraphActionsPopup.clickDelete();
-        ckEditorActive.clickPost();
+        new OpenedContract().hover("L1_Letter_capital_B")
+                            .clickDelete()
+                            .clickPost();
 
         logger.info("Assert that notification popup was shown...");
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));

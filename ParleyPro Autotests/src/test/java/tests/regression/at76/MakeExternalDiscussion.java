@@ -31,11 +31,11 @@ public class MakeExternalDiscussion
     {
         String paragraph = "Paragraph 2: Create comment here";
 
-        CKEditorActive ckEditorActive = new OpenedContract().hover(paragraph).clickAddComment();
-
-        ckEditorActive.setComment("comment for external post");
-        ckEditorActive.selectExternal();
-        ckEditorActive.clickPost(paragraph, "CounterpartyAT").clickPostExternally();
+        new OpenedContract().hover(paragraph)
+                            .clickAddComment()
+                            .setComment("comment for external post")
+                            .selectExternal()
+                            .clickPost(paragraph, "CounterpartyAT").clickPostExternally();
 
         logger.info("Check notification...");
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.exactText("External discussion " + paragraph + " has been successfully created."));

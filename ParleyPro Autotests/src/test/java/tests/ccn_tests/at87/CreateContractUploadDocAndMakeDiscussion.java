@@ -75,14 +75,14 @@ public class CreateContractUploadDocAndMakeDiscussion
     @Description("This test adds one discussion and makes it external.")
     public void makeExternalDiscussion() throws InterruptedException
     {
-        CKEditorActive ckEditorActive = new OpenedContract().hover("Unused extra").clickAddParagraphAbove();
-
         String addedParagraphText = "Just new paragraph to initiate discussion.";
 
-        ckEditorActive.setText(addedParagraphText);
-        ckEditorActive.setComment("new p above p#6");
-        ckEditorActive.selectExternal();
-        ckEditorActive.clickPost(addedParagraphText, counterpartyOrganization).clickPostExternally();
+        new OpenedContract().hover("Unused extra")
+                            .clickAddParagraphAbove()
+                            .setText(addedParagraphText)
+                            .setComment("new p above p#6")
+                            .selectExternal()
+                            .clickPost(addedParagraphText, counterpartyOrganization).clickPostExternally();
 
         logger.info("Assert post notification and discussion counter...");
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("External discussion " + addedParagraphText + " has been successfully created."));

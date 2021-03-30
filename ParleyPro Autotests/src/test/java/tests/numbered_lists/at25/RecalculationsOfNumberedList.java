@@ -127,13 +127,10 @@ public class RecalculationsOfNumberedList
     @Description("This test deletes line in level 1 (without sublevels) and check recalculations")
     public void deleteLineInLevel1WithoutSublevels()
     {
-        OpenedContract openedContract = new OpenedContract();
-
         // hover over the line that we want to delete
-        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Number_Point_2");
-
-        CKEditorActive ckEditorActive = paragraphActionsPopup.clickDelete();
-        ckEditorActive.clickPost();
+        new OpenedContract().hover("L0_Number_Point_2")
+                            .clickDelete()
+                            .clickPost();
 
         logger.info("Assert that notification popup was shown...");
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
@@ -159,13 +156,10 @@ public class RecalculationsOfNumberedList
     {
         refreshPage(); // Need to refresh again
 
-        OpenedContract openedContract = new OpenedContract();
-
         // hover over the line that we want to delete
-        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L1_Number_Point_2_2");
-
-        CKEditorActive ckEditorActive = paragraphActionsPopup.clickDelete();
-        ckEditorActive.clickPost();
+        new OpenedContract().hover("L1_Number_Point_2_2")
+                            .clickDelete()
+                            .clickPost();
 
         logger.info("Assert that notification popup was shown...");
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
@@ -264,8 +258,7 @@ public class RecalculationsOfNumberedList
 
         paragraphActionsPopup = openedContract.hover("above first item"); // hover again over the first item
 
-        CKEditorActive ckEditorActive = paragraphActionsPopup.clickDelete(); // and click delete icon
-        ckEditorActive.clickPost();
+        paragraphActionsPopup.clickDelete().clickPost(); // and click delete icon
 
         logger.info("Assert that notification popup was shown...");
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
