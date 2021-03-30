@@ -28,5 +28,7 @@ public class ReadyToSign
         okButton.click();
 
         logger.info("OK button was clicked...");
+
+        $(".modal-content").shouldBe(Condition.disappear);
     }
 }
