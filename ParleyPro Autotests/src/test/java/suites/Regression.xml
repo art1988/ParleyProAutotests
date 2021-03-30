@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Regression" configfailurepolicy="continue">
-    <!--
     <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
@@ -85,7 +84,7 @@
             <class name="tests.regression.at95.VisitAdministrationCreateUserAndChangeValues"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-93: Grey screen when CCN confirms ready for signature action" preserve-order="true">
         <parameter name="contractName" value="Grey screen - CCN"/>
@@ -97,4 +96,13 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <!-- ON HOLD
+    <test name="AT-111: Grey screen in Manage Discussions" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at111.CreateContractUploadDocAndMakePosts"/>
+
+        </classes>
+    </test> -->
 </suite>
