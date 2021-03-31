@@ -95,7 +95,7 @@ public class AddDocuments
         $(".js-upload-my-team-document-btn").parent().parent().find("input").waitUntil(Condition.enabled, 7_000);
         try
         {
-            Thread.sleep(500); // necessary sleep ! Without this half-a-sec sleep test may become flaky.
+            Thread.sleep(1_500); // necessary sleep ! Without this sleep test may become flaky.
         }
         catch (InterruptedException e)
         {
