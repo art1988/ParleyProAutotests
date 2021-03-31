@@ -5,7 +5,9 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import forms.*;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import pages.subelements.CKEditorActive;
 import pages.subelements.FieldsPanel;
 import pages.tooltips.ContractActionsMenu;
 import pages.tooltips.DocumentActionsMenu;
@@ -17,6 +19,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class OpenedContract
 {
     private SelenideElement contractName          = $(".contract-header__name");
+    private SelenideElement manageDiscussions     = $(".contract-header__manage-discussions");
     private SelenideElement auditTrailButton      = $("#contract-audit-trail-action");
     private SelenideElement contractInfoButton    = $("#contract-info-action");
     private SelenideElement actionsMenu           = $(".contract-header__menu .actions-menu button");
@@ -233,7 +236,7 @@ public class OpenedContract
 
     /**
      * Perform hover over paragraph that contains certain text
-     * @param paragraph - text that contains in paragraph
+     * @param paragraph text that contains in paragraph
      * @return
      */
     public ParagraphActionsPopup hover(String paragraph)
@@ -248,8 +251,20 @@ public class OpenedContract
     }
 
     /**
+     * Perform click by paragraph that contains certain text. After click CKEditor should appear.
+     * @param paragraph text that contains in paragraph
+     * @return
+     */
+    public CKEditorActive clickByParagraph(String paragraph)
+    {
+        $((WebElement) Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + paragraph + "\")')[0]")).click();
+
+        return new CKEditorActive();
+    }
+
+    /**
      * Click by discussion icon of the given paragraph
-     * @param paragraph - text that contains in paragraph
+     * @param paragraph text that contains in paragraph
      * @return
      */
     public OpenedDiscussion clickByDiscussionIcon(String paragraph)
@@ -257,6 +272,15 @@ public class OpenedContract
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"" + paragraph + "\")').prev().click()");
 
         return new OpenedDiscussion(paragraph);
+    }
+
+    public ManageDiscussions clickManageDiscussions()
+    {
+        manageDiscussions.click();
+
+        logger.info("Manage discussions button was clicked");
+
+        return new ManageDiscussions();
     }
 
     public AuditTrail clickAuditTrail()
@@ -290,7 +314,7 @@ public class OpenedContract
 
     /**
      * Click by button with 3 dots for chosen document
-     * @param documentName - name of document for which document actions menu should be invoked
+     * @param documentName name of document for which document actions menu should be invoked
      * @return
      */
     public DocumentActionsMenu clickDocumentActionsMenu(String documentName)
