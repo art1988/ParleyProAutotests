@@ -44,7 +44,7 @@ public class CreateContractPositiveForContractRoutingWorkflow
         contractInformationForm.setContractValue("22450"); // in appropriate range between [15400, 32700]
         contractInformationForm.setContractingRegion("region1");
         contractInformationForm.setContractingCountry("country1");
-        contractInformationForm.setContractEntity("entity1");
+        contractInformationForm.setContractEntity("entity2");            // correct entity
         contractInformationForm.setContractingDepartment("department1"); // correct department
         contractInformationForm.setContractCategory("category1");        // correct category
         contractInformationForm.setContractType("type2");                // correct type

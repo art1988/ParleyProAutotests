@@ -25,11 +25,11 @@ public class CreateApprovalWorkflow
 
     @Test()
     @Description("This test go to Administration, creates new approval workflow")
-    public void createApprovalWorkflow()
+    public void createApprovalWorkflow() throws InterruptedException
     {
         DashboardPage dashboardPage = new DashboardPage();
 
-        AdministrationPage administrationPage = dashboardPage.getSideBar().clickAdministration();
+        AdministrationPage administrationPage = new DashboardPage().getSideBar().clickAdministration();
 
         Workflows workflowsTabPage = administrationPage.clickWorkflowsTab();
 
@@ -40,6 +40,7 @@ public class CreateApprovalWorkflow
         // Settings of Approval workflow
         approvalWorkflowForm.setName(workflowName);
         approvalWorkflowForm.setCategory("category2");
+        approvalWorkflowForm.setEntity("entity1");
         approvalWorkflowForm.setType("type2");
         approvalWorkflowForm.setDepartment("department2");
         approvalWorkflowForm.setCurrency("GBP");
@@ -79,6 +80,7 @@ public class CreateApprovalWorkflow
         logger.info("Assert that just created Approval workflow has correct values...");
         Assert.assertEquals(approvalWorkflowForm.getName(), workflowName);
         Assert.assertEquals(approvalWorkflowForm.getCategory(), "category2");
+        Assert.assertEquals(approvalWorkflowForm.getEntity(), "entity1");
         Assert.assertEquals(approvalWorkflowForm.getType(), "type2");
         Assert.assertEquals(approvalWorkflowForm.getDepartment(), "department2");
         Assert.assertEquals(approvalWorkflowForm.getCurrency(), "GBP");

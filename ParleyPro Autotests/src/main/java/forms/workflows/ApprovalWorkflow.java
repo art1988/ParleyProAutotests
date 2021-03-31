@@ -45,11 +45,24 @@ public class ApprovalWorkflow
         return nameField.getValue();
     }
 
+    public void setEntity(String entity)
+    {
+        Selenide.executeJavaScript("$('input[data-id=\"wf_autoAssignment_entity\"]')[0].click()"); // open dropdown
+        Selenide.executeJavaScript("$('.multi-select .dropdown-menu:visible').eq(0).find(\"label:contains('All')\").click()"); // uncheck All
+        Selenide.executeJavaScript("$('.multi-select .dropdown-menu:visible').eq(0).find(\"label:contains('" + entity + "')\").click()"); // select
+        Selenide.executeJavaScript("$('input[data-id=\"wf_autoAssignment_entity\"]')[0].click()"); // close dropdown
+    }
+
+    public String getEntity()
+    {
+        return Selenide.executeJavaScript("return $('input[data-id=\"wf_autoAssignment_entity\"]').val()");
+    }
+
     public void setCategory(String category)
     {
         Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-cate\"]')[0].click()"); // open dropdown
-        Selenide.executeJavaScript("$('.multi-select .dropdown-menu').eq(0).find(\"label:contains('All')\").click()"); // uncheck All
-        Selenide.executeJavaScript("$('.multi-select .dropdown-menu').eq(0).find(\"label:contains('" + category + "')\").click()"); // select
+        Selenide.executeJavaScript("$('.multi-select .dropdown-menu:visible').eq(0).find(\"label:contains('All')\").click()"); // uncheck All
+        Selenide.executeJavaScript("$('.multi-select .dropdown-menu:visible').eq(0).find(\"label:contains('" + category + "')\").click()"); // select
         Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-cate\"]')[0].click()"); // close dropdown
     }
 
@@ -63,9 +76,9 @@ public class ApprovalWorkflow
     public void setType(String type)
     {
         Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-type\"]')[0].click()"); // open dropdown
-        Selenide.executeJavaScript("$('.multi-select .dropdown-menu').eq(1).find(\"label:contains('All')\").click()"); // uncheck All
-        Selenide.executeJavaScript("$('.multi-select .dropdown-menu').eq(1).find(\"label:contains('" + type + "')\").click()"); // select
-        Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-cate\"]')[0].click()"); // close dropdown
+        Selenide.executeJavaScript("$('.multi-select .dropdown-menu:visible').eq(0).find(\"label:contains('All')\").click()"); // uncheck All
+        Selenide.executeJavaScript("$('.multi-select .dropdown-menu:visible').eq(0).find(\"label:contains('" + type + "')\").click()"); // select
+        Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-type\"]')[0].click()"); // close dropdown
     }
 
     public String getType()
@@ -78,8 +91,8 @@ public class ApprovalWorkflow
     public void setDepartment(String department)
     {
         Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-department\"]')[0].click()"); // open dropdown
-        Selenide.executeJavaScript("$('.multi-select .dropdown-menu').eq(2).find(\"label:contains('All')\").click()"); // uncheck All
-        Selenide.executeJavaScript("$('.multi-select .dropdown-menu').eq(2).find(\"label:contains('" + department + "')\").click()"); // select
+        Selenide.executeJavaScript("$('.multi-select .dropdown-menu:visible').eq(0).find(\"label:contains('All')\").click()"); // uncheck All
+        Selenide.executeJavaScript("$('.multi-select .dropdown-menu:visible').eq(0).find(\"label:contains('" + department + "')\").click()"); // select
         Selenide.executeJavaScript("$('input[data-id=\"workflows-approval-department\"]')[0].click()"); // close dropdown
     }
 

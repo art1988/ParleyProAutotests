@@ -40,7 +40,7 @@ public class CreateContractPositiveForApprovalWorkflow
         contractInformationForm.setContractValue("855"); // in appropriate range between [250, 1300]
         contractInformationForm.setContractingRegion("region1");
         contractInformationForm.setContractingCountry("country1");
-        contractInformationForm.setContractEntity("entity1");
+        contractInformationForm.setContractEntity("entity1");            // correct entity
         contractInformationForm.setContractingDepartment("department2"); // correct department
         contractInformationForm.setContractCategory("category2");        // correct category
         contractInformationForm.setContractType("type2");                // correct type

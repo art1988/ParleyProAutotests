@@ -34,6 +34,7 @@ public class CreateContractRoutingWorkflow
 
         contractRoutingWorkflowForm.setName(workflowName);
         contractRoutingWorkflowForm.setCategory("category1");
+        contractRoutingWorkflowForm.setEntity("entity2");
         contractRoutingWorkflowForm.setType("type2");
         contractRoutingWorkflowForm.setDepartment("department1");
         contractRoutingWorkflowForm.setCurrency("JPY");
@@ -62,6 +63,7 @@ public class CreateContractRoutingWorkflow
 
         Assert.assertEquals(contractRoutingWorkflowForm.getName(), workflowName);
         Assert.assertEquals(contractRoutingWorkflowForm.getCategory(), "category1");
+        Assert.assertEquals(contractRoutingWorkflowForm.getEntity(), "entity2");
         Assert.assertEquals(contractRoutingWorkflowForm.getType(), "type2");
         Assert.assertEquals(contractRoutingWorkflowForm.getDepartment(), "department1");
         Assert.assertEquals(contractRoutingWorkflowForm.getCurrency(), "JPY");
