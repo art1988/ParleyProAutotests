@@ -211,7 +211,25 @@
         </classes>
     </test>
 
-    <test name="Client doc #11 [DHL]: AT-107: Document with macros" preserve-order="true">
+    <test name="Client doc #11: AT-112 - Classic: 500 error at new version upload (Learnship documents)" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="IOC_Framework_Agreement-Learnship.docx"/>
+        <parameter name="cpDocumentName" value="2020-07-17_KV-00168_IOC_Framework Agreement_v5_IOC.docx"/>
+        <parameter name="documentHasRevisions" value="true"/>
+        <parameter name="numberOfDiscussions" value="40"/>
+        <parameter name="textOnFirstPage" value="KV-00168"/>
+        <parameter name="textOnLastPage" value="OLYMPIC COMMITTEE:"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="Client doc #12 [DHL]: AT-107: Document with macros" preserve-order="true">
         <parameter name="contractName" value="Classic contract - client docs"/>
         <parameter name="documentName" value="201104_FA_eLearning_Training_Learnship_updated.doc"/>
         <parameter name="cpDocumentName" value="2021-03-17_KV-00184_Deutsche Post AG__Framework Agreement_vDPDHL_2.docx"/>
