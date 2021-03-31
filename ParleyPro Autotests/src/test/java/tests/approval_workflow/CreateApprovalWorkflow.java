@@ -25,7 +25,7 @@ public class CreateApprovalWorkflow
 
     @Test()
     @Description("This test go to Administration, creates new approval workflow")
-    public void createApprovalWorkflow() throws InterruptedException
+    public void createApprovalWorkflow()
     {
         DashboardPage dashboardPage = new DashboardPage();
 
