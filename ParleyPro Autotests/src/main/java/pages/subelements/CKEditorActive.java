@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class CKEditorActive
 {
-    private SelenideElement postButton = $("#create-discussion__submit");
+    private SelenideElement postButton = $("#create-discussion__submit, #create-post__submit");
 
 
     private static Logger logger = Logger.getLogger(CKEditorActive.class);
