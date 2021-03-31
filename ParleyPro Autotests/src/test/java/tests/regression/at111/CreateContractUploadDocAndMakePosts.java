@@ -3,6 +3,9 @@ package tests.regression.at111;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
+import forms.ManageDiscussions;
+import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
@@ -18,6 +21,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class CreateContractUploadDocAndMakePosts
 {
     private String paragraph = "Paragraph 3: Insert something above me";
+    private Logger logger = Logger.getLogger(CreateContractUploadDocAndMakePosts.class);
 
     @Test(priority = 1)
     public void createContractAndUploadDoc()
@@ -25,7 +29,7 @@ public class CreateContractUploadDocAndMakePosts
         // 1. + NEW CONTRACT
         ContractInformation contractInformationForm = new InProgressContractsPage(true).clickNewContractButton();
 
-        contractInformationForm.setContractTitle("Grey screen - CCN");
+        contractInformationForm.setContractTitle("Grey screen in Manage Discussions");
         contractInformationForm.setCounterpartyOrganization("CounterpartyAT");
         contractInformationForm.setCounterpartyChiefNegotiator( Const.PREDEFINED_CCN.getEmail() );
         contractInformationForm.setContractingRegion("region1");
@@ -72,13 +76,28 @@ public class CreateContractUploadDocAndMakePosts
     @Test(priority = 3)
     public void makeChangesForTheSameParagraph() throws InterruptedException
     {
-        new OpenedContract().hover(paragraph)
-                            .clickAddComment()
-                            .setComment("Comment after changing")
+        new OpenedContract().clickByParagraph(paragraph)
                             .setText("change")
+                            .setComment("Comment after changing")
                             .selectInternal()
                             .clickPost();
 
-        Thread.sleep(5_000);
+        $(".notification-stack").waitUntil(Condition.visible, 7_000)
+                .shouldHave(Condition.exactText("Internal post has been successfully created."));
+        $(".notification-stack").waitUntil(Condition.disappear, 14_000);
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 4)
+    public void openManageDiscussionsAndValidate()
+    {
+        logger.info("Making sure that Manage Discussions was opened and no grey screen occurred...");
+
+        ManageDiscussions manageDiscussionsForm = new OpenedContract().clickManageDiscussions();
+
+        Assert.assertEquals(manageDiscussionsForm.getAmountOfExternalDiscussions(), "1");
+        Assert.assertEquals($(".manage-discussions-section__foot .manage-discussions-section__actions").getText(),
+                   "DISCARD\nACCEPT\nMAKE QUEUED\nMAKE EXTERNAL");
     }
 }
