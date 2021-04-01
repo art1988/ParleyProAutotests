@@ -95,7 +95,7 @@ public class AddingOfNewUsersViaShareModal
                 continue; // first hover over all user icons - nothing to check
             }
 
-            $(".spinner").waitUntil(Condition.disappear, 8_000);
+            $(".rc-tooltip-inner .spinner").waitUntil(Condition.disappear, 8_000);
 
             String userRole = $(".contract-user__status").waitUntil(Condition.visible, 5_000).getText(),
                    userName = $(".contract-user__name").waitUntil(Condition.visible, 5_000).getText();
