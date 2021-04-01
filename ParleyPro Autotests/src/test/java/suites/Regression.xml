@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Regression" configfailurepolicy="continue">
+    <!--
     <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
@@ -95,14 +96,16 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
-    <!-- ON HOLD
+
     <test name="AT-111: Grey screen in Manage Discussions" preserve-order="true">
+        <parameter name="contractName" value="Grey screen in Manage Discussions"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.regression.at111.CreateContractUploadDocAndMakePosts"/>
-
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 </suite>
