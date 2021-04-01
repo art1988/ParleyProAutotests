@@ -108,6 +108,9 @@ public class InProgressContractsPage
         Selenide.executeJavaScript("$('.contracts-list__contract-name:contains(\"" + contractName + "\")').click()");
 
         logger.info("Contract '" + contractName + "' was selected");
+
+        $(".spinner").waitUntil(Condition.disappear, 20_000);
+        $(".document__body .spinner").waitUntil(Condition.disappear, 20_000);
     }
 
     public SideBar getSideBar()
