@@ -120,13 +120,12 @@ public class UploadDocsWithImage
 
     private void assertNotificationAfterUploading()
     {
-        $(".spinner").waitUntil(Condition.disappear, 20_000);
-
         logger.info("Checking notification. It should be only one notification without warning.");
-        $$(".notification-stack .notification-stack__item").shouldHave(CollectionCondition.size(1)); // only one notification popup
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Document " + listOfDocs[index] + " has been successfully uploaded."));
+        $$(".notification-stack .notification-stack__item").shouldHave(CollectionCondition.size(1)); // only one notification popup
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
+        $(".spinner").waitUntil(Condition.disappear, 20_000);
         $(".document__body .spinner").waitUntil(Condition.disappear, 15_000);
     }
 }
