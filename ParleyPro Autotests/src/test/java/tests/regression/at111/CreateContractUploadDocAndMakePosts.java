@@ -1,5 +1,6 @@
 package tests.regression.at111;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
@@ -11,11 +12,13 @@ import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
+import pages.subelements.ListOfPosts;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class CreateContractUploadDocAndMakePosts
@@ -99,5 +102,20 @@ public class CreateContractUploadDocAndMakePosts
         Assert.assertEquals(manageDiscussionsForm.getAmountOfExternalDiscussions(), "1");
         Assert.assertEquals($(".manage-discussions-section__foot .manage-discussions-section__actions").getText(),
                    "DISCARD\nACCEPT\nMAKE QUEUED\nMAKE EXTERNAL");
+
+        Screenshoter.makeScreenshot();
+
+        ListOfPosts listOfPosts = manageDiscussionsForm.expandDiscussionGroup("external");
+
+        logger.info("Making sure that only one post was added in list...");
+        $$(".manage-discussions-post").shouldHave(CollectionCondition.size(1));
+        Assert.assertEquals($(".manage-discussions-post .manage-discussions-post__text").getText().trim(),
+                "Paragraph 3: Insert something above memechange",
+                "Added post is not the same as on Manage Discussions form !!!");
+
+        Screenshoter.makeScreenshot();
+
+        manageDiscussionsForm = listOfPosts.clickBack();
+        manageDiscussionsForm.clickDone();
     }
 }
