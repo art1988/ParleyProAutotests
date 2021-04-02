@@ -16,9 +16,9 @@ jobs:
           command: sudo curl -o allure-2.13.8.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.tgz && sudo tar -zxvf allure-2.13.8.tgz -C /opt/ && sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure && allure --version
 
       - run:
-          name: Run Basics suite
+          name: Run Classic suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
           
       - run: sleep 10
           
