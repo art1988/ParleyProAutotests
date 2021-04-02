@@ -148,8 +148,12 @@ public class ContractInformation
 
         $(".Select-loading").waitUntil(Condition.disappear, 7_000);
 
-        cpOrganizationField.sendKeys(Keys.DOWN);
         cpOrganizationField.pressEnter();
+    }
+
+    public String getCounterpartyOrganization()
+    {
+        return Selenide.executeJavaScript("return $('#counterpartyOrganization').parent().prev().text()");
     }
 
     public void setCounterpartyChiefNegotiator(String cpChiefNegotiator)
