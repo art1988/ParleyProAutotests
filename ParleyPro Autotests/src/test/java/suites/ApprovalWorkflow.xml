@@ -47,7 +47,7 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-
+<!--
     <test name="Approval rejection" preserve-order="true">
         <parameter name="contractName" value="Approval rejection contract"/>
         <classes>
@@ -58,5 +58,5 @@
             <class name="tests.approval_workflow.reject.RemoveWorkflowAndTeams"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test> -->
 </suite>
