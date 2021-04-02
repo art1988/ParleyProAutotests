@@ -49,6 +49,15 @@ public class ContractInformation
     {
         $(".spinner").waitUntil(Condition.disappear, 30_000);
 
+        try
+        {
+            Thread.sleep(1_500);
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
+
         $(".contract-edit__title, .documents-contract-edit__title").shouldHave(Condition.exactText("Contract Info"));
     }
 
