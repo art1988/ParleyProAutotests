@@ -58,22 +58,17 @@ public class ProceedThroughLifecycleStages
     }
 
     @Test(priority = 2)
-    public void switchToNegotiate() throws InterruptedException
+    public void switchToNegotiate()
     {
         OpenedContract openedContract = new OpenedContract();
 
-        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate(DOCUMENT_NAME, "", false);
+        StartNegotiation startNegotiationForm = openedContract.switchDocumentToNegotiate(DOCUMENT_NAME, "CounterpartyAT", false);
 
         EmailWillBeSentToTheCounterparty emailWillBeSentToTheCounterpartyForm = startNegotiationForm.clickNext(false);
-
-        emailWillBeSentToTheCounterpartyForm.setCounterpartyOrganization("CounterpartyAT");
-        Thread.sleep(1_000);
-        emailWillBeSentToTheCounterpartyForm.setCounterpartyChiefNegotiator("arthur.khasanov+cpat@parleypro.com");
-
         emailWillBeSentToTheCounterpartyForm.clickStart();
 
         logger.info("Assert visible to the counterparty notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 10_000).shouldHave(Condition.exactText("Contract Contract lifecycle autotest is now visible to the Counterparty. The email was sent to arthur.khasanov+cpat@parleypro.com"));
+        $(".notification-stack").waitUntil(Condition.visible, 10_000).shouldHave(Condition.exactText("Contract Contract lifecycle autotest is now visible to the Counterparty. The email was sent to " + Const.PREDEFINED_USER_CN_ROLE.getEmail()));
 
         logger.info("Assert that status was changed to NEGOTIATE...");
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("NEGOTIATE\n(1)", "NEGOTIATE"));

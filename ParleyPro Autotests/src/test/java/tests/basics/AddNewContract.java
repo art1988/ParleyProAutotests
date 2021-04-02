@@ -40,6 +40,8 @@ public class AddNewContract
         contractInformationForm.setContractValue("18000");
         contractInformationForm.setContractRadioButton("Other");
         contractInformationForm.setMyCompanyTemplate(false);
+        contractInformationForm.setCounterpartyOrganization("CounterpartyAT");
+        contractInformationForm.setCounterpartyChiefNegotiator("arthur.khasanov+autotestcn@parleypro.com");
         contractInformationForm.setContractingRegion("region1");
         contractInformationForm.setContractingCountry("country1");
         contractInformationForm.setContractEntity("entity1");

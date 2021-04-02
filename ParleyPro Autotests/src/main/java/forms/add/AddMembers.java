@@ -1,6 +1,7 @@
 package forms.add;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
@@ -18,6 +19,7 @@ public class AddMembers
     public AddMembers()
     {
         $(".modal-header").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Add members"));
+        addParticipantField.shouldBe(Condition.visible).shouldBe(Condition.enabled);
     }
 
     /**
@@ -26,9 +28,15 @@ public class AddMembers
      */
     public void addParticipant(String nameOrEmail)
     {
+        $(".Select-placeholder").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Add a participant by name or email address"));
+        $(".Select-placeholder").click();
+        Selenide.executeJavaScript("$('#teamsAddParticipant').val('');"); // Clear previous entered value cuz clear doesn't work here
         addParticipantField.sendKeys(nameOrEmail);
+
+        $(".Select-loading").waitUntil(Condition.disappear, 14_000);
+
         addParticipantField.sendKeys(Keys.DOWN);
-        addParticipantField.sendKeys(Keys.ENTER);
+        addParticipantField.pressEnter();
 
         try
         {
@@ -38,6 +46,8 @@ public class AddMembers
         {
             logger.error("InterruptedException", e);
         }
+
+        $(".modal-header").click(); // Click by form's title to reset opened dropdown
     }
 
     public void clickAdd()

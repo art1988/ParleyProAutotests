@@ -145,6 +145,11 @@ public class ContractInformation
     public void setCounterpartyOrganization(String cpOrganization)
     {
         cpOrganizationField.setValue(cpOrganization);
+
+        $(".Select-loading").waitUntil(Condition.disappear, 7_000);
+
+        cpOrganizationField.sendKeys(Keys.DOWN);
+        cpOrganizationField.pressEnter();
     }
 
     public void setCounterpartyChiefNegotiator(String cpChiefNegotiator)
@@ -229,7 +234,7 @@ public class ContractInformation
 
     public String getChiefNegotiator()
     {
-        String chiefNegotiator = Selenide.executeJavaScript("return $('#ChiefNegotiator').val()");
+        String chiefNegotiator = Selenide.executeJavaScript("return $('#ChiefNegotiator').parent().prev().text()");
 
         return chiefNegotiator;
     }
