@@ -47,9 +47,11 @@ public class AddRelatedField
      */
     public void selectFields(String field)
     {
-        $("input[label='Fields']").click(); // click by input to expand dropdown
+        $("input[data-label='Fields']").click(); // click by input to expand dropdown
 
         Selenide.executeJavaScript("$('.multi-select__option span:contains(\"" + field + "\")').click()"); // select field
+
+        $("input[data-label='Fields']").click(); // click by input to collapse dropdown
     }
 
     public void clickMakeRelated()

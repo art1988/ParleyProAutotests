@@ -16,9 +16,9 @@ import static com.codeborne.selenide.Selenide.$;
 public class AddNewUser
 {
     private SelenideElement title          = $(".modal-body-title");
-    private SelenideElement firstNameField = $("input[label='First name']");
-    private SelenideElement lastNameField  = $("input[label='Last name']");
-    private SelenideElement emailField     = $("input[label='Email']");
+    private SelenideElement firstNameField = $("input[data-label='First name']");
+    private SelenideElement lastNameField  = $("input[data-label='Last name']");
+    private SelenideElement emailField     = $("input[data-label='Email']");
     private SelenideElement addRoleButton  = $(".contract-execute-form__add");
 
     private SelenideElement cancelButton  = $(".button.btn-common.btn-link-pseudo.btn.btn-link");

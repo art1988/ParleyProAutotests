@@ -40,10 +40,10 @@ public class ContractFields
         Selenide.executeJavaScript("$('.admin-fields__title:contains(\"" + section + "\")').parent().find('.admin-fields-add__button').click()");
 
         // Set Field name
-        $("input[label='Field name'][value='']").waitUntil(Condition.visible, 5_000).sendKeys(fieldName);
+        $("input[data-label='Field name'][value='']").waitUntil(Condition.visible, 5_000).sendKeys(fieldName);
 
         // Set id for input field dynamically
-        Selenide.executeJavaScript("$('input[label=\"Field name\"][value=\"" + fieldName + "\"]').parent().parent().parent().parent().find('.Select-control input').attr('id', 'fieldTypeID" + fieldTypeID + "')");
+        Selenide.executeJavaScript("$('input[data-label=\"Field name\"][value=\"" + fieldName + "\"]').parent().parent().parent().parent().find('.Select-control input').attr('id', 'fieldTypeID" + fieldTypeID + "')");
 
         // Set Field type
         $("#fieldTypeID" + fieldTypeID).setValue(fieldType.getFieldType()).sendKeys(Keys.DOWN);
@@ -53,7 +53,7 @@ public class ContractFields
         // Set Required field
         if( isRequired == true )
         {
-            $("input[label='Field name'][value='" + fieldName + "']").parent().parent().parent().parent().find(".checkbox.with_label").click();
+            $("input[data-label='Field name'][value='" + fieldName + "']").parent().parent().parent().parent().find(".checkbox.with_label").click();
         }
     }
 
@@ -68,7 +68,7 @@ public class ContractFields
         // Click by + Add values link
         Selenide.executeJavaScript("$('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"i:contains('add')\").click()");
 
-        WebElement input = Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"input[label='Value " + valueIndex++ + "']\")[0]");
+        WebElement input = Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"input[data-label='Value " + valueIndex++ + "']\")[0]");
         $(input).val(value);
     }
 
@@ -80,9 +80,9 @@ public class ContractFields
      */
     public void addValueAndLinkedValue(String fieldName, String value, String linkToValue)
     {
-        $( (WebElement) Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"input[label='Value " + valueIndex + "']\")[0]")).val(value);
+        $( (WebElement) Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"input[data-label='Value " + valueIndex + "']\")[0]")).val(value);
 
-        WebElement linkToInput = Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"input[label='Value " + valueIndex++ + "']\").parent().parent().next().find(\"input:visible\")[0]");
+        WebElement linkToInput = Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"input[data-label='Value " + valueIndex++ + "']\").parent().parent().next().find(\"input:visible\")[0]");
         $(linkToInput).click(); // expand Link to dropdown
         Selenide.executeJavaScript("return $('.dropdown-menu:visible').find(\".checkbox__label:contains('" + linkToValue + "')\").parent().find(\".checkbox__label\").click()");
         $(linkToInput).click(); // close dropdown
@@ -115,7 +115,7 @@ public class ContractFields
      */
     public DeleteField removeField(String fieldName)
     {
-        Selenide.executeJavaScript("$('input[label=\"Field name\"][value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"i\").click()");
+        Selenide.executeJavaScript("$('input[data-label=\"Field name\"][value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"i\").click()");
 
         logger.info("Trying to delete this field: " + fieldName);
 

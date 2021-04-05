@@ -18,7 +18,7 @@ import static com.codeborne.selenide.Selenide.$$;
  */
 public class ContractInformation
 {
-    private SelenideElement contractTitleField         = $("input[inputid='contractTitle']");
+    private SelenideElement contractTitleField         = $("#contractTitle");
     private SelenideElement contractValueField         = $("#contractValue");
     private SelenideElement cpOrganizationField        = $("#counterpartyOrganization");
     private SelenideElement cpChiefNegotiatorField     = $("#counterpartyChiefNegotiator");
@@ -73,7 +73,7 @@ public class ContractInformation
 
     public void setContractTitle(String title)
     {
-        contractTitleField.setValue(title);
+        contractTitleField.sendKeys(title);
     }
 
     /**
@@ -153,7 +153,7 @@ public class ContractInformation
 
     public void setCounterpartyOrganization(String cpOrganization)
     {
-        cpOrganizationField.setValue(cpOrganization);
+        cpOrganizationField.sendKeys(cpOrganization);
 
         $(".Select-loading").waitUntil(Condition.disappear, 7_000);
 
@@ -235,7 +235,7 @@ public class ContractInformation
 
     public String getContractType()
     {
-        return Selenide.executeJavaScript("return $('input[inputid=\"contractType\"]').val()");
+        return Selenide.executeJavaScript("return $('input[data-label=\"Contract type\"]').val()");
     }
 
     public void checkClassicNegotiationModeCheckbox()

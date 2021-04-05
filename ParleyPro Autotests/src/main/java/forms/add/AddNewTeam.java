@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class AddNewTeam
 {
-    private SelenideElement teamNameFiled        = $("input[label='Team name']");
+    private SelenideElement teamNameFiled        = $("input[data-label='Team name']");
     private SelenideElement teamDescriptionField = $(".textarea.input__input");
     private SelenideElement addMembersButton     = $("._button.scheme_gray.size_md");
     private SelenideElement saveButton           = $("#editTeamSave");

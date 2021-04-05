@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class TemplateInformation
 {
-    private SelenideElement templateNameField     = $("input[label='Template name']");
+    private SelenideElement templateNameField     = $("input[data-label='Template name']");
     private SelenideElement regionField           = $("#template_region input");
     private SelenideElement categoryField         = $("#template_category input");
     private SelenideElement descriptionTextArea   = $(".modal-content textarea");
@@ -33,7 +33,7 @@ public class TemplateInformation
         Thread.sleep(1000);
 
         // Clear field first
-        Selenide.executeJavaScript("$('input[label=\"Template name\"]').val('')");
+        Selenide.executeJavaScript("$('input[data-label=\"Template name\"]').val('')");
 
         Thread.sleep(1500);
 
@@ -75,17 +75,17 @@ public class TemplateInformation
 
     public void setType(String type) throws InterruptedException
     {
-        Selenide.executeJavaScript("$('input[label=\"Contract types\"]').click()");
+        Selenide.executeJavaScript("$('input[data-label=\"Contract types\"]').click()");
         Selenide.executeJavaScript("$('.multi-select .dropdown-menu').find(\"label:contains('All')\").click()"); // uncheck All
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('" + type + "')\").click()");
-        Selenide.executeJavaScript("$('input[label=\"Contract types\"]').click()"); // click again to close options menu
+        Selenide.executeJavaScript("$('input[data-label=\"Contract types\"]').click()"); // click again to close options menu
 
-        $("input[label='Contract types']").pressTab(); // Press tab to move focus
+        $("input[data-label='Contract types']").pressTab(); // Press tab to move focus
     }
 
     public String getType()
     {
-        return $("input[label='Contract types']").getValue();
+        return $("input[data-label='Contract types']").getValue();
     }
 
     public void clickIntegrationsCheckmark()
