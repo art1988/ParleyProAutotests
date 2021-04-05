@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import constants.SideBarItems;
 import org.apache.log4j.Logger;
@@ -24,6 +25,12 @@ public class LoginPage
 
     private boolean isInit()
     {
+        $(".auth").waitUntil(Condition.visible, 20_000);
+
+        emailField.waitUntil(Condition.visible, 20_000);
+        passwordField.waitUntil(Condition.visible, 20_000);
+        signInButton.waitUntil(Condition.visible, 20_000);
+
         boolean hasLogo = $(".auth__head").getCssValue("background").contains("images/cc8124f8be69a02e7221cfaabe5a0ef1.svg");
 
         return ( hasLogo && emailField.isDisplayed() && passwordField.isDisplayed() && signInButton.isDisplayed() );
