@@ -27,7 +27,7 @@ public class AddDocuments
     public AddDocuments()
     {
         $(".documents-add__title").waitUntil(Condition.visible, 25_000);
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
 
         Assert.assertTrue( isInit(), "Looks like that Add Documents page wasn't loaded correctly !");
     }
@@ -86,25 +86,31 @@ public class AddDocuments
      */
     public void clickUploadMyTeamDocuments(File fileToUpload)
     {
-        // 1. make <input> visible
-        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
-        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
-        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
-
-        $(".js-upload-my-team-document-btn").parent().parent().find("input").waitUntil(Condition.visible, 7_000);
-        $(".js-upload-my-team-document-btn").parent().parent().find("input").waitUntil(Condition.enabled, 7_000);
         try
         {
-            Thread.sleep(1_500); // necessary sleep ! Without this sleep test may become flaky.
+            // 1. make <input> visible
+            Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+            Thread.sleep(200);
+            Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+            Thread.sleep(200);
+            Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
+            Thread.sleep(200);
+
+            $(".js-upload-my-team-document-btn").parent().parent().find("input").waitUntil(Condition.visible, 7_000);
+            $(".js-upload-my-team-document-btn").parent().parent().find("input").waitUntil(Condition.enabled, 7_000);
+
+            Thread.sleep(1_000); // necessary sleep ! Without this sleep test may become flaky.
+
+            // 2. trying to upload...
+            SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+            uploadMyTeamDocumentsButton.shouldBe(Condition.visible).shouldBe(Condition.enabled).uploadFile(fileToUpload);
+            Thread.sleep(1_000);
         }
         catch (InterruptedException e)
         {
             logger.error("InterruptedException", e);
         }
-        // 2. trying to upload...
-        SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
-
-        uploadMyTeamDocumentsButton.shouldBe(Condition.visible).shouldBe(Condition.enabled).uploadFile(fileToUpload);
     }
 
     /**
