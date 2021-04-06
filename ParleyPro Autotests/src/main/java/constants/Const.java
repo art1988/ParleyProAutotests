@@ -11,6 +11,7 @@ public class Const
     public static final String PROD_TENANT_URL               = "https://qa-autotests.parleypro.com/index.html";
     public static final String AT50_TENANT_URL               = "https://at50.parleypro.net/master/index.html";
     public static final String RC_TENANT_URL                 = "https://qa-autotests.parleypro.net/rc/index.html";
+    public static final String TRACK_CHANGES_TENANT_URL      = "https://trackchanges.parleypro.net/master/index.html";
 
     // Users
     public static final User   PREDEFINED_USER_CN_ROLE       = new User("autotest_cn fn", "ln", "arthur.khasanov+autotestcn@parleypro.com", "Parley650!");
@@ -26,6 +27,7 @@ public class Const
     public static final User   USER_FELIX                    = new User("Felix", "Wilson", "arthur.khasanov+felix@parleypro.com", "Parley650!");
 
     public static final User   EVHEN_AT50_USER               = new User("Parley", "Pro", "yevhen.uvin+at50@parleypro.com", "Parley650!");
+    public static final User   EVHEN_TRACKCHANGES_USER       = new User("Parley", "Pro", "yevhen.uvin+trackchanges@parleypro.com", "Parley650!");
 
     // Document samples
     public static final File   DOCUMENT_LIFECYCLE_SAMPLE     = new File(System.getProperty("user.dir") + "/Documents/pramata.docx");
@@ -66,6 +68,11 @@ public class Const
 
     public static final File   CLASSIC_AT92_V1               = new File(System.getProperty("user.dir") + "/Documents/Manufacturing_Agreement_draft_3.docx");
     public static final File   CLASSIC_AT92_V2               = new File(System.getProperty("user.dir") + "/Documents/Manufacturing_Agreement_draft_2.docx");
+
+    public static final File   TRACK_CHANGES_AT110_V1        = new File(System.getProperty("user.dir") + "/Documents/AT110/Acorns Engagement Letter_party_changes_v1.docx");
+    public static final File   TRACK_CHANGES_AT110_V2        = new File(System.getProperty("user.dir") + "/Documents/AT110/V5 Acorns Engagement Letter_v2.docx");
+    public static final File   TRACK_CHANGES_AT110_V3        = new File(System.getProperty("user.dir") + "/Documents/AT110/V6 Acorns Engagement Letter-CNM_v3.docx");
+    public static final File   TRACK_CHANGES_AT110_V4        = new File(System.getProperty("user.dir") + "/Documents/AT110/V6 Acorns Engagement Letter-CNM_v4.docx");
 
     // Directories
     // Directory of docs from clients. Used in Classic
