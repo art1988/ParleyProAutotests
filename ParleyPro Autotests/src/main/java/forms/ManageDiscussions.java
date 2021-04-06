@@ -8,10 +8,12 @@ import org.openqa.selenium.WebElement;
 import pages.subelements.ListOfPosts;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class ManageDiscussions
 {
-    private SelenideElement doneButton = $("._button.scheme_blue.size_lg");
+    private SelenideElement makeExternalButton = $(".manage-discussions-footer-popup__foot ._button.scheme_blue.size_lg");
+    private SelenideElement doneButton         = $("._button.scheme_blue.size_lg");
 
     private Logger logger = Logger.getLogger(ManageDiscussions.class);
 
@@ -27,6 +29,25 @@ public class ManageDiscussions
         String title = $(".scheme_external .manage-discussions-section__title").getText();
 
         return title.substring(0, title.indexOf("external")).trim();
+    }
+
+    public String getAmountOfInternalDiscussions()
+    {
+        String title = $(".scheme_internal .manage-discussions-section__title").getText();
+
+        return title.substring(0, title.indexOf("internal")).trim();
+    }
+
+    public ManageDiscussions makeExternalAllInternalDiscussions()
+    {
+        $$(".scheme_internal button").filter(Condition.exactText("Make external")).get(0).click();
+
+        return this;
+    }
+
+    public void makeExternalAllQueuedDiscussions()
+    {
+
     }
 
     /**
@@ -51,5 +72,17 @@ public class ManageDiscussions
         logger.info("DONE was clicked");
 
         $(".manage-discussions-sections").should(Condition.disappear);
+    }
+
+    /**
+     * Click by MAKE EXTERNAL button that appears in footer after clicking by make external for list of posts.
+     */
+    public SendInvitation confirmMakeExternal(String contractName)
+    {
+        makeExternalButton.click();
+
+        logger.info("MAKE EXTERNAL button was clicked");
+
+        return new SendInvitation(contractName);
     }
 }
