@@ -78,8 +78,8 @@ public class InviteCounterpartyChiefNegotiator
     @Test(priority = 3)
     public void getEmailAndOpenRegistrationPage() throws InterruptedException
     {
-        logger.info("Waiting for 20 seconds to make sure that email has been delivered...");
-        Thread.sleep(20_000);
+        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
+        Thread.sleep(30_000);
 
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "[qa-autotests] autotest_cn fn ln shared contract \"" + contractName + "\" with you"),
                 "Email with subject: [qa-autotests] autotest_cn fn ln shared contract \"" + contractName + "\" with you" + " was not found !!!");

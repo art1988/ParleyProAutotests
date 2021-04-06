@@ -105,7 +105,7 @@ public class AddDocuments
             SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
             uploadMyTeamDocumentsButton.shouldBe(Condition.visible).shouldBe(Condition.enabled).uploadFile(fileToUpload);
-            Thread.sleep(1_000);
+            Thread.sleep(1_000); // this sleep after firing of uploadFile is necessary too
         }
         catch (InterruptedException e)
         {

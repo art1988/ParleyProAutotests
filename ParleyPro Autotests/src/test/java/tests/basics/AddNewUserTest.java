@@ -67,10 +67,10 @@ public class AddNewUserTest
     @Description("This test checks that invitation email was sent")
     public void checkInvitationEmail()
     {
-        logger.info("Waiting for 20 seconds to make sure that email has been delivered...");
+        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
         try
         {
-            Thread.sleep(20_000);
+            Thread.sleep(30_000);
         }
         catch (InterruptedException e)
         {
@@ -93,10 +93,10 @@ public class AddNewUserTest
         editUser.setRole("Chief Negotiator");
         editUser.clickUpdateUser();
 
-        logger.info("Waiting for 20 seconds to make sure that email has been delivered...");
+        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
         try
         {
-            Thread.sleep(20_000);
+            Thread.sleep(30_000);
         }
         catch (InterruptedException e)
         {
@@ -122,10 +122,10 @@ public class AddNewUserTest
         editUser.setRole("Contract Manager");
         editUser.clickUpdateUser();
 
-        logger.info("Waiting for 20 seconds to make sure that email has been delivered...");
+        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
         try
         {
-            Thread.sleep(20_000);
+            Thread.sleep(30_000);
         }
         catch (InterruptedException e)
         {
