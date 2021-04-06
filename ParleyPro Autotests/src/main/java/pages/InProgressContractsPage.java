@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.$$;
 public class InProgressContractsPage
 {
     private SideBar sideBar;
-    private SelenideElement newContractButton          = $(".contracts__create button[type='button']"); // the same css class represents + NEW REQUEST button
+    private SelenideElement newContractButton          = $(".contracts__create button[type='button'], .js-create-contract-btn"); // the same css class represents + NEW REQUEST button
     private SelenideElement searchBar                  = $(".contracts-search-input__text");
     private SelenideElement downloadContractDataButton = $(".contracts-head__download");
 
