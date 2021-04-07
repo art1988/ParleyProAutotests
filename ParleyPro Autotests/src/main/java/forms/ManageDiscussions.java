@@ -45,9 +45,11 @@ public class ManageDiscussions
         return this;
     }
 
-    public void makeExternalAllQueuedDiscussions()
+    public ManageDiscussions makeExternalAllQueuedDiscussions()
     {
+        $$(".scheme_queued button").filter(Condition.exactText("Make external")).get(0).click();
 
+        return this;
     }
 
     /**
@@ -75,14 +77,33 @@ public class ManageDiscussions
     }
 
     /**
-     * Click by MAKE EXTERNAL button that appears in footer after clicking by make external for list of posts.
+     * Click by MAKE EXTERNAL button for the first time.
+     * The button appears in footer after clicking by 'make external' for list of posts.
+     * Important: This method must be the first one in call chain of MAKE EXTERNAL !
+     * This was told by business login in https://parley.atlassian.net/browse/PAR-13772
+     * @param contractName
+     * @return SendInvitation form
      */
-    public SendInvitation confirmMakeExternal(String contractName)
+    public SendInvitation confirmMakeExternalForTheFirstTime(String contractName)
+    {
+        makeExternalButton.click();
+
+        logger.info("MAKE EXTERNAL button was clicked for the first time");
+
+        return new SendInvitation(contractName);
+    }
+
+    /**
+     * Performs regular click by MAKE EXTERNAL button.
+     * Important: The first call must be confirmMakeExternalForTheFirstTime !
+     * @return
+     */
+    public ManageDiscussions confirmMakeExternalRegularly()
     {
         makeExternalButton.click();
 
         logger.info("MAKE EXTERNAL button was clicked");
 
-        return new SendInvitation(contractName);
+        return this;
     }
 }
