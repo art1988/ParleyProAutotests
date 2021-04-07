@@ -80,7 +80,7 @@ public class ManageDiscussions
      * Click by MAKE EXTERNAL button for the first time.
      * The button appears in footer after clicking by 'make external' for list of posts.
      * Important: This method must be the first one in call chain of MAKE EXTERNAL !
-     * This was told by business login in https://parley.atlassian.net/browse/PAR-13772
+     * This was told by business logic in https://parley.atlassian.net/browse/PAR-13772
      * @param contractName
      * @return SendInvitation form
      */
