@@ -124,7 +124,7 @@ public class OpenedDiscussion
 
     /**
      * Click by 'Make queued' button
-     * @param textInPost text of the post for which need to click
+     * @param textInPost text of the post for which need to click. Matches by contains !
      */
     public void clickMakeQueued(String textInPost)
     {
