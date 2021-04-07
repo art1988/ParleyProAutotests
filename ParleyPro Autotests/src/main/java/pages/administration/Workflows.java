@@ -21,7 +21,7 @@ public class Workflows
 
     public Workflows()
     {
-        $(".workflows-list__row.type_header").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Name\nType of flow\nContract Category\nContract Type\nDepartment\nDate"));
+        $(".workflows-list__row.type_header").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Name\nType of flow\nContract Category\nContract Type\nDepartment\nEntity\nDate"));
     }
 
     public NewWorkflowActionsMenu clickAddNewWorkflow()
