@@ -86,7 +86,7 @@ public class ContractInfo
 
     public String getSubsequentTermNotification()
     {
-        return Selenide.executeJavaScript("return $('input[inputid=\"subsequent-term-input\"]').val()");
+        return Selenide.executeJavaScript("return $('input[data-id=\"subsequent-term-input\"]').val()");
     }
 
     /**
@@ -110,7 +110,7 @@ public class ContractInfo
 
     public String getNoticeNonRenewalNotification()
     {
-        return Selenide.executeJavaScript("return $('input[inputid=\"cancellation-notice-input\"]').val()");
+        return Selenide.executeJavaScript("return $('input[data-id=\"cancellation-notice-input\"]').val()");
     }
 
     /**
@@ -129,7 +129,7 @@ public class ContractInfo
 
     public String getExpirationDateNotification()
     {
-        return Selenide.executeJavaScript("return $('input[inputid=\"expiration-date-input\"]').val()");
+        return Selenide.executeJavaScript("return $('input[data-id=\"expiration-date-input\"]').val()");
     }
 
     /**
