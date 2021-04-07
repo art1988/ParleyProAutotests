@@ -16,12 +16,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class MakeExternalUploadDocV2V3
+public class MakeExternalAndUploadDocsV2V3V4
 {
     private String contractName = "Track changes AT-110";
     private String documentName = "Acorns Engagement Letter_party_changes_v1";
 
-    private static Logger logger = Logger.getLogger(MakeExternalUploadDocV2V3.class);
+    private static Logger logger = Logger.getLogger(MakeExternalAndUploadDocsV2V3V4.class);
 
     @Test(priority = 1)
     public void makeDiscussionExternal()
