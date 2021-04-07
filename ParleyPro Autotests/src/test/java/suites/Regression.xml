@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Regression" configfailurepolicy="continue">
-    <!--
     <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
@@ -107,13 +106,12 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-    -->
 
     <test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
         <classes>
             <class name="tests.regression.at110.LoginToTrackChangesTenant"/>
             <class name="tests.regression.at110.CreateContractAndUploadCPDocument"/>
-            <class name="tests.regression.at110.MakeExternalUploadDocV2V3"/>
+            <class name="tests.regression.at110.MakeExternalAndUploadDocsV2V3V4"/>
             <class name="tests.regression.at110.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
