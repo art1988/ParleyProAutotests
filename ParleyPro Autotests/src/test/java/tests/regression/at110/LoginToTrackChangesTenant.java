@@ -4,7 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import constants.Const;
 import org.apache.log4j.Logger;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
@@ -19,7 +19,7 @@ public class LoginToTrackChangesTenant
 {
     private static Logger logger = Logger.getLogger(LoginToTrackChangesTenant.class);
 
-    @BeforeSuite
+    @BeforeTest
     private void setup()
     {
         Configuration.proxyEnabled   = true;
@@ -35,7 +35,7 @@ public class LoginToTrackChangesTenant
         open( Const.TRACK_CHANGES_TENANT_URL );
     }
 
-    @Test()
+    @Test
     public void loginToTrackChangesTenant()
     {
         LoginPage loginPage = new LoginPage();
