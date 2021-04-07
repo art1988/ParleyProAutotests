@@ -77,7 +77,6 @@ public class CreateContractAndUploadCPDocument
         Screenshoter.makeScreenshot();
 
         Selenide.refresh();
-
         new OpenedContract();
     }
 }
