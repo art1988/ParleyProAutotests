@@ -109,8 +109,8 @@ public class InProgressContractsPage
 
         logger.info("Contract '" + contractName + "' was selected");
 
-        $(".spinner").waitUntil(Condition.disappear, 20_000);
-        $(".document__body .spinner").waitUntil(Condition.disappear, 20_000);
+        $(".spinner").waitUntil(Condition.disappear, 60_000);
+        $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
     }
 
     public SideBar getSideBar()

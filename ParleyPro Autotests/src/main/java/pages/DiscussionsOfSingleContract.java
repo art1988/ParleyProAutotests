@@ -20,8 +20,8 @@ public class DiscussionsOfSingleContract
 
     public DiscussionsOfSingleContract(String contractName)
     {
-        logger.info("Waiting until spinner will disappear [up to 3 minutes 45 sec]...");
-        $(".spinner").waitUntil(Condition.disappear, 60_000 * 3 + 45_000); // (3 minutes 45 sec) for very heavy docs with macros
+        logger.info("Waiting until spinner will disappear [up to 5 minutes]...");
+        $(".spinner").waitUntil(Condition.disappear, 60_000 * 5); // (5 minutes) for very heavy docs with macros
         contractTitle.waitUntil(Condition.visible, 60_000).shouldHave(Condition.exactText(contractName));
     }
 
