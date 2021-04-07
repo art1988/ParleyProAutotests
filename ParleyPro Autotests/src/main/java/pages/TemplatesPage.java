@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class TemplatesPage
 {
-    private SelenideElement newTemplateButton = $(".page-head__right button");
+    private SelenideElement newTemplateButton = $(".js-new-template-button");
 
 
     private static Logger logger = Logger.getLogger(TemplatesPage.class);
