@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 
@@ -15,6 +16,8 @@ public class UploadNewVersionOfDocument
 {
     private SelenideElement title = $(".modal-body-title");
 
+    private static Logger logger = Logger.getLogger(UploadNewVersionOfDocument.class);
+
 
     public UploadNewVersionOfDocument(String documentName)
     {
@@ -23,17 +26,34 @@ public class UploadNewVersionOfDocument
 
     public DocumentComparePreview clickUploadCounterpartyDocument(File fileToUpload, String documentName, String contractName)
     {
-        $(".js-upload-cp-document-btn").shouldBe(Condition.enabled).shouldBe(Condition.visible);
+        try
+        {
+            $(".js-upload-cp-document-btn").waitUntil(Condition.visible, 7_000);
+            $(".js-upload-cp-document-btn").waitUntil(Condition.enabled, 7_000);
 
-        // 1. make <input> visible
-        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
-        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
-        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
+            // 1. make <input> visible
+            Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+            Thread.sleep(200);
+            Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+            Thread.sleep(200);
+            Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
+            Thread.sleep(200);
 
-        // 2. trying to upload...
-        SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+            $(".js-upload-cp-document-btn").parent().parent().find("input").waitUntil(Condition.visible, 7_000);
+            $(".js-upload-cp-document-btn").parent().parent().find("input").waitUntil(Condition.enabled, 7_000);
 
-        uploadCounterpartyDocumentsButton.uploadFile(fileToUpload);
+            Thread.sleep(1_000);
+
+            // 2. trying to upload...
+            SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+            uploadCounterpartyDocumentsButton.shouldBe(Condition.visible).shouldBe(Condition.enabled).uploadFile(fileToUpload);
+            Thread.sleep(1_000);
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
 
         return new DocumentComparePreview(documentName, contractName);
     }
