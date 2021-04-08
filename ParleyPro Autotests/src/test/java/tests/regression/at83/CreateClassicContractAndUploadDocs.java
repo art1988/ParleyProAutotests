@@ -125,14 +125,10 @@ public class CreateClassicContractAndUploadDocs
     @Test(priority = 6)
     public void uploadFinalDocAsCounterparty()
     {
-        UploadNewVersionOfDocument uploadNewVersionOfDocument = new OpenedContract().clickUploadNewVersionButton(documentName);
-
-        DocumentComparePreview documentComparePreview = uploadNewVersionOfDocument
-                .clickUploadCounterpartyDocument( Const.REGRESSION_DOC_AT83_BDOC3, documentName, contractName);
-
-        DiscussionsOfSingleContract discussionsOfSingleContract = documentComparePreview.clickUpload(true);
-
-        discussionsOfSingleContract.clickDocumentsTab();
+        new OpenedContract().clickUploadNewVersionButton(documentName)
+                            .clickUploadCounterpartyDocument( Const.REGRESSION_DOC_AT83_BDOC3, documentName, contractName)
+                            .clickUpload(true)
+                            .clickDocumentsTab();
 
         Screenshoter.makeScreenshot();
     }
