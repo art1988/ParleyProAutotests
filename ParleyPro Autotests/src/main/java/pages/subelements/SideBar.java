@@ -12,6 +12,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static constants.SideBarItems.*;
 
 /**
@@ -113,7 +114,10 @@ public class SideBar
     public LoginPage logout()
     {
         userIcon.click();
-        $(".page-menu .dropdown-menu a").waitUntil(Condition.visible, 7_000).click();
+        $$(".page-menu .dropdown-menu a").filter(Condition.exactText("Logout"))
+                                                   .get(0)
+                                                   .waitUntil(Condition.visible, 7_000)
+                                                   .click();
 
         logger.info("Logout was clicked");
 
