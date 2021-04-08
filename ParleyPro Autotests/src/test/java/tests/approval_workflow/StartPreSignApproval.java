@@ -71,6 +71,7 @@ public class StartPreSignApproval
 
         logger.info("Assert that approvers icons are visible: Approval_User_2 and Team#2");
         $(".header-users .user").waitUntil(Condition.appear, 15_000); // wait until users icons will appear
+        $(".header-users .team").waitUntil(Condition.appear, 15_000);
         $$(".header-users .user").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("Ar")); // one User...
         $$(".header-users .team").shouldHave(CollectionCondition.size(1)); // ...and one Team
 
