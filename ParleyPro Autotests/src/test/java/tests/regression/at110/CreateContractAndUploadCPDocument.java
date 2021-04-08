@@ -39,7 +39,7 @@ public class CreateContractAndUploadCPDocument
                 .clickUploadMyTeamDocumentsWithDetectedChanges( Const.TRACK_CHANGES_AT110_V1 );
 
         uploadDocumentDetectedChanges.setCounterpartyOrganization("Eugene's Test, Inc.");
-        uploadDocumentDetectedChanges.setCounterpartyNegotiatorEmail("yevhen.uvin+cp@parleypro.com");
+        uploadDocumentDetectedChanges.setCounterpartyNegotiatorEmail("counterparty@example.com");
         uploadDocumentDetectedChanges.clickOk();
 
         // Wait until document is fully loaded...
