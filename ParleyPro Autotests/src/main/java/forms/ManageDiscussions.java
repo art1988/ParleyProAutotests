@@ -73,7 +73,7 @@ public class ManageDiscussions
 
         logger.info("DONE was clicked");
 
-        $(".manage-discussions-sections").should(Condition.disappear);
+        $(".manage-discussions-sections").waitUntil(Condition.disappear, 20_000);
     }
 
     /**
