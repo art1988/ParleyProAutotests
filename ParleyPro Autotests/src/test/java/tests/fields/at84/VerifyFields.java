@@ -9,6 +9,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -52,5 +53,7 @@ public class VerifyFields
         Thread.sleep(500);
         Assert.assertEquals(Selenide.executeJavaScript("return $('.dropdown-menu:visible').find(\".multi-select__option\").text()"), valueToCheck,
                 "Looks like that " + fieldName + " has more than '" + valueToCheck + "' values to select !!!");
+
+        Screenshoter.makeScreenshot();
     }
 }
