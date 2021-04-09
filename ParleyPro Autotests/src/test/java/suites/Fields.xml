@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Fields suite" configfailurepolicy="continue">
-    <!--
     <test name="AT-80: Relations broken if field deleted" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -67,7 +66,7 @@
             <class name="tests.fields.at98.RemoveFields"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 
     <test name="AT-84: Field linking is broken if two fields linked to one" preserve-order="true">
         <classes>
