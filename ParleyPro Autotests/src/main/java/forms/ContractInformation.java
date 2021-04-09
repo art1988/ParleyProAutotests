@@ -291,7 +291,8 @@ public class ContractInformation
     {
         String id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('id')");
 
-        $("#" + id).setValue(value);
+        $("#" + id).sendKeys(value);
+        $("#" + id).pressEnter(); // to collapse dropdown
     }
 
     /**
