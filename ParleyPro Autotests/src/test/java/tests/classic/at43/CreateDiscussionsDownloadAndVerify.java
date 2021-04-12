@@ -38,7 +38,6 @@ public class CreateDiscussionsDownloadAndVerify
                       .selectQueued()
                       .clickPost();
 
-        System.out.println($(".notification-stack").getText());
         $(".notification-stack").waitUntil(Condition.appear, 7_000).shouldHave(Condition.text("Queued discussion Paragraph 1"));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
@@ -90,7 +89,8 @@ public class CreateDiscussionsDownloadAndVerify
             logger.info("Assert that file was downloaded...");
 
             Assert.assertTrue(new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
-                    until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "AT-14.docx").toFile().exists()));
+                    until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "AT-14.docx").toFile().exists()),
+                    "Looks like that it is unable to download file as counterparty !!!");
         }
         catch (FileNotFoundException | InterruptedException e)
         {

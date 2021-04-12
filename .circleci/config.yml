@@ -18,9 +18,9 @@ jobs:
       
       
       - run:
-          name: Run Classic suite
+          name: Run Fields suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Fields.xml
       
       
 
