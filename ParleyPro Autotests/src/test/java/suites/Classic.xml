@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Classic negotiation mode suite" configfailurepolicy="continue">
-    <!--
     <test name="Upload new version with redlines for my team documents" preserve-order="true">
         <parameter name="contractName" value="AT40 Classic contract"/>
         <classes>
@@ -266,7 +265,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 
     <test name="AT-43: Classic discussions: Queued discussions" preserve-order="true">
         <parameter name="contractName" value="AT43 - Classic discussions: Queued discussions"/>
