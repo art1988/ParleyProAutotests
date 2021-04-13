@@ -54,8 +54,8 @@ public class CreateClassicContractAndUploadDocs
     {
         new AddDocuments().clickUploadCounterpartyDocuments( Const.REGRESSION_DOC_AT83_BDOC1 );
 
-        $(".notification-stack").waitUntil(Condition.appear, 6_000).shouldHave(Condition.exactText("Document " + documentName + " has been successfully uploaded."));
-        $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+        $(".notification-stack").waitUntil(Condition.appear, 20_000).shouldHave(Condition.exactText("Document " + documentName + " has been successfully uploaded."));
+        $(".notification-stack").waitUntil(Condition.disappear, 45_000);
 
         new ContractInNegotiation(contractName).clickOk();
 
