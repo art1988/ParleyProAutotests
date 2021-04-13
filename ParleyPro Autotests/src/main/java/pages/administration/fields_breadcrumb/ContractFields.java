@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.FieldType;
 import forms.LinkedValues;
+import forms.add.AddPredefinedFields;
 import forms.delete.DeleteField;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
@@ -73,6 +74,15 @@ public class ContractFields
     }
 
     /**
+     * Resets valueIndex to 1.
+     * Call this method every time after setting of values within one field.
+     */
+    public void resetValueIndex()
+    {
+        valueIndex = 1;
+    }
+
+    /**
      * Sets [value] for field by the name [fieldName] and links to value [linkToValue]
      * @param fieldName name of the field for which need to set value. Starts from Value 1
      * @param value
@@ -100,6 +110,13 @@ public class ContractFields
         Selenide.executeJavaScript("$('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\".ui-link:contains('Link values')\").click()");
 
         return new LinkedValues();
+    }
+
+    public AddPredefinedFields addPredefinedFields()
+    {
+        $$(".admin-fields-add__button").filter(Condition.text("predefined")).get(0).click();
+
+        return new AddPredefinedFields();
     }
 
     public void clickHideValues()
