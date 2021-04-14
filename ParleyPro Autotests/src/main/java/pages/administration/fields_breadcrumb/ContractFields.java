@@ -74,6 +74,19 @@ public class ContractFields
     }
 
     /**
+     * Click by 'Add values' link and sets Value field by specific valueIndex.
+     * @param fieldName
+     * @param value
+     * @param valueIndex
+     */
+    public void addValues(String fieldName, String value, int valueIndex)
+    {
+        this.valueIndex = valueIndex;
+
+        addValues(fieldName, value);
+    }
+
+    /**
      * Resets valueIndex to 1.
      * Call this method every time after setting of values within one field.
      */
@@ -119,6 +132,18 @@ public class ContractFields
         return new AddPredefinedFields();
     }
 
+    /**
+     * Click by 'Edit values' link for certain field
+     * @param fieldName name of the field for which link will be clicked
+     */
+    public void clickEditValues(String fieldName)
+    {
+        Selenide.executeJavaScript("$('input[data-label=\"Field name\"][value=\"" + fieldName + "\"]')" +
+                ".parent().parent().parent().parent().parent().find(\"div:contains('Edit values')\").click()");
+
+        logger.info("Edit values link was clicked for: " + fieldName);
+    }
+
     public void clickHideValues()
     {
         Selenide.executeJavaScript("$('.admin-fields-field__values div:contains(\"Hide values\")').click()");
@@ -137,5 +162,19 @@ public class ContractFields
         logger.info("Trying to delete this field: " + fieldName);
 
         return new DeleteField();
+    }
+
+    /**
+     * Removes value of certain field
+     * @param fieldName name of the field which value needs to be removed
+     * @param valueNameToDelete name of the value that will be removed
+     */
+    public void removeValue(String fieldName, String valueNameToDelete)
+    {
+        Selenide.executeJavaScript("$('input[data-label=\"Field name\"][value=\"" + fieldName + "\"]')." +
+                "parent().parent().parent().parent().parent().find(\".admin-fields-field__values-list\")" +
+                ".find(\"input[value='" + valueNameToDelete + "']\").parent().parent().parent().find(\".admin-fields-field__values-remove\").click()");
+
+        logger.info("Value " + valueNameToDelete + " of field " + fieldName + " was removed.");
     }
 }
