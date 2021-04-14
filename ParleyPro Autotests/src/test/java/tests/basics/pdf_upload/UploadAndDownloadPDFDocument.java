@@ -87,15 +87,15 @@ public class UploadAndDownloadPDFDocument
             $(".spinner").waitUntil(Condition.disappear, 35_000);
 
             logger.info("Assert that file was downloaded...");
-            Thread.sleep(1_000);
+            Thread.sleep(3_000);
 
             FilenameFilter filter = (f, name) -> name.endsWith(".pdf");
             String[] pathnames = Const.DOWNLOAD_DIR.list(filter);
 
-            Assert.assertTrue(pathnames.length == 1);
-            Assert.assertTrue( pathnames[0].startsWith(docName) );
-            Assert.assertTrue( pathnames[0].endsWith(".pdf") );
-            Assert.assertTrue( new File(Const.DOWNLOAD_DIR.getAbsolutePath() + "/" + pathnames[0]).exists() );
+            Assert.assertTrue(pathnames.length == 1, "There is more than one *.pdf downloaded file !!!");
+            Assert.assertTrue( pathnames[0].startsWith(docName) , "Name of the file is wrong !!!");
+            Assert.assertTrue( pathnames[0].endsWith(".pdf") , "Should be *.pdf extension !!!");
+            Assert.assertTrue( new File(Const.DOWNLOAD_DIR.getAbsolutePath() + "/" + pathnames[0]).exists() , "Downloaded file doesn't exist !!!");
         }
         catch (FileNotFoundException | InterruptedException e)
         {
