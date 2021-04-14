@@ -21,7 +21,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ ScreenShotOnFailListener.class})
+@Listeners({ScreenShotOnFailListener.class})
 public class CleanUp
 {
     private static Logger logger = Logger.getLogger(CleanUp.class);
