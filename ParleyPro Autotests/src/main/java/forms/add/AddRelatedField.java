@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 
+import static com.codeborne.selenide.Condition.or;
 import static com.codeborne.selenide.Selenide.$;
 
 /**
@@ -23,7 +24,8 @@ public class AddRelatedField
                 .shouldHave(Condition.exactText("Related field"));
 
         $(".modal-body-description").waitUntil(Condition.visible, 7_000)
-                .shouldHave(Condition.exactText("Select field value and relevant field you wish to relate it to"));
+                .shouldHave(or("message on popup", Condition.exactText("Select field value and relevant field you wish to relate it to"),
+                                                         Condition.exactText("Select the type and related field.")));
     }
 
     /**
