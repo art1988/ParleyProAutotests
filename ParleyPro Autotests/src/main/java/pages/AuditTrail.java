@@ -18,7 +18,7 @@ public class AuditTrail
     {
         title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Audit trail"));
 
-        $(".modal-body .timeline-heading").waitUntil(Condition.visible, 7_000);
+        $(".timeline").waitUntil(Condition.visible, 7_000);
     }
 
     public void clickOk()

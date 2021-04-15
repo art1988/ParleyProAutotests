@@ -204,6 +204,7 @@ public class StartPreSignApproval
         AuditTrail auditTrailPage = openedContract.clickAuditTrail();
 
         logger.info("Assert that all messages are correct");
+        $(".timeline-heading h4").waitUntil(Condition.visible, 7_000);
         String actual = Selenide.executeJavaScript("return $('.timeline-heading h4').text()");
         Assert.assertEquals(actual, "Approval completedApproved by teamTeam request sentApprovedUser approve request was sent" +
                 "Pre-signature approval startedTeam assignedDocument user assignedOnline negotiation startedApproval completedApproved" +
