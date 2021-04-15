@@ -155,9 +155,13 @@ public class ContractInformation
     {
         cpOrganizationField.sendKeys(cpOrganization);
 
+        // wait until spinner for Counterparty organization will disappear
         $(".Select-loading").waitUntil(Condition.disappear, 7_000);
 
         cpOrganizationField.pressEnter();
+
+        // wait until spinner for CCN field will disappear
+        $(".select__loading").waitUntil(Condition.disappear, 7_000);
     }
 
     public String getCounterpartyOrganization()
@@ -167,7 +171,7 @@ public class ContractInformation
 
     public void setCounterpartyChiefNegotiator(String cpChiefNegotiator)
     {
-        cpChiefNegotiatorField.setValue(cpChiefNegotiator);
+        cpChiefNegotiatorField.sendKeys(cpChiefNegotiator);
     }
 
     public void setContractingRegion(String region)
