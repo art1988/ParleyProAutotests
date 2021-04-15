@@ -22,7 +22,7 @@ public class AddCategoriesFieldsAndRelations
     private static Logger logger = Logger.getLogger(AddCategoriesFieldsAndRelations.class);
 
 
-    @Test(priority = 1)
+    @Test(priority = 1, enabled = false)
     @Description("This test adds 2 new Contract Categories : Testcat and Amendment - Testcat")
     public void addTwoContractCategories()
     {
@@ -40,7 +40,7 @@ public class AddCategoriesFieldsAndRelations
                 ".parent().parent().parent().parent().parent().find(\".admin-fields-field__values-item\").length"), 4, "Looks like that Contract Categories weren't added !!!");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, enabled = false)
     @Description("This test adds 10 Fields in Summary (Field1 - Field10) and 5 AmendFields in Summary (AmendField1 - AmendField10).")
     public void addFields()
     {
@@ -76,7 +76,13 @@ public class AddCategoriesFieldsAndRelations
         Fields fieldsTab = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
         FieldsRelations fieldsRelations = fieldsTab.clickFieldsRelations();
 
-        fieldsRelations.addRelatedField("Contract category");
+        for( int i = 1; i <= 10; i++ )
+        {
+            fieldsRelations.addRelatedField("category")
+                           .selectValueForField("Category", "Testcat")
+                           .selectRelatedField("Field" + i)
+                           .clickMakeRelated();
+        }
 
         Thread.sleep(10_000);
     }

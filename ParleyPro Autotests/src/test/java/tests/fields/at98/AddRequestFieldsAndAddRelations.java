@@ -40,12 +40,12 @@ public class AddRequestFieldsAndAddRelations
 
         AddRelatedField addRelatedFieldForm = fieldsRelationsTab.addRelatedField("R1");
         addRelatedFieldForm.selectValueForField("R1", "val1");
-        addRelatedFieldForm.selectFields("f1");
+        addRelatedFieldForm.selectRelatedField("f1");
         addRelatedFieldForm.clickMakeRelated();
 
         addRelatedFieldForm = fieldsRelationsTab.addRelatedField("R1");
         addRelatedFieldForm.selectValueForField("R1", "val1");
-        addRelatedFieldForm.selectFields("f2");
+        addRelatedFieldForm.selectRelatedField("f2");
         addRelatedFieldForm.clickMakeRelated();
 
         fieldsPage.clickSave();

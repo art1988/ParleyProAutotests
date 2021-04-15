@@ -75,7 +75,7 @@ public class AddRequestFieldsAndAddRelatedField
 
         AddRelatedField addRelatedFieldForm = fieldsRelations.addRelatedField("Field1");
         addRelatedFieldForm.selectValueForField("Field1", "Value1");
-        addRelatedFieldForm.selectFields("Field2");
+        addRelatedFieldForm.selectRelatedField("Field2");
         addRelatedFieldForm.clickMakeRelated();
 
         fieldsTab.clickSave();

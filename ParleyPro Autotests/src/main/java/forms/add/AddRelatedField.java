@@ -25,6 +25,7 @@ public class AddRelatedField
 
         $(".modal-body-description").waitUntil(Condition.visible, 7_000)
                 .shouldHave(or("message on popup", Condition.exactText("Select field value and relevant field you wish to relate it to"),
+                                                         Condition.exactText("Select the category and related field."),
                                                          Condition.exactText("Select the type and related field.")));
     }
 
@@ -33,7 +34,7 @@ public class AddRelatedField
      * @param fieldName name of field
      * @param value value to be set
      */
-    public void selectValueForField(String fieldName, String value)
+    public AddRelatedField selectValueForField(String fieldName, String value)
     {
         // Set id dynamically for input
         Selenide.executeJavaScript("$('.input__label-title:contains(\"" + fieldName + "\")').parent().parent().find(\"input\").attr('id', 'inp')");
@@ -41,19 +42,23 @@ public class AddRelatedField
         $("#inp").sendKeys(value);
         $("#inp").sendKeys(Keys.DOWN);
         $("#inp").pressEnter();
+
+        return this;
     }
 
     /**
      * Selects checkbox under Fields dropdown ( right side dropdown )
      * @param field name of field to be checked
      */
-    public void selectFields(String field)
+    public AddRelatedField selectRelatedField(String fieldToSelect)
     {
         $("input[data-label='Fields']").click(); // click by input to expand dropdown
 
-        Selenide.executeJavaScript("$('.multi-select__option span:contains(\"" + field + "\")').click()"); // select field
+        Selenide.executeJavaScript("$('.multi-select__option span:contains(\"" + fieldToSelect + "\")').click()"); // select field
 
         $("input[data-label='Fields']").click(); // click by input to collapse dropdown
+
+        return this;
     }
 
     public void clickMakeRelated()
