@@ -28,7 +28,7 @@ public class OpenedDiscussion
 
     public OpenedDiscussion(String title)
     {
-        $(".discussion2-original").waitUntil(Condition.visible, 15_000);
+        $(".discussion2-original").waitUntil(Condition.visible, 25_000);
         $(".discussion-header__title-name").waitUntil(Condition.visible, 7_000).shouldHave(Condition.text(title));
 
         try
