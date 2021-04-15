@@ -18,7 +18,7 @@ public class DeleteAttachment
 
     public DeleteAttachment(String attachmentName)
     {
-        $(".modal-body-title").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Are you sure to delete “" + attachmentName + "”?"));
+        $(".modal-body-title").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Are you sure you want to delete “" + attachmentName + "”?"));
         $(".modal-body-description").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("The file will be removed from the contract"));
     }
 
