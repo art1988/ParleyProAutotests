@@ -219,6 +219,9 @@ public class ContractInformation
     {
         contractCategoryField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
         contractCategoryField.setValue(category);
+
+        // Spinner may appear in case if more fields were added for certain category, so let's wait until it disappear
+        $(".spinner").waitUntil(Condition.disappear, 10_000);
     }
 
     public String getContractCategory()
@@ -293,10 +296,19 @@ public class ContractInformation
     // TODO: depending on fieldType need to choose appropriate html tag -> implement in the future
     public void setValueForCustomField(String fieldName, FieldType fieldType, String value)
     {
-        String id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('id')");
+        String id = "";
 
-        $("#" + id).sendKeys(value);
-        $("#" + id).pressEnter(); // to collapse dropdown
+        if( fieldType.equals(FieldType.TEXT_AREA) )
+        {
+            id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('textarea').attr('inputid')");
+            $("textarea[inputid=\"" + id + "\"]").sendKeys(value);
+        }
+        else
+        {
+            id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('id')");
+            $("#" + id).sendKeys(value);
+            $("#" + id).pressEnter(); // to collapse dropdown
+        }
     }
 
     /**
