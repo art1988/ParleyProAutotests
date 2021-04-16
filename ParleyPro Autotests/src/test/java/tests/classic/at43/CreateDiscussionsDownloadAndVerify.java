@@ -85,7 +85,7 @@ public class CreateDiscussionsDownloadAndVerify
                           .clickDownload(true)
                           .clickDownloadForCounterparty();
 
-            Thread.sleep(1_000);
+            Thread.sleep(3_000);
             logger.info("Assert that file was downloaded...");
 
             Assert.assertTrue(new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
