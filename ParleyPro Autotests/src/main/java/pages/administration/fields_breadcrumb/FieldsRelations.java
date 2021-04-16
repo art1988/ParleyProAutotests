@@ -33,11 +33,11 @@ public class FieldsRelations
 
     /**
      * Click by 'Add related field' link for given field name
-     * @param fieldName
+     * @param fieldName may be 'Contract category', 'Contract type' or any other custom field that was added before
      */
     public AddRelatedField addRelatedField(String fieldName)
     {
-        Selenide.executeJavaScript("$('.admin-fields-section div:contains(\"" + fieldName + "\")').find(\"i:contains('add')\").click()");
+        Selenide.executeJavaScript("$('.admin-fields-section div:contains(\"" + fieldName + "\")').last().find(\"i:contains('add')\").click()");
 
         logger.info("+ Add related field was clicked for: " + fieldName);
 
