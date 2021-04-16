@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class AddRelatedField
 {
-    private SelenideElement makeRelatedButton = $("._button.scheme_blue");
+    private SelenideElement makeRelatedButton = $("._button.scheme_blue, .modal-footer .button.btn-common.btn.btn-primary");
 
     private static Logger logger = Logger.getLogger(AddRelatedField.class);
 
@@ -48,15 +48,24 @@ public class AddRelatedField
 
     /**
      * Selects checkbox under Fields dropdown ( right side dropdown )
-     * @param field name of field to be checked
+     * @param fieldToSelect name of field to be checked
      */
     public AddRelatedField selectRelatedField(String fieldToSelect)
     {
-        $("input[data-label='Fields']").click(); // click by input to expand dropdown
+        if( $(".modal-body input[data-label='Fields']").isDisplayed() )
+        {
+            $("input[data-label='Fields']").click(); // click by input to expand dropdown
+            Selenide.executeJavaScript("$('.multi-select__option span:contains(\"" + fieldToSelect + "\")').click()"); // select field
+            $("input[data-label='Fields']").click(); // click by input to collapse dropdown
+        }
+        else
+        {
+            // set id
+            Selenide.executeJavaScript("$('.input__label-title:contains(\"Related field\")').parent().parent().find(\"input\").attr('id', 'relatedFieldId')");
 
-        Selenide.executeJavaScript("$('.multi-select__option span:contains(\"" + fieldToSelect + "\")').click()"); // select field
-
-        $("input[data-label='Fields']").click(); // click by input to collapse dropdown
+            $("#relatedFieldId").sendKeys(fieldToSelect);
+            $("#relatedFieldId").pressEnter();
+        }
 
         return this;
     }
