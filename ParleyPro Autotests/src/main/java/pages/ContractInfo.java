@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import forms.delete.DeleteContract;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -49,6 +50,13 @@ public class ContractInfo
     public String getEffectiveDate()
     {
         return Selenide.executeJavaScript("return $('label:contains(\"Effective date\")').parent().find(\".js-duedate\").val()");
+    }
+
+    public void setInitialTerm(String initialTermVal)
+    {
+        WebElement initialTermInput = Selenide.executeJavaScript("return $('label:contains(\"Initial term\")').parent().find(\"input\")[0]");
+
+        $(initialTermInput).sendKeys(initialTermVal);
     }
 
     public String getInitialTerm()
