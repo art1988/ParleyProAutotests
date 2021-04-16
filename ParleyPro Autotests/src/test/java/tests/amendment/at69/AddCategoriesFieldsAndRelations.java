@@ -22,7 +22,7 @@ public class AddCategoriesFieldsAndRelations
     private static Logger logger = Logger.getLogger(AddCategoriesFieldsAndRelations.class);
 
 
-    @Test(priority = 1, enabled = false)
+    @Test(priority = 1)
     @Description("This test adds 2 new Contract Categories : Testcat and Amendment - Testcat")
     public void addTwoContractCategories()
     {
@@ -40,8 +40,8 @@ public class AddCategoriesFieldsAndRelations
                 ".parent().parent().parent().parent().parent().find(\".admin-fields-field__values-item\").length"), 4, "Looks like that Contract Categories weren't added !!!");
     }
 
-    @Test(priority = 2, enabled = false)
-    @Description("This test adds 10 Fields in Summary (Field1 - Field10) and 5 AmendFields in Summary (AmendField1 - AmendField10).")
+    @Test(priority = 2)
+    @Description("This test adds 10 Fields in Summary (Field1 - Field10) and 5 AmendFields in Summary (AmendFld1 - AmendFld5).")
     public void addFields()
     {
         Fields fieldsTab = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
@@ -61,7 +61,7 @@ public class AddCategoriesFieldsAndRelations
         logger.info("Adding 5 more AmendFields for Summary...");
         for( int i = 1; i <= 5; i++ )
         {
-            contractFields.createNewFiled("Summary", "AmendField" + i, FieldType.TEXT, false);
+            contractFields.createNewFiled("Summary", "AmendFld" + i, FieldType.TEXT, false);
         }
 
         fieldsTab.clickSave();
@@ -71,19 +71,38 @@ public class AddCategoriesFieldsAndRelations
     }
 
     @Test(priority = 3)
-    public void addFieldRelations() throws InterruptedException
+    public void addFieldRelations()
     {
         Fields fieldsTab = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
         FieldsRelations fieldsRelations = fieldsTab.clickFieldsRelations();
 
+        // adding related field for 'Testcat' category
         for( int i = 1; i <= 10; i++ )
         {
-            fieldsRelations.addRelatedField("category")
+            fieldsRelations.addRelatedField("Contract category")
                            .selectValueForField("Category", "Testcat")
                            .selectRelatedField("Field" + i)
                            .clickMakeRelated();
         }
 
-        Thread.sleep(10_000);
+        // adding related fields for 'Amendment - Testcat' category [ Field1 - Field10 ]
+        for( int i = 1; i <= 10; i++ )
+        {
+            fieldsRelations.addRelatedField("Contract category")
+                           .selectValueForField("Category", "Amendment - Testcat")
+                           .selectRelatedField("Field" + i)
+                           .clickMakeRelated();
+        }
+        // and [ AmendFld1 - AmendFld5 ]
+        for( int i = 1; i <= 5; i++)
+        {
+            fieldsRelations.addRelatedField("Contract category")
+                           .selectValueForField("Category", "Amendment - Testcat")
+                           .selectRelatedField("AmendFld" + i)
+                           .clickMakeRelated();
+        }
+
+        fieldsTab.clickSave();
+        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
     }
 }

@@ -6,6 +6,7 @@
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.amendment.at69.AddCategoriesFieldsAndRelations"/>
+            <class name="tests.amendment.at69.CreateExecutedContract"/>
         </classes>
     </test>
 </suite>
