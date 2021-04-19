@@ -94,7 +94,7 @@ public class AddCategoriesFieldsAndRelations
                            .clickMakeRelated();
         }
         // and [ AmendFld1 - AmendFld5 ]
-        for( int i = 1; i <= 5; i++)
+        for( int i = 1; i <= 5; i++ )
         {
             fieldsRelations.addRelatedField("Contract category")
                            .selectValueForField("Category", "Amendment - Testcat")
