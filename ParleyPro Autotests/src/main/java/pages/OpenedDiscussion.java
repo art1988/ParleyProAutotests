@@ -30,10 +30,7 @@ public class OpenedDiscussion
     {
         $(".discussion2__body__scrollable-body").waitUntil(Condition.visible, 7_000);
 
-        // First, scroll opened discussion panel to Original Text post ( because in case of multiple posts it may be hidden )
-        Selenide.executeJavaScript("document.querySelector('.discussion2__body__scrollable-body').scrollTo(0,0)");
-
-        $(".discussion2-original").waitUntil(Condition.visible, 15_000);
+        $(".discussion2-original").shouldBe(Condition.enabled);
         $(".discussion-header__title-name").waitUntil(Condition.visible, 7_000).shouldHave(Condition.text(title));
 
         try
