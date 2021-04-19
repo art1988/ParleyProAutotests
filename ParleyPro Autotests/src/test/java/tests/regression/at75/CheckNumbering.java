@@ -20,7 +20,7 @@ public class CheckNumbering
         logger.info("Scroll to necessary paragraph...");
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"[ORGANIZATION] will provide IEEE\")')[0].scrollIntoView({});");
 
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text ins:contains(\"H.\")').parent().text().trim()"), "H.Test??");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text ins:contains(\"H.\")').parent().text().replace(/\\n/g,\"\").replace(/\\s/g, '')"), "H.Test??");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text ins:contains(\"iii.\")').parent().text().trim().replace(/\\s/g, '')"), "iii.Yo!!!");
 
         Screenshoter.makeScreenshot();
