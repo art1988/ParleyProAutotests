@@ -23,7 +23,7 @@ public class ContractInfo
         $(".contract-execute-form").waitUntil(Condition.visible, 10_000);
 
         $(".spinner").waitUntil(Condition.disappear, 10_000);
-        $(".documents-contract-edit__content .spinner").waitUntil(Condition.disappear, 15_000);
+        $(".documents-contract-edit__body .spinner").waitUntil(Condition.disappear, 15_000);
     }
 
     public void setSignatureDate()
