@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Selenide.$$;
 /**
  * Represents form that appears after clicking on + NEW CONTRACT button
  * or by clicking on Contract info icon.
+ * May also invoked by clicking 'Amend contract' via action menu.
  */
 public class ContractInformation
 {
@@ -26,7 +27,7 @@ public class ContractInformation
     private SelenideElement contractingCountryField    = $("#contractingCountry");
     private SelenideElement contractEntityField        = $("#contractEntity");
     private SelenideElement contractingDepartmentField = $("#ContractingDepartment");
-    private SelenideElement contractCategoryField      = $("#contractCategory");
+    private SelenideElement contractCategoryField      = $(".modal-content #contractCategory");
     private SelenideElement tagsField                  = $("#tags");
     private SelenideElement notesField                 = $("#notes");
 
@@ -66,7 +67,7 @@ public class ContractInformation
         $(".contract-create__title").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("Contract information"));
 
         // wait until spinner disappears - that will indicate that form is fully loaded
-        $(".spinner").waitUntil(Condition.disappear, 25_000);
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 25_000);
 
         return ( contractTitleField.isDisplayed() );
     }
@@ -74,6 +75,11 @@ public class ContractInformation
     public void setContractTitle(String title)
     {
         contractTitleField.sendKeys(title);
+    }
+
+    public String getContractTitle()
+    {
+        return contractTitleField.getValue();
     }
 
     /**
@@ -218,7 +224,7 @@ public class ContractInformation
     public void setContractCategory(String category)
     {
         contractCategoryField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
-        contractCategoryField.setValue(category);
+        contractCategoryField.sendKeys(category);
 
         // Spinner may appear in case if more fields were added for certain category, so let's wait until it disappear
         $(".spinner").waitUntil(Condition.disappear, 10_000);
