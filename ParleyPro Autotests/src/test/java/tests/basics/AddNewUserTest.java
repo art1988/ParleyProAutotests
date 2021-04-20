@@ -48,7 +48,8 @@ public class AddNewUserTest
         dashboardPage.getSideBar().clickAdministration().clickManageUsersTab();
 
         logger.info("Assert that user is in the list");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.usermanagement__userlist_content_row_fullname:contains(\"" + newUser.getFirstName() + "\")').length === 1"));
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.usermanagement__userlist_content_row_fullname:contains(\"" + newUser.getFirstName() + "\")').length === 1"),
+                "Just added user is not in the list !!!");
 
         logger.info("Edit of just created user and assert that all fields were saved correctly...");
         addNewUserForm = manageUsersTab.clickActionMenu(newUser.getFirstName()).clickEdit();
