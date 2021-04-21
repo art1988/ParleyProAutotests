@@ -13,6 +13,7 @@ public class ConfirmApprovers
     private SelenideElement title = $(".modal-body-title");
     private SelenideElement addParticipantField = $("#document-approval_select");
     private SelenideElement startApprovalButton = $("button[type='submit']");
+    private SelenideElement cancelButton        = $(".btn.btn-common.btn-link.btn-link-pseudo");
 
 
     private static Logger logger = Logger.getLogger(ConfirmApprovers.class);
@@ -63,5 +64,12 @@ public class ConfirmApprovers
         startApprovalButton.click();
 
         logger.info("Start Approval button was clicked");
+    }
+
+    public void clickCancel()
+    {
+        cancelButton.click();
+
+        logger.info("CANCEL was clicked");
     }
 }
