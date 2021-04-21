@@ -1,11 +1,13 @@
 package tests.approval_workflow.at113;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import constants.FieldType;
 import forms.add.AddMembers;
 import forms.add.AddNewTeam;
 import forms.add.AddNewUser;
 import forms.workflows.ApprovalWorkflow;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
@@ -36,7 +38,7 @@ public class PreSetup
 
     }
 
-    @Test(priority = 2, enabled = false)
+    @Test(priority = 2)
     public void createTeam()
     {
         AddNewTeam addNewTeamForm = new DashboardPage().getSideBar().clickAdministration().clickTeamsTab().clickAddNewTeam();
@@ -79,7 +81,10 @@ public class PreSetup
         approvalWorkflowForm.setName("W1");
         approvalWorkflowForm.clickPriorToNegotiate();
         approvalWorkflowForm.setPriorToNegotiateParticipant("T1");
+        approvalWorkflowForm.addFieldAndValue("Approve T1", "YES");
+        approvalWorkflowForm.clickSave();
 
-
+        Assert.assertEquals((long) Selenide.executeJavaScript("return $('.workflows-list__cell.type_name:contains(\"W1\")').length"), 1,
+                "Approval Workflow W1 wasn't added !!!");
     }
 }
