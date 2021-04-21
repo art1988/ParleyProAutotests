@@ -21,8 +21,10 @@ public class Teams
 
     public Teams()
     {
+        $(".spinner").waitUntil(Condition.disappear, 7_000);
         $(".teams__label").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Teams"));
         $(".teams__description").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Form your team by inviting internal stakeholders."));
+        $(".teams-list tbody").waitUntil(Condition.visible, 7_000);
     }
 
     public AddNewTeam clickAddNewTeam()
