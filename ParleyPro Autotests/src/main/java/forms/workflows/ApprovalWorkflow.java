@@ -136,6 +136,18 @@ public class ApprovalWorkflow
         return maxValueField.getValue();
     }
 
+    public void addFieldAndValue(String fieldName, String value)
+    {
+        $(".workflows-approval-fields__add").click();
+
+        $(".modal-body .select__arrow").click(); // expand Field dropdown
+        Selenide.executeJavaScript("$('.react-autosuggest__section-container span:contains(\"" + fieldName + "\")').click()"); // choose field
+
+        $("input[data-label='Value']").click(); // expand Value dropdown
+        Selenide.executeJavaScript("$('.workflows-approval-fields .dropdown-menu .checkbox__label:contains(\"" + value + "\")').click() "); // choose value
+        $("input[data-label='Value']").click(); // click again by Value field to collapse dropdown
+    }
+
     /**
      * Click + Prior to Negotiate blue link
      */
@@ -200,6 +212,8 @@ public class ApprovalWorkflow
         saveButton.click();
 
         logger.info("Save button was clicked");
+
+        $(".modal-content").waitUntil(Condition.disappear, 10_000);
     }
 
     public void clickCancel()
