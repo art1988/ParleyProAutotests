@@ -54,4 +54,43 @@ public class ManageUsers
 
         return new UserActionMenu();
     }
+
+    /**
+     * Enable or disable user by clicking blue toggle.
+     * @param user name of the user that will be enabled/disabled
+     * @param state set true to enable, false to disable
+     */
+    public void switchEnableToggle(String user, boolean state)
+    {
+        boolean currentStateOfUser = Selenide.executeJavaScript("return $('.usermanagement__userlist_content_row_fullname:contains(\"" + user + "\")').parent().find(\".tumbler\").hasClass(\"checked\")");
+
+        if( state == true )
+        {
+            if( currentStateOfUser == true )
+            {
+                logger.info("User " + user + " is already enabled...");
+                return;
+            }
+            else
+            {
+                Selenide.executeJavaScript("$('.usermanagement__userlist_content_row_fullname:contains(\"" + user + "\")').parent().find(\".tumbler\").click()");
+                logger.info("User " + user + " was set as enabled...");
+                $(".spinner").waitUntil(Condition.disappear, 7_000);
+            }
+        }
+        else
+        {
+            if( currentStateOfUser == true )
+            {
+                Selenide.executeJavaScript("$('.usermanagement__userlist_content_row_fullname:contains(\"" + user + "\")').parent().find(\".tumbler\").click()");
+                logger.info("User " + user + " was disabled...");
+                $(".spinner").waitUntil(Condition.disappear, 7_000);
+            }
+            else
+            {
+                logger.info("User " + user + " is already disabled...");
+                return;
+            }
+        }
+    }
 }
