@@ -52,6 +52,13 @@ public class ManageDiscussions
         return this;
     }
 
+    public ManageDiscussions makeQueuedAllInternalDiscussions()
+    {
+        $$(".scheme_internal button").filter(Condition.exactText("Make queued")).get(0).click();
+
+        return this;
+    }
+
     /**
      * Expand discussion group by clicking arrow icon
      * @param groupType may be internal, queued or external
@@ -103,6 +110,17 @@ public class ManageDiscussions
         makeExternalButton.click();
 
         logger.info("MAKE EXTERNAL button was clicked");
+
+        return this;
+    }
+
+    public ManageDiscussions confirmMakeQueued()
+    {
+        makeExternalButton.click(); // the same button
+
+        logger.info("MAKE QUEUED button was clicked");
+
+        $(".spinner").waitUntil(Condition.disappear, 20_000);
 
         return this;
     }
