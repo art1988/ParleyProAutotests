@@ -25,17 +25,21 @@ public class DeleteContractFromInProgress
     @Parameters("contractName")
     public void deleteContractFromInProgress(String contractName)
     {
-        InProgressContractsPage inProgressContractsPage = new DashboardPage().getSideBar().clickInProgressContracts(false);
-        inProgressContractsPage.selectContract(contractName);
+        new DashboardPage().getSideBar()
+                           .clickInProgressContracts(false)
+                           .selectContract(contractName);
 
-        new OpenedContract().clickContractActionsMenu().clickDeleteContract().clickDelete();
+        new OpenedContract().clickContractActionsMenu()
+                            .clickDeleteContract()
+                            .clickDelete();
 
         logger.info("Assert delete notification...");
         logger.info("Waiting until notification will be visible [up to 3 minutes]...");
-        $(".notification-stack").waitUntil(Condition.visible, 60_000 * 3).shouldHave(Condition.exactText("Contract " + contractName + " has been deleted."));
+        $(".notification-stack").waitUntil(Condition.visible, 60_000 * 3)
+                                          .shouldHave(Condition.exactText("Contract " + contractName + " has been deleted."));
 
         logger.info("Assert that In-progress contracts page has blank page with no contracts...");
-        inProgressContractsPage = new InProgressContractsPage(true);
+        new DashboardPage().getSideBar().clickInProgressContracts(true);
 
         Screenshoter.makeScreenshot();
     }
