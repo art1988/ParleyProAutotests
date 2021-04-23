@@ -1,292 +1,296 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Classic negotiation mode suite" configfailurepolicy="continue">
-<!--
-        <test name="Upload new version with redlines for my team documents" preserve-order="true">
-            <parameter name="contractName" value="AT40 Classic contract"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.at40.CreateClassicContractAT40"/>
-                <class name="tests.classic.at40.UploadNewVersionAndCheckChanges"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+<suite name="Classic negotiation mode suite" configfailurepolicy="continue">
+    <test name="Upload new version with redlines for my team documents" preserve-order="true">
+        <parameter name="contractName" value="AT40 Classic contract"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.at40.CreateClassicContractAT40"/>
+            <class name="tests.classic.at40.UploadNewVersionAndCheckChanges"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #1" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="Video Sponsorship Master Agreement (Editable).docx"/>
-            <parameter name="cpDocumentName" value="Video Sponsorship Master Agreement (Editable) Kyle Edits.docx"/>
-            <parameter name="documentHasRevisions" value="false"/>
-            <parameter name="numberOfDiscussions" value="10"/>
-            <parameter name="textOnFirstPage" value="VIDEO SPONSORSHIP MANAGEMENT AGREEMENT"/>
-            <parameter name="textOnLastPage" value="The remainder of this page left intentionally blank"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #1" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Video Sponsorship Master Agreement (Editable).docx"/>
+        <parameter name="cpDocumentName" value="Video Sponsorship Master Agreement (Editable) Kyle Edits.docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="10"/>
+        <parameter name="textOnFirstPage" value="VIDEO SPONSORSHIP MANAGEMENT AGREEMENT"/>
+        <parameter name="textOnLastPage" value="The remainder of this page left intentionally blank"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #2 [Learnship]" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="ERGO_Verpflichtungserklaerung_Vertraulichkeit (1)(1).docx"/>
-            <parameter name="cpDocumentName" value="2020-11-09_ERGO_Verpflichtungserklaerung_Vertraulichkeit_ERGO(1).docx"/>
-            <parameter name="documentHasRevisions" value="true"/>
-            <parameter name="numberOfDiscussions" value="10"/>
-            <parameter name="textInFirstRow" value="Verpflichtungserklärung zur Vertraulichkeit"/>
-            <parameter name="textInLastRow" value="Firmenbezeichnung des Informationsempfängers"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckTableAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #2 [Learnship]" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="ERGO_Verpflichtungserklaerung_Vertraulichkeit (1)(1).docx"/>
+        <parameter name="cpDocumentName" value="2020-11-09_ERGO_Verpflichtungserklaerung_Vertraulichkeit_ERGO(1).docx"/>
+        <parameter name="documentHasRevisions" value="true"/>
+        <parameter name="numberOfDiscussions" value="10"/>
+        <parameter name="textInFirstRow" value="Verpflichtungserklärung zur Vertraulichkeit"/>
+        <parameter name="textInLastRow" value="Firmenbezeichnung des Informationsempfängers"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckTableAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #3 [3QDigital]" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="2021 3Q SOW for SEM and Consulting(2).docx"/>
-            <parameter name="cpDocumentName" value="2021 3Q SOW for SEM and Consulting [FB edits](2).docx"/>
-            <parameter name="documentHasRevisions" value="false"/>
-            <parameter name="numberOfDiscussions" value="20"/>
-            <parameter name="textOnFirstPage" value="Statement of Work for 3Q Digital Search Engine Marketing and Consulting"/>
-            <parameter name="textOnLastPage" value="Babysitters or house-sitters"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #3 [3QDigital]" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="2021 3Q SOW for SEM and Consulting(2).docx"/>
+        <parameter name="cpDocumentName" value="2021 3Q SOW for SEM and Consulting [FB edits](2).docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="textOnFirstPage"
+                   value="Statement of Work for 3Q Digital Search Engine Marketing and Consulting"/>
+        <parameter name="textOnLastPage" value="Babysitters or house-sitters"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #4" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="Manufacturing Agreement (4).docx"/>
-            <parameter name="cpDocumentName" value="Manufacturing Agreement_note (1) (1).docx"/>
-            <parameter name="documentHasRevisions" value="false"/>
-            <parameter name="numberOfDiscussions" value="1"/>
-            <parameter name="textOnFirstPage" value="MANUFACTURING AGREEMENT"/>
-            <parameter name="textOnLastPage" value="Quality Standards"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #4" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Manufacturing Agreement (4).docx"/>
+        <parameter name="cpDocumentName" value="Manufacturing Agreement_note (1) (1).docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="1"/>
+        <parameter name="textOnFirstPage" value="MANUFACTURING AGREEMENT"/>
+        <parameter name="textOnLastPage" value="Quality Standards"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #5 [Nurix]" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="Dana Farber Cancer Institute MCDA Draft 110620.docx"/>
-            <parameter name="cpDocumentName" value="Dana Farber Cancer Institute MCDA Draft 110620 QIS edits.docx"/>
-            <parameter name="documentHasRevisions" value="false"/>
-            <parameter name="numberOfDiscussions" value="10"/>
-            <parameter name="textOnFirstPage" value="MUTUAL CONFIDENTIAL DISCLOSURE AGREEMENT"/>
-            <parameter name="textOnLastPage" value="Read and Acknowledged:"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #5 [Nurix]" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Dana Farber Cancer Institute MCDA Draft 110620.docx"/>
+        <parameter name="cpDocumentName" value="Dana Farber Cancer Institute MCDA Draft 110620 QIS edits.docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="10"/>
+        <parameter name="textOnFirstPage" value="MUTUAL CONFIDENTIAL DISCLOSURE AGREEMENT"/>
+        <parameter name="textOnLastPage" value="Read and Acknowledged:"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #6 [Earnin]" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="Taboola_com US Sponsored Content V 3 IO + Terms (2).docx"/>
-            <parameter name="cpDocumentName" value="Earnin Media IO (Taboola Draft).docx"/>
-            <parameter name="documentHasRevisions" value="true"/>
-            <parameter name="numberOfDiscussions" value="50"/>
-            <parameter name="textOnFirstPage" value="DIGITAL ADVERTISING INSERTION ORDER"/>
-            <parameter name="textOnLastPage" value="Miscellaneous"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #6 [Earnin]" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Taboola_com US Sponsored Content V 3 IO + Terms (2).docx"/>
+        <parameter name="cpDocumentName" value="Earnin Media IO (Taboola Draft).docx"/>
+        <parameter name="documentHasRevisions" value="true"/>
+        <parameter name="numberOfDiscussions" value="50"/>
+        <parameter name="textOnFirstPage" value="DIGITAL ADVERTISING INSERTION ORDER"/>
+        <parameter name="textOnLastPage" value="Miscellaneous"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #7 [Watermark]" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="ACCTTWO MASTER SERVICES AGREEMENT_WM Comments 6_3_20.docx"/>
-            <parameter name="cpDocumentName" value="ACCTTWO MASTER SERVICES AGREEMENT_A2 comments 06_22 (1).docx"/>
-            <parameter name="documentHasRevisions" value="true"/>
-            <parameter name="numberOfDiscussions" value="20"/>
-            <parameter name="textOnFirstPage" value="ACCTTWO MASTER SERVICES AGREEMENT"/>
-            <parameter name="textOnLastPage" value="ADDENDUM B: California Consumer Privacy Act"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #7 [Watermark]" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="ACCTTWO MASTER SERVICES AGREEMENT_WM Comments 6_3_20.docx"/>
+        <parameter name="cpDocumentName" value="ACCTTWO MASTER SERVICES AGREEMENT_A2 comments 06_22 (1).docx"/>
+        <parameter name="documentHasRevisions" value="true"/>
+        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="textOnFirstPage" value="ACCTTWO MASTER SERVICES AGREEMENT"/>
+        <parameter name="textOnLastPage" value="ADDENDUM B: California Consumer Privacy Act"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #8" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="Parley Pro DPA (5).docx"/>
-            <parameter name="cpDocumentName" value="Parley Pro DPA (Copy 010421)_LK 20210111 (1).docx"/>
-            <parameter name="documentHasRevisions" value="false"/>
-            <parameter name="numberOfDiscussions" value="20"/>
-            <parameter name="textOnFirstPage" value="Addendum"/>
-            <parameter name="textOnLastPage" value="For All Customers"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #8" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Parley Pro DPA (5).docx"/>
+        <parameter name="cpDocumentName" value="Parley Pro DPA (Copy 010421)_LK 20210111 (1).docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="textOnFirstPage" value="Addendum"/>
+        <parameter name="textOnLastPage" value="For All Customers"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #9: first Harold then Webco" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
-            <parameter name="cpDocumentName" value="Webco General Partnership - SuperFresh Frozen Assignment 3-12-15.doc"/>
-            <parameter name="documentHasRevisions" value="false"/>
-            <parameter name="numberOfDiscussions" value="20"/>
-            <parameter name="textOnFirstPage" value="Jan Rathbun"/>
-            <parameter name="textOnLastPage" value="Scott Cameron"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #9: first Harold then Webco" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName"
+                   value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
+        <parameter name="cpDocumentName" value="Webco General Partnership - SuperFresh Frozen Assignment 3-12-15.doc"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="textOnFirstPage" value="Jan Rathbun"/>
+        <parameter name="textOnLastPage" value="Scott Cameron"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Reverse of #9: first Webco then Harold" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="Webco General Partnership - SuperFresh Frozen Assignment 3-12-15.doc"/>
-            <parameter name="cpDocumentName" value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
-            <parameter name="documentHasRevisions" value="false"/>
-            <parameter name="numberOfDiscussions" value="20"/>
-            <parameter name="textOnFirstPage" value="Dear Betsy:"/>
-            <parameter name="textOnLastPage" value="Sincerely"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Reverse of #9: first Webco then Harold" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Webco General Partnership - SuperFresh Frozen Assignment 3-12-15.doc"/>
+        <parameter name="cpDocumentName"
+                   value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="textOnFirstPage" value="Dear Betsy:"/>
+        <parameter name="textOnLastPage" value="Sincerely"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #10: AT-72" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="numbering_1_AT72.docx"/>
-            <parameter name="cpDocumentName" value="numbering_2_AT72.docx"/>
-            <parameter name="documentHasRevisions" value="false"/>
-            <parameter name="numberOfDiscussions" value="1"/>
-            <parameter name="textOnFirstPage" value="Point one"/>
-            <parameter name="textOnLastPage" value="5.test"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #10: AT-72" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="numbering_1_AT72.docx"/>
+        <parameter name="cpDocumentName" value="numbering_2_AT72.docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="1"/>
+        <parameter name="textOnFirstPage" value="Point one"/>
+        <parameter name="textOnLastPage" value="5.test"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #11: AT-112 - Classic: 500 error at new version upload (Learnship documents)" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="IOC_Framework_Agreement-Learnship.docx"/>
-            <parameter name="cpDocumentName" value="2020-07-17_KV-00168_IOC_Framework Agreement_v5_IOC.docx"/>
-            <parameter name="documentHasRevisions" value="true"/>
-            <parameter name="numberOfDiscussions" value="40"/>
-            <parameter name="textOnFirstPage" value="KV-00168"/>
-            <parameter name="textOnLastPage" value="OLYMPIC COMMITTEE:"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #11: AT-112 - Classic: 500 error at new version upload (Learnship documents)"
+          preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="IOC_Framework_Agreement-Learnship.docx"/>
+        <parameter name="cpDocumentName" value="2020-07-17_KV-00168_IOC_Framework Agreement_v5_IOC.docx"/>
+        <parameter name="documentHasRevisions" value="true"/>
+        <parameter name="numberOfDiscussions" value="40"/>
+        <parameter name="textOnFirstPage" value="KV-00168"/>
+        <parameter name="textOnLastPage" value="OLYMPIC COMMITTEE:"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="Client doc #12 [DHL]: AT-107: Document with macros" preserve-order="true">
-            <parameter name="contractName" value="Classic contract - client docs"/>
-            <parameter name="documentName" value="201104_FA_eLearning_Training_Learnship_updated.doc"/>
-            <parameter name="cpDocumentName" value="2021-03-17_KV-00184_Deutsche Post AG__Framework Agreement_vDPDHL_2.docx"/>
-            <parameter name="documentHasRevisions" value="false"/>
-            <parameter name="numberOfDiscussions" value="380"/>
-            <parameter name="textOnFirstPage" value="Learnship Contract Number:"/>
-            <parameter name="textOnLastPage" value="Senior Sourcing Manager"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-                <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-                <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="Client doc #12 [DHL]: AT-107: Document with macros" preserve-order="true">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="201104_FA_eLearning_Training_Learnship_updated.doc"/>
+        <parameter name="cpDocumentName"
+                   value="2021-03-17_KV-00184_Deutsche Post AG__Framework Agreement_vDPDHL_2.docx"/>
+        <parameter name="documentHasRevisions" value="false"/>
+        <parameter name="numberOfDiscussions" value="380"/>
+        <parameter name="textOnFirstPage" value="Learnship Contract Number:"/>
+        <parameter name="textOnLastPage" value="Senior Sourcing Manager"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="AT-89: Classic - paragraphs cloning" preserve-order="true">
-            <parameter name="contractName" value="AT-89: paragraphs cloning"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.at89.ParagraphsCloning"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="AT-89: Classic - paragraphs cloning" preserve-order="true">
+        <parameter name="contractName" value="AT-89: paragraphs cloning"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.at89.ParagraphsCloning"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="AT-92: Classic: Wrong comparing results in multilevel lists after adding/deleting whole paragraph." preserve-order="true">
-            <parameter name="contractName" value="Classic for AT-92"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.at92.UploadDocAndCheck"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="AT-92: Classic: Wrong comparing results in multilevel lists after adding/deleting whole paragraph."
+          preserve-order="true">
+        <parameter name="contractName" value="Classic for AT-92"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.at92.UploadDocAndCheck"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
-        <test name="AT-43: Classic discussions: Queued discussions" preserve-order="true">
-            <parameter name="contractName" value="AT43 - Classic discussions: Queued discussions"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.at43.CreateContractAndUploadDoc"/>
-                <class name="tests.classic.at43.CreateDiscussionsDownloadAndVerify"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
--->
-        <test name="AT-119: Learnship, classic: Formatting issues" preserve-order="true">
-            <parameter name="contractName" value="AT-119 CTR"/>
-            <classes>
-                <class name="tests.LoginToDashboard"/>
-                <class name="tests.classic.at119.CreateContractUploadDocsAndValidate"/>
-                <class name="tests.DeleteContractFromInProgress"/>
-                <class name="tests.Logout"/>
-            </classes>
-        </test>
+    <test name="AT-43: Classic discussions: Queued discussions" preserve-order="true">
+        <parameter name="contractName" value="AT43 - Classic discussions: Queued discussions"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.at43.CreateContractAndUploadDoc"/>
+            <class name="tests.classic.at43.CreateDiscussionsDownloadAndVerify"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 
+    <test name="AT-119: Learnship, classic: Formatting issues" preserve-order="true">
+        <parameter name="contractName" value="AT-119 CTR"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.at119.CreateContractUploadDocsAndValidate"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
