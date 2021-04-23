@@ -7,6 +7,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
+import io.qameta.allure.Description;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -121,6 +122,7 @@ public class CreateContractUploadDocsAndValidate
     }
 
     @Test(priority = 4)
+    @Description("This test uploads doc_v2 as CP and checks that second discussion has 'T1' in the left column on the document board; third - 'T2'")
     public void uploadDocV2AsCpAndCheck()
     {
         new OpenedContract().clickUploadNewVersionButton("PAR-13996_V1")
