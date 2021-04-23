@@ -123,7 +123,7 @@ public class CreateContractUploadDocsAndValidate
 
     @Test(priority = 4)
     @Description("This test uploads doc_v2 as CP and checks that second discussion has 'T1' in the left column on the document board; third - 'T2'")
-    public void uploadDocV2AsCpAndCheck()
+    public void uploadDocV2AsCpAndCheck() throws InterruptedException
     {
         new OpenedContract().clickUploadNewVersionButton("PAR-13996_V1")
                             .clickUploadCounterpartyDocument( Const.CLASSIC_AT_119_V2 , "PAR-13996_V1", "AT-119 CTR")
@@ -131,6 +131,7 @@ public class CreateContractUploadDocsAndValidate
                             .clickDocumentsTab();
 
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Service Provider Federal\")')");
+        Thread.sleep(2_000);
 
         logger.info("Assert that all discussions are closed...");
         Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "none", "Total amount of discussions is wrong !!!");
