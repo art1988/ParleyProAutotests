@@ -18,6 +18,7 @@ import pages.DashboardPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
+import utils.Waiter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -126,6 +127,8 @@ public class CreateContractUploadDocsAndValidate
                             .clickUploadCounterpartyDocument( Const.CLASSIC_AT_119_V2 , "PAR-13996_V1", "AT-119 CTR")
                             .clickUpload(true)
                             .clickDocumentsTab();
+
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Service Provider Federal\")')");
 
         logger.info("Assert that all discussions are closed...");
         Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "none", "Total amount of discussions is wrong !!!");
