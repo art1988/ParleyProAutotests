@@ -378,11 +378,20 @@ public class OpenedContract
     }
 
     /**
-     * Get total amount of discussion counter for this opened contract
-     * @return
+     * Get total amount of discussion counter for this opened contract.
+     * @return 'none' String in case if all discussion are closed, total amount of discussion otherwise
      */
     public String getAmountOfContractDiscussion()
     {
-        return $(".contract-header__status .discussion-indicator__count").getText();
+        SelenideElement contractDiscussionCounter = $(".contract-header__status .discussion-indicator__count");
+
+        if( !contractDiscussionCounter.isDisplayed() )
+        {
+            return "none";
+        }
+        else
+        {
+            return $(".contract-header__status .discussion-indicator__count").getText();
+        }
     }
 }
