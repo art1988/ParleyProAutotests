@@ -7,6 +7,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -19,6 +20,7 @@ import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Paths;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -68,7 +70,7 @@ public class CreateContractUploadDocsAndValidate
     }
 
     @Test(priority = 2)
-    public void makePostsQueued()
+    public void makeAllPostsQueued()
     {
         new OpenedContract().clickManageDiscussions()
                             .makeQueuedAllInternalDiscussions()
@@ -115,5 +117,36 @@ public class CreateContractUploadDocsAndValidate
         $(".label.label_theme_pink").shouldBe(Condition.disappear);
 
         Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 4)
+    public void uploadDocV2AsCpAndCheck()
+    {
+        new OpenedContract().clickUploadNewVersionButton("PAR-13996_V1")
+                            .clickUploadCounterpartyDocument( Const.CLASSIC_AT_119_V2 , "PAR-13996_V1", "AT-119 CTR")
+                            .clickUpload(true)
+                            .clickDocumentsTab();
+
+        logger.info("Assert that all discussions are closed...");
+        Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "none", "Total amount of discussions is wrong !!!");
+        Assert.assertEquals($$(".discussion-indicator").size(), 3, "Number of discussions inside document should be equal 3 !!!");
+
+        for( int n = 0; n < $$(".discussion-indicator").size(); n++ )
+        {
+            Assert.assertEquals($$(".discussion-indicator").get(n).getCssValue("color"), "rgba(192, 193, 194, 1)",
+                    "The color of discussion icons for Closed is wrong !!!");
+        }
+
+        logger.info("Checking that 2nd and 3rd discussion have T1 and T2...");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.discussion-indicator').eq(1).parent().find(\"p:contains('T1')\").text().trim() === 'T1'"), "Second discussion doesn't have T1 !!!");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.discussion-indicator').eq(2).parent().find(\"p:contains('T2')\").text().trim() === 'T2'"), "Third discussion doesn't have T2 !!!");
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 5)
+    public void cleanUpDownloadDir() throws IOException
+    {
+        FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
     }
 }
