@@ -68,6 +68,7 @@
             <class name="tests.approval_workflow.at113.CreateContractUploadDocDeactivateUserAndCheck"/>
             <class name="tests.approval_workflow.at113.CleanUp"/>
             <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
