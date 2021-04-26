@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Selenide.$;
 @Listeners({ScreenShotOnFailListener.class})
 public class PreSetup
 {
-    @Test(priority = 1, enabled = false)
+    @Test(priority = 1)
     public void createUser()
     {
         AddNewUser addNewUserForm = new DashboardPage().getSideBar().clickAdministration().clickManageUsersTab().clickAddNewUser();
@@ -34,8 +34,6 @@ public class PreSetup
 
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.exactText("User U1 added successfully"));
         $(".notification-stack").waitUntil(Condition.disappear, 25_000);
-
-
     }
 
     @Test(priority = 2)
@@ -79,9 +77,9 @@ public class PreSetup
         ApprovalWorkflow approvalWorkflowForm = workflowsTab.clickAddNewWorkflow().clickApproval(false);
 
         approvalWorkflowForm.setName("W1");
+        approvalWorkflowForm.addFieldAndValue("Approve T1", "YES");
         approvalWorkflowForm.clickPriorToNegotiate();
         approvalWorkflowForm.setPriorToNegotiateParticipant("T1");
-        approvalWorkflowForm.addFieldAndValue("Approve T1", "YES");
         approvalWorkflowForm.clickSave();
 
         Assert.assertEquals((long) Selenide.executeJavaScript("return $('.workflows-list__cell.type_name:contains(\"W1\")').length"), 1,

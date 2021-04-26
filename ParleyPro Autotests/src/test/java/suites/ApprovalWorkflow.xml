@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Approval workflow" configfailurepolicy="continue">
+    <!--
     <test name="Create and Edit Team" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -57,6 +58,17 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.approval_workflow.reject.RemoveWorkflowAndTeams"/>
             <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-113: Error 500 on approval when user is disabled in approving team" preserve-order="true">
+        <parameter name="contractName" value="at-113 contract title"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.approval_workflow.at113.PreSetup"/>
+            <class name="tests.approval_workflow.at113.CreateContractUploadDocDeactivateUserAndCheck"/>
+            <class name="tests.approval_workflow.at113.CleanUp"/>
+            <class name="tests.DeleteContractFromInProgress"/>
         </classes>
     </test>
 </suite>
