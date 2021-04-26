@@ -160,7 +160,7 @@ public class ApprovalWorkflow
 
     public void setPriorToNegotiateParticipant(String participant)
     {
-        priorToNegotiateParticipantField.setValue(participant);
+        priorToNegotiateParticipantField.sendKeys(participant);
         priorToNegotiateParticipantField.sendKeys(Keys.DOWN);
         priorToNegotiateParticipantField.sendKeys(Keys.ENTER);
     }

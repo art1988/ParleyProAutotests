@@ -100,7 +100,7 @@ public class AddNewUser
      */
     public void setRole(String roleName)
     {
-        $(".select.is_empty input").setValue(roleName);
+        $(".select.is_empty input").sendKeys(roleName);
     }
 
     public ArrayList getRoles()
