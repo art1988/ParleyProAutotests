@@ -5,6 +5,8 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import forms.StartExternalDiscussion;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -95,6 +97,39 @@ public class CKEditorActive
     }
 
     /**
+     * Selects all text inside opened editor and presses DEL key to delete text.
+     * @return
+     * @throws InterruptedException
+     */
+    public CKEditorActive deleteAllText() throws InterruptedException
+    {
+        Waiter.smartWaitUntilVisible("$('.editor-area').eq(1)");
+
+        Thread.sleep(1_000);
+
+        StringBuffer jsCode = new StringBuffer("var names = [];");
+        jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
+        jsCode.append("var editor_instance = names[0];");
+        jsCode.append("editor_instance.document.$.execCommand( 'SelectAll', false, null );"); // select all text
+
+        Selenide.executeJavaScript(jsCode.toString());
+        Thread.sleep(500);
+
+        jsCode = new StringBuffer("var names = [];");
+        jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
+        jsCode.append("var editor_instance = names[0];");
+        jsCode.append("return $(editor_instance.element.$).next().find(\"div[contenteditable='true']\")[0]"); // get exact <div> of editable area
+
+        WebElement editorArea = Selenide.executeJavaScript(jsCode.toString());
+
+        $(editorArea).sendKeys(Keys.DELETE);
+
+        Thread.sleep(1_000);
+
+        return this;
+    }
+
+    /**
      * Click by Internal radio button
      */
     public CKEditorActive selectInternal()
@@ -107,11 +142,13 @@ public class CKEditorActive
     }
 
     /**
-     * Click by Queued radio button
+     * Click by Queued radio button.
+     * Important: make sure that this call is the last one in call chain (before POST).
+     * Because in case of deleteAllText() this may behave incorrectly.
      */
     public CKEditorActive selectQueued()
     {
-        Selenide.executeJavaScript("$('.create-discussion__states input[id^=\"QUE\"]').next().click()");
+        Selenide.executeJavaScript("$('input[id^=\"QUE\"]').next().click()");
 
         logger.info("Queued radio button was selected...");
 
