@@ -40,10 +40,10 @@ public class CreateContractAndUploadDoc
         // Upload doc as CP
         new AddDocuments().clickUploadCounterpartyDocuments( Const.DOCUMENT_AT65_GLUE );
 
-        new ContractInNegotiation("at-65: comment glues").clickOk();
-
         $(".notification-stack").waitUntil(Condition.appear, 6_000).shouldHave(Condition.exactText("Document Dynatrace_Vendor_Addendum has been successfully uploaded."));
         $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+
+        new ContractInNegotiation("at-65: comment glues").clickOk();
 
         Screenshoter.makeScreenshot();
     }
