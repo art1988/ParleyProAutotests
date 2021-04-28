@@ -78,6 +78,7 @@ public class Const
     public static final File   TRACK_CHANGES_AT110_V4        = new File(System.getProperty("user.dir") + "/Documents/AT110/V6 Acorns Engagement Letter-CNM_v4.docx");
 
     public static final File   DOCUMENT_AT65_GLUE            = new File(System.getProperty("user.dir") + "/Documents/Dynatrace_Vendor_Addendum.docx");
+    public static final File   DOCUMENT_AT65_GLUE_V2         = new File(System.getProperty("user.dir") + "/Documents/Dynatrace_Vendor_Addendum_v2.docx");
 
     // Directories
     // Directory of docs from clients. Used in Classic
