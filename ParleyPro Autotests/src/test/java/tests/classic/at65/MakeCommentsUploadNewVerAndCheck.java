@@ -3,6 +3,7 @@ package tests.classic.at65;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import constants.Const;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -39,9 +40,12 @@ public class MakeCommentsUploadNewVerAndCheck
 
         $(".notification-stack").waitUntil(Condition.appear, 7_000).shouldHave(Condition.text("Queued post has been successfully created."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 2)
+    @Description("This test uploads doc v2 and checks that reply from MS Word post appears.")
     public void uploadNewVersionAndCheck()
     {
         new OpenedContract().clickUploadNewVersionButton("Dynatrace_Vendor_Addendum")
