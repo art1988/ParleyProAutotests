@@ -235,15 +235,46 @@ public class ContractInformation
         return contractCategoryField.getValue();
     }
 
+    /**
+     * Set _one_ contract type
+     * @param type
+     */
     public void setContractType(String type)
     {
-        Selenide.executeJavaScript("$('input[inputid=\"contractType\"]').click()");
+        $("input[data-id=\"contractType\"]").click(); // open Contract type dropdown
 
         // Select All Types twice to reset all previous selections
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
 
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('" + type + "')\").click()");
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+        $("input[data-id=\"contractType\"]").click(); // click by input to collapse dropdown
+    }
+
+    /**
+     * Sets _multiple_ contract types
+     * @param type
+     */
+    public void setContractType(String[] type)
+    {
+        $("input[data-id=\"contractType\"]").click(); // open Contract type dropdown
+
+        // Select All Types twice to reset all previous selections
+        Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+        Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+
+        for( int i = 0; i < type.length; i++ )
+        {
+            Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('" + type[i] + "')\").click()");
+            $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+        }
+
+        $("input[data-id=\"contractType\"]").click(); // click by input to collapse dropdown
     }
 
     public String getContractType()
