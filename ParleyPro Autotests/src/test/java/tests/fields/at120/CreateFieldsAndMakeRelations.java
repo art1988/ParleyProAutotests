@@ -9,11 +9,12 @@ import pages.administration.Fields;
 import pages.administration.fields_breadcrumb.ContractFields;
 import pages.administration.fields_breadcrumb.FieldsRelations;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class CreateFields
+public class CreateFieldsAndMakeRelations
 {
     @Test(priority = 1)
     public void createFields()
@@ -91,5 +92,7 @@ public class CreateFields
 
         fieldsTab.clickSave();
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
+
+        Screenshoter.makeScreenshot();
     }
 }
