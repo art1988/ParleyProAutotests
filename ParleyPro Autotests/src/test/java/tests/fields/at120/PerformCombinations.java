@@ -190,5 +190,63 @@ public class PerformCombinations
 
             Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
         }
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 8)
+    public void cat2type1type2()
+    {
+        contractInformation.setContractCategory("category2");
+        contractInformation.setContractType(new String[]{"type1", "type2"});
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+
+        for( int n = 1; n <= 7; n++ )
+        {
+            if( n == 2 )
+            {
+                Assert.assertFalse(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " IS on form, but shouldn't !!!");
+                continue;
+            }
+
+            if( n == 5 )
+            {
+                Assert.assertTrue(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
+                Assert.assertEquals(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').next().text()"), "radio 1radio 2", "There are no radio options !!!");
+                continue;
+            }
+
+            Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
+        }
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 9)
+    public void cat2type1type2type3()
+    {
+        contractInformation.setContractCategory("category2");
+        contractInformation.setContractType(new String[]{"type1", "type2", "type3"});
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+
+        for( int n = 1; n <= 7; n++ )
+        {
+            if( n == 2 )
+            {
+                Assert.assertFalse(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " IS on form, but shouldn't !!!");
+                continue;
+            }
+
+            if( n == 5 )
+            {
+                Assert.assertTrue(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
+                Assert.assertEquals(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').next().text()"), "radio 1radio 2", "There are no radio options !!!");
+                continue;
+            }
+
+            Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
+        }
+
+        Screenshoter.makeScreenshot();
     }
 }
