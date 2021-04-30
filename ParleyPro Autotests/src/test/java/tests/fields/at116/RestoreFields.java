@@ -65,6 +65,7 @@ public class RestoreFields
 
         contractFields.addValues("Contract type", "type1");
         contractFields.addValues("Contract type", "type2");
+        contractFields.addValues("Contract type", "type3");
         contractFields.resetValueIndex();
 
         fieldsTab.clickSave();
