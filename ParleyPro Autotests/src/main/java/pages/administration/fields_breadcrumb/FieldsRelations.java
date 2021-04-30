@@ -43,4 +43,15 @@ public class FieldsRelations
 
         return new AddRelatedField();
     }
+
+    /**
+     * Removes field by clicking '-' icon inside "Fields related to" section
+     * @param fieldName name of the field to be removed
+     */
+    public void removeField(String fieldName)
+    {
+        Selenide.executeJavaScript("$('.admin-fields-relations__field-related:contains(\"" + fieldName + "\")').find(\"i\").click()");
+
+        logger.info("Field " + fieldName + " was removed...");
+    }
 }
