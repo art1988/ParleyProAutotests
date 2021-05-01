@@ -101,6 +101,7 @@
             <class name="tests.fields.at120.CreateFieldsAndMakeRelations"/>
             <class name="tests.fields.at120.PerformCombinations"/>
             <class name="tests.fields.at120.RemoveFields"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
