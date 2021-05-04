@@ -74,12 +74,11 @@ public class OpenedDiscussion
      */
     public void clickTermButton(String tag)
     {
-        termButton.click();
+        termButton.waitUntil(Condition.visible, 10_000).shouldBe(Condition.enabled).click();
 
         logger.info("Non-standard term button was clicked");
 
-        termInput.waitUntil(Condition.enabled, 5_000);
-        termInput.setValue(tag);
+        termInput.waitUntil(Condition.visible, 10_000).shouldBe(Condition.enabled).sendKeys(tag);
 
         // Wait until popup with added tag is visible
         $("#react-autowhatever-1").waitUntil(Condition.visible, 5_000);
