@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Templates suite" configfailurepolicy="continue">
-    <!--
     <test name="AT-48: Create template with fields" preserve-order="true">
         <parameter name="contractName" value="ContractThatDoesNotMatchTemplate_AT48"/>
         <parameter name="templateName" value="Template_AT48[ EDITED ]"/>
@@ -15,7 +14,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 
     <test name="AT-58: Nurix: getDateFromCustomField on template incorrectly converted when creating the document" preserve-order="true">
         <parameter name="contractName" value="Nurix: getDateFromCustomField"/>
@@ -31,7 +30,6 @@
         </classes>
     </test>
 
-    <!--
     <test name="AT-77: Top of specific template disappears after publishing" preserve-order="true">
         <parameter name="templateName" value="Template_AT-77_dummy"/>
         <classes>
@@ -40,7 +38,7 @@
             <class name="tests.DeleteTemplate"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 
     <!--
     <test name="AT-86: Template text cuts off at the beginning of paragraph">
@@ -51,7 +49,6 @@
         </classes>
     </test> -->
 
-    <!--
     <test name="AT-90: Template: Silent error when no field setup" preserve-order="true">
         <parameter name="contractName" value="Silent error when no field setup"/>
         <parameter name="templateName" value="Template_silent_error_AT-90"/>
@@ -63,5 +60,5 @@
             <class name="tests.DeleteTemplate"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 </suite>
