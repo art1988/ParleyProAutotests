@@ -328,7 +328,7 @@ public class ParagraphActions
         openedDiscussion.clickTermButton(addedTag);
 
         // Wait until post with Non-standard tag appear
-        $(".discussion2-post__term-name").waitUntil(Condition.visible, 20_000);
+        $(".documents-discussion-panel .discussion2-post__term-name").waitUntil(Condition.appear, 20_000);
 
         logger.info("Assert that Non-standard post appeared...");
         Waiter.smartWaitUntilVisible("$('.discussion2-post:contains(\"Non-standard:\")')");

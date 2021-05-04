@@ -83,6 +83,7 @@ public class OpenedDiscussion
         // Wait until popup with added tag is visible
         $("#react-autowhatever-1").waitUntil(Condition.visible, 5_000);
         termInput.pressEnter();
+        $(".spinner").waitUntil(Condition.disappear, 10_000);
     }
 
     /**
