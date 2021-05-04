@@ -91,7 +91,7 @@ public class TemplatesPage
 
     public AddTemplates clickNewTemplate()
     {
-        newTemplateButton.click();
+        newTemplateButton.waitUntil(Condition.visible, 15_000).click();
 
         logger.info("+ NEW TEMPLATE button was clicked");
 
