@@ -15,7 +15,7 @@ public class EditDocumentPage
 {
     private SelenideElement documentName = $(".editor-popup__name");
 
-    private SelenideElement cancelButton = $(".button.btn-small.btn-link-pseudo.btn.btn-link");
+    private SelenideElement cancelButton = $("._button.scheme_link.size_md");
     private SelenideElement saveButton   = $(".button.btn-common.btn.btn-primary");
 
 
