@@ -1,5 +1,6 @@
 package tests.templates.at48;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.TemplateInformation;
@@ -28,7 +29,10 @@ public class CreateTemplateAT48
     public void createTemplateAndPublish() throws InterruptedException
     {
         TemplatesPage templatesPage = new DashboardPage().getSideBar().clickTemplates(true);
-        templatesPage.clickUploadTemplatesButton( Const.TEMPLATE_AT48 );
+        templatesPage.clickNewTemplate().clickUploadTemplatesButton( Const.TEMPLATE_AT48 );
+
+        $(".notification-stack").waitUntil(Condition.appear, 7_000).shouldHave(Condition.exactText("Template Template_AT48 was added."));
+        $(".notification-stack .notification__close").click();
 
         EditTemplatePage editTemplatePage = templatesPage.selectTemplate(templateName);
         editTemplatePage.addSmartField("Contract name");

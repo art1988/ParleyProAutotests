@@ -26,6 +26,6 @@ public class DeleteTemplate
 
         logger.info("Assert that delete template notification was shown...");
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Template " + templateName + " has been deleted."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack .notification__close").click();
     }
 }

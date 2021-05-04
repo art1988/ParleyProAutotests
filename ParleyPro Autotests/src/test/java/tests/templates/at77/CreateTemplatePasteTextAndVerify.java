@@ -1,5 +1,6 @@
 package tests.templates.at77;
 
+import com.codeborne.selenide.Condition;
 import constants.Const;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
@@ -11,6 +12,8 @@ import pages.EditTemplatePage;
 import pages.TemplatesPage;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
+
+import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class CreateTemplatePasteTextAndVerify
@@ -58,7 +61,10 @@ public class CreateTemplatePasteTextAndVerify
     {
         TemplatesPage templatesPage = new DashboardPage().getSideBar().clickTemplates(true);
 
-        templatesPage.clickUploadTemplatesButton( Const.TEMPLATE_AT77 );
+        templatesPage.clickNewTemplate().clickUploadTemplatesButton( Const.TEMPLATE_AT77 );
+
+        $(".notification-stack").waitUntil(Condition.appear, 7_000).shouldHave(Condition.exactText("Template Template_AT-77_dummy was added."));
+        $(".notification-stack .notification__close").click();
 
         EditTemplatePage editTemplatePage = templatesPage.selectTemplate(templateName);
 

@@ -70,6 +70,9 @@ public class UploadPublishDownloadTemplate
         TemplatesPage templatesPage = new DashboardPage().getSideBar().clickTemplates(false);
         templatesPage.clickNewTemplate().clickUploadTemplatesButton( downloadedTemplate );
 
+        $(".notification-stack").waitUntil(Condition.appear, 7_000).shouldHave(Condition.exactText("Template Template_AT-86_text_cut_off_2 was added."));
+        $(".notification-stack .notification__close").click();
+
         $(".spinner").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert that template was added...");

@@ -29,10 +29,7 @@ public class TemplatesPage
         if( isBlank )
         {
             // Assert that title is present
-            $(".templates-upload__head").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Add Templates"));
-
-            // Assert that button is present
-            $(".button.btn-common.btn-internal.undefined.btn.btn-default").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Upload templates"));
+            $(".templates-board__empty").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("There are no templates"));
         }
         else
         {

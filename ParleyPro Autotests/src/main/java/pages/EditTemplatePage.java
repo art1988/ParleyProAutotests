@@ -2,9 +2,9 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 import forms.editor_toolbar.Field;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -13,11 +13,6 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class EditTemplatePage
 {
-    private SelenideElement cancelButton  = $(".button.btn-small.btn-link-pseudo.btn.btn-link");
-    private SelenideElement publishButton = $(".button.btn-small.btn.btn-primary");
-
-
-
     private static Logger logger = Logger.getLogger(EditTemplatePage.class);
 
     public EditTemplatePage()
@@ -82,7 +77,8 @@ public class EditTemplatePage
 
     public void clickPublishButton()
     {
-        publishButton.click();
+        WebElement publishButton = Selenide.executeJavaScript("return $('button span:contains(\"Publish\")')[0]");
+        $(publishButton).click();
 
         logger.info("PUBLISH button was clicked");
 
@@ -91,7 +87,8 @@ public class EditTemplatePage
 
     public void clickCancelButton()
     {
-        cancelButton.click();
+        WebElement cancelButton = Selenide.executeJavaScript("return $('button span:contains(\"Cancel\")')[0]");
+        $(cancelButton).click();
 
         logger.info("CANCEL button was clicked");
 
