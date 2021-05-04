@@ -27,7 +27,10 @@ public class CreateTemplateAndDocumentAndCheckNumber
     public void createTemplate()
     {
         TemplatesPage templatesPage = new DashboardPage().getSideBar().clickTemplates(true);
-        templatesPage.clickUploadTemplatesButton( Const.REGRESSION_TEMPLATE_AT46 );
+        templatesPage.clickNewTemplate().clickUploadTemplatesButton( Const.REGRESSION_TEMPLATE_AT46 );
+
+        $(".notification-stack").waitUntil(Condition.appear, 7_000).shouldHave(Condition.exactText("Template Template_Regression_AT_46 was added."));
+        $(".notification-stack .notification__close").click();
 
         $(".spinner").waitUntil(Condition.disappear, 30_000);
 
