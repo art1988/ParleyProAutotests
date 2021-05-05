@@ -20,6 +20,10 @@ public class AddTemplates
         $(".button.btn-common.btn-internal.undefined.btn.btn-default").shouldBe(Condition.visible).shouldBe(Condition.enabled);
     }
 
+    /**
+     * Uploads only one template per call
+     * @param fileToUpload
+     */
     public void clickUploadTemplatesButton(File fileToUpload)
     {
         // 1. make <input> visible
@@ -31,6 +35,25 @@ public class AddTemplates
         SelenideElement uploadTemplatesButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
         uploadTemplatesButton.uploadFile(fileToUpload);
+
+        $(".templates-upload").waitUntil(Condition.disappear, 15_000);
+    }
+
+    /**
+     * Use this to upload multiple templates at once
+     * @param filesToUpload
+     */
+    public void clickUploadTemplatesButton(File[] filesToUpload)
+    {
+        // 1. make <input> visible
+        Selenide.executeJavaScript("$('.button.btn-common.btn-internal.undefined.btn.btn-default').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+        Selenide.executeJavaScript("$('.button.btn-common.btn-internal.undefined.btn.btn-default').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+        Selenide.executeJavaScript("$('.button.btn-common.btn-internal.undefined.btn.btn-default').parent().parent().find(\"input\").css(\"display\",\"block\")");
+
+        // 2. trying to upload...
+        SelenideElement uploadTemplatesButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+        uploadTemplatesButton.uploadFile(filesToUpload);
 
         $(".templates-upload").waitUntil(Condition.disappear, 15_000);
     }
