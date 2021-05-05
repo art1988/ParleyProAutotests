@@ -4,7 +4,9 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import forms.add.AddTemplates;
+import forms.add.CreateBundle;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import pages.tooltips.TemplatesActionMenu;
 
 import java.io.File;
@@ -14,6 +16,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class TemplatesPage
 {
     private SelenideElement newTemplateButton = $(".js-new-template-button");
+    private SelenideElement newBundleButton   = $(".js-new-bundle-button");
 
 
     private static Logger logger = Logger.getLogger(TemplatesPage.class);
@@ -96,5 +99,22 @@ public class TemplatesPage
         logger.info("+ NEW TEMPLATE button was clicked");
 
         return new AddTemplates();
+    }
+
+    public CreateBundle clickNewBundle()
+    {
+        newBundleButton.waitUntil(Condition.visible, 15_000).click();
+
+        logger.info("+ NEW BUNDLE button was clicked");
+
+        return new CreateBundle();
+    }
+
+    public TemplatesPage clickBundlesTab()
+    {
+        WebElement bundlesTabButton = Selenide.executeJavaScript("return $('.tab-menu__item:contains(\"BUNDLES\")')[0]");
+        $(bundlesTabButton).click();
+
+        return this;
     }
 }
