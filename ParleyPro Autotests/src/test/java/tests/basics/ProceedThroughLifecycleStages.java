@@ -44,8 +44,8 @@ public class ProceedThroughLifecycleStages
         startReviewForm.clickStart();
 
         // Wait until status was changed to REVIEW
-        $$(".lifecycle__item.active").first().waitUntil(Condition.visible, 7_000);
-        $$(".lifecycle__item.active").last().waitUntil(Condition.visible, 7_000);
+        $$(".lifecycle__item.active").first().waitUntil(Condition.exactText("REVIEW\n(1)"), 7_000);
+        $$(".lifecycle__item.active").last().waitUntil(Condition.exactText("REVIEW"), 7_000);
 
         logger.info("Assert that status was changed to REVIEW...");
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("REVIEW\n(1)", "REVIEW"));
