@@ -79,8 +79,8 @@ public class ParagraphActions
         String paragraphTitle = "Paragraph 2: Create comment here";
 
         logger.info("Assert that internal discussion notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Internal discussion " + paragraphTitle + " has been successfully created."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").waitUntil(Condition.visible, 35_000).shouldHave(Condition.exactText("Internal discussion " + paragraphTitle + " has been successfully created."));
+        $(".notification-stack").waitUntil(Condition.disappear, 45_000);
 
         logger.info("Assert that comment is present");
 

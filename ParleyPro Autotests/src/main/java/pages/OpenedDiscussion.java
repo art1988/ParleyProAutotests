@@ -28,6 +28,7 @@ public class OpenedDiscussion
 
     public OpenedDiscussion(String title)
     {
+        $(".documents-pdf-discussion__container").waitUntil(Condition.visible, 40_000);
         $(".discussion2__body__scrollable-body").waitUntil(Condition.visible, 7_000);
 
         $(".discussion2-original").shouldBe(Condition.enabled);

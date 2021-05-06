@@ -21,7 +21,7 @@ public class CreateAndPublishTemplate
 
         templatesPage.clickNewTemplate().clickUploadTemplatesButton( Const.TEMPLATE_AT90_SILENT_ERROR );
 
-        $(".notification-stack").waitUntil(Condition.appear, 7_000).shouldHave(Condition.exactText("Template Template_silent_error_AT-90 was added."));
+        $(".notification-stack").waitUntil(Condition.appear, 25_000).shouldHave(Condition.exactText("Template Template_silent_error_AT-90 was added."));
         $(".notification-stack .notification__close").click();
 
         templatesPage.selectTemplate("Template_silent_error_AT-90").clickPublishButton();

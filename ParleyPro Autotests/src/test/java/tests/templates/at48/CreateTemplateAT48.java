@@ -31,7 +31,7 @@ public class CreateTemplateAT48
         TemplatesPage templatesPage = new DashboardPage().getSideBar().clickTemplates(true);
         templatesPage.clickNewTemplate().clickUploadTemplatesButton( Const.TEMPLATE_AT48 );
 
-        $(".notification-stack").waitUntil(Condition.appear, 7_000).shouldHave(Condition.exactText("Template Template_AT48 was added."));
+        $(".notification-stack").waitUntil(Condition.appear, 25_000).shouldHave(Condition.exactText("Template Template_AT48 was added."));
         $(".notification-stack .notification__close").click();
 
         EditTemplatePage editTemplatePage = templatesPage.selectTemplate(templateName);

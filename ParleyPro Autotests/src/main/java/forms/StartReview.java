@@ -24,5 +24,7 @@ public class StartReview
         Selenide.executeJavaScript("$('.modal-footer button:contains(\"START\")').click()");
 
         logger.info("Start button was clicked");
+
+        $(".modal-content").waitUntil(Condition.disappear, 20_000);
     }
 }

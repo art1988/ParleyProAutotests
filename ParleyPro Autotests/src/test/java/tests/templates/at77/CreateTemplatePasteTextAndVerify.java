@@ -63,7 +63,7 @@ public class CreateTemplatePasteTextAndVerify
 
         templatesPage.clickNewTemplate().clickUploadTemplatesButton( Const.TEMPLATE_AT77 );
 
-        $(".notification-stack").waitUntil(Condition.appear, 7_000).shouldHave(Condition.exactText("Template Template_AT-77_dummy was added."));
+        $(".notification-stack").waitUntil(Condition.appear, 25_000).shouldHave(Condition.exactText("Template Template_AT-77_dummy was added."));
         $(".notification-stack .notification__close").click();
 
         EditTemplatePage editTemplatePage = templatesPage.selectTemplate(templateName);

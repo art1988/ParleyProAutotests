@@ -20,6 +20,7 @@ public class ManageDiscussions
 
     public ManageDiscussions()
     {
+        $(".spinner").waitUntil(Condition.disappear, 25_000);
         $(".modal-header").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Manage Discussions"));
         doneButton.shouldBe(Condition.enabled).shouldBe(Condition.visible);
     }

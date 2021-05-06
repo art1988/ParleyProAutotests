@@ -82,7 +82,7 @@ public class EmailWillBeSentToTheCounterparty
 
         logger.info("Start button was clicked");
 
-        title.waitUntil(Condition.disappear, 15_000);
+        title.waitUntil(Condition.disappear, 25_000);
     }
 
 }

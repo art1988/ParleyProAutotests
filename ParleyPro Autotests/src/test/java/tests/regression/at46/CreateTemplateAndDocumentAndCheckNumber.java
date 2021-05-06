@@ -29,7 +29,7 @@ public class CreateTemplateAndDocumentAndCheckNumber
         TemplatesPage templatesPage = new DashboardPage().getSideBar().clickTemplates(true);
         templatesPage.clickNewTemplate().clickUploadTemplatesButton( Const.REGRESSION_TEMPLATE_AT46 );
 
-        $(".notification-stack").waitUntil(Condition.appear, 7_000).shouldHave(Condition.exactText("Template Template_Regression_AT_46 was added."));
+        $(".notification-stack").waitUntil(Condition.appear, 25_000).shouldHave(Condition.exactText("Template Template_Regression_AT_46 was added."));
         $(".notification-stack .notification__close").click();
 
         $(".spinner").waitUntil(Condition.disappear, 30_000);
@@ -87,7 +87,7 @@ public class CreateTemplateAndDocumentAndCheckNumber
         new DashboardPage().getSideBar().clickTemplates(false).clickActionMenu(templateName).clickDelete().clickDelete();
 
         logger.info("Assert that delete template notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Template " + templateName + " has been deleted."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").waitUntil(Condition.visible, 35_000).shouldHave(Condition.exactText("Template " + templateName + " has been deleted."));
+        $(".notification-stack").waitUntil(Condition.disappear, 45_000);
     }
 }
