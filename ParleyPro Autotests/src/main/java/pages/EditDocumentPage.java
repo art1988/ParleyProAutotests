@@ -1,9 +1,11 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import forms.editor_toolbar.TableProperties;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -14,9 +16,6 @@ import static com.codeborne.selenide.Selenide.$;
 public class EditDocumentPage
 {
     private SelenideElement documentName = $(".editor-popup__name");
-
-    private SelenideElement cancelButton = $("._button.scheme_link.size_md");
-    private SelenideElement saveButton   = $(".button.btn-common.btn.btn-primary");
 
 
     private static Logger logger = Logger.getLogger(EditDocumentPage.class);
@@ -47,14 +46,16 @@ public class EditDocumentPage
 
     public void clickSave()
     {
-        saveButton.click();
+        WebElement saveButton = Selenide.executeJavaScript("return $('.modal-content button span:contains(\"Save\")')[0]");
+        $(saveButton).click();
 
         logger.info("Save button was clicked");
     }
 
     public void clickCancel()
     {
-        cancelButton.click();
+        WebElement cancelButton = Selenide.executeJavaScript("return $('.modal-content button span:contains(\"Cancel\")')[0]");
+        $(cancelButton).click();
 
         logger.info("Cancel button was clicked");
     }
