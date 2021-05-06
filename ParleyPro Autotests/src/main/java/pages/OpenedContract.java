@@ -269,7 +269,8 @@ public class OpenedContract
      */
     public OpenedDiscussion clickByDiscussionIcon(String paragraph)
     {
-        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"" + paragraph + "\")').prev().click()");
+        WebElement discussionIcon = Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + paragraph + "\")').prev()[0]");
+        $(discussionIcon).click();
 
         return new OpenedDiscussion(paragraph);
     }
