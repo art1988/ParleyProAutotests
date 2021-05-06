@@ -7,6 +7,8 @@ import constants.Const;
 import forms.add.CreateBundle;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -57,7 +59,7 @@ public class AddTemplatesAndCreateBundle
     }
 
     @Test(priority = 2)
-    public void addBundle() throws InterruptedException
+    public void addBundle()
     {
         CreateBundle createBundleForm = new DashboardPage().getSideBar()
                                                            .clickTemplates(false)
@@ -81,12 +83,29 @@ public class AddTemplatesAndCreateBundle
     }
 
     @Test(priority = 3)
-    public void checkInitialOrder_DragNDrop_AndCheckOrderAgain()
+    public void checkInitialOrder_DragNDrop_AndCheckOrderAgain() throws InterruptedException
     {
+        Actions actions = new Actions(WebDriverRunner.getWebDriver());
         LinkedList<String> selectedTemplates = new LinkedList<>();
 
         $$(".template-bundle__item-name").stream().forEach( item -> selectedTemplates.add(item.getText()) );
 
         Assert.assertTrue( uploadedTemplates.equals(selectedTemplates) , "The order of templates on 'Create bundle form' is wrong !!!");
+
+        WebElement firstItem  = Selenide.executeJavaScript("return $('.template-bundle__item-name:contains(\"" + selectedTemplates.get(0) + "\")').parent()[0]"),
+                   secondItem = Selenide.executeJavaScript("return $('.template-bundle__item-name:contains(\"" + selectedTemplates.get(1) + "\")').parent()[0]");
+
+        $(firstItem).hover();
+        Thread.sleep(500);
+        actions.clickAndHold($(firstItem)).build().perform();
+        Thread.sleep(500);
+
+        $(secondItem).hover();
+        actions.moveToElement($(secondItem), 0, +30).build().perform();
+        Thread.sleep(500);
+        actions.release().build().perform();
+        Thread.sleep(500);
+
+        Thread.sleep(20_000);
     }
 }
