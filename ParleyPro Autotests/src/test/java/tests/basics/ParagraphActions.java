@@ -41,10 +41,10 @@ public class ParagraphActions
         ckEditorActive.setComment(comment);
         ckEditorActive.clickPost();
 
-        String paragraphTitle = "Paragraph 1: Hello, delete me please";
+        String paragraphTitle = "Paragraph 1: Hello";
 
         logger.info("Assert that internal discussion notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Internal discussion " + paragraphTitle + " has been successfully created."));
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.text("Internal discussion " + paragraphTitle));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert that deleted paragraph has redline...");
@@ -200,7 +200,7 @@ public class ParagraphActions
     {
         OpenedContract openedContract = new OpenedContract();
 
-        String paragraphTitle = "Paragraph 1: Hello, delete me please";
+        String paragraphTitle = "Paragraph 1: Hello";
 
         OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(paragraphTitle);
 
@@ -209,7 +209,7 @@ public class ParagraphActions
         discardDiscussionForm.clickDiscardDiscussion();
 
         logger.info("Assert that 'discussion closed' notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Discussion " + paragraphTitle + " has been closed."));
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.text("Discussion " + paragraphTitle));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         openedDiscussion.close();

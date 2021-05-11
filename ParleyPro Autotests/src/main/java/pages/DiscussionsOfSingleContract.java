@@ -32,7 +32,7 @@ public class DiscussionsOfSingleContract
 
     public OpenedContract clickDocumentsTab()
     {
-        documentsTab.click();
+        documentsTab.waitUntil(Condition.visible, 7_000).click();
 
         logger.info("DOCUMENTS tab was clicked");
 
