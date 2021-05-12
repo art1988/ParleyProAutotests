@@ -7,12 +7,16 @@ import forms.add.AddTemplates;
 import forms.add.CreateBundle;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
+import pages.tooltips.BundleActionMenu;
 import pages.tooltips.TemplatesActionMenu;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Templates page with 'Templates' and 'Bundles' tabs
+ */
 public class TemplatesPage
 {
     private SelenideElement newTemplateButton = $(".js-new-template-button");
@@ -67,7 +71,8 @@ public class TemplatesPage
      */
     public EditTemplatePage selectTemplate(String templateName)
     {
-        Selenide.executeJavaScript("$('.templates-board tbody .template__title:contains(\"" + templateName + "\")').click()");
+        WebElement templateRecord = Selenide.executeJavaScript("return $('.templates-board tbody .template__title:contains(\"" + templateName + "\")')[0]");
+        $(templateRecord).waitUntil(Condition.visible, 7_000).click();
 
         logger.info(templateName + " was selected");
 
@@ -75,10 +80,10 @@ public class TemplatesPage
     }
 
     /**
-     * Invoke action menu by clicking of 3 dotted button for given template name
+     * Invoke action menu for template by clicking of 3 dotted button for given template name
      * @param templateName
      */
-    public TemplatesActionMenu clickActionMenu(String templateName)
+    public TemplatesActionMenu clickActionMenuTemplate(String templateName)
     {
         // First of all - make button visible
         Selenide.executeJavaScript("$('.template__title:contains(\"" + templateName + "\")').next().next().next().find(\"button\").css('visibility', 'visible');");
@@ -90,6 +95,18 @@ public class TemplatesPage
         Selenide.executeJavaScript("$('.template__title:contains(\"" + templateName + "\")').next().next().next().find(\"button\").next().css('visibility', 'visible')");
 
         return new TemplatesActionMenu(templateName);
+    }
+
+    public BundleActionMenu clickActionMenuBundle(String bundleName)
+    {
+        // make 3 dotted button visible
+        Selenide.executeJavaScript("$('.template__title:contains(\"" + bundleName + "\")').next().next().next().find(\"button\").css('visibility', 'visible');");
+
+        Selenide.executeJavaScript("$('.template__title:contains(\"" + bundleName + "\")').next().next().next().find(\"button\").click()");
+
+        Selenide.executeJavaScript("$('.template__title:contains(\"" + bundleName + "\")').next().next().next().find(\"button\").next().css('visibility', 'visible')");
+
+        return new BundleActionMenu(bundleName);
     }
 
     public AddTemplates clickNewTemplate()
@@ -113,6 +130,14 @@ public class TemplatesPage
     public TemplatesPage clickBundlesTab()
     {
         WebElement bundlesTabButton = Selenide.executeJavaScript("return $('.tab-menu__item:contains(\"BUNDLES\")')[0]");
+        $(bundlesTabButton).click();
+
+        return this;
+    }
+
+    public TemplatesPage clickTemplatesTab()
+    {
+        WebElement bundlesTabButton = Selenide.executeJavaScript("return $('.tab-menu__item:contains(\"TEMPLATES\")')[0]");
         $(bundlesTabButton).click();
 
         return this;

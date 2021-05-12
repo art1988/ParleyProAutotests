@@ -185,7 +185,7 @@ public class AddDocuments
     }
 
     /**
-     * Select template from list in active Select template tab. Select template tab should be active.
+     * Select template ( or bundle ) from list in active Select template tab. Select template tab should be active.
      * @param templateName name of template
      */
     public OpenedContract selectTemplate(String templateName)
