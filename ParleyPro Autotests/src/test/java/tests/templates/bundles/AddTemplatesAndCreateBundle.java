@@ -29,6 +29,7 @@ public class AddTemplatesAndCreateBundle
 {
     private LinkedList<String> uploadedTemplates = new LinkedList<>(); // stores uploaded templates as it was shown on UI
     private CreateBundle createBundleForm;
+    private String bundleName = "TEST Bundle AKM";
 
     private static Logger logger = Logger.getLogger(AddTemplatesAndCreateBundle.class);
 
@@ -74,7 +75,7 @@ public class AddTemplatesAndCreateBundle
         Assert.assertTrue(Selenide.executeJavaScript("return $('._button.scheme_blue.size_lg').is(':disabled')"),
                 "NEXT button should be disabled !!!");
 
-        createBundleForm.setBundleName("TEST Bundle AKM");
+        createBundleForm.setBundleName(bundleName);
         createBundleForm.selectTemplates( new String[]{ FilenameUtils.removeExtension(Const.TEMPLATE_AT48.getName()),
                                                         FilenameUtils.removeExtension(Const.TEMPLATE_AT77.getName()),
                                                         FilenameUtils.removeExtension(Const.TEMPLATE_AT86.getName()),
@@ -145,13 +146,24 @@ public class AddTemplatesAndCreateBundle
     }
 
     @Test(priority = 5)
-    public void saveBundle() throws InterruptedException
+    public void saveBundle()
     {
         createBundleForm.clickNext()
                         .setRegion("region1")
                         .setDepartment("department1")
-                        .setCategory("category1");
+                        .setCategory("category1")
+                        .setType("type1")
+                        .setDescription("Test bundle description.")
+                        .togglePublishBundle() // make it unpublished
+                        .clickCreate();
 
-        Thread.sleep(10_000);
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Bundle " + bundleName + " was added."));
+        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+
+        logger.info("Assert that bundle was created...");
+        $(".templates-board__list tbody .bundle__info").shouldHave(Condition.exactText("TEST Bundle AKM\n2 templates (2 not published)"));
+        $(".templates-board__list tbody .template__status").shouldHave(Condition.exactText("Not published"));
+
+        Screenshoter.makeScreenshot();
     }
 }
