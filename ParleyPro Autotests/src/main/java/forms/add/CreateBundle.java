@@ -9,6 +9,9 @@ import org.openqa.selenium.WebElement;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+/**
+ * Form that appears after clicking of '+ NEW BUNDLE' button, or by invoking 'Bundle info' action menu
+ */
 public class CreateBundle
 {
     private SelenideElement bundleNameField         = $("input[data-label='Bundle Name']");
@@ -24,6 +27,20 @@ public class CreateBundle
     public CreateBundle()
     {
         $(".modal-body-title").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Create bundle"));
+
+        bundleNameField.shouldBe(Condition.visible);
+        selectTemplatesDropdown.shouldBe(Condition.visible);
+    }
+
+    /**
+     * Use this after invoking 'Bundle info' action menu
+     * @param inEditMode just marker
+     * @param bundleName
+     */
+    public CreateBundle(boolean inEditMode, String bundleName)
+    {
+        $(".modal-body-title").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText(bundleName));
+        $(".modal-body .tab-menu").waitUntil(Condition.visible, 7_000);
 
         bundleNameField.shouldBe(Condition.visible);
         selectTemplatesDropdown.shouldBe(Condition.visible);
@@ -94,6 +111,27 @@ public class CreateBundle
         return this;
     }
 
+    public void clickCreate()
+    {
+        $((WebElement) Selenide.executeJavaScript("return $('.template-bundle__footer-buttons button:contains(\"Create\")')[0]")).click();
+
+        logger.info("CREATE button was clicked.");
+    }
+
+    public void clickSave()
+    {
+        $((WebElement) Selenide.executeJavaScript("return $('.template-bundle__footer-buttons button:contains(\"Save\")')[0]")).click();
+
+        logger.info("SAVE button was clicked.");
+    }
+
+    public void clickCancel()
+    {
+        cancelButton.click();
+
+        logger.info("CANCEL button was clicked.");
+    }
+
     public CreateBundle setRegion(String region)
     {
         $("#template_region div").waitUntil(Condition.visible, 7_000).click(); // expand dropdown
@@ -120,6 +158,41 @@ public class CreateBundle
         $(".Select-menu-outer").waitUntil(Condition.appear, 7_000);
         WebElement item = Selenide.executeJavaScript("return $('.Select-menu-outer .Select-option:contains(\"" + category + "\")')[0]");
         $(item).click();
+
+        return this;
+    }
+
+    public CreateBundle setType(String type)
+    {
+        $("input[data-id='contract-types']").waitUntil(Condition.visible, 7_000).click(); // expand dropdown
+        $(".modal-body .dropdown-menu").waitUntil(Condition.appear, 7_000);
+        WebElement item = Selenide.executeJavaScript("return $('.modal-body .dropdown-menu label:contains(\"" + type + "\")')[0]");
+        $(item).click();
+
+        return this;
+    }
+
+    public CreateBundle setDescription(String description)
+    {
+        $(".modal-body textarea").sendKeys(description);
+
+        return this;
+    }
+
+    public CreateBundle togglePublishBundle()
+    {
+        $(".template-bundle__tumbler .tumbler").click();
+
+        logger.info("Publish bundle tumbler was clicked...");
+
+        return this;
+    }
+
+    public CreateBundle clickInformationTab()
+    {
+        Selenide.executeJavaScript("$('.modal-body .tab-menu__item:contains(\"INFO\")').click()");
+
+        logger.info("INFORMATION tab was clicked...");
 
         return this;
     }
