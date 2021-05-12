@@ -22,7 +22,11 @@ public class DeleteTemplate
     @Parameters("templateName")
     public void deleteTemplate(String templateName)
     {
-        new DashboardPage().getSideBar().clickTemplates(false).clickActionMenu(templateName).clickDelete().clickDelete();
+        new DashboardPage().getSideBar()
+                           .clickTemplates(false)
+                           .clickActionMenuTemplate(templateName)
+                           .clickDelete()
+                           .clickDelete();
 
         logger.info("Assert that delete template notification was shown...");
         $(".notification-stack").waitUntil(Condition.visible, 45_000).shouldHave(Condition.exactText("Template " + templateName + " has been deleted."));

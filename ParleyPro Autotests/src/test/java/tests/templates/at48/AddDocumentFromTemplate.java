@@ -119,7 +119,10 @@ public class AddDocumentFromTemplate
     @Test(priority = 3)
     public void downloadTemplate() throws IOException
     {
-        new DashboardPage().getSideBar().clickTemplates(false).clickActionMenu("Template_AT48[ EDITED ]").clickDownload();
+        new DashboardPage().getSideBar()
+                           .clickTemplates(false)
+                           .clickActionMenuTemplate("Template_AT48[ EDITED ]")
+                           .clickDownload();
 
         logger.info("Assert that template was downloaded...");
 

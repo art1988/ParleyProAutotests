@@ -84,7 +84,11 @@ public class CreateTemplateAndDocumentAndCheckNumber
     @Test(priority = 4)
     public void deleteTemplate()
     {
-        new DashboardPage().getSideBar().clickTemplates(false).clickActionMenu(templateName).clickDelete().clickDelete();
+        new DashboardPage().getSideBar()
+                           .clickTemplates(false)
+                           .clickActionMenuTemplate(templateName)
+                           .clickDelete()
+                           .clickDelete();
 
         logger.info("Assert that delete template notification was shown...");
         $(".notification-stack").waitUntil(Condition.visible, 35_000).shouldHave(Condition.exactText("Template " + templateName + " has been deleted."));

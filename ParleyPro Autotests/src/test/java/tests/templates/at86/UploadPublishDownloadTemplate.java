@@ -50,7 +50,7 @@ public class UploadPublishDownloadTemplate
     public void downloadJustPublishedTemplate() throws IOException
     {
         TemplatesPage templatesPage = new DashboardPage().getSideBar().clickTemplates(false);
-        templatesPage.clickActionMenu(templateName).clickDownload();
+        templatesPage.clickActionMenuTemplate(templateName).clickDownload();
 
         downloadedTemplate = Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), templateName + ".docx").toFile();
 

@@ -52,7 +52,7 @@ public class CreateTemplateAT48
 
         String description = "Some description of this template from autotest.";
 
-        TemplateInformation templateInformation = templatesPage.clickActionMenu(templateName).clickTemplateInfo();
+        TemplateInformation templateInformation = templatesPage.clickActionMenuTemplate(templateName).clickTemplateInfo();
         templateInformation.setTemplateName( templateName += "[ EDITED ]" );
         templateInformation.setRegion("region1");
         templateInformation.setCategory("category1");
@@ -67,7 +67,7 @@ public class CreateTemplateAT48
         Screenshoter.makeScreenshot();
 
         logger.info("Edit just added template and check that all fields are saved...");
-        templateInformation = templatesPage.clickActionMenu(templateName).clickTemplateInfo();
+        templateInformation = templatesPage.clickActionMenuTemplate(templateName).clickTemplateInfo();
 
         Assert.assertEquals(templateInformation.getTemplateName(), templateName);
         Assert.assertEquals(templateInformation.getRegion(), "region1");
