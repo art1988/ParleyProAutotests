@@ -213,7 +213,8 @@ public class ContractInformation
 
     public void setContractingDepartment(String department)
     {
-        contractingDepartmentField.setValue(department);
+        contractingDepartmentField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
+        contractingDepartmentField.sendKeys(department);
     }
 
     public String getContractingDepartment()
