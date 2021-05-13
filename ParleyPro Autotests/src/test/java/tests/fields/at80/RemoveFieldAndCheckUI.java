@@ -1,5 +1,6 @@
 package tests.fields.at80;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
@@ -59,9 +60,8 @@ public class RemoveFieldAndCheckUI
 
         logger.info("Assert that we still can see Field Relations tab...");
         new FieldsRelations();
-        Assert.assertEquals($("div[class^='styles__field_value_header']").getText(), "Fields related to \nValue1\n value\n1\narrow_drop_down");
-        Assert.assertEquals($("div[class^='styles__field_head']").getText(), "Field1\nadd\nAdd related field");
-        Assert.assertEquals($(".admin-fields-relations__field-head").getText(), "Contract category\nadd\nAdd related field");
+        $$(".admin-fields-relations__field-head").shouldHave(CollectionCondition.size(2))
+                .shouldHave(CollectionCondition.textsInAnyOrder("Contract category\nadd\nAdd related field", "Contract type\nadd\nAdd related field"));
 
         Screenshoter.makeScreenshot();
     }
