@@ -66,7 +66,7 @@ public class TemplatesPage
     }
 
     /**
-     * Click by template by templateName
+     * Selects template by templateName
      * @param templateName
      */
     public EditTemplatePage selectTemplate(String templateName)
@@ -77,6 +77,21 @@ public class TemplatesPage
         logger.info(templateName + " was selected");
 
         return new EditTemplatePage();
+    }
+
+    /**
+     * Selects bundle by bundleName
+     * @param bundleName
+     * @return
+     */
+    public CreateBundle selectBundle(String bundleName)
+    {
+        WebElement bundleRecord = Selenide.executeJavaScript("return $('.templates-board tbody .template__title:contains(\"" + bundleName + "\")')[0]");
+        $(bundleRecord).waitUntil(Condition.visible, 7_000).click();
+
+        logger.info(bundleRecord + " was selected");
+
+        return new CreateBundle(true, bundleName);
     }
 
     /**

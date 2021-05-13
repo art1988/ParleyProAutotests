@@ -64,7 +64,7 @@ public class AddDocuments
     public AddDocuments clickSelectTemplateTab()
     {
         $(".js-select-template-tab").waitUntil(Condition.visible, 7_000).click();
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
 
         logger.info("'Select template' tab was selected");
 

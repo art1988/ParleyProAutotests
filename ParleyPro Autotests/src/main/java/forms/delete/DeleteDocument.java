@@ -27,5 +27,7 @@ public class DeleteDocument
         deleteButton.click();
 
         logger.info("Delete button was clicked...");
+
+        $(".modal-content").waitUntil(Condition.disappear, 10_000);
     }
 }

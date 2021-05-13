@@ -99,6 +99,15 @@ public class CreateBundle
 
         logger.info("NEXT button was clicked.");
 
+        try
+        {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
         return this;
     }
 
@@ -107,6 +116,15 @@ public class CreateBundle
         backArrow.waitUntil(Condition.visible, 7_000).click();
 
         logger.info("< BACK button was clicked.");
+
+        try
+        {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
 
         return this;
     }

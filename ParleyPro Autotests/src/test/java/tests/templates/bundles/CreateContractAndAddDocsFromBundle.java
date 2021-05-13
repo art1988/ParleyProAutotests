@@ -1,8 +1,11 @@
 package tests.templates.bundles;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
@@ -11,6 +14,10 @@ import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
@@ -59,9 +66,42 @@ public class CreateContractAndAddDocsFromBundle
 
         Screenshoter.makeScreenshot();
 
-        // Add docs from bundle
+        // Add docs from bundle by selecting this bundle
         OpenedContract openedContract = addDocuments.selectTemplate("TEST Bundle AKM");
+    }
 
-        System.out.println("ORDER = " + Saver.getTemplates());
+    @Test(priority = 2)
+    public void checkOrder()
+    {
+        List<String> initialOrder = Saver.getTemplates(),
+                     currentOrder = new ArrayList<>(3);
+
+        for( int i = 0; i < $$(".document__header-rename").size(); i++ )
+        {
+            currentOrder.add($$(".document__header-rename").get(i).getText());
+        }
+
+        Assert.assertEquals(currentOrder, initialOrder, "Order of added docs is wrong !!!");
+
+        Screenshoter.makeScreenshot();
+
+        Selenide.refresh();
+        new OpenedContract();
+    }
+
+    @Test(priority = 3)
+    public void removeJustAddedDocs()
+    {
+        List<String> docs = Saver.getTemplates();
+
+        for( int i = 0; i < docs.size(); i++ )
+        {
+            new OpenedContract().clickDocumentActionsMenu(docs.get(i)).clickDelete().clickDelete();
+
+            $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("has been deleted"));
+            $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+        }
+
+        Screenshoter.makeScreenshot();
     }
 }

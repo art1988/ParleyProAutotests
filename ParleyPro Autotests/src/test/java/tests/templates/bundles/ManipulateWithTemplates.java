@@ -47,7 +47,7 @@ public class ManipulateWithTemplates
     }
 
     @Test(priority = 2)
-    public void addThirdTemplateAndPublishBundle()
+    public void addThirdTemplateAndPublishBundle() throws InterruptedException
     {
         CreateBundle editBundleForm = new DashboardPage().getSideBar()
                                                          .clickTemplates(false)
@@ -60,6 +60,7 @@ public class ManipulateWithTemplates
 
         // Saving order of templates
         new Saver($$(".template-bundle__item-name").stream().map( item -> item.getText() ).collect(Collectors.toList()));
+        logger.info("Saved order is: " + Saver.getTemplates());
 
         logger.info("Assert that all templates are selected...");
         $$(".template-bundle__item-name").shouldHave(CollectionCondition.size(3))
