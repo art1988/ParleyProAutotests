@@ -76,11 +76,11 @@ public class CreateContractAndAddDocsFromBundle
         List<String> initialOrder = Saver.getTemplates(),
                      currentOrder = new ArrayList<>(3);
 
-        logger.info("Current order is: " + currentOrder);
         for( int i = 0; i < $$(".document__header-rename").size(); i++ )
         {
             currentOrder.add($$(".document__header-rename").get(i).getText());
         }
+        logger.info("Current order is: " + currentOrder);
 
         Assert.assertEquals(currentOrder, initialOrder, "Order of added docs is wrong !!!");
 
