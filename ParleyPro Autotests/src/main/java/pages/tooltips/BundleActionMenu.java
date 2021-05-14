@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import forms.add.CreateBundle;
+import forms.delete.DeleteBundle;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -30,5 +31,14 @@ public class BundleActionMenu
         logger.info("Bundle info menu item was clicked...");
 
         return new CreateBundle(true, bundleName);
+    }
+
+    public DeleteBundle clickDelete()
+    {
+        Selenide.executeJavaScript("$('.dropdown.open.btn-group ul').find('li:contains(\"Delete\")').find('a')[0].click()");
+
+        logger.info("Delete menu item was clicked...");
+
+        return new DeleteBundle(bundleName);
     }
 }

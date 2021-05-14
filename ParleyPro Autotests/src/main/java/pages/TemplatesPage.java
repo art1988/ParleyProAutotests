@@ -146,6 +146,7 @@ public class TemplatesPage
     {
         WebElement bundlesTabButton = Selenide.executeJavaScript("return $('.tab-menu__item:contains(\"BUNDLES\")')[0]");
         $(bundlesTabButton).click();
+        try { Thread.sleep(500); } catch (InterruptedException e){e.printStackTrace();}
 
         return this;
     }
@@ -154,6 +155,7 @@ public class TemplatesPage
     {
         WebElement bundlesTabButton = Selenide.executeJavaScript("return $('.tab-menu__item:contains(\"TEMPLATES\")')[0]");
         $(bundlesTabButton).click();
+        try { Thread.sleep(500); } catch (InterruptedException e){e.printStackTrace();}
 
         return this;
     }

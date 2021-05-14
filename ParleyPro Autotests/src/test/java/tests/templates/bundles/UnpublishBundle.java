@@ -49,7 +49,7 @@ public class UnpublishBundle
     }
 
     @Test(priority = 2)
-    public void deleteOneTemplate() throws InterruptedException
+    public void deleteOneTemplate()
     {
         TemplatesPage templatesPage = new DashboardPage().getSideBar().clickTemplates(false);
 
@@ -65,5 +65,7 @@ public class UnpublishBundle
         logger.info("Check counter for bundle...");
         $(".bundle__info-templates").waitUntil(Condition.text("2 templates"), 7_000);
         $(".bundle__info-templates").shouldHave(Condition.text("2 templates"));
+
+        Screenshoter.makeScreenshot();
     }
 }
