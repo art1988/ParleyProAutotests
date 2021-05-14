@@ -10,7 +10,8 @@ public enum FieldType
     RADIO_BUTTON("Radio Button"),
     SELECT("Select"),
     TEXT("Text"),
-    TEXT_AREA("Textarea");
+    TEXT_AREA("Textarea"),
+    CURRENCY("Currency");
 
     private String type;
 
