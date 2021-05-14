@@ -245,5 +245,7 @@ public class ContractRoutingWorkflow
         saveButton.click();
 
         logger.info("SAVE button was clicked");
+
+        $(".modal-content").waitUntil(Condition.disappear, 7_000);
     }
 }
