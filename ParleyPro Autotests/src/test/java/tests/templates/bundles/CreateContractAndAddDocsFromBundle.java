@@ -68,6 +68,8 @@ public class CreateContractAndAddDocsFromBundle
 
         // Add docs from bundle by selecting this bundle
         OpenedContract openedContract = addDocuments.selectTemplate("TEST Bundle AKM");
+
+        $$(".notification-stack .notification_type_success").shouldHave(CollectionCondition.size(3), 20_000);
     }
 
     @Test(priority = 2)
