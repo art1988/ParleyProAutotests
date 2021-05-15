@@ -40,14 +40,14 @@
         </classes>
     </test>
 
-
+    <!-- DO NOT UNCOMMENT - NOT FINISHED YET !!!
     <test name="AT-86: Template text cuts off at the beginning of paragraph">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.templates.at86.UploadPublishDownloadTemplate"/>
             <class name="tests.templates.at86.CreateContractAndSelectTemplate"/>
         </classes>
-    </test>
+    </test> -->
 
     <test name="AT-90: Template: Silent error when no field setup" preserve-order="true">
         <parameter name="contractName" value="Silent error when no field setup"/>
