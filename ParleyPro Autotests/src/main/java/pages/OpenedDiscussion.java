@@ -70,10 +70,10 @@ public class OpenedDiscussion
     }
 
     /**
-     * Click by "Non-standard term" button
+     * Click by "Non-standard term" button and sets tag ( via hitting enter button )
      * @param tag - tag that will be added
      */
-    public void clickTermButton(String tag)
+    public void setNonStandardTerm(String tag)
     {
         termButton.waitUntil(Condition.visible, 10_000).shouldBe(Condition.enabled).click();
 
