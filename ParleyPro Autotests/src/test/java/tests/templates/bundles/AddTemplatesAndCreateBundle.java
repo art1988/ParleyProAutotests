@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import forms.add.CreateBundle;
+import io.qameta.allure.Issue;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -126,7 +127,8 @@ public class AddTemplatesAndCreateBundle
     }
 
     @Test(priority = 4)
-    public void deleteOneTemplateGoNextAndGoBack()
+    @Issue("PAR-14182")
+    public void deleteOneTemplateGoNextAndGoBack() throws InterruptedException
     {
         createBundleForm.removeTemplate("86");
 
@@ -141,6 +143,14 @@ public class AddTemplatesAndCreateBundle
         $(".modal-body .template-bundle__footer-left").shouldHave(Condition.exactText("2 templates selected"));
         Assert.assertTrue($$(".template-bundle__item-name").stream().map( item -> item.getText() ).collect(Collectors.toList()).equals(templates),
                 "The list of templates is different after clicking 'NEXT' and '< BACK' !!!");
+
+        Screenshoter.makeScreenshot();
+
+        logger.info("Check of PAR-14182: trying to type template in search field...");
+        $("input[data-label='Select templates to place into bundle']").click();
+        Thread.sleep(500);
+        $("input[data-label='Select templates to place into bundle']").sendKeys("AT-77");
+        $(".modal-body .dropdown-menu label").waitUntil(Condition.appear, 7_000).shouldHave(Condition.exactText("Template_AT-77_dummy"));
 
         Screenshoter.makeScreenshot();
     }

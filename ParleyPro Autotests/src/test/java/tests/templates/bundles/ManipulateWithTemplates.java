@@ -47,7 +47,7 @@ public class ManipulateWithTemplates
     }
 
     @Test(priority = 2)
-    public void addThirdTemplateAndPublishBundle() throws InterruptedException
+    public void addThirdTemplateAndPublishBundle()
     {
         CreateBundle editBundleForm = new DashboardPage().getSideBar()
                                                          .clickTemplates(false)
