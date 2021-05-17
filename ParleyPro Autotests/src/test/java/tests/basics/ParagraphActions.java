@@ -325,13 +325,13 @@ public class ParagraphActions
         Assert.assertTrue(hasHighPriorityMark);
 
         String addedTag = "Autotest TAG";
-        openedDiscussion.clickTermButton(addedTag);
+        openedDiscussion.setNonStandardTerm(addedTag);
 
         // Wait until post with Non-standard tag appear
         $(".documents-discussion-panel .discussion2-post__term-name").waitUntil(Condition.appear, 20_000);
 
         logger.info("Assert that Non-standard post appeared...");
-        Waiter.smartWaitUntilVisible("$('.discussion2-post:contains(\"Non-standard:\")')");
+        $(".discussion2-post__term").waitUntil(Condition.visible, 10_000);
         Assert.assertEquals(Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").text()"), addedTag);
         Long countOfNonStandardPosts = Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").length");
         Assert.assertEquals(countOfNonStandardPosts.longValue(), 1);
@@ -340,6 +340,38 @@ public class ParagraphActions
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_term\")"); // wait until icon appear
         boolean hasNonStandardMark = Selenide.executeJavaScript("return ( $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_term\").length === 1 )");
         Assert.assertTrue(hasNonStandardMark);
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 11)
+    @Description("This test adds Non-standard tag that was added before.")
+    public void addTagThatWasPreviouslyAdded() throws InterruptedException
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("Unused extra");
+
+        CKEditorActive ckEditorActive = paragraphActionsPopup.clickAddComment();
+        ckEditorActive.setComment("abc");
+        ckEditorActive.clickPost();
+
+        logger.info("Assert that internal discussion notification was shown...");
+        $(".notification-stack").waitUntil(Condition.appear, 35_000);
+        $(".notification-stack").waitUntil(Condition.disappear, 45_000);
+
+        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon("Unused extra");
+
+        $(".discussion-header__menu .label_term").click(); // Click by term button
+        Thread.sleep(1_000);
+        $(".select__components-zone-wrapper").click(); // Click by triangle to expand dropdown options
+        Thread.sleep(1_000);
+        Selenide.executeJavaScript("$(\"div[id^='react-autowhatever']\").find(\"li span:contains('Autotest TAG')\").first().click()"); // Click by previously added tag
+        $(".spinner").waitUntil(Condition.disappear, 10_000);
+
+        logger.info("Assert that Non-standard post appeared...");
+        $(".discussion2-post__term").waitUntil(Condition.visible, 10_000);
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").text()"), "Autotest TAG");
 
         Screenshoter.makeScreenshot();
     }
