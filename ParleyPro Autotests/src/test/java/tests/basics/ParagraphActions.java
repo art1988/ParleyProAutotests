@@ -328,11 +328,8 @@ public class ParagraphActions
         String addedTag = "Autotest TAG";
         openedDiscussion.setNonStandardTerm(addedTag);
 
-        // Wait until post with Non-standard tag appear
-        $(".documents-discussion-panel .discussion2-post__term-name").waitUntil(Condition.appear, 20_000);
-
         logger.info("Assert that Non-standard post appeared...");
-        $(".discussion2-post__term").waitUntil(Condition.visible, 10_000);
+        $(".discussion2-post__term").waitUntil(Condition.visible, 20_000);
         Assert.assertEquals(Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").text()"), addedTag);
         Long countOfNonStandardPosts = Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").length");
         Assert.assertEquals(countOfNonStandardPosts.longValue(), 1);
