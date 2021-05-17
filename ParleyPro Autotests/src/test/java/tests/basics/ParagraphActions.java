@@ -7,6 +7,7 @@ import forms.AcceptPost;
 import forms.DiscardDiscussion;
 import forms.RevertToOriginal;
 import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -346,6 +347,7 @@ public class ParagraphActions
 
     @Test(priority = 11)
     @Description("This test adds Non-standard tag that was added before.")
+    @Issue("PAR-14183")
     public void addTagThatWasPreviouslyAdded() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();
