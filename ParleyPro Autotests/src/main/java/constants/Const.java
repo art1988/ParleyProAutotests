@@ -20,7 +20,7 @@ public class Const
     public static final User   PREDEFINED_INTERNAL_USER_1    = new User("Internal user1", "Internal user1 last name", "arthur.khasanov+team1@parleypro.com", "Parley650!");
     public static final User   PREDEFINED_INTERNAL_USER_2    = new User("Internal user2", "Internal user2 last name", "arthur.khasanov+team2@parleypro.com", "Parley650!");
     public static final User   PREDEFINED_CCN                = new User("CCN AT fn", "CCN AT ln", "arthur.khasanov+ccn_at@parleypro.com", "Parley650!");
-    public static final User   PREDEFINED_REQUESTER          = new User("Requester_User", "", "arthur.khasanov+requester@parleypro.com", "Parley650!");
+    public static final User   PREDEFINED_REQUESTER          = new User("Requester_User", "ln", "arthur.khasanov+requester@parleypro.com", "Parley650!");
 
     public static final User   USER_GREG                     = new User("Greg", "Smith", "arthur.khasanov+greg@parleypro.com", "Parley650!");
     public static final User   USER_MARY                     = new User("Mary", "Jones", "arthur.khasanov+mary@parleypro.com", "Parley650!");
@@ -79,6 +79,8 @@ public class Const
 
     public static final File   DOCUMENT_AT65_GLUE            = new File(System.getProperty("user.dir") + "/Documents/Dynatrace_Vendor_Addendum.docx");
     public static final File   DOCUMENT_AT65_GLUE_V2         = new File(System.getProperty("user.dir") + "/Documents/Dynatrace_Vendor_Addendum_v2.docx");
+
+    public static final File   IMG_JPEG_SAMPLE               = new File(System.getProperty("user.dir") + "/Documents/IMG_JPEG.jpeg");
 
     // Directories
     // Directory of docs from clients. Used in Classic
