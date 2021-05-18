@@ -307,7 +307,7 @@ public class ParagraphActions
 
     @Test(priority = 10)
     @Description("This test adds high priority tag and non-standard term for Paragraph 2")
-    public void addTagAndTerm()
+    public void addTagAndTerm() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();
 
@@ -329,7 +329,7 @@ public class ParagraphActions
         openedDiscussion.setNonStandardTerm(addedTag);
 
         logger.info("Assert that Non-standard post appeared...");
-        $(".discussion2-post__term").waitUntil(Condition.visible, 20_000);
+        Thread.sleep(4_000);
         Assert.assertEquals(Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").text()"), addedTag);
         Long countOfNonStandardPosts = Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").length");
         Assert.assertEquals(countOfNonStandardPosts.longValue(), 1);
@@ -369,7 +369,7 @@ public class ParagraphActions
         $(".spinner").waitUntil(Condition.disappear, 10_000);
 
         logger.info("Assert that Non-standard post appeared...");
-        $(".discussion2-post__term").waitUntil(Condition.visible, 10_000);
+        Thread.sleep(4_000);
         Assert.assertEquals(Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").text()"), "Autotest TAG");
 
         Screenshoter.makeScreenshot();
