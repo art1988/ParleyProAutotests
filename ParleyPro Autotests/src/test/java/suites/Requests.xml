@@ -5,8 +5,10 @@
     <test name="AT-124: Create request" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
-
+            <class name="tests.requests.at124.AddContractRequestFields"/>
+            <class name="tests.requests.at124.AddRoutingWorkflow"/>
             <class name="tests.requests.at124.LoginAsRequesterAndSubmitRequest"/>
+            <class name="tests.requests.at124.LoginBackAsCN"/>
         </classes>
     </test>
 </suite>

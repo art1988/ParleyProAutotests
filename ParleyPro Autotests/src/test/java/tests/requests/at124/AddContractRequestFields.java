@@ -18,7 +18,7 @@ public class AddContractRequestFields
 {
     @Test
     @Description("This test creates fields for Contract Request that are the same as from Summary.")
-    public void addContractRequestFields() throws InterruptedException
+    public void addContractRequestFields()
     {
         Fields fieldsPage = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
 

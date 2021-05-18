@@ -21,8 +21,13 @@ public class AddRoutingWorkflow
         ContractRoutingWorkflow contractRoutingWorkflow = workflowsPage.clickAddNewWorkflow().clickContractRouting(false);
 
         contractRoutingWorkflow.setName("requests");
-        contractRoutingWorkflow.clickUploadCounterpartyDocument();
-        contractRoutingWorkflow.setUploadCounterpartyDocumentParticipant( Const.PREDEFINED_USER_CN_ROLE.getFirstName() );
+        contractRoutingWorkflow.setCurrency("EUR");
+        contractRoutingWorkflow.setMinValue("3500");
+        contractRoutingWorkflow.clickContractRequested();
+        contractRoutingWorkflow.setContractRequestedParticipant( Const.PREDEFINED_USER_CN_ROLE.getFirstName() );
+
+        contractRoutingWorkflow.addFieldAndValue("Contracting region", "All");
+
         contractRoutingWorkflow.clickSave();
     }
 }
