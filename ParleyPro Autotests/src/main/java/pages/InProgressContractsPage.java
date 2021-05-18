@@ -99,8 +99,9 @@ public class InProgressContractsPage
     }
 
     /**
-     * Click by contract title.
-     * May return new page with 'Add Documents' or already uploaded contract ( OpenedContract )
+     * This method selects [contract] OR [request] by name.
+     * May return new page with 'Add Documents' or already uploaded contract ( OpenedContract ).
+     * Also may return 'Edit Contract Request' form in case of request.
      * @param contractName
      */
     public void selectContract(String contractName)
