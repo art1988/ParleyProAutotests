@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -111,8 +112,12 @@ public class ContractRoutingWorkflow
 
     public void setCurrency(String currency)
     {
-        Selenide.executeJavaScript("$('.currency-input-range__group button').click()");
-        Selenide.executeJavaScript("$('.currency-input-range__group button').next().find(\"a:contains('" + currency + "')\")[0].click()");
+        $(".currency-input-range__group button").click();
+        try { Thread.sleep(500); } catch (InterruptedException e) { e.printStackTrace(); }
+
+        WebElement option = Selenide.executeJavaScript("return $('.currency-input-range__group button').next().find(\"a:contains('" + currency + "')\")[0]");
+        $(option).click();
+        try { Thread.sleep(500); } catch (InterruptedException e) { e.printStackTrace(); }
     }
 
     public String getCurrency()
@@ -194,13 +199,13 @@ public class ContractRoutingWorkflow
     }
 
     /**
-     * Click + Upload Counterparty document blue link
+     * Click '+ Upload Counterparty document' blue link
      */
     public void clickUploadCounterpartyDocument()
     {
         Selenide.executeJavaScript("$('.workflows-autoassignment-events__item div:contains(\"Upload Counterparty document\")').click()");
 
-        logger.info("Upload Counterparty document was clicked");
+        logger.info("'+ Upload Counterparty document' blue link was clicked");
     }
 
     public void setUploadCounterpartyDocumentParticipant(String participant)
@@ -208,6 +213,35 @@ public class ContractRoutingWorkflow
         uploadCounterpartyDocumentParticipantField.setValue(participant);
         uploadCounterpartyDocumentParticipantField.sendKeys(Keys.DOWN);
         uploadCounterpartyDocumentParticipantField.sendKeys(Keys.ENTER);
+    }
+
+    /**
+     * Click '+ Contract requested' blue link
+     */
+    public void clickContractRequested()
+    {
+        Selenide.executeJavaScript("$('.workflows-autoassignment-events__item div:contains(\"Contract requested\")').click()");
+
+        logger.info("'+ Contract requested' blue link was clicked");
+    }
+
+    public void setContractRequestedParticipant(String participant)
+    {
+        contractRequestedParticipantField.setValue(participant);
+        contractRequestedParticipantField.sendKeys(Keys.DOWN);
+        contractRequestedParticipantField.sendKeys(Keys.ENTER);
+    }
+
+    public void addFieldAndValue(String fieldName, String value)
+    {
+        $(".workflows-approval-fields__add").click();
+
+        $(".modal-body .select__arrow").click(); // expand Field dropdown
+        Selenide.executeJavaScript("$('.react-autosuggest__section-container span:contains(\"" + fieldName + "\")').click()"); // choose field
+
+        $("input[data-label='Value']").click(); // expand Value dropdown
+        Selenide.executeJavaScript("$('.workflows-approval-fields .dropdown-menu .checkbox__label:contains(\"" + value + "\")').click() "); // choose value
+        $("input[data-label='Value']").click(); // click again by Value field to collapse dropdown
     }
 
     /**
