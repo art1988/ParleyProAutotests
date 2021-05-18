@@ -83,7 +83,8 @@ public class CreateContractAndStartApproval
         Thread.sleep(2_000);
 
         logger.info("Assert that status was changed to APPROVAL for both contract and document...");
-        $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
+        $$(".lifecycle__item.active").first().waitUntil(Condition.exactText("APPROVAL\n(1)"), 7_000);
+        $$(".lifecycle__item.active").last().waitUntil(Condition.exactText("APPROVAL"), 7_000);
 
         Screenshoter.makeScreenshot();
 
