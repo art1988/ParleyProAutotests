@@ -49,8 +49,8 @@ public class SharingFunctionality
         shareForm.addParticipant( Const.USER_GREG.getFirstName() ).clickSend();
         roles.put(Const.USER_GREG.getFirstName(), "Reviewer");
 
-        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
-        Thread.sleep(30_000);
+        logger.info("Waiting for 40 seconds to make sure that email has been delivered...");
+        Thread.sleep(40_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),
                 "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
 
