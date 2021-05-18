@@ -34,8 +34,8 @@ public class CheckContentAfterUploading
         //Assert.assertEquals(discussionsOfSingleContract.getDiscussionCount(), numberOfDiscussions);
 
         OpenedContract openedContract = discussionsOfSingleContract.clickDocumentsTab();
-        logger.info("Waiting until spinner will disappear [up to 1 minute]...");
-        $(".spinner").waitUntil(Condition.disappear, 60_000);
+        logger.info("Waiting until spinner will disappear [up to 2 minute]...");
+        $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
         $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
 
         logger.info("Checking text on first page...");
