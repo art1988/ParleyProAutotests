@@ -102,5 +102,7 @@ public class LoginBackAsCNAndCheck
 
         logger.info("Making sure that attachment was saved too...");
         $(".supporting-documents__document-name").shouldBe(Condition.visible).shouldHave(Condition.exactText("IMG_JPEG.jpeg"));
+
+        Screenshoter.makeScreenshot();
     }
 }

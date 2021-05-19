@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Workflows;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class AddRoutingWorkflow
@@ -29,5 +30,7 @@ public class AddRoutingWorkflow
         contractRoutingWorkflow.addFieldAndValue("Contracting region", "All");
 
         contractRoutingWorkflow.clickSave();
+
+        Screenshoter.makeScreenshot();
     }
 }
