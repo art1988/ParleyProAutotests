@@ -165,6 +165,23 @@ public class ContractFields
     }
 
     /**
+     * Removes field by it's name by clicking garbage icon for _arbitrary_ section.
+     * Use this method if fields has the same name (like in requests).
+     * @param fieldName
+     * @param section may be 'Summary', 'Post-execution' or 'Contract Request'
+     * @return
+     */
+    public DeleteField removeField(String fieldName, String section)
+    {
+        Selenide.executeJavaScript("$('.admin-fields__title:contains(\"" + section + "\")').parent()" +
+                ".find(\"input[data-label='Field name'][value='" + fieldName + "']\").parent().parent().parent().parent().parent().find(\"i\").click()");
+
+        logger.info("Trying to delete this field: " + fieldName + " from section: " + section);
+
+        return new DeleteField();
+    }
+
+    /**
      * Removes value of certain field
      * @param fieldName name of the field which value needs to be removed
      * @param valueNameToDelete name of the value that will be removed
