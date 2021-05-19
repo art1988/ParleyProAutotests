@@ -72,7 +72,7 @@ public class CreateContractAndAddDocsFromBundle
         $$(".notification-stack .notification_type_success").shouldHave(CollectionCondition.size(3), 20_000);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, enabled = false)
     public void checkOrder()
     {
         List<String> initialOrder = Saver.getTemplates(),
