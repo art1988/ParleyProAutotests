@@ -3,12 +3,16 @@
 
 <suite name = "Contract request suite" configfailurepolicy="continue">
     <test name="AT-124: Create request" preserve-order="true">
+        <parameter name="contractName" value="Contract request"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.requests.at124.AddContractRequestFields"/>
             <class name="tests.requests.at124.AddRoutingWorkflow"/>
             <class name="tests.requests.at124.LoginAsRequesterAndSubmitRequest"/>
-            <class name="tests.requests.at124.LoginBackAsCN"/>
+            <class name="tests.requests.at124.LoginBackAsCNAndCheck"/>
+            <class name="tests.requests.at124.CleanUp"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
