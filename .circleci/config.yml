@@ -15,14 +15,101 @@ jobs:
           name: Install Allure
           command: sudo curl -o allure-2.13.8.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.tgz && sudo tar -zxvf allure-2.13.8.tgz -C /opt/ && sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure && allure --version
       
-     
+      - run:
+          name: Run Numbered lists suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/NumberedLists.xml
+
+      - run: sleep 10  
+
+      - run:
+          name: Run Basics suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          
+      - run: sleep 10
+          
+      - run:
+          name: Run ApprovalWorkflow suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ApprovalWorkflow.xml
+          
+      - run: sleep 10
+      
+      - run: 
+          name: Run ContractRoutingWorkflow suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractRoutingWorkflow.xml
+      
+      - run: sleep 10
+      
+      - run:
+          name: Run Classic suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
+      
+      - run: sleep 10
+      
+      - run:
+          name: Run Formatting suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Formatting.xml
+      
+      - run: sleep 10
+      
+      - run:
+          name: Run Templates suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Templates.xml
+      
+      - run: sleep 10
+      
+      - run:
+          name: Run Fields suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Fields.xml
+          
+      - run: sleep 10
+      
+      - run:
+          name: Run Document Sharing suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/DocumentSharing.xml
+          
+      - run: sleep 10
+      
+      - run:
+          name: Run Regression suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
+
+      - run: sleep 10
+      
+      - run: 
+          name: Run Attachment runner suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/AttachmentRunner.xml
+          
+      - run: sleep 10
+          
+      - run:
+          name: Run CCN suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CounterpartyChiefNegotiator.xml
+          
+      - run: sleep 10
       
       - run:
           name: Run Requests suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Requests.xml
           
-     
+      - run: sleep 10
+          
+      - run: 
+          name: Run Migration suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
 
       - run:
           name: Allure report generation
