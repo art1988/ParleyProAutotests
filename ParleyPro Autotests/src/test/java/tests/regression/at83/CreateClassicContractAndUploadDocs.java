@@ -164,5 +164,9 @@ public class CreateClassicContractAndUploadDocs
     {
         // Clean download dir
         FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
+
+        // Set back qa-autotests configs
+        logger.info("Issue setDomainConfig() to reset...");
+        Selenide.executeJavaScript("setDomainConfig()");
     }
 }
