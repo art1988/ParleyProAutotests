@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Regression" configfailurepolicy="continue">
+    <!--
     <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
@@ -113,6 +114,18 @@
             <class name="tests.regression.at110.CreateContractAndUploadCPDocument"/>
             <class name="tests.regression.at110.MakeExternalAndUploadDocsV2V3V4"/>
             <class name="tests.regression.at110.CleanUp"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test> -->
+
+    <test name="AT-134: Gray screen when adding comment" preserve-order="true">
+        <parameter name="contractName" value="Share me"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at134.UploadDocAndShare"/>
+            <class name="tests.regression.at134.LoginAsGregAndMakeComment"/>
+            <class name="tests.regression.at134.LoginBackAsCNAndCheck"/>
+            <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
