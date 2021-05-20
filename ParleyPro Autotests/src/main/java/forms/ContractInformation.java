@@ -246,12 +246,12 @@ public class ContractInformation
 
         // Select All Types twice to reset all previous selections
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
-        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 15_000);
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
-        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 15_000);
 
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('" + type + "')\").click()");
-        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 15_000);
         $("input[data-id=\"contractType\"]").click(); // click by input to collapse dropdown
     }
 
