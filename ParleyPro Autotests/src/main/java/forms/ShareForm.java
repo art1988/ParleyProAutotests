@@ -110,6 +110,8 @@ public class ShareForm
         sendButton.click();
 
         logger.info("SEND button was clicked...");
+
+        $(".modal-content").waitUntil(Condition.disappear, 7_000);
     }
 
     public void clickDone()
