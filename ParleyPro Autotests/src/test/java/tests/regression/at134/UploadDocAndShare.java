@@ -68,7 +68,7 @@ public class UploadDocAndShare
         Thread.sleep(1_000);
         Screenshoter.makeScreenshot();
 
-        // Logout as me team CN
+        // Logout as my team CN
         LoginPage loginPage = new DashboardPage().getSideBar().logout();
     }
 }
