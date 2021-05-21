@@ -18,11 +18,11 @@ public class ContractInfo
 
     public ContractInfo()
     {
-        $(".documents-contract-edit__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Contract Info"));
-        $(".tab-menu__item.selected_yes").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Post-execution"));
-        $(".contract-execute-form").waitUntil(Condition.visible, 10_000);
+        $(".documents-contract-edit__title").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract Info"));
+        $(".tab-menu__item.selected_yes").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Post-execution"));
+        $(".contract-execute-form").waitUntil(Condition.visible, 15_000);
 
-        $(".spinner").waitUntil(Condition.disappear, 10_000);
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
         $(".documents-contract-edit__body .spinner").waitUntil(Condition.disappear, 15_000);
     }
 
