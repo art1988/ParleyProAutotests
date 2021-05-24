@@ -36,7 +36,7 @@ public class InProgressContractsPage
      */
     public InProgressContractsPage(boolean isBlank)
     {
-        $(".spinner").waitUntil(Condition.disappear, 15_000);
+        $(".spinner").waitUntil(Condition.disappear, 45_000);
 
         if( isBlank )
         {
@@ -73,7 +73,7 @@ public class InProgressContractsPage
         }
         else
         {
-            $(".contracts-list__table").shouldBe(Condition.visible);
+            $(".contracts-list__table").waitUntil(Condition.visible, 20_000);
             $$(".contracts-list__table a").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
         }
 
