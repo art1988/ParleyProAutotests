@@ -1,10 +1,6 @@
 package tests;
 
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.apache.log4j.xml.DOMConfigurator;
 import org.testng.annotations.BeforeSuite;
 
 import java.text.SimpleDateFormat;
@@ -20,7 +16,6 @@ public class SetupLogger
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hhmmss");
         System.setProperty("current_date", dateFormat.format(new Date()));
 
-        PropertyConfigurator.configure(System.getProperty("user.dir") + "/src/main/resources/log4j.properties"); // uncomment for using configs from log4j.properties
-        //DOMConfigurator.configure(System.getProperty("user.dir") + "/src/main/resources/log4j.xml");
+        PropertyConfigurator.configure(System.getProperty("user.dir") + "/src/main/resources/log4j.properties");
     }
 }
