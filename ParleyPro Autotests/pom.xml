@@ -81,6 +81,20 @@
             <version>1.2.17</version>
         </dependency>
 
+        <!-- Needs to support RollingFileAppender -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>apache-log4j-extras</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <!-- This dependency resolves SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder" error -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.28</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
