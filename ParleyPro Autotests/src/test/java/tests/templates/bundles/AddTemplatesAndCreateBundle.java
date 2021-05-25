@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import forms.add.CreateBundle;
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
@@ -89,6 +90,7 @@ public class AddTemplatesAndCreateBundle
     }
 
     @Test(priority = 3)
+    @Flaky
     public void checkInitialOrder_DragNDrop_AndCheckOrderAgain() throws InterruptedException
     {
         Actions actions = new Actions(WebDriverRunner.getWebDriver());
