@@ -136,4 +136,17 @@ public class InProgressContractsPage
 
         downloadContractDataButton.download();
     }
+
+    /**
+     * Click by 'Chief Negotiator' column to sort
+     */
+    public void clickByChiefNegotiatorColumn()
+    {
+        Selenide.executeJavaScript("$('.ui-td:contains(\"Chief Negotiator\")').click()");
+
+        logger.info("'Chief Negotiator' column was clicked for sorting...");
+
+        $(".spinner").waitUntil(Condition.appear, 4_000);
+        $(".spinner").waitUntil(Condition.disappear, 10_000);
+    }
 }
