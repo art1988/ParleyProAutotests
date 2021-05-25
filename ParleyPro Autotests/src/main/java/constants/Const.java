@@ -29,6 +29,10 @@ public class Const
     public static final User   EVHEN_AT50_USER               = new User("Parley", "Pro", "yevhen.uvin+at50@parleypro.com", "Parley650!");
     public static final User   EVHEN_TRACKCHANGES_USER       = new User("Parley", "Pro", "yevhen.uvin+trackchanges@parleypro.com", "Parley650!");
 
+    public static final User   Aaron_Aaronson                = new User("Aaron", "Aaronson", "arthur.khasanov+aaron.aaronson@parleypro.com", "Parley650!");
+    public static final User   Bartholomew_Aaronson          = new User("Bartholomew", "Aaronson", "arthur.khasanov+bartholomew.aaronson@parleypro.com", "Parley650!");
+    public static final User   Bartholomew_Bronson           = new User("Bartholomew", "Bronson", "arthur.khasanov+bartholomew.bronson@parleypro.com", "Parley650!");
+
     // Document samples
     public static final File   DOCUMENT_LIFECYCLE_SAMPLE     = new File(System.getProperty("user.dir") + "/Documents/pramata.docx");
     public static final File   DOCUMENT_DISCUSSIONS_SAMPLE   = new File(System.getProperty("user.dir") + "/Documents/AT-14.docx");
