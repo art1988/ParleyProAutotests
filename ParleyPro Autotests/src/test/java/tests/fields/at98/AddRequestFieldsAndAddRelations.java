@@ -50,7 +50,7 @@ public class AddRequestFieldsAndAddRelations
 
         fieldsPage.clickSave();
 
-        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
+        $(".notification-stack").waitUntil(Condition.visible, 20_000).shouldHave(Condition.exactText("Contract fields have been saved."));
 
         Screenshoter.makeScreenshot();
 
