@@ -24,7 +24,7 @@ public class ContractActionsMenu
         this.contractName = contractName;
 
         $(".contract-header__menu .dropdown-menu.dropdown-menu-right").
-                waitUntil(Condition.visible, 5_000).shouldHave(Condition.text("Cancel contract\nDelete contract"));
+                waitUntil(Condition.visible, 5_000).shouldHave(Condition.text("Delete contract"));
     }
 
     public DeleteContract clickDeleteContract()
