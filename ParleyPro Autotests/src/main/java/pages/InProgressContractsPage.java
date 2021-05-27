@@ -18,7 +18,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class InProgressContractsPage
 {
-    private SideBar sideBar;
     private SelenideElement newContractButton          = $(".contracts__create button[type='button'], .js-create-contract-btn"); // the same css class represents + NEW REQUEST button
     private SelenideElement searchBar                  = $(".contracts-search-input__text");
     private SelenideElement downloadContractDataButton = $(".contracts-head__download");
@@ -76,8 +75,6 @@ public class InProgressContractsPage
             $(".contracts-list__table").waitUntil(Condition.visible, 20_000);
             $$(".contracts-list__table a").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
         }
-
-        sideBar = new SideBar();
     }
 
     public ContractInformation clickNewContractButton()
@@ -112,11 +109,6 @@ public class InProgressContractsPage
 
         $(".spinner").waitUntil(Condition.disappear, 60_000);
         $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
-    }
-
-    public SideBar getSideBar()
-    {
-        return sideBar;
     }
 
     public void search(String searchString)

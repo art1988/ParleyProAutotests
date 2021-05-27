@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
@@ -78,7 +79,7 @@ public class AddNewContract
         Screenshoter.makeScreenshot();
         contractInformationForm.clickCancel();
 
-        inProgressContractsPage.getSideBar().clickInProgressContracts(false);
+        new DashboardPage().getSideBar().clickInProgressContracts(false);
 
         logger.info("Assert that Contract is present in the list and 'Contract title', 'Chief Negotiator' and 'Stage' have correct values");
 
