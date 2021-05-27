@@ -12,6 +12,7 @@ public class Const
     public static final String AT50_TENANT_URL               = "https://at50.parleypro.net/master/index.html";
     public static final String RC_TENANT_URL                 = "https://qa-autotests.parleypro.net/rc/index.html";
     public static final String TRACK_CHANGES_TENANT_URL      = "https://trackchanges.parleypro.net/master/index.html";
+    public static final String POPOVERS_TENANT_URL           = "https://popovers-autotests.parleypro.net/master/index.html";
 
     // Users
     public static final User   PREDEFINED_USER_CN_ROLE       = new User("autotest_cn fn", "ln", "arthur.khasanov+autotestcn@parleypro.com", "Parley650!");
@@ -32,6 +33,10 @@ public class Const
     public static final User   Aaron_Aaronson                = new User("Aaron", "Aaronson", "arthur.khasanov+aaron.aaronson@parleypro.com", "Parley650!");
     public static final User   Bartholomew_Aaronson          = new User("Bartholomew", "Aaronson", "arthur.khasanov+bartholomew.aaronson@parleypro.com", "Parley650!");
     public static final User   Bartholomew_Bronson           = new User("Bartholomew", "Bronson", "arthur.khasanov+bartholomew.bronson@parleypro.com", "Parley650!");
+
+    public static final User   POPOVERS_MYTEAM_CN            = new User("autotest_cn fn", "ln", "arthur.khasanov+popoverscn@parleypro.com", "Parley650!");
+    public static final User   POPOVERS_CCN                  = new User("POP CCN fn", "POP CCN ln", "arthur.khasanov+popoversccn@parleypro.com", "Parley650!");
+    public static final User   POPOVERS_VIEWER               = new User("Viewer fn", "ln", "arthur.khasanov+popovers-viewer@parleypro.com", "Parley650!");
 
     // Document samples
     public static final File   DOCUMENT_LIFECYCLE_SAMPLE     = new File(System.getProperty("user.dir") + "/Documents/pramata.docx");
