@@ -233,6 +233,7 @@
         </classes>
     </test>
 
+    <!--
     <test name="Client doc #12 [DHL]: AT-107: Document with macros" preserve-order="true">
         <parameter name="contractName" value="Classic contract - client docs"/>
         <parameter name="documentName" value="201104_FA_eLearning_Training_Learnship_updated.doc"/>
@@ -251,6 +252,7 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+    -->
 
     <test name="AT-89: Classic - paragraphs cloning" preserve-order="true">
         <parameter name="contractName" value="AT-89: paragraphs cloning"/>
