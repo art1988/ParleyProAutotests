@@ -38,8 +38,8 @@ public class LoginAsCCNAndAcceptDiscussion
     @Description("This test receives email for CCN, open that link and verifies that CCN doesn't see READY FOR SIGNATURE button.")
     public void getEmailAndLoginAsCCN() throws InterruptedException
     {
-        logger.info("Waiting for 40 seconds to make sure that email has been delivered...");
-        Thread.sleep(40_000);
+        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        Thread.sleep(60_000);
 
         String emailSubject = "[qa-autotests] autotest_cn fn ln shared contract \"CCN: READY FOR SIGNATURE button contract\" with you";
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, emailSubject), "Email with subject: " + emailSubject + " was not found !!!");

@@ -49,8 +49,8 @@ public class SharingFunctionality
         shareForm.addParticipant( Const.USER_GREG.getFirstName() ).clickSend();
         roles.put(Const.USER_GREG.getFirstName(), "Reviewer");
 
-        logger.info("Waiting for 40 seconds to make sure that email has been delivered...");
-        Thread.sleep(40_000);
+        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        Thread.sleep(60_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),
                 "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
 
@@ -64,8 +64,8 @@ public class SharingFunctionality
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Email has been successfully sent."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        logger.info("Waiting for 40 seconds to make sure that email has been delivered...");
-        Thread.sleep(40_000);
+        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        Thread.sleep(60_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),
                 "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
 
@@ -77,8 +77,8 @@ public class SharingFunctionality
         shareForm.setMessage(emailMessage);
         shareForm.clickSend();
 
-        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
-        Thread.sleep(30_000);
+        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        Thread.sleep(60_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Lead"), "Email with subject: Role assignment: Lead was not found !!!");
         EmailChecker.assertEmailBodyText("*Message:* " + emailMessage);
 
@@ -90,8 +90,8 @@ public class SharingFunctionality
         roles.put("unique", "Reviewer");
 
 
-        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
-        Thread.sleep(30_000);
+        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        Thread.sleep(60_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),
                 "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
 
@@ -124,8 +124,8 @@ public class SharingFunctionality
         Thread.sleep(500);
         shareForm.clickDone();
 
-        logger.info("Waiting for 30 seconds to make sure that emails were sent to users...");
-        Thread.sleep(30_000);
+        logger.info("Waiting for 60 seconds to make sure that emails were sent to users...");
+        Thread.sleep(60_000);
 
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),
                 "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
