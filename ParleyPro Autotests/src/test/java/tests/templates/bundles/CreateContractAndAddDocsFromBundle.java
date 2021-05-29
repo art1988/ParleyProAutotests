@@ -26,7 +26,7 @@ public class CreateContractAndAddDocsFromBundle
     private static Logger logger = Logger.getLogger(CreateContractAndAddDocsFromBundle.class);
 
     @Test(priority = 1)
-    public void createContractWithUnmatchedSettingsForBundle()
+    public void createContractWithUnmatchedSettingsForBundle() throws InterruptedException
     {
         ContractInformation contractInformation = new DashboardPage().getSideBar()
                                                                      .clickInProgressContracts(true)
@@ -45,6 +45,7 @@ public class CreateContractAndAddDocsFromBundle
         AddDocuments addDocuments = new AddDocuments().clickSelectTemplateTab();
 
         logger.info("Assert that there is NO bundle in the list...");
+        Thread.sleep(1_000);
         $$(".documents-add-templates-item__title").shouldHave(CollectionCondition.size(3))
                 .shouldHave(CollectionCondition.textsInAnyOrder("Template_AT-86_text_cut_off", "Template_AT-77_dummy", "Template_AT48"));
 

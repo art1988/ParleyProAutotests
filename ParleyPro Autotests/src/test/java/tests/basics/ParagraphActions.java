@@ -321,23 +321,23 @@ public class ParagraphActions
         $(".discussion2-post__priority").waitUntil(Condition.visible, 10_000).shouldHave(Condition.exactText("High priority"));
 
         logger.info("Check that paragraph has high priority mark from the left...");
-        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_priority\")"); // wait until icon appear
+        $(".tumbler.checked.tumbler_xsmall_yes.as_icon.label_priority").waitUntil(Condition.appear, 15_000);
         boolean hasHighPriorityMark = Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_priority\").length === 1");
-        Assert.assertTrue(hasHighPriorityMark);
+        Assert.assertTrue(hasHighPriorityMark, "Looks like that high priority mark wasn't added !!!");
 
         String addedTag = "Autotest TAG";
         openedDiscussion.setNonStandardTerm(addedTag);
 
+        logger.info("Check that paragraph has tag from the left...");
+        $(".tumbler.checked.tumbler_xsmall_yes.as_icon.label_term").waitUntil(Condition.appear, 15_000);
+        boolean hasNonStandardMark = Selenide.executeJavaScript("return ( $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_term\").length === 1 )");
+        Assert.assertTrue(hasNonStandardMark, "Looks like that Non-standard term mark wasn't added !!!");
+
         logger.info("Assert that Non-standard post appeared...");
-        Thread.sleep(15_000);
+        Thread.sleep(3_000);
         Assert.assertEquals(Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").text()"), addedTag);
         Long countOfNonStandardPosts = Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").length");
         Assert.assertEquals(countOfNonStandardPosts.longValue(), 1);
-
-        logger.info("Check that paragraph has tag from the left...");
-        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_term\")"); // wait until icon appear
-        boolean hasNonStandardMark = Selenide.executeJavaScript("return ( $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_term\").length === 1 )");
-        Assert.assertTrue(hasNonStandardMark);
 
         Screenshoter.makeScreenshot();
     }
