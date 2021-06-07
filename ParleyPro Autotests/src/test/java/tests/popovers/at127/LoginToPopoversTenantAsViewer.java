@@ -22,6 +22,10 @@ public class LoginToPopoversTenantAsViewer
 {
     private static Logger logger = Logger.getLogger(LoginToPopoversTenantAsViewer.class);
 
+    private String host = "imap.gmail.com";
+    private String username = "arthur.khasanov@parleypro.com";
+    private String password = "ParGd881";
+
     @Test(priority = 1)
     public void loginToDashboard()
     {
@@ -43,17 +47,48 @@ public class LoginToPopoversTenantAsViewer
     {
         new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("POP ctr");
 
-        // ~~~PP start~~~
+        // ~~~PP(CCN) start~~~
         logger.info("Hover over PP icon and check that Message button is available...");
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true}); ");
         jsCode.append("$('.header-users span:contains(\"PP\")')[0].dispatchEvent(event);");
         Selenide.executeJavaScript(jsCode.toString());
 
-        // TODO: after fixing of PAR-14184
-        //$(".rc-tooltip-inner button").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("MESSAGE")).shouldBe(Condition.enabled);
-        //Screenshoter.makeScreenshot();
+        $(".rc-tooltip-inner button").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("MESSAGE")).shouldBe(Condition.enabled);
+        Screenshoter.makeScreenshot();
 
-        // TODO...
+        // Sending message
+        $(".rc-tooltip-inner button").click();
+        new SendMessage("POP CCN fn POP CCN ln").setMessage("Message from Viewer to CCN").clickSend();
+        $(".notification-stack").waitUntil(Condition.appear, 10_000).shouldHave(Condition.exactText("Message has been successfully sent"));
+        $(".notification-stack").waitUntil(Condition.disappear, 20_000);
+
+        logger.info("Waiting for 45 seconds to make sure that email has been delivered...");
+        Thread.sleep(45_000);
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"POP ctr\": new message"),
+                "Email with subject: Contract \"POP ctr\": new message was not found !!!");
+        EmailChecker.assertEmailBodyText("*Message:* Message from Viewer to CCN");
+        // ~~~~~~~~~~~~~~~~~~~
+
+        // ~~~AL(my team member) start~~~
+        logger.info("Hover over VL icon and check that Message button is available...");
+        jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true}); ");
+        jsCode.append("$('.header-users span:contains(\"AL\")')[0].dispatchEvent(event);");
+        Selenide.executeJavaScript(jsCode.toString());
+
+        $(".rc-tooltip-inner button").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("MESSAGE")).shouldBe(Condition.enabled);
+        Screenshoter.makeScreenshot();
+
+        // Sending message
+        $(".rc-tooltip-inner button").click();
+        new SendMessage("autotest_cn fn ln").setMessage("Message from Viewer to AL").clickSend();
+        $(".notification-stack").waitUntil(Condition.appear, 10_000).shouldHave(Condition.exactText("Message has been successfully sent"));
+        $(".notification-stack").waitUntil(Condition.disappear, 20_000);
+
+        logger.info("Waiting for 45 seconds to make sure that email has been delivered...");
+        Thread.sleep(45_000);
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"POP ctr\": new message"),
+                "Email with subject: Contract \"POP ctr\": new message was not found !!!");
+        EmailChecker.assertEmailBodyText("*Message:* Message from Viewer to AL");
         // ~~~~~~~~~~~~~~~~~~~
     }
 }
