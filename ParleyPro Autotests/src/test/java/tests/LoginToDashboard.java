@@ -24,6 +24,7 @@ public class LoginToDashboard
     @BeforeSuite
     private void setup()
     {
+        // test
         Configuration.proxyEnabled   = true;
         Configuration.fileDownload   = FileDownloadMode.PROXY;
         Configuration.startMaximized = true;
