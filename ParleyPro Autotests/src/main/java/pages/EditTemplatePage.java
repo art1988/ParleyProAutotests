@@ -62,6 +62,15 @@ public class EditTemplatePage
     }
 
     /**
+     * Gets the title of template
+     * @return
+     */
+    public String getTitle()
+    {
+        return $(".editor-popup__head .rename").getText();
+    }
+
+    /**
      * Gets whole text ( as plain text ) from opened editor.
      * @return
      */
