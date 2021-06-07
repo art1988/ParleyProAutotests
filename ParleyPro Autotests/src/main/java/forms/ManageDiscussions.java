@@ -77,7 +77,7 @@ public class ManageDiscussions
 
     public void clickDone()
     {
-        doneButton.click();
+        doneButton.waitUntil(Condition.visible, 10_000).waitUntil(Condition.enabled, 10_000).click();
 
         logger.info("DONE was clicked");
 
@@ -111,6 +111,8 @@ public class ManageDiscussions
         makeExternalButton.click();
 
         logger.info("MAKE EXTERNAL button was clicked");
+
+        $(".spinner").waitUntil(Condition.disappear, 20_000);
 
         return this;
     }
