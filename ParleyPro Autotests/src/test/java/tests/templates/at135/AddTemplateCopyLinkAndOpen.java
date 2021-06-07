@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -27,7 +28,8 @@ public class AddTemplateCopyLinkAndOpen
     private static Logger logger = Logger.getLogger(AddTemplateCopyLinkAndOpen.class);
 
     @Test(priority = 1)
-    public void addTemplate() throws InterruptedException
+    @Description("This test opens template, copy URL and opens that URL in the new tab and verifies that template is the same.")
+    public void addTemplateCopyURLAndOpenInNewTab()
     {
         TemplatesPage templatesPage = new DashboardPage().getSideBar()
                                                          .clickTemplates(true)

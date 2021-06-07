@@ -85,7 +85,7 @@ public class Screenshoter
             logger.error(e.getMessage(), e);
         }
 
-        logger.info("Screenshot of whole window was captured");
+        logger.info("Screenshot of whole screen was captured");
 
         return result;
     }
