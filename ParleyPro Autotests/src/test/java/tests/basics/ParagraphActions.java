@@ -327,6 +327,7 @@ public class ParagraphActions
 
         String addedTag = "Autotest TAG";
         openedDiscussion.setNonStandardTerm(addedTag);
+        Thread.sleep(5_000);
 
         logger.info("Check that paragraph has tag from the left...");
         $(".tumbler.checked.tumbler_xsmall_yes.as_icon.label_term").waitUntil(Condition.appear, 15_000);
