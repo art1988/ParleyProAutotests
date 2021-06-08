@@ -14,6 +14,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
+import pages.OpenedContract;
 import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -67,6 +68,7 @@ public class LoginToPopoversTenantAsMyTeamCN
     public void checkTooltipsOverUserIconsAndSendMessages() throws InterruptedException
     {
         new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("POP ctr");
+        new OpenedContract();
 
         // ~~~ CCN start (PP) ~~~
         logger.info("Hover over PP icon and check that Message button is available...");
