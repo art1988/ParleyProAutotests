@@ -51,13 +51,13 @@ public class LoginToPopoversTenantAsCCN
     }
 
     @Test(priority = 2)
-    @Description("Under [Counterparty CN] user this test hovers over user icons and checks that MESSAGE button is present. Sends message and verify that email has been received.")
+    @Description("Under [Counterparty CN] user (PP) this test hovers over user icons and checks that MESSAGE button is present. Sends message and verify that email has been received.")
     public void checkTooltipsOverUserIconsAndSendMessages() throws InterruptedException
     {
         dashboardPage.getSideBar().clickInProgressContracts(false).selectContract("POP ctr");
         new OpenedContract();
 
-        // ~~~AL start~~~
+        // ~~~ AL start (AL) ~~~
         logger.info("Hover over AL icon and check that Message button is available...");
         StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true}); ");
         jsCode.append("$('.header-users span:contains(\"AL\")')[0].dispatchEvent(event);");
@@ -71,15 +71,15 @@ public class LoginToPopoversTenantAsCCN
         $(".notification-stack").waitUntil(Condition.appear, 10_000).shouldHave(Condition.exactText("Message has been successfully sent"));
         $(".notification-stack").waitUntil(Condition.disappear, 20_000);
 
-        logger.info("Waiting for 45 seconds to make sure that email has been delivered...");
-        Thread.sleep(45_000);
+        logger.info("Waiting for 50 seconds to make sure that email has been delivered...");
+        Thread.sleep(50_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"POP ctr\": new message"),
                 "Email with subject: Contract \"POP ctr\": new message was not found !!!");
         EmailChecker.assertEmailBodyText("*Message:* Message to MyTeamCN");
         // ~~~~~~~~~~~~~~~~~~~
 
 
-        // ~~~CC start~~~
+        // ~~~ CC start (CC) ~~~
         logger.info("Hover over CC icon and check that Message button is available...");
         jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true}); ");
         jsCode.append("$('.header-users span:contains(\"CC\")')[0].dispatchEvent(event);");
@@ -93,8 +93,8 @@ public class LoginToPopoversTenantAsCCN
         $(".notification-stack").waitUntil(Condition.appear, 10_000).shouldHave(Condition.exactText("Message has been successfully sent"));
         $(".notification-stack").waitUntil(Condition.disappear, 20_000);
 
-        logger.info("Waiting for 45 seconds to make sure that email has been delivered...");
-        Thread.sleep(45_000);
+        logger.info("Waiting for 50 seconds to make sure that email has been delivered...");
+        Thread.sleep(50_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"POP ctr\": new message"),
                 "Email with subject: Contract \"POP ctr\": new message was not found !!!");
         EmailChecker.assertEmailBodyText("*Message:* Message to CCN #2");

@@ -7,6 +7,7 @@
             <class name="tests.popovers.at127.LoginToPopoversTenantAsMyTeamCN"/>
             <class name="tests.popovers.at127.LoginToPopoversTenantAsCCN"/>
             <class name="tests.popovers.at127.LoginToPopoversTenantAsViewer"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
