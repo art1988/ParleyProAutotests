@@ -27,6 +27,7 @@ public class LoginToDashboard
         Configuration.proxyEnabled   = true;
         Configuration.fileDownload   = FileDownloadMode.PROXY;
         Configuration.startMaximized = true;
+        Configuration.timeout = 10_000;
         Configuration.browserCapabilities.setCapability("acceptInsecureCerts", true);
         //Configuration.headless = true; //headless off
 
