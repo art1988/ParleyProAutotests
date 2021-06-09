@@ -142,8 +142,8 @@ public class OpenedDiscussion
         WebElement makeQueuedButton = Selenide.executeJavaScript("return $('.documents-discussion-panel .discussion2-post .discussion2-post__text:contains(\"" + textInPost + "\")').parent().parent().find(\".queued-post\")[0]");
         $(makeQueuedButton).shouldBe(Condition.enabled).click();
 
-        $(".spinner").waitUntil(Condition.appear, 10_000);
-        $(".spinner").waitUntil(Condition.disappear, 20_000);
+        $(".spinner").waitUntil(Condition.appear, 20_000);
+        $(".spinner").waitUntil(Condition.disappear, 40_000);
 
         logger.info("MAKE QUEUED was clicked");
     }
