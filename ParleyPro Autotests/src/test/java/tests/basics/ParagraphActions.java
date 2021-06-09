@@ -21,6 +21,9 @@ import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ ScreenShotOnFailListener.class})
@@ -325,7 +328,7 @@ public class ParagraphActions
         boolean hasHighPriorityMark = Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_priority\").length === 1");
         Assert.assertTrue(hasHighPriorityMark, "Looks like that high priority mark wasn't added !!!");
 
-        String addedTag = "Autotest TAG";
+        String addedTag = "Autotest TAG: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
         openedDiscussion.setNonStandardTerm(addedTag);
 
         logger.info("Check that paragraph has tag from the left...");
