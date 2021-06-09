@@ -48,7 +48,8 @@ public class ContractInformation
      */
     public ContractInformation(boolean openedViaContractInfo)
     {
-        $(".spinner").waitUntil(Condition.disappear, 30_000);
+        $(".spinner").waitUntil(Condition.disappear, 30_000); // General spinner
+        $(".Select-loading").waitUntil(Condition.disappear, 15_000); // this spinner appears inside 'Counterparty organization' input
 
         try
         {
@@ -172,6 +173,8 @@ public class ContractInformation
 
     public String getCounterpartyOrganization()
     {
+        $(".Select-loading").waitUntil(Condition.disappear, 15_000);
+
         return Selenide.executeJavaScript("return $('#counterpartyOrganization').parent().prev().text()");
     }
 
