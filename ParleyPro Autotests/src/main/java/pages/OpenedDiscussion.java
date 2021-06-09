@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * Represents right sidebar that appears after clicking by discussions icon
@@ -73,7 +74,7 @@ public class OpenedDiscussion
      * Click by "Non-standard term" button and sets tag ( via hitting enter button )
      * @param tag - tag that will be added
      */
-    public void setNonStandardTerm(String tag)
+    public void setNonStandardTerm(String tag) throws InterruptedException
     {
         termButton.waitUntil(Condition.visible, 10_000)
                   .waitUntil(Condition.enabled, 10_000)
@@ -88,7 +89,9 @@ public class OpenedDiscussion
 
         // Wait until popup with added tag is visible
         $("#react-autowhatever-1").waitUntil(Condition.visible, 5_000);
-        termInput.pressEnter();
+        Thread.sleep(1_000);
+        $$("#react-autowhatever-1 li").first().click();
+        //termInput.pressEnter(); commented due to PAR-14310
         $(".spinner").waitUntil(Condition.disappear, 10_000);
     }
 
