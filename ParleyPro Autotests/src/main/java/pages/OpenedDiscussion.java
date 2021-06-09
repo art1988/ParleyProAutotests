@@ -75,11 +75,16 @@ public class OpenedDiscussion
      */
     public void setNonStandardTerm(String tag)
     {
-        termButton.waitUntil(Condition.visible, 10_000).shouldBe(Condition.enabled).click();
+        termButton.waitUntil(Condition.visible, 10_000)
+                  .waitUntil(Condition.enabled, 10_000)
+                  .click();
 
         logger.info("Non-standard term button was clicked");
 
-        termInput.waitUntil(Condition.visible, 10_000).shouldBe(Condition.enabled).sendKeys(tag);
+        $(".select__loading").waitUntil(Condition.disappear, 7_000); // wait until inner spinner of input will disappear
+        termInput.shouldBe(Condition.visible)
+                 .shouldBe(Condition.enabled)
+                 .sendKeys(tag);
 
         // Wait until popup with added tag is visible
         $("#react-autowhatever-1").waitUntil(Condition.visible, 5_000);
