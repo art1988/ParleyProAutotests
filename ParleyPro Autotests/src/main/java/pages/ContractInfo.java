@@ -26,6 +26,9 @@ public class ContractInfo
         $(".documents-contract-edit__body .spinner").waitUntil(Condition.disappear, 15_000);
     }
 
+    /**
+     * Always sets today
+     */
     public void setSignatureDate()
     {
         Selenide.executeJavaScript("$('.input__label span:contains(\"Signature date\")').parent().parent().find(\"input\").click()");
@@ -34,11 +37,24 @@ public class ContractInfo
         Selenide.executeJavaScript("$('.react-datepicker__day--today').click()");
     }
 
+    public void setSignatureDate(String date)
+    {
+        WebElement signatureDateInput = Selenide.executeJavaScript("return $('label:contains(\"Signature date\")').parent().find(\"input\")[0]");
+
+        signatureDateInput.sendKeys(date);
+        $(signatureDateInput).pressEnter(); // to close date picker popup
+
+        logger.info("The following Signature date was set: " + date);
+    }
+
     public String getSignatureDate()
     {
         return Selenide.executeJavaScript("return $('label:contains(\"Signature date\")').parent().find(\".js-duedate\").val()");
     }
 
+    /**
+     * Always sets today
+     */
     public void setEffectiveDate()
     {
         Selenide.executeJavaScript("$('.input__label span:contains(\"Effective date\")').parent().parent().find(\"input\").click()");
@@ -47,9 +63,29 @@ public class ContractInfo
         Selenide.executeJavaScript("$('.react-datepicker__day--today').click()");
     }
 
+    public void setEffectiveDate(String date)
+    {
+        WebElement effectiveDateInput = Selenide.executeJavaScript("return $('label:contains(\"Effective date\")').parent().find(\"input\")[0]");
+
+        effectiveDateInput.sendKeys(date);
+        $(effectiveDateInput).pressEnter(); // to close date picker popup
+
+        logger.info("The following Effective date was set: " + date);
+    }
+
     public String getEffectiveDate()
     {
         return Selenide.executeJavaScript("return $('label:contains(\"Effective date\")').parent().find(\".js-duedate\").val()");
+    }
+
+    public void setExpirationDate(String date)
+    {
+        WebElement expirationDateInput = Selenide.executeJavaScript("return $('label:contains(\"Expiration date\")').parent().find(\"input\")[0]");
+
+        expirationDateInput.sendKeys(date);
+        $(expirationDateInput).pressEnter(); // to close date picker popup
+
+        logger.info("The following Expiration date was set: " + date);
     }
 
     public void setInitialTerm(String initialTermVal)
