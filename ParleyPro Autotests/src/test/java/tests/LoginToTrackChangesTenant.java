@@ -1,4 +1,4 @@
-package tests.regression.at110;
+package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
