@@ -130,6 +130,36 @@ public class CKEditorActive
     }
 
     /**
+     * More delicate method that allows to send array of specific keys inside active editor_instance of active CKEditor.
+     * For example, need to place cursor at the beginning of a line, then press DEL key x3 times, type "abc" character by character and so on.
+     * @param keys the array of Keys that will be send
+     * @return
+     * @throws InterruptedException
+     */
+    public CKEditorActive sendSpecificKeys( CharSequence keys[] ) throws InterruptedException
+    {
+        Waiter.smartWaitUntilVisible("$('.editor-area').eq(1)");
+
+        Thread.sleep(1_000);
+
+        StringBuffer jsCode = new StringBuffer("var names = [];");
+        jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
+        jsCode.append("var editor_instance = names[0];");
+        jsCode.append("return $(editor_instance.element.$).next().find(\"div[contenteditable='true']\")[0]"); // get exact <div> of editable area
+
+        WebElement editorArea = Selenide.executeJavaScript(jsCode.toString());
+
+        for( int keyIndex = 0; keyIndex < keys.length; keyIndex++ )
+        {
+            $(editorArea).sendKeys( keys[keyIndex] ); Thread.sleep(100);
+        }
+
+        Thread.sleep(1_000);
+
+        return this;
+    }
+
+    /**
      * Click by Internal radio button
      */
     public CKEditorActive selectInternal()
