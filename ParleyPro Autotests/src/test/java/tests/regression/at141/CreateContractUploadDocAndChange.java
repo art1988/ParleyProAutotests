@@ -1,0 +1,54 @@
+package tests.regression.at141;
+
+import com.codeborne.selenide.Condition;
+import constants.Const;
+import forms.ContractInNegotiation;
+import forms.ContractInformation;
+import org.openqa.selenium.Keys;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+import pages.AddDocuments;
+import pages.InProgressContractsPage;
+import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
+
+import static com.codeborne.selenide.Selenide.$;
+
+@Listeners({ScreenShotOnFailListener.class})
+public class CreateContractUploadDocAndChange
+{
+    @Test(priority = 1)
+    public void createContractAndUploadDoc()
+    {
+        ContractInformation contractInformation = new InProgressContractsPage(false).clickNewContractButton();
+
+        contractInformation.setContractTitle("AT-141 - changes not tracked");
+        contractInformation.clickSave();
+
+        new AddDocuments().clickUploadCounterpartyDocuments( Const.REGRESSION_DOC_AT141 );
+
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.exactText("Document dummyAT141 has been successfully uploaded."));
+        $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+
+        new ContractInNegotiation("AT-141 - changes not tracked").clickOk();
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 2)
+    public void makeChangesAndCheckRedlines() throws InterruptedException
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        openedContract.clickByParagraph("This is dummy PDF")
+                      .sendSpecificKeys(new CharSequence[]{Keys.HOME, "asdf", Keys.DELETE, Keys.DELETE, Keys.DELETE, Keys.DELETE})
+                      .clickPost();
+
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion "));
+        $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+
+        // TODO: continue after fixing of PAR-14319
+        // ...
+    }
+}
