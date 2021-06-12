@@ -109,7 +109,7 @@
 
     <test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
         <classes>
-            <class name="tests.regression.at110.LoginToTrackChangesTenant"/>
+            <class name="tests.LoginToTrackChangesTenant"/>
             <class name="tests.regression.at110.CreateContractAndUploadCPDocument"/>
             <class name="tests.regression.at110.MakeExternalAndUploadDocsV2V3V4"/>
             <class name="tests.regression.at110.CleanUp"/>
@@ -138,4 +138,15 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <!--
+    <test name="AT-141: Changes not tracked" preserve-order="true">
+        <parameter name="contractName" value="AT-141 - changes not tracked"/>
+        <classes>
+            <class name="tests.LoginToTrackChangesTenant"/>
+            <class name="tests.regression.at141.CreateContractUploadDocAndChange"/>
+
+        </classes>
+    </test>
+    -->
 </suite>
