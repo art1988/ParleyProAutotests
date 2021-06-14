@@ -25,6 +25,15 @@ public class CKEditorActive
 
         $$(".editor-area").first().waitUntil(Condition.visible, 15_000).waitUntil(Condition.enabled, 15_000);
         $$(".editor-area").last().waitUntil(Condition.visible, 15_000).waitUntil(Condition.enabled, 15_000);
+
+        try
+        {
+            Thread.sleep(1_000);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**
