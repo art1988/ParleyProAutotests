@@ -3,6 +3,7 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import constants.Const;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
@@ -29,7 +30,7 @@ public class LoginToDashboard
         Configuration.timeout = 10_000;
 
         Configuration.browserCapabilities.setCapability("acceptInsecureCerts", true);
-        System.setProperty("chromeoptions.args", "--no-sandbox");
+        WebDriverManager.chromedriver().driverVersion("91").setup();
         //Configuration.headless = true; //headless off
 
         Const.DOWNLOAD_DIR.mkdirs();
