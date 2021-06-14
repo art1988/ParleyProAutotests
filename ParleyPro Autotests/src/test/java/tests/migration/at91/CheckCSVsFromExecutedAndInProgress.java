@@ -33,7 +33,6 @@ public class CheckCSVsFromExecutedAndInProgress
                 "executed-metadata.csv wasn't downloaded !");
         Assert.assertTrue(executedMetadataCSV.getName().endsWith(".csv"), "Looks like that extension is not csv !");
 
-        /*
         try
         {
             logger.info("Comparing CVS's from Executed contracts page...");
@@ -44,7 +43,6 @@ public class CheckCSVsFromExecutedAndInProgress
         {
             logger.error("IOException: unable to read CSV file", e);
         }
-         */
     }
 
     @Test(priority = 2)
@@ -58,7 +56,6 @@ public class CheckCSVsFromExecutedAndInProgress
                 "active-metadata.csv wasn't downloaded !");
         Assert.assertTrue(activeMetadataCSV.getName().endsWith(".csv"), "Looks like that extension is not csv !");
 
-        /*
         try
         {
             logger.info("Comparing CVS's from In-progress contracts page...");
@@ -69,7 +66,6 @@ public class CheckCSVsFromExecutedAndInProgress
         {
             logger.error("IOException: unable to read CSV file", e);
         }
-         */
     }
 
     private boolean isCSVTheSame(Path downloaded, Path original) throws IOException
