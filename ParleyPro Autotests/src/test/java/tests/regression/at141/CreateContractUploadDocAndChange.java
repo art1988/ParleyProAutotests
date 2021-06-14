@@ -48,7 +48,8 @@ public class CreateContractUploadDocAndChange
         OpenedContract openedContract = new OpenedContract();
 
         openedContract.clickByParagraph("This is dummy PDF")
-                      .sendSpecificKeys(new CharSequence[]{Keys.HOME, "HELLO ABC"})
+                      //.sendSpecificKeys(new CharSequence[]{Keys.HOME, "HELLO ABC"})
+                      .setText("HELLO ABC 2 - at the end ?")
                       .clickPost();
 
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion "));
