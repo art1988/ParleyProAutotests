@@ -30,7 +30,6 @@ public class LoginToDashboard
         Configuration.timeout = 10_000;
 
         Configuration.browserCapabilities.setCapability("acceptInsecureCerts", true);
-        WebDriverManager.chromedriver().driverVersion("91").setup();
         //Configuration.headless = true; //headless off
 
         Const.DOWNLOAD_DIR.mkdirs();
