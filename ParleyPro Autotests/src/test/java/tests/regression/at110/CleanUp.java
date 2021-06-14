@@ -22,7 +22,7 @@ public class CleanUp
                             .clickDeleteContract()
                             .clickDelete();
 
-        $(".notification-stack").waitUntil(Condition.appear, 6_000).shouldHave(Condition.exactText("Contract Track changes AT-110 has been deleted."));
+        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.exactText("Contract Track changes AT-110 has been deleted."));
         $(".notification-stack").waitUntil(Condition.disappear, 25_000);
     }
 }
