@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Regression" configfailurepolicy="continue">
-    <!--
     <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
@@ -138,8 +137,7 @@
             <class name="tests.regression.at123.RemoveContracts"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
-
+    </test>
 
     <test name="AT-141: Changes not tracked" preserve-order="true">
         <classes>
