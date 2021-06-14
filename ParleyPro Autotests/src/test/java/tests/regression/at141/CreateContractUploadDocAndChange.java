@@ -48,18 +48,17 @@ public class CreateContractUploadDocAndChange
         OpenedContract openedContract = new OpenedContract();
 
         openedContract.clickByParagraph("This is dummy PDF")
-                      .sendSpecificKeys(new CharSequence[]{Keys.LEFT, Keys.LEFT, Keys.LEFT, Keys.LEFT, "HELLO left 123"})
+                      .sendSpecificKeys(new CharSequence[]{Keys.HOME, "asdf", Keys.DELETE, Keys.DELETE, Keys.DELETE, Keys.DELETE})
                       .clickPost();
 
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion "));
         $(".notification-stack").waitUntil(Condition.disappear, 25_000);
 
-        /*
         logger.info("Assert that 'asdf' was added and 'This' was deleted...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"dummy PDF\")').find(\"ins\").text()"),
                 "asdf", "Looks like that 'asdf' wasn't added !!!");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"dummy PDF\")').find(\"del\").text()"),
-                "This", "Looks like that 'This' wasn't deleted !!!");*/
+                "This", "Looks like that 'This' wasn't deleted !!!");
 
         Screenshoter.makeScreenshot();
     }
