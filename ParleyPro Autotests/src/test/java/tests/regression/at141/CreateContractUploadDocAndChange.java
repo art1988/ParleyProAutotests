@@ -34,8 +34,8 @@ public class CreateContractUploadDocAndChange
 
         new AddDocuments().clickUploadCounterpartyDocuments( Const.REGRESSION_DOC_AT141 );
 
-        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.exactText("Document dummyAT141 has been successfully uploaded."));
-        $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+        $(".notification-stack").waitUntil(Condition.appear, 25_000).shouldHave(Condition.exactText("Document dummyAT141 has been successfully uploaded."));
+        $(".notification-stack").waitUntil(Condition.disappear, 35_000);
 
         new ContractInNegotiation("AT-141 - changes not tracked").clickOk();
 
