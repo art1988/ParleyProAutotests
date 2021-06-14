@@ -151,7 +151,7 @@ public class CKEditorActive
 
         for( int keyIndex = 0; keyIndex < keys.length; keyIndex++ )
         {
-            $(editorArea).sendKeys( keys[keyIndex] ); Thread.sleep(100);
+            $(editorArea).sendKeys( keys[keyIndex] ); Thread.sleep(1_000);
         }
 
         Thread.sleep(1_000);
