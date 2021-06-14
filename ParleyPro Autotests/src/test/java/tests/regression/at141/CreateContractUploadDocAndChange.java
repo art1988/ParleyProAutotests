@@ -48,7 +48,11 @@ public class CreateContractUploadDocAndChange
         OpenedContract openedContract = new OpenedContract();
 
         openedContract.clickByParagraph("This is dummy PDF")
-                      .sendSpecificKeys(new CharSequence[]{Keys.ARROW_UP, "asdf", Keys.DELETE, Keys.DELETE, Keys.DELETE, Keys.DELETE})
+                      .sendSpecificKeys(new CharSequence[]{Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT,
+                              Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT,
+                              Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT,
+                              Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT,
+                              Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, Keys.ARROW_LEFT, "asdf", Keys.DELETE, Keys.DELETE, Keys.DELETE, Keys.DELETE})
                       .clickPost();
 
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion "));
