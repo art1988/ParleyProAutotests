@@ -1,10 +1,9 @@
 package tests;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.FileDownloadMode;
 import constants.Const;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.remote.CapabilityType;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -28,7 +27,9 @@ public class LoginToDashboard
         Configuration.fileDownload   = FileDownloadMode.PROXY;
         Configuration.startMaximized = true;
         Configuration.timeout = 10_000;
+
         Configuration.browserCapabilities.setCapability("acceptInsecureCerts", true);
+        System.setProperty("chromeoptions.args", "--no-sandbox");
         //Configuration.headless = true; //headless off
 
         Const.DOWNLOAD_DIR.mkdirs();
