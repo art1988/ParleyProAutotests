@@ -29,6 +29,8 @@ public class LoginToDashboard
         Configuration.startMaximized = true;
         Configuration.timeout = 10_000;
 
+        WebDriverManager.chromedriver().driverVersion("91").setup();
+        System.setProperty("chromeoptions.args", "--no-sandbox");
         Configuration.browserCapabilities.setCapability("acceptInsecureCerts", true);
         //Configuration.headless = true; //headless off
 
