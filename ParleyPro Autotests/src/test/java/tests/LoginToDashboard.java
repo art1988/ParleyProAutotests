@@ -26,12 +26,10 @@ public class LoginToDashboard
     {
         Configuration.proxyEnabled   = true;
         Configuration.fileDownload   = FileDownloadMode.PROXY;
-        Configuration.startMaximized = true;
+        Configuration.browserSize = "1920x1080";
         Configuration.timeout = 10_000;
 
         WebDriverManager.chromedriver().driverVersion("91").setup();
-        System.setProperty("chromeoptions.args", "--no-sandbox");
-        Configuration.browserCapabilities.setCapability("acceptInsecureCerts", true);
         //Configuration.headless = true; //headless off
 
         Const.DOWNLOAD_DIR.mkdirs();
