@@ -19,7 +19,54 @@ jobs:
           name: Update chromedriver
           command: cd; wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo apt install ./google-chrome-stable_current_amd64.deb; sudo rm -f /usr/local/bin/chromedriver; wget https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv ./chromedriver /usr/local/bin/; chromedriver -v
       
+      - run:
+          name: Run Numbered lists suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/NumberedLists.xml
 
+      - run: sleep 10  
+
+      - run:
+          name: Run Basics suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          
+      - run: sleep 10
+          
+      - run:
+          name: Run ApprovalWorkflow suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ApprovalWorkflow.xml
+          
+      - run: sleep 10
+      
+      - run: 
+          name: Run ContractRoutingWorkflow suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractRoutingWorkflow.xml
+      
+      - run: sleep 10
+      
+      - run:
+          name: Run Classic suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
+      
+      - run: sleep 10
+      
+      - run:
+          name: Run Formatting suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Formatting.xml
+      
+      - run: sleep 10
+      
+      - run:
+          name: Run Templates suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Templates.xml
+      
+      - run: sleep 10
       
       - run:
           name: Run Fields suite
