@@ -30,6 +30,7 @@ public class LoginToDashboard
         Configuration.timeout = 10_000;
 
         WebDriverManager.chromedriver().driverVersion("91").setup();
+        System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\"");
         //Configuration.headless = true; //headless off
 
         Const.DOWNLOAD_DIR.mkdirs();
