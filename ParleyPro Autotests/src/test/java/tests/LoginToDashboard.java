@@ -31,7 +31,6 @@ public class LoginToDashboard
 
         WebDriverManager.chromedriver().driverVersion("91").setup();
         System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\",\"--remote-debugging-port=9222\"");
-        Configuration.headless = true;
 
         Const.DOWNLOAD_DIR.mkdirs();
         Const.SCREENSHOTS_DIR.mkdirs();
