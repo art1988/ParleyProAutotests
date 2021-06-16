@@ -3,6 +3,7 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import constants.Const;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
@@ -24,7 +25,11 @@ public class LoginToTrackChangesTenant
     {
         Configuration.proxyEnabled   = true;
         Configuration.fileDownload   = FileDownloadMode.PROXY;
-        Configuration.startMaximized = true;
+        Configuration.browserSize = "1920x1080";
+        Configuration.timeout = 10_000;
+
+        WebDriverManager.chromedriver().driverVersion("91").setup();
+        System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\",\"--remote-debugging-port=9222\"");
 
         Const.DOWNLOAD_DIR.mkdirs();
         Const.SCREENSHOTS_DIR.mkdirs();
