@@ -19,7 +19,9 @@ jobs:
           name: Update chromedriver
           command: cd; wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo apt install ./google-chrome-stable_current_amd64.deb; sudo rm -f /usr/local/bin/chromedriver; wget https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv ./chromedriver /usr/local/bin/; chromedriver -v
       
-     
+      - run:
+          name: Start Xvfb
+          command: kill -s 9 `pidof Xvfb`; Xvfb :99 -ac -screen 0 1920x1080x24 &
       
       - run:
           name: Run Formatting suite
