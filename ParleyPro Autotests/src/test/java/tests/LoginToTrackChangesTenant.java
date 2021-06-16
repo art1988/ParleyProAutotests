@@ -28,9 +28,6 @@ public class LoginToTrackChangesTenant
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 10_000;
 
-        WebDriverManager.chromedriver().driverVersion("86").setup();
-        System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\",\"--remote-debugging-port=9222\"");
-
         Const.DOWNLOAD_DIR.mkdirs();
         Const.SCREENSHOTS_DIR.mkdirs();
 
