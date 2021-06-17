@@ -104,6 +104,10 @@ public class CreateContractAndAddDocsFromBundle
 
             $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("has been deleted"));
             $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+
+            new DashboardPage().getSideBar()
+                               .clickInProgressContracts(false)
+                               .selectContract("Unmatched settings for bundle");
         }
 
         Screenshoter.makeScreenshot();
