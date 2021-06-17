@@ -196,7 +196,11 @@ public class ContractInformation
 
     public void setContractingCountry(String country)
     {
-        contractingCountryField.setValue(country);
+        // expand dropdown by clicking triangle
+        Selenide.executeJavaScript("$('#contractingCountry').parent().parent().find(\".select__arrow\")[0].click()");
+
+        // Set value
+        Selenide.executeJavaScript("$('#contractingCountry').parent().parent().find(\"#react-autowhatever-1\").find(\"span:contains('" + country + "')\").click()");
     }
 
     public String getContractingCountry()
