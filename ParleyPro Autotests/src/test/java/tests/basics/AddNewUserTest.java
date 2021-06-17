@@ -57,7 +57,7 @@ public class AddNewUserTest
         Assert.assertEquals(addNewUserForm.getFirstName(), newUser.getFirstName());
         Assert.assertEquals(addNewUserForm.getLastName(), newUser.getLastName());
         Assert.assertEquals(addNewUserForm.getEmail(), newUser.getEmail());
-        Assert.assertTrue(addNewUserForm.getRoles().contains("Requester"));
+        Assert.assertTrue(addNewUserForm.getRole().equals("Requester"));
 
         Screenshoter.makeScreenshot();
 

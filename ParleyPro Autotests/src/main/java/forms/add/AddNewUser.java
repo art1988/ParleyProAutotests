@@ -100,16 +100,15 @@ public class AddNewUser
      */
     public void setRole(String roleName)
     {
-        $(".select.is_empty input").sendKeys(roleName);
+        WebElement input = Selenide.executeJavaScript("return $('.Select-placeholder').parent().find(\".Select-input input\")[0]");
+
+        $(input).sendKeys(roleName);
+        $(input).pressEnter();
     }
 
-    public ArrayList getRoles()
+    public String getRole()
     {
-        StringBuffer jsCode = new StringBuffer("var ar = $('.user-edit-roles__role.ui-td input'); ");
-        jsCode.append("var vals = ar.map(function(){ return $(this).val(); }).get(); ");
-        jsCode.append("return vals; ");
-
-        return Selenide.executeJavaScript(jsCode.toString());
+        return $(".Select-value").text();
     }
 
     /**
