@@ -29,6 +29,8 @@ public class LoginToDashboard
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 10_000;
 
+        System.setProperty( "chromeoptions.args", "--no-sandbox --disable-dev-shm-usage" );
+
         Const.DOWNLOAD_DIR.mkdirs();
         Const.SCREENSHOTS_DIR.mkdirs();
 
