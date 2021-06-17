@@ -42,7 +42,7 @@ public class LoginToDashboard
         {
             try
             {
-                open(Const.RC_TENANT_URL);
+                open(Const.QA_TENANT_URL);
                 break;
             }
             catch(WebDriverException e)
