@@ -3,8 +3,8 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import constants.Const;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -18,6 +18,7 @@ import static com.codeborne.selenide.Selenide.open;
 @Listeners({ScreenShotOnFailListener.class})
 public class LoginToTrackChangesTenant
 {
+    private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToTrackChangesTenant.class);
 
     @BeforeTest
@@ -36,7 +37,36 @@ public class LoginToTrackChangesTenant
         Configuration.downloadsFolder = Const.DOWNLOAD_DIR.getAbsolutePath();
         Configuration.reportsFolder   = Const.SCREENSHOTS_DIR.getAbsolutePath();
 
-        open( Const.TRACK_CHANGES_TENANT_URL );
+        int retryCount = 0;
+        while(true)
+        {
+            try
+            {
+                open( Const.TRACK_CHANGES_TENANT_URL );
+                break;
+            }
+            catch(WebDriverException e)
+            {
+                if( retryCount > MAX_RETRY_COUNT )
+                {
+                    throw new RuntimeException("Too many retries...", e);
+                }
+
+                logger.warn("encountered exception : ", e);
+                logger.warn("Trying again...");
+
+                retryCount++;
+                try
+                {
+                    Thread.sleep(2_000);
+                }
+                catch (InterruptedException interruptedException)
+                {
+                    interruptedException.printStackTrace();
+                }
+                continue;
+            }
+        }
     }
 
     @Test

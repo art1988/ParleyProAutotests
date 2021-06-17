@@ -8,6 +8,7 @@ import constants.Const;
 import forms.SendMessage;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriverException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
@@ -25,6 +26,7 @@ import static com.codeborne.selenide.Selenide.open;
 @Listeners({ScreenShotOnFailListener.class})
 public class LoginToPopoversTenantAsMyTeamCN
 {
+    private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToPopoversTenantAsMyTeamCN.class);
 
     private String host = "imap.gmail.com";
@@ -45,7 +47,36 @@ public class LoginToPopoversTenantAsMyTeamCN
         Configuration.downloadsFolder = Const.DOWNLOAD_DIR.getAbsolutePath();
         Configuration.reportsFolder   = Const.SCREENSHOTS_DIR.getAbsolutePath();
 
-        open( Const.POPOVERS_TENANT_URL );
+        int retryCount = 0;
+        while(true)
+        {
+            try
+            {
+                open( Const.POPOVERS_TENANT_URL );
+                break;
+            }
+            catch(WebDriverException e)
+            {
+                if( retryCount > MAX_RETRY_COUNT )
+                {
+                    throw new RuntimeException("Too many retries...", e);
+                }
+
+                logger.warn("encountered exception : ", e);
+                logger.warn("Trying again...");
+
+                retryCount++;
+                try
+                {
+                    Thread.sleep(2_000);
+                }
+                catch (InterruptedException interruptedException)
+                {
+                    interruptedException.printStackTrace();
+                }
+                continue;
+            }
+        }
     }
 
     @Test(priority = 1)
