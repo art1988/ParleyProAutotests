@@ -31,8 +31,8 @@ public class ContractInformation
     private SelenideElement tagsField                  = $("#tags");
     private SelenideElement notesField                 = $("#notes");
 
-    private SelenideElement cancelButton = $(".btn.btn-common.btn-link.btn-link-pseudo");
-    private SelenideElement saveButton   = $(".button.btn.btn-common.btn-blue.btn.btn-default");
+    private SelenideElement cancelButton = $(".modal-content .btn.btn-common.btn-link.btn-link-pseudo");
+    private SelenideElement saveButton   = $(".modal-content .button.btn.btn-common.btn-blue.btn.btn-default");
 
 
     private static Logger logger = Logger.getLogger(ContractInformation.class);
@@ -65,7 +65,7 @@ public class ContractInformation
 
     private boolean isInit()
     {
-        $(".contract-create__title").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("Contract information"));
+        $(".contract-create__title").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract information"));
 
         // wait until spinner disappears - that will indicate that form is fully loaded
         $(".modal-content .spinner").waitUntil(Condition.disappear, 25_000);
@@ -183,6 +183,11 @@ public class ContractInformation
         cpChiefNegotiatorField.sendKeys(cpChiefNegotiator);
     }
 
+    public String getCounterpartyChiefNegotiator()
+    {
+        return $(".contract-create.modal-dialog #counterpartyChiefNegotiator").getValue();
+    }
+
     public void setContractingRegion(String region)
     {
         contractingRegionField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
@@ -259,7 +264,7 @@ public class ContractInformation
 
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('" + type + "')\").click()");
         $(".modal-content .spinner").waitUntil(Condition.disappear, 15_000);
-        $("input[data-id=\"contractType\"]").click(); // click by input to collapse dropdown
+        Selenide.executeJavaScript("$('input[data-id=\"contractType\"]').click()"); // click by input to collapse dropdown
     }
 
     /**
@@ -319,7 +324,7 @@ public class ContractInformation
      */
     public ElementsCollection getTags()
     {
-        return $$(".tags-input__tag");
+        return $$(".contract-create.modal-dialog .tags-input__tag, .tags-input__tag");
     }
 
     public void setNotes(String notes)
