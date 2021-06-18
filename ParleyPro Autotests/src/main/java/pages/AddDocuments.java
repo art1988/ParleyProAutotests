@@ -54,6 +54,11 @@ public class AddDocuments
         return true;
     }
 
+    public String getContractTitle()
+    {
+        return $(".contract-header__name").getText();
+    }
+
     public void clickUploadDocumentTab()
     {
         $(".js-upload-document-tab").waitUntil(Condition.visible, 7_000).click();
