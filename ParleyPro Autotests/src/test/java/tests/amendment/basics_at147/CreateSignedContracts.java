@@ -1,4 +1,4 @@
-package tests.amendment.basics;
+package tests.amendment.basics_at147;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -24,17 +24,22 @@ public class CreateSignedContracts
 
     @Test(priority = 1)
     @Description("This test creates executed contract. Post-execution tab is empty so that status become Signed.")
-    public void makeExecutedSigned()
+    public void makeExecutedSigned() throws InterruptedException
     {
         ContractInformation contractInformation = new DashboardPage().getSideBar().clickExecutedContracts(true).clickNewContractButton();
 
         contractInformation.setContractTitle("Executed Signed");
+        contractInformation.setContractValue("550000");
+        contractInformation.setCounterpartyOrganization("CounterpartyAT");
+        contractInformation.setCounterpartyChiefNegotiator("arthur.khasanov+cpat@parleypro.com");
         contractInformation.setContractingRegion("region1");
         contractInformation.setContractingCountry("country1");
         contractInformation.setContractEntity("entity1");
         contractInformation.setContractingDepartment("department1");
         contractInformation.setContractCategory("category1");
         contractInformation.setContractType("type1");
+        contractInformation.setTag("Tag_for_AMENDMENT");
+        contractInformation.setNotes("Notes for amendment...");
         contractInformation.clickSave();
 
         new AddDocuments().clickUploadExecutedDocuments( Const.DOCUMENT_DISCUSSIONS_SAMPLE );
