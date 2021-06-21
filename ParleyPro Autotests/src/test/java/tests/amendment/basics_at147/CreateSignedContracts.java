@@ -52,17 +52,22 @@ public class CreateSignedContracts
 
     @Test(priority = 2)
     @Description("This test creates Signed contract and fills Post-execution tab so that status become Managed.")
-    public void makeExecutedManaged()
+    public void makeExecutedManaged() throws InterruptedException
     {
         ContractInformation contractInformation = new DashboardPage().getSideBar().clickExecutedContracts(false).clickNewContractButton();
 
         contractInformation.setContractTitle("Executed Managed");
+        contractInformation.setContractValue("440000");
+        contractInformation.setCounterpartyOrganization("CounterpartyAT");
+        contractInformation.setCounterpartyChiefNegotiator("arthur.khasanov+cpat@parleypro.com");
         contractInformation.setContractingRegion("region1");
         contractInformation.setContractingCountry("country1");
         contractInformation.setContractEntity("entity1");
         contractInformation.setContractingDepartment("department1");
         contractInformation.setContractCategory("category1");
         contractInformation.setContractType("type1");
+        contractInformation.setTag("Tag_for_AMENDMENT #2");
+        contractInformation.setNotes("Notes for amendment of managed.");
         contractInformation.clickSave();
 
         new AddDocuments().clickUploadExecutedDocuments( Const.DOCUMENT_LIFECYCLE_SAMPLE );

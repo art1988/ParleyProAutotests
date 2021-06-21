@@ -51,7 +51,6 @@ public class AmendSignedContract
         softAssert.assertEquals($(".js-linked-contracts-head").getText(), "Amendment to:\nExecuted Signed", "Linked contract is wrong !!!");
 
         softAssert.assertAll();
-
         Screenshoter.makeScreenshot();
 
         contractInformation.clickSave();
@@ -70,5 +69,29 @@ public class AmendSignedContract
         $(".rc-tooltip-inner .js-linked-contracts-title").shouldHave(Condition.text("Linked contracts: 1"));
         $(".rc-tooltip-inner .js-linked-contracts-head").shouldHave(Condition.text("Amendment to:\nExecuted Signed"));
         $(".rc-tooltip-inner .js-linked-contracts-stage").shouldHave(Condition.text("Signed"));
+
+        logger.info("Open Contract Info and check fields...");
+        contractInformation = new OpenedContract().clickContractInfo();
+        softAssert.assertEquals(contractInformation.getContractValue(), "550,000.00", "Contract value is wrong !!!");
+        softAssert.assertEquals(contractInformation.getCounterpartyOrganization(), "CounterpartyAT", "Counterparty organization is wrong !!!");
+        softAssert.assertTrue(contractInformation.getCounterpartyChiefNegotiator().contains("arthur.khasanov+cpat@parleypro.com"), "Counterparty Chief Negotiator is wrong !!!");
+        softAssert.assertEquals(contractInformation.getContractingRegion(), "region1", "Contract region is wrong !!!");
+        softAssert.assertEquals(contractInformation.getContractingCountry(), "country1", "Contract country is wrong !!!");
+        softAssert.assertEquals(contractInformation.getContractEntity(), "entity1", "Contract entity is wrong !!!");
+        softAssert.assertEquals(contractInformation.getContractingDepartment(), "department1", "Contract department is wrong !!!");
+        softAssert.assertEquals(contractInformation.getContractCategory(), "category1", "Contract category is wrong !!!");
+        softAssert.assertEquals(contractInformation.getContractType(), "type1", "Contract type is wrong !!!");
+        softAssert.assertTrue(contractInformation.getChiefNegotiator().contains("arthur.khasanov+autotestcn@parleypro.com"), "Chief Negotiator is wrong !!!");
+        contractInformation.getTags().shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("Tag_for_AMENDMENT"));
+        softAssert.assertEquals(contractInformation.getNotes(), "Notes for amendment...", "Notes are wrong !!!");
+
+        logger.info("Checking Amendment link...");
+        softAssert.assertTrue(Selenide.executeJavaScript("return $('.js-linked-contracts-title:visible').text() === \"Linked contracts: 1\""), "Amount of linked contracts is wrong !!!");
+        softAssert.assertEquals($(".js-linked-contracts-head").getText(), "Amendment to:\nExecuted Signed", "Linked contract is wrong !!!");
+
+        softAssert.assertAll();
+        Screenshoter.makeScreenshot();
+
+        contractInformation.clickCancel();
     }
 }
