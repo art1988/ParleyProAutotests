@@ -19,17 +19,17 @@ import static com.codeborne.selenide.Selenide.$$;
  */
 public class ContractInformation
 {
-    private SelenideElement contractTitleField         = $("#contractTitle");
-    private SelenideElement contractValueField         = $("#contractValue");
-    private SelenideElement cpOrganizationField        = $("#counterpartyOrganization");
-    private SelenideElement cpChiefNegotiatorField     = $("#counterpartyChiefNegotiator");
-    private SelenideElement contractingRegionField     = $("#contractingRegion");
-    private SelenideElement contractingCountryField    = $("#contractingCountry");
-    private SelenideElement contractEntityField        = $("#contractEntity");
-    private SelenideElement contractingDepartmentField = $("#ContractingDepartment");
+    private SelenideElement contractTitleField         = $(".modal-dialog #contractTitle");
+    private SelenideElement contractValueField         = $(".modal-dialog #contractValue");
+    private SelenideElement cpOrganizationField        = $(".modal-dialog #counterpartyOrganization");
+    private SelenideElement cpChiefNegotiatorField     = $(".modal-dialog #counterpartyChiefNegotiator");
+    private SelenideElement contractingRegionField     = $(".modal-dialog #contractingRegion");
+    private SelenideElement contractingCountryField    = $(".modal-dialog #contractingCountry");
+    private SelenideElement contractEntityField        = $(".modal-dialog #contractEntity");
+    private SelenideElement contractingDepartmentField = $(".modal-dialog #ContractingDepartment");
     private SelenideElement contractCategoryField      = $(".modal-content #contractCategory");
-    private SelenideElement tagsField                  = $("#tags");
-    private SelenideElement notesField                 = $("#notes");
+    private SelenideElement tagsField                  = $(".modal-dialog #tags");
+    private SelenideElement notesField                 = $(".modal-dialog #notes");
 
     private SelenideElement cancelButton = $(".modal-content .btn.btn-common.btn-link.btn-link-pseudo");
     private SelenideElement saveButton   = $(".modal-content .button.btn.btn-common.btn-blue.btn.btn-default");
@@ -75,6 +75,8 @@ public class ContractInformation
 
     public void setContractTitle(String title)
     {
+        Selenide.executeJavaScript("$('#contractTitle').val('')");
+
         contractTitleField.sendKeys(title);
     }
 
@@ -111,6 +113,7 @@ public class ContractInformation
 
     public void setContractValue(String value)
     {
+        contractValueField.clear();
         contractValueField.setValue(value);
     }
 
@@ -185,7 +188,7 @@ public class ContractInformation
 
     public String getCounterpartyChiefNegotiator()
     {
-        return $(".contract-create.modal-dialog #counterpartyChiefNegotiator").getValue();
+        return $(".modal-dialog #counterpartyChiefNegotiator").getValue();
     }
 
     public void setContractingRegion(String region)
@@ -215,6 +218,7 @@ public class ContractInformation
 
     public void setContractEntity(String entity)
     {
+        contractEntityField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
         contractEntityField.setValue(entity);
     }
 
@@ -254,7 +258,7 @@ public class ContractInformation
      */
     public void setContractType(String type)
     {
-        $("input[data-id=\"contractType\"]").click(); // open Contract type dropdown
+        $(".modal-dialog input[data-id=\"contractType\"]").click(); // open Contract type dropdown
 
         // Select All Types twice to reset all previous selections
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
@@ -309,6 +313,11 @@ public class ContractInformation
         return chiefNegotiator;
     }
 
+    /**
+     * Sets a tag. To add multiple tags call setTag multiple times.
+     * @param tag
+     * @throws InterruptedException
+     */
     public void setTag(String tag) throws InterruptedException
     {
         tagsField.setValue(tag);
@@ -324,7 +333,7 @@ public class ContractInformation
      */
     public ElementsCollection getTags()
     {
-        return $$(".contract-create.modal-dialog .tags-input__tag, .tags-input__tag");
+        return $$(".contract-create.modal-dialog .tags-input__tag, .tags-input__tag").filterBy(Condition.visible);
     }
 
     public void setNotes(String notes)
