@@ -46,7 +46,7 @@ public class Screenshoter
     @Attachment
     public static byte[] makeScreenshotOfWholeScreen()
     {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension screenSize = new Dimension(1920, 1080);
         Rectangle screenRectangle = new Rectangle(screenSize);
 
         Robot robot = null;
