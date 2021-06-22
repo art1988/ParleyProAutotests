@@ -22,7 +22,7 @@ public class AmendSignedContract
     private static Logger logger = Logger.getLogger(AmendSignedContract.class);
     private SoftAssert softAssert = new SoftAssert();
 
-    @Test(priority = 1)
+    @Test
     public void amendSignedContract()
     {
         new DashboardPage().getSideBar()
@@ -70,7 +70,7 @@ public class AmendSignedContract
         $(".rc-tooltip-inner .js-linked-contracts-head").shouldHave(Condition.text("Amendment to:\nExecuted Signed"));
         $(".rc-tooltip-inner .js-linked-contracts-stage").shouldHave(Condition.text("Signed"));
 
-        logger.info("Open Contract Info and check fields...");
+        logger.info("Open Contract Info and check all fields...");
         contractInformation = new OpenedContract().clickContractInfo();
         softAssert.assertEquals(contractInformation.getContractValue(), "550,000.00", "Contract value is wrong !!!");
         softAssert.assertEquals(contractInformation.getCounterpartyOrganization(), "CounterpartyAT", "Counterparty organization is wrong !!!");

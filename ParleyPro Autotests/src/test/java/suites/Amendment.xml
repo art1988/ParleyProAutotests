@@ -23,6 +23,7 @@
             <class name="tests.amendment.basics_at147.CreateSignedContracts"/>
             <class name="tests.amendment.basics_at147.AmendSignedContract"/>
             <class name="tests.amendment.basics_at147.AmendManagedContract"/>
+            <class name="tests.amendment.basics_at147.AmendExpiredContract"/>
         </classes>
     </test>
 </suite>
