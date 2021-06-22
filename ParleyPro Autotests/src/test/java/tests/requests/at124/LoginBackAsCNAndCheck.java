@@ -61,11 +61,11 @@ public class LoginBackAsCNAndCheck
         Assert.assertEquals($("#contractvalue").val(), "4,500", "[Request field] Contract value is wrong !!!");
 
         logger.info("Checking that summary fields values were populated from request fields...");
-        Assert.assertEquals($("#contractingRegion").val(), "region1", "[Summary field] Contracting region is wrong !!!");
-        Assert.assertEquals($("#contractingCountry").val(), "country1", "[Summary field] Contracting country is wrong !!!");
-        Assert.assertEquals($("#contractEntity").val(), "entity1", "[Summary field] Contract entity is wrong !!!");
-        Assert.assertEquals($("#ContractingDepartment").val(), "department2", "[Summary field] Contracting department is wrong !!!");
-        Assert.assertEquals($("#contractCategory").val(), "category2", "[Summary field] Contract category is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#contractingRegion').parent().prev().find(\"span\").text()"), "region1", "[Summary field] Contracting region is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#contractingCountry').parent().prev().find(\"span\").text()"), "country1", "[Summary field] Contracting country is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#contractEntity').parent().prev().find(\"span\").text()"), "entity1", "[Summary field] Contract entity is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#ContractingDepartment').parent().prev().find(\"span\").text()"), "department2", "[Summary field] Contracting department is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#contractCategory').parent().prev().find(\"span\").text()"), "category2", "[Summary field] Contract category is wrong !!!");
         Assert.assertEquals($("input[data-id=\"contractType\"]").val(), "type3", "[Summary field] Contract type is wrong !!!");
         Assert.assertEquals($("#contractValue").val(), "4,500", "[Summary field] Contract value is wrong !!!");
 
