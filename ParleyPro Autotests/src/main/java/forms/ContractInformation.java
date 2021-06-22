@@ -184,6 +184,7 @@ public class ContractInformation
     public void setCounterpartyChiefNegotiator(String cpChiefNegotiator)
     {
         cpChiefNegotiatorField.sendKeys(cpChiefNegotiator);
+        cpChiefNegotiatorField.pressEnter();
     }
 
     public String getCounterpartyChiefNegotiator()
@@ -194,54 +195,56 @@ public class ContractInformation
     public void setContractingRegion(String region)
     {
         contractingRegionField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
-        contractingRegionField.setValue(region);
+        contractingRegionField.sendKeys(region);
+        contractingRegionField.pressEnter();
     }
 
     public String getContractingRegion()
     {
-        return contractingRegionField.getValue();
+        return Selenide.executeJavaScript("return $('#contractingRegion').parent().prev().find(\"span\").text()");
     }
 
     public void setContractingCountry(String country)
     {
-        // expand dropdown by clicking triangle
-        Selenide.executeJavaScript("$('#contractingCountry').parent().parent().find(\".select__arrow\")[0].click()");
-
-        // Set value
-        Selenide.executeJavaScript("$('#contractingCountry').parent().parent().find(\"#react-autowhatever-1\").find(\"span:contains('" + country + "')\").click()");
+        contractingCountryField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
+        contractingCountryField.sendKeys(country);
+        contractingCountryField.pressEnter();
     }
 
     public String getContractingCountry()
     {
-        return contractingCountryField.getValue();
+        return Selenide.executeJavaScript("return $('#contractingCountry').parent().prev().find(\"span\").text()");
     }
 
     public void setContractEntity(String entity)
     {
         contractEntityField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
-        contractEntityField.setValue(entity);
+        contractEntityField.sendKeys(entity);
+        contractEntityField.pressEnter();
     }
 
     public String getContractEntity()
     {
-        return contractEntityField.getValue();
+        return Selenide.executeJavaScript("return $('#contractEntity').parent().prev().find(\"span\").text()");
     }
 
     public void setContractingDepartment(String department)
     {
         contractingDepartmentField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
         contractingDepartmentField.sendKeys(department);
+        contractingDepartmentField.pressEnter();
     }
 
     public String getContractingDepartment()
     {
-        return contractingDepartmentField.getValue();
+        return Selenide.executeJavaScript("return $('#ContractingDepartment').parent().prev().find(\"span\").text()");
     }
 
     public void setContractCategory(String category)
     {
         contractCategoryField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
         contractCategoryField.sendKeys(category);
+        contractCategoryField.pressEnter();
 
         // Spinner may appear in case if more fields were added for certain category, so let's wait until it disappear
         $(".spinner").waitUntil(Condition.disappear, 10_000);
@@ -249,7 +252,7 @@ public class ContractInformation
 
     public String getContractCategory()
     {
-        return contractCategoryField.getValue();
+        return Selenide.executeJavaScript("return $('#contractCategory').parent().prev().find(\"span\").text()");
     }
 
     /**
