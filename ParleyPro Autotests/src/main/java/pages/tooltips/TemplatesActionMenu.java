@@ -49,7 +49,7 @@ public class TemplatesActionMenu
     {
         Selenide.executeJavaScript("$('.dropdown.open.btn-group ul').find('li:contains(\"Delete\")').find('a')[0].click()");
 
-        logger.info("Delete menu item was clicked...");
+        logger.info("Delete menu item was clicked for template: " + templateName);
 
         return new DeleteTemplate(templateName);
     }
