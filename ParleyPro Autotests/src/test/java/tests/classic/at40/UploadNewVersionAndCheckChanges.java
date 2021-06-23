@@ -76,10 +76,11 @@ public class UploadNewVersionAndCheckChanges
 
     @Test(priority = 2)
     @Description("This test verify changes in document view")
-    public void checkChangesInDocumentView()
+    public void checkChangesInDocumentView() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();
 
+        Thread.sleep(2_000);
         logger.info("Assert that first paragraph was deleted");
         Assert.assertEquals(Selenide.executeJavaScript("return $('del').eq(0).text()"), "Paragraph 1: Hello, delete me please");
         Assert.assertEquals(Selenide.executeJavaScript("return $('del')[0].style.color"), "rgb(181, 8, 46)");
