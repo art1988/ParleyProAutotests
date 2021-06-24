@@ -18,7 +18,6 @@ public class UploadAndPublishTemplate
     @Test
     public void uploadAndPublishTemplate()
     {
-        $(".spinner").waitUntil(Condition.disappear, 25_000);
         TemplatesPage templatesPage = new SideBar().clickTemplates(true);
 
         templatesPage.clickNewTemplate().clickUploadTemplatesButton( Const.TEMPLATE_AT58 );

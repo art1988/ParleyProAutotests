@@ -26,12 +26,5 @@ public class AddCustomFiled
         fieldTab.clickSave();
 
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
-
-        Screenshoter.makeScreenshot();
-
-        Selenide.refresh();
-
-        new WebDriverWait(WebDriverRunner.getWebDriver(), 15).until(webDriver ->
-                Selenide.executeJavaScript("return document.readyState").equals("complete"));
     }
 }
