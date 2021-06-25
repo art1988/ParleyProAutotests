@@ -55,7 +55,7 @@ public class LoginToPopoversTenantAsViewer
         jsCode.append("$('.header-users span:contains(\"PP\")')[0].dispatchEvent(event);");
         Selenide.executeJavaScript(jsCode.toString());
 
-        $(".rc-tooltip-inner button").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("MESSAGE")).shouldBe(Condition.enabled);
+        $(".rc-tooltip-inner button").waitUntil(Condition.visible, 20_000).shouldHave(Condition.exactText("MESSAGE")).shouldBe(Condition.enabled);
         Screenshoter.makeScreenshot();
 
         // Sending message
@@ -77,7 +77,7 @@ public class LoginToPopoversTenantAsViewer
         jsCode.append("$('.header-users span:contains(\"AL\")')[0].dispatchEvent(event);");
         Selenide.executeJavaScript(jsCode.toString());
 
-        $(".rc-tooltip-inner button").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("MESSAGE")).shouldBe(Condition.enabled);
+        $(".rc-tooltip-inner button").waitUntil(Condition.visible, 20_000).shouldHave(Condition.exactText("MESSAGE")).shouldBe(Condition.enabled);
         Screenshoter.makeScreenshot();
 
         // Sending message
