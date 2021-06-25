@@ -107,16 +107,6 @@
         </classes>
     </test>
 
-    <test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
-        <classes>
-            <class name="tests.LoginToTrackChangesTenant"/>
-            <class name="tests.regression.at110.CreateContractAndUploadCPDocument"/>
-            <class name="tests.regression.at110.MakeExternalAndUploadDocsV2V3V4"/>
-            <class name="tests.regression.at110.CleanUp"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
-
     <test name="AT-134: Gray screen when adding comment" preserve-order="true">
         <parameter name="contractName" value="Share me"/>
         <classes>
@@ -135,6 +125,16 @@
             <class name="tests.regression.at123.CreateContractsUnderDifferentUsers"/>
             <class name="tests.regression.at123.LoginAsMyTeamCNAndCheck"/>
             <class name="tests.regression.at123.RemoveContracts"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToTrackChangesTenant"/>
+            <class name="tests.regression.at110.CreateContractAndUploadCPDocument"/>
+            <class name="tests.regression.at110.MakeExternalAndUploadDocsV2V3V4"/>
+            <class name="tests.regression.at110.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
