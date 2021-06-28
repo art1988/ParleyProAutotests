@@ -7,6 +7,7 @@ import constants.AcceptTypes;
 import forms.AcceptPost;
 import forms.DiscardDiscussion;
 import forms.RevertToOriginal;
+import forms.StartExternalDiscussion;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
@@ -145,6 +146,21 @@ public class OpenedDiscussion
         $(".spinner").waitUntil(Condition.appear, 20_000);
         $(".spinner").waitUntil(Condition.disappear, 40_000);
 
-        logger.info("MAKE QUEUED was clicked");
+        logger.info("MAKE QUEUED button was clicked for post");
+    }
+
+    /**
+     * Click by 'Make external' button
+     * @param textInPost text of the post for which need to click. Matches by contains !
+     * @return
+     */
+    public StartExternalDiscussion clickMakeExternal(String textInPost)
+    {
+        WebElement makeExternalButton = Selenide.executeJavaScript("return $('.documents-discussion-panel .discussion2-post .discussion2-post__text:contains(\"" + textInPost + "\")').parent().parent().find(\".external-post\")[0]");
+        $(makeExternalButton).shouldBe(Condition.enabled).click();
+
+        logger.info("MAKE EXTERNAL button was clicked for post");
+
+        return new StartExternalDiscussion("", "");
     }
 }
