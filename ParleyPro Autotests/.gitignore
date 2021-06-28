@@ -34,26 +34,6 @@ jbehave.log.*
 */*/.settings
 */*/.classpath
 
-# Python stuff #
-################
-*.pyc
-*.egg-info
-bin
-dist
-build
-develop-eggs
-eggs
-.installed.cfg
-logs
-*.MainThread-*
-*.pid
-*.pid.lock
-*.conf
-test/.coverage
-test/coverage.xml
-test/nosetests.xml
-
-
 log
 
 # Ruby stuff #
