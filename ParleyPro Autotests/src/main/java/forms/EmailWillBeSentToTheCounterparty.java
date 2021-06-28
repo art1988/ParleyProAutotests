@@ -40,7 +40,7 @@ public class EmailWillBeSentToTheCounterparty
         counterpartyChiefNegotiatorField.waitUntil(Condition.visible, 6_000);
     }
 
-    public void setCounterpartyOrganization(String organization) throws InterruptedException
+    public EmailWillBeSentToTheCounterparty setCounterpartyOrganization(String organization) throws InterruptedException
     {
         counterpartyOrganizationField.clear();
         counterpartyOrganizationField.sendKeys(organization);
@@ -49,6 +49,8 @@ public class EmailWillBeSentToTheCounterparty
         Thread.sleep(500);
         counterpartyOrganizationField.pressEnter();
         Thread.sleep(500);
+
+        return this;
     }
 
     public String getCounterpartyOrganization()
@@ -56,7 +58,7 @@ public class EmailWillBeSentToTheCounterparty
         return counterpartyOrganizationField.getValue();
     }
 
-    public void setCounterpartyChiefNegotiator(String chiefNegotiator) throws InterruptedException
+    public EmailWillBeSentToTheCounterparty setCounterpartyChiefNegotiator(String chiefNegotiator) throws InterruptedException
     {
         counterpartyChiefNegotiatorField.clear();
         counterpartyChiefNegotiatorField.sendKeys(chiefNegotiator);
@@ -65,6 +67,8 @@ public class EmailWillBeSentToTheCounterparty
         Thread.sleep(500);
         counterpartyChiefNegotiatorField.pressEnter();
         Thread.sleep(500);
+
+        return this;
     }
 
     public String getCounterpartyChiefNegotiator()

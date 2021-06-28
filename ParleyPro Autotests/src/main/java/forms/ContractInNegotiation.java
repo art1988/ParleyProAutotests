@@ -29,5 +29,7 @@ public class ContractInNegotiation
         okButton.click();
 
         logger.info("OK button was clicked");
+
+        $(".modal-content").waitUntil(Condition.disappear, 10_000);
     }
 }
