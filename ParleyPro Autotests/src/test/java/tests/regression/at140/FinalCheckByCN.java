@@ -66,8 +66,10 @@ public class FinalCheckByCN
         Selenide.executeJavaScript("$('.discussion-header__title-name span[title*=\"CN was here\"]').parent().parent().prev().click()");
         Thread.sleep(1_000);
 
-        $$(".discussion2-post .discussion2-label__status").shouldHave(CollectionCondition.size(2))
-                                                                    .shouldHave(CollectionCondition.exactTexts("EXTERNAL", "QUEUED"));
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.discussion2-foot:last span').text()"), "This discussion is closed, no changes to the text",
+                "Looks like that QUEUED is not closed !!!");
+        $$(".discussion2-post .queued .discussion2-label__status").shouldHave(CollectionCondition.size(1))
+                                                                            .shouldHave(CollectionCondition.exactTexts("QUEUED"));
         $$(".internal_closed span").shouldHave(CollectionCondition.size(1))
                                              .shouldHave(CollectionCondition.exactTexts("INTERNAL CLOSED"));
 
