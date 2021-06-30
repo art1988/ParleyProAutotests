@@ -34,12 +34,7 @@ jobs:
           name: Update chromedriver
           command: cd; wget https://www.slimjet.com/chrome/download-chrome.php?file=files%2F86.0.4240.75%2Fgoogle-chrome-stable_current_amd64.deb; sudo apt install ./download-chrome.php\?file\=files%2F86.0.4240.75%2Fgoogle-chrome-stable_current_amd64.deb; sudo rm -f /usr/local/bin/chromedriver; wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv ./chromedriver /usr/local/bin/; chmod 775 `which chromedriver`; chromedriver -v; ls -la `which chromedriver`
       
-      - run:
-          name: Run Numbered lists suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/NumberedLists.xml
 
-      - run: sleep 10
 
       - run:
           name: Run Basics suite
