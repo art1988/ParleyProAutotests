@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Regression" configfailurepolicy="continue">
-    <!--
     <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
@@ -128,7 +127,7 @@
             <class name="tests.regression.at123.RemoveContracts"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 
     <test name="AT-140: Document board: 2 open discussions should NOT be shown to the same paragraph" preserve-order="true">
         <parameter name="contractName" value="CTR AT-140"/>
@@ -143,7 +142,7 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-<!--
+
     <test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
         <classes>
             <class name="tests.LoginToTrackChangesTenant"/>
@@ -160,5 +159,5 @@
             <class name="tests.regression.at141.CreateContractUploadDocAndChange"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 </suite>
