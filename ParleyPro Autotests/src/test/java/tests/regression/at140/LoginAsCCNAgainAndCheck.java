@@ -58,5 +58,8 @@ public class LoginAsCCNAgainAndCheck
                             .clickPostExternally();
 
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
+
+        // Logout
+        dashboardPage.getSideBar().logout();
     }
 }

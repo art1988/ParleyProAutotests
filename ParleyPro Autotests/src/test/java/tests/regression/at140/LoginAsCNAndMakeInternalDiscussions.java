@@ -83,6 +83,9 @@ public class LoginAsCNAndMakeInternalDiscussions
 
         Screenshoter.makeScreenshot();
 
+        logger.info("Check that QUEUED label has 2 items...");
+        $(".label.label_theme_pink").waitUntil(Condition.visible, 10_000).shouldHave(Condition.text("2 QUEUED"));
+
         // Logout
         new DashboardPage().getSideBar().logout();
     }
