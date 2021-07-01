@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import forms.delete.DeleteContract;
@@ -7,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * Represents Contract Info page with 'Summary' and 'Post-execution' tabs.
@@ -18,12 +20,12 @@ public class ContractInfo
 
     public ContractInfo()
     {
-        $(".documents-contract-edit__title").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract Info"));
-        $(".tab-menu__item.selected_yes").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Post-execution"));
-        $(".contract-execute-form").waitUntil(Condition.visible, 15_000);
-
         $(".spinner").waitUntil(Condition.disappear, 15_000);
         $(".documents-contract-edit__body .spinner").waitUntil(Condition.disappear, 15_000);
+
+        $(".documents-contract-edit__title").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract Info"));
+        $$(".tab-menu .tab-menu__item").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("Summary", "Post-execution"));
+        $(".contract-execute-form").waitUntil(Condition.visible, 15_000);
     }
 
     /**
