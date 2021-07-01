@@ -68,6 +68,8 @@ public class UploadDocAndCheck
         logger.info("Assert that Matches count is correct...");
         Assert.assertEquals(findAndReplacePopup.getMatchesCount(), "Matches: 1");
 
+        Screenshoter.makeScreenshot();
+
         findAndReplacePopup.clickReviewAndReplaceButton()
                            .clickSave();
 
