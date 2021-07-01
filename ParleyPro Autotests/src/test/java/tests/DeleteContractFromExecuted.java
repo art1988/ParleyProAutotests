@@ -30,15 +30,11 @@ public class DeleteContractFromExecuted
     @Parameters("contractName")
     public void deleteContractFromExecuted(String contractName)
     {
-        DashboardPage dashboardPage = new DashboardPage();
-
-        ExecutedContractsPage executedContractsPage = dashboardPage.getSideBar().clickExecutedContracts(false);
-
-        ContractInfo contractInfoPage = executedContractsPage.selectContract(contractName);
-
-        DeleteContract deleteContractPopup = contractInfoPage.deleteContract(contractName);
-
-        deleteContractPopup.clickDelete();
+        new DashboardPage().getSideBar()
+                           .clickExecutedContracts(false)
+                           .selectContract(contractName)
+                           .deleteContract(contractName)
+                           .clickDelete();
 
         logger.info("Assert delete notification...");
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract " + contractName + " has been deleted."));
