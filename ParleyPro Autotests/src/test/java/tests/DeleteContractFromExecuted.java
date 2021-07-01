@@ -2,15 +2,12 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import constants.Const;
-import forms.delete.DeleteContract;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pages.ContractInfo;
 import pages.DashboardPage;
-import pages.ExecutedContractsPage;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
