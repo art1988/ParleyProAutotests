@@ -5,11 +5,13 @@ import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
+import pages.subelements.FindAndReplacePopup;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -58,12 +60,16 @@ public class UploadDocAndCheck
     @Test(priority = 2)
     public void findAndReplaceAndCheck()
     {
-        openedContract.clickFindAndReplaceButton("dummyAT141")
-                      .clickReplaceTab()
-                      .findInDocument("dummy")
-                      .replaceWith("test")
-                      .clickReviewAndReplaceButton()
-                      .clickSave();
+        FindAndReplacePopup findAndReplacePopup = openedContract.clickFindAndReplaceButton("dummyAT141")
+                                                                .clickReplaceTab()
+                                                                .findInDocument("dummy")
+                                                                .replaceWith("test");
+
+        logger.info("Assert that Matches count is correct...");
+        Assert.assertEquals(findAndReplacePopup.getMatchesCount(), "Matches: 1");
+
+        findAndReplacePopup.clickReviewAndReplaceButton()
+                           .clickSave();
 
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.exactText("1 discussion has been created"));
 

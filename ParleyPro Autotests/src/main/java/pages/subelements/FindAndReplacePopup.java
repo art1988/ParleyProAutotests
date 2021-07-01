@@ -40,6 +40,7 @@ public class FindAndReplacePopup
     public FindAndReplacePopup findInDocument(String wordToFind)
     {
         findInDocumentInput.sendKeys(wordToFind);
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
 
         return this;
     }
@@ -47,6 +48,7 @@ public class FindAndReplacePopup
     public FindAndReplacePopup replaceWith(String wordToReplace)
     {
         replaceWithInput.sendKeys(wordToReplace);
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
 
         return this;
     }
