@@ -32,6 +32,9 @@ public class FindAndReplacePopup
     {
         replaceTab.click();
 
+        findInDocumentInput.shouldBe(Condition.enabled).shouldBe(Condition.visible);
+        replaceWithInput.shouldBe(Condition.enabled).shouldBe(Condition.visible);
+
         logger.info("REPLACE tab was clicked...");
 
         return this;
@@ -40,6 +43,7 @@ public class FindAndReplacePopup
     public FindAndReplacePopup findInDocument(String wordToFind)
     {
         findInDocumentInput.sendKeys(wordToFind);
+        findInDocumentInput.pressEnter();
         try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
 
         return this;
