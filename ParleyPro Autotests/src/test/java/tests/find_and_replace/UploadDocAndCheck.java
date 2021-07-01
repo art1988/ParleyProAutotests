@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -58,6 +59,7 @@ public class UploadDocAndCheck
     }
 
     @Test(priority = 2)
+    @Description("This test finds word 'dummy' replaces it with word 'test', checks Matches counter and final result on document board.")
     public void findAndReplaceAndCheck()
     {
         FindAndReplacePopup findAndReplacePopup = openedContract.clickFindAndReplaceButton("dummyAT141")
