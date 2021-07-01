@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.subelements.CKEditorActive;
 import pages.subelements.FieldsPanel;
+import pages.subelements.FindAndReplacePopup;
 import pages.tooltips.ContractActionsMenu;
 import pages.tooltips.DocumentActionsMenu;
 import pages.tooltips.ParagraphActionsPopup;
@@ -24,6 +25,7 @@ public class OpenedContract
     private SelenideElement contractInfoButton    = $("#contract-info-action");
     private SelenideElement actionsMenu           = $(".contract-header__menu .actions-menu button");
 
+    private SelenideElement findAndReplaceButton  = $(".js-document-search-btn");
     private SelenideElement sendInviteButton      = $("._button.scheme_blue.size_tier2");
 
     private SelenideElement approveDocumentButton  = $("#APPROVE_DOCUMENT");
@@ -218,6 +220,19 @@ public class OpenedContract
         logger.info("SHARE button was clicked for: " + documentName);
 
         return new ShareForm(documentName);
+    }
+
+    /**
+     * Click by magnifying glass icon 'Find And Replace' for the given documentName
+     * @param documentName
+     */
+    public FindAndReplacePopup clickFindAndReplaceButton(String documentName)
+    {
+        findAndReplaceButton.click();
+
+        logger.info("Find and Replace button was clicked for: " + documentName);
+
+        return new FindAndReplacePopup();
     }
 
     /**
