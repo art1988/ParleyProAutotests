@@ -68,7 +68,7 @@ public class AddTemplateCopyLinkAndOpen
         softAssert.assertEquals(openedTemplate.getTitle(), "AT-135_Template_identical", "Looks like that opened template is NOT the same !!!");
         softAssert.assertEquals(openedTemplate.getText(), "Text, and identical text.", "Looks like that opened template is NOT the same !!!");
 
-        Screenshoter.makeScreenshot();
+        Screenshoter.makeScreenshotOfWholeScreen();
         openedTemplate.clickCancelButton();
 
         softAssert.assertAll();

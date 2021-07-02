@@ -7,9 +7,6 @@ import org.apache.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -42,8 +39,10 @@ public class Screenshoter
 
         return result;
     }
-/*
 
+    /**
+     * Makes screenshot of a whole screen. May be useful to see opened tabs of browser window, bottom panel of OS, etc.
+     */
     @Attachment
     public static byte[] makeScreenshotOfWholeScreen()
     {
@@ -56,18 +55,6 @@ public class Screenshoter
         {
             logger.error("AWTException: can't initialize Robot.", e);
         }
-
-        robot.keyPress(KeyEvent.VK_PRINTSCREEN);
-        robot.delay(40);
-        robot.keyRelease(KeyEvent.VK_PRINTSCREEN);
-        robot.delay(40);
-
-        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-
-        DataFlavor[] flavors = cb.getAvailableDataFlavors();
-
-        flavors[0].
-
 
         BufferedImage image = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
         File imgAsFile = new File("img.jpg");
@@ -98,5 +85,5 @@ public class Screenshoter
         logger.info("Screenshot of whole screen was captured");
 
         return result;
-    } */
+    }
 }
