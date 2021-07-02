@@ -46,9 +46,6 @@ public class Screenshoter
     @Attachment
     public static byte[] makeScreenshotOfWholeScreen()
     {
-        Dimension screenSize = new Dimension(1920, 1080);
-        Rectangle screenRectangle = new Rectangle(screenSize);
-
         Robot robot = null;
         try
         {
@@ -59,7 +56,7 @@ public class Screenshoter
             logger.error("AWTException: can't initialize Robot.", e);
         }
 
-        BufferedImage image = robot.createScreenCapture(screenRectangle);
+        BufferedImage image = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
         File imgAsFile = new File("img.png");
 
         try
