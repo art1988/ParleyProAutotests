@@ -22,6 +22,7 @@ public class TemplatesPage
     private SelenideElement newTemplateButton = $(".js-new-template-button");
     private SelenideElement newBundleButton   = $(".js-new-bundle-button");
 
+    private SelenideElement searchInput       = $(".templates-search__text");
 
     private static Logger logger = Logger.getLogger(TemplatesPage.class);
 
@@ -158,5 +159,15 @@ public class TemplatesPage
         try { Thread.sleep(500); } catch (InterruptedException e){e.printStackTrace();}
 
         return this;
+    }
+
+    /**
+     * Search template or bundle
+     * @param templateOrBundleName
+     */
+    public void search(String templateOrBundleName)
+    {
+        searchInput.sendKeys(templateOrBundleName);
+        searchInput.pressEnter();
     }
 }
