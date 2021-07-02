@@ -57,7 +57,7 @@ public class Screenshoter
         }
 
         BufferedImage image = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-        File imgAsFile = new File("img.png");
+        File imgAsFile = new File("img.jpg");
 
         try
         {
@@ -72,7 +72,7 @@ public class Screenshoter
 
         try
         {
-            if( ImageIO.write(image, "png", imgAsFile) )
+            if( ImageIO.write(image, "jpg", imgAsFile) )
             {
                 result = Files.toByteArray(imgAsFile);
             }
