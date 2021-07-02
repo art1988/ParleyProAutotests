@@ -67,20 +67,29 @@
         <parameter name="contractName" value="Unmatched settings for bundle"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.templates.bundles.AddTemplatesAndCreateBundle"/>
-            <class name="tests.templates.bundles.ManipulateWithTemplates"/>
-            <class name="tests.templates.bundles.CreateContractAndAddDocsFromBundle"/>
-            <class name="tests.templates.bundles.UnpublishBundle"/>
-            <class name="tests.templates.bundles.CleanUp"/>
+            <class name="tests.templates.bundles.at114.AddTemplatesAndCreateBundle"/>
+            <class name="tests.templates.bundles.at114.ManipulateWithTemplates"/>
+            <class name="tests.templates.bundles.at114.CreateContractAndAddDocsFromBundle"/>
+            <class name="tests.templates.bundles.at114.UnpublishBundle"/>
+            <class name="tests.templates.bundles.at114.CleanUp"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 
     <test name="AT-135: Template isn't open by click on link" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.templates.at135.AddTemplateCopyLinkAndOpen"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test> -->
+
+    <test name="AT-144: Gray screen in search in template bundles" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.templates.bundles.at144.UploadTemplatesCreateBundlesAndCheck"/>
+            <class name="tests.templates.bundles.at144.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
