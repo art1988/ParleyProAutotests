@@ -25,7 +25,6 @@ public class OpenedContract
     private SelenideElement contractInfoButton    = $("#contract-info-action");
     private SelenideElement actionsMenu           = $(".contract-header__menu .actions-menu button");
 
-    private SelenideElement findAndReplaceButton  = $(".js-document-search-btn");
     private SelenideElement sendInviteButton      = $("._button.scheme_blue.size_tier2");
 
     private SelenideElement approveDocumentButton  = $("#APPROVE_DOCUMENT");
@@ -223,12 +222,13 @@ public class OpenedContract
     }
 
     /**
-     * Click by magnifying glass icon 'Find And Replace' for the given documentName
+     * Click by magnifying glass icon 'Find And Replace' for the given documentName.
+     * This option available in Review and Negotiate stages.
      * @param documentName
      */
     public FindAndReplacePopup clickFindAndReplaceButton(String documentName)
     {
-        findAndReplaceButton.click();
+        Selenide.executeJavaScript("$('.document__header-row span:contains(\"" + documentName + "\")').parent().parent().next().find(\".js-document-search-btn\").click()");
 
         logger.info("Find and Replace button was clicked for: " + documentName);
 
