@@ -30,6 +30,6 @@ public class Replace
 
         logger.info("SAVE button was clicked...");
 
-        $(".modal-content").waitUntil(Condition.disappear, 10_000);
+        $(".modal-content").waitUntil(Condition.disappear, 30_000);
     }
 }
