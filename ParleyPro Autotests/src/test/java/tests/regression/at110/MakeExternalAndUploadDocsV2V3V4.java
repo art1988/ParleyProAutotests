@@ -58,8 +58,8 @@ public class MakeExternalAndUploadDocsV2V3V4
                             .clickUpload(true)
                             .clickDocumentsTab();
 
-        logger.info("Assert that contract has 16 discussions...");
-        Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "16", "Amount of total discussions should be equal 16 !!!");
+        logger.info("Assert that contract has 15 discussions...");
+        Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "15", "Amount of total discussions should be equal 15 !!!");
 
         // Scroll to 4. Limitations on Damages and Indemnification.
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Confidentiality.\")')[0].scrollIntoView({});");
