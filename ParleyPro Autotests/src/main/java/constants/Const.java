@@ -14,6 +14,8 @@ public class Const
     public static final String TRACK_CHANGES_TENANT_URL      = "https://trackchanges.parleypro.net/master/index.html";
     public static final String POPOVERS_TENANT_URL           = "https://popovers-autotests.parleypro.net/master/index.html";
 
+    public static final String QA_TENANT_API_KEY             = "UQrHDbj9E2rcqI3s0J5CUeXQlGzEkZpAbffXCNDw";
+
     // Users
     public static final User   PREDEFINED_USER_CN_ROLE       = new User("autotest_cn fn", "ln", "arthur.khasanov+autotestcn@parleypro.com", "Parley650!");
     public static final User   PREDEFINED_APPROVER_USER_1    = new User("Approval_User_1", "", "arthur.khasanov+approval1@parleypro.com", "Parley650!");
