@@ -39,7 +39,7 @@ public class PasteTextOverParagraph
         logger.info("Assert that 2 paragraphs were added...");
         String textFromItemTwo = Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"2\")').text().trim()");
         textFromItemTwo = textFromItemTwo.replaceAll(" ", "");
-        Assert.assertEquals(textFromItemTwo, "2.      \n" + "p_Text1\n" + "P_Text2", "Looks like paragraphs weren't pasted !");
+        Assert.assertEquals(textFromItemTwo, "2.       \n" + "p_Text1\n" + "P_Text2", "Looks like paragraphs weren't pasted !");
 
         Screenshoter.makeScreenshot();
     }
