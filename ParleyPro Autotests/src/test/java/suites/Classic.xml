@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Classic negotiation mode suite" configfailurepolicy="continue">
+    <!--
     <test name="Upload new version with redlines for my team documents" preserve-order="true">
         <parameter name="contractName" value="AT40 Classic contract"/>
         <classes>
@@ -212,7 +213,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test> -->
 
     <test name="Client doc #11: AT-112 - Classic: 500 error at new version upload (Learnship documents)"
           preserve-order="true">
@@ -253,7 +254,7 @@
         </classes>
     </test>
     -->
-
+<!--
     <test name="AT-89: Classic - paragraphs cloning" preserve-order="true">
         <parameter name="contractName" value="AT-89: paragraphs cloning"/>
         <classes>
@@ -305,5 +306,5 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test> -->
 </suite>
