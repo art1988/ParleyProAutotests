@@ -184,7 +184,7 @@
                    value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
         <parameter name="documentHasRevisions" value="false"/>
         <parameter name="numberOfDiscussions" value="20"/>
-        <parameter name="textOnFirstPage" value="Dear Betsy:"/>
+        <parameter name="textOnFirstPage" value="Harold Young Inc."/>
         <parameter name="textOnLastPage" value="Sincerely"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
