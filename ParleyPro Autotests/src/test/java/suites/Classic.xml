@@ -296,6 +296,7 @@
         </classes>
     </test>
 
+    <!--
     <test name="AT-65: Upload new version with redlines for my team documents" preserve-order="true">
         <parameter name="contractName" value="at-65: comment glues"/>
         <classes>
@@ -305,5 +306,5 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test> -->
 </suite>
