@@ -5,8 +5,8 @@ import io.qameta.allure.Description;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.testng.annotations.BeforeTest;
@@ -17,6 +17,8 @@ import static org.hamcrest.Matchers.*;
 
 public class AddProperty
 {
+    private static Logger logger = Logger.getLogger(AddProperty.class);
+
     @BeforeTest
     public void setup()
     {
@@ -28,7 +30,6 @@ public class AddProperty
                      .build();
 
         RestAssured.requestSpecification = requestSpec;
-
     }
 
     @Test
@@ -50,10 +51,12 @@ public class AddProperty
                         post().
                             then().assertThat().statusCode(200);
 
-        Response res = given().
-                            when().
-                                get("/c4bca821-b6a3-417d-938d-9eb3ebb5564c").
-                            then().
-                                body("$", hasItem(allOf(hasEntry("key", "DISABLE_COUNTERPARTY_DOC_SHARE_ON_TEAM_UPLOAD")))).extract().response();
+        given().
+               when().
+                     get("/c4bca821-b6a3-417d-938d-9eb3ebb5564c").
+                          then().
+                                body("$", hasItem(allOf(hasEntry("key", "DISABLE_COUNTERPARTY_DOC_SHARE_ON_TEAM_UPLOAD"))));
+
+        logger.info("DISABLE_COUNTERPARTY_DOC_SHARE_ON_TEAM_UPLOAD property was added...");
     }
 }
