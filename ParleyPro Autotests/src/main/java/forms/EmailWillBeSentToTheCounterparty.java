@@ -14,10 +14,10 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class EmailWillBeSentToTheCounterparty
 {
-    private SelenideElement title                            = $(".modal-body-title");
-    private SelenideElement counterpartyOrganizationField    = $("#ccn-email-form-counterparty-organization");
-    private SelenideElement counterpartyChiefNegotiatorField = $("#ccn-email-form-counterparty-chief-negotiator");
-    private SelenideElement startButton                      = $("#ccn-email-form-submit-button");
+    private SelenideElement title                            = $(".modal-body-title, .modal-title");
+    private SelenideElement counterpartyOrganizationField    = $("#ccn-email-form-counterparty-organization, #share-ccn-form-counterparty-organization");
+    private SelenideElement counterpartyChiefNegotiatorField = $("#ccn-email-form-counterparty-chief-negotiator, #share-ccn-form-counterparty-chief-negotiator");
+    private SelenideElement startButton                      = $("#ccn-email-form-submit-button, #share-ccn-form-submit-button");
 
 
 
@@ -29,15 +29,15 @@ public class EmailWillBeSentToTheCounterparty
 
         if( isClassic )
         {
-            title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("The Counterparty information is missing."));
+            title.waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("The Counterparty information is missing."));
         }
         else
         {
-            title.waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("The email will be sent to the Counterparty Chief Negotiator."));
+            title.waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("The email will be sent to the Counterparty Chief Negotiator."));
         }
 
-        counterpartyOrganizationField.waitUntil(Condition.visible, 6_000);
-        counterpartyChiefNegotiatorField.waitUntil(Condition.visible, 6_000);
+        counterpartyOrganizationField.waitUntil(Condition.visible, 16_000);
+        counterpartyChiefNegotiatorField.waitUntil(Condition.visible, 16_000);
     }
 
     public EmailWillBeSentToTheCounterparty setCounterpartyOrganization(String organization) throws InterruptedException
