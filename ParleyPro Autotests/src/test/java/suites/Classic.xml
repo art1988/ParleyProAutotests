@@ -274,7 +274,7 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-
+<!--
     <test name="AT-43: Classic discussions: Queued discussions" preserve-order="true">
         <parameter name="contractName" value="AT43 - Classic discussions: Queued discussions"/>
         <classes>
@@ -284,7 +284,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test> -->
 
     <test name="AT-119: Learnship, classic: Formatting issues" preserve-order="true">
         <parameter name="contractName" value="AT-119 CTR"/>
