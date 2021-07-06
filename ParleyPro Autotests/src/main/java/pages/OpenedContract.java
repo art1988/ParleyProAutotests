@@ -101,6 +101,25 @@ public class OpenedContract
         return new StartNegotiation(contractName.text(), counterparty, isClassic);
     }
 
+    /**
+     * In case if DISABLE_COUNTERPARTY_DOC_SHARE_ON_TEAM_UPLOAD tenant property is enabled, then 'Start Negotiation' form
+     * will _NOT_ appear and document will change it's status to Negotiate.
+     * Use this method if that property is enabled.
+     */
+    public void switchDocumentToNegotiate(String documentName)
+    {
+        String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
+
+        // hover over REVIEW
+        StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
+        jsCode.append(documentLifecycleString + "[0].dispatchEvent(event);");
+        Selenide.executeJavaScript(jsCode.toString());
+
+        Waiter.smartWaitUntilVisible(documentLifecycleString+ ".find(\"div:contains('NEGOTIATE')\")");
+        Selenide.executeJavaScript(documentLifecycleString + ".find(\"div:contains('NEGOTIATE')\").click()");
+        logger.info("NEGOTIATE was clicked");
+    }
+
     public SignContract switchDocumentToSign(String documentName)
     {
         String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
