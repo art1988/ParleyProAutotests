@@ -13,16 +13,16 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class SendInvitation
 {
-    private SelenideElement nextButton  = $(".button.btn-common.btn.btn-primary");
+    private SelenideElement nextButton  = $(".btn-primary, .btn-link:not(.btn-link-pseudo)");
 
     private static Logger logger = Logger.getLogger(SendInvitation.class);
 
     public SendInvitation(String contractName)
     {
-        $(".modal-body-title").waitUntil(Condition.visible, 7_000)
+        $(".modal-body-title, .modal-title").waitUntil(Condition.visible, 7_000)
                 .shouldHave(Condition.exactText("You are about to send invitation to negotiate for contract \"" + contractName + "\"."));
 
-        $(".share-documents__message").waitUntil(Condition.visible, 7_000)
+        $(".share-documents__message, .modal-description").waitUntil(Condition.visible, 7_000)
                 .shouldHave(or("message on popup", Condition.exactText("Once sent, selected documents will be visible to the Counterparty"),
                                                          Condition.exactText("Once sent, selected documents will be emailed to the Counterparty")));
     }
@@ -36,6 +36,9 @@ public class SendInvitation
         return new EmailWillBeSentToTheCounterparty(isClassic);
     }
 
+    /**
+     * Click START or NEXT button
+     */
     public void clickStart()
     {
         nextButton.click(); // START button has the same css locator
