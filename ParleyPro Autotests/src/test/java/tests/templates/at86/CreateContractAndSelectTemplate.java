@@ -1,14 +1,17 @@
 package tests.templates.at86;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import forms.ContractInformation;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -33,17 +36,22 @@ public class CreateContractAndSelectTemplate
     }
 
     @Test(priority = 2)
-    @Description("This test selects template Template_AT-86_text_cut_off_2.")
-    public void selectTemplate()
+    @Description("This test selects template downloaded_Modified and checks that necessary text is present.")
+    public void selectTemplateAndValidateText()
     {
-        AddDocuments addDocuments = new AddDocuments();
-
-        addDocuments.clickSelectTemplateTab().selectTemplate("Template_AT-86_text_cut_off_2");
+        new AddDocuments().clickSelectTemplateTab()
+                          .selectTemplate("downloaded_Modified");
 
         logger.info("Assert that notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Document Template_AT-86_text_cut_off_2 has been successfully uploaded."));
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Document downloaded_Modified has been successfully uploaded."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
-    }
 
-    // TODO: continue after fixing of PAR-13624
+        logger.info("Assert that necessary text is present...");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"“Alternative Base Rate\")').length === 1 && " +
+                                                            "$('.document-paragraph__content-text:contains(\"“Benchmark Conforming Changes\")').length === 1 && " +
+                                                            "$('.document-paragraph__content-text:contains(\"“Benchmark Replacement Event\")').length  === 1"),
+                "Looks like that “Alternative Base Rate“ or “Benchmark Conforming Changes“ or “Benchmark Replacement Event“ is not present on page !!!");
+
+        Screenshoter.makeScreenshot();
+    }
 }
