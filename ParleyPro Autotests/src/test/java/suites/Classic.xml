@@ -160,8 +160,7 @@
 
     <test name="Client doc #9: first Harold then Webco" preserve-order="true">
         <parameter name="contractName" value="Classic contract - client docs"/>
-        <parameter name="documentName"
-                   value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
+        <parameter name="documentName" value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
         <parameter name="cpDocumentName" value="Webco General Partnership - SuperFresh Frozen Assignment 3-12-15.doc"/>
         <parameter name="documentHasRevisions" value="false"/>
         <parameter name="numberOfDiscussions" value="20"/>
@@ -180,8 +179,7 @@
     <test name="Reverse of #9: first Webco then Harold" preserve-order="true">
         <parameter name="contractName" value="Classic contract - client docs"/>
         <parameter name="documentName" value="Webco General Partnership - SuperFresh Frozen Assignment 3-12-15.doc"/>
-        <parameter name="cpDocumentName"
-                   value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
+        <parameter name="cpDocumentName" value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
         <parameter name="documentHasRevisions" value="false"/>
         <parameter name="numberOfDiscussions" value="20"/>
         <parameter name="textOnFirstPage" value="Harold Young Inc."/>
@@ -233,27 +231,6 @@
         </classes>
     </test>
 
-    <!--
-    <test name="Client doc #12 [DHL]: AT-107: Document with macros" preserve-order="true">
-        <parameter name="contractName" value="Classic contract - client docs"/>
-        <parameter name="documentName" value="201104_FA_eLearning_Training_Learnship_updated.doc"/>
-        <parameter name="cpDocumentName"
-                   value="2021-03-17_KV-00184_Deutsche Post AG__Framework Agreement_vDPDHL_2.docx"/>
-        <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="380"/>
-        <parameter name="textOnFirstPage" value="Learnship Contract Number:"/>
-        <parameter name="textOnLastPage" value="Senior Sourcing Manager"/>
-        <classes>
-            <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-            <class name="tests.DeleteContractFromInProgress"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
-    -->
-
     <test name="AT-89: Classic - paragraphs cloning" preserve-order="true">
         <parameter name="contractName" value="AT-89: paragraphs cloning"/>
         <classes>
@@ -274,7 +251,7 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-<!--
+
     <test name="AT-43: Classic discussions: Queued discussions" preserve-order="true">
         <parameter name="contractName" value="AT43 - Classic discussions: Queued discussions"/>
         <classes>
@@ -284,7 +261,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 
     <test name="AT-119: Learnship, classic: Formatting issues" preserve-order="true">
         <parameter name="contractName" value="AT-119 CTR"/>
@@ -296,7 +273,6 @@
         </classes>
     </test>
 
-    <!--
     <test name="AT-65: Upload new version with redlines for my team documents" preserve-order="true">
         <parameter name="contractName" value="at-65: comment glues"/>
         <classes>
@@ -306,5 +282,5 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 </suite>
