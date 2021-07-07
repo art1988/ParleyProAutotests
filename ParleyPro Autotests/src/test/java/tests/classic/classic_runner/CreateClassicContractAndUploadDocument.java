@@ -71,6 +71,7 @@ public class CreateClassicContractAndUploadDocument
             new AddDocuments().clickUploadMyTeamDocuments( new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + documentName) );
 
             $(".spinner").waitUntil(Condition.disappear, 60_000);
+            $(".document__spinner .spinner").waitUntil(Condition.disappear, 60_000);
             $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
 
             Selenide.refresh();
