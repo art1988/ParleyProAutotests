@@ -57,15 +57,6 @@ public class FindAndReplacePopup
         return this;
     }
 
-    /**
-     * Returns Matches label, like 'Matches: 1', 'Matches: 23', etc
-     * @return
-     */
-    public String getMatchesCount()
-    {
-        return $("div[class^=\"styles__footer\"] div").getText();
-    }
-
     public Replace clickReviewAndReplaceButton()
     {
         reviewAndReplaceButton.waitUntil(Condition.enabled, 7_000).click();

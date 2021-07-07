@@ -68,7 +68,7 @@ public class UploadDocAndCheck
                                                                 .replaceWith("test");
 
         logger.info("Assert that Matches count is correct...");
-        Assert.assertEquals(findAndReplacePopup.getMatchesCount(), "Matches: 1");
+        $("div[class^=\"styles__footer\"] div").waitUntil(Condition.text("Matches: 1"), 10_000);
 
         Screenshoter.makeScreenshot();
 
