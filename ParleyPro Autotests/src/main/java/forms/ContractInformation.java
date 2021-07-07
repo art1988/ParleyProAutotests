@@ -166,12 +166,12 @@ public class ContractInformation
         cpOrganizationField.sendKeys(cpOrganization);
 
         // wait until spinner for Counterparty organization will disappear
-        $(".Select-loading").waitUntil(Condition.disappear, 7_000);
+        $(".Select-loading").waitUntil(Condition.disappear, 17_000);
 
         cpOrganizationField.pressEnter();
 
         // wait until spinner for CCN field will disappear
-        $(".select__loading").waitUntil(Condition.disappear, 7_000);
+        $(".select__loading").waitUntil(Condition.disappear, 17_000);
     }
 
     public String getCounterpartyOrganization()
@@ -284,14 +284,14 @@ public class ContractInformation
 
         // Select All Types twice to reset all previous selections
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
-        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 17_000);
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
-        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 17_000);
 
         for( int i = 0; i < type.length; i++ )
         {
             Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('" + type[i] + "')\").click()");
-            $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+            $(".modal-content .spinner").waitUntil(Condition.disappear, 17_000);
         }
 
         $("input[data-id=\"contractType\"]").click(); // click by input to collapse dropdown
@@ -385,22 +385,22 @@ public class ContractInformation
 
     public void clickCancel()
     {
-        cancelButton.waitUntil(Condition.enabled, 5_000).click();
+        cancelButton.waitUntil(Condition.enabled, 15_000).click();
 
         logger.info("CANCEL button was clicked");
 
         // wait until Contract information form disappear
-        $(".modal-content").waitUntil(Condition.disappear, 7_000);
+        $(".modal-content").waitUntil(Condition.disappear, 17_000);
     }
 
     public void clickSave()
     {
         // wait until SAVE button is enabled
-        saveButton.waitUntil(Condition.enabled, 5_000).click();
+        saveButton.waitUntil(Condition.enabled, 15_000).click();
 
         logger.info("SAVE button was clicked");
 
         // wait until Contract information form disappear
-        $(".modal-content").waitUntil(Condition.disappear, 7_000);
+        $(".modal-content").waitUntil(Condition.disappear, 17_000);
     }
 }
