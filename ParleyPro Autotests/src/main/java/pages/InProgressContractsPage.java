@@ -18,7 +18,8 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class InProgressContractsPage
 {
-    private SelenideElement newContractButton          = $(".contracts__create button[type='button'], .js-create-contract-btn"); // the same css class represents + NEW REQUEST button
+    private SelenideElement newContractButton          = $(".contracts__create button[type='button'], .js-create-contract-btn");
+    private SelenideElement newRequestButton           = $("button:not(.js-create-contract-btn)");
     private SelenideElement searchBar                  = $(".contracts-search-input__text");
     private SelenideElement downloadContractDataButton = $(".contracts-head__download");
 
@@ -88,7 +89,7 @@ public class InProgressContractsPage
 
     public ContractRequest clickNewRequestButton()
     {
-        newContractButton.click();
+        newRequestButton.click();
 
         logger.info("+ NEW REQUEST button was clicked");
 
