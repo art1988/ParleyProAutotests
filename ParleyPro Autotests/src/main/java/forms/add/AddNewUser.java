@@ -37,7 +37,7 @@ public class AddNewUser
 
         if( edit == true )
         {
-            title.waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Update user"));
+            title.waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Update user"));
 
             try
             {
@@ -50,7 +50,7 @@ public class AddNewUser
         }
         else
         {
-            title.waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Add new user"));
+            title.waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Add new user"));
         }
     }
 
