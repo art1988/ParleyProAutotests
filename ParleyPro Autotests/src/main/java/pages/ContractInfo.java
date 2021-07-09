@@ -3,8 +3,10 @@ package pages;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import forms.delete.DeleteContract;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -13,9 +15,19 @@ import static com.codeborne.selenide.Selenide.$$;
 /**
  * Represents Contract Info page with 'Summary' and 'Post-execution' tabs.
  * 'Post-execution' tab is active by default.
+ * Or this panel may be opened after selection of request (right side panel).
  */
 public class ContractInfo
 {
+    private SelenideElement cpOrganizationField        = $("#counterpartyOrganization");
+    private SelenideElement cpChiefNegotiatorField     = $("#counterpartyChiefNegotiator");
+    private SelenideElement contractingRegionField     = $("#contractingRegion");
+    private SelenideElement contractingCountryField    = $("#contractingCountry");
+    private SelenideElement contractEntityField        = $("#contractEntity");
+    private SelenideElement contractingDepartmentField = $("#ContractingDepartment");
+    private SelenideElement contractCategoryField      = $("#contractCategory");
+
+
     private static Logger logger = Logger.getLogger(ContractInfo.class);
 
     public ContractInfo()
@@ -26,6 +38,15 @@ public class ContractInfo
         $(".documents-contract-edit__title").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract Info"));
         $$(".tab-menu .tab-menu__item").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("Summary", "Post-execution"));
         $(".contract-execute-form").waitUntil(Condition.visible, 15_000);
+    }
+
+    public ContractInfo(boolean isRequest)
+    {
+        $(".spinner").waitUntil(Condition.disappear, 20_000);
+        $(".documents-contract-edit__body .spinner").waitUntil(Condition.disappear, 20_000);
+        $(".modal__scrollable-body .spinner").waitUntil(Condition.disappear, 20_000);
+
+        $(".documents-contract-edit__title").waitUntil(Condition.visible, 20_000).shouldHave(Condition.exactText("Contract Info"));
     }
 
     /**
@@ -206,9 +227,91 @@ public class ContractInfo
         return Selenide.executeJavaScript("return $('label:contains(\"Notes\")').parent().find(\"textarea\").text()");
     }
 
+    public void setCounterpartyOrganization(String cpOrganization)
+    {
+        cpOrganizationField.sendKeys(cpOrganization);
+
+        // wait until spinner for Counterparty organization will disappear
+        $(".Select-loading").waitUntil(Condition.disappear, 17_000);
+
+        cpOrganizationField.pressEnter();
+
+        // wait until spinner for CCN field will disappear
+        $(".select__loading").waitUntil(Condition.disappear, 17_000);
+    }
+
+    public void setCounterpartyChiefNegotiator(String cpChiefNegotiator)
+    {
+        cpChiefNegotiatorField.sendKeys(cpChiefNegotiator);
+        cpChiefNegotiatorField.pressEnter();
+    }
+
+    public void setContractingRegion(String region)
+    {
+        contractingRegionField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
+        contractingRegionField.sendKeys(region);
+        contractingRegionField.pressEnter();
+    }
+
+    public void setContractingCountry(String country)
+    {
+        contractingCountryField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
+        contractingCountryField.sendKeys(country);
+        contractingCountryField.pressEnter();
+    }
+
+    public void setContractEntity(String entity)
+    {
+        contractEntityField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
+        contractEntityField.sendKeys(entity);
+        contractEntityField.pressEnter();
+    }
+
+    public void setContractingDepartment(String department)
+    {
+        contractingDepartmentField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
+        contractingDepartmentField.sendKeys(department);
+        contractingDepartmentField.pressEnter();
+    }
+
+    public void setContractCategory(String category)
+    {
+        contractCategoryField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
+        contractCategoryField.sendKeys(category);
+        contractCategoryField.pressEnter();
+
+        // Spinner may appear in case if more fields were added for certain category, so let's wait until it disappear
+        $(".spinner").waitUntil(Condition.disappear, 10_000);
+    }
+
+    /**
+     * Set _one_ contract type
+     * @param type
+     */
+    public void setContractType(String type)
+    {
+        $("input[data-id=\"contractType\"]").click(); // open Contract type dropdown
+
+        // Select All Types twice to reset all previous selections
+        Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
+        Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('All Types')\").click()");
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
+
+        Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('" + type + "')\").click()");
+        $(".spinner").waitUntil(Condition.disappear, 15_000);
+        Selenide.executeJavaScript("$('input[data-id=\"contractType\"]').click()"); // click by input to collapse dropdown
+    }
+
     public void clickSave()
     {
         Selenide.executeJavaScript("$('.contract-execute-form button:contains(\"SAVE\")').click()");
+
+        // in case if it is Request...
+        if( $(".button.btn.btn-common.btn-blue.btn.btn-default").isDisplayed() )
+        {
+            $(".button.btn.btn-common.btn-blue.btn.btn-default").click();
+        }
 
         logger.info("Save button was clicked");
     }
