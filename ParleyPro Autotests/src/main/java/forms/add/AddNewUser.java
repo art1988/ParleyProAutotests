@@ -115,11 +115,13 @@ public class AddNewUser
      * Delete role by role name
      * @param roleName
      */
-    public void deleteRole(String roleName)
+    public AddNewUser deleteRole(String roleName)
     {
         Selenide.executeJavaScript("$('.ui-tr input[value=\"" + roleName + "\"]').parent().parent().parent().parent().parent().parent().find('.contract-execute-form__remove').click()");
 
         logger.info("Role " + roleName + " was removed...");
+
+        return this;
     }
 
     public void setRegion(String regionName)
