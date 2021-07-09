@@ -26,10 +26,10 @@ public class AdministrationPage
     public AdministrationPage()
     {
         // check that title exists
-        title.waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Administration"));
+        title.waitUntil(Condition.visible, 16_000).shouldHave(Condition.exactText("Administration"));
 
         // check that tabs are exists
-        $(".landing-administration-subheaders").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Manage usersIntegrationsWorkflowsFieldsTeams"));
+        $(".landing-administration-subheaders").waitUntil(Condition.visible, 16_000).shouldHave(Condition.exactText("Manage usersIntegrationsWorkflowsFieldsTeams"));
     }
 
     public ManageUsers clickManageUsersTab()
