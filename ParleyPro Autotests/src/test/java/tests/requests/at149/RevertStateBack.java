@@ -58,6 +58,6 @@ public class RevertStateBack
         fieldsPage.clickContractFields().removeField("request field").clickDelete();
         fieldsPage.clickSave();
 
-        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract fields have been saved."));
     }
 }
