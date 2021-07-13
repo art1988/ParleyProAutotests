@@ -28,7 +28,7 @@ public class DashboardPage
      */
     public DashboardPage(SideBarItems[] sideBarItems)
     {
-        $(".spinner").waitUntil(Condition.disappear, 15_000);
+        $(".spinner").waitUntil(Condition.disappear, 35_000);
 
         Assert.assertTrue(isInit());
 
@@ -37,7 +37,7 @@ public class DashboardPage
 
     private boolean isInit()
     {
-        boolean hasSidebar = $(".page-menu").waitUntil(Condition.visible, 10_000).isDisplayed();
+        boolean hasSidebar = $(".page-menu").waitUntil(Condition.visible, 35_000).isDisplayed();
 
         return hasSidebar;
     }
