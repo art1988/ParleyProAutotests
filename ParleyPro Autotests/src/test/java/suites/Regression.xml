@@ -86,39 +86,6 @@
         </classes>
     </test>
 
-    <test name="AT-93: Grey screen when CCN confirms ready for signature action" preserve-order="true">
-        <parameter name="contractName" value="Grey screen - CCN"/>
-        <classes>
-            <class name="tests.LoginToDashboard"/>
-            <class name="tests.regression.at93.PrepareDocAsCN"/>
-            <class name="tests.regression.at93.LoginAsCCN"/>
-            <class name="tests.DeleteContractFromInProgress"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
-
-    <test name="AT-111: Grey screen in Manage Discussions" preserve-order="true">
-        <parameter name="contractName" value="Grey screen in Manage Discussions"/>
-        <classes>
-            <class name="tests.LoginToDashboard"/>
-            <class name="tests.regression.at111.CreateContractUploadDocAndMakePosts"/>
-            <class name="tests.DeleteContractFromInProgress"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
-
-    <test name="AT-134: Gray screen when adding comment" preserve-order="true">
-        <parameter name="contractName" value="Share me"/>
-        <classes>
-            <class name="tests.LoginToDashboard"/>
-            <class name="tests.regression.at134.UploadDocAndShare"/>
-            <class name="tests.regression.at134.LoginAsGregAndMakeComment"/>
-            <class name="tests.regression.at134.LoginBackAsCNAndCheck"/>
-            <class name="tests.DeleteContractFromInProgress"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
-
     <test name="AT-123: Sorting by CN" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
