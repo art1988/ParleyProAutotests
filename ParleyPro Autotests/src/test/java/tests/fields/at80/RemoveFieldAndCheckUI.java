@@ -51,7 +51,11 @@ public class RemoveFieldAndCheckUI
 
             for( int i = 0; i < $$(".notification-stack .notification-stack__item").size(); i++ )
             {
-                $$(".notification-stack .notification-stack__item").get(i).find(".notification__close").click();
+                $$(".notification-stack .notification-stack__item")
+                        .get(i)
+                        .waitUntil(Condition.visible, 10_000)
+                        .find(".notification__close")
+                        .click();
             }
         }
 
