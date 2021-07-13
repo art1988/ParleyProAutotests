@@ -70,9 +70,13 @@ public class SideBar
         sideBarItems.put(USER_GUIDE,            "a[href^='http://help.parleypro.com/']");
     }
 
-    public void clickPriorityDashboard()
+    public PriorityDashboardPage clickPriorityDashboard()
     {
         $(sideBarItems.get(PRIORITY_DASHBOARD)).click();
+
+        logger.info("Priority Dashboard button was clicked");
+
+        return new PriorityDashboardPage();
     }
 
     public InProgressContractsPage clickInProgressContracts(boolean isBlank)
