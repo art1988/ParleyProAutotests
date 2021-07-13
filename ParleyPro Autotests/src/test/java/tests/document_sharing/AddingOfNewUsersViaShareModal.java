@@ -67,12 +67,12 @@ public class AddingOfNewUsersViaShareModal
 
         logger.info("Check user icons in document header...");
         $(".header-users .user").waitUntil(Condition.appear, 25_000); // wait until users icons will appear
-        $$(".header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("a", "a", "a"));
+        $$(".header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.exactTexts("AL", "Ar", "Ar"));
         hoverOverIcons(".header-users");
 
         logger.info("Check user icons in contract header...");
         $(".contract-header-users__list .user").waitUntil(Condition.appear, 25_000); // wait until users icons will appear
-        $$(".contract-header-users__list .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("a", "a", "a"));
+        $$(".contract-header-users__list .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.exactTexts("AL", "Ar", "Ar"));
         hoverOverIcons(".contract-header-users__list");
 
         Screenshoter.makeScreenshot();
@@ -94,7 +94,8 @@ public class AddingOfNewUsersViaShareModal
                 continue; // first hover over all user icons - nothing to check
             }
 
-            $(".rc-tooltip-inner .spinner").waitUntil(Condition.disappear, 8_000);
+            $(".rc-tooltip-inner .spinner").waitUntil(Condition.appear, 15_000);
+            $(".rc-tooltip-inner .spinner").waitUntil(Condition.disappear, 25_000);
 
             String userRole = $(".contract-user__status").waitUntil(Condition.visible, 5_000).getText(),
                    userName = $(".contract-user__name").waitUntil(Condition.visible, 5_000).getText();
