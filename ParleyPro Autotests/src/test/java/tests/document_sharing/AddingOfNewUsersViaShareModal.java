@@ -87,6 +87,7 @@ public class AddingOfNewUsersViaShareModal
         for( int i = 0; i < $$(cssClassName + " .user").size(); i++ )
         {
             $$(cssClassName + " .user").get(i).hover();
+            Thread.sleep(1_000);
 
             if( i == 0 )
             {
@@ -94,7 +95,7 @@ public class AddingOfNewUsersViaShareModal
                 continue; // first hover over all user icons - nothing to check
             }
 
-            $(".rc-tooltip-inner .spinner").waitUntil(Condition.appear, 15_000);
+            $(".rc-tooltip-content").waitUntil(Condition.appear, 15_000);
             $(".rc-tooltip-inner .spinner").waitUntil(Condition.disappear, 25_000);
 
             String userRole = $(".contract-user__status").waitUntil(Condition.visible, 5_000).getText(),
