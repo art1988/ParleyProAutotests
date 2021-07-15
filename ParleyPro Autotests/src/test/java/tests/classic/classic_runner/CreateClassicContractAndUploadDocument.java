@@ -63,16 +63,16 @@ public class CreateClassicContractAndUploadDocument
             detectedChangesForm.setCounterpartyNegotiatorEmail("arthur.khasanov+cpat@parleypro.com");
             detectedChangesForm.clickOk();
 
-            $(".spinner").waitUntil(Condition.disappear, 60_000);
-            $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
+            $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
+            $(".document__body .spinner").waitUntil(Condition.disappear, 60_000 * 2);
         }
         else // else move it to Negotiate status
         {
             new AddDocuments().clickUploadMyTeamDocuments( new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + documentName) );
 
-            $(".spinner").waitUntil(Condition.disappear, 60_000);
-            $(".document__spinner .spinner").waitUntil(Condition.disappear, 60_000);
-            $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
+            $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
+            $(".document__spinner .spinner").waitUntil(Condition.disappear, 60_000 * 2);
+            $(".document__body .spinner").waitUntil(Condition.disappear, 60_000 * 2);
 
             Selenide.refresh();
 
