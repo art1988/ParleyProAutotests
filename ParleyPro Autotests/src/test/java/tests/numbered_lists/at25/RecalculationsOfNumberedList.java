@@ -44,7 +44,7 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after adding...");
 
-        String actual = getFirstList("6.");
+        String actual = getPartialList("6.");
 
         Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|" + addedItem + "," +
                 "3.|L0_Number_Point_2,3.1.|L1_Number_Point_2_1,3.2.|L1_Number_Point_2_2,3.2.1.|L2_Number_Point_2_2_1," +
@@ -76,7 +76,7 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after adding...");
 
-        String actual = getFirstList("7.");
+        String actual = getPartialList("7.");
 
         Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A,3.|L0_Number_Point_2," +
                 "4.|" + addedItem + ",4.1.|L1_Number_Point_2_1,4.2.|L1_Number_Point_2_2," +
@@ -111,7 +111,7 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after adding...");
 
-        String actual = getFirstList("7.");
+        String actual = getPartialList("7.");
 
         Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A,3.|L0_Number_Point_2," +
                 "4.|L0_Number_Point_B with sublevels,4.1.|L1_Number_Point_2_1,4.2.|L1_Number_Point_2_2," +
@@ -138,7 +138,7 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after deletion...");
 
-        String actual = getFirstList("6."); // changed to 6.
+        String actual = getPartialList("6."); // changed to 6.
 
         Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A," +
                 "3.|L0_Number_Point_B with sublevels,3.1.|L1_Number_Point_2_1,3.2.|L1_Number_Point_2_2," +
@@ -167,7 +167,7 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after deletion...");
 
-        String actual = getFirstList("6."); // still 6.
+        String actual = getPartialList("6."); // still 6.
 
         Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A," +
                 "3.|L0_Number_Point_B with sublevels,3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel," +
@@ -200,7 +200,7 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after adding...");
 
-        String actual = getFirstList("7."); // changed to 7.
+        String actual = getPartialList("7."); // changed to 7.
 
         Assert.assertEquals(actual, "1.|" + addedItem + ",2.|L0_Number_Point_1,3.|new added item - L0_Number_Point_A," +
                 "4.|L0_Number_Point_B with sublevels,4.1.|L1_Number_Point_2_1,4.1.1.|L2_Number_Point_C in sublevel," +
@@ -233,7 +233,7 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after adding...");
 
-        String actual = getFirstList("8."); // changed to 8.
+        String actual = getPartialList("8."); // changed to 8.
 
         Assert.assertEquals(actual, "1.|above first item,2.|L0_Number_Point_1,3.|new added item - L0_Number_Point_A," +
                 "4.|L0_Number_Point_B with sublevels,4.1.|L1_Number_Point_2_1,4.1.1.|L2_Number_Point_C in sublevel," +
@@ -266,7 +266,7 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after deletion...");
 
-        String actual = getFirstList("7."); // changed to 7.
+        String actual = getPartialList("7."); // changed to 7.
 
         Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A," +
                 "3.|L0_Number_Point_B with sublevels,3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel," +
@@ -297,7 +297,7 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after discard...");
 
-        String actual = getFirstList("6."); // changed to 6.
+        String actual = getPartialList("6."); // changed to 6.
 
         Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_B with sublevels,2.1.|L1_Number_Point_2_1," +
                 "2.1.1.|L2_Number_Point_C in sublevel,2.1.2.|L2_Number_Point_2_2_1,2.1.2.1.|L3_Number_Point_2_2_1_1," +
@@ -328,7 +328,7 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after discard...");
 
-        String actual = getFirstList("7."); // changed to 7.
+        String actual = getPartialList("7."); // changed to 7.
 
         Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_2,3.|L0_Number_Point_B with sublevels," +
                 "3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel,3.1.2.|L2_Number_Point_2_2_1," +
@@ -355,7 +355,7 @@ public class RecalculationsOfNumberedList
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation after accepting...");
-        String actual = getFirstList("7."); // still 7.
+        String actual = getPartialList("7."); // still 7.
 
         Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_2,3.|L0_Number_Point_B with sublevels," +
                 "3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel,3.1.2.|L2_Number_Point_2_2_1," +
@@ -382,7 +382,7 @@ public class RecalculationsOfNumberedList
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation after accepting...");
-        String actual = getFirstList("7."); // still 7.
+        String actual = getPartialList("7."); // still 7.
 
         Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_2,3.|L0_Number_Point_B with sublevels," +
                 "3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel,3.1.2.|L2_Number_Point_2_2_1," +
@@ -394,22 +394,25 @@ public class RecalculationsOfNumberedList
     }
 
     /**
-     * Get first numbered list
+     * Get partial numbered list.
+     * May be useful to fetch only partial list, for example (1. - ... - 5.) or (a. - ... - d.)
      * @param endOfList the last item of the list. Indicates the end of the list. May be 6. or 7., etc.
      * @return
      */
-    private String getFirstList(String endOfList)
+    private String getPartialList(String endOfList)
     {
-        StringBuffer jsCode = new StringBuffer("var paragraphs = $('.document-paragraph__content-text p').filter((ind, el) => $(el).find('span:first-child[contenteditable=false]').length); ");
+        StringBuffer jsCode = new StringBuffer("var listItems = $('p [list-item=\"true\"]');");
         jsCode.append("var items = []; ");
-        jsCode.append("paragraphs.each((ind, paragraph) => { ");
-        jsCode.append("var parapgraphText = paragraph.innerText; ");
-        jsCode.append("var numberingText = paragraph.children[0].innerText + paragraph.children[1].innerText; ");
-        jsCode.append("items.push([paragraph.children[0].innerText, parapgraphText.replace(numberingText, '').trim()]); }); ");
-        jsCode.append("var newItems = []; ");
-        jsCode.append("for (var i = 0; i < items.length; i++) { ");
-        jsCode.append("var item = items[i]; ");
-        jsCode.append("newItems.push(item); ");
+        jsCode.append("listItems.each(");
+        jsCode.append("function(i, listItem) {");
+        jsCode.append("var num = $(listItem).text();");
+        jsCode.append("var text = $(listItem).parent().next().text().trim();");
+        jsCode.append("if(text === '') text = $(listItem).parent().parent().find(\"ins\").last().text();");
+        jsCode.append("items.push([num, text]); } );");
+        jsCode.append("var newItems = [];");
+        jsCode.append("for (var i = 0; i < items.length; i++)  {");
+        jsCode.append("var item = items[i];");
+        jsCode.append("newItems.push(item);");
         jsCode.append("if (item[0] === '" + endOfList + "') { break } } ");
         jsCode.append("var string = newItems.map(item => item.join('|')).join(','); ");
         jsCode.append("return string;");
