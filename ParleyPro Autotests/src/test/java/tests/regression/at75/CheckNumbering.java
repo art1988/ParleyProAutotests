@@ -2,6 +2,7 @@ package tests.regression.at75;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Issue;
+import io.qameta.allure.Issues;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -15,7 +16,10 @@ public class CheckNumbering
     private static Logger logger = Logger.getLogger(CheckNumbering.class);
 
     @Test
-    @Issue("PAR-14430")
+    @Issues({
+            @Issue("PAR-14430"),
+            @Issue("PAR-14445")
+    })
     public void checkNumbering()
     {
         logger.info("Scroll to necessary paragraph...");
