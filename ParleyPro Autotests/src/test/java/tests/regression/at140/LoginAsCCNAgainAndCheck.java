@@ -12,6 +12,7 @@ import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
+import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -31,6 +32,10 @@ public class LoginAsCCNAgainAndCheck
         loginPage.setEmail( Const.PREDEFINED_CCN.getEmail() );
         loginPage.setPassword( Const.PREDEFINED_CCN.getPassword() );
         dashboardPage = loginPage.clickSignIn(new SideBarItems[]{SideBarItems.IN_PROGRESS_CONTRACTS, SideBarItems.EXECUTED_CONTRACTS});
+
+        // Wait until document is fully loaded...
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"delete me\")')");
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Unused extra\")')");
 
         logger.info("Checking that the internal discussions for the first and second paragraphs are still open...");
         $$(".document__body-content .discussion-indicator").shouldHave(CollectionCondition.size(2));
