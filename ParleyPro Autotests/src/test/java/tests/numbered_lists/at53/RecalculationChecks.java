@@ -181,13 +181,16 @@ public class RecalculationChecks
      */
     private String getWholeList()
     {
-        StringBuffer jsCode = new StringBuffer("var paragraphs = $('.document-paragraph__content-text p').filter((ind, el) => $(el).find('span:first-child[contenteditable=false]').length); ");
-        jsCode.append("var items = []; ");
-        jsCode.append("paragraphs.each((ind, paragraph) => { ");
-        jsCode.append("var paragraphText = paragraph.innerText; ");
-        jsCode.append("var numberingText = paragraph.children[0].innerText + paragraph.children[1].innerText; ");
-        jsCode.append("items.push([paragraph.children[0].innerText, paragraphText.replace(numberingText, '')]); }); ");
-        jsCode.append("var string = items.map(item => item.join('|')).join(','); ");
+        StringBuffer jsCode = new StringBuffer("var listItems = $('p [list-item=\"true\"]');");
+        jsCode.append("var items = [];");
+        jsCode.append("listItems.each(");
+        jsCode.append("function(i, listItem) {");
+        jsCode.append("var num = $(listItem).text();");
+        jsCode.append("var text = $(listItem).parent().next().text().trim();");
+        jsCode.append("if(text === '') { text = $(listItem).parent().parent().find(\"ins\").last().text(); ");
+        jsCode.append("if(text === '') { text = $(listItem).parent().find(\"span\").last().text(); }}");
+        jsCode.append("items.push([num, text]); } );");
+        jsCode.append("var string = items.map(item => item.join('|')).join(',');");
         jsCode.append("return string.replace(/\\s/g, '');"); // Also remove all spaces in string
 
         return Selenide.executeJavaScript(jsCode.toString());

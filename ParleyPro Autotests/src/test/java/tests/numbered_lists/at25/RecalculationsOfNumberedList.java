@@ -407,7 +407,8 @@ public class RecalculationsOfNumberedList
         jsCode.append("function(i, listItem) {");
         jsCode.append("var num = $(listItem).text();");
         jsCode.append("var text = $(listItem).parent().next().text().trim();");
-        jsCode.append("if(text === '') text = $(listItem).parent().parent().find(\"ins\").last().text();");
+        jsCode.append("if(text === '') { text = $(listItem).parent().parent().find(\"ins\").last().text(); ");
+        jsCode.append("if(text === '') { text = $(listItem).parent().find(\"span\").last().text(); } } ");
         jsCode.append("items.push([num, text]); } );");
         jsCode.append("var newItems = [];");
         jsCode.append("for (var i = 0; i < items.length; i++)  {");
