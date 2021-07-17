@@ -101,12 +101,13 @@ public class CreateClassicContractAndUploadDocument
     }
 
     @Test(priority = 2)
-    public void closeNotificationsPopups()
+    public void closeNotificationsPopups() throws InterruptedException
     {
+        Thread.sleep(500);
         // close all notification popups if they are present
         if( $(".notification-stack").is(Condition.visible) )
         {
-            if( $$(".notification-stack .notification-stack__item").size() == 0 )
+            if( $$(".notification-stack .notification-stack__item").isEmpty() )
             {
                 return;
             }
