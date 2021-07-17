@@ -39,25 +39,7 @@ public class RemoveFieldAndCheckUI
 
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
         Screenshoter.makeScreenshot();
-
-        Thread.sleep(500);
-        // close all notification popups if they are present
-        if( $(".notification-stack").is(Condition.visible) )
-        {
-            if( $$(".notification-stack .notification-stack__item").size() == 0 )
-            {
-                return;
-            }
-
-            for( int i = 0; i < $$(".notification-stack .notification-stack__item").size(); i++ )
-            {
-                $$(".notification-stack .notification-stack__item")
-                        .get(i)
-                        .waitUntil(Condition.visible, 10_000)
-                        .find(".notification__close")
-                        .click();
-            }
-        }
+        Thread.sleep(1_000);
 
         fieldsTab.clickNext();
         Thread.sleep(1_000);
