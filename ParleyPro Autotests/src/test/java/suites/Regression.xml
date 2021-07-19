@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Regression" configfailurepolicy="continue">
-    <!--
     <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
@@ -111,6 +110,19 @@
         </classes>
     </test>
 
+    <test name="AT-142: If Contract Department is empty, user with Department restriction can see that contract in Executed contracts" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at142.DisableDepartmentField"/>
+            <class name="tests.regression.at142.CreateContract0"/>
+            <class name="tests.regression.at142.CreateContract1AndContract2"/>
+            <class name="tests.regression.at142.AddViewerRoleAndSetDepartment"/>
+            <class name="tests.regression.at142.LoginAsUser2AndCheck"/>
+            <class name="tests.regression.at142.CleanUp"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
     <test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
         <classes>
             <class name="tests.LoginToTrackChangesTenant"/>
@@ -125,19 +137,6 @@
         <classes>
             <class name="tests.LoginToTrackChangesTenant"/>
             <class name="tests.regression.at141.CreateContractUploadDocAndChange"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test> -->
-
-    <test name="AT-142: If Contract Department is empty, user with Department restriction can see that contract in Executed contracts" preserve-order="true">
-        <classes>
-            <class name="tests.LoginToDashboard"/>
-            <class name="tests.regression.at142.DisableDepartmentField"/>
-            <class name="tests.regression.at142.CreateContract0"/>
-            <class name="tests.regression.at142.CreateContract1AndContract2"/>
-            <class name="tests.regression.at142.AddViewerRoleAndSetDepartment"/>
-            <class name="tests.regression.at142.LoginAsUser2AndCheck"/>
-            <class name="tests.regression.at142.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
