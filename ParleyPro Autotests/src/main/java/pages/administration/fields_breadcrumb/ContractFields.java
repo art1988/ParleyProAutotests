@@ -112,6 +112,18 @@ public class ContractFields
     }
 
     /**
+     * Sets new value for existing one. Instead of removing and adding new value, use this method.
+     * @param fieldName name of the field
+     * @param valueIndex may be 1, 2, etc
+     * @param value value to set
+     */
+    public void setNewValue(String fieldName, String value, int valueIndex)
+    {
+        WebElement input = Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\".admin-fields-field__values-list\").find(\"span:contains('Value " + valueIndex + "')\").parent().parent().find(\"input\")[0]");
+        $(input).val(value);
+    }
+
+    /**
      * Click by 'Add values' link then click by 'Link values' link for certain field
      * @param fieldName
      */
@@ -142,6 +154,8 @@ public class ContractFields
                 ".parent().parent().parent().parent().parent().find(\"div:contains('Edit values')\").click()");
 
         logger.info("Edit values link was clicked for: " + fieldName);
+
+        try { Thread.sleep(500); } catch (InterruptedException e) { e.printStackTrace(); }
     }
 
     public void clickHideValues()
@@ -193,5 +207,7 @@ public class ContractFields
                 ".find(\"input[value='" + valueNameToDelete + "']\").parent().parent().parent().find(\".admin-fields-field__values-remove\").click()");
 
         logger.info("Value " + valueNameToDelete + " of field " + fieldName + " was removed.");
+
+        try { Thread.sleep(500); } catch (InterruptedException e) { e.printStackTrace(); }
     }
 }
