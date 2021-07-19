@@ -76,7 +76,7 @@ public class ExecutedContractsPage
     }
 
     /**
-     * Click contract by contract name
+     * Click contract by contract name. Contract has some uploaded documents.
      * @param contractName
      */
     public ContractInfo selectContract(String contractName)
@@ -85,5 +85,18 @@ public class ExecutedContractsPage
         logger.info("Contract '" + contractName + "' was selected...");
 
         return new ContractInfo();
+    }
+
+    /**
+     * Click contract by contract name. Returns Add Documents page because no documents were uploaded.
+     * @param contractName
+     * @return
+     */
+    public AddDocuments selectContractWithoutUploadedDoc(String contractName)
+    {
+        Selenide.executeJavaScript("$('.contracts-list__table div:contains(\"" + contractName + "\")').click()");
+        logger.info("Contract '" + contractName + "' was selected...");
+
+        return new AddDocuments();
     }
 }
