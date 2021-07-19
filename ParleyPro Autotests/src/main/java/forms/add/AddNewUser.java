@@ -87,23 +87,27 @@ public class AddNewUser
     /**
      * Click by + Add role blue link
      */
-    public void clickAddRole()
+    public AddNewUser clickAddRole()
     {
         addRoleButton.click();
 
         logger.info("+ Add role was clicked");
+
+        return this;
     }
 
     /**
      * Set role.
      * @param roleName may be 'Chief Negotiator', 'Contract Manager', 'Viewer Plus', 'Viewer', 'Admin' or 'Requester'
      */
-    public void setRole(String roleName)
+    public AddNewUser setRole(String roleName)
     {
         WebElement input = Selenide.executeJavaScript("return $('.Select-placeholder').parent().find(\".Select-input input\")[0]");
 
         $(input).sendKeys(roleName);
         $(input).pressEnter();
+
+        return this;
     }
 
     public String getRole()
@@ -176,7 +180,7 @@ public class AddNewUser
         return Selenide.executeJavaScript("return $('.modal-body .user-edit-roles__category input:visible').val()");
     }
 
-    public void setDepartment(String department)
+    public AddNewUser setDepartment(String department)
     {
         if( getDepartment().equals("All departments") )
         {
@@ -195,6 +199,8 @@ public class AddNewUser
         }
 
         logger.info("Department: " + department + " was selected...");
+
+        return this;
     }
 
     public String getDepartment()
