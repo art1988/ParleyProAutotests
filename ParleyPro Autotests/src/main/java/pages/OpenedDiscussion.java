@@ -144,7 +144,7 @@ public class OpenedDiscussion
         $(makeQueuedButton).shouldBe(Condition.enabled).click();
 
         $(".spinner").waitUntil(Condition.appear, 20_000);
-        $(".spinner").waitUntil(Condition.disappear, 40_000);
+        $(".spinner").waitUntil(Condition.disappear, 40_000 * 2);
 
         logger.info("MAKE QUEUED button was clicked for post");
     }
