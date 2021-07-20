@@ -240,9 +240,26 @@ public class ContractInformation
         return Selenide.executeJavaScript("return $('#ContractingDepartment').parent().prev().find(\"span\").text()");
     }
 
+    /**
+     * Deletes previous selected Contract Category via BACK_SPACE and sets new value by typing.
+     * @param category
+     */
     public void setContractCategory(String category)
     {
         contractCategoryField.sendKeys(Keys.BACK_SPACE); // clear field by pressing BACK_SPACE
+        contractCategoryField.sendKeys(category);
+        contractCategoryField.pressEnter();
+
+        // Spinner may appear in case if more fields were added for certain category, so let's wait until it disappear
+        $(".spinner").waitUntil(Condition.disappear, 10_000);
+    }
+
+    /**
+     * Reselect value of Contract category. Doesn't click BACK_SPACE to clear the field.
+     * @param category
+     */
+    public void chooseNewContractCategory(String category)
+    {
         contractCategoryField.sendKeys(category);
         contractCategoryField.pressEnter();
 
