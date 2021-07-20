@@ -14,11 +14,11 @@ import utils.ScreenShotOnFailListener;
 import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class RemoveFields
+public class CleanUp
 {
-    private Logger logger = Logger.getLogger(RemoveFields.class);
+    private Logger logger = Logger.getLogger(CleanUp.class);
 
-    @Test
+    @Test(priority = 1)
     public void removeFields()
     {
         Fields fieldsTab = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
@@ -28,8 +28,8 @@ public class RemoveFields
         logger.info("Removing 2 contract categories...");
         Selenide.executeJavaScript("$('input[value=\"Contracting department\"]')[0].scrollIntoView({})");
         contractFields.clickEditValues("Contract category");
-        contractFields.removeValue("Contract category", "Amendment - Testcat");
-        contractFields.removeValue("Contract category", "Testcat");
+        contractFields.removeValue("Contract category", "AmendmentTestcat");
+        contractFields.removeValue("Contract category", "CatTest");
 
         logger.info("Removing Field1 - Field10...");
         for( int i = 1; i <= 10; i++ )
@@ -49,5 +49,11 @@ public class RemoveFields
         logger.info("Assert that only necessary fields are remain...");
         Assert.assertEquals((long) Selenide.executeJavaScript("return $('.admin-fields__title:contains(\"Summary\")').parent().find(\".input\").length"), 8,
                 "Looks like that some fields weren't deleted !!!");
+    }
+
+    @Test(priority = 2)
+    public void removeContracts()
+    {
+
     }
 }

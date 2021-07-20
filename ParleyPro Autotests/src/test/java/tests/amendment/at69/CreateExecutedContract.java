@@ -28,7 +28,7 @@ public class CreateExecutedContract
         contractInformation.setContractingCountry("country2");
         contractInformation.setContractEntity("entity1");
         contractInformation.setContractingDepartment("department2");
-        contractInformation.setContractCategory("Testcat"); // !!!
+        contractInformation.setContractCategory("CatTest"); // !!!
         contractInformation.setContractType("type2");
 
         // Fill all fields for 'Testcat' category

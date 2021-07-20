@@ -30,8 +30,8 @@ public class AddCategoriesFieldsAndRelations
         ContractFields contractFields = fieldsTab.clickContractFields();
 
         contractFields.clickEditValues("Contract category");
-        contractFields.addValues("Contract category", "Testcat", 3);
-        contractFields.addValues("Contract category", "Amendment - Testcat", 4);
+        contractFields.addValues("Contract category", "CatTest", 3);
+        contractFields.addValues("Contract category", "AmendmentTestcat", 4);
 
         fieldsTab.clickSave();
 
@@ -80,7 +80,7 @@ public class AddCategoriesFieldsAndRelations
         for( int i = 1; i <= 10; i++ )
         {
             fieldsRelations.addRelatedField("Contract category")
-                           .selectValueForField("Category", "Testcat")
+                           .selectValueForField("Category", "CatTest")
                            .selectRelatedField("Field" + i)
                            .clickMakeRelated();
         }
@@ -89,7 +89,7 @@ public class AddCategoriesFieldsAndRelations
         for( int i = 1; i <= 10; i++ )
         {
             fieldsRelations.addRelatedField("Contract category")
-                           .selectValueForField("Category", "Amendment - Testcat")
+                           .selectValueForField("Category", "AmendmentTestcat")
                            .selectRelatedField("Field" + i)
                            .clickMakeRelated();
         }
@@ -97,7 +97,7 @@ public class AddCategoriesFieldsAndRelations
         for( int i = 1; i <= 5; i++ )
         {
             fieldsRelations.addRelatedField("Contract category")
-                           .selectValueForField("Category", "Amendment - Testcat")
+                           .selectValueForField("Category", "AmendmentTestcat")
                            .selectRelatedField("AmendFld" + i)
                            .clickMakeRelated();
         }
