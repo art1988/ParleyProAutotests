@@ -2,6 +2,7 @@ package tests.numbered_lists.at25;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import constants.AcceptTypes;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
@@ -40,10 +41,16 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation after adding...");
-        String actual = getList("a.", "d.");
 
-        Assert.assertEquals(actual, "a.|" + addedItem + ",b.|L0_Letter_lowercase_a," +
-                "c.|L0_Letter_lowercase_b,c.1.|L1_Letter_lowercase_b_1,d.|L0_Letter_lowercase_c");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
+                "6.L0_Number_Point_5,7.below last item,a." + addedItem + ",b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
+                "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1," +
+                "C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c," +
+                "I.L0_Roman_capital_I,II.L0_Roman_capital_II,II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i," +
+                "ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -72,9 +79,16 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation after adding...");
-        String actual = getList("A.", "C.");
 
-        Assert.assertEquals(actual, "A.|L0_Letter_capital_A,B.|L0_Letter_capital_B,B.1.|" + addedItem + ",B.2.|L1_Letter_capital_B_1,C.|L0_Letter_capital_C");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
+                "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
+                "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1." + addedItem + "," +
+                "B.2.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c," +
+                "I.L0_Roman_capital_I,II.L0_Roman_capital_II,II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii," +
+                "ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -98,9 +112,16 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation after removing...");
-        String actual = getList("(a)", "(b)");
 
-        Assert.assertEquals(actual, "(a)|L0_Letter_braces_a,a.1.|L1_Letter_braces_b_1,(b)|L0_Letter_braces_c");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
+                "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
+                "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_ABOVE_B_1," +
+                "B.2.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1," +
+                "(b)L0_Letter_braces_c,I.L0_Roman_capital_I,II.L0_Roman_capital_II,II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III," +
+                "i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -126,9 +147,16 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation after removing...");
-        String actual = getList("I.", "II.");
 
-        Assert.assertEquals(actual, "I.|L0_Roman_capital_II,I.1.|L1_Roman_capital_II_1,II.|L0_Roman_capital_III");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
+                "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
+                "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_ABOVE_B_1," +
+                "B.2.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1,(b)L0_Letter_braces_c," +
+                "I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1,II.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1," +
+                "iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -151,10 +179,16 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation after adding...");
-        String actual = getList("i.", "iv.");
 
-        Assert.assertEquals(actual, "i.|L0_Roman_lower_i,ii.|L0_Roman_lower_ii,ii.1.|L1_Roman_lower_ii_1," +
-                "iii.|L0_Roman_lower_iii,iv.|" + addedItem);
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
+                "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
+                "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_ABOVE_B_1," +
+                "B.2.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1," +
+                "(b)L0_Letter_braces_c,I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1,II.L0_Roman_capital_III,i.L0_Roman_lower_i," +
+                "ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,iv." + addedItem + ",•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -182,10 +216,15 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        String actual = getList("i.", "iv.");
-
-        Assert.assertEquals(actual, "i.|L0_Roman_lower_i,ii.|L0_Roman_lower_ii,ii.1.|L1_Roman_lower_ii_1," +
-                "ii.2.|" + addedItem + ",iii.|L0_Roman_lower_iii,iv.|last_added_roman_lowered");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5," +
+                "7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b,c.1.L1_Letter_lowercase_b_1," +
+                "d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_ABOVE_B_1,B.2.L1_Letter_capital_B_1," +
+                "C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1,(b)L0_Letter_braces_c,I.L0_Roman_capital_II," +
+                "I.1.L1_Roman_capital_II_1,II.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,ii.2." + addedItem + "," +
+                "iii.L0_Roman_lower_iii,iv.last_added_roman_lowered,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -207,9 +246,16 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        String actual = getList("•", ""); // get whole bulleted list
-
-        Assert.assertEquals(actual, "•|L0_Bullet_1,•|L0_Bullet_2,•|" + addedItem + ",o|L1_Bullet_2_1,•|L0_Bullet_3");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
+                "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
+                "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B," +
+                "B.1.L1_Letter_capital_ABOVE_B_1,B.2.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a," +
+                "(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1,(b)L0_Letter_braces_c,I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1," +
+                "II.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,ii.2.L1_Roman_lower_sublevel," +
+                "iii.L0_Roman_lower_iii,iv.last_added_roman_lowered,•L0_Bullet_1,•L0_Bullet_2,•" + addedItem + ",oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -237,9 +283,16 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        String actual = getList("•", "");
-
-        Assert.assertEquals(actual, "•|L0_Bullet_1,•|L0_Bullet_2,•|L0_Bullet_added_new,o|L1_Bullet_2_1,o|" + addedItem + ",•|L0_Bullet_3");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
+                "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
+                "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_ABOVE_B_1," +
+                "B.2.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1," +
+                "(b)L0_Letter_braces_c,I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1,II.L0_Roman_capital_III,i.L0_Roman_lower_i," +
+                "ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,ii.2.L1_Roman_lower_sublevel,iii.L0_Roman_lower_iii,iv.last_added_roman_lowered," +
+                "•L0_Bullet_1,•L0_Bullet_2,•L0_Bullet_added_new,oL1_Bullet_2_1,o" + addedItem + ",•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -258,9 +311,33 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        String actual = getList("•", "");
-
-        Assert.assertEquals(actual, "•|L0_Bullet_1,•|L0_Bullet_added_new,o|L1_Bullet_2_1,o|L1_Bullet_newSublevel,•|L0_Bullet_3");
+        // if this is RC
+        // TODO: or prod too ?...
+        if( WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://qa-autotests.parleypro.net/rc") )
+        {
+            Assert.assertEquals(getWholeList(),"1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                    "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                    "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                    "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5," +
+                    "7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b,c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c," +
+                    "A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_ABOVE_B_1,B.2.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a," +
+                    "(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1,(b)L0_Letter_braces_c,I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1,II.L0_Roman_capital_III," +
+                    "i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,ii.2.L1_Roman_lower_sublevel,iii.L0_Roman_lower_iii,iv.last_added_roman_lowered," +
+                    "•L0_Bullet_1,•L0_Bullet_2,•L0_Bullet_added_new,oL1_Bullet_2_1,oL1_Bullet_newSublevel,•L0_Bullet_3");
+        }
+        else
+        {
+            Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                    "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                    "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                    "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
+                    "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
+                    "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_ABOVE_B_1," +
+                    "B.2.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1," +
+                    "(b)L0_Letter_braces_c,I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1,II.L0_Roman_capital_III,i.L0_Roman_lower_i," +
+                    "ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,ii.2.L1_Roman_lower_sublevel,iii.L0_Roman_lower_iii,iv.last_added_roman_lowered," +
+                    "•L0_Bullet_1,L0_Bullet_2,•L0_Bullet_added_new,oL1_Bullet_2_1,oL1_Bullet_newSublevel,•L0_Bullet_3");
+        }
 
         Screenshoter.makeScreenshot();
     }
@@ -286,39 +363,44 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        String actual = getList("•", "");
-
-        Assert.assertEquals(actual, "•|L0_Bullet_1,•|L0_Bullet_added_new,o|L1_Bullet_newSublevel,•|L0_Bullet_3");
+        // if this is RC
+        // TODO: or prod too ?...
+        if( WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://qa-autotests.parleypro.net/rc") )
+        {
+            Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                    "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1,3.1.2.1.1.L4_Number_Point_2_2_1_1_1," +
+                    "3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4," +
+                    "4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
+                    "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_ABOVE_B_1,B.2.L1_Letter_capital_B_1," +
+                    "C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1,(b)L0_Letter_braces_c,I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1," +
+                    "II.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,ii.2.L1_Roman_lower_sublevel,iii.L0_Roman_lower_iii," +
+                    "iv.last_added_roman_lowered,•L0_Bullet_1,•L0_Bullet_2,•L0_Bullet_added_new,oL1_Bullet_newSublevel,•L0_Bullet_3");
+        }
+        else
+        {
+            Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                    "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                    "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                    "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
+                    "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
+                    "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_ABOVE_B_1," +
+                    "B.2.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1," +
+                    "(b)L0_Letter_braces_c,I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1,II.L0_Roman_capital_III,i.L0_Roman_lower_i," +
+                    "ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,ii.2.L1_Roman_lower_sublevel,iii.L0_Roman_lower_iii,iv.last_added_roman_lowered," +
+                    "•L0_Bullet_1,L0_Bullet_2,•L0_Bullet_added_new,oL1_Bullet_newSublevel,•L0_Bullet_3");
+        }
 
         Screenshoter.makeScreenshot();
     }
 
-    /**
-     * Get list that starts from startingItem and ends with endingItem
-     * @param startingItem starting item of the list. May be a. A. (a) I. i.
-     * @param endingItem ending item of the list
-     * @return
-     */
-    private String getList(String startingItem, String endingItem)
+    private String getWholeList()
     {
-        StringBuffer jsCode = new StringBuffer("var listItems = $('p [list-item=\"true\"]');");
-        jsCode.append("var items = []; ");
-        jsCode.append("listItems.each(");
-        jsCode.append("function(i, listItem) {");
-        jsCode.append("var num = $(listItem).text();");
-        jsCode.append("var text = $(listItem).parent().next().text().trim();");
-        jsCode.append("if(text === '') { text = $(listItem).parent().parent().find(\"ins\").last().text(); ");
-        jsCode.append("if(text === '') { text = $(listItem).parent().find(\"span\").last().text(); } } ");
-        jsCode.append("items.push([num, text]); } );");
-        jsCode.append("var newItems = [];");
-        jsCode.append("var flag = false; ");
-        jsCode.append("for (var i = 0; i < items.length; i++) { ");
-        jsCode.append("var item = items[i]; ");
-        jsCode.append("if( item[0] === '" + startingItem + "' ) { flag = true; } ");
-        jsCode.append("if( flag === true ) { newItems.push(item); } ");
-        jsCode.append("if (item[0] === '" + endingItem + "') { break } } ");
-        jsCode.append("var string = newItems.map(item => item.join('|')).join(','); ");
-        jsCode.append("return string; ");
+        StringBuffer jsCode = new StringBuffer("var items = [];");
+        jsCode.append("$('.document-paragraph__content-text p').each(");
+        jsCode.append("function(i, paragraph) {");
+        jsCode.append("items.push(paragraph.innerText.replace(/\\s+/, '')); } );");
+        jsCode.append("items = items.filter(Boolean);");
+        jsCode.append("return items.toString();");
 
         return Selenide.executeJavaScript(jsCode.toString());
     }

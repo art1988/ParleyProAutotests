@@ -69,22 +69,17 @@ public class CreateContractAT53
     @Test(priority = 2)
     public void checkListsAfterUploading()
     {
-        StringBuffer jsCode = new StringBuffer("var listItems = $('p [list-item=\"true\"]');");
-        jsCode.append("var items = [];");
-        jsCode.append("listItems.each(");
-        jsCode.append("function(i, listItem) {");
-        jsCode.append("var num = $(listItem).text();");
-        jsCode.append("var text = $(listItem).parent().next().text().trim();");
-        jsCode.append("if(text === '') text = $(listItem).parent().parent().find(\"ins\").last().text();");
-        jsCode.append("items.push([num, text]); } );");
-        jsCode.append("var string = items.map(item => item.join('|')).join(',');");
-        jsCode.append("return string;");
+        StringBuffer jsCode = new StringBuffer("var items = [];");
+        jsCode.append("$('.document-paragraph__content-text p').each(");
+        jsCode.append("function(i, paragraph) {");
+        jsCode.append("items.push(paragraph.innerText.replace(/\\s+/, '')); } );");
+        jsCode.append("items = items.filter(Boolean);");
+        jsCode.append("return items.toString();");
 
         String actual = Selenide.executeJavaScript(jsCode.toString());
 
         logger.info("Assert numbered lists after uploading...");
-        Assert.assertEquals(actual, "1.|L0_Num_Point_1,2.|L0_Num_Point_2,A.|L1_Letter_capital_A," +
-                "B.|L1_Letter_capital_B,\uf0a7|L2_Bullet_1,\uf0a7|L2_Bullet_2,\uf0a7|L2_Bullet_3,C.|L1_Letter_capital_C," +
-                "D.|L1_Letter_capital_D,3.|L0_Num_Point_3,4.|L0_Num_Point_4");
+        Assert.assertEquals(actual, "1.L0_Num_Point_1,2.L0_Num_Point_2,A.L1_Letter_capital_A,B.L1_Letter_capital_B," +
+                "\uF0A7L2_Bullet_1,\uF0A7L2_Bullet_2,\uF0A7L2_Bullet_3,C.L1_Letter_capital_C,D.L1_Letter_capital_D,3.L0_Num_Point_3,4.L0_Num_Point_4");
     }
 }

@@ -42,9 +42,9 @@ public class RecalculationChecks
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation of list after adding...");
-        Assert.assertEquals(getWholeList(), "1.|" + addedItem + ",2.|L0_Num_Point_1,3.|L0_Num_Point_2," +
-                "A.|L1_Letter_capital_A,B.|L1_Letter_capital_B,\uf0a7|L2_Bullet_1,\uf0a7|L2_Bullet_2,\uf0a7|L2_Bullet_3," +
-                "C.|L1_Letter_capital_C,D.|L1_Letter_capital_D,4.|L0_Num_Point_3,5.|L0_Num_Point_4");
+        Assert.assertEquals(getWholeList(), "1." + addedItem + ",2.L0_Num_Point_1,3.L0_Num_Point_2," +
+                "A.L1_Letter_capital_A,B.L1_Letter_capital_B,\uF0A7L2_Bullet_1,\uF0A7L2_Bullet_2,\uF0A7L2_Bullet_3," +
+                "C.L1_Letter_capital_C,D.L1_Letter_capital_D,4.L0_Num_Point_3,5.L0_Num_Point_4");
 
         Screenshoter.makeScreenshot();
     }
@@ -67,9 +67,9 @@ public class RecalculationChecks
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation of list after adding...");
-        Assert.assertEquals(getWholeList(), "1.|Added_item-L0_Number_Point_111,2.|L0_Num_Point_1,3.|L0_Num_Point_2," +
-                "4.|" + addedItem + ",A.|L1_Letter_capital_A,B.|L1_Letter_capital_B,\uF0A7|L2_Bullet_1," +
-                "\uF0A7|L2_Bullet_2,\uF0A7|L2_Bullet_3,C.|L1_Letter_capital_C,D.|L1_Letter_capital_D,5.|L0_Num_Point_3,6.|L0_Num_Point_4");
+        Assert.assertEquals(getWholeList(), "1.Added_item-L0_Number_Point_111,2.L0_Num_Point_1,3.L0_Num_Point_2," +
+                "4." + addedItem + ",A.L1_Letter_capital_A,B.L1_Letter_capital_B,\uF0A7L2_Bullet_1,\uF0A7L2_Bullet_2,\uF0A7L2_Bullet_3," +
+                "C.L1_Letter_capital_C,D.L1_Letter_capital_D,5.L0_Num_Point_3,6.L0_Num_Point_4");
 
         Screenshoter.makeScreenshot();
     }
@@ -87,9 +87,9 @@ public class RecalculationChecks
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation after deletion...");
-        Assert.assertEquals(getWholeList(), "1.|Added_item-L0_Number_Point_111,2.|L0_Num_Point_1,3.|L0_Num_Point_2," +
-                "4.|RightBeforeL2-L0_Number_Point_222,A.|L1_Letter_capital_A,\uF0A7|L2_Bullet_1,\uF0A7|L2_Bullet_2,\uF0A7|L2_Bullet_3," +
-                "B.|L1_Letter_capital_C,C.|L1_Letter_capital_D,5.|L0_Num_Point_3,6.|L0_Num_Point_4");
+        Assert.assertEquals(getWholeList(), "1.Added_item-L0_Number_Point_111,2.L0_Num_Point_1,3.L0_Num_Point_2," +
+                "4.RightBeforeL2-L0_Number_Point_222,A.L1_Letter_capital_A,B.L1_Letter_capital_B,\uF0A7L2_Bullet_1,\uF0A7L2_Bullet_2,\uF0A7L2_Bullet_3," +
+                "B.L1_Letter_capital_C,C.L1_Letter_capital_D,5.L0_Num_Point_3,6.L0_Num_Point_4");
 
         Screenshoter.makeScreenshot();
     }
@@ -111,9 +111,9 @@ public class RecalculationChecks
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        Assert.assertEquals(getWholeList(), "1.|Added_item-L0_Number_Point_111,2.|L0_Num_Point_1,3.|L0_Num_Point_2," +
-                "4.|RightBeforeL2-L0_Number_Point_222,A.|L1_Letter_capital_A,\uF0A7|L2_Bullet_1,\uF0A7|L2_Bullet_2,\uF0A7|L2_Bullet_3," +
-                "B.|L1_Letter_capital_C,C.|L1_Letter_capital_D,D.|" + addedItem + ",5.|L0_Num_Point_3,6.|L0_Num_Point_4");
+        Assert.assertEquals(getWholeList(), "1.Added_item-L0_Number_Point_111,2.L0_Num_Point_1,3.L0_Num_Point_2," +
+                "4.RightBeforeL2-L0_Number_Point_222,A.L1_Letter_capital_A,B.L1_Letter_capital_B,\uF0A7L2_Bullet_1,\uF0A7L2_Bullet_2,\uF0A7L2_Bullet_3," +
+                "B.L1_Letter_capital_C,C.L1_Letter_capital_D,D." + addedItem + ",5.L0_Num_Point_3,6.L0_Num_Point_4");
 
         Screenshoter.makeScreenshot();
     }
@@ -135,10 +135,9 @@ public class RecalculationChecks
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        Assert.assertEquals(getWholeList(), "1.|Added_item-L0_Number_Point_111,2.|L0_Num_Point_1,3.|L0_Num_Point_2," +
-                "4.|RightBeforeL2-L0_Number_Point_222,A.|L1_Letter_capital_A," +
-                "\uF0A7|L2_Bullet_1,\uF0A7|L2_Bullet_2,\uF0A7|" + addedItem + ",\uF0A7|L2_Bullet_3," +
-                "B.|L1_Letter_capital_C,C.|L1_Letter_capital_D,D.|AtTheEndL2-L1_Letter_capital_AAA,5.|L0_Num_Point_3,6.|L0_Num_Point_4");
+        Assert.assertEquals(getWholeList(), "1.Added_item-L0_Number_Point_111,2.L0_Num_Point_1,3.L0_Num_Point_2," +
+                "4.RightBeforeL2-L0_Number_Point_222,A.L1_Letter_capital_A,B.L1_Letter_capital_B,\uF0A7L2_Bullet_1,\uF0A7L2_Bullet_2,\uF0A7" + addedItem + ",\uF0A7L2_Bullet_3," +
+                "B.L1_Letter_capital_C,C.L1_Letter_capital_D,D.AtTheEndL2-L1_Letter_capital_AAA,5.L0_Num_Point_3,6.L0_Num_Point_4");
 
         Screenshoter.makeScreenshot();
     }
@@ -168,9 +167,9 @@ public class RecalculationChecks
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        Assert.assertEquals(getWholeList(), "1.|" + itemsToAdd[0] + ",2.|L0_Num_Point_1,3.|L0_Num_Point_2," +
-                "4.|" + itemsToAdd[1] + ",A.|L1_Letter_capital_A,\uF0A7|L2_Bullet_1,\uF0A7|L2_Bullet_2,\uF0A7|" + itemsToAdd[3] + ",\uF0A7|L2_Bullet_3," +
-                "B.|L1_Letter_capital_C,C.|L1_Letter_capital_D,D.|" + itemsToAdd[2] + ",5.|L0_Num_Point_3,6.|L0_Num_Point_4");
+        Assert.assertEquals(getWholeList(), "1." + itemsToAdd[0] + ",2.L0_Num_Point_1,3.L0_Num_Point_2,4." + itemsToAdd[1] + "," +
+                "A.L1_Letter_capital_A,\uF0A7L2_Bullet_1,\uF0A7L2_Bullet_2,\uF0A7" + itemsToAdd[3] + ",\uF0A7L2_Bullet_3," +
+                "B.L1_Letter_capital_C,C.L1_Letter_capital_D,D." + itemsToAdd[2] + ",5.L0_Num_Point_3,6.L0_Num_Point_4");
 
         Screenshoter.makeScreenshot();
     }
@@ -181,17 +180,12 @@ public class RecalculationChecks
      */
     private String getWholeList()
     {
-        StringBuffer jsCode = new StringBuffer("var listItems = $('p [list-item=\"true\"]');");
-        jsCode.append("var items = [];");
-        jsCode.append("listItems.each(");
-        jsCode.append("function(i, listItem) {");
-        jsCode.append("var num = $(listItem).text();");
-        jsCode.append("var text = $(listItem).parent().next().text().trim();");
-        jsCode.append("if(text === '') { text = $(listItem).parent().parent().find(\"ins\").last().text(); ");
-        jsCode.append("if(text === '') { text = $(listItem).parent().find(\"span\").last().text(); }}");
-        jsCode.append("items.push([num, text]); } );");
-        jsCode.append("var string = items.map(item => item.join('|')).join(',');");
-        jsCode.append("return string.replace(/\\s/g, '');"); // Also remove all spaces in string
+        StringBuffer jsCode = new StringBuffer("var items = [];");
+        jsCode.append("$('.document-paragraph__content-text p').each(");
+        jsCode.append("function(i, paragraph) {");
+        jsCode.append("items.push(paragraph.innerText.replace(/\\s+/, '')); } );");
+        jsCode.append("items = items.filter(Boolean);");
+        jsCode.append("return items.toString();");
 
         return Selenide.executeJavaScript(jsCode.toString());
     }

@@ -44,13 +44,14 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after adding...");
 
-        String actual = getPartialList("6.");
-
-        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|" + addedItem + "," +
-                "3.|L0_Number_Point_2,3.1.|L1_Number_Point_2_1,3.2.|L1_Number_Point_2_2,3.2.1.|L2_Number_Point_2_2_1," +
-                "3.2.1.1.|L3_Number_Point_2_2_1_1,3.2.1.1.1.|L4_Number_Point_2_2_1_1_1," +
-                "3.2.1.1.1.1.|L5_Number_Point_2_2_1_1_1_1,3.2.1.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,3.2.2.|L2_Number_Point_2_2_2," +
-                "3.3.|L1_Number_Point_2_3,3.4.|L1_Number_Point_2_4,4.|L0_Number_Point_3,5.|L0_Number_Point_4,6.|L0_Number_Point_5");
+        Assert.assertEquals(getWholeList(), "1.L0_Number_Point_1,2." + addedItem + ",3.L0_Number_Point_2,3.1.L1_Number_Point_2_1," +
+                "3.2.L1_Number_Point_2_2,3.2.1.L2_Number_Point_2_2_1,3.2.1.1.L3_Number_Point_2_2_1_1,3.2.1.1.1.L4_Number_Point_2_2_1_1_1," +
+                "3.2.1.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.2.1.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,3.2.2.L2_Number_Point_2_2_2," +
+                "3.3.L1_Number_Point_2_3,3.4.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5," +
+                "a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b,b.1.L1_Letter_lowercase_b_1,c.L0_Letter_lowercase_c," +
+                "A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a," +
+                "(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c,I.L0_Roman_capital_I,II.L0_Roman_capital_II," +
+                "II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -76,14 +77,15 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after adding...");
 
-        String actual = getPartialList("7.");
-
-        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A,3.|L0_Number_Point_2," +
-                "4.|" + addedItem + ",4.1.|L1_Number_Point_2_1,4.2.|L1_Number_Point_2_2," +
-                "4.2.1.|L2_Number_Point_2_2_1,4.2.1.1.|L3_Number_Point_2_2_1_1,4.2.1.1.1.|L4_Number_Point_2_2_1_1_1," +
-                "4.2.1.1.1.1.|L5_Number_Point_2_2_1_1_1_1,4.2.1.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1," +
-                "4.2.2.|L2_Number_Point_2_2_2,4.3.|L1_Number_Point_2_3,4.4.|L1_Number_Point_2_4,5.|L0_Number_Point_3," +
-                "6.|L0_Number_Point_4,7.|L0_Number_Point_5");
+        Assert.assertEquals(getWholeList(), "1.L0_Number_Point_1,2.new added item - L0_Number_Point_A,3.L0_Number_Point_2," +
+                "4." + addedItem + ",4.1.L1_Number_Point_2_1,4.2.L1_Number_Point_2_2,4.2.1.L2_Number_Point_2_2_1," +
+                "4.2.1.1.L3_Number_Point_2_2_1_1,4.2.1.1.1.L4_Number_Point_2_2_1_1_1,4.2.1.1.1.1.L5_Number_Point_2_2_1_1_1_1," +
+                "4.2.1.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,4.2.2.L2_Number_Point_2_2_2,4.3.L1_Number_Point_2_3,4.4.L1_Number_Point_2_4," +
+                "5.L0_Number_Point_3,6.L0_Number_Point_4,7.L0_Number_Point_5,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b," +
+                "b.1.L1_Letter_lowercase_b_1,c.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1," +
+                "C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c," +
+                "I.L0_Roman_capital_I,II.L0_Roman_capital_II,II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i," +
+                "ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -111,14 +113,16 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after adding...");
 
-        String actual = getPartialList("7.");
-
-        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A,3.|L0_Number_Point_2," +
-                "4.|L0_Number_Point_B with sublevels,4.1.|L1_Number_Point_2_1,4.2.|L1_Number_Point_2_2," +
-                "4.2.1.|" + addedItem + ",4.2.2.|L2_Number_Point_2_2_1,4.2.2.1.|L3_Number_Point_2_2_1_1," +
-                "4.2.2.1.1.|L4_Number_Point_2_2_1_1_1,4.2.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
-                "4.2.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,4.2.3.|L2_Number_Point_2_2_2,4.3.|L1_Number_Point_2_3," +
-                "4.4.|L1_Number_Point_2_4,5.|L0_Number_Point_3,6.|L0_Number_Point_4,7.|L0_Number_Point_5");
+        Assert.assertEquals(getWholeList(), "1.L0_Number_Point_1,2.new added item - L0_Number_Point_A," +
+                "3.L0_Number_Point_2,4.L0_Number_Point_B with sublevels,4.1.L1_Number_Point_2_1,4.2.L1_Number_Point_2_2," +
+                "4.2.1." + addedItem + ",4.2.2.L2_Number_Point_2_2_1,4.2.2.1.L3_Number_Point_2_2_1_1," +
+                "4.2.2.1.1.L4_Number_Point_2_2_1_1_1,4.2.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,4.2.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                "4.2.3.L2_Number_Point_2_2_2,4.3.L1_Number_Point_2_3,4.4.L1_Number_Point_2_4,5.L0_Number_Point_3,6.L0_Number_Point_4," +
+                "7.L0_Number_Point_5,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b,b.1.L1_Letter_lowercase_b_1,c.L0_Letter_lowercase_c," +
+                "A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a," +
+                "(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c,I.L0_Roman_capital_I,II.L0_Roman_capital_II," +
+                "II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1," +
+                "iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -138,14 +142,16 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after deletion...");
 
-        String actual = getPartialList("6."); // changed to 6.
-
-        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A," +
-                "3.|L0_Number_Point_B with sublevels,3.1.|L1_Number_Point_2_1,3.2.|L1_Number_Point_2_2," +
-                "3.2.1.|L2_Number_Point_C in sublevel,3.2.2.|L2_Number_Point_2_2_1,3.2.2.1.|L3_Number_Point_2_2_1_1," +
-                "3.2.2.1.1.|L4_Number_Point_2_2_1_1_1,3.2.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
-                "3.2.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,3.2.3.|L2_Number_Point_2_2_2,3.3.|L1_Number_Point_2_3," +
-                "3.4.|L1_Number_Point_2_4,4.|L0_Number_Point_3,5.|L0_Number_Point_4,6.|L0_Number_Point_5");
+        Assert.assertEquals(getWholeList(), "1.L0_Number_Point_1,2.new added item - L0_Number_Point_A,2.L0_Number_Point_2," +
+                "3.L0_Number_Point_B with sublevels,3.1.L1_Number_Point_2_1,3.2.L1_Number_Point_2_2,3.2.1.L2_Number_Point_C in sublevel," +
+                "3.2.2.L2_Number_Point_2_2_1,3.2.2.1.L3_Number_Point_2_2_1_1,3.2.2.1.1.L4_Number_Point_2_2_1_1_1," +
+                "3.2.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.2.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,3.2.3.L2_Number_Point_2_2_2," +
+                "3.3.L1_Number_Point_2_3,3.4.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5," +
+                "a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b,b.1.L1_Letter_lowercase_b_1,c.L0_Letter_lowercase_c," +
+                "A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a," +
+                "(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c,I.L0_Roman_capital_I,II.L0_Roman_capital_II," +
+                "II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1," +
+                "iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -167,14 +173,14 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after deletion...");
 
-        String actual = getPartialList("6."); // still 6.
-
-        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A," +
-                "3.|L0_Number_Point_B with sublevels,3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel," +
-                "3.1.2.|L2_Number_Point_2_2_1,3.1.2.1.|L3_Number_Point_2_2_1_1,3.1.2.1.1.|L4_Number_Point_2_2_1_1_1," +
-                "3.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1," +
-                "3.1.3.|L2_Number_Point_2_2_2,3.2.|L1_Number_Point_2_3,3.3.|L1_Number_Point_2_4,4.|L0_Number_Point_3," +
-                "5.|L0_Number_Point_4,6.|L0_Number_Point_5");
+        Assert.assertEquals(getWholeList(), "1.L0_Number_Point_1,2.new added item - L0_Number_Point_A,2.L0_Number_Point_2," +
+                "3.L0_Number_Point_B with sublevels,3.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2,3.1.1.L2_Number_Point_C in sublevel," +
+                "3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1,3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1," +
+                "3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4," +
+                "4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b,b.1.L1_Letter_lowercase_b_1," +
+                "c.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a," +
+                "(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c,I.L0_Roman_capital_I,II.L0_Roman_capital_II,II.1.L1_Roman_capital_II_1," +
+                "III.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -200,14 +206,15 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after adding...");
 
-        String actual = getPartialList("7."); // changed to 7.
-
-        Assert.assertEquals(actual, "1.|" + addedItem + ",2.|L0_Number_Point_1,3.|new added item - L0_Number_Point_A," +
-                "4.|L0_Number_Point_B with sublevels,4.1.|L1_Number_Point_2_1,4.1.1.|L2_Number_Point_C in sublevel," +
-                "4.1.2.|L2_Number_Point_2_2_1,4.1.2.1.|L3_Number_Point_2_2_1_1,4.1.2.1.1.|L4_Number_Point_2_2_1_1_1," +
-                "4.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1,4.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1," +
-                "4.1.3.|L2_Number_Point_2_2_2,4.2.|L1_Number_Point_2_3,4.3.|L1_Number_Point_2_4,5.|L0_Number_Point_3," +
-                "6.|L0_Number_Point_4,7.|L0_Number_Point_5");
+        Assert.assertEquals(getWholeList(), "1." + addedItem + ",2.L0_Number_Point_1,3.new added item - L0_Number_Point_A," +
+                "2.L0_Number_Point_2,4.L0_Number_Point_B with sublevels,4.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2,4.1.1.L2_Number_Point_C in sublevel," +
+                "4.1.2.L2_Number_Point_2_2_1,4.1.2.1.L3_Number_Point_2_2_1_1,4.1.2.1.1.L4_Number_Point_2_2_1_1_1,4.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1," +
+                "4.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,4.1.3.L2_Number_Point_2_2_2,4.2.L1_Number_Point_2_3,4.3.L1_Number_Point_2_4," +
+                "5.L0_Number_Point_3,6.L0_Number_Point_4,7.L0_Number_Point_5,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b," +
+                "b.1.L1_Letter_lowercase_b_1,c.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1," +
+                "C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c," +
+                "I.L0_Roman_capital_I,II.L0_Roman_capital_II,II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i," +
+                "ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -233,14 +240,16 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after adding...");
 
-        String actual = getPartialList("8."); // changed to 8.
-
-        Assert.assertEquals(actual, "1.|above first item,2.|L0_Number_Point_1,3.|new added item - L0_Number_Point_A," +
-                "4.|L0_Number_Point_B with sublevels,4.1.|L1_Number_Point_2_1,4.1.1.|L2_Number_Point_C in sublevel," +
-                "4.1.2.|L2_Number_Point_2_2_1,4.1.2.1.|L3_Number_Point_2_2_1_1,4.1.2.1.1.|L4_Number_Point_2_2_1_1_1," +
-                "4.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1,4.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1," +
-                "4.1.3.|L2_Number_Point_2_2_2,4.2.|L1_Number_Point_2_3,4.3.|L1_Number_Point_2_4,5.|L0_Number_Point_3," +
-                "6.|L0_Number_Point_4,7.|L0_Number_Point_5,8.|" + addedItem);
+        Assert.assertEquals(getWholeList(), "1.above first item,2.L0_Number_Point_1,3.new added item - L0_Number_Point_A," +
+                "2.L0_Number_Point_2,4.L0_Number_Point_B with sublevels,4.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2," +
+                "4.1.1.L2_Number_Point_C in sublevel,4.1.2.L2_Number_Point_2_2_1,4.1.2.1.L3_Number_Point_2_2_1_1,4.1.2.1.1.L4_Number_Point_2_2_1_1_1," +
+                "4.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,4.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,4.1.3.L2_Number_Point_2_2_2," +
+                "4.2.L1_Number_Point_2_3,4.3.L1_Number_Point_2_4,5.L0_Number_Point_3,6.L0_Number_Point_4,7.L0_Number_Point_5," +
+                "8." + addedItem + ",a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b,b.1.L1_Letter_lowercase_b_1,c.L0_Letter_lowercase_c," +
+                "A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a," +
+                "(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c,I.L0_Roman_capital_I,II.L0_Roman_capital_II," +
+                "II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1," +
+                "iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -266,14 +275,16 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after deletion...");
 
-        String actual = getPartialList("7."); // changed to 7.
-
-        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|new added item - L0_Number_Point_A," +
-                "3.|L0_Number_Point_B with sublevels,3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel," +
-                "3.1.2.|L2_Number_Point_2_2_1,3.1.2.1.|L3_Number_Point_2_2_1_1,3.1.2.1.1.|L4_Number_Point_2_2_1_1_1," +
-                "3.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1," +
-                "3.1.3.|L2_Number_Point_2_2_2,3.2.|L1_Number_Point_2_3,3.3.|L1_Number_Point_2_4,4.|L0_Number_Point_3," +
-                "5.|L0_Number_Point_4,6.|L0_Number_Point_5,7.|below last item");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.new added item - L0_Number_Point_A," +
+                "2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels,3.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2," +
+                "3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1,3.1.2.1.1.L4_Number_Point_2_2_1_1_1," +
+                "3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,3.1.3.L2_Number_Point_2_2_2," +
+                "3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5," +
+                "7.below last item,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b,b.1.L1_Letter_lowercase_b_1,c.L0_Letter_lowercase_c," +
+                "A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a," +
+                "(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c,I.L0_Roman_capital_I,II.L0_Roman_capital_II," +
+                "II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1," +
+                "iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -297,13 +308,15 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after discard...");
 
-        String actual = getPartialList("6."); // changed to 6.
-
-        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_B with sublevels,2.1.|L1_Number_Point_2_1," +
-                "2.1.1.|L2_Number_Point_C in sublevel,2.1.2.|L2_Number_Point_2_2_1,2.1.2.1.|L3_Number_Point_2_2_1_1," +
-                "2.1.2.1.1.|L4_Number_Point_2_2_1_1_1,2.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
-                "2.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,2.1.3.|L2_Number_Point_2_2_2,2.2.|L1_Number_Point_2_3," +
-                "2.3.|L1_Number_Point_2_4,3.|L0_Number_Point_3,4.|L0_Number_Point_4,5.|L0_Number_Point_5,6.|below last item");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,2.L0_Number_Point_B with sublevels," +
+                "2.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2,2.1.1.L2_Number_Point_C in sublevel,2.1.2.L2_Number_Point_2_2_1," +
+                "2.1.2.1.L3_Number_Point_2_2_1_1,2.1.2.1.1.L4_Number_Point_2_2_1_1_1,2.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1," +
+                "2.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,2.1.3.L2_Number_Point_2_2_2,2.2.L1_Number_Point_2_3,2.3.L1_Number_Point_2_4," +
+                "3.L0_Number_Point_3,4.L0_Number_Point_4,5.L0_Number_Point_5,6.below last item,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b," +
+                "b.1.L1_Letter_lowercase_b_1,c.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1," +
+                "C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c," +
+                "I.L0_Roman_capital_I,II.L0_Roman_capital_II,II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i," +
+                "ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -328,13 +341,15 @@ public class RecalculationsOfNumberedList
 
         logger.info("Assert recalculation of the first list after discard...");
 
-        String actual = getPartialList("7."); // changed to 7.
-
-        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_2,3.|L0_Number_Point_B with sublevels," +
-                "3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel,3.1.2.|L2_Number_Point_2_2_1," +
-                "3.1.2.1.|L3_Number_Point_2_2_1_1,3.1.2.1.1.|L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
-                "3.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,3.1.3.|L2_Number_Point_2_2_2,3.2.|L1_Number_Point_2_3," +
-                "3.3.|L1_Number_Point_2_4,4.|L0_Number_Point_3,5.|L0_Number_Point_4,6.|L0_Number_Point_5,7.|below last item");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                "3.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
+                "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b,b.1.L1_Letter_lowercase_b_1," +
+                "c.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1,C.L0_Letter_capital_C," +
+                "(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c,I.L0_Roman_capital_I," +
+                "II.L0_Roman_capital_II,II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii," +
+                "ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -355,13 +370,16 @@ public class RecalculationsOfNumberedList
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation after accepting...");
-        String actual = getPartialList("7."); // still 7.
 
-        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_2,3.|L0_Number_Point_B with sublevels," +
-                "3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel,3.1.2.|L2_Number_Point_2_2_1," +
-                "3.1.2.1.|L3_Number_Point_2_2_1_1,3.1.2.1.1.|L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
-                "3.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,3.1.3.|L2_Number_Point_2_2_2,3.2.|L1_Number_Point_2_3," +
-                "3.3.|L1_Number_Point_2_4,4.|L0_Number_Point_3,5.|L0_Number_Point_4,6.|L0_Number_Point_5,7.|below last item");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                "3.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1," +
+                "3.1.2.1.L3_Number_Point_2_2_1_1,3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1," +
+                "3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4," +
+                "4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b," +
+                "b.1.L1_Letter_lowercase_b_1,c.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1," +
+                "C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c," +
+                "I.L0_Roman_capital_I,II.L0_Roman_capital_II,II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i," +
+                "ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
@@ -382,41 +400,28 @@ public class RecalculationsOfNumberedList
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert recalculation after accepting...");
-        String actual = getPartialList("7."); // still 7.
 
-        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_2,3.|L0_Number_Point_B with sublevels," +
-                "3.1.|L1_Number_Point_2_1,3.1.1.|L2_Number_Point_C in sublevel,3.1.2.|L2_Number_Point_2_2_1," +
-                "3.1.2.1.|L3_Number_Point_2_2_1_1,3.1.2.1.1.|L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
-                "3.1.2.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,3.1.3.|L2_Number_Point_2_2_2,3.2.|L1_Number_Point_2_3," +
-                "3.3.|L1_Number_Point_2_4,4.|L0_Number_Point_3,5.|L0_Number_Point_4,6.|L0_Number_Point_5,7.|below last item");
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+                "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
+                "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
+                "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b,b.1.L1_Letter_lowercase_b_1," +
+                "c.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_B_1,C.L0_Letter_capital_C," +
+                "(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1,(c)L0_Letter_braces_c,I.L0_Roman_capital_I," +
+                "II.L0_Roman_capital_II,II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii," +
+                "ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
     }
 
-    /**
-     * Get partial numbered list.
-     * May be useful to fetch only partial list, for example (1. - ... - 5.) or (a. - ... - d.)
-     * @param endOfList the last item of the list. Indicates the end of the list. May be 6. or 7., etc.
-     * @return
-     */
-    private String getPartialList(String endOfList)
+    private String getWholeList()
     {
-        StringBuffer jsCode = new StringBuffer("var listItems = $('p [list-item=\"true\"]');");
-        jsCode.append("var items = []; ");
-        jsCode.append("listItems.each(");
-        jsCode.append("function(i, listItem) {");
-        jsCode.append("var num = $(listItem).text();");
-        jsCode.append("var text = $(listItem).parent().next().text().trim();");
-        jsCode.append("if(text === '') { text = $(listItem).parent().parent().find(\"ins\").last().text(); ");
-        jsCode.append("if(text === '') { text = $(listItem).parent().find(\"span\").last().text(); } } ");
-        jsCode.append("items.push([num, text]); } );");
-        jsCode.append("var newItems = [];");
-        jsCode.append("for (var i = 0; i < items.length; i++)  {");
-        jsCode.append("var item = items[i];");
-        jsCode.append("newItems.push(item);");
-        jsCode.append("if (item[0] === '" + endOfList + "') { break } } ");
-        jsCode.append("var string = newItems.map(item => item.join('|')).join(','); ");
-        jsCode.append("return string;");
+        StringBuffer jsCode = new StringBuffer("var items = [];");
+        jsCode.append("$('.document-paragraph__content-text p').each(");
+        jsCode.append("function(i, paragraph) {");
+        jsCode.append("items.push(paragraph.innerText.replace(/\\s+/, '')); } );");
+        jsCode.append("items = items.filter(Boolean);");
+        jsCode.append("return items.toString();");
 
         return Selenide.executeJavaScript(jsCode.toString());
     }

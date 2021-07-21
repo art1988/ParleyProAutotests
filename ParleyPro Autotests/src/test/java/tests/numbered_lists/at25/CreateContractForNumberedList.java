@@ -74,30 +74,23 @@ public class CreateContractForNumberedList
     @Description("This test checks that formatting of all numbered lists were saved after uploading")
     public void checkNumberingAfterUploading()
     {
-        StringBuffer jsCode = new StringBuffer("var listItems = $('p [list-item=\"true\"]');");
-        jsCode.append("var items = [];");
-        jsCode.append("listItems.each(");
-        jsCode.append("function(i, listItem) {");
-        jsCode.append("var num = $(listItem).text();");
-        jsCode.append("var text = $(listItem).parent().next().text().trim();");
-        jsCode.append("if(text === '') text = $(listItem).parent().parent().find(\"ins\").last().text();");
-        jsCode.append("items.push([num, text]); } );");
-        jsCode.append("var string = items.map(item => item.join('|')).join(',');");
-        jsCode.append("return string;");
+        StringBuffer jsCode = new StringBuffer("var items = [];");
+        jsCode.append("$('.document-paragraph__content-text p').each(");
+        jsCode.append("function(i, paragraph) {");
+        jsCode.append("items.push(paragraph.innerText.replace(/\\s+/, '')); } );");
+        jsCode.append("items = items.filter(Boolean);");
+        jsCode.append("return items.toString();");
 
         String actual = Selenide.executeJavaScript(jsCode.toString());
 
         logger.info("Assert numbered lists formatting...");
-        Assert.assertEquals(actual, "1.|L0_Number_Point_1,2.|L0_Number_Point_2,2.1.|L1_Number_Point_2_1," +
-                "2.2.|L1_Number_Point_2_2,2.2.1.|L2_Number_Point_2_2_1,2.2.1.1.|L3_Number_Point_2_2_1_1," +
-                "2.2.1.1.1.|L4_Number_Point_2_2_1_1_1,2.2.1.1.1.1.|L5_Number_Point_2_2_1_1_1_1," +
-                "2.2.1.1.1.1.1.|L6_Number_Point_2_2_1_1_1_1_1,2.2.2.|L2_Number_Point_2_2_2," +
-                "2.3.|L1_Number_Point_2_3,2.4.|L1_Number_Point_2_4,3.|L0_Number_Point_3,4.|L0_Number_Point_4," +
-                "5.|L0_Number_Point_5,a.|L0_Letter_lowercase_a,b.|L0_Letter_lowercase_b,b.1.|L1_Letter_lowercase_b_1," +
-                "c.|L0_Letter_lowercase_c,A.|L0_Letter_capital_A,B.|L0_Letter_capital_B,B.1.|L1_Letter_capital_B_1," +
-                "C.|L0_Letter_capital_C,(a)|L0_Letter_braces_a,(b)|L0_Letter_braces_b,b.1.|L1_Letter_braces_b_1," +
-                "(c)|L0_Letter_braces_c,I.|L0_Roman_capital_I,II.|L0_Roman_capital_II,II.1.|L1_Roman_capital_II_1," +
-                "III.|L0_Roman_capital_III,i.|L0_Roman_lower_i,ii.|L0_Roman_lower_ii,ii.1.|L1_Roman_lower_ii_1," +
-                "iii.|L0_Roman_lower_iii,•|L0_Bullet_1,•|L0_Bullet_2,o|L1_Bullet_2_1,•|L0_Bullet_3");
+        Assert.assertEquals(actual, "1.L0_Number_Point_1,2.L0_Number_Point_2,2.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2," +
+                "2.2.1.L2_Number_Point_2_2_1,2.2.1.1.L3_Number_Point_2_2_1_1,2.2.1.1.1.L4_Number_Point_2_2_1_1_1,2.2.1.1.1.1.L5_Number_Point_2_2_1_1_1_1," +
+                "2.2.1.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,2.2.2.L2_Number_Point_2_2_2,2.3.L1_Number_Point_2_3,2.4.L1_Number_Point_2_4," +
+                "3.L0_Number_Point_3,4.L0_Number_Point_4,5.L0_Number_Point_5,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b," +
+                "b.1.L1_Letter_lowercase_b_1,c.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B," +
+                "B.1.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,b.1.L1_Letter_braces_b_1," +
+                "(c)L0_Letter_braces_c,I.L0_Roman_capital_I,II.L0_Roman_capital_II,II.1.L1_Roman_capital_II_1,III.L0_Roman_capital_III," +
+                "i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
     }
 }
