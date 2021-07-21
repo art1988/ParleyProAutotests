@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.DiscussionsOfSingleContract;
 import pages.DocumentComparePreview;
 import pages.OpenedContract;
@@ -35,6 +36,7 @@ public class UploadNewVersionAndCheckChanges
     private String contractName = "AT40 Classic contract";
 
     private static Logger logger = Logger.getLogger(UploadNewVersionAndCheckChanges.class);
+    private SoftAssert softAssert = new SoftAssert();
 
     @Test(priority = 1)
     @Description("This test uploads new version and checks compare preview")
@@ -46,21 +48,22 @@ public class UploadNewVersionAndCheckChanges
                 clickUploadCounterpartyDocument(Const.DOCUMENT_CLASSIC_AT40_2, documentName, contractName);
 
         logger.info("Assert that counters are correct...");
-        Assert.assertEquals(comparePreview.getCounterAdded(), "2");
-        Assert.assertEquals(comparePreview.getCounterEdited(), "2");
-        Assert.assertEquals(comparePreview.getCounterCommented(), "1");
-        Assert.assertEquals(comparePreview.getCounterDeleted(), "2");
+        softAssert.assertEquals(comparePreview.getCounterAdded(), "2", "Number of added posts is wrong !!!");
+        softAssert.assertEquals(comparePreview.getCounterEdited(), "2", "Number of edited posts is wrong !!!");
+        softAssert.assertEquals(comparePreview.getCounterCommented(), "1", "Number of commented posts is wrong !!!");
+        softAssert.assertEquals(comparePreview.getCounterDeleted(), "2", "Number of deleted posts is wrong !!!");
 
         logger.info("Assert that icons are correct for corresponded paragraphs");
         StringBuffer jsCode = new StringBuffer("var ar = $('.update-document__changes.ui-td .icon');");
         jsCode.append("var string = \"\";");
         jsCode.append("for( var i = 0; i < ar.length; i++ ) { string += ar[i].getAttribute(\"value\"); } ");
         jsCode.append("return string;");
-        Assert.assertEquals(Selenide.executeJavaScript(jsCode.toString()), "deleteddeletedcommentedaddedaddededitededited");
+        softAssert.assertEquals(Selenide.executeJavaScript(jsCode.toString()), "deleteddeletedcommentedaddedaddededitededited",
+                "Icons of deleted/commented/added/edited paragraphs are wrong !!!");
 
         logger.info("Assert that there are only 5 opened discussions");
         DiscussionsOfSingleContract discussionsInContract = comparePreview.clickUpload(true);
-        Assert.assertEquals(discussionsInContract.getDiscussionCount(), "5", "Looks like that discussions are empty or not equal 5 !");
+        softAssert.assertEquals(discussionsInContract.getDiscussionCount(), "5", "Looks like that discussions are empty or not equal 5 !");
         $$(".discussion-list .discussion2.discussion2_collapsed_yes").shouldHave(CollectionCondition.size(5));
 
         logger.info("Assert that all discussions and indicator have new icon...");
@@ -72,6 +75,8 @@ public class UploadNewVersionAndCheckChanges
 
         $(".spinner").waitUntil(Condition.disappear, 10_000);
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Unused extra\")')");
+
+        softAssert.assertAll();
     }
 
     @Test(priority = 2)
@@ -82,26 +87,26 @@ public class UploadNewVersionAndCheckChanges
 
         Thread.sleep(2_000);
         logger.info("Assert that first paragraph was deleted");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('del').eq(0).text()"), "Paragraph 1: Hello, delete me please");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('del')[0].style.color"), "rgb(181, 8, 46)");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('del').eq(0).text()"), "Paragraph 1: Hello, delete me please");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('del')[0].style.color"), "rgb(181, 8, 46)");
 
         openedContract.clickByDiscussionIcon("Paragraph 2: Create comment here");
         $(".discussion2-post__comment p").waitUntil(Condition.visible, 5_000).shouldHave(Condition.exactText("Hello"));
 
         logger.info("Assert that third paragraph was inserted");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(0).text()"), "Insert paragraph");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(0).css(\"color\")"), "rgb(68, 120, 208)");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(0).text()"), "Insert paragraph");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(0).css(\"color\")"), "rgb(68, 120, 208)");
 
         logger.info("Assert that 4th and 5th paragraphs were changed");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('del').eq(1).text()"), "above me");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('del')[1].style.color"), "rgb(181, 8, 46)");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('del').eq(2).text()"), "Multiple");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('del')[2].style.color"), "rgb(181, 8, 46)");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('del').eq(1).text()"), "above me");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('del')[1].style.color"), "rgb(181, 8, 46)");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('del').eq(2).text()"), "Multiple");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('del')[2].style.color"), "rgb(181, 8, 46)");
 
-        Assert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(1).text()"), "in this paragraph");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(1).css(\"color\")"), "rgb(68, 120, 208)");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(2).text()"), "Single");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(2).css(\"color\")"), "rgb(68, 120, 208)");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(1).text()"), "in this paragraph");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(1).css(\"color\")"), "rgb(68, 120, 208)");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(2).text()"), "Single");
+        softAssert.assertEquals(Selenide.executeJavaScript("return $('ins').eq(2).css(\"color\")"), "rgb(68, 120, 208)");
 
         Screenshoter.makeScreenshot();
 
@@ -139,6 +144,8 @@ public class UploadNewVersionAndCheckChanges
         {
             logger.error("FileNotFoundException", e);
         }
+
+        softAssert.assertAll();
     }
 
     @Test(priority = 3)
