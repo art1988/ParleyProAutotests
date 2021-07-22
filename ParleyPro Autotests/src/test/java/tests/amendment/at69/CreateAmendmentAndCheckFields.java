@@ -56,6 +56,7 @@ public class CreateAmendmentAndCheckFields
                     "Value for AmendField should be empty !!!");
             Thread.sleep(100);
         }
+        Screenshoter.makeScreenshot();
         ////
 
         logger.info("Filling AmendField1 - ... - AmendField5 fields...");
