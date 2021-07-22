@@ -39,16 +39,16 @@ public class CheckContentAfterUploading
         $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
 
         logger.info("Checking text on first page...");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + textOnFirstPage + "\")').length >= 1"));
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + textOnFirstPage + "\")').length >= 1"), "Text on the first page is incorrect !!!");
 
         Screenshoter.makeScreenshot();
 
         logger.info("Scroll to bottom of page...");
         Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,document.querySelector('.documents__list').scrollHeight)");
-        Thread.sleep(1_000);
+        Thread.sleep(2_000);
 
         logger.info("Checking text on last page...");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + textOnLastPage + "\")').length >= 1"));
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + textOnLastPage + "\")').length >= 1"), "Text on the last page is incorrect !!!");
 
         Screenshoter.makeScreenshot();
     }
