@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Amendment suite" configfailurepolicy="continue">
-    <!--
     <test name="AT-147: Basics of amendments" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -13,7 +12,7 @@
             <class name="tests.amendment.basics_at147.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 
     <test name="AT-69: Incorrect Field Values pulling into new Agreement when using the Amendment function." preserve-order="true">
         <classes>
