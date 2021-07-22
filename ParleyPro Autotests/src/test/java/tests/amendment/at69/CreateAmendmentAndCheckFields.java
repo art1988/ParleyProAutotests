@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.AddDocuments;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
@@ -39,20 +38,22 @@ public class CreateAmendmentAndCheckFields
         // Scroll to 'Contract category' field
         Selenide.executeJavaScript("$('.modal-content label span:contains(\"category\")')[0].scrollIntoView({})");
 
-        contractInformationAfterAmend.chooseNewContractCategory("AmendmentTestcat");
+        contractInformationAfterAmend.chooseNewContractCategory("AmendmentTestcat"); // switching Category from 'CatTest' to 'AmendmentTestcat'
         $(".modal-content label[for='field1']").shouldBe(Condition.visible); // and other are visible too...
 
         ////
         logger.info("Assert that fields Field1 - ... - Field10 have values entered earlier; fields AmendField1 - ... - AmendField5 are empty...");
         for( int fIndex = 1; fIndex <= 10; fIndex++ )
         {
-            Assert.assertEquals(Selenide.executeJavaScript("return $('.modal-content label[for=\"field" + fIndex + "\"]').parent().find('textarea').text()"), "f" + fIndex +" val");
+            Assert.assertEquals(Selenide.executeJavaScript("return $('.modal-content label[for=\"field" + fIndex + "\"]').parent().find('textarea').text()"), "f" + fIndex +" val",
+                    "Value for field Field " + fIndex + " is wrong !!!");
             Thread.sleep(100);
         }
 
         for( int fIndex = 1; fIndex <= 5; fIndex++ )
         {
-            Assert.assertEquals(Selenide.executeJavaScript("return $('.modal-content label[for=\"amendfld" + fIndex + "\"]').parent().find('textarea').text()"), "");
+            Assert.assertEquals(Selenide.executeJavaScript("return $('.modal-content label[for=\"amendfld" + fIndex + "\"]').parent().find('textarea').text()"), "",
+                    "Value for AmendField should be empty !!!");
             Thread.sleep(100);
         }
         ////
@@ -74,14 +75,13 @@ public class CreateAmendmentAndCheckFields
         logger.info("Checking that all fields are filled...");
         for( int fIndex = 1; fIndex <= 5; fIndex++ )
         {
-            Assert.assertEquals(Selenide.executeJavaScript("return $('.modal-content label[for=\"amendfld" + fIndex + "\"]').parent().find('textarea').text()"), "amend" + fIndex + " val");
+            Assert.assertEquals(Selenide.executeJavaScript("return $('.modal-content label[for=\"amendfld" + fIndex + "\"]').parent().find('textarea').text()"), "amend" + fIndex + " val",
+                    "Fields AmendField are still empty but shouldn't !!!");
             Thread.sleep(100);
         }
 
         Screenshoter.makeScreenshot();
 
         contractInformation.clickCancel();
-
-        Thread.sleep(5_000);
     }
 }

@@ -7,9 +7,11 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
+import pages.OpenedContract;
 import pages.administration.Fields;
 import pages.administration.fields_breadcrumb.ContractFields;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -54,6 +56,31 @@ public class CleanUp
     @Test(priority = 2)
     public void removeContracts()
     {
+        logger.info("Removing contract from in-progress...");
 
+        new DashboardPage().getSideBar()
+                           .clickInProgressContracts(false)
+                           .selectContract("at-69 Amendment-A");
+
+        new OpenedContract(true).clickContractActionsMenu()
+                                                .clickDeleteContract()
+                                                .clickDelete();
+
+        $(".notification-stack").waitUntil(Condition.appear, 20_000).shouldHave(Condition.text("has been deleted."));
+        Screenshoter.makeScreenshot();
+
+
+        logger.info("Removing contract from executed...");
+
+        new DashboardPage().getSideBar()
+                           .clickExecutedContracts(false)
+                           .selectContract("at-69 Amendment");
+
+        new OpenedContract(true).clickContractActionsMenu()
+                                                .clickDeleteContract()
+                                                .clickDelete();
+
+        $(".notification-stack").waitUntil(Condition.appear, 20_000).shouldHave(Condition.text("has been deleted."));
+        Screenshoter.makeScreenshot();
     }
 }
