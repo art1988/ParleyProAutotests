@@ -45,8 +45,6 @@ public class FindAndReplacePopup
         try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
         findInDocumentInput.sendKeys(wordToFind);
         try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
-        findInDocumentInput.pressEnter();
-        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
 
         return this;
     }
