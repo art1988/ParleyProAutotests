@@ -140,6 +140,7 @@ public class OpenedDiscussion
      */
     public void clickMakeQueued(String textInPost)
     {
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
         WebElement makeQueuedButton = Selenide.executeJavaScript("return $('.documents-discussion-panel .discussion2-post .discussion2-post__text:contains(\"" + textInPost + "\")').parent().parent().find(\".queued-post\")[0]");
         $(makeQueuedButton).shouldBe(Condition.enabled).click();
 

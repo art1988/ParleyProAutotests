@@ -85,14 +85,13 @@ public class CreateClassicContractAndUploadDocs
 
     @Test(priority = 4)
     @Description("This test make post as queued.")
-    public void makeDiscussionQueued() throws InterruptedException
+    public void makeDiscussionQueued()
     {
         logger.info("Scroll to 'B. Client’s Right to Terminate.' discussion...");
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"5. Termination\")')[0].scrollIntoView({})");
 
         logger.info("Open discussion for 'Client’s Right to Terminate.' paragraph...");
         OpenedDiscussion openedDiscussion = new OpenedContract(true).clickByDiscussionIcon("Right to Terminate.");
-        Thread.sleep(1_000);
         openedDiscussion.clickMakeQueued("Notwithstanding the foregoing");
 
         logger.info("Assert that discussion marked as queued...");
