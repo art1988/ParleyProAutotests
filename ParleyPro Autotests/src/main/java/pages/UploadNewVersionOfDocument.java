@@ -22,6 +22,7 @@ public class UploadNewVersionOfDocument
     public UploadNewVersionOfDocument(String documentName)
     {
         title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Upload a new version of document \"" + documentName + "\"."));
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
     }
 
     public DocumentComparePreview clickUploadCounterpartyDocument(File fileToUpload, String documentName, String contractName)
