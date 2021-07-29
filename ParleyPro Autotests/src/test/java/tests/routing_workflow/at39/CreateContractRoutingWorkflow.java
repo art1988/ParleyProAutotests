@@ -1,8 +1,7 @@
-package tests.routing_workflow;
+package tests.routing_workflow.at39;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Selenide;
-import constants.Const;
 import forms.workflows.ContractRoutingWorkflow;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;

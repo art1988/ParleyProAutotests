@@ -1,4 +1,4 @@
-package tests.routing_workflow;
+package tests.routing_workflow.at39;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;

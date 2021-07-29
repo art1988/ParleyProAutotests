@@ -1,4 +1,4 @@
-package tests.routing_workflow;
+package tests.routing_workflow.at39;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -23,7 +23,7 @@ import utils.Waiter;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ ScreenShotOnFailListener.class})
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContractPositiveForContractRoutingWorkflow
 {
     private static String contractName = "Contract routing workflow positive";
