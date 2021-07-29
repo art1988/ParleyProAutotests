@@ -7,12 +7,8 @@ import java.io.File;
 public class Const
 {
     // Tenants
-    public static final String QA_TENANT_URL                 = "https://qa-autotests.parleypro.net/master/index.html";
-    public static final String PROD_TENANT_URL               = "https://qa-autotests.parleypro.com/index.html";
     public static final String AT50_TENANT_URL               = "https://at50.parleypro.net/master/index.html";
-    public static final String RC_TENANT_URL                 = "https://qa-autotests.parleypro.net/rc/index.html";
     public static final String TRACK_CHANGES_TENANT_URL      = "https://trackchanges.parleypro.net/master/index.html";
-    public static final String POPOVERS_TENANT_URL           = "https://popovers-autotests.parleypro.net/master/index.html";
 
     public static final String QA_TENANT_API_KEY             = "UQrHDbj9E2rcqI3s0J5CUeXQlGzEkZpAbffXCNDw";
 
