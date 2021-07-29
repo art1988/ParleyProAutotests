@@ -3,7 +3,6 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import constants.Const;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.BeforeSuite;
@@ -14,18 +13,13 @@ import pages.LoginPage;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-
 import static com.codeborne.selenide.Selenide.open;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class LoginToDashboard
+public class LoginToDashboard extends LoginBase
 {
     private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToDashboard.class);
-    private String tenantUrl;
 
     @BeforeSuite
     private void setup()
@@ -48,7 +42,7 @@ public class LoginToDashboard
         {
             try
             {
-                open(getTenantUrl());
+                open( getTenantUrl() );
                 break;
             }
             catch(WebDriverException e)
@@ -92,51 +86,5 @@ public class LoginToDashboard
         dashboardPage.getSideBar().clickInProgressContracts(true);
 
         Screenshoter.makeScreenshot();
-    }
-
-    private String getTenantUrl() {
-        if(tenantUrl != null) {
-            return tenantUrl;
-        }
-
-        final String envTenantUrl = System.getenv("TENANT_URL");
-        if(StringUtils.isNotBlank(envTenantUrl)) {
-            logger.info("Use custom tenant_url: " + envTenantUrl);
-
-            tenantUrl = envTenantUrl;
-
-            return tenantUrl;
-        }
-
-        final String env = System.getenv("ENV");
-
-        String configName = "config";
-        if(StringUtils.isNotBlank(env)) {
-            logger.info("Use env: " + env);
-            configName = configName + "-" + env.toLowerCase();
-        }
-
-        final String filePath = "src/main/resources/" + configName + ".properties";
-
-        FileInputStream fis;
-        Properties property = new Properties();
-
-        String propTenantUrl = null;
-        try {
-            logger.info("Load property file from: " + filePath);
-
-            fis = new FileInputStream(filePath);
-            property.load(fis);
-
-            propTenantUrl = property.getProperty("tenant_url");
-
-            logger.info("Use tenant_url: " + propTenantUrl);
-        } catch (IOException e) {
-            logger.error("Can't find file " + filePath);
-        }
-
-        tenantUrl = propTenantUrl;
-
-        return tenantUrl;
     }
 }

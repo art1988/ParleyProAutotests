@@ -16,7 +16,7 @@ import utils.Screenshoter;
 import static com.codeborne.selenide.Selenide.open;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class LoginToTrackChangesTenant
+public class LoginToTrackChangesTenant extends LoginBase
 {
     private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToTrackChangesTenant.class);
