@@ -1,14 +1,13 @@
 package pages.tooltips;
 
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import forms.workflows.ApprovalWorkflow;
 import forms.workflows.ContractRoutingWorkflow;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * Popup that appears after clicking on +NEW WORKFLOW button
@@ -20,7 +19,9 @@ public class NewWorkflowActionsMenu
     public NewWorkflowActionsMenu()
     {
         $(".dropdown-menu.dropdown-menu-right").waitUntil(Condition.visible, 6_000);
-        $$(".dropdown-menu.dropdown-menu-right li").shouldHaveSize(2).shouldHave(CollectionCondition.exactTexts("Contract routing", "Approval"));
+
+        Assert.assertEquals((long) (Selenide.executeJavaScript("return $('.dropdown-menu.dropdown-menu-right li:visible').length")), 2l);
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.dropdown-menu.dropdown-menu-right li:visible').text()"), "Contract routingApproval");
     }
 
     public ApprovalWorkflow clickApproval(boolean inEditMode)
