@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import pages.OpenedContract;
 import pages.subelements.CKEditorActive;
 import pages.tooltips.ParagraphActionsPopup;
+import tests.LoginBase;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -311,8 +312,7 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        if( WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://qa-autotests.parleypro.net/rc") ||
-            WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://qa-autotests.parleypro.com") )
+        if( LoginBase.isRc() || LoginBase.isProd() )
         {
             Assert.assertEquals(getWholeList(),"1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
                     "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
@@ -362,8 +362,7 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        if( WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://qa-autotests.parleypro.net/rc") ||
-            WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://qa-autotests.parleypro.com"))
+        if( LoginBase.isRc() || LoginBase.isProd() )
         {
             Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
                     "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1,3.1.2.1.1.L4_Number_Point_2_2_1_1_1," +
