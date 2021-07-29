@@ -16,6 +16,7 @@ import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
+import tests.LoginBase;
 import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -24,7 +25,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class LoginToPopoversTenantAsMyTeamCN
+public class LoginToPopoversTenantAsMyTeamCN extends LoginBase
 {
     private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToPopoversTenantAsMyTeamCN.class);
@@ -52,7 +53,7 @@ public class LoginToPopoversTenantAsMyTeamCN
         {
             try
             {
-                open( Const.POPOVERS_TENANT_URL );
+                open( getPopoversTenantUrl() );
                 break;
             }
             catch(WebDriverException e)

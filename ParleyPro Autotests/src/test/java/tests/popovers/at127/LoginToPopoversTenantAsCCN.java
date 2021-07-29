@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
+import tests.LoginBase;
 import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -22,7 +23,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class LoginToPopoversTenantAsCCN
+public class LoginToPopoversTenantAsCCN extends LoginBase
 {
     private String host = "imap.gmail.com";
     private String username = "arthur.khasanov@parleypro.com";
@@ -35,7 +36,14 @@ public class LoginToPopoversTenantAsCCN
     public void loginToDashboard()
     {
         // Since there is it's own tenant for CCN, login to app.parleypro.net => should redirect to counterpartyat1.parleypro.net after sign in
-        open( "https://app.parleypro.net/master/index.html" );
+        if( LoginBase.isRC )
+        {
+            open( "https://app.parleypro.net/rc/index.html" );
+        }
+        else
+        {
+            open( "https://app.parleypro.net/master/index.html" );
+        }
 
         LoginPage loginPage = new LoginPage();
 
@@ -45,7 +53,9 @@ public class LoginToPopoversTenantAsCCN
         logger.info("Making sure that Dashboard was loaded correctly...");
         dashboardPage = loginPage.clickSignIn(new SideBarItems[]{SideBarItems.IN_PROGRESS_CONTRACTS, SideBarItems.EXECUTED_CONTRACTS});
 
-        Assert.assertTrue(WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://counterpartyat1.parleypro.net"));
+        Assert.assertTrue( WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://counterpartyat1.parleypro.net") ||
+                                    WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://counterpartyat2.parleypro.net"),
+                "Looks like that tenant name is wrong !!! Should be counterpartyat1/counterpartyat2 !!!");
 
         Screenshoter.makeScreenshot();
     }
