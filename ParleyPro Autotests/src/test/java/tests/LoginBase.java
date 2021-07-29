@@ -10,6 +10,9 @@ public class LoginBase {
     public static final String PROP_TENANT_URL = "tenant_url";
     public static final String PROP_POPOVERS_TENANT_URL = "popovers_tenant_url";
 
+    protected static boolean isRC,
+                             isPROD;
+
     protected static Logger logger = Logger.getLogger(LoginBase.class);
     private static String tenantUrl;
     protected java.util.Properties property;
@@ -39,6 +42,13 @@ public class LoginBase {
             property.load(fis);
         } catch (IOException e) {
             logger.error("Can't find file " + filePath);
+        }
+
+        if(env == null) return; // master by default
+        switch (env)
+        {
+            case "rc":   isRC   = true; break;
+            case "prod": isPROD = true; break;
         }
     }
 
