@@ -232,6 +232,11 @@ public class ContractRoutingWorkflow
         contractRequestedParticipantField.sendKeys(Keys.ENTER);
     }
 
+    /**
+     * Click by  +Add field  link (bottom left corner) and set value
+     * @param fieldName
+     * @param value
+     */
     public void addFieldAndValue(String fieldName, String value)
     {
         $(".workflows-approval-fields__add").click();

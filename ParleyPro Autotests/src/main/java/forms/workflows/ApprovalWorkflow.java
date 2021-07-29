@@ -136,6 +136,11 @@ public class ApprovalWorkflow
         return maxValueField.getValue();
     }
 
+    /**
+     * Click by  +Add field  link (bottom left corner) and set value
+     * @param fieldName
+     * @param value
+     */
     public void addFieldAndValue(String fieldName, String value)
     {
         $(".workflows-approval-fields__add").click();
@@ -185,6 +190,7 @@ public class ApprovalWorkflow
     public void switchTumblerApprovalOrderOfPriorToSign()
     {
         Selenide.executeJavaScript("$('.workflows-approval-events-event__title:contains(\"Prior to Sign\")').next().find(\"div:contains('Set')\").children().children().click()");
+        try { Thread.sleep(500); } catch (InterruptedException e) { e.printStackTrace(); }
 
         logger.info("'Set approval order' of 'Prior to Sign' was switched");
     }
