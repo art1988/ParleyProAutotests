@@ -22,7 +22,7 @@ import static com.codeborne.selenide.Selenide.$$;
 public class AddTeamAndTwoCustomFields
 {
     @Test(priority = 1)
-    @Description("This test adds two custom fields in Summary: 'Enable Routing?' and 'Enable Approval?'")
+    @Description("This test adds two custom fields in Summary: 'Enable Routing' and 'Enable Approval'")
     public void addTwoCustomFields()
     {
         Fields fieldsTab = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
@@ -30,13 +30,13 @@ public class AddTeamAndTwoCustomFields
         ContractFields contractFieldsPage = fieldsTab.clickContractFields();
 
 
-        contractFieldsPage.createNewFiled("Summary", "Enable Routing?", FieldType.SELECT, false);
-        contractFieldsPage.addValues("Enable Routing?", "Yes");
-        contractFieldsPage.addValues("Enable Routing?", "No");
+        contractFieldsPage.createNewFiled("Summary", "Enable Routing", FieldType.SELECT, false);
+        contractFieldsPage.addValues("Enable Routing", "Yes");
+        contractFieldsPage.addValues("Enable Routing", "No");
 
-        contractFieldsPage.createNewFiled("Summary", "Enable Approval?", FieldType.SELECT, false);
-        contractFieldsPage.addValues("Enable Approval?", "Yes");
-        contractFieldsPage.addValues("Enable Approval?", "No");
+        contractFieldsPage.createNewFiled("Summary", "Enable Approval", FieldType.SELECT, false);
+        contractFieldsPage.addValues("Enable Approval", "Yes");
+        contractFieldsPage.addValues("Enable Approval", "No");
 
         fieldsTab.clickSave();
 

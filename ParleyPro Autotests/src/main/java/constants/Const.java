@@ -36,6 +36,8 @@ public class Const
     public static final User   POPOVERS_CCN                  = new User("POP CCN fn", "POP CCN ln", "arthur.khasanov+popoversccn@parleypro.com", "Parley650!");
     public static final User   POPOVERS_VIEWER               = new User("Viewer fn", "ln", "arthur.khasanov+popovers-viewer@parleypro.com", "Parley650!");
 
+    public static final User   VIEWER_PLUS_USER1             = new User("vp1", "ln", "arthur.khasanov+vp1@parleypro.com", "Parley650!");
+
     // Document samples
     public static final File   DOCUMENT_LIFECYCLE_SAMPLE     = new File(System.getProperty("user.dir") + "/Documents/pramata.docx");
     public static final File   DOCUMENT_DISCUSSIONS_SAMPLE   = new File(System.getProperty("user.dir") + "/Documents/AT-14.docx");

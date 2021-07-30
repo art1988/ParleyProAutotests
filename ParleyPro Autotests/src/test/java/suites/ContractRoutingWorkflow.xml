@@ -25,6 +25,9 @@
             <class name="tests.LoginToDashboard"/>
             <class name="tests.routing_workflow.at56.AddTeamAndTwoCustomFields"/>
             <class name="tests.routing_workflow.at56.AddWorkflows"/>
+            <class name="tests.routing_workflow.at56.AsCNUploadDocAndApprove"/>
+            <class name="tests.routing_workflow.at56.LoginAsVPUserAndApprove"/>
+            <class name="tests.routing_workflow.at56.LoginAsCNAndApprove_AndFinalLoginAsVPAndApprove"/>
         </classes>
     </test>-->
 </suite>

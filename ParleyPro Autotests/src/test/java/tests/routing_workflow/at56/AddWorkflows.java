@@ -45,7 +45,7 @@ public class AddWorkflows
         routingWorkflow.clickContractRequested();
         routingWorkflow.setContractRequestedParticipant(Const.PREDEFINED_USER_CN_ROLE.getEmail());
 
-        routingWorkflow.addFieldAndValue("Enable Routing?", "Yes");
+        routingWorkflow.addFieldAndValue("Enable Routing", "Yes");
 
 
         routingWorkflow.clickSave();
@@ -78,7 +78,7 @@ public class AddWorkflows
         approvalWorkflow.setPriorToSignParticipant(Const.PREDEFINED_USER_CN_ROLE.getEmail());
         approvalWorkflow.setPriorToSignParticipant("Team123");
 
-        approvalWorkflow.addFieldAndValue("Enable Approval?", "Yes");
+        approvalWorkflow.addFieldAndValue("Enable Approval", "Yes");
 
         approvalWorkflow.clickSave();
 
