@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Contract routing workflow" configfailurepolicy="continue">
+<suite name="Contract routing workflow" configfailurepolicy="continue"><!--
     <test name="AT-39: Create Contract Routing Workflow" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -17,10 +17,10 @@
             <class name="tests.routing_workflow.at39.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
-    <!--
     <test name="AT-56: Routing and Approval combined" preserve-order="true">
+        <parameter name="contractName" value="CTR-AT56"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.routing_workflow.at56.AddTeamAndTwoCustomFields"/>
@@ -28,6 +28,10 @@
             <class name="tests.routing_workflow.at56.AsCNUploadDocAndApprove"/>
             <class name="tests.routing_workflow.at56.LoginAsVPUserAndApprove"/>
             <class name="tests.routing_workflow.at56.LoginAsCNAndApprove_AndFinalLoginAsVPAndApprove"/>
+            <class name="tests.routing_workflow.at56.CompleteSignAsCN"/>
+            <class name="tests.DeleteContractFromExecuted"/>
+            <class name="tests.routing_workflow.at56.CleanUp"/>
+            <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 </suite>

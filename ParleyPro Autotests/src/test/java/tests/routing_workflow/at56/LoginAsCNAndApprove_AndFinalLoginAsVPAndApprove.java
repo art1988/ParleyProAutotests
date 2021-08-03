@@ -44,6 +44,8 @@ public class LoginAsCNAndApprove_AndFinalLoginAsVPAndApprove
         openedContract.clickApproveButton("AT-14").clickApproveButton();
         $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.exactText("Document AT-14 has been approved"));
 
+        Screenshoter.makeScreenshot();
+
         new DashboardPage().getSideBar().logout();
     }
 
@@ -63,5 +65,8 @@ public class LoginAsCNAndApprove_AndFinalLoginAsVPAndApprove
         $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.exactText("Document AT-14 has been approved"));
 
         Screenshoter.makeScreenshot();
+
+        // logout as VP
+        new DashboardPage().getSideBar().logout();
     }
 }
