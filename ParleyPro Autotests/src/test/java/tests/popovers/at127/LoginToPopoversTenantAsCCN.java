@@ -40,6 +40,10 @@ public class LoginToPopoversTenantAsCCN extends LoginBase
         {
             open( "https://app.parleypro.net/rc/index.html" );
         }
+        else if( LoginBase.isPROD )
+        {
+            open("https://app.parleypro.com/#/login");
+        }
         else
         {
             open( "https://app.parleypro.net/master/index.html" );
@@ -54,7 +58,8 @@ public class LoginToPopoversTenantAsCCN extends LoginBase
         dashboardPage = loginPage.clickSignIn(new SideBarItems[]{SideBarItems.IN_PROGRESS_CONTRACTS, SideBarItems.EXECUTED_CONTRACTS});
 
         Assert.assertTrue( WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://counterpartyat1.parleypro.net") ||
-                                    WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://counterpartyat2.parleypro.net"),
+                                    WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://counterpartyat2.parleypro.net") ||
+                                    WebDriverRunner.getWebDriver().getCurrentUrl().startsWith("https://counterpartyat1.parleypro.com"),
                 "Looks like that tenant name is wrong !!! Should be counterpartyat1/counterpartyat2 !!!");
 
         Screenshoter.makeScreenshot();
