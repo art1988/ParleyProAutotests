@@ -9,6 +9,7 @@ import java.io.IOException;
 public class LoginBase {
     public static final String PROP_TENANT_URL = "tenant_url";
     public static final String PROP_POPOVERS_TENANT_URL = "popovers_tenant_url";
+    public static final String PROP_TRACK_CHANGES_URL   = "track_changes_url";
 
     protected static boolean isMaster = true,
                              isRC     = false,
@@ -95,5 +96,9 @@ public class LoginBase {
 
     public String getPopoversTenantUrl() {
         return property.getProperty(PROP_POPOVERS_TENANT_URL);
+    }
+
+    public String getTrackChangesUrl() {
+        return property.getProperty(PROP_TRACK_CHANGES_URL);
     }
 }
