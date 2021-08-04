@@ -45,10 +45,11 @@ public class CleanUp
     }
 
     @Test(priority = 3)
-    public void removeTeam()
+    public void removeTeam() throws InterruptedException
     {
         Teams teams = new DashboardPage().getSideBar().clickAdministration().clickTeamsTab();
 
+        Thread.sleep(1_000);
         teams.clickActionMenu("Team123").clickDelete().clickDelete();
 
         $(".teams-list__row .teams-list__name").shouldBe(Condition.disappear); // no records left
