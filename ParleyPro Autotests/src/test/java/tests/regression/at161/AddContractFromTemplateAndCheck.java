@@ -84,6 +84,8 @@ public class AddContractFromTemplateAndCheck
 
         logger.info("Making sure that no text is visible...");
         softAssert.assertFalse(Selenide.executeJavaScript("return $('.document__body-content').is(\":visible\");"));
+
+        softAssert.assertAll();
         Screenshoter.makeScreenshot();
     }
 
