@@ -8,7 +8,6 @@ public class Const
 {
     // Tenants
     public static final String AT50_TENANT_URL               = "https://at50.parleypro.net/master/index.html";
-    public static final String TRACK_CHANGES_TENANT_URL      = "https://trackchanges.parleypro.net/master/index.html";
 
     public static final String QA_TENANT_API_KEY             = "UQrHDbj9E2rcqI3s0J5CUeXQlGzEkZpAbffXCNDw";
 

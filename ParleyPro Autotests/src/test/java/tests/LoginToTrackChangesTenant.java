@@ -24,8 +24,12 @@ public class LoginToTrackChangesTenant extends LoginBase
     @BeforeTest
     private void setup()
     {
-        Configuration.proxyEnabled   = true;
-        Configuration.fileDownload   = FileDownloadMode.PROXY;
+        if( !isPROD )
+        {
+            Configuration.proxyEnabled   = true;
+            Configuration.fileDownload   = FileDownloadMode.PROXY;
+        }
+
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 10_000;
 
@@ -42,7 +46,7 @@ public class LoginToTrackChangesTenant extends LoginBase
         {
             try
             {
-                open( Const.TRACK_CHANGES_TENANT_URL );
+                open( getTrackChangesUrl() );
                 break;
             }
             catch(WebDriverException e)
