@@ -69,7 +69,8 @@ public class Const
     public static final File   REGRESSION_DOC_AT83_BDOC2     = new File(System.getProperty("user.dir") + "/Documents/bdoc2.docx");
     public static final File   REGRESSION_DOC_AT83_BDOC3     = new File(System.getProperty("user.dir") + "/Documents/bdoc3.docx");
 
-    public static final File   REGRESSION_DOC_AT141          = new File(System.getProperty("user.dir") + "/Documents/dummyAT141.docx");
+    public static final File   REGRESSION_DOC_AT141           = new File(System.getProperty("user.dir") + "/Documents/dummyAT141.docx");
+    public static final File   REGRESSION_TEMPLATE_DOCX_AT161 = new File(System.getProperty("user.dir") + "/Documents/TemplateDOCXCapital_AT-161.DOCX");
 
     public static final File   DOC_PARAGRAPH_CLONING_AT89_V1 = new File(System.getProperty("user.dir") + "/Documents/ParagraphClonning_AT89.docx");
     public static final File   DOC_PARAGRAPH_CLONING_AT89_V2 = new File(System.getProperty("user.dir") + "/Documents/ParagraphClonning_AT89_with_responses.docx");
