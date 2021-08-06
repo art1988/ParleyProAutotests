@@ -136,6 +136,16 @@
         </classes>
     </test>
 
+    <test name="AT-163: Document in Negotiate will not open/Expand" preserve-order="true">
+        <parameter name="contractName" value="CTR_AT163"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at163.UploadDocAndCheck"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
     <test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
         <classes>
             <class name="tests.LoginToTrackChangesTenant"/>
