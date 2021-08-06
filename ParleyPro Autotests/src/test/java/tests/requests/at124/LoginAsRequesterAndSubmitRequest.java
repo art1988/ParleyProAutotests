@@ -50,7 +50,7 @@ public class LoginAsRequesterAndSubmitRequest
 
         logger.info("Assert that 2 files were added. Assert that Attachments label appeared...");
         $(".upload-field__label-title").waitUntil(Condition.visible, 10_000).shouldHave(Condition.exactText("Attachments"));
-        $$(".upload-field__files .upload-field__file-name").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("AT-14.docx", "IMG_JPEG.jpeg"));
+        $$(".upload-field__files-and-attachments .upload-field__file-name").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("AT-14.docx", "IMG_JPEG.jpeg"));
 
         contractRequest.clickSubmitRequest();
 
@@ -75,7 +75,7 @@ public class LoginAsRequesterAndSubmitRequest
         editContractRequestForm.uploadDocuments(new File[]{ Const.DOCUMENT_LIFECYCLE_SAMPLE });
 
         logger.info("Assert that 3 files are in the list...");
-        $$(".upload-field__files .upload-field__file-name").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("AT-14.docx", "IMG_JPEG.jpeg", "pramata.docx"));
+        $$(".upload-field__files-and-attachments .upload-field__file-name").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("AT-14.docx", "IMG_JPEG.jpeg", "pramata.docx"));
 
         editContractRequestForm.setValueForSelect("Contracting country", "country1");
         editContractRequestForm.clickUpdateRequest();
