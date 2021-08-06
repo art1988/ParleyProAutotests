@@ -22,11 +22,15 @@ public class UploadNewVersionOfDocument
     public UploadNewVersionOfDocument(String documentName)
     {
         title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Upload a new version of document \"" + documentName + "\"."));
+        $(".js-upload-cp-document-btn").waitUntil(Condition.visible, 15_000);
+
         try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
     }
 
     public DocumentComparePreview clickUploadCounterpartyDocument(File fileToUpload, String documentName, String contractName)
     {
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
+
         try
         {
             $(".js-upload-cp-document-btn").waitUntil(Condition.visible, 7_000);
