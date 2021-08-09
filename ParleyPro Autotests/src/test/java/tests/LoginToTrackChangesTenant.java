@@ -2,11 +2,9 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
-import com.codeborne.selenide.SelenideConfig;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
@@ -22,11 +20,12 @@ public class LoginToTrackChangesTenant extends LoginBase
     private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToTrackChangesTenant.class);
 
-    @BeforeSuite
-    private void setup()
+    @Test(priority = 1)
+    public void setup()
     {
         if( isPROD )
         {
+            logger.info("This is PROD -> Disabling proxy for TrackChangesTenant on PROD...");
             Configuration.proxyEnabled = false;
             Configuration.fileDownload = FileDownloadMode.HTTPGET;
         }
