@@ -32,7 +32,7 @@ public class LoginToTrackChangesTenant extends LoginBase
             logger.info("This is PROD -> Disabling proxy for TrackChangesTenant on PROD...");
 
             SelenideProxyServer proxy = getSelenideProxy();
-            if( proxy.isStarted() )
+            if( proxy != null && proxy.isStarted() )
             {
                 logger.info("Stopping the previous running proxy...");
                 proxy.shutdown();
