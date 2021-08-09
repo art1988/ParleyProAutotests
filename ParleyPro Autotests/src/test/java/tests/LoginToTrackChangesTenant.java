@@ -1,11 +1,10 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.FileDownloadMode;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
@@ -21,7 +20,7 @@ public class LoginToTrackChangesTenant extends LoginBase
     private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToTrackChangesTenant.class);
 
-    @BeforeTest
+    @BeforeMethod
     private void setup()
     {
         if( isPROD )
