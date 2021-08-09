@@ -43,7 +43,7 @@ public class UploadDocAndCheck
         $(".notification-stack").waitUntil(Condition.visible, 45_000).shouldHave(Condition.text("1 unsupported formatting attributes")).find(".notification__close").click();
         new ContractInNegotiation("CTR_AT163").clickOk();
 
-        OpenedContract openedContract = new OpenedContract();
+        OpenedContract openedContract = new OpenedContract(true);
 
         logger.info("Doc is in expanded state. Check some arbitrary text...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Acorns Agreement\")').text().trim()"), "Acorns Agreement - May 2021", "There is no 'Acorns Agreement - May 2021' text on the page !!!");
