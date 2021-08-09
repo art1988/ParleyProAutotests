@@ -31,14 +31,17 @@ public class LoginToTrackChangesTenant extends LoginBase
         {
             logger.info("This is PROD -> Disabling proxy for TrackChangesTenant on PROD...");
 
-            logger.info("Stopping the previous running...");
             SelenideProxyServer proxy = getSelenideProxy();
-            proxy.shutdown();
+            if( proxy.isStarted() )
+            {
+                logger.info("Stopping the previous running proxy...");
+                proxy.shutdown();
 
-            logger.info("Stopping browser...");
-            WebDriverRunner.getWebDriver().quit();
+                logger.info("Stopping of browser...");
+                WebDriverRunner.getWebDriver().quit();
+            }
 
-            logger.info("Disabling proxyEnabled flag...");
+            logger.info("Disabling proxyEnabled setting...");
             Configuration.proxyEnabled = false;
             Configuration.fileDownload = FileDownloadMode.HTTPGET;
         }
