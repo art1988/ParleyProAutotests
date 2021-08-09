@@ -6,7 +6,6 @@ import com.codeborne.selenide.proxy.SelenideProxyServer;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
@@ -23,7 +22,7 @@ public class LoginToTrackChangesTenant extends LoginBase
     private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToTrackChangesTenant.class);
 
-    @BeforeSuite
+    @Test(priority = 1)
     public void setup()
     {
         if( isPROD )
@@ -82,7 +81,7 @@ public class LoginToTrackChangesTenant extends LoginBase
         }
     }
 
-    @Test
+    @Test(priority = 2)
     public void loginToTrackChangesTenant()
     {
         LoginPage loginPage = new LoginPage();
