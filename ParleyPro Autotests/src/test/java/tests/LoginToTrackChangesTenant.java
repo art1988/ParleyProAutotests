@@ -2,6 +2,8 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.proxy.SelenideProxyServer;
 import constants.Const;
 import org.apache.log4j.Logger;
@@ -33,7 +35,10 @@ public class LoginToTrackChangesTenant extends LoginBase
             SelenideProxyServer proxy = getSelenideProxy();
             proxy.shutdown();
 
-            logger.info("Disabling proxyEnabled...");
+            logger.info("Stopping browser...");
+            WebDriverRunner.getWebDriver().quit();
+
+            logger.info("Disabling proxyEnabled flag...");
             Configuration.proxyEnabled = false;
             Configuration.fileDownload = FileDownloadMode.HTTPGET;
         }
