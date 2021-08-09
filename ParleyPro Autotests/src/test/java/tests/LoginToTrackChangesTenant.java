@@ -1,6 +1,8 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.FileDownloadMode;
+import com.codeborne.selenide.SelenideConfig;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
@@ -25,7 +27,8 @@ public class LoginToTrackChangesTenant extends LoginBase
     {
         if( isPROD )
         {
-            Configuration.proxyEnabled   = false;
+            Configuration.proxyEnabled = false;
+            Configuration.fileDownload = FileDownloadMode.HTTPGET;
         }
 
         Configuration.browserSize = "1920x1080";
