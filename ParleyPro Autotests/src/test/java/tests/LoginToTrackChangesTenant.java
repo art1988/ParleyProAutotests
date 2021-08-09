@@ -2,9 +2,11 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
+import com.codeborne.selenide.proxy.SelenideProxyServer;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
@@ -13,6 +15,7 @@ import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getSelenideProxy;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class LoginToTrackChangesTenant extends LoginBase
@@ -20,12 +23,18 @@ public class LoginToTrackChangesTenant extends LoginBase
     private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToTrackChangesTenant.class);
 
-    @Test(priority = 1)
+    @BeforeSuite
     public void setup()
     {
         if( isPROD )
         {
             logger.info("This is PROD -> Disabling proxy for TrackChangesTenant on PROD...");
+
+            logger.info("Stopping the previous running...");
+            SelenideProxyServer proxy = getSelenideProxy();
+            proxy.shutdown();
+
+            logger.info("Disabling proxyEnabled...");
             Configuration.proxyEnabled = false;
             Configuration.fileDownload = FileDownloadMode.HTTPGET;
         }
