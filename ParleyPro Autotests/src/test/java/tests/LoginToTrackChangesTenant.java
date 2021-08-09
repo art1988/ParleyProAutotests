@@ -24,10 +24,9 @@ public class LoginToTrackChangesTenant extends LoginBase
     @BeforeTest
     private void setup()
     {
-        if( !isPROD )
+        if( isPROD )
         {
-            Configuration.proxyEnabled   = true;
-            Configuration.fileDownload   = FileDownloadMode.PROXY;
+            Configuration.proxyEnabled   = false;
         }
 
         Configuration.browserSize = "1920x1080";
