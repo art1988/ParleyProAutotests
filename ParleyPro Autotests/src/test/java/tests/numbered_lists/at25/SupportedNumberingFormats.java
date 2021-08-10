@@ -312,9 +312,7 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Internal discussion"));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        if( LoginBase.isRc() || LoginBase.isProd() )
-        {
-            Assert.assertEquals(getWholeList(),"1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+        Assert.assertEquals(getWholeList(),"1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
                     "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
                     "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
                     "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5," +
@@ -323,20 +321,7 @@ public class SupportedNumberingFormats
                     "(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1,(b)L0_Letter_braces_c,I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1,II.L0_Roman_capital_III," +
                     "i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,ii.2.L1_Roman_lower_sublevel,iii.L0_Roman_lower_iii,iv.last_added_roman_lowered," +
                     "•L0_Bullet_1,•L0_Bullet_2,•L0_Bullet_added_new,oL1_Bullet_2_1,oL1_Bullet_newSublevel,•L0_Bullet_3");
-        }
-        else
-        {
-            Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
-                    "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
-                    "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
-                    "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
-                    "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
-                    "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_ABOVE_B_1," +
-                    "B.2.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1," +
-                    "(b)L0_Letter_braces_c,I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1,II.L0_Roman_capital_III,i.L0_Roman_lower_i," +
-                    "ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,ii.2.L1_Roman_lower_sublevel,iii.L0_Roman_lower_iii,iv.last_added_roman_lowered," +
-                    "•L0_Bullet_1,L0_Bullet_2,•L0_Bullet_added_new,oL1_Bullet_2_1,oL1_Bullet_newSublevel,•L0_Bullet_3");
-        }
+
 
         Screenshoter.makeScreenshot();
     }
@@ -362,9 +347,7 @@ public class SupportedNumberingFormats
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
-        if( LoginBase.isRc() || LoginBase.isProd() )
-        {
-            Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
+        Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
                     "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1,3.1.2.1.1.L4_Number_Point_2_2_1_1_1," +
                     "3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4," +
                     "4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
@@ -372,20 +355,6 @@ public class SupportedNumberingFormats
                     "C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1,(b)L0_Letter_braces_c,I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1," +
                     "II.L0_Roman_capital_III,i.L0_Roman_lower_i,ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,ii.2.L1_Roman_lower_sublevel,iii.L0_Roman_lower_iii," +
                     "iv.last_added_roman_lowered,•L0_Bullet_1,•L0_Bullet_2,•L0_Bullet_added_new,oL1_Bullet_newSublevel,•L0_Bullet_3");
-        }
-        else
-        {
-            Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
-                    "3.1.L1_Number_Point_2_1,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
-                    "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
-                    "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
-                    "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_ABOVE_a,b.L0_Letter_lowercase_a,c.L0_Letter_lowercase_b," +
-                    "c.1.L1_Letter_lowercase_b_1,d.L0_Letter_lowercase_c,A.L0_Letter_capital_A,B.L0_Letter_capital_B,B.1.L1_Letter_capital_ABOVE_B_1," +
-                    "B.2.L1_Letter_capital_B_1,C.L0_Letter_capital_C,(a)L0_Letter_braces_a,(b)L0_Letter_braces_b,a.1.L1_Letter_braces_b_1," +
-                    "(b)L0_Letter_braces_c,I.L0_Roman_capital_II,I.1.L1_Roman_capital_II_1,II.L0_Roman_capital_III,i.L0_Roman_lower_i," +
-                    "ii.L0_Roman_lower_ii,ii.1.L1_Roman_lower_ii_1,ii.2.L1_Roman_lower_sublevel,iii.L0_Roman_lower_iii,iv.last_added_roman_lowered," +
-                    "•L0_Bullet_1,L0_Bullet_2,•L0_Bullet_added_new,oL1_Bullet_newSublevel,•L0_Bullet_3");
-        }
 
         Screenshoter.makeScreenshot();
     }
