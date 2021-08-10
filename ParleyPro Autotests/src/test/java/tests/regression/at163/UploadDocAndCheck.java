@@ -15,6 +15,7 @@ import pages.DashboardPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
+import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -43,7 +44,7 @@ public class UploadDocAndCheck
         $(".notification-stack").waitUntil(Condition.visible, 45_000).shouldHave(Condition.text("1 unsupported formatting attributes")).find(".notification__close").click();
         new ContractInNegotiation("CTR_AT163").clickOk();
 
-        OpenedContract openedContract = new OpenedContract(true);
+        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Cover Page\")')");
 
         logger.info("Doc is in expanded state. Check some arbitrary text...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Acorns Agreement\")').text().trim()"), "Acorns Agreement - May 2021", "There is no 'Acorns Agreement - May 2021' text on the page !!!");
