@@ -68,10 +68,10 @@ public class AddNewUserTest
     @Description("This test checks that invitation email was sent")
     public void checkInvitationEmail()
     {
-        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        logger.info("Waiting for 70 seconds to make sure that email has been delivered...");
         try
         {
-            Thread.sleep(60_000);
+            Thread.sleep(70_000);
         }
         catch (InterruptedException e)
         {
