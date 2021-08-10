@@ -39,7 +39,7 @@ public class PasteTextOverParagraph
         logger.info("Assert that 2 paragraphs were added...");
         String textFromItemTwo = Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"2\")').text().trim()");
         textFromItemTwo = textFromItemTwo.replaceAll(" ", "");
-        textFromItemTwo = textFromItemTwo.replace("\u00a0",""); // remove all  
+        textFromItemTwo = textFromItemTwo.replace("\u00a0",""); // remove all NBSP symbols
         Assert.assertEquals(textFromItemTwo, "2.p_Text1\n" + "P_Text2", "Looks like paragraphs weren't pasted !");
 
         Screenshoter.makeScreenshot();
