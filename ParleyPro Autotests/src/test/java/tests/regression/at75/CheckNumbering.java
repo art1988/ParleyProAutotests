@@ -18,7 +18,8 @@ public class CheckNumbering
     @Test
     @Issues({
             @Issue("PAR-14430"),
-            @Issue("PAR-14445")
+            @Issue("PAR-14445"),
+            @Issue("PAR-14624")
     })
     public void checkNumbering()
     {
