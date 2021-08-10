@@ -58,8 +58,8 @@ public class MakeExternalAndUploadDocsV2V3V4
                             .clickUpload(true)
                             .clickDocumentsTab();
 
-        logger.info("Assert that contract has 15 discussions...");
-        Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "15", "Amount of total discussions should be equal 15 !!!");
+        logger.info("Assert that contract has 14 discussions...");
+        Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "14", "Amount of total discussions should be equal 14 !!!");
 
         // Scroll to 4. Limitations on Damages and Indemnification.
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Confidentiality.\")')[0].scrollIntoView({});");
@@ -88,8 +88,8 @@ public class MakeExternalAndUploadDocsV2V3V4
                             .clickUpload(true)
                             .clickDocumentsTab();
 
-        logger.info("Assert that contract has 10 discussions...");
-        Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "10", "Amount of total discussions should be equal 10 !!!");
+        logger.info("Assert that contract has 9 discussions...");
+        Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "9", "Amount of total discussions should be equal 9 !!!");
 
         // Scroll to 4. Limitations on Damages and Indemnification.
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Confidentiality.\")')[0].scrollIntoView({});");
@@ -164,8 +164,8 @@ public class MakeExternalAndUploadDocsV2V3V4
                             .clickUpload(true)
                             .clickDocumentsTab();
 
-        logger.info("Assert that contract has 10 discussions...");
-        Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "10", "Amount of total discussions should be equal 10 !!!");
+        logger.info("Assert that contract has 9 discussions...");
+        Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "9", "Amount of total discussions should be equal 9 !!!");
 
         // Scroll to 4. Limitations on Damages and Indemnification.
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Confidentiality.\")')[0].scrollIntoView({});");
@@ -186,7 +186,7 @@ public class MakeExternalAndUploadDocsV2V3V4
 
         $$(".discussion2-post").last()
                                          .$$("ins")
-                                         .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(6)); // for sake of stability check only amount of added tags
+                                         .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(4)); // for sake of stability check only amount of added tags
 
         Screenshoter.makeScreenshot();
     }
