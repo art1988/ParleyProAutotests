@@ -1,4 +1,4 @@
-package tests.formatting;
+package tests.formatting.at20;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
