@@ -42,6 +42,7 @@ public class Const
     public static final File   DOCUMENT_DISCUSSIONS_SAMPLE   = new File(System.getProperty("user.dir") + "/Documents/AT-14.docx");
     public static final File   DOCUMENT_FORMATTING_SAMPLE    = new File(System.getProperty("user.dir") + "/Documents/Formatting.docx");
     public static final File   DOCUMENT_NUMBERED_LIST_SAMPLE = new File(System.getProperty("user.dir") + "/Documents/NumberedList.docx");
+    public static final File   DOCUMENT_TABLE_SAMPLE         = new File(System.getProperty("user.dir") + "/Documents/tabletest_AT-160.docx");
 
     public static final File   DOCUMENT_NUMBERED_WITH_SUBLISTS = new File(System.getProperty("user.dir") + "/Documents/NumberedWithMultipleSubs.docx");
 

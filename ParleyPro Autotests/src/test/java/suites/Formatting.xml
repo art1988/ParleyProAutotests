@@ -1,13 +1,23 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Formatting suite" configfailurepolicy="continue">
-    <test name="AT-20 Online formatting" preserve-order="true">
+<suite name = "Formatting suite" configfailurepolicy="continue"><!--
+    <test name="AT-20: Online formatting" preserve-order="true">
         <parameter name="contractName" value="AT20 online formatting contract"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.formatting.CreateContractForOnlineFormattingAT20"/>
-            <class name="tests.formatting.OnlineFormat"/>
+            <class name="tests.formatting.at20.CreateContractForOnlineFormattingAT20"/>
+            <class name="tests.formatting.at20.OnlineFormat"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test> -->
+
+    <test name="AT-160: Upload document with table" preserve-order="true">
+        <parameter name="contractName" value="AT-160 // Upload document with table"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.formatting.at160.UploadDocWithTableAndCheck"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
