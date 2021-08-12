@@ -2,10 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Priority Dashboard suite" configfailurepolicy="continue">
-    <test name="PD 1.4. Create new in-progress contract" preserve-order="true">
+    <test name="AT-155: PD 1.4. Create new in-progress contract" preserve-order="true">
+        <parameter name="contractName" value="Contract for in-progress created from PD"></parameter>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.priority_dashboard.at155.CreateContractFromPDAndCheck"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>

@@ -1,13 +1,19 @@
 package tests.priority_dashboard.at155;
 
+import com.codeborne.selenide.CollectionCondition;
 import forms.ContractInformation;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
+import pages.InProgressContractsPage;
 import pages.PriorityDashboardPage;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
+
+import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class CreateContractFromPDAndCheck
@@ -15,6 +21,7 @@ public class CreateContractFromPDAndCheck
     private static Logger logger = Logger.getLogger(CreateContractFromPDAndCheck.class);
 
     @Test
+    @Description("This test creates new contract from Priority Dashboard page that goes to In-progress contracts.")
     public void createContractFromPriorityDashboardAndCheck()
     {
         PriorityDashboardPage priorityDashboardPage = new DashboardPage().getSideBar().clickPriorityDashboard();
@@ -35,5 +42,12 @@ public class CreateContractFromPDAndCheck
         priorityDashboardPage = new DashboardPage().getSideBar().clickPriorityDashboard();
 
         Assert.assertEquals(priorityDashboardPage.getCountOfAllInProgressContracts(), "1");
+
+        logger.info("Going to in-progress page to make sure that contract was added...");
+        InProgressContractsPage inProgressContractsPage = new DashboardPage().getSideBar().clickInProgressContracts(false);
+
+        $$(".contracts-list__contract-name").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("Contract for in-progress created from PD"));
+
+        Screenshoter.makeScreenshot();
     }
 }
