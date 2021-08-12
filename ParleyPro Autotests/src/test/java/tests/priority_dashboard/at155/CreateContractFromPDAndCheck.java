@@ -41,7 +41,8 @@ public class CreateContractFromPDAndCheck
         logger.info("Returning back to Priority Dashboard page and check contract counter for in-progress...");
         priorityDashboardPage = new DashboardPage().getSideBar().clickPriorityDashboard();
 
-        Assert.assertEquals(priorityDashboardPage.getCountOfAllInProgressContracts(), "1");
+        Assert.assertEquals(priorityDashboardPage.getCountOfAllInProgressContracts(), "1", "Looks like that counter for 'All in-progress contracts' is wrong !!!");
+        Assert.assertEquals(priorityDashboardPage.getCountOfAllExecutedContracts(), "0", "Looks like that counter for 'All executed contracts' is wrong !!!"); // and executed counter should be still 0
 
         logger.info("Going to in-progress page to make sure that contract was added...");
         InProgressContractsPage inProgressContractsPage = new DashboardPage().getSideBar().clickInProgressContracts(false);
