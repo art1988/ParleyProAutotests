@@ -65,6 +65,7 @@ public class Const
     public static final File   TEMPLATE_AT86                 = new File(System.getProperty("user.dir") + "/Documents/Template_AT-86_text_cut_off.docx");
     public static final File   TEMPLATE_AT90_SILENT_ERROR    = new File(System.getProperty("user.dir") + "/Documents/Template_silent_error_AT-90.docx");
     public static final File   TEMPLATE_AT135                = new File(System.getProperty("user.dir") + "/Documents/AT-135_Template_identical.docx");
+    public static final File   TEMPLATE_AT164                = new File(System.getProperty("user.dir") + "/Documents/Template_AT-164-Manufacturing_Agreement.docx");
 
     public static final File   REGRESSION_DOC_AT83_BDOC1     = new File(System.getProperty("user.dir") + "/Documents/bdoc1.docx");
     public static final File   REGRESSION_DOC_AT83_BDOC2     = new File(System.getProperty("user.dir") + "/Documents/bdoc2.docx");
