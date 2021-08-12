@@ -39,8 +39,22 @@ public class PriorityDashboardPage
         return new ContractInformation();
     }
 
+    public ContractInformation clickNewContractButtonForExecuted()
+    {
+        newContractButtonForExecuted.shouldBe(Condition.visible).click();
+
+        logger.info("+ NEW CONTRACT button was clicked for 'All executed contracts'...");
+
+        return new ContractInformation();
+    }
+
     public String getCountOfAllInProgressContracts()
     {
         return Selenide.executeJavaScript("return $('.priority-item__title:contains(\"in-progress\")').parent().parent().find(\".priority-item__value\").text().trim()");
+    }
+
+    public String getCountOfAllExecutedContracts()
+    {
+        return Selenide.executeJavaScript("return $('.priority-item__title:contains(\"executed\")').parent().parent().find(\".priority-item__value\").text().trim()");
     }
 }
