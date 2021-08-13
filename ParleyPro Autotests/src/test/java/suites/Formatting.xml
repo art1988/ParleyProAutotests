@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Formatting suite" configfailurepolicy="continue"><!--
+<suite name = "Formatting suite" configfailurepolicy="continue">
     <test name="AT-20: Online formatting" preserve-order="true">
         <parameter name="contractName" value="AT20 online formatting contract"/>
         <classes>
@@ -21,7 +21,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-164: Document moves from Review to Draft">
         <parameter name="contractName" value="AT-164 // CTR - Document moves from Review to Draft"/>
