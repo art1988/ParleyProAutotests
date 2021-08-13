@@ -1,10 +1,8 @@
 package tests.formatting.at164;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -14,7 +12,6 @@ import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -54,6 +51,26 @@ public class DownloadUploadAndCheckFieldsPanel
 
         logger.info("Assert that FORMATTING label was shown...");
         $(".document__header-row").find("span[class*='label_theme_lblue']").shouldBe(Condition.visible).shouldHave(Condition.exactText("FORMATTING"));
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 2)
+    public void uploadNewDoc()
+    {
+        OpenedContract openedContract = new OpenedContract();
+
+        openedContract.clickDocumentActionsMenu("Template_AT-164-Manufacturing_Agreement")
+                      .clickUploadDocument()
+                      .clickUploadDocumentButton( Const.TEMPLATE_TO_UPLOAD_OVER_AT164 )
+                      .clickUpload(false);
+
+        logger.info("Making sure that Filed panel has disappeared...");
+        $(".documents__column .documents-placeholders__title").waitUntil(Condition.hidden, 30_000);
+        $(".documents__column .documents-placeholders__title").shouldBe(Condition.hidden); // only Fields panel has '.documents-placeholders__title'
+
+        logger.info("Making sure that there is no Formatting label anymore...");
+        $(".document__header-row").find("span[class*='label_theme_lblue']").should(Condition.disappear);
 
         Screenshoter.makeScreenshot();
     }
