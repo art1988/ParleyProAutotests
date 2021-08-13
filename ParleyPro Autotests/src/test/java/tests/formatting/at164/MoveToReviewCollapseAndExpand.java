@@ -34,6 +34,8 @@ public class MoveToReviewCollapseAndExpand
 
         logger.info("Making sure that Fields panel is still hidden...");
         $(".document__header-row").find("span[class*='label_theme_lblue']").should(Condition.disappear);
+
+        Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 2)
