@@ -13,7 +13,7 @@ public class DocumentComparePreview
 {
     private String contractName;
     private SelenideElement title = $(".modal-body-title");
-    private SelenideElement uploadButton = $(".button.btn-common.btn.btn-primary");
+    private SelenideElement uploadButton = $(".modal-body .button.btn-common.btn.btn-primary");
 
 
     private static Logger logger = Logger.getLogger(DocumentComparePreview.class);
@@ -79,7 +79,7 @@ public class DocumentComparePreview
      */
     public DiscussionsOfSingleContract clickUpload(boolean isClassic)
     {
-        uploadButton.click();
+        uploadButton.shouldBe(Condition.visible).click();
 
         logger.info("UPLOAD button was clicked");
         $(".modal-content").waitUntil(Condition.disappear, 60_000 * 5);
