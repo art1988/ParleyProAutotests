@@ -59,10 +59,13 @@ public class CreateAmendmentAndCheckFields
         Screenshoter.makeScreenshot();
         ////
 
+        Thread.sleep(2_000);
+
         logger.info("Filling AmendField1 - ... - AmendField5 fields...");
         for( int i = 1; i <= 5; i++ )
         {
             contractInformationAfterAmend.setValueForCustomField("AmendFld" + i, FieldType.TEXT_AREA, "amend" + i + " val");
+            Thread.sleep(500);
         }
 
         contractInformationAfterAmend.clickSave();
