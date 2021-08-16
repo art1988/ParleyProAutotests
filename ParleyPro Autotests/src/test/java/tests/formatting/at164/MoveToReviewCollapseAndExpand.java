@@ -3,6 +3,7 @@ package tests.formatting.at164;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -48,7 +49,7 @@ public class MoveToReviewCollapseAndExpand
         Thread.sleep(1_000);
         logger.info("Making sure that no text is visible...");
         Assert.assertFalse(Selenide.executeJavaScript("return $('.document__body-content').is(\":visible\");"));
-        $(".document__header-row").find("span[class*='label_theme_lblue']").should(Condition.disappear);
+        $(".documents__column .documents-placeholders__title").shouldBe(Condition.hidden); // Field panel is still hidden
         Screenshoter.makeScreenshot();
 
         logger.info("Expand doc...");
@@ -58,7 +59,7 @@ public class MoveToReviewCollapseAndExpand
         logger.info("Making sure that text is visible again...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"MANUFACTURING\")').text().trim()"), "MANUFACTURING AGREEMENT", "There is no 'MANUFACTURING AGREEMENT' text on the page !!!");
         Assert.assertEquals((long) Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"FDA\")').length"), 4l, "There is no 'FDA' abbreviation on the page !!!");
-        $(".document__header-row").find("span[class*='label_theme_lblue']").should(Condition.disappear);
+        $(".documents__column .documents-placeholders__title").shouldBe(Condition.hidden); // Field panel is still hidden
         Screenshoter.makeScreenshot();
     }
 }
