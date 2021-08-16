@@ -21,9 +21,23 @@ public class ConfirmApprovers
     public ConfirmApprovers(String documentName)
     {
         title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Confirm approvers for document \"" + documentName + "\""));
+        $(".modal-content .spinner").waitUntil(Condition.disappear, 20_000);
 
-        // wait until list of approval users is visible
-        $(".document-approval__users").waitUntil(Condition.visible, 7_000);
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { logger.error(e); }
+
+        // In case if there is no list of approvers => User sees [You need to assign at least 1 approver] message => Button START APPROVAL is disabled
+        // This uses in scenario AT-162
+        if( $(".document-approval__selected-users.is_error").is(Condition.visible) )
+        {
+            logger.info("There is no list of approvers...");
+            logger.info("[You need to assign at least 1 approver] message is visible...");
+            return;
+        }
+        else
+        {
+            // ...otherwise wait until list of approval users is visible
+            $(".document-approval__users").waitUntil(Condition.visible, 7_000);
+        }
     }
 
     public String getListOfApprovers()
@@ -49,7 +63,7 @@ public class ConfirmApprovers
         logger.info("Set approval order tumbler was switched");
     }
 
-    public void addParticipant(String participantName)
+    public ConfirmApprovers addParticipant(String participantName)
     {
         addParticipantField.setValue(participantName);
         addParticipantField.sendKeys(Keys.DOWN);
@@ -57,6 +71,8 @@ public class ConfirmApprovers
 
         // press Tab key to switch focus and close dropdown
         addParticipantField.sendKeys(Keys.TAB);
+
+        return this;
     }
 
     public void clickStartApproval()
