@@ -59,6 +59,8 @@ public class UploadAndDownloadPDFDocument
         logger.info("Waiting until document is fully loaded...");
         $(".document__body .spinner").waitUntil(Condition.disappear, 30_000);
 
+        // Main check that PDF was uploaded - is to see if canvas is on page or not
+        logger.info("Checking canvas of uploaded PDF file...");
         $$(".document__body canvas").first().waitUntil(Condition.visible, 10_000);
         $$(".document__body canvas").last().waitUntil(Condition.visible, 10_000);
         $$(".document__body canvas").shouldBe(CollectionCondition.sizeGreaterThan(2));
