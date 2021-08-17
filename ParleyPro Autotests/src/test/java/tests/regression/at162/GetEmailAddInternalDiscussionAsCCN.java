@@ -32,7 +32,7 @@ public class GetEmailAddInternalDiscussionAsCCN
     public void getEmailAndLoginAsCCN() throws InterruptedException
     {
         logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
-        Thread.sleep(20_000);
+        Thread.sleep(60_000);
 
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "[qa-autotests] autotest_cn fn ln shared contract \"" + contractName + "\" with you"),
                 "Email with subject: [qa-autotests] autotest_cn fn ln shared contract \"" + contractName + "\" with you" + " was not found !!!");
