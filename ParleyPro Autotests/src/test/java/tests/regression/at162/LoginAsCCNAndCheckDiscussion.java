@@ -3,6 +3,7 @@ package tests.regression.at162;
 import com.codeborne.selenide.CollectionCondition;
 import constants.Const;
 import constants.SideBarItems;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -24,6 +25,7 @@ public class LoginAsCCNAndCheckDiscussion
     private static Logger logger = Logger.getLogger(LoginAsCCNAndCheckDiscussion.class);
 
     @Test(priority = 1)
+    @Description("Main assertion of test happens here. Test checks that internal discussion is still open under CCN user.")
     public void loginAsCCNAndCheckDiscussion()
     {
         LoginPage loginPage = new LoginPage();
