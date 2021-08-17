@@ -7,6 +7,7 @@ import constants.SideBarItems;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
@@ -17,20 +18,27 @@ import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * This test will be used in AT-162 _and_ in AT-165
+ * Parameter contractNameEmail - just name of the contract that will be used in email subject
+ */
 @Listeners({ScreenShotOnFailListener.class})
 public class GetEmailAddInternalDiscussionAsCCN
 {
     private String host     = "imap.gmail.com";
     private String username = "arthur.khasanov@parleypro.com";
     private String password = "ParGd881";
-    private String contractName = "AT-162 Contract";
+    private String contractName;
 
     private static DashboardPage dashboardPage;
     private static Logger logger = Logger.getLogger(GetEmailAddInternalDiscussionAsCCN.class);
 
     @Test(priority = 1)
-    public void getEmailAndLoginAsCCN() throws InterruptedException
+    @Parameters("contractNameEmail")
+    public void getEmailAndLoginAsCCN(String contractNameEmail) throws InterruptedException
     {
+        contractName = contractNameEmail;
+
         logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
         Thread.sleep(60_000);
 
