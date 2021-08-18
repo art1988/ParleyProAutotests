@@ -92,12 +92,18 @@ public class SupportedNumberingFormats
                 "ii.1.L1_Roman_lower_ii_1,iii.L0_Roman_lower_iii,•L0_Bullet_1,•L0_Bullet_2,oL1_Bullet_2_1,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
+
+        Selenide.refresh();
+        Thread.sleep(1_000);
+
+        new OpenedContract();
     }
 
     @Test(priority = 3)
     @Description("This test removes item before sublevel of braced list ( (a) (b) etc ) and check recalculation")
-    public void removeBeforeSublevelOfBracedList()
+    public void removeBeforeSublevelOfBracedList() throws InterruptedException
     {
+        Thread.sleep(1_000);
         // scroll to bottom of page
         Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,document.body.scrollHeight)");
 
