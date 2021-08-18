@@ -54,7 +54,7 @@
         <parameter name="documentName" value="2021 3Q SOW for SEM and Consulting(2).docx"/>
         <parameter name="cpDocumentName" value="2021 3Q SOW for SEM and Consulting [FB edits](2).docx"/>
         <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="numberOfDiscussions" value="19"/>
         <parameter name="textOnFirstPage"
                    value="Statement of Work for 3Q Digital Search Engine Marketing and Consulting"/>
         <parameter name="textOnLastPage" value="Babysitters or house-sitters"/>
@@ -109,7 +109,7 @@
         <parameter name="documentName" value="Taboola_com US Sponsored Content V 3 IO + Terms (2).docx"/>
         <parameter name="cpDocumentName" value="Earnin Media IO (Taboola Draft).docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="50"/>
+        <parameter name="numberOfDiscussions" value="31"/>
         <parameter name="textOnFirstPage" value="DIGITAL ADVERTISING INSERTION ORDER"/>
         <parameter name="textOnLastPage" value="Miscellaneous"/>
         <classes>
