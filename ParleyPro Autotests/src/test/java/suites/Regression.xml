@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Regression" configfailurepolicy="continue">
+<suite name = "Regression" configfailurepolicy="continue"><!--
     <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
@@ -144,7 +144,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="AT-162: Allow My team to move contract to Pre-Sign approval even Counterparty has open internal discussion" preserve-order="true">
         <parameter name="contractName" value="AT-162 Contract"/>
@@ -161,7 +161,6 @@
         </classes>
     </test>
 
-    <!--
     <test name="AT-165: Allow My team to move contract to Sign status even Counterparty has open internal discussion" preserve-order="true">
         <parameter name="contractName" value="AT-165 SIGN CTR"/>
         <parameter name="contractNameEmail" value="AT-165 SIGN CTR"/>
@@ -169,9 +168,15 @@
             <class name="tests.LoginToDashboard"/>
             <class name="tests.regression.at165.CreateContractUploadDocAndInviteCCN"/>
             <class name="tests.regression.at162.GetEmailAddInternalDiscussionAsCCN"/>
+            <class name="tests.regression.at165.AsCNStartSigningProcess"/>
+            <class name="tests.regression.at165.LoginAsCCNAndCheckDiscussion"/>
+            <class name="tests.regression.at165.LoginBackAsCNAndCompleteSign"/>
+            <class name="tests.DeleteContractFromExecuted"/>
+            <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
+<!--
     <test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
         <classes>
             <class name="tests.LoginToTrackChangesTenant"/>
@@ -188,5 +193,5 @@
             <class name="tests.regression.at141.CreateContractUploadDocAndChange"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
