@@ -60,6 +60,15 @@ public class ManageDiscussions
         return this;
     }
 
+    public ManageDiscussions acceptExternalDiscussions()
+    {
+        Selenide.executeJavaScript("$('.scheme_external').find(\"span:contains('Accept')\").click()");
+
+        logger.info("ACCEPT button for external discussions was clicked...");
+
+        return this;
+    }
+
     /**
      * Expand discussion group by clicking arrow icon
      * @param groupType may be internal, queued or external
@@ -73,15 +82,6 @@ public class ManageDiscussions
         $(arrowIcon).click();
 
         return new ListOfPosts(groupType);
-    }
-
-    public void clickDone()
-    {
-        doneButton.waitUntil(Condition.visible, 10_000).waitUntil(Condition.enabled, 10_000).click();
-
-        logger.info("DONE was clicked");
-
-        $(".manage-discussions-sections").waitUntil(Condition.disappear, 20_000);
     }
 
     /**
@@ -126,5 +126,25 @@ public class ManageDiscussions
         $(".spinner").waitUntil(Condition.disappear, 20_000);
 
         return this;
+    }
+
+    public ManageDiscussions confirmAccept()
+    {
+        makeExternalButton.click(); // the same button
+
+        logger.info("ACCEPT button was clicked");
+
+        $(".spinner").waitUntil(Condition.disappear, 20_000);
+
+        return this;
+    }
+
+    public void clickDone()
+    {
+        doneButton.waitUntil(Condition.visible, 10_000).waitUntil(Condition.enabled, 10_000).click();
+
+        logger.info("DONE was clicked");
+
+        $(".manage-discussions-sections").waitUntil(Condition.disappear, 20_000);
     }
 }
