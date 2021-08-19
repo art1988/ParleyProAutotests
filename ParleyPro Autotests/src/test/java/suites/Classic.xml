@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Classic negotiation mode suite" configfailurepolicy="continue">
+    <!--
     <test name="AT-40: Upload new version with redlines for my team documents" preserve-order="true">
         <parameter name="contractName" value="AT40 Classic contract"/>
         <classes>
@@ -279,6 +280,16 @@
             <class name="tests.LoginToDashboard"/>
             <class name="tests.classic.at65.CreateContractAndUploadDoc"/>
             <class name="tests.classic.at65.MakeCommentsUploadNewVerAndCheck"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test> -->
+
+    <test name="AT-152: Counterparty receives unexpected emails from Classic negotiation contracts" preserve-order="true">
+        <parameter name="contractName" value="AT152 - Counterparty receives unexpected emails"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.at152.CreateContractUploadDocAndCheckEmail"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
