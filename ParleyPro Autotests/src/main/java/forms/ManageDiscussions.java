@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import pages.subelements.ListOfPosts;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -62,7 +63,7 @@ public class ManageDiscussions
 
     public ManageDiscussions acceptExternalDiscussions()
     {
-        Selenide.executeJavaScript("$('.scheme_external').find(\"span:contains('Accept')\").click()");
+        $$(".scheme_external button").findBy(text("Accept")).click();
 
         logger.info("ACCEPT button for external discussions was clicked...");
 
