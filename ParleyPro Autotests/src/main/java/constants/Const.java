@@ -96,6 +96,8 @@ public class Const
     public static final File   DOCUMENT_AT65_GLUE            = new File(System.getProperty("user.dir") + "/Documents/Dynatrace_Vendor_Addendum.docx");
     public static final File   DOCUMENT_AT65_GLUE_V2         = new File(System.getProperty("user.dir") + "/Documents/Dynatrace_Vendor_Addendum_v2.docx");
 
+    public static final File   DOC_MICROVENTION_AT139        = new File(System.getProperty("user.dir") + "/Documents/ForPAR-14078_AT139.docx");
+
     public static final File   IMG_JPEG_SAMPLE               = new File(System.getProperty("user.dir") + "/Documents/IMG_JPEG.jpeg");
 
     // Directories
