@@ -72,7 +72,7 @@ public class MakeExternalAndUploadDocsV2V3V4
         $$(".discussion2-post").shouldHave(CollectionCondition.size(3)); // Amount of total posts
         $$(".discussion2-post").last().find(".discussion2-label__status").shouldHave(Condition.exactText("EXTERNAL"));
         $$(".discussion2-post").last().find("del").shouldHave(Condition.text("will not"));
-        $$(".discussion2-post").last().$$("ins").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(3)); // amount of ins 3 or more
+        $$(".discussion2-post").last().$$("ins").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(2)); // amount of ins 3 or more
 
         Screenshoter.makeScreenshot();
 
@@ -186,7 +186,7 @@ public class MakeExternalAndUploadDocsV2V3V4
 
         $$(".discussion2-post").last()
                                          .$$("ins")
-                                         .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(4)); // for sake of stability check only amount of added tags
+                                         .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(2)); // for sake of stability check only amount of added tags
 
         Screenshoter.makeScreenshot();
     }
