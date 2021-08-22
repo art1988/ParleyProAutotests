@@ -46,6 +46,8 @@ public class ExecutedContractsPage
             $(".contracts-list__table").shouldBe(Condition.visible);
             $$(".contracts-list__table a").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
         }
+
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
     }
 
     public ContractInformation clickNewContractButton()
