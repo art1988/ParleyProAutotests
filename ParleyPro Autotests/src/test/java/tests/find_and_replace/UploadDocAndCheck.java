@@ -78,6 +78,7 @@ public class UploadDocAndCheck
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.exactText("1 discussion has been created"));
 
         logger.info("Checking that replacement was correct...");
+        $("del").waitUntil(Condition.visible, 30_000);
         $$("del").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("dummy"));
         $$("ins").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("test"));
         $$(".document__body-content .discussion-indicator").shouldHave(CollectionCondition.size(1)); // one discussion was created
