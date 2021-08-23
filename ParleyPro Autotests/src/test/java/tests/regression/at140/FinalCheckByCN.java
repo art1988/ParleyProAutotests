@@ -39,8 +39,8 @@ public class FinalCheckByCN
         OpenedContract openedContract = new OpenedContract();
 
         logger.info("Checking all added changes by CN and CCN...");
-        $$("ins").shouldHave(CollectionCondition.size(4))
-                           .shouldHave(CollectionCondition.exactTexts("CN was here №1", "CN was here №2", "", "Added by CCN #3"));
+        $$("ins").shouldHave(CollectionCondition.size(3))
+                           .shouldHave(CollectionCondition.exactTexts("CN was here №1", "CN was here №2", "Added by CCN #3"));
 
         logger.info("Checking that there are no duplicate paragraphs were added on the document board...");
         for( int pNum = 1; pNum <= 7; pNum++ )
