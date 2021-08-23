@@ -43,7 +43,7 @@ public class LoginAsAdminRemoveFieldAndCheckAsRequester
 
     @Test(priority = 2)
     @Description("This test logins as requester and making sure that only f1 is present on the form.")
-    public void loginAsRequesterAndCheckField()
+    public void loginAsRequesterAndCheckField() throws InterruptedException
     {
         LoginPage loginPage = new LoginPage();
 
@@ -53,6 +53,7 @@ public class LoginAsAdminRemoveFieldAndCheckAsRequester
 
         ContractRequest contractRequestForm = dashboardPage.getSideBar().clickInProgressContracts(true).clickNewRequestButton();
         contractRequestForm.selectValueForField("R1", "val1");
+        Thread.sleep(1_000);
 
         logger.info("Making sure that only f1 is present on the form...");
         $(".spinner").waitUntil(Condition.disappear, 10_000);
