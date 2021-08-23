@@ -26,10 +26,10 @@ public class CheckNumbering
         logger.info("Scroll to necessary paragraph...");
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"[ORGANIZATION] will provide IEEE\")')[0].scrollIntoView({});");
 
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text ins:contains(\"F.\")').parent().text().replace(/\\n/g,\"\").replace(/\\s/g, '')"), "F.Test!!");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text ins:contains(\"H.\")').parent().text().replace(/\\n/g,\"\").replace(/\\s/g, '')"), "H.Test??");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text ins:contains(\"ii.\")').parent().text().trim().replace(/\\s/g, '')"), "ii.Yo!!!");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text ins:contains(\"v.\")').parent().text().trim().replace(/\\s/g, '')"), "v.Yo!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text ins:contains(\"F.\")').parent().parent().text().replace(/\\n/g,\"\").replace(/\\s/g, '')"), "F.Test!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text ins:contains(\"H.\")').parent().parent().text().replace(/\\n/g,\"\").replace(/\\s/g, '')"), "H.Test??");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text ins:contains(\"ii.\")').parent().parent().text().trim().replace(/\\s/g, '')"), "ii.Yo!!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text ins:contains(\"v.\")').parent().parent().text().trim().replace(/\\s/g, '')"), "v.Yo!");
 
         Screenshoter.makeScreenshot();
     }
