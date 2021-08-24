@@ -15,6 +15,7 @@ import pages.ContractInfo;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
+import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -27,6 +28,10 @@ import static com.codeborne.selenide.Selenide.$$;
 @Listeners({ScreenShotOnFailListener.class})
 public class LoginBackAsMyTeamCN
 {
+    private String host = "imap.gmail.com";
+    private String username = "arthur.khasanov@parleypro.com";
+    private String password = "ParGd881";
+
     private OpenedContract openedContract;
     private Logger logger = Logger.getLogger(LoginBackAsMyTeamCN.class);
 
@@ -94,5 +99,14 @@ public class LoginBackAsMyTeamCN
                 shouldHave(Condition.exactText("Chief Negotiator"));
 
         Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 3)
+    public void deleteNotificationEmail()
+    {
+        String emailSubject = "Contract  has  new external discussions";
+        logger.info("Find email with subject '" + emailSubject + "' and delete it...");
+
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, emailSubject), "Email with subject: " + emailSubject + " was not found !!!");
     }
 }
