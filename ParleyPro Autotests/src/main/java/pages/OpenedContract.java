@@ -21,6 +21,8 @@ public class OpenedContract
 {
     private SelenideElement contractName          = $(".contract-header__name");
     private SelenideElement manageDiscussions     = $(".contract-header__manage-discussions");
+
+    private SelenideElement emailContractToCP     = $("#contract-email-action");
     private SelenideElement auditTrailButton      = $("#contract-audit-trail-action");
     private SelenideElement contractInfoButton    = $("#contract-info-action");
     private SelenideElement actionsMenu           = $(".contract-header__menu .actions-menu button");
@@ -316,6 +318,15 @@ public class OpenedContract
         logger.info("Manage discussions button was clicked");
 
         return new ManageDiscussions();
+    }
+
+    public AboutToEmailContract clickEmailContractToCounterparty(String cpOrganization)
+    {
+        emailContractToCP.click();
+
+        logger.info("Email contract to Counterparty button was clicked");
+
+        return new AboutToEmailContract(contractName.getText(), cpOrganization);
     }
 
     public AuditTrail clickAuditTrail()
