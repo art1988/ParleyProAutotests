@@ -129,6 +129,10 @@ public class ManageDiscussions
         return this;
     }
 
+    /**
+     * Clicks by MAKE EXTERNAL button
+     * @return
+     */
     public ManageDiscussions confirmAccept()
     {
         makeExternalButton.click(); // the same button
