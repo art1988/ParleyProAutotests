@@ -102,6 +102,9 @@ public class Const
     public static final File   DOC_AT166_ONE                 = new File(System.getProperty("user.dir") + "/Documents/AT-166_Manufacturing Agreement_1.docx");
     public static final File   DOC_AT166_TWO                 = new File(System.getProperty("user.dir") + "/Documents/AT-166_Manufacturing Agreement_2.docx");
 
+    public static final File   DOC_AT148_ONE                 = new File(System.getProperty("user.dir") + "/Documents/Manufacturing_Agreement_AT148_1.docx");
+    public static final File   DOC_AT148_TWO                 = new File(System.getProperty("user.dir") + "/Documents/Manufacturing_Agreement_AT148_2.docx");
+
     public static final File   IMG_JPEG_SAMPLE               = new File(System.getProperty("user.dir") + "/Documents/IMG_JPEG.jpeg");
 
     // Directories
