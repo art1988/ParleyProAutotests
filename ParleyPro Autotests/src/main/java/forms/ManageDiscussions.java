@@ -44,6 +44,8 @@ public class ManageDiscussions
     {
         $$(".scheme_internal button").filter(Condition.exactText("Make external")).get(0).click();
 
+        logger.info("Make External button was clicked for all Internal Discussions");
+
         return this;
     }
 
@@ -51,12 +53,16 @@ public class ManageDiscussions
     {
         $$(".scheme_queued button").filter(Condition.exactText("Make external")).get(0).click();
 
+        logger.info("Make External button was clicked for all Queued Discussions");
+
         return this;
     }
 
     public ManageDiscussions makeQueuedAllInternalDiscussions()
     {
         $$(".scheme_internal button").filter(Condition.exactText("Make queued")).get(0).click();
+
+        logger.info("Make Queued button was clicked for all Internal Discussions");
 
         return this;
     }
