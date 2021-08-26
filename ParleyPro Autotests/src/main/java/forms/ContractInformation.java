@@ -251,7 +251,7 @@ public class ContractInformation
         contractCategoryField.pressEnter();
 
         // Spinner may appear in case if more fields were added for certain category, so let's wait until it disappear
-        $(".spinner").waitUntil(Condition.disappear, 10_000);
+        $(".spinner").waitUntil(Condition.disappear, 60_000);
     }
 
     /**
@@ -264,7 +264,7 @@ public class ContractInformation
         contractCategoryField.pressEnter();
 
         // Spinner may appear in case if more fields were added for certain category, so let's wait until it disappear
-        $(".spinner").waitUntil(Condition.disappear, 10_000);
+        $(".spinner").waitUntil(Condition.disappear, 60_000);
     }
 
     public String getContractCategory()
@@ -324,6 +324,28 @@ public class ContractInformation
         Selenide.executeJavaScript("$('#classicNegotiationMode').parent('label').click()");
 
         logger.info("Classic negotiation mode checkbox was clicked");
+    }
+
+    /**
+     * Click by blue link '+ Add contract' under 'Linked contracts'
+     */
+    public ContractInformation clickByAddContractLinkForLinkedContract()
+    {
+        $(".modal-content .linked-contracts").find("span[class='valign-middle']").click();
+
+        logger.info("'+ Add contract' link was clicked...");
+
+        return this;
+    }
+
+    public void setRelationType(String relationType)
+    {
+        SelenideElement input = $$(".modal-content .linked-contracts").filter(Condition.text("Relation type"))
+                                                                                .first().parent().parent().find("input");
+        input.sendKeys(relationType);
+        input.pressEnter();
+
+        logger.info("Relation type was set as: " + relationType);
     }
 
     public String getChiefNegotiator()
