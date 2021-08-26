@@ -2,11 +2,13 @@ package tests.regression.at148;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
 import forms.SendInvitation;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -14,6 +16,7 @@ import pages.AddDocuments;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -71,10 +74,12 @@ public class CreateContractUploadDocsAndCheck
         Assert.assertEquals(openedContract.getAmountOfContractDiscussion(), "5", "Total amount of discussions is wrong !!! Should be 5 !");
 
         $$(".document__body .discussion-indicator.negotiating").shouldHave(CollectionCondition.size(5));
+
+        Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 2)
-    public void uploadSecondDoc()
+    public void uploadSecondDoc() throws InterruptedException
     {
         openedContract.clickUploadNewVersionButton(docName)
                       .clickUploadCounterpartyDocument(Const.DOC_AT148_TWO, docName, contractTitle)
@@ -83,5 +88,20 @@ public class CreateContractUploadDocsAndCheck
 
         logger.info("Assert that total number of discussions become 4...");
         Assert.assertEquals(openedContract.getAmountOfContractDiscussion(), "4", "Total amount of discussions is wrong !!! Should be 4 !");
+
+        // Scroll page to paragraphs
+        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Price\")')[0].scrollIntoView({});");
+        Thread.sleep(1_000);
+
+        logger.info("Assert that delete discussion for item 3 is present...");
+        WebElement thirdParagraph = Selenide.executeJavaScript("return $('.document-paragraph__content:contains(\"Placement\")')[0]");
+        $(thirdParagraph).findAll("del").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(3))
+                                                  .shouldHave(CollectionCondition.textsInAnyOrder("3", "Placement of Orders", "Purchase Order"));
+
+        logger.info("Assert that next paragraph has been recalculated...");
+        WebElement recalculatedThirdParagraph = Selenide.executeJavaScript("return $('.document-paragraph__content:contains(\"Delivery\")')[0]");
+        Assert.assertEquals($(recalculatedThirdParagraph).find("span[list-item]").getText().trim(), "3.", "Third paragraph has not been recalculated to 3 !!!");
+
+        Screenshoter.makeScreenshot();
     }
 }
