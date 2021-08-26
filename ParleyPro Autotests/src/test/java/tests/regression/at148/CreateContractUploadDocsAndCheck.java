@@ -79,7 +79,7 @@ public class CreateContractUploadDocsAndCheck
     }
 
     @Test(priority = 2)
-    public void uploadSecondDoc() throws InterruptedException
+    public void uploadSecondDocAndVerify() throws InterruptedException
     {
         openedContract.clickUploadNewVersionButton(docName)
                       .clickUploadCounterpartyDocument(Const.DOC_AT148_TWO, docName, contractTitle)
