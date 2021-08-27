@@ -348,6 +348,42 @@ public class ContractInformation
         logger.info("Relation type was set as: " + relationType);
     }
 
+    public void setRelatedContract(String relatedContract)
+    {
+        SelenideElement input = $(".modal-content #linked-contracts-new");
+
+        input.sendKeys(relatedContract);
+        // wait until spinner inside this field will disappear
+        $(".Select-loading").waitUntil(Condition.appear, 5_000);
+        $(".Select-loading").waitUntil(Condition.disappear, 30_000);
+
+        input.pressEnter();
+
+        logger.info("Related contract was set as: " + relatedContract);
+    }
+
+    /**
+     * Click by blue checkmark to accept linked contract
+     */
+    public void linkedContractAccept()
+    {
+        $(".modal-content .linked-contracts button[class*='styles__accept']").click();
+
+        logger.info("Accept linked contract button was clicked...");
+    }
+
+    /**
+     * Click by 'x' button to remove linked contract.
+     * @param linkedContractName name of the linked contract that need to be removed
+     */
+    public void removeLinkedContract(String linkedContractName)
+    {
+        $$(".modal-content .linked-contracts .ui-link").filter(Condition.exactText(linkedContractName))
+                .first().parent().find("button[class*='styles__remove']").click();
+
+        logger.info("The following linked contract was removed: " + linkedContractName);
+    }
+
     public String getChiefNegotiator()
     {
         String chiefNegotiator = Selenide.executeJavaScript("return $('#ChiefNegotiator').parent().prev().text()");
