@@ -375,13 +375,16 @@ public class ContractInformation
     /**
      * Click by 'x' button to remove linked contract.
      * @param linkedContractName name of the linked contract that need to be removed
+     * @return UnlinkContract popup
      */
-    public void removeLinkedContract(String linkedContractName)
+    public UnlinkContract removeLinkedContract(String linkedContractName)
     {
         $$(".modal-content .linked-contracts .ui-link").filter(Condition.exactText(linkedContractName))
                 .first().parent().find("button[class*='styles__remove']").click();
 
         logger.info("The following linked contract was removed: " + linkedContractName);
+
+        return new UnlinkContract();
     }
 
     public String getChiefNegotiator()
