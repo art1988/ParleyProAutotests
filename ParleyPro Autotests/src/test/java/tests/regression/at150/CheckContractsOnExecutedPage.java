@@ -22,7 +22,7 @@ public class CheckContractsOnExecutedPage
 
     @Test
     @Description("This test hovers over linked icons and checks content in them.")
-    public void visitExecutedContractsAncCheck()
+    public void visitExecutedContractsAndCheck()
     {
         ExecutedContractsPage executedContractsPage = new DashboardPage().getSideBar().clickExecutedContracts(false);
 
