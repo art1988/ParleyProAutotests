@@ -65,9 +65,13 @@ public class AddTemplateAndCreateContract
         FieldsPanel fieldsPanel = new OpenedContract().getFieldsPanel();
 
         fieldsPanel.setValueForCustomField("Company name", "Counterparty");
+        Thread.sleep(500);
         fieldsPanel.setValueForCustomField("Counterparty Address", "Address-1");
+        Thread.sleep(500);
         fieldsPanel.setValueForCustomField("Delivery terms", "3");
+        Thread.sleep(500);
         fieldsPanel.setValueForCustomField("Warranty period", "1");
+        Thread.sleep(500);
 
         fieldsPanel.clickSaveButton();
         $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.exactText("The fields have been saved successfully"));

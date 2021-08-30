@@ -46,7 +46,7 @@ public class MoveToReviewCollapseAndExpand
 
         logger.info("Collapse doc...");
         $(".document__header-row .expand-collapse").click();
-        Thread.sleep(1_000);
+        Thread.sleep(2_000);
         logger.info("Making sure that no text is visible...");
         Assert.assertFalse(Selenide.executeJavaScript("return $('.document__body-content').is(\":visible\");"));
         $(".documents__column .documents-placeholders__title").shouldBe(Condition.hidden); // Field panel is still hidden
@@ -54,7 +54,7 @@ public class MoveToReviewCollapseAndExpand
 
         logger.info("Expand doc...");
         $(".document__header-row .expand-collapse").click();
-        Thread.sleep(1_000);
+        Thread.sleep(2_000);
 
         logger.info("Making sure that text is visible again...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"MANUFACTURING\")').text().trim()"), "MANUFACTURING AGREEMENT", "There is no 'MANUFACTURING AGREEMENT' text on the page !!!");
