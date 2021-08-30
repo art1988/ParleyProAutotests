@@ -145,15 +145,31 @@ public class AddDocuments
      */
     public void clickUploadCounterpartyDocuments(File fileToUpload)
     {
-        // 1. make <input> visible
-        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
-        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
-        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
+        try
+        {
+            // 1. make <input> visible
+            Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+            Thread.sleep(200);
+            Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+            Thread.sleep(200);
+            Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
+            Thread.sleep(200);
 
-        // 2. trying to upload...
-        SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+            $(".js-upload-cp-document-btn").parent().parent().find("input").waitUntil(Condition.visible, 7_000);
+            $(".js-upload-cp-document-btn").parent().parent().find("input").waitUntil(Condition.enabled, 7_000);
 
-        uploadCounterpartyDocumentsButton.uploadFile(fileToUpload);
+            Thread.sleep(1_000);
+
+            // 2. trying to upload...
+            SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+            uploadCounterpartyDocumentsButton.shouldBe(Condition.visible).shouldBe(Condition.enabled).uploadFile(fileToUpload);
+            Thread.sleep(2_000); // this sleep after firing of uploadFile is necessary too
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
     }
 
     /**
