@@ -40,13 +40,13 @@ public class PreSetup
 
         ContractFields contractFields = fieldsPage.clickContractFields();
 
-        contractFields.createNewFiled("Contract Request", "request field", FieldType.MULTI_SELECT, false);
-        contractFields.addValues("request field", "v1");
-        contractFields.addValues("request field", "v2");
+        contractFields.createNewFiled("Contract Request", "requestField", FieldType.MULTI_SELECT, false);
+        contractFields.addValues("requestField", "v1");
+        contractFields.addValues("requestField", "v2");
 
         fieldsPage.clickSave();
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
-        $("input[value='request field']").shouldBe(Condition.visible);
+        $("input[value='requestField']").shouldBe(Condition.visible);
     }
 
     @Test(priority = 3)
@@ -62,7 +62,7 @@ public class PreSetup
         contractRoutingWorkflow.clickContractRequested();
         contractRoutingWorkflow.setContractRequestedParticipant( Const.PREDEFINED_REQUESTER.getFirstName() );
         contractRoutingWorkflow.setMinValue("15000");
-        contractRoutingWorkflow.addFieldAndValue("request field", "v1");
+        contractRoutingWorkflow.addFieldAndValue("requestField", "v1");
         contractRoutingWorkflow.clickSave();
 
         $(".workflows-list__row:not(.type_header) .type_name").shouldHave(Condition.exactText("Routing workflow at-149"));

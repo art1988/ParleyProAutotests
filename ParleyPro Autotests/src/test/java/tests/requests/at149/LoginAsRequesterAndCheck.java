@@ -41,6 +41,8 @@ public class LoginAsRequesterAndCheck
         contractRequest.uploadDocuments(new File[]{Const.DOCUMENT_DISCUSSIONS_SAMPLE});
         $(".upload-field__file-name").waitUntil(Condition.visible, 10_000).shouldHave(Condition.text("AT-14.docx"));
 
+        contractRequest.setValueForDropdown("requestField", "v1");
+
         contractRequest.clickSubmitRequest();
         $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.text("Your contract request has been submitted."));
 
