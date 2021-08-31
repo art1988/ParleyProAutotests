@@ -7,9 +7,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class LoginBase {
-    public static final String PROP_TENANT_URL = "tenant_url";
+    public static final String PROP_TENANT_URL          = "tenant_url";
     public static final String PROP_POPOVERS_TENANT_URL = "popovers_tenant_url";
     public static final String PROP_TRACK_CHANGES_URL   = "track_changes_url";
+    public static final String PROP_API_KEY             = "api_key";
+    public static final String PROP_TENANT_ID           = "tenant_id";
 
     protected static boolean isMaster = true,
                              isRC     = false,
@@ -100,5 +102,15 @@ public class LoginBase {
 
     public String getTrackChangesUrl() {
         return property.getProperty(PROP_TRACK_CHANGES_URL);
+    }
+
+    public String getApiKey()
+    {
+        return property.getProperty(PROP_API_KEY);
+    }
+
+    public String getTenantId()
+    {
+        return property.getProperty(PROP_TENANT_ID);
     }
 }
