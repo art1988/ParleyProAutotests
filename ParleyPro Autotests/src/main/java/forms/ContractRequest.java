@@ -50,6 +50,20 @@ public class ContractRequest
     }
 
     /**
+     * Sets value for dropdown that has checkboxes inside
+     * @param fieldName
+     * @param value
+     */
+    public void setValueForDropdown(String fieldName, String value)
+    {
+        // set id = fieldName
+        Selenide.executeJavaScript("$('.row label:contains(\"" + fieldName + "\")').parent().find(\"input\").attr('id', '" + fieldName + "')");
+        $("#" + fieldName).click(); // expand dropdown
+        Selenide.executeJavaScript("$('.modal-body .dropdown-menu span:contains(\"" + value + "\")').click()"); // select value
+        $("#" + fieldName).click(); // collapse dropdown
+    }
+
+    /**
      * General method for setting value for select field
      * @param fieldName
      * @param value
