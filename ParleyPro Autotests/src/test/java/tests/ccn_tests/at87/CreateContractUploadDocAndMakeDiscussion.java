@@ -85,8 +85,8 @@ public class CreateContractUploadDocAndMakeDiscussion
                             .clickPost(addedParagraphText, counterpartyOrganization).clickPostExternally();
 
         logger.info("Assert post notification and discussion counter...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("External discussion " + addedParagraphText + " has been successfully created."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").waitUntil(Condition.visible, 45_000).shouldHave(Condition.exactText("External discussion " + addedParagraphText + " has been successfully created."));
+        $(".notification-stack").waitUntil(Condition.disappear, 55_000);
 
         Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "1");
 

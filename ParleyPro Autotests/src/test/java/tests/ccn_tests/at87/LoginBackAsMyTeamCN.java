@@ -89,12 +89,12 @@ public class LoginBackAsMyTeamCN
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Hover CC and verify user...");
-        $$(".contract-header-users .user").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("CC"));
-        $$(".contract-header-users .user").get(0).hover();
-        $(".rc-tooltip-inner .spinner").waitUntil(Condition.disappear, 8_000);
-        $(".contract-user__name").waitUntil(Condition.visible, 5_000).
+        $$(".contract-header-users .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("AL", "CC"));
+        $$(".contract-header-users .user").filter(Condition.exactText("CC")).first().hover();
+        $(".rc-tooltip-inner .spinner").waitUntil(Condition.disappear, 18_000);
+        $(".contract-user__name").waitUntil(Condition.visible, 15_000).
                 shouldHave(Condition.exactText( Const.PREDEFINED_CCN.getFirstName() + " " + Const.PREDEFINED_CCN.getLastName() ));
-        $(".contract-user__status").waitUntil(Condition.visible, 5_000).
+        $(".contract-user__status").waitUntil(Condition.visible, 15_000).
                 shouldHave(Condition.exactText("Chief Negotiator"));
 
         Screenshoter.makeScreenshot();
