@@ -70,7 +70,7 @@ public class ContractInformation
         // wait until spinner disappears - that will indicate that form is fully loaded
         $(".modal-content .spinner").waitUntil(Condition.disappear, 25_000);
 
-        return ( contractTitleField.isDisplayed() );
+        return ( contractValueField.isDisplayed() );
     }
 
     public void setContractTitle(String title)
