@@ -12,6 +12,7 @@ public class LoginBase {
     public static final String PROP_TRACK_CHANGES_URL   = "track_changes_url";
     public static final String PROP_API_KEY             = "api_key";
     public static final String PROP_TENANT_ID           = "tenant_id";
+    public static final String PROP_BASE_URL            = "base_url";
 
     protected static boolean isMaster = true,
                              isRC     = false,
@@ -112,5 +113,10 @@ public class LoginBase {
     public String getTenantId()
     {
         return property.getProperty(PROP_TENANT_ID);
+    }
+
+    public String getBaseUrl()
+    {
+        return property.getProperty(PROP_BASE_URL);
     }
 }
