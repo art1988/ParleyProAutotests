@@ -31,8 +31,6 @@ public class LoginAsCCN
         loginPage.setPassword( Const.PREDEFINED_CCN.getPassword() );
         DashboardPage dashboardPage = loginPage.clickSignIn(new SideBarItems[]{SideBarItems.IN_PROGRESS_CONTRACTS, SideBarItems.EXECUTED_CONTRACTS});
 
-        new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("Grey screen - CCN");
-
         new OpenedContract().clickReadyForSignature().clickOk();
 
         logger.info("Making sure that button Ready for signature disappeared and there is no grey screen...");
