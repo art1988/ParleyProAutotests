@@ -19,7 +19,7 @@ public class EnableNamingConvention extends LoginBase
     public void setup()
     {
         RequestSpecification requestSpec = new RequestSpecBuilder()
-                .setBaseUri("https://master.api.parleypro.net/tenants/properties")
+                .setBaseUri(getBaseUrl() + "/tenants/properties")
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
                 .addHeader("x-api-key", getApiKey())
