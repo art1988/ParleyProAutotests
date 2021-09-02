@@ -94,10 +94,10 @@ public class AddNewUserTest
         editUser.setRole("Chief Negotiator");
         editUser.clickUpdateUser();
 
-        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        logger.info("Waiting for 70 seconds to make sure that email has been delivered...");
         try
         {
-            Thread.sleep(60_000);
+            Thread.sleep(70_000);
         }
         catch (InterruptedException e)
         {
@@ -123,10 +123,10 @@ public class AddNewUserTest
         editUser.setRole("Contract Manager");
         editUser.clickUpdateUser();
 
-        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        logger.info("Waiting for 70 seconds to make sure that email has been delivered...");
         try
         {
-            Thread.sleep(60_000);
+            Thread.sleep(70_000);
         }
         catch (InterruptedException e)
         {
