@@ -240,7 +240,7 @@ public class CheckContracts
         $$(".contract-header__right > div").shouldHave(CollectionCondition.size(3));
         $(".private-label").shouldBe(Condition.visible).shouldHave(Condition.exactText("visibility_off"));
         $(".linked-contracts-label").shouldBe(Condition.visible).shouldHave(Condition.exactText("link 2"));
-        $(".contract-header-users").shouldBe(Condition.visible).shouldHave(Condition.exactText("(c"));
+        $$(".contract-header-users .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("PP", "(c"));
 
         logger.info("Asserting all fields on Contract Info -> Post-execution tab...");
 
