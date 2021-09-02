@@ -35,16 +35,9 @@ jobs:
           command: cd; wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo apt install ./google-chrome-stable_current_amd64.deb; wget chromedriver.storage.googleapis.com/92.0.4515.43/chromedriver_linux64.zip; sudo rm -f /usr/local/bin/chromedriver; unzip chromedriver_linux64.zip; sudo mv ./chromedriver /usr/local/bin/; chmod 775 `which chromedriver`; chromedriver -v; ls -la `which chromedriver`
       
       - run:
-          name: Run Numbered lists suite
+          name: Run Migration suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/NumberedLists.xml
-      
-      - run: sleep 10
-      
-      - run:
-          name: Run Grey Screens suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/GreyScreens.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
 
       
 
