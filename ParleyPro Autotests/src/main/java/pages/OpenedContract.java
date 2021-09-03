@@ -418,6 +418,10 @@ public class OpenedContract
         return fieldsPanel;
     }
 
+    /**
+     * Gets contract title from contract header
+     * @return
+     */
     public String getContractName()
     {
         return contractName.getText();
