@@ -15,9 +15,24 @@ public class DeleteContract
 
     private static Logger logger = Logger.getLogger(DeleteContract.class);
 
+    /**
+     * Match by exact contractName
+     * @param contractName
+     */
     public DeleteContract(String contractName)
     {
         title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Are you sure you want to delete contract “" + contractName + "”?"));
+        $(".modal-body-description").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("The contract and contract documents will be permanently removed."));
+    }
+
+    /**
+     * In case of enabled "key": "CONTRACT_NAME_TEMPLATE", contract name may be dynamic => we can't know in advance contract title => do not match by contractName in popup
+     * Just match to "Are you sure you want to delete contract" text
+     * @param doNotMatchByContractName just flag to indicate
+     */
+    public DeleteContract(boolean doNotMatchByContractName)
+    {
+        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.text("Are you sure you want to delete contract"));
         $(".modal-body-description").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("The contract and contract documents will be permanently removed."));
     }
 

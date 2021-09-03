@@ -78,7 +78,7 @@ public class ExecutedContractsPage
     }
 
     /**
-     * Click contract by contract name. Contract has some uploaded documents.
+     * Click contract by contract name. Contract has some uploaded documents. Match by contains
      * @param contractName
      */
     public ContractInfo selectContract(String contractName)
