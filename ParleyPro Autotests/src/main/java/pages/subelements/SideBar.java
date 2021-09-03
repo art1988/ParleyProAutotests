@@ -118,12 +118,21 @@ public class SideBar
     public LoginPage logout()
     {
         userIcon.click();
+        $(".page-menu .dropdown-menu").waitUntil(Condition.visible, 10_000);
+
         $$(".page-menu .dropdown-menu a").filter(Condition.exactText("Logout"))
-                                                   .get(0)
-                                                   .waitUntil(Condition.visible, 7_000)
+                                                   .first()
                                                    .click();
 
         logger.info("Logout was clicked");
+        try
+        {
+            Thread.sleep(2_000);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
 
         return new LoginPage();
     }
