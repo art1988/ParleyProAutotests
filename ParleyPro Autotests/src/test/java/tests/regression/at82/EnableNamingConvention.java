@@ -1,5 +1,6 @@
 package tests.regression.at82;
 
+import io.qameta.allure.Description;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
@@ -29,6 +30,7 @@ public class EnableNamingConvention extends LoginBase
     }
 
     @Test
+    @Description("This test enables CONTRACT_NAME_TEMPLATE setting.")
     public void enableNamingConvention()
     {
         JSONObject requestParams = new JSONObject();
@@ -40,18 +42,20 @@ public class EnableNamingConvention extends LoginBase
         JSONArray array = new JSONArray();
         array.add(requestParams);
 
+        logger.info("Enabling CONTRACT_NAME_TEMPLATE setting...");
         given().
                 body(array).
                     when().
                         post().
                             then().assertThat().statusCode(200);
 
+        logger.info("Checking that CONTRACT_NAME_TEMPLATE setting was enabled...");
         given().
                 when().
                     get("/" + getTenantId()).
                         then().
                             body("$", hasItem(allOf(hasEntry("key", "CONTRACT_NAME_TEMPLATE"))));
 
-        logger.info("CONTRACT_NAME_TEMPLATE property was added...");
+        logger.info("CONTRACT_NAME_TEMPLATE setting was successfully added...");
     }
 }
