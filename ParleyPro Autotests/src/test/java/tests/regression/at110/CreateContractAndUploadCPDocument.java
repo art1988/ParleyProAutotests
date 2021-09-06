@@ -14,9 +14,14 @@ import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
+import utils.Cache;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -31,7 +36,12 @@ public class CreateContractAndUploadCPDocument
     {
         ContractInformation contractInformation = new InProgressContractsPage(false).clickNewContractButton();
 
-        contractInformation.setContractTitle("Track changes AT-110");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss").withLocale(Locale.US);
+        String dynamicContractTitle = "Track changes AT-110_" + LocalDateTime.now().format(formatter);
+
+        Cache.getInstance().setContractTitle(dynamicContractTitle);
+
+        contractInformation.setContractTitle( Cache.getInstance().getCachedContractTitle() );
         contractInformation.checkClassicNegotiationModeCheckbox();
         contractInformation.clickSave();
 

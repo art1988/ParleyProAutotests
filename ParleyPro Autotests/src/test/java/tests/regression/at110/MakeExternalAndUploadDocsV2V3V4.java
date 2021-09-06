@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
+import utils.Cache;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -18,7 +19,6 @@ import static com.codeborne.selenide.Selenide.$$;
 @Listeners({ScreenShotOnFailListener.class})
 public class MakeExternalAndUploadDocsV2V3V4
 {
-    private String contractName = "Track changes AT-110";
     private String documentName = "Acorns Engagement Letter_party_changes_v1";
 
     private static Logger logger = Logger.getLogger(MakeExternalAndUploadDocsV2V3V4.class);
@@ -28,11 +28,11 @@ public class MakeExternalAndUploadDocsV2V3V4
     {
         new OpenedContract().clickManageDiscussions()
                             .makeExternalAllInternalDiscussions()
-                            .confirmMakeExternalForTheFirstTime(contractName)
+                            .confirmMakeExternalForTheFirstTime(Cache.getInstance().getCachedContractTitle())
                             .clickStart();
 
         $(".notification-stack").waitUntil(Condition.appear, 6_000)
-                .shouldHave(Condition.exactText("Contract " + contractName + " is now in negotiation. No notification was sent to the Counterparty."));
+                .shouldHave(Condition.exactText("Contract " + Cache.getInstance().getCachedContractTitle() + " is now in negotiation. No notification was sent to the Counterparty."));
         $(".notification-stack").waitUntil(Condition.disappear, 25_000);
 
         // Scroll to 4. Limitations on Damages and Indemnification.
@@ -54,7 +54,7 @@ public class MakeExternalAndUploadDocsV2V3V4
     public void uploadDocV2AsCounterparty()
     {
         new OpenedContract().clickUploadNewVersionButton(documentName)
-                            .clickUploadCounterpartyDocument(Const.TRACK_CHANGES_AT110_V2, documentName, contractName)
+                            .clickUploadCounterpartyDocument(Const.TRACK_CHANGES_AT110_V2, documentName, Cache.getInstance().getCachedContractTitle())
                             .clickUpload(true)
                             .clickDocumentsTab();
 
@@ -84,7 +84,7 @@ public class MakeExternalAndUploadDocsV2V3V4
     public void uploadDocV3AsMyTeam()
     {
         new OpenedContract().clickUploadNewVersionButton(documentName)
-                            .clickUploadMyTeamDocument(Const.TRACK_CHANGES_AT110_V3, documentName, contractName)
+                            .clickUploadMyTeamDocument(Const.TRACK_CHANGES_AT110_V3, documentName, Cache.getInstance().getCachedContractTitle())
                             .clickUpload(true)
                             .clickDocumentsTab();
 
@@ -160,7 +160,7 @@ public class MakeExternalAndUploadDocsV2V3V4
     public void uploadFinalDocV4AndCheck()
     {
         new OpenedContract().clickUploadNewVersionButton(documentName)
-                            .clickUploadCounterpartyDocument(Const.TRACK_CHANGES_AT110_V4, documentName, contractName)
+                            .clickUploadCounterpartyDocument(Const.TRACK_CHANGES_AT110_V4, documentName, Cache.getInstance().getCachedContractTitle())
                             .clickUpload(true)
                             .clickDocumentsTab();
 
