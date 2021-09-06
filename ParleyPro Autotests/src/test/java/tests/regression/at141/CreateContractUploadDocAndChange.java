@@ -11,11 +11,15 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
-import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
+import utils.Cache;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -29,7 +33,12 @@ public class CreateContractUploadDocAndChange
     {
         ContractInformation contractInformation = new InProgressContractsPage(false).clickNewContractButton();
 
-        contractInformation.setContractTitle("AT-141 - changes not tracked");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss").withLocale(Locale.US);
+        String dynamicContractTitle = "AT-141 - changes not tracked_" + LocalDateTime.now().format(formatter);
+
+        Cache.getInstance().setContractTitle(dynamicContractTitle);
+
+        contractInformation.setContractTitle( Cache.getInstance().getCachedContractTitle() );
         contractInformation.clickSave();
 
         new AddDocuments().clickUploadCounterpartyDocuments( Const.REGRESSION_DOC_AT141 );
@@ -37,7 +46,7 @@ public class CreateContractUploadDocAndChange
         $(".notification-stack").waitUntil(Condition.appear, 25_000).shouldHave(Condition.exactText("Document dummyAT141 has been successfully uploaded."));
         $(".notification-stack").waitUntil(Condition.disappear, 35_000);
 
-        new ContractInNegotiation("AT-141 - changes not tracked").clickOk();
+        new ContractInNegotiation( Cache.getInstance().getCachedContractTitle() ).clickOk();
 
         Screenshoter.makeScreenshot();
     }
@@ -61,19 +70,5 @@ public class CreateContractUploadDocAndChange
                 "This", "Looks like that 'This' wasn't deleted !!!");
 
         Screenshoter.makeScreenshot();
-    }
-
-    @Test(priority = 3)
-    public void cleanUp()
-    {
-        new DashboardPage().getSideBar().clickInProgressContracts(false)
-                                        .selectContract("AT-141 - changes not tracked");
-
-        new OpenedContract().clickContractActionsMenu()
-                            .clickDeleteContract()
-                            .clickDelete();
-
-        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.exactText("Contract AT-141 - changes not tracked has been deleted."));
-        $(".notification-stack").waitUntil(Condition.disappear, 25_000);
     }
 }
