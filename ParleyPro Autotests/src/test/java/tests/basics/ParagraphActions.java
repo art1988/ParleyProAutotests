@@ -332,7 +332,7 @@ public class ParagraphActions
         openedDiscussion.setNonStandardTerm(addedTag);
 
         logger.info("Check that paragraph has tag from the left...");
-        $(".tumbler.checked.tumbler_xsmall_yes.as_icon.label_term").waitUntil(Condition.appear, 15_000);
+        $(".tumbler.checked.tumbler_xsmall_yes.as_icon.label_term").waitUntil(Condition.appear, 45_000);
         boolean hasNonStandardMark = Selenide.executeJavaScript("return ( $('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').parent().parent().prev().find(\".label_term\").length === 1 )");
         Assert.assertTrue(hasNonStandardMark, "Looks like that Non-standard term mark wasn't added !!!");
 

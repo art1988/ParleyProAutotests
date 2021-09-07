@@ -19,7 +19,6 @@ public class Const
     public static final User   PREDEFINED_INTERNAL_USER_2    = new User("Internal user2", "Internal user2 last name", "arthur.khasanov+team2@parleypro.com", "Parley650!");
     public static final User   PREDEFINED_CCN                = new User("CCN AT fn", "CCN AT ln", "arthur.khasanov+ccn_at@parleypro.com", "Parley650!");
     public static final User   PREDEFINED_REQUESTER          = new User("Requester_User", "ln", "arthur.khasanov+requester@parleypro.com", "Parley650!");
-    public static final User   PREDEFINED_USER_ALL_ROLES     = new User("All_Roles_User fn", "All_Roles_User ln", "arthur.khasanov+allroles@parleypro.com", "Parley650!");
 
     public static final User   USER_GREG                     = new User("Greg", "Smith", "arthur.khasanov+greg@parleypro.com", "Parley650!");
     public static final User   USER_MARY                     = new User("Mary", "Jones", "arthur.khasanov+mary@parleypro.com", "Parley650!");
