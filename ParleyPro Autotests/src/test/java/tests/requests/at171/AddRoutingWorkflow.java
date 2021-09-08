@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$$;
 @Listeners({ScreenShotOnFailListener.class})
 public class AddRoutingWorkflow
 {
-    @Test
+    @Test(priority = 1)
     public void addRoutingWorkflow()
     {
         ContractRoutingWorkflow contractRoutingWorkflow = new DashboardPage().getSideBar().clickAdministration()
@@ -31,5 +31,11 @@ public class AddRoutingWorkflow
         $$(".type_name").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("Name", "Routing workflow for AT-171"));
 
         Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 2)
+    public void logoutAsCN()
+    {
+        new DashboardPage().getSideBar().logout();
     }
 }

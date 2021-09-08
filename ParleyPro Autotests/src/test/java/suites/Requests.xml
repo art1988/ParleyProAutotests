@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Contract request suite" configfailurepolicy="continue">
+<suite name = "Contract request suite" configfailurepolicy="continue"><!--
     <test name="AT-124: Create request" preserve-order="true">
         <parameter name="contractName" value="Contract request"/>
         <classes>
@@ -22,6 +22,18 @@
             <class name="tests.requests.at149.PreSetup"/>
             <class name="tests.requests.at149.LoginAsRequesterAndCheck"/>
             <class name="tests.requests.at149.RevertStateBack"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-171: User with full rights not seeing requests until updated by admin" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.requests.at171.AddRequestCustomField"/>
+            <class name="tests.requests.at171.AddRoutingWorkflow"/>
+            <class name="tests.requests.at171.LoginAsRequesterAndCreateTwoRequests"/>
+            <class name="tests.requests.at171.LoginAsUserWithAllRolesAndCheck"/>
+            <class name="tests.requests.at171.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
