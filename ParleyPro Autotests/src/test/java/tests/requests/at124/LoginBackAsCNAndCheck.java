@@ -95,9 +95,9 @@ public class LoginBackAsCNAndCheck
         $(".button.btn.btn-common.btn-blue.btn.btn-default").click(); // click Save
 
         logger.info("Checking that status was switched to Negotiate...");
-        $$(".lifecycle__item.active").first().waitUntil(Condition.exactText("NEGOTIATE\n(2)"), 10_000);
-        $$(".lifecycle__item.active").get(1).waitUntil(Condition.exactText("NEGOTIATE"), 10_000);
-        $$(".lifecycle__item.active").last().waitUntil(Condition.exactText("NEGOTIATE"), 10_000);
+        $$(".lifecycle__item.active").first().waitUntil(Condition.exactText("NEGOTIATE\n(2)"), 40_000);
+        $$(".lifecycle__item.active").get(1).waitUntil(Condition.exactText("NEGOTIATE"), 40_000);
+        $$(".lifecycle__item.active").last().waitUntil(Condition.exactText("NEGOTIATE"), 40_000);
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(3));
 
         logger.info("Making sure that attachment was saved too...");
