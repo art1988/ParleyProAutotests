@@ -116,9 +116,10 @@ public class CreateContractUploadDocAndCheckEmail
         logger.info("Waiting for 60 sec...");
         Thread.sleep(60_000);
 
-        logger.info("Assert that CCN didn't received email with subject 'Contract  has  new external posts'...");
+        String emailSubjToVerify = contractTitle + " for AT-166";
+        logger.info("Assert that CCN didn't received email with subject '" + emailSubjToVerify + "'...");
 
-        Assert.assertFalse(EmailChecker.assertEmailBySubject(host, username, password, "Contract  has  new external posts"),
-                "Email with subject: 'Contract  has  new external posts' was found, but shouldn't !!!");
+        Assert.assertFalse(EmailChecker.assertEmailBySubject(host, username, password, emailSubjToVerify),
+                "Email with subject: '" + emailSubjToVerify + "' was found, but shouldn't !!!");
     }
 }
