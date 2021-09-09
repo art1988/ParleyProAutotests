@@ -99,8 +99,8 @@ public class CheckContracts
 
         Selenide.executeJavaScript(jsCode.toString());
 
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
-        $(".rc-tooltip-content").waitUntil(Condition.visible, 7_000).shouldBe(Condition.visible);
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
+        $(".rc-tooltip-content").waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Linked contracts: 1"));
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Child to:\nOnline Contract One With a Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Title"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Negotiate"));
@@ -108,7 +108,7 @@ public class CheckContracts
         Screenshoter.makeScreenshot();
 
         Selenide.refresh(); // Reload page to reset hover popup
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
 
         // 2
         logger.info("Hover over _second_ link icon and check data...");
@@ -117,8 +117,8 @@ public class CheckContracts
 
         Selenide.executeJavaScript(jsCode.toString());
 
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
-        $(".rc-tooltip-content").waitUntil(Condition.visible, 7_000).shouldBe(Condition.visible);
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
+        $(".rc-tooltip-content").waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
 
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Linked contracts: 2"));
 
@@ -179,15 +179,15 @@ public class CheckContracts
 
         Selenide.executeJavaScript(jsCode.toString());
 
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
-        $(".rc-tooltip-content").waitUntil(Condition.visible, 7_000).shouldBe(Condition.visible);
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
+        $(".rc-tooltip-content").waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Contract was amended: 1"));
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
         $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 16, 2022"));
 
         Selenide.refresh(); // Reload page to reset hover popup
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
 
         // 1
         logger.info("Hover over _first_ link icon and check data...");
@@ -196,15 +196,15 @@ public class CheckContracts
 
         Selenide.executeJavaScript(jsCode.toString());
 
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
-        $(".rc-tooltip-content").waitUntil(Condition.visible, 7_000).shouldBe(Condition.visible);
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
+        $(".rc-tooltip-content").waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Linked contracts: 1"));
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
         $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 1\nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 16, 2022"));
 
         Selenide.refresh(); // Reload page to reset hover popup
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
 
         // 2
         logger.info("Hover over _second_ link icon and check data...");
@@ -213,8 +213,8 @@ public class CheckContracts
 
         Selenide.executeJavaScript(jsCode.toString());
 
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
-        $(".rc-tooltip-content").waitUntil(Condition.visible, 7_000).shouldBe(Condition.visible);
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
+        $(".rc-tooltip-content").waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
 
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Linked contracts: 2"));
 
@@ -311,7 +311,7 @@ public class CheckContracts
     public void checkValuesOfClassicContract() throws IOException
     {
         new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("Classic");
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".spinner").waitUntil(Condition.disappear, 30_000);
 
         $(".contract-header__company").shouldHave(Condition.exactText("Eugene's Counterparty Organization\nUSD 12,345.00"));
         $(".contract-header__name .rename").shouldHave(Condition.exactText("Classic"));
