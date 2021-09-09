@@ -6,9 +6,9 @@ import constants.Const;
 import forms.ContractInformation;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.AddDocuments;
 import pages.DocumentComparePreview;
 import pages.InProgressContractsPage;
@@ -22,6 +22,7 @@ import static com.codeborne.selenide.Selenide.$;
 @Listeners({ScreenShotOnFailListener.class})
 public class ParagraphsCloning
 {
+    private SoftAssert softAssert = new SoftAssert();
     private String contractName = "AT-89: paragraphs cloning";
     private String documentName = "ParagraphClonning_AT89";
 
@@ -66,10 +67,10 @@ public class ParagraphsCloning
                 .clickUploadCounterpartyDocument( Const.DOC_PARAGRAPH_CLONING_AT89_V2, documentName, contractName );
 
         logger.info("Assert that only 3 comments were added. Other counters should be empty.");
-        Assert.assertEquals(documentComparePreview.getCounterCommented(), "3", "Number of comments is different ! Should be 3 !");
-        Assert.assertEquals(documentComparePreview.getCounterAdded(), "", "Number of added discussions should be empty !");
-        Assert.assertEquals(documentComparePreview.getCounterDeleted(), "", "Number of deleted discussions should be empty !");
-        Assert.assertEquals(documentComparePreview.getCounterEdited(), "", "Number of edited discussions should be empty !");
+        softAssert.assertEquals(documentComparePreview.getCounterCommented(), "3", "Number of comments is different ! Should be 3 !");
+        softAssert.assertEquals(documentComparePreview.getCounterAdded(), "", "Number of added discussions should be empty !");
+        softAssert.assertEquals(documentComparePreview.getCounterDeleted(), "", "Number of deleted discussions should be empty !");
+        softAssert.assertEquals(documentComparePreview.getCounterEdited(), "", "Number of edited discussions should be empty !");
 
         documentComparePreview.clickUpload(true).clickDocumentsTab();
 
@@ -77,9 +78,10 @@ public class ParagraphsCloning
         Thread.sleep(1_000);
 
         logger.info("Assert that paragraphs weren't duplicated...");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Chapter 1\")').length === 1"), "Looks like that 'Chapter 1' header was doubled !");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Second\")').length === 1"), "Looks like that 'Second paragraph.' was doubled !");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph .discussion-indicator').length === 1"), "Looks like that discussion icon was doubled !");
+        softAssert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Chapter 1\")').length === 1"), "Looks like that 'Chapter 1' header was doubled !");
+        softAssert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Second\")').length === 1"), "Looks like that 'Second paragraph.' was doubled !");
+        softAssert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph .discussion-indicator').length === 1"), "Looks like that discussion icon was doubled !");
+        softAssert.assertAll();
 
         Screenshoter.makeScreenshot();
     }

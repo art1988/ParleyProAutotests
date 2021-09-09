@@ -45,7 +45,7 @@ public class UploadNewVersionFromCP
             logger.error("Looks like that NPE happened and it is unable to Upload document !!!");
             softAssert.fail("Looks like that NPE happened and it is unable to Upload document !!!", elementShouldException);
 
-            logger.info("Force to refreshing page...");
+            logger.info("Force to refresh page...");
             Selenide.refresh();
 
             softAssert.assertAll();
