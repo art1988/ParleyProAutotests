@@ -42,8 +42,8 @@ public class UploadNewVersionFromCP
         {
             // handle of 500 http code case like in PAR-14783
             logger.error("Exception happened: " + elementShouldException.getMessage());
-            logger.error("Looks like that NPE happened and it is unable to Upload document !!!");
-            softAssert.fail("Looks like that NPE happened and it is unable to Upload document !!!", elementShouldException);
+            logger.error("Looks like that NPE happened (500 http code) and it is unable to Upload document !!!");
+            softAssert.fail("Looks like that NPE (500 http code) happened and it is unable to Upload document !!!", elementShouldException);
 
             logger.info("Force to refresh page...");
             Selenide.refresh();
