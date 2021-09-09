@@ -1,10 +1,13 @@
 package tests.classic.classic_runner;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.ex.ElementShould;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.DiscussionsOfSingleContract;
 import pages.DocumentComparePreview;
 import pages.OpenedContract;
@@ -15,6 +18,7 @@ import java.io.File;
 @Listeners({ScreenShotOnFailListener.class})
 public class UploadNewVersionFromCP
 {
+    private SoftAssert softAssert = new SoftAssert();
     private static Logger logger = Logger.getLogger(UploadNewVersionFromCP.class);
 
     @Test
@@ -25,11 +29,28 @@ public class UploadNewVersionFromCP
 
         OpenedContract openedContract = new OpenedContract();
 
-        DocumentComparePreview comparePreview = openedContract.
-                clickUploadNewVersionButton(documentName.substring(0, documentName.indexOf("."))).
-                clickUploadCounterpartyDocument(new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + cpDocumentName),
-                                                docNameWithoutExtension,
-                                    "Classic contract - client docs");
+        DocumentComparePreview comparePreview = null;
+        try
+        {
+            comparePreview = openedContract.
+                    clickUploadNewVersionButton(documentName.substring(0, documentName.indexOf("."))).
+                    clickUploadCounterpartyDocument(new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + cpDocumentName),
+                            docNameWithoutExtension,
+                            "Classic contract - client docs");
+        }
+        catch (ElementShould elementShouldException)
+        {
+            // handle of 500 http code case like in PAR-14783
+            logger.error("Exception happened: " + elementShouldException.getMessage());
+            logger.error("Looks like that NPE happened and it is unable to Upload document !!!");
+            softAssert.fail("Looks like that NPE happened and it is unable to Upload document !!!", elementShouldException);
+
+            logger.info("Force to refreshing page...");
+            Selenide.refresh();
+
+            softAssert.assertAll();
+            return;
+        }
 
         DiscussionsOfSingleContract discussionsOfSingleContract = comparePreview.clickUpload(true);
     }
