@@ -37,11 +37,39 @@ jobs:
      
 
       - run:
-          name: Run Migration suite
+          name: Run Basics suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
-
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          
+      - run: sleep 10
       
+
+      - run:
+          name: Run Document Sharing suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/DocumentSharing.xml
+
+      - run: sleep 10
+
+      - run:
+          name: Run Regression suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
+
+      - run: sleep 10
+
+      - run:
+          name: Run CCN suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CounterpartyChiefNegotiator.xml
+
+      - run: sleep 10
+
+      - run:
+          name: Run Popovers suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Popovers.xml
+
 
       - run:
           name: Allure report generation
