@@ -108,6 +108,7 @@ public class CheckContracts
         Screenshoter.makeScreenshot();
 
         Selenide.refresh(); // Reload page to reset hover popup
+        $(".spinner").waitUntil(Condition.appear, 30_000);
         $(".spinner").waitUntil(Condition.disappear, 30_000);
 
         // 2
@@ -187,6 +188,7 @@ public class CheckContracts
         $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 16, 2022"));
 
         Selenide.refresh(); // Reload page to reset hover popup
+        $(".spinner").waitUntil(Condition.appear, 30_000);
         $(".spinner").waitUntil(Condition.disappear, 30_000);
 
         // 1
@@ -204,6 +206,7 @@ public class CheckContracts
         $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 1\nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 16, 2022"));
 
         Selenide.refresh(); // Reload page to reset hover popup
+        $(".spinner").waitUntil(Condition.appear, 30_000);
         $(".spinner").waitUntil(Condition.disappear, 30_000);
 
         // 2
