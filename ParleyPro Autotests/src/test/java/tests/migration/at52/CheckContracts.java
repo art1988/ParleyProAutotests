@@ -94,10 +94,7 @@ public class CheckContracts
 
         // 1
         logger.info("Hover over _first_ link icon and check data...");
-        jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-        jsCode.append("$('.glyphicon-link')[0].dispatchEvent(event);");
-
-        Selenide.executeJavaScript(jsCode.toString());
+        $$(".glyphicon-link").first().hover();
 
         $(".spinner").waitUntil(Condition.disappear, 30_000);
         $(".rc-tooltip-content").waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
@@ -107,16 +104,13 @@ public class CheckContracts
 
         Screenshoter.makeScreenshot();
 
-        Selenide.refresh(); // Reload page to reset hover popup
-        $(".spinner").waitUntil(Condition.appear, 30_000);
-        $(".spinner").waitUntil(Condition.disappear, 30_000);
+        jsCode = new StringBuffer();
+        jsCode.append("$('.rc-tooltip-inner').hide(); $('.rc-tooltip').hide()"); // hide previous hovered popup
+        Selenide.executeJavaScript(jsCode.toString());
 
         // 2
         logger.info("Hover over _second_ link icon and check data...");
-        jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-        jsCode.append("$('.glyphicon-link')[1].dispatchEvent(event);");
-
-        Selenide.executeJavaScript(jsCode.toString());
+        $$(".glyphicon-link").last().hover();
 
         $(".spinner").waitUntil(Condition.disappear, 30_000);
         $(".rc-tooltip-content").waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
@@ -175,10 +169,7 @@ public class CheckContracts
 
         // Check question mark
         logger.info("Hover over question mark and check data...");
-        StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-        jsCode.append("$('.contracts-list__new-expiration-date svg')[0].dispatchEvent(event);");
-
-        Selenide.executeJavaScript(jsCode.toString());
+        $(".contracts-list__new-expiration-date svg").hover();
 
         $(".spinner").waitUntil(Condition.disappear, 30_000);
         $(".rc-tooltip-content").waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
@@ -187,16 +178,15 @@ public class CheckContracts
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
         $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 16, 2022"));
 
-        Selenide.refresh(); // Reload page to reset hover popup
-        $(".spinner").waitUntil(Condition.appear, 30_000);
-        $(".spinner").waitUntil(Condition.disappear, 30_000);
+        Screenshoter.makeScreenshot();
+
+        StringBuffer jsCode = new StringBuffer();
+        jsCode.append("$('.rc-tooltip-inner').hide(); $('.rc-tooltip').hide()"); // hide previous hovered popup
+        Selenide.executeJavaScript(jsCode.toString());
 
         // 1
         logger.info("Hover over _first_ link icon and check data...");
-        jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-        jsCode.append("$('.glyphicon-link')[0].dispatchEvent(event);");
-
-        Selenide.executeJavaScript(jsCode.toString());
+        $$(".glyphicon-link").first().hover();
 
         $(".spinner").waitUntil(Condition.disappear, 30_000);
         $(".rc-tooltip-content").waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
@@ -205,16 +195,15 @@ public class CheckContracts
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
         $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 1\nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 16, 2022"));
 
-        Selenide.refresh(); // Reload page to reset hover popup
-        $(".spinner").waitUntil(Condition.appear, 30_000);
-        $(".spinner").waitUntil(Condition.disappear, 30_000);
+        Screenshoter.makeScreenshot();
+
+        jsCode = new StringBuffer();
+        jsCode.append("$('.rc-tooltip-inner').hide(); $('.rc-tooltip').hide()"); // hide previous hovered popup
+        Selenide.executeJavaScript(jsCode.toString());
 
         // 2
         logger.info("Hover over _second_ link icon and check data...");
-        jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
-        jsCode.append("$('.glyphicon-link')[1].dispatchEvent(event);");
-
-        Selenide.executeJavaScript(jsCode.toString());
+        $$(".glyphicon-link").last().hover();
 
         $(".spinner").waitUntil(Condition.disappear, 30_000);
         $(".rc-tooltip-content").waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
@@ -230,6 +219,8 @@ public class CheckContracts
         $$(".js-linked-contracts-stage").last().shouldHave(Condition.exactText("Negotiate"));
 
         $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nAmendment to:\nLong values and that is a long long long long long long long long long long long long long long long long long long long long long long long long long title\nStage:\nSigned\nAddendum to:\nOnline Contract One With a Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Title\nStage:\nNegotiate"));
+
+        Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 3)
