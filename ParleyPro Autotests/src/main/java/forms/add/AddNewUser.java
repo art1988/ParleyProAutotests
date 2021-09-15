@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class AddNewUser
 {
-    private SelenideElement title          = $(".modal-body-title");
+    private SelenideElement title          = $(".modal-title");
     private SelenideElement firstNameField = $("input[data-label='First name']");
     private SelenideElement lastNameField  = $("input[data-label='Last name']");
     private SelenideElement emailField     = $("input[data-label='Email']");
