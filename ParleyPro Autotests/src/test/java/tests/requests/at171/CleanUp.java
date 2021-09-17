@@ -37,7 +37,7 @@ public class CleanUp
         AdministrationPage administrationPage = dashboardPage.getSideBar().clickAdministration();
         administrationPage.clickWorkflowsTab().clickActionMenu("Routing workflow for AT-171").clickDelete().clickDelete();
 
-        $$(".workflows-list .workflows-list__row").shouldHave(CollectionCondition.size(1));
+        $$(".workflows-list__row").shouldHave(CollectionCondition.size(1));
 
         logger.info("Remove request field...");
         Fields fieldsTab = administrationPage.clickFieldsTab();

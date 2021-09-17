@@ -47,7 +47,7 @@ public class CleanUp
                            .clickDelete();
 
         logger.info("Assert that approval workflow W1 is not in the list...");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.workflows-list .workflows-list__row').length === 1"),
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.workflows-list__row').length === 1"),
                 "Workflow W1 is still in the list !!!");
 
         // del Field

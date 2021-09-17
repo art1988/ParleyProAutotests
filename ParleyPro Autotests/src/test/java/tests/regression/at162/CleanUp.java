@@ -25,6 +25,6 @@ public class CleanUp
                            .clickDelete();
 
         logger.info("Assert that there is no workflow in the list...");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.workflows-list .workflows-list__row').length === 1"));
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.workflows-list__row').length === 1"));
     }
 }
