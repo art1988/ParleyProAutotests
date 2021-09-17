@@ -31,6 +31,8 @@ public class DownloadUploadAndCheckFieldsPanel
     {
         new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("AT-164 // CTR - Document moves from Review to Draft");
 
+        Thread.sleep(2_000);
+
         OpenedContract openedContract = new OpenedContract();
 
         openedContract.clickDocumentActionsMenu("Template_AT-164-Manufacturing_Agreement").clickFormat().clickMsWord().clickDownload();
