@@ -113,7 +113,7 @@ public class MakeExternalAndUploadDocsV2V3V4
     @Test(priority = 4)
     public void makeLastPostAsQueued()
     {
-        $(".spinner").waitUntil(Condition.disappear, 30_000);
+        $(".spinner").waitUntil(Condition.disappear, 60_000);
 
         // Scroll to 4. Limitations on Damages and Indemnification.
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Confidentiality.\")')[0].scrollIntoView({});");
