@@ -133,6 +133,16 @@ public class ContractInfo
     }
 
     /**
+     * Click by Auto-Renewal tumbler.
+     */
+    public void clickAutoRenewalTumbler()
+    {
+        $(".tumbler-wrapper .tumbler").click();
+
+        logger.info("Auto-Renewal tumbler was clicked... Current state is: " + getAutoRenewalState());
+    }
+
+    /**
      * Get state of Auto-Renewal tumbler.
      * @return true - if Auto-Renewal tumbler is checked, false otherwise
      */
