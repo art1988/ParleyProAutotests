@@ -91,7 +91,7 @@ public class CreateClassicContractAndUploadDocs
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"5. Termination\")')[0].scrollIntoView({})");
 
         logger.info("Open discussion for 'Client’s Right to Terminate.' paragraph...");
-        OpenedDiscussion openedDiscussion = new OpenedContract(true).clickByDiscussionIcon("Right to Terminate.");
+        OpenedDiscussion openedDiscussion = new OpenedContract(true).clickByDiscussionIconSoft("Article 4.D");
         openedDiscussion.clickMakeQueued("Notwithstanding the foregoing");
 
         logger.info("Assert that discussion marked as queued...");
@@ -145,7 +145,7 @@ public class CreateClassicContractAndUploadDocs
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Client’s Right to Terminate.\")').find(\"del\").length === 0"), "Paragraph shouldn't have delete tag !");
 
         logger.info("Open discussion for 'Client’s Right to Terminate.' paragraph...");
-        OpenedDiscussion openedDiscussion = new OpenedContract(true).clickByDiscussionIcon("Right to Terminate.");
+        OpenedDiscussion openedDiscussion = new OpenedContract(true).clickByDiscussionIconSoft("Article 4.D");
 
         logger.info("Scroll discussion panel to the bottom...");
         Selenide.executeJavaScript("document.querySelector('.discussion2__body__scrollable-body').scrollTo(0,document.querySelector('.discussion2__body__scrollable-body').scrollHeight)");
