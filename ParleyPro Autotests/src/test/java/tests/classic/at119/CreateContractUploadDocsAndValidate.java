@@ -144,8 +144,8 @@ public class CreateContractUploadDocsAndValidate
         }
 
         logger.info("Checking that 2nd and 3rd discussion have T1 and T2...");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.discussion-indicator').eq(1).parent().find(\"p:contains('T1')\").text().trim() === 'T1'"), "Second discussion doesn't have T1 !!!");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.discussion-indicator').eq(2).parent().find(\"p:contains('T2')\").text().trim() === 'T2'"), "Third discussion doesn't have T2 !!!");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.discussion-indicator').eq(1).closest(\".document-paragraph__content\").find(\"p:contains('T1')\").text().trim() === 'T1'"), "Second discussion doesn't have T1 !!!");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.discussion-indicator').eq(2).closest(\".document-paragraph__content\").find(\"p:contains('T2')\").text().trim() === 'T2'"), "Third discussion doesn't have T2 !!!");
 
         Screenshoter.makeScreenshot();
     }
