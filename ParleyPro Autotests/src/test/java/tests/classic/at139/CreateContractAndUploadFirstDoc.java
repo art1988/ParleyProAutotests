@@ -57,7 +57,7 @@ public class CreateContractAndUploadFirstDoc
         Selenide.refresh();
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Sales Schema\")')");
 
-        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon("Sales Schema");
+        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIconSoft("LinkedIn");
         Assert.assertEquals(openedDiscussion.getCountOfPosts(), "2", "Amount of posts is wrong !!! Should be 2.");
         $$(".discussion2-post").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("Client hereby authorizes", "Client’s individual LinkedIn profile"));
 
