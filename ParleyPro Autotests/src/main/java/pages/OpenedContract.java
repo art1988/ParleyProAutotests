@@ -299,7 +299,7 @@ public class OpenedContract
     }
 
     /**
-     * Click by discussion icon of the given paragraph
+     * Click by discussion icon of the given paragraph. Also validates header of opened discussion by contains.
      * @param paragraph text that contains in paragraph
      * @return
      */
@@ -309,6 +309,19 @@ public class OpenedContract
         $(discussionIcon).click();
 
         return new OpenedDiscussion(paragraph);
+    }
+
+    /**
+     * Click by discussion icon of the given paragraph. DOESN'T validate discussion header.
+     * @param paragraph
+     * @return
+     */
+    public OpenedDiscussion clickByDiscussionIconSoft(String paragraph)
+    {
+        WebElement discussionIcon = Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"" + paragraph + "\")').prev()[0]");
+        $(discussionIcon).click();
+
+        return new OpenedDiscussion(true);
     }
 
     public ManageDiscussions clickManageDiscussions()

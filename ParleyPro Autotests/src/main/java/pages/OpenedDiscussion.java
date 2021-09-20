@@ -28,6 +28,10 @@ public class OpenedDiscussion
 
     private static Logger logger = Logger.getLogger(OpenedDiscussion.class);
 
+    /**
+     * Use this constructor if you are SURE that header of discussion will be the same as text of clicked paragraph.
+     * @param title validates by contains
+     */
     public OpenedDiscussion(String title)
     {
         $(".documents-pdf-discussion__container").waitUntil(Condition.visible, 40_000);
@@ -36,14 +40,21 @@ public class OpenedDiscussion
         $(".discussion2-original").shouldBe(Condition.enabled);
         $(".discussion-header__title-name").waitUntil(Condition.visible, 7_000).shouldHave(Condition.text(title));
 
-        try
-        {
-            Thread.sleep(500);
-        }
-        catch (InterruptedException e)
-        {
-            logger.error("InterruptedException", e);
-        }
+        try { Thread.sleep(500); } catch (InterruptedException e) { logger.error("InterruptedException", e); }
+    }
+
+    /**
+     * Use this constructor if you are NOT SURE that header of discussion will be the same as text of clicked paragraph.
+     * @param doNotCheckDiscussionHeader just marker to ignore discussion header. Should always set as true
+     */
+    public OpenedDiscussion(boolean doNotCheckDiscussionHeader)
+    {
+        $(".documents-pdf-discussion__container").waitUntil(Condition.visible, 40_000);
+        $(".discussion2__body__scrollable-body").waitUntil(Condition.visible, 7_000);
+
+        $(".discussion2-original").shouldBe(Condition.enabled);
+
+        try { Thread.sleep(500); } catch (InterruptedException e) { logger.error("InterruptedException", e); }
     }
 
     /**
