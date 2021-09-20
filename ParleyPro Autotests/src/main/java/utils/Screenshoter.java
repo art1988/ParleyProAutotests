@@ -5,9 +5,6 @@ import com.google.common.io.Files;
 import io.qameta.allure.Attachment;
 import org.apache.log4j.Logger;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
