@@ -5,6 +5,8 @@ import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractInformation;
 import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Issues;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -60,6 +62,10 @@ public class ParagraphsCloning
     }
 
     @Test(priority = 2)
+    @Issues({
+            @Issue("PAR-14785"),
+            @Issue("PAR-14824")
+    })
     @Description("This test uploads doc2 as counterparty and verifies that paragraphs weren't duplicated.")
     public void uploadDocV2AsCounterpartyAndCheckParagraphs() throws InterruptedException
     {
