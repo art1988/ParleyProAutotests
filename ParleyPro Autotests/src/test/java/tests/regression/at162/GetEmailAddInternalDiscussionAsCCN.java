@@ -60,7 +60,7 @@ public class GetEmailAddInternalDiscussionAsCCN
         loginPage.setPassword( Const.PREDEFINED_CCN.getPassword() );
         dashboardPage = loginPage.clickSignIn(new SideBarItems[]{SideBarItems.IN_PROGRESS_CONTRACTS, SideBarItems.EXECUTED_CONTRACTS});
 
-        Screenshoter.makeScreenshot();
+        Selenide.refresh();
     }
 
     @Test(priority = 2)
