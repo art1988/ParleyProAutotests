@@ -3,18 +3,22 @@ package tests.contract_info.at169;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
+import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.ContractInfo;
 import pages.DashboardPage;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class CreateManagedContractAndFillFields
 {
+    private static Logger logger = Logger.getLogger(CreateManagedContractAndFillFields.class);
+
     @Test(priority = 1)
     public void createManagedContract()
     {
@@ -51,6 +55,22 @@ public class CreateManagedContractAndFillFields
         ContractInfo contractInfo = new ContractInfo();
 
         contractInfo.clickAutoRenewalTumbler();
-        Thread.sleep(2_000);
+        Thread.sleep(500);
+
+        logger.info("Filling the fields...");
+
+        contractInfo.setSubsequentTermMonths("1");
+        contractInfo.setSubsequentTermNotification("1 day");
+        contractInfo.setRenewalEmailTo("test@parleypro.com");
+
+        contractInfo.setNoticeOfNonRenewal("15");
+        contractInfo.setNoticeOfNonRenewalNotification("3 days");
+        contractInfo.setNoticeEmailTo("test@parleypro.com");
+
+        contractInfo.clickSave();
+
+        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract has been updated."));
+
+        Screenshoter.makeScreenshot();
     }
 }

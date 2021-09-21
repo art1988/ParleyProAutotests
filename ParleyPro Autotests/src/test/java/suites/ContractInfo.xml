@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Contract Info suite" configfailurepolicy="continue">
+    <test name="AT-169: Post-execution won't save if auto-renewal cleared and re-filled" preserve-order="true">
+        <parameter name="contractName" value="AT-169 auto-renewal"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.contract_info.at169.CreateManagedContractAndFillFields"/>
+            <class name="tests.contract_info.at169.DisableEnableAutoRenewalFillAgainAndCheck"/>
+            <class name="tests.DeleteContractFromExecuted"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+</suite>
