@@ -253,7 +253,7 @@ public class CheckContracts
         Assert.assertTrue(contractInfo.getRenewalEmailTo().contains("you@example.com") && contractInfo.getRenewalEmailTo().contains("my@example.com"));
         Assert.assertEquals(contractInfo.getNoticeOfNonRenewal(), "15");
         Assert.assertEquals(contractInfo.getNotice(), "Dec 2, 2021");
-        Assert.assertEquals(contractInfo.getNoticeNonRenewalNotification(), "1d");
+        Assert.assertEquals(contractInfo.getNoticeOfNonRenewalNotification(), "1d");
         Assert.assertTrue(contractInfo.getNoticeEmailTo().contains("you@example.com") && contractInfo.getNoticeEmailTo().contains("my@example.com"));
         Assert.assertEquals(contractInfo.getExpirationDate(), "Jan 16, 2022");
         Assert.assertEquals(contractInfo.getExpirationDateNotification(), "1d");
