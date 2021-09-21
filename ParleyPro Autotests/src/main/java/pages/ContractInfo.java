@@ -32,12 +32,12 @@ public class ContractInfo
 
     public ContractInfo()
     {
-        $(".spinner").waitUntil(Condition.disappear, 15_000);
-        $(".documents-contract-edit__body .spinner").waitUntil(Condition.disappear, 15_000);
+        $(".spinner").waitUntil(Condition.disappear, 35_000);
+        $(".documents-contract-edit__body .spinner").waitUntil(Condition.disappear, 35_000);
 
-        $(".documents-contract-edit__title").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract Info"));
+        $(".documents-contract-edit__title").waitUntil(Condition.visible, 35_000).shouldHave(Condition.exactText("Contract Info"));
         $$(".tab-menu .tab-menu__item").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("Summary", "Post-execution"));
-        $(".contract-execute-form").waitUntil(Condition.visible, 15_000);
+        $(".contract-execute-form").waitUntil(Condition.visible, 35_000);
     }
 
     public ContractInfo(boolean isRequest)
@@ -151,6 +151,12 @@ public class ContractInfo
         return Selenide.executeJavaScript("return $('.tumbler-wrapper').find(\"div\").hasClass('checked')");
     }
 
+    public void setSubsequentTermMonths(String val)
+    {
+        WebElement input = Selenide.executeJavaScript("return $('label:contains(\"Subsequent term (months)\")').parent().find(\"input\")[0]");
+        $(input).sendKeys(val);
+    }
+
     public String getSubsequentTermMonths()
     {
         return Selenide.executeJavaScript("return $('label:contains(\"Subsequent term (months)\")').parent().find(\"input\").val()");
@@ -161,9 +167,34 @@ public class ContractInfo
         return Selenide.executeJavaScript("return $('label').filter(function() { return $(this).text() === 'Renewal'; }).parent().find(\"input\").val()");
     }
 
+    /**
+     * Sets Subsequent term Notification. Click by this field to activate dropdown, then click by checkbox.
+     * @param val may be '1 day', '3 days', ..., '3 months', '6 months'
+     */
+    public void setSubsequentTermNotification(String val)
+    {
+        $("input[data-id='subsequent-term-input']").click(); // click by field to activate dropdown
+
+        // select value
+        Selenide.executeJavaScript("$('input[data-id=\"subsequent-term-input\"]').closest('.multi-select').find(\".dropdown-menu\").find(\"span:contains('" + val + "')\").click()");
+
+        $("input[data-id='subsequent-term-input']").click(); // click by field again to collapse dropdown
+    }
+
     public String getSubsequentTermNotification()
     {
         return Selenide.executeJavaScript("return $('input[data-id=\"subsequent-term-input\"]').val()");
+    }
+
+    /**
+     * Set 'Renewal email to' field
+     * @param email
+     */
+    public void setRenewalEmailTo(String email)
+    {
+        WebElement input = Selenide.executeJavaScript("return $('label:contains(\"Renewal email to\")').parent().find(\"input\")[0]");
+        $(input).sendKeys(email);
+        $(input).pressEnter();
     }
 
     /**
@@ -173,6 +204,17 @@ public class ContractInfo
     public String getRenewalEmailTo()
     {
         return Selenide.executeJavaScript("return $('label:contains(\"Renewal email to\")').parent().find(\".tags-input__tag\").text()");
+    }
+
+    /**
+     * Set 'Notice of non-renewal' field
+     * @param days may be '1 day', '3 days', ..., '3 months', '6 months'
+     */
+    public void setNoticeOfNonRenewal(String days)
+    {
+        WebElement input = Selenide.executeJavaScript("return $('label:contains(\"Notice of non-renewal\")').parent().find(\"input\")[0]");
+        $(input).sendKeys(days);
+        $(input).pressEnter();
     }
 
     public String getNoticeOfNonRenewal()
@@ -185,9 +227,34 @@ public class ContractInfo
         return Selenide.executeJavaScript("return $('label').filter(function() { return $(this).text() === 'Notice'; }).parent().find(\"input\").val()");
     }
 
-    public String getNoticeNonRenewalNotification()
+    /**
+     * Sets Notice of non-renewal Notification. Click by this field to activate dropdown, then click by checkbox.
+     * @param val
+     */
+    public void setNoticeOfNonRenewalNotification(String val)
+    {
+        $("input[data-id='cancellation-notice-input']").click(); // click by field to activate dropdown
+
+        // select value
+        Selenide.executeJavaScript("$('input[data-id=\"cancellation-notice-input\"]').closest('.multi-select').find(\".dropdown-menu\").find(\"span:contains('" + val + "')\").click()");
+
+        $("input[data-id='cancellation-notice-input']").click(); // click by field again to collapse dropdown
+    }
+
+    public String getNoticeOfNonRenewalNotification()
     {
         return Selenide.executeJavaScript("return $('input[data-id=\"cancellation-notice-input\"]').val()");
+    }
+
+    /**
+     * Set 'Notice email to' field
+     * @param email
+     */
+    public void setNoticeEmailTo(String email)
+    {
+        WebElement input = Selenide.executeJavaScript("return $('label:contains(\"Notice email to\")').parent().find(\"input\")[0]");
+        $(input).sendKeys(email);
+        $(input).pressEnter();
     }
 
     /**
