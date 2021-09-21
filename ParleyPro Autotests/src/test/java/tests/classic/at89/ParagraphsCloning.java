@@ -63,8 +63,7 @@ public class ParagraphsCloning
 
     @Test(priority = 2)
     @Issues({
-            @Issue("PAR-14785"),
-            @Issue("PAR-14824")
+            @Issue("PAR-14785")
     })
     @Description("This test uploads doc2 as counterparty and verifies that paragraphs weren't duplicated.")
     public void uploadDocV2AsCounterpartyAndCheckParagraphs() throws InterruptedException
@@ -73,7 +72,7 @@ public class ParagraphsCloning
                 .clickUploadCounterpartyDocument( Const.DOC_PARAGRAPH_CLONING_AT89_V2, documentName, contractName );
 
         logger.info("Assert that only 3 comments were added. Other counters should be empty.");
-        softAssert.assertEquals(documentComparePreview.getCounterCommented(), "3", "Number of comments is different ! Should be 3 !");
+        softAssert.assertEquals(documentComparePreview.getCounterCommented(), "1", "Number of comments is different ! Should be 1 !");
         softAssert.assertEquals(documentComparePreview.getCounterAdded(), "", "Number of added discussions should be empty !");
         softAssert.assertEquals(documentComparePreview.getCounterDeleted(), "", "Number of deleted discussions should be empty !");
         softAssert.assertEquals(documentComparePreview.getCounterEdited(), "", "Number of edited discussions should be empty !");
