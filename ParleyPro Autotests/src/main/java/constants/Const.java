@@ -90,6 +90,9 @@ public class Const
     public static final File   CLASSIC_AT_119_V1             = new File(System.getProperty("user.dir") + "/Documents/PAR-13996_V1.docx");
     public static final File   CLASSIC_AT_119_V2             = new File(System.getProperty("user.dir") + "/Documents/PAR-13996_V2.docx");
 
+    public static final File   CLASSIC_AT_167_V1             = new File(System.getProperty("user.dir") + "/Documents/Quotient_DCSA_QuotientEdits_14703_AT_167.docx");
+    public static final File   CLASSIC_AT_167_V2             = new File(System.getProperty("user.dir") + "/Documents/Quotient_DCSA_CBv2_14703_AT_167.docx");
+
     public static final File   TRACK_CHANGES_AT110_V1        = new File(System.getProperty("user.dir") + "/Documents/AT110/Acorns Engagement Letter_party_changes_v1.docx");
     public static final File   TRACK_CHANGES_AT110_V2        = new File(System.getProperty("user.dir") + "/Documents/AT110/V5 Acorns Engagement Letter_v2.docx");
     public static final File   TRACK_CHANGES_AT110_V3        = new File(System.getProperty("user.dir") + "/Documents/AT110/V6 Acorns Engagement Letter-CNM_v3.docx");
