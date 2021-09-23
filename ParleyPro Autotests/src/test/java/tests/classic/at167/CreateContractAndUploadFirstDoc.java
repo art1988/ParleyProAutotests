@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
 import pages.OpenedContract;
+import utils.Cache;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -29,6 +30,8 @@ public class CreateContractAndUploadFirstDoc
     @Test(priority = 1)
     public void createContractAndUploadFirstDoc()
     {
+        Cache.getInstance().setContractTitle(contractName);
+
         ContractInformation contractInformation = new DashboardPage().getSideBar().clickInProgressContracts(true).clickNewContractButton();
 
         contractInformation.setContractTitle(contractName);
