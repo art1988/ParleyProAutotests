@@ -49,6 +49,7 @@ public class CreateContractAndUploadFirstDoc
         new AddDocuments().clickUploadCounterpartyDocuments( Const.CLASSIC_AT_167_V1 );
 
         $(".notification-stack").waitUntil(Condition.appear, 20_000);
+        $(".notification-stack").waitUntil(Condition.disappear, 30_000);
         new ContractInNegotiation(contractName).clickOk();
 
         openedContract = new OpenedContract();
