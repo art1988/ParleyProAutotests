@@ -34,14 +34,6 @@ public class GetEmailAddInternalDiscussionAsCCN
     private static Logger logger = Logger.getLogger(GetEmailAddInternalDiscussionAsCCN.class);
 
     @Test(priority = 1)
-    public void logoutAsMyTeamCN()
-    {
-        logger.info("Logout as my team CN...");
-
-        new DashboardPage().getSideBar().logout();
-    }
-
-    @Test(priority = 2)
     @Parameters("contractNameEmail")
     public void getEmailAndLoginAsCCN(String contractNameEmail) throws InterruptedException
     {
@@ -67,11 +59,9 @@ public class GetEmailAddInternalDiscussionAsCCN
         loginPage.setEmail( Const.PREDEFINED_CCN.getEmail() );
         loginPage.setPassword( Const.PREDEFINED_CCN.getPassword() );
         dashboardPage = loginPage.clickSignIn(new SideBarItems[]{SideBarItems.IN_PROGRESS_CONTRACTS, SideBarItems.EXECUTED_CONTRACTS});
-
-        Selenide.refresh();
     }
 
-    @Test(priority = 3)
+    @Test(priority = 2)
     public void addInternalDiscussion() throws InterruptedException
     {
         dashboardPage.getSideBar().clickInProgressContracts(false).selectContract(contractName);
@@ -86,7 +76,7 @@ public class GetEmailAddInternalDiscussionAsCCN
         Screenshoter.makeScreenshot();
     }
 
-    @Test(priority = 4)
+    @Test(priority = 3)
     public void logoutAsCCN()
     {
         dashboardPage.getSideBar().logout();
