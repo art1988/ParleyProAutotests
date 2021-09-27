@@ -45,6 +45,7 @@
             <class name="tests.requests.at178.AddRequest"/>
             <class name="tests.requests.at178.SaveRequestAndCheck"/>
             <class name="tests.requests.at178.CleanUp"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
