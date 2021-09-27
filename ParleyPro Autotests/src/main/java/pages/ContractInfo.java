@@ -19,6 +19,7 @@ import static com.codeborne.selenide.Selenide.$$;
  */
 public class ContractInfo
 {
+    private SelenideElement contractValueField         = $("#contractValue");
     private SelenideElement cpOrganizationField        = $("#counterpartyOrganization");
     private SelenideElement cpChiefNegotiatorField     = $("#counterpartyChiefNegotiator");
     private SelenideElement contractingRegionField     = $("#contractingRegion");
@@ -140,6 +141,11 @@ public class ContractInfo
         $(".tumbler-wrapper .tumbler").click();
 
         logger.info("Auto-Renewal tumbler was clicked... Current state is: " + getAutoRenewalState());
+    }
+
+    public void setContractValue(String value)
+    {
+        contractValueField.sendKeys(value);
     }
 
     /**
