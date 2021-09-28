@@ -50,7 +50,7 @@ public class AddCategoriesFieldsAndRelations
         logger.info("Adding 10 new fields for Summary...");
         for( int i = 1; i <= 10; i++ )
         {
-            contractFields.createNewFiled("Summary", "Field" + i, FieldType.TEXT, false);
+            contractFields.createNewFiled("Summary", "Field" + i, FieldType.TEXT_AREA, false);
         }
 
         fieldsTab.clickSave();
@@ -61,7 +61,7 @@ public class AddCategoriesFieldsAndRelations
         logger.info("Adding 5 more AmendFields for Summary...");
         for( int i = 1; i <= 5; i++ )
         {
-            contractFields.createNewFiled("Summary", "AmendFld" + i, FieldType.TEXT, false);
+            contractFields.createNewFiled("Summary", "AmendFld" + i, FieldType.TEXT_AREA, false);
         }
 
         fieldsTab.clickSave();

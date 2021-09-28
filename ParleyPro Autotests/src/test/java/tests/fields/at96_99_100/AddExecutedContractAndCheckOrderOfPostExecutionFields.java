@@ -50,7 +50,7 @@ public class AddExecutedContractAndCheckOrderOfPostExecutionFields
         // Scroll Contract Info right panel to the bottom
         Selenide.executeJavaScript("$('.contract-execute-form .modal__scrollable-body').scrollTop($('.contract-execute-form .modal__scrollable-body')[0].scrollHeight);");
         logger.info("Check post-execution field order on Contract Info right panel...");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('span:contains(\"pe_f2\")').parent().parent().parent().parent().parent().text()"),
+        Assert.assertEquals(Selenide.executeJavaScript("return $('span:contains(\"pe_f2\")').parent().parent().parent().parent().text()"),
                 "pe_f2pe_f1",
                 "The order of post-execution fields pe_f1 and pe_f2 is wrong !!!");
 

@@ -40,10 +40,10 @@ public class LoginAsRequesterAndCheck
         $("label[for='f2']").waitUntil(Condition.visible, 7_000);
 
         Assert.assertTrue(Selenide.executeJavaScript("return $('.row label:contains(\"f1\")').length === 1"), "Looks like that f1 label is not on the form !!!");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.row label:contains(\"f1\")').parent().find(\"textarea\").length === 1"), "Looks like that f1 doesn't have field !!!");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.row label:contains(\"f1\")').parent().find(\"input\").length === 1"), "Looks like that f1 doesn't have field !!!");
 
         Assert.assertTrue(Selenide.executeJavaScript("return $('.row label:contains(\"f2\")').length === 1"), "Looks like that f2 label is not on the form !!!");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.row label:contains(\"f2\")').parent().find(\"textarea\").length === 1"), "Looks like that f2 doesn't have field !!!");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.row label:contains(\"f2\")').parent().find(\"input\").length === 1"), "Looks like that f2 doesn't have field !!!");
 
         Screenshoter.makeScreenshot();
         contractRequestForm.clickCancel();

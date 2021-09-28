@@ -26,7 +26,7 @@ public class CheckOrderOfSummaryFieldsOnContractInformation
         Selenide.executeJavaScript("$('.modal__scrollable-body').scrollTop($('.modal__scrollable-body')[0].scrollHeight);");
 
         logger.info("Check summary field order on Contract Information form...");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('span:contains(\"f2\")').parent().parent().parent().parent().parent().text()"),
+        Assert.assertEquals(Selenide.executeJavaScript("return $('span:contains(\"f2\")').parent().parent().parent().parent().text()"),
                    "f2f1",
                    "The order of summary fields f1 and f2 is wrong !!!");
 

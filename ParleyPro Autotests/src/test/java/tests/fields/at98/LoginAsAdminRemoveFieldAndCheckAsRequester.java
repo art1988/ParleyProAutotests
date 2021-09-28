@@ -61,10 +61,10 @@ public class LoginAsAdminRemoveFieldAndCheckAsRequester
         $("label[for='f2']").shouldBe(Condition.hidden);
 
         Assert.assertTrue(Selenide.executeJavaScript("return $('.row label:contains(\"f1\")').length === 1"), "Looks like that f1 label is not on the form !!!");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.row label:contains(\"f1\")').parent().find(\"textarea\").length === 1"), "Looks like that f1 doesn't have field !!!");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.row label:contains(\"f1\")').parent().find(\"input\").length === 1"), "Looks like that f1 doesn't have field !!!");
 
         Assert.assertFalse(Selenide.executeJavaScript("return $('.row label:contains(\"f2\")').length === 1"), "f2 label is also on form, but shouldn't !!!");
-        Assert.assertFalse(Selenide.executeJavaScript("return $('.row label:contains(\"f2\")').parent().find(\"textarea\").length === 1"), "f2 field is also on form, but shouldn't !!!");
+        Assert.assertFalse(Selenide.executeJavaScript("return $('.row label:contains(\"f2\")').parent().find(\"input\").length === 1"), "f2 field is also on form, but shouldn't !!!");
 
         Screenshoter.makeScreenshot();
         contractRequestForm.clickCancel();
