@@ -22,7 +22,7 @@ public class CreateContractUploadDocAndCheck
     private static Logger logger = Logger.getLogger(CreateContractUploadDocAndCheck.class);
 
     @Test
-    public void createContractUploadDocAndCheck()
+    public void createContractUploadDocAndCheck() throws InterruptedException
     {
         ContractInformation contractInformation = new DashboardPage().getSideBar().clickInProgressContracts(true).clickNewContractButton();
 
@@ -47,6 +47,8 @@ public class CreateContractUploadDocAndCheck
         $$(".lifecycle__item.active").last().waitUntil(Condition.exactText("REVIEW"), 17_000);
 
         logger.info("Checking that users weren't triggered...");
+        Thread.sleep(4_000); // sleep for 4 sec
+
         $$(".contract-header-users .user").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("AL"));
         $$(".document__score .user").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("AL"));
 
