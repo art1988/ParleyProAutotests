@@ -47,7 +47,14 @@ public class ContractFields
         Selenide.executeJavaScript("$('input[data-label=\"Field name\"][value=\"" + fieldName + "\"]').parent().parent().parent().parent().find('.Select-control input').attr('id', 'fieldTypeID" + fieldTypeID + "')");
 
         // Set Field type
-        $("#fieldTypeID" + fieldTypeID).setValue(fieldType.getFieldType()).sendKeys(Keys.DOWN);
+        if( fieldType.equals(FieldType.TEXT) ) // some specific logic for choosing only TEXT type
+        {
+            $("#fieldTypeID" + fieldTypeID).setValue(fieldType.getFieldType());
+        }
+        else // all others
+        {
+            $("#fieldTypeID" + fieldTypeID).setValue(fieldType.getFieldType()).sendKeys(Keys.DOWN);
+        }
         $("#fieldTypeID" + fieldTypeID).pressEnter();
         fieldTypeID++;
 
