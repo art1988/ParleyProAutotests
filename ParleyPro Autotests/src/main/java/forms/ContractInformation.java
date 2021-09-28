@@ -94,6 +94,16 @@ public class ContractInformation
         Selenide.executeJavaScript("$('.react-datepicker__day--today').click()");
     }
 
+    /**
+     * Sets custom due date
+     * @param date
+     */
+    public void setDueDate(String date)
+    {
+        $("#dueDate").sendKeys(date);
+        $("#dueDate").pressEnter();
+    }
+
     public String getDueDate()
     {
         return $("#dueDate").getValue();
@@ -159,6 +169,25 @@ public class ContractInformation
     public String getMyCompanyTemplateRadioButtonSelection()
     {
         return Selenide.executeJavaScript("return $('.radio-group__label:contains(\"My company template\")').next().find(\"input[checked]\").next().text()");
+    }
+
+    /**
+     * Click by 'Make private' checkbox
+     */
+    public void checkContractVisibility()
+    {
+        $("#privateMode1").parent().click();
+
+        logger.info("Make private checkbox was checked...");
+    }
+
+    /**
+     * Return state of 'Contract visibility' checkbox
+     * @return
+     */
+    public boolean getContractVisibility()
+    {
+        return Selenide.executeJavaScript("return document.querySelector('#privateMode1').checked");
     }
 
     public void setCounterpartyOrganization(String cpOrganization)
