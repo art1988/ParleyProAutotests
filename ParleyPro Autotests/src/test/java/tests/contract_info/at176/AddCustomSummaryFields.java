@@ -41,10 +41,10 @@ public class AddCustomSummaryFields
         contractFields.addValues("RadioFld", "R2");
         contractFields.addValues("RadioFld", "R3");
 
-        contractFields.createNewFiled("Summary", "SelectFld",      FieldType.SELECT, false);
-        contractFields.addValues("SelectFld", "S1");
-        contractFields.addValues("SelectFld", "S2");
-        contractFields.addValues("SelectFld", "S3");
+        contractFields.createNewFiled("Summary", "OnlySelectFld",      FieldType.SELECT, false);
+        contractFields.addValues("OnlySelectFld", "S1");
+        contractFields.addValues("OnlySelectFld", "S2");
+        contractFields.addValues("OnlySelectFld", "S3");
 
         contractFields.createNewFiled("Summary", "TextFld",        FieldType.TEXT, false);
         contractFields.createNewFiled("Summary", "TextAreaFld",    FieldType.TEXT_AREA, false);
