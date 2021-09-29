@@ -72,7 +72,7 @@ public class MakeExternalAndUploadDocsV2V3V4
         $$(".discussion2-post").shouldHave(CollectionCondition.size(3)); // Amount of total posts
         $$(".discussion2-post").last().find(".discussion2-label__status").shouldHave(Condition.exactText("EXTERNAL"));
         $$(".discussion2-post").last().find("del").shouldHave(Condition.text("will not"));
-        $$(".discussion2-post").last().$$("ins").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(2)); // amount of ins 3 or more
+        $$(".discussion2-post").last().$$("ins").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(2)); // amount of ins 2 or more
 
         Screenshoter.makeScreenshot();
 
@@ -88,11 +88,11 @@ public class MakeExternalAndUploadDocsV2V3V4
                             .clickUpload(true)
                             .clickDocumentsTab();
 
-        logger.info("Assert that contract has 9 discussions...");
-        Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "9", "Amount of total discussions should be equal 9 !!!");
+        logger.info("Assert that contract has 3 discussions...");
+        Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "3", "Amount of total discussions should be equal 3 !!!");
 
         // Scroll to 4. Limitations on Damages and Indemnification.
-        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Confidentiality.\")')[0].scrollIntoView({});");
+        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Independent\")')[0].scrollIntoView({});");
 
         new OpenedContract(true).clickByDiscussionIcon("Limitations on Damages and Indemnification");
         // Scroll discussion right panel to the bottom
@@ -116,7 +116,7 @@ public class MakeExternalAndUploadDocsV2V3V4
         $(".spinner").waitUntil(Condition.disappear, 60_000);
 
         // Scroll to 4. Limitations on Damages and Indemnification.
-        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Confidentiality.\")')[0].scrollIntoView({});");
+        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Independent\")')[0].scrollIntoView({});");
 
         new OpenedContract(true).clickByDiscussionIcon("Limitations on Damages and Indemnification")
                                                .clickMakeQueued("10x");
@@ -140,7 +140,7 @@ public class MakeExternalAndUploadDocsV2V3V4
                             .clickDone();
 
         // Scroll to 4. Limitations on Damages and Indemnification.
-        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Confidentiality.\")')[0].scrollIntoView({});");
+        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Independent\")')[0].scrollIntoView({});");
 
         new OpenedContract(true).clickByDiscussionIcon("Limitations on Damages and Indemnification");
         // Scroll discussion right panel to the bottom
@@ -168,7 +168,7 @@ public class MakeExternalAndUploadDocsV2V3V4
         Assert.assertEquals(new OpenedContract().getAmountOfContractDiscussion(), "9", "Amount of total discussions should be equal 9 !!!");
 
         // Scroll to 4. Limitations on Damages and Indemnification.
-        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Confidentiality.\")')[0].scrollIntoView({});");
+        Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"Independent\")')[0].scrollIntoView({});");
 
         new OpenedContract(true).clickByDiscussionIcon("Limitations on Damages and Indemnification");
 
