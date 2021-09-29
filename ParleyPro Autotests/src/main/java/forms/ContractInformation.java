@@ -141,6 +141,10 @@ public class ContractInformation
         Selenide.executeJavaScript("$('.radio-group__label:contains(\"Contract\")').next().find(\"span:contains('" + contract + "')\").click()");
     }
 
+    /**
+     * Get selected value of 'Contract' radio button
+     * @return may return "Buy", "Sell" or "Other"
+     */
     public String getContractRadioButtonSelection()
     {
         return Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Contract\")').next().find(\"input[checked]\").next().text()");
@@ -174,7 +178,7 @@ public class ContractInformation
     /**
      * Click by 'Make private' checkbox
      */
-    public void checkContractVisibility()
+    public void setContractVisibility()
     {
         $("#privateMode1").parent().click();
 
@@ -183,7 +187,7 @@ public class ContractInformation
 
     /**
      * Return state of 'Contract visibility' checkbox
-     * @return
+     * @return true = checked, false = non-checked
      */
     public boolean getContractVisibility()
     {
@@ -457,12 +461,16 @@ public class ContractInformation
     }
 
     /**
-     * General method of setting values for custom field
+     * General method of setting values for custom field of any type.
+     * Important: id's are comes from field names => names of the custom fields must be without spaces !
      * @param fieldName
      * @param fieldType
-     * @param value
+     * @param value any text value;
+     *              <br/>
+     *              For checkboxes  - any value (first invoke will set as checked, second invoke will set as unchecked)
+     *              <br/>
+     *              For radiobutton - value to set
      */
-    // TODO: depending on fieldType need to choose appropriate html tag -> implement in the future
     public void setValueForCustomField(String fieldName, FieldType fieldType, String value)
     {
         String id = "";
@@ -471,6 +479,39 @@ public class ContractInformation
         {
             id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('textarea').attr('inputid')");
             $("textarea[inputid=\"" + id + "\"]").sendKeys(value);
+        }
+        else if( fieldType.equals(FieldType.TEXT) )
+        {
+            id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('data-id')");
+            $("#" + id).sendKeys(value);
+        }
+        else if( fieldType.equals(FieldType.CHECKBOX) )
+        {
+            id = Selenide.executeJavaScript("return $('.checkbox__label:contains(\"" + fieldName + "\")').parent().find('input').attr('id')");
+            $("#" + id).parent().click();
+            logger.info("Checkbox " + fieldName + " was clicked...");
+        }
+        else if( fieldType.equals(FieldType.MULTI_SELECT) )
+        {
+            id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('data-id')");
+            $("input[data-id=\"" + id + "\"]").click(); // expand dropdown
+            Selenide.executeJavaScript("$('input[data-id=\"" + id + "\"]').closest(\".multi-select\").find(\".dropdown-menu .checkbox__label:contains('" + value + "')\").click()"); // select value from dropdown
+            $("input[data-id=\"" + id + "\"]").click(); // collapse dropdown
+        }
+        else if( fieldType.equals(FieldType.RADIO_BUTTON) )
+        {
+            Selenide.executeJavaScript("$('.radio-group__label-text:contains(\"" + fieldName + "\")').closest(\".radio-group\").find(\".radio-group-option__label:contains('" + value + "')\").click()");
+            logger.info("Radio button " + value + " was clicked...");
+        }
+        else if( fieldType.equals(FieldType.NUMERIC) )
+        {
+            id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('data-id')");
+            $("#" + id).sendKeys(value);
+        }
+        else if( fieldType.equals(FieldType.DECIMAL) )
+        {
+            id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('data-id')");
+            $("#" + id).sendKeys(value);
         }
         else
         {
