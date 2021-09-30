@@ -166,7 +166,7 @@ public class StartPreNegotiateApproval
         OpenedContract openedContract = new OpenedContract();
 
         logger.info("Assert that approvers icons have checkmarks...");
-        $(".header-users .user").waitUntil(Condition.appear, 10_000); // wait until users icons will appear
+        $(".header-users .user").waitUntil(Condition.appear, 30_000); // wait until users icons will appear
         $$(".header-users .user .user-icon-checked").shouldHave(CollectionCondition.size(2)); // checkmarks checks
 
         Screenshoter.makeScreenshot();

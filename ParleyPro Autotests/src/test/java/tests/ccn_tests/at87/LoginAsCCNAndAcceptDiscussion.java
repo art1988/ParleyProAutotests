@@ -116,7 +116,7 @@ public class LoginAsCCNAndAcceptDiscussion
         new OpenedContract().clickReadyForSignature().clickOk();
 
         logger.info("Assert that checkmark was shown for CC...");
-        $(".contract-header-users .contract-header-users__list .user-icon-checked").waitUntil(Condition.visible, 7_000);
+        $(".contract-header-users .contract-header-users__list .user-icon-checked").waitUntil(Condition.visible, 30_000);
         Assert.assertEquals(Selenide.executeJavaScript("return $('.contract-header-users').find(\"span:contains('CC')\").find(\".user-icon-checked\").length"), Long.valueOf(1));
         Assert.assertEquals(Selenide.executeJavaScript("return $('.contract-header-users').find(\"span:contains('AL')\").find(\".user-icon-checked\").length"), Long.valueOf(0));
 
