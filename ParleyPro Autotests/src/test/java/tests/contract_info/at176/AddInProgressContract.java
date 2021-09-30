@@ -1,5 +1,6 @@
 package tests.contract_info.at176;
 
+import com.codeborne.selenide.Selenide;
 import constants.FieldType;
 import forms.ContractInformation;
 import io.qameta.allure.Description;
@@ -11,6 +12,8 @@ import pages.AddDocuments;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
+
+import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class AddInProgressContract
@@ -67,7 +70,7 @@ public class AddInProgressContract
         OpenedContract openedContract = new OpenedContract();
         ContractInformation contractInformation = openedContract.clickContractInfo();
 
-        logger.info("Checking all fields...");
+        logger.info("Checking general fields...");
         softAssert.assertEquals(contractInformation.getDueDate(), "Jan 1, 2040", "Due date wasn't saved !!!");
         softAssert.assertEquals(contractInformation.getContractValue(), "100,000,000,000.00", "Contract value wasn't saved !!!");
         softAssert.assertEquals(contractInformation.getContractRadioButtonSelection(), "Buy", "Contract radio button wasn't saved !!!");
@@ -75,7 +78,14 @@ public class AddInProgressContract
         softAssert.assertEquals(contractInformation.getContractVisibility(), true, "Contract visibility wasn't saved !!!");
         softAssert.assertEquals(contractInformation.getContractingRegion(), "region1", "Contracting region wasn't saved !!!");
         softAssert.assertEquals(contractInformation.getContractingCountry(), "country1", "Contracting country wasn't saved !!!");
+        softAssert.assertEquals(contractInformation.getContractEntity(), "entity1", "Contract entity wasn't saved !!!");
+        softAssert.assertEquals(contractInformation.getContractingDepartment(), "department1", "Contracting department wasn't saved !!!");
+        softAssert.assertEquals(contractInformation.getContractCategory(), "category1", "Contract category wasn't saved !!!");
+        softAssert.assertEquals(contractInformation.getContractType(), "type1", "Contract type wasn't saved !!!");
 
+        logger.info("Checking custom fields...");
+        softAssert.assertTrue(Selenide.executeJavaScript("return $('span:contains(\"CheckboxFld\")').closest('.checkbox').find('input')[0].checked"), "CheckboxFld wasn't saved !!!");
+        softAssert.assertEquals($("#datefld").val(), "Jan 1, 2020", "DateFld wasn't saved !!!");
 
         softAssert.assertAll();
     }
