@@ -35,7 +35,7 @@ public class LoginAsRequesterAndCheckOrder
 
         logger.info("Check contract request fields...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.input__label-title').text()"),
-                "cr_f2cr_f1",
+                "Request titlecr_f2cr_f1",
                 "The order of contract request fields cr_f1 and cr_f2 is wrong !!!");
 
         Screenshoter.makeScreenshot();
