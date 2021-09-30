@@ -27,7 +27,7 @@ public class LoginToDashboard extends LoginBase
         Configuration.proxyEnabled   = true;
         Configuration.fileDownload   = FileDownloadMode.PROXY;
         Configuration.browserSize = "1920x1080";
-        Configuration.timeout = 10_000;
+        Configuration.timeout = 20_000;
 
         System.setProperty( "chromeoptions.args", "--no-sandbox --disable-dev-shm-usage" );
 
