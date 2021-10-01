@@ -91,7 +91,9 @@ public class LoginBase {
 
         String propTenantUrl = property.getProperty(PROP_TENANT_URL);
 
+        logger.info("--------------------------------");
         logger.info("Use tenant_url: " + propTenantUrl);
+        logger.info("--------------------------------");
 
         tenantUrl = propTenantUrl;
 

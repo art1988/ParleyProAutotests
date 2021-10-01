@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getSelenideProxy;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class LoginToTrackChangesTenant extends LoginBase
+public class LoginToTrackChangesTenant
 {
     private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToTrackChangesTenant.class);
@@ -27,7 +27,9 @@ public class LoginToTrackChangesTenant extends LoginBase
     @Test(priority = 1)
     public void setup()
     {
-        if( isPROD )
+        LoginBase loginBase = new LoginBase();
+
+        if( LoginBase.isProd() )
         {
             logger.info("This is PROD -> Disabling proxy for TrackChangesTenant on PROD...");
 
@@ -62,7 +64,7 @@ public class LoginToTrackChangesTenant extends LoginBase
         {
             try
             {
-                open( getTrackChangesUrl() );
+                open( loginBase.getTrackChangesUrl() );
                 break;
             }
             catch(WebDriverException e)
