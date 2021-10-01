@@ -23,6 +23,7 @@ public class LoginBase {
     protected java.util.Properties property;
 
     public LoginBase() {
+        logger.info("Initializing LoginBase...");
         init();
     }
 

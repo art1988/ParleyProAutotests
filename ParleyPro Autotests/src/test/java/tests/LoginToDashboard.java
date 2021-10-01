@@ -16,7 +16,7 @@ import utils.Screenshoter;
 import static com.codeborne.selenide.Selenide.open;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class LoginToDashboard extends LoginBase
+public class LoginToDashboard
 {
     private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToDashboard.class);
@@ -37,12 +37,14 @@ public class LoginToDashboard extends LoginBase
         Configuration.downloadsFolder = Const.DOWNLOAD_DIR.getAbsolutePath();
         Configuration.reportsFolder   = Const.SCREENSHOTS_DIR.getAbsolutePath();
 
+        LoginBase loginBase = new LoginBase();
+
         int retryCount = 0;
         while(true)
         {
             try
             {
-                open( getTenantUrl() );
+                open( loginBase.getTenantUrl() );
                 break;
             }
             catch(WebDriverException e)
