@@ -37,9 +37,9 @@ jobs:
      
 
       - run:
-          name: Run Classic suite
+          name: Run Regression suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
 
       
 
