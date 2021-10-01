@@ -83,7 +83,7 @@ public class DocumentComparePreview
         logger.info("UPLOAD button was clicked");
 
         $(".modal-content").waitUntil(Condition.disappear, 60_000 * 5);
-        $(".spinner").waitUntil(Condition.disappear, 60_000 * 5);
+        try { Thread.sleep(2_000); } catch (InterruptedException e) { e.printStackTrace(); }
 
         if( isClassic )
         {
