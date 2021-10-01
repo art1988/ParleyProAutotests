@@ -70,8 +70,9 @@ public class CreateContractAndUploadFirstDoc
         new SendInvitation(contractName).clickStart();
         $(".notification-stack").waitUntil(Condition.appear, 20_000).shouldHave(Condition.text("is now in negotiation"));
 
-        // wait until color of icon become purple in contract header => after that validate others
+        // wait until color of discussion's icons become purple
         $(".contract-header__status .discussion-indicator").waitUntil(Condition.cssValue("color", "rgba(127, 111, 207, 1)"), 20_000);
+        $$(".document__body .discussion-indicator").first().waitUntil(Condition.cssValue("color", "rgba(127, 111, 207, 1)"), 20_000);
 
         logger.info("Making sure that all discussions become external ...");
         Assert.assertEquals(openedContract.getAmountOfContractDiscussion(), "4", "Amount of opened discussions is wrong !!!");
