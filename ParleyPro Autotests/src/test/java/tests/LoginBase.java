@@ -100,12 +100,26 @@ public class LoginBase {
         return tenantUrl;
     }
 
-    public String getPopoversTenantUrl() {
-        return property.getProperty(PROP_POPOVERS_TENANT_URL);
+    public String getPopoversTenantUrl()
+    {
+        String popovers_tenant_url = property.getProperty(PROP_POPOVERS_TENANT_URL);
+
+        logger.info("--------------------------------");
+        logger.info("Use popovers_tenant_url: " + popovers_tenant_url);
+        logger.info("--------------------------------");
+
+        return popovers_tenant_url;
     }
 
-    public String getTrackChangesUrl() {
-        return property.getProperty(PROP_TRACK_CHANGES_URL);
+    public String getTrackChangesUrl()
+    {
+        String track_changes_url = property.getProperty(PROP_TRACK_CHANGES_URL);
+
+        logger.info("--------------------------------");
+        logger.info("Use track_changes_url: " + track_changes_url);
+        logger.info("--------------------------------");
+
+        return track_changes_url;
     }
 
     public String getApiKey()
