@@ -80,9 +80,10 @@ public class DocumentComparePreview
     public DiscussionsOfSingleContract clickUpload(boolean isClassic)
     {
         uploadButton.shouldBe(Condition.visible).click();
-
         logger.info("UPLOAD button was clicked");
+
         $(".modal-content").waitUntil(Condition.disappear, 60_000 * 5);
+        $(".spinner").waitUntil(Condition.disappear, 60_000 * 5);
 
         if( isClassic )
         {
