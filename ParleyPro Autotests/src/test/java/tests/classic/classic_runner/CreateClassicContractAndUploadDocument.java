@@ -112,16 +112,16 @@ public class CreateClassicContractAndUploadDocument
                 return;
             }
 
-            try
+            for( int i = 0; i < $$(".notification-stack .notification-stack__item").size(); i++ )
             {
-                for( int i = 0; i < $$(".notification-stack .notification-stack__item").size(); i++ )
+                try
                 {
                     $$(".notification-stack .notification-stack__item").get(i).find(".notification__close").click();
                 }
-            }
-            catch(IndexOutOfBoundsException e)
-            {
-                return;
+                catch(IndexOutOfBoundsException e)
+                {
+                    return;
+                }
             }
         }
     }
