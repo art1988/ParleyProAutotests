@@ -100,6 +100,7 @@ public class ContractInformation
      */
     public void setDueDate(String date)
     {
+        $("#dueDate").clear();
         $("#dueDate").sendKeys(date);
         $("#dueDate").pressEnter();
     }
@@ -478,11 +479,17 @@ public class ContractInformation
         if( fieldType.equals(FieldType.TEXT_AREA) )
         {
             id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('textarea').attr('inputid')");
+
+            // clear text area field by hitting Ctrl+A + DEL
+            $("textarea[inputid=\"" + id + "\"]").sendKeys(Keys.chord(Keys.CONTROL, "a"));
+            $("textarea[inputid=\"" + id + "\"]").sendKeys(Keys.DELETE);
+
             $("textarea[inputid=\"" + id + "\"]").sendKeys(value);
         }
         else if( fieldType.equals(FieldType.TEXT) )
         {
             id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('data-id')");
+            Selenide.executeJavaScript("$('#" + id + "').val('')");
             $("#" + id).sendKeys(value);
         }
         else if( fieldType.equals(FieldType.CHECKBOX) )
@@ -506,6 +513,7 @@ public class ContractInformation
         else if( fieldType.equals(FieldType.NUMERIC) )
         {
             id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('data-id')");
+            Selenide.executeJavaScript("$('#" + id + "').val('')");
             $("#" + id).sendKeys(value);
         }
         else if( fieldType.equals(FieldType.DECIMAL) )
