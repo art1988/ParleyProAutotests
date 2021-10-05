@@ -15,6 +15,9 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
+////////////////////////////////////
+// This test NOT FINISHED YET !!! //
+////////////////////////////////////
 public class AddProperty
 {
     private static Logger logger = Logger.getLogger(AddProperty.class);
@@ -23,10 +26,10 @@ public class AddProperty
     public void setup()
     {
         RequestSpecification requestSpec = new RequestSpecBuilder()
-                     .setBaseUri("https://master.api.parleypro.net/tenants/properties")
+                     .setBaseUri("https://master.api.parleypro.net/tenants/properties") // TODO: add support for rc and prod
                      .setContentType(ContentType.JSON)
                      .setAccept(ContentType.JSON)
-                     .addHeader("x-api-key", Const.QA_TENANT_API_KEY)
+                     .addHeader("x-api-key", Const.QA_TENANT_API_KEY) // TODO: same for api key
                      .build();
 
         RestAssured.requestSpecification = requestSpec;
