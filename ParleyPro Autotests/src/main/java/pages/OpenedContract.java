@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import forms.*;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.subelements.CKEditorActive;
@@ -438,6 +439,27 @@ public class OpenedContract
     public String getContractName()
     {
         return contractName.getText();
+    }
+
+    /**
+     * Click by 'Rename contract' button, set new name of contract and click blue button to accept.
+     */
+    public void renameContract(String newNameOfContract)
+    {
+        contractName.hover(); // hover over contract title to activate 'Rename contract' button
+
+        try { Thread.sleep(500); } catch (InterruptedException e) { e.printStackTrace(); }
+
+        $("button[class*='rename__icon']").click();
+
+        // delete previous text
+        $("form[class='rename-form'] textarea").sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        $("form[class='rename-form'] textarea").sendKeys(Keys.DELETE);
+
+        $("form[class='rename-form'] textarea").sendKeys(newNameOfContract);
+
+        $(".rename-form__buttons button[type='submit']").click(); // click blue button to accept
+        $(".spinner").waitUntil(Condition.disappear, 20_000); // wait until spinner will disappear
     }
 
     /**
