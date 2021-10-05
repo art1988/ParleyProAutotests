@@ -440,6 +440,8 @@ public class ContractInformation
 
         tagsField.pressEnter();
         Thread.sleep(500); // the same
+
+        logger.info("Tag " + tag + " was added...");
     }
 
     /**

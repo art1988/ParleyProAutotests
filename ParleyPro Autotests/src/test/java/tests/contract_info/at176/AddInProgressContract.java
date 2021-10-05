@@ -146,7 +146,10 @@ public class AddInProgressContract
         $("#onlyselectfld").sendKeys(Keys.BACK_SPACE); // clean prev value of Select field
         contractInformation.setValueForCustomField("OnlySelectFld", FieldType.SELECT, "S2");
 
+        logger.info("Updating Text field...");
         contractInformation.setValueForCustomField("TextFld", FieldType.TEXT, " ");
+
+        logger.info("Updating Text Area field...");
         contractInformation.setValueForCustomField("TextAreaFld", FieldType.TEXT_AREA, "TEST dolores pariatur quas voluptas aut ut. Corporis sed voluptatem aliquid officia pariatur id pariatur nostrum. Omnis nobis qui temporibus voluptatum consequatur voluptas illum molestias.\n" +
                 "\n" +
                 "Ab pariatur corrupti dolores ipsa provident. Dicta eum nobis porro ab et error quis voluptas. Ea dignissimos nulla eos corporis maiores cum unde quos. Aliquid fuga laboriosam tempore. Labore soluta libero est iure quo molestias harum nostrum.");
