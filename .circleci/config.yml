@@ -21,7 +21,8 @@ jobs:
 
       - run:
           name: Generate checksum file
-          command: shasum ../ParleyPro Autotests/pom.xml > checksum.tmp; cat checksum.tmp
+          working_directory: "./ParleyPro Autotests"
+          command: shasum pom.xml > checksum.tmp; cat checksum.tmp
 
       - run:
           name: Define Environment Variable at Runtime
