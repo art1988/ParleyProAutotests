@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Classic negotiation mode suite" configfailurepolicy="continue">
+<suite name="Classic negotiation mode suite" configfailurepolicy="continue"><!--
     <test name="AT-40: Upload new version with redlines for my team documents" preserve-order="true">
         <parameter name="contractName" value="AT40 Classic contract"/>
         <classes>
@@ -212,8 +212,7 @@
         </classes>
     </test>
 
-    <test name="Client doc #11: AT-112 - Classic: 500 error at new version upload (Learnship documents)"
-          preserve-order="true">
+    <test name="Client doc #11: AT-112 - Classic: 500 error at new version upload (Learnship documents)">
         <parameter name="contractName" value="Classic contract - client docs"/>
         <parameter name="documentName" value="IOC_Framework_Agreement-Learnship.docx"/>
         <parameter name="cpDocumentName" value="2020-07-17_KV-00168_IOC_Framework Agreement_v5_IOC.docx"/>
@@ -229,8 +228,26 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test> -->
 
+    <test name="Client doc #12 [APLL]: AT-181 - APLL: Could not upload document">
+        <parameter name="contractName" value="Classic contract - client docs"/>
+        <parameter name="documentName" value="Kellogg Company_Warehouse Services Agreement Master_short.docx"/>
+        <parameter name="cpDocumentName" value="Kellogg Company_Warehouse Services Agreement Master_short.docx"/>
+        <parameter name="documentHasRevisions" value="true"/>
+        <parameter name="numberOfDiscussions" value="80"/>
+        <parameter name="textOnFirstPage" value="KELLOGG NORTH AMERICA"/>
+        <parameter name="textOnLastPage" value="SCHEDULE"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
+            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
+            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+<!--
     <test name="AT-89: Classic - paragraphs cloning" preserve-order="true">
         <parameter name="contractName" value="AT-89: paragraphs cloning"/>
         <classes>
@@ -325,5 +342,5 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
