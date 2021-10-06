@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Load docker image from file
           working_directory: /tmp/docker-cache
-          command: docker load < parley-qa.tar
+          command: test -e parley-qa.tar && docker load < parley-qa.tar || echo "parley-qa.tar doesn't exists"
 
       - run:
           name: Generate checksum file
