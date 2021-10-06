@@ -56,7 +56,7 @@ jobs:
 
       - run:
           name: show path
-          command: cd ~; ls -la
+          command: cd ~; ls -la ~/.m2
 
       - save_cache:
           key: m2z-{{ checksum "checksum.tmp" }}
