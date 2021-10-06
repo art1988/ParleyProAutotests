@@ -26,7 +26,7 @@ jobs:
           
       - restore_cache:
           working_directory: "./ParleyPro Autotests"
-          key: m2z-{{ checksum "checksum.tmp" }}
+          key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}
 
       - run:
           name: Define Environment Variable at Runtime
@@ -56,8 +56,7 @@ jobs:
           command: cd ~/project; ls -la
 
       - save_cache:
-          working_directory: "./ParleyPro Autotests"
-          key: m2z-{{ checksum "checksum.tmp" }}
+          key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}
           paths:
             - "~/.m2" 
 
