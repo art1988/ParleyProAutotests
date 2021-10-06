@@ -78,7 +78,7 @@ jobs:
       - run:
           name: Save docker image to cache
           working_directory: /tmp/docker-cache
-          command: docker save -o parley-qa.tar
+          command: docker save -o parley-qa.tar parley-qa
           
       - persist_to_workspace:
           root: /tmp/docker-cache
