@@ -240,10 +240,7 @@
         <parameter name="textOnLastPage" value="SCHEDULE"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.classic.classic_runner.CreateClassicContractAndUploadDocument"/>
-            <class name="tests.classic.classic_runner.UploadNewVersionFromCP"/>
-            <class name="tests.classic.classic_runner.CheckContentAfterUploading"/>
-            <class name="tests.DeleteContractFromInProgress"/>
+
             <class name="tests.Logout"/>
         </classes>
     </test>

@@ -51,8 +51,11 @@ jobs:
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
 
+      - run:
+          name: show path
+          command: cd ~; ls -la
+
       - save_cache:
-          working_directory: "./ParleyPro Autotests"
           key: m2z-{{ checksum "checksum.tmp" }}
           paths:
             - "~/.m2"
