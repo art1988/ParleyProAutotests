@@ -22,7 +22,10 @@ jobs:
       - run:
           name: Generate checksum file
           working_directory: "./ParleyPro Autotests"
-          command: shasum pom.xml > checksum.tmp; cat checksum.tmp
+          command: shasum pom.xml > checksum.tmp
+          
+      - restore_cache:
+          key: m2z-{{ checksum "checksum.tmp" }}
 
       - run:
           name: Define Environment Variable at Runtime
@@ -47,7 +50,10 @@ jobs:
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
 
-      
+      - save_cache:
+          key: m2z-{{ checksum "checksum.tmp" }}
+          paths:
+            - "~/.m2"
 
       - run:
           name: Allure report generation
