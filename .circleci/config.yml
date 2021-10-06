@@ -19,17 +19,6 @@ jobs:
     steps:
       - checkout
 
-      - setup_remote_docker:
-         docker_layer_caching: true
-         
-      - attach_workspace:
-          at: /tmp/docker-cache
-          
-      - run:
-          name: Load docker image from file
-          working_directory: /tmp/docker-cache
-          command: test -e parley-qa.tar && docker load < parley-qa.tar || echo "parley-qa.tar doesn't exists"
-
       - run:
           name: Generate checksum file
           working_directory: "./ParleyPro Autotests"
@@ -64,26 +53,13 @@ jobs:
 
       - run:
           name: show path
-          command: cd ~; ls -la ~/.m2
+          command: cd ~; ls -la ./ParleyPro Autotests/
 
       - save_cache:
+          working_directory: "./ParleyPro Autotests"
           key: m2z-{{ checksum "checksum.tmp" }}
           paths:
-            - "~/.m2"
-            
-      - run:
-          name: Create docker cache directory
-          command: mkdir -p /tmp/docker-cache
-
-      - run:
-          name: Save docker image to cache
-          working_directory: /tmp/docker-cache
-          command: docker save -o parley-qa.tar parley-qa
-          
-      - persist_to_workspace:
-          root: /tmp/docker-cache
-          paths:
-            - parley-qa.tar    
+            - "~/.m2" 
 
       - run:
           name: Allure report generation
