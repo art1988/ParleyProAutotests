@@ -41,10 +41,12 @@ public class UploadNewVersionFromCP
                             docNameWithoutExtension,
                             "Classic contract - client docs");
 
+            Thread.sleep(1_000);
+
             logger.info("Waiting until spinner will disappear [up to 5 minutes]...");
-            $(".spinner").waitUntil(Condition.disappear, 60_000 * 5);
+            $(".spinner-backdrop .spinner").waitUntil(Condition.disappear, 60_000 * 5);
         }
-        catch (ElementShould elementShouldException)
+        catch (ElementShould | InterruptedException elementShouldException)
         {
             // handle of 500 http code case like in PAR-14783
             logger.error("Exception happened: " + elementShouldException.getMessage());
