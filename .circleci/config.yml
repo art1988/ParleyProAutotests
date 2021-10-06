@@ -53,7 +53,7 @@ jobs:
 
       - run:
           name: show path
-          command: cd ~; ls -la ./"ParleyPro Autotests"
+          command: cd ~; ls -la
 
       - save_cache:
           working_directory: "./ParleyPro Autotests"
