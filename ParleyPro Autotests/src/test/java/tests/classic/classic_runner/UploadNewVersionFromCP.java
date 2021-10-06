@@ -1,5 +1,6 @@
 package tests.classic.classic_runner;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.ex.ElementShould;
 import constants.Const;
@@ -14,6 +15,8 @@ import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 
 import java.io.File;
+
+import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class UploadNewVersionFromCP
@@ -37,6 +40,9 @@ public class UploadNewVersionFromCP
                     clickUploadCounterpartyDocument(new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + cpDocumentName),
                             docNameWithoutExtension,
                             "Classic contract - client docs");
+
+            logger.info("Waiting until spinner will disappear [up to 5 minutes]...");
+            $(".spinner").waitUntil(Condition.disappear, 60_000 * 5);
         }
         catch (ElementShould elementShouldException)
         {

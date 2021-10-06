@@ -63,8 +63,12 @@ public class CreateClassicContractAndUploadDocument
             detectedChangesForm.setCounterpartyNegotiatorEmail("arthur.khasanov+cpat@parleypro.com");
             detectedChangesForm.clickOk();
 
+            logger.info("Waiting until spinner will disappear [up to 5 minutes]...");
             $(".spinner").waitUntil(Condition.disappear, 60_000 * 5);
             $(".document__body .spinner").waitUntil(Condition.disappear, 60_000 * 5);
+
+            logger.info("Waiting until status is in NEGOTIATE...");
+            $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("NEGOTIATE\n(1)", "NEGOTIATE"));
         }
         else // else move it to Negotiate status
         {
