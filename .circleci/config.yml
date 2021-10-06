@@ -23,10 +23,7 @@ jobs:
           name: Generate checksum file
           working_directory: "./ParleyPro Autotests"
           command: shasum pom.xml > checksum.tmp
-          
-      - restore_cache:
-          working_directory: "./ParleyPro Autotests"
-          key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}
+
 
       - run:
           name: Define Environment Variable at Runtime
