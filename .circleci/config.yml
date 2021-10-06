@@ -25,6 +25,7 @@ jobs:
           command: shasum pom.xml > checksum.tmp
           
       - restore_cache:
+          working_directory: "./ParleyPro Autotests"
           key: m2z-{{ checksum "checksum.tmp" }}
 
       - run:
@@ -51,6 +52,7 @@ jobs:
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
 
       - save_cache:
+          working_directory: "./ParleyPro Autotests"
           key: m2z-{{ checksum "checksum.tmp" }}
           paths:
             - "~/.m2"
