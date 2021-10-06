@@ -63,8 +63,8 @@ public class CreateClassicContractAndUploadDocument
             detectedChangesForm.setCounterpartyNegotiatorEmail("arthur.khasanov+cpat@parleypro.com");
             detectedChangesForm.clickOk();
 
-            $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
-            $(".document__body .spinner").waitUntil(Condition.disappear, 60_000 * 2);
+            $(".spinner").waitUntil(Condition.disappear, 60_000 * 5);
+            $(".document__body .spinner").waitUntil(Condition.disappear, 60_000 * 5);
         }
         else // else move it to Negotiate status
         {
