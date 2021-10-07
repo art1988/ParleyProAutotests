@@ -543,22 +543,22 @@ public class ContractInformation
 
     public void clickCancel()
     {
-        cancelButton.waitUntil(Condition.enabled, 15_000).click();
+        cancelButton.waitUntil(Condition.enabled, 30_000).click();
 
         logger.info("CANCEL button was clicked");
 
         // wait until Contract information form disappear
-        $(".modal-content").waitUntil(Condition.disappear, 17_000);
+        $(".modal-content").waitUntil(Condition.disappear, 60_000);
     }
 
     public void clickSave()
     {
         // wait until SAVE button is enabled
-        saveButton.waitUntil(Condition.enabled, 15_000).click();
+        saveButton.waitUntil(Condition.enabled, 30_000).click();
 
         logger.info("SAVE button was clicked");
 
         // wait until Contract information form disappear
-        $(".modal-content").waitUntil(Condition.disappear, 17_000);
+        $(".modal-content").waitUntil(Condition.disappear, 60_000);
     }
 }
