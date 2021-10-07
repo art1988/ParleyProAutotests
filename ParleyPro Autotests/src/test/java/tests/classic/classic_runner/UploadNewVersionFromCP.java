@@ -41,7 +41,7 @@ public class UploadNewVersionFromCP
                             docNameWithoutExtension,
                             "Classic contract - client docs");
 
-            Thread.sleep(1_000);
+            Thread.sleep(3_000);
 
             logger.info("Waiting until spinner will disappear [up to 5 minutes]...");
             $(".spinner-backdrop .spinner").waitUntil(Condition.disappear, 60_000 * 5);
