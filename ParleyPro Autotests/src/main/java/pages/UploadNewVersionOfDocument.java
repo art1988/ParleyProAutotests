@@ -60,7 +60,7 @@ public class UploadNewVersionOfDocument
             logger.error("InterruptedException", e);
         }
 
-        logger.info("Uploading Counterparty document: " + documentName);
+        logger.info("Uploading Counterparty document: " + fileToUpload.toPath().getFileName());
 
         return new DocumentComparePreview(documentName, contractName);
     }
