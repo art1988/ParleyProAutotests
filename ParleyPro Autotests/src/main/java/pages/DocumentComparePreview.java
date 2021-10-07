@@ -30,7 +30,7 @@ public class DocumentComparePreview
         logger.info("Waiting until spinner will disappear [up to 2 minutes]...");
         $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
 
-        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("\"" + documentName + "\" document compare preview"));
+        title.waitUntil(Condition.visible, 60_000 * 2).shouldHave(Condition.exactText("\"" + documentName + "\" document compare preview"));
 
         this.contractName = contractName;
     }
