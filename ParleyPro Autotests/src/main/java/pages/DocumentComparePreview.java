@@ -25,8 +25,6 @@ public class DocumentComparePreview
      */
     public DocumentComparePreview(String documentName, String contractName)
     {
-        try { Thread.sleep(2_000); } catch (InterruptedException e) { e.printStackTrace(); }
-
         logger.info("Waiting until spinner will disappear [up to 2 minutes]...");
         $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
 

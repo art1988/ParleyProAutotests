@@ -53,7 +53,7 @@ public class UploadNewVersionOfDocument
             SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
             uploadCounterpartyDocumentsButton.shouldBe(Condition.visible).shouldBe(Condition.enabled).uploadFile(fileToUpload);
-            Thread.sleep(2_000);
+            Thread.sleep(4_000);
         }
         catch (InterruptedException e)
         {

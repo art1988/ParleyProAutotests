@@ -13,6 +13,7 @@ import pages.DiscussionsOfSingleContract;
 import pages.DocumentComparePreview;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import java.io.File;
 
@@ -51,8 +52,11 @@ public class UploadNewVersionFromCP
             logger.error("Looks like that NPE happened (500 http code) and it is unable to Upload document !!!");
             softAssert.fail("Looks like that NPE (500 http code) happened and it is unable to Upload document !!!", elementShouldException);
 
+            logger.info("Making screenshot before refresh...");
+            Screenshoter.makeScreenshot();
+
             logger.info("Force to refresh page...");
-           // Selenide.refresh();
+            Selenide.refresh();
 
             softAssert.assertAll();
             return;
