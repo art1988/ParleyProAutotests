@@ -52,7 +52,7 @@ public class UploadNewVersionFromCP
             softAssert.fail("Looks like that NPE (500 http code) happened and it is unable to Upload document !!!", elementShouldException);
 
             logger.info("Force to refresh page...");
-            Selenide.refresh();
+           // Selenide.refresh();
 
             softAssert.assertAll();
             return;
