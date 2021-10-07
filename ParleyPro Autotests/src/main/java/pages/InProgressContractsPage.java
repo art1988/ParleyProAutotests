@@ -108,8 +108,8 @@ public class InProgressContractsPage
 
         logger.info("Contract '" + contractName + "' was selected");
 
-        $(".spinner").waitUntil(Condition.disappear, 60_000);
-        $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
+        $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
+        $(".document__body .spinner").waitUntil(Condition.disappear, 60_000 * 2);
     }
 
     public void search(String searchString)
