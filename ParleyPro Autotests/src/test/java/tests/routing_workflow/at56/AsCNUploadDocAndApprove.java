@@ -49,14 +49,14 @@ public class AsCNUploadDocAndApprove
         // move to Approval
         openedContract.switchDocumentToPreNegotiateApproval("AT-14").clickStartApproval();
 
-        $$(".lifecycle__item.active").first().waitUntil(Condition.exactText("APPROVAL\n(1)"), 20_000);
-        $$(".lifecycle__item.active").last().waitUntil(Condition.exactText("APPROVAL"), 20_000);
-        $("#APPROVE_DOCUMENT").waitUntil(Condition.visible, 20_000);
+        $$(".lifecycle__item.active").first().waitUntil(Condition.exactText("APPROVAL\n(1)"), 60_000);
+        $$(".lifecycle__item.active").last().waitUntil(Condition.exactText("APPROVAL"), 60_000);
+        $("#APPROVE_DOCUMENT").waitUntil(Condition.visible, 60_000);
 
         openedContract.clickApproveButton("AT-14").clickApproveButton();
-        $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.exactText("Document AT-14 has been approved"));
+        $(".notification-stack").waitUntil(Condition.appear, 60_000).shouldHave(Condition.exactText("Document AT-14 has been approved"));
 
-        $(".user-icon-checked").waitUntil(Condition.visible, 20_000);
+        $(".user-icon-checked").waitUntil(Condition.visible, 60_000);
         $$(".user-icon-checked").shouldHave(CollectionCondition.size(1)).get(0).parent().shouldHave(Condition.exactText("AL"));
 
         Screenshoter.makeScreenshot();
