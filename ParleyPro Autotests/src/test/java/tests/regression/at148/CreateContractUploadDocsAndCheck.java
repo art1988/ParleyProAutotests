@@ -73,7 +73,7 @@ public class CreateContractUploadDocsAndCheck
         logger.info("Assert that amount of discussions is still 5...");
         Assert.assertEquals(openedContract.getAmountOfContractDiscussion(), "5", "Total amount of discussions is wrong !!! Should be 5 !");
 
-        $(".document__body .discussion-indicator").waitUntil(Condition.cssValue("color", "rgba(127, 111, 207, 1)"), 20_000);
+        $$(".document__body .discussion-indicator").first().waitUntil(Condition.cssValue("color", "rgba(127, 111, 207, 1)"), 60_000);
         $$(".document__body .discussion-indicator.negotiating").shouldHave(CollectionCondition.size(5));
 
         Screenshoter.makeScreenshot();
