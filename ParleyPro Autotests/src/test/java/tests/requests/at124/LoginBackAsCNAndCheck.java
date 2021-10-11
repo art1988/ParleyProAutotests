@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -43,7 +44,10 @@ public class LoginBackAsCNAndCheck
         dashboardPage.getSideBar().clickInProgressContracts(false).selectContract("Contract request");
 
         new OpenedContract();
-        $(".contract-create__form .spinner").waitUntil(Condition.appear, 10_000);
+        try
+        {
+            $(".contract-create__form .spinner").waitUntil(Condition.appear, 10_000);
+        } catch( NoSuchElementException e ) { } // ignore absence of spinner in case if it wasn't shown here
         $(".contract-create__form .spinner").waitUntil(Condition.disappear, 25_000);
 
         logger.info("Making sure that 2 word documents become docs in contract and 1 jpeg img become attachment...");
