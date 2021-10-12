@@ -37,13 +37,10 @@ public class UploadNewVersionFromCP
         try
         {
             comparePreview = openedContract.
-                    clickUploadNewVersionButton(documentName.substring(0, documentName.indexOf("."))).
+                    clickUploadNewVersionButton(docNameWithoutExtension).
                     clickUploadCounterpartyDocument(new File(Const.CLIENT_DOCS_DIR.getAbsolutePath() + "/" + cpDocumentName),
                             docNameWithoutExtension,
                             "Classic contract - client docs");
-
-            logger.info("Waiting until spinner will disappear [up to 5 minutes]...");
-            $(".spinner-backdrop .spinner").waitUntil(Condition.disappear, 60_000 * 5);
         }
         catch (ElementShould elementShouldException)
         {
