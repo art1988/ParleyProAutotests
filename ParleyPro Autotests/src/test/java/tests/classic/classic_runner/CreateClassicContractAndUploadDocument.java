@@ -104,7 +104,7 @@ public class CreateClassicContractAndUploadDocument
             Screenshoter.makeScreenshot();
         }
     }
-
+/*
     @Test(priority = 2)
     public void closeNotificationsPopups() throws InterruptedException
     {
@@ -129,5 +129,5 @@ public class CreateClassicContractAndUploadDocument
                 }
             }
         }
-    }
+    } */
 }
