@@ -51,7 +51,7 @@ public class CheckContracts
         // 1 end
 
         logger.info("Assert the second row of table...");
-        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Normal contract\nEugene's Counterparty Organization Parley Pro\ndraft\nNov 29, 2022"));
+        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Normal contract\nEugene's Counterparty Organization Parley Pro\ndraft\nDec 21, 2020 10:58 AM\nNov 29, 2022"));
 
         // 3 start
         logger.info("Assert the third row of table...");
