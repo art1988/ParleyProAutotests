@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Classic negotiation mode suite" configfailurepolicy="continue">
+<suite name="Classic negotiation mode suite" configfailurepolicy="continue"><!--
     <test name="AT-40: Upload new version with redlines for my team documents" preserve-order="true">
         <parameter name="contractName" value="AT40 Classic contract"/>
         <classes>
@@ -11,7 +11,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="Client doc #1" preserve-order="true">
         <parameter name="contractName" value="Classic contract - client docs"/>
@@ -247,7 +247,7 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-
+<!--
     <test name="AT-89: Classic - paragraphs cloning" preserve-order="true">
         <parameter name="contractName" value="AT-89: paragraphs cloning"/>
         <classes>
@@ -342,5 +342,5 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
