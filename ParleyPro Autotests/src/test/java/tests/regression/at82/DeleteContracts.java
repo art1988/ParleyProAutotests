@@ -18,7 +18,7 @@ public class DeleteContracts
     public void deleteContracts()
     {
         new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("3Q");
-        new OpenedContract().clickContractActionsMenu().clickDeleteContract().clickDelete();
+        new OpenedContract().clickContractActionsMenu().clickDeleteContract(true).clickDelete();
         $(".notification-stack").waitUntil(Condition.appear, 20_000).shouldHave(Condition.text("has been deleted."));
 
         new DashboardPage().getSideBar().clickExecutedContracts(false).selectContract("3Qcategory1");
