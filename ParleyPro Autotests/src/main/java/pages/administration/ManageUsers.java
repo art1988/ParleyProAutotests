@@ -18,8 +18,8 @@ public class ManageUsers
 
     public ManageUsers()
     {
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
-        $(".usermanagement__userlist_header").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("User\nEmailRoleLast loginEnable"));
+        $(".spinner").waitUntil(Condition.disappear, 20_000);
+        $(".usermanagement__userlist_header").waitUntil(Condition.visible, 20_000).shouldHave(Condition.exactText("User\nEmailRoleLast loginEnable"));
     }
 
     public AddNewUser clickAddNewUser()
@@ -75,7 +75,7 @@ public class ManageUsers
             {
                 Selenide.executeJavaScript("$('.usermanagement__userlist_content_row_fullname:contains(\"" + user + "\")').parent().find(\".tumbler\").click()");
                 logger.info("User " + user + " was set as enabled...");
-                $(".spinner").waitUntil(Condition.disappear, 7_000);
+                $(".spinner").waitUntil(Condition.disappear, 20_000);
             }
         }
         else
@@ -84,7 +84,7 @@ public class ManageUsers
             {
                 Selenide.executeJavaScript("$('.usermanagement__userlist_content_row_fullname:contains(\"" + user + "\")').parent().find(\".tumbler\").click()");
                 logger.info("User " + user + " was disabled...");
-                $(".spinner").waitUntil(Condition.disappear, 7_000);
+                $(".spinner").waitUntil(Condition.disappear, 20_000);
             }
             else
             {

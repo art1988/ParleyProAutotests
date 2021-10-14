@@ -193,9 +193,16 @@ public class SharingFunctionality
     @Description("After test clean up of unique user")
     public void removeUniqueUser()
     {
+        logger.info("Force page to refresh...");
+        Selenide.refresh(); // because if email wasn't received Share form is active and prevents clicking by sidebar icon to navigate 'Manage users' tab
+        new OpenedContract();
+
         ManageUsers manageUsers = new DashboardPage().getSideBar().clickAdministration().clickManageUsersTab();
 
         logger.info("Trying to delete unique user...");
+        // if email wasn't received sometimes it won't appear in the user's list => nothing to delete
+        if ( Selenide.executeJavaScript("return $('.usermanagement__userlist_content_row_email:contains(\"" + uniqueEmail + "\")').length === 0") ) return;
+
         manageUsers.clickActionMenuByEmail(uniqueEmail).clickDelete(new User("", "", uniqueEmail, "")).clickDelete();
 
         logger.info("Making sure that it is not in the list anymore...");
