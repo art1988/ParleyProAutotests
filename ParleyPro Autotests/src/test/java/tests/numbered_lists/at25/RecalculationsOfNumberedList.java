@@ -386,12 +386,13 @@ public class RecalculationsOfNumberedList
 
     @Test(priority = 12)
     @Description("This test accepts deleted line and check recalculation")
-    public void acceptDeletedLine()
+    public void acceptDeletedLine() throws InterruptedException
     {
         Selenide.refresh();
         OpenedContract openedContract = new OpenedContract();
 
         $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
+        Thread.sleep(3_000);
         // hover over line that was deleted
         ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L1_Number_Point_2_2");
 

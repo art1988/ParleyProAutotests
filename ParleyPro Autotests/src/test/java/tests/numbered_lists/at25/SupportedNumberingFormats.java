@@ -27,10 +27,8 @@ public class SupportedNumberingFormats
     @Description("This test inserts item before the very first item of lettered list (a. b. etc) and check recalculation")
     public void insertBeforeLetteredList() throws InterruptedException
     {
-        Selenide.refresh();
         OpenedContract openedContract = new OpenedContract();
 
-        $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
         ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Letter_lowercase_a");
 
         String addedItem = "L0_Letter_lowercase_ABOVE_a";
