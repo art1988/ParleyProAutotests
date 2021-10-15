@@ -211,7 +211,7 @@ public class CKEditorActive
      */
     public void clickPost()
     {
-        postButton.waitUntil(Condition.enabled, 6_000).click();
+        postButton.waitUntil(Condition.enabled, 20_000).click();
 
         logger.info("POST button was clicked...");
     }
@@ -224,7 +224,7 @@ public class CKEditorActive
      */
     public StartExternalDiscussion clickPost(String paragraphText, String cpOrganization)
     {
-        postButton.waitUntil(Condition.enabled, 6_000).click();
+        postButton.waitUntil(Condition.enabled, 20_000).click();
 
         logger.info("POST button was clicked...");
 
