@@ -2,17 +2,17 @@ package tests.numbered_lists.at25;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.SelenideElement;
 import constants.AcceptTypes;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
 import pages.subelements.CKEditorActive;
 import pages.tooltips.ParagraphActionsPopup;
-import tests.LoginBase;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -240,14 +240,7 @@ public class SupportedNumberingFormats
     @Description("This test insert item in Level 1 of bullet list and check recalculation")
     public void insertNewBulletAtLevel1() throws InterruptedException
     {
-        Selenide.refresh();
         OpenedContract openedContract = new OpenedContract(true);
-
-        $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
-        Thread.sleep(3_000);
-        // scroll to bottom of page
-        Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,document.body.scrollHeight)");
-        Thread.sleep(2_000);
 
         ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Bullet_2");
 
@@ -370,6 +363,22 @@ public class SupportedNumberingFormats
                     "iv.last_added_roman_lowered,•L0_Bullet_1,•L0_Bullet_2,•L0_Bullet_added_new,oL1_Bullet_newSublevel,•L0_Bullet_3");
 
         Screenshoter.makeScreenshot();
+    }
+
+    /**
+     * This helper method checks every time before each Test, whether tooltip with 5 buttons is visible or not.
+     * If yes - hides it.
+     * Sometimes it is visible, sometimes - not. The root cause is unknown.
+     */
+    @BeforeMethod
+    private void hideTooltip()
+    {
+        SelenideElement tooltip = $(".rc-tooltip-inner");
+
+        if( tooltip.isDisplayed() )
+        {
+            Selenide.executeJavaScript("$('.rc-tooltip-inner').hide()");
+        }
     }
 
     private String getWholeList()
