@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Regression" configfailurepolicy="continue">
+<suite name = "Regression" configfailurepolicy="continue"><!--
     <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
@@ -194,8 +194,19 @@
             <class name="tests.regression.at150.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test> -->
 
+    <test name="AT-182: Frontend crashes when user adds comment to existing post" preserve-order="true">
+        <parameter name="contractName" value="AT-182 CTR"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at182.CreateContractAndUploadDoc"/>
+            <class name="tests.regression.at182.AddPostsAndCheck"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+<!--
     <test name="AT-82: Empty name when contract linked during creation" preserve-order="true">
         <classes>
             <class name="tests.regression.at82.EnableNamingConvention"/>
@@ -225,5 +236,5 @@
             <class name="tests.regression.at141.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test> -->
 </suite>
