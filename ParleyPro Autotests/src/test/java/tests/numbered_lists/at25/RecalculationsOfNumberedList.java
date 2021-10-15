@@ -388,6 +388,7 @@ public class RecalculationsOfNumberedList
     @Description("This test accepts deleted line and check recalculation")
     public void acceptDeletedLine()
     {
+        Selenide.refresh();
         OpenedContract openedContract = new OpenedContract();
 
         // hover over line that was deleted
