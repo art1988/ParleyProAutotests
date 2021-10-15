@@ -41,6 +41,8 @@ public class AddPostsAndCheck
 
         logger.info("Clicking by last post...");
         $(".discussion2__body .discussion2-post .text-reset").click();
+
+        logger.info("Adding comment...");
         String commentToAdd = "COMMENT_ABC";
         new CKEditorActive().setComment(commentToAdd).clickPost();
 
