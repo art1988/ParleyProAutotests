@@ -13,7 +13,7 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-
+<!--
     <test name="Numbered list recalculation with multiple sub-lists" preserve-order="true">
         <parameter name="contractName" value="Contract numbered list with sub-lists"/>
         <classes>
@@ -23,5 +23,5 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
