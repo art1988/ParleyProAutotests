@@ -391,6 +391,7 @@ public class RecalculationsOfNumberedList
         Selenide.refresh();
         OpenedContract openedContract = new OpenedContract();
 
+        $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
         // hover over line that was deleted
         ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L1_Number_Point_2_2");
 

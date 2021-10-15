@@ -30,6 +30,7 @@ public class SupportedNumberingFormats
         Selenide.refresh();
         OpenedContract openedContract = new OpenedContract();
 
+        $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
         ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Letter_lowercase_a");
 
         String addedItem = "L0_Letter_lowercase_ABOVE_a";
