@@ -240,7 +240,14 @@ public class SupportedNumberingFormats
     @Description("This test insert item in Level 1 of bullet list and check recalculation")
     public void insertNewBulletAtLevel1() throws InterruptedException
     {
+        Selenide.refresh();
         OpenedContract openedContract = new OpenedContract(true);
+
+        $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
+        Thread.sleep(3_000);
+        // scroll to bottom of page
+        Selenide.executeJavaScript("document.querySelector('.documents__list').scrollTo(0,document.body.scrollHeight)");
+        Thread.sleep(2_000);
 
         ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L0_Bullet_2");
 
