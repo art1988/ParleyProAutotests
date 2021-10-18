@@ -83,7 +83,7 @@ public class CreateContractUploadDocAndCheckEmail
                             .clickDownloadForCounterparty();
 
         logger.info("Check that discussion become internal...");
-        $(".label.label_theme_pink").waitUntil(Condition.hidden, 35_000);
+        $(".label.label_theme_pink").waitUntil(Condition.hidden, 60_000);
         $$(".discussion-indicator.negotiating").shouldHave(CollectionCondition.size(3));
     }
 
