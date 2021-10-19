@@ -26,9 +26,15 @@ public class UploadDocumentDetectedChanges
                 .shouldHave(Condition.exactText("We detected changes in the document. Parley Pro will create discussions based on these changes."));
     }
 
+    /**
+     * Set Counterparty organization
+     * @param cpOrganization
+     * @throws InterruptedException
+     */
     public void setCounterpartyOrganization(String cpOrganization) throws InterruptedException
     {
         cpOrganizationField.clear();
+        Thread.sleep(500);
         cpOrganizationField.sendKeys(cpOrganization);
         Thread.sleep(500);
         cpOrganizationField.sendKeys(Keys.DOWN);
@@ -37,9 +43,15 @@ public class UploadDocumentDetectedChanges
         Thread.sleep(500);
     }
 
+    /**
+     * Set Counterparty Chief Negotiator
+     * @param cpNegotiatorEmail
+     * @throws InterruptedException
+     */
     public void setCounterpartyNegotiatorEmail(String cpNegotiatorEmail) throws InterruptedException
     {
         cpNegotiatorEmailField.clear();
+        Thread.sleep(500);
         cpNegotiatorEmailField.sendKeys(cpNegotiatorEmail);
         Thread.sleep(500);
         cpNegotiatorEmailField.sendKeys(Keys.DOWN);
