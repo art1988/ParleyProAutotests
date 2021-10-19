@@ -101,6 +101,6 @@ public class EditTemplatePage
 
         logger.info("CANCEL button was clicked");
 
-        $(".modal-content").waitUntil(Condition.disappear, 10_000);
+        $(".modal-content").waitUntil(Condition.disappear, 30_000);
     }
 }
