@@ -19,8 +19,8 @@ public class AcceptPost
 
     public AcceptPost(AcceptTypes acceptType)
     {
-        $(".modal-title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText(acceptType.getTitle()));
-        $(".modal-description").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText(acceptType.getMessage()));
+        $(".modal-title").shouldBe(Condition.visible).shouldHave(Condition.exactText(acceptType.getTitle()));
+        $(".modal-description").shouldBe(Condition.visible).shouldHave(Condition.exactText(acceptType.getMessage()));
     }
 
     public void clickAcceptText()
@@ -28,5 +28,7 @@ public class AcceptPost
         acceptTextButton.click();
 
         logger.info("Accept text button was clicked...");
+
+        $(".modal-content").should(Condition.disappear);
     }
 }
