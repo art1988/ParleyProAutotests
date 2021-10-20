@@ -19,8 +19,8 @@ public class CheckThatT1HasNurixSmartField
     private static Logger logger = Logger.getLogger(CheckThatT1HasNurixSmartField.class);
 
     @Test
-    @Description("Test adds new template and checks that smart field 'Nurix Contract No.' is in the list.")
-    public void addTemplateAndCheck()
+    @Description("Test adds new template and checks that smart field 'Nurix Contract No.' is in the list for T1 tenant.")
+    public void addTemplateAndCheck() throws InterruptedException
     {
         TemplatesPage templatesPage =  new DashboardPage().getSideBar().clickTemplates(true);
         templatesPage.clickNewTemplate().clickUploadTemplatesButton( Const.TEMPLATE_AT77 );
@@ -31,6 +31,7 @@ public class CheckThatT1HasNurixSmartField
 
         logger.info("Expand smart field dropdown...");
         $("#editor-toolbar a[title='Add a smart field']").shouldBe(Condition.visible).click();
+        Thread.sleep(1_000);
 
         logger.info("Assert that smart field 'Nurix Contract No.' is in the list...");
         Assert.assertTrue(Selenide.executeJavaScript("return $($('.cke_combopanel > iframe')[0].contentDocument).find(\".cke_panel_list a\").text().includes(\"Nurix\")"),
