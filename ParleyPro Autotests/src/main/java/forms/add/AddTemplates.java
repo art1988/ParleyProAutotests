@@ -15,8 +15,8 @@ public class AddTemplates
 {
     public AddTemplates()
     {
-        $(".templates-upload__head").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Add Templates"));
-        $(".upload__title").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Start uploading your templates"));
+        $(".templates-upload__head").waitUntil(Condition.visible, 30_000).shouldHave(Condition.exactText("Add Templates"));
+        $(".upload__title").waitUntil(Condition.visible, 30_000).shouldHave(Condition.exactText("Start uploading your templates"));
         $(".button.btn-common.btn-internal.undefined.btn.btn-default").shouldBe(Condition.visible).shouldBe(Condition.enabled);
     }
 

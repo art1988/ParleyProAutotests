@@ -20,10 +20,10 @@ public class AddRelatedField
 
     public AddRelatedField()
     {
-        $(".modal-body-title").waitUntil(Condition.visible, 7_000)
+        $(".modal-body-title").waitUntil(Condition.visible, 30_000)
                 .shouldHave(Condition.exactText("Related field"));
 
-        $(".modal-body-description").waitUntil(Condition.visible, 7_000)
+        $(".modal-body-description").waitUntil(Condition.visible, 30_000)
                 .shouldHave(or("message on popup", Condition.exactText("Select field value and relevant field you wish to relate it to"),
                                                          Condition.exactText("Select the category and related field."),
                                                          Condition.exactText("Select the type and related field.")));
@@ -76,6 +76,6 @@ public class AddRelatedField
 
         logger.info("MAKE RELATED button was clicked");
 
-        $(".modal-content").waitUntil(Condition.disappear, 7_000);
+        $(".modal-content").waitUntil(Condition.disappear, 30_000);
     }
 }

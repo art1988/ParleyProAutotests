@@ -19,8 +19,8 @@ public class AddPredefinedFields
 
     public AddPredefinedFields()
     {
-        $(".modal-body-title").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Add predefined fields"));
-        $(".modal-body-description").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Select the fields to be added"));
+        $(".modal-body-title").waitUntil(Condition.visible, 30_000).shouldHave(Condition.exactText("Add predefined fields"));
+        $(".modal-body-description").waitUntil(Condition.visible, 30_000).shouldHave(Condition.exactText("Select the fields to be added"));
     }
 
     /**

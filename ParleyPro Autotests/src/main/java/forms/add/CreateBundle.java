@@ -26,7 +26,7 @@ public class CreateBundle
 
     public CreateBundle()
     {
-        $(".modal-body-title").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Create bundle"));
+        $(".modal-body-title").waitUntil(Condition.visible, 30_000).shouldHave(Condition.exactText("Create bundle"));
 
         bundleNameField.shouldBe(Condition.visible);
         selectTemplatesDropdown.shouldBe(Condition.visible);
@@ -39,8 +39,8 @@ public class CreateBundle
      */
     public CreateBundle(boolean inEditMode, String bundleName)
     {
-        $(".modal-body-title").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText(bundleName));
-        $(".modal-body .tab-menu").waitUntil(Condition.visible, 7_000);
+        $(".modal-body-title").waitUntil(Condition.visible, 30_000).shouldHave(Condition.exactText(bundleName));
+        $(".modal-body .tab-menu").waitUntil(Condition.visible, 30_000);
 
         bundleNameField.shouldBe(Condition.visible);
         selectTemplatesDropdown.shouldBe(Condition.visible);
@@ -58,7 +58,7 @@ public class CreateBundle
     public void selectTemplates(String[] templates)
     {
         selectTemplatesDropdown.click(); // expand dropdown
-        $(".modal-body .dropdown-menu").waitUntil(Condition.visible, 7_000);
+        $(".modal-body .dropdown-menu").waitUntil(Condition.visible, 30_000);
 
         outer:
         for( int n = 0; n < $$(".checkbox__label").size(); n++ )
@@ -113,7 +113,7 @@ public class CreateBundle
 
     public CreateBundle clickBack()
     {
-        backArrow.waitUntil(Condition.visible, 7_000).click();
+        backArrow.waitUntil(Condition.visible, 30_000).click();
 
         logger.info("< BACK button was clicked.");
 
