@@ -144,7 +144,7 @@ public class RecalculationChecks
 
     @Test(priority = 6)
     @Description("This test accepts all changes and check recalculations")
-    public void acceptAllChangesAndCheckRecalculations()
+    public void acceptAllChangesAndCheckRecalculations() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();
 
@@ -167,6 +167,7 @@ public class RecalculationChecks
         $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
+        Thread.sleep(3_000);
         Assert.assertEquals(getWholeList(), "1." + itemsToAdd[0] + ",2.L0_Num_Point_1,3.L0_Num_Point_2,4." + itemsToAdd[1] + "," +
                 "A.L1_Letter_capital_A,\uF0A7L2_Bullet_1,\uF0A7L2_Bullet_2,\uF0A7" + itemsToAdd[3] + ",\uF0A7L2_Bullet_3," +
                 "B.L1_Letter_capital_C,C.L1_Letter_capital_D,D." + itemsToAdd[2] + ",5.L0_Num_Point_3,6.L0_Num_Point_4");
