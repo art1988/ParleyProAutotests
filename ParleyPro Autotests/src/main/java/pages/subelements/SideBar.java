@@ -97,6 +97,19 @@ public class SideBar
         return new ExecutedContractsPage(isBlank);
     }
 
+    /**
+     * Use this method to ignore whether previous templates were added on page or not.
+     * @return
+     */
+    public TemplatesPage clickTemplates()
+    {
+        $(sideBarItems.get(TEMPLATES)).click();
+
+        logger.info("Templates button was clicked");
+
+        return new TemplatesPage();
+    }
+
     public TemplatesPage clickTemplates(boolean isBlank)
     {
         $(sideBarItems.get(TEMPLATES)).click();

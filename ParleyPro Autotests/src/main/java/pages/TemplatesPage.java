@@ -51,6 +51,18 @@ public class TemplatesPage
         }
     }
 
+    /**
+     * Constructs page that ignores whether previous templates were added or not.
+     */
+    public TemplatesPage()
+    {
+        // Assert page header
+        $(".page-head__cell.page-head__left").shouldBe(Condition.visible).shouldHave(Condition.exactText("Templates"));
+
+        // Check presence of '+ NEW TEMPLATE' button
+        newTemplateButton.shouldBe(Condition.visible).shouldBe(Condition.enabled);
+    }
+
     public void clickUploadTemplatesButton(File fileToUpload)
     {
         // 1. make <input> visible
