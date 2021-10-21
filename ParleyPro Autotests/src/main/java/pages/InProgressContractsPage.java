@@ -135,6 +135,7 @@ public class InProgressContractsPage
      */
     public void clickByChiefNegotiatorColumn()
     {
+        try { Thread.sleep(2_000); } catch (InterruptedException e) { logger.error("InterruptedException", e); }
         Selenide.executeJavaScript("$('.ui-td:contains(\"Chief Negotiator\")').click()");
 
         logger.info("'Chief Negotiator' column was clicked for sorting...");
