@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Regression" configfailurepolicy="continue"><!--
+<suite name = "Regression" configfailurepolicy="continue">
     <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
@@ -22,7 +22,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 
     <test name="AT-46: 3Q Numbering" preserve-order="true">
         <parameter name="contractName" value="3Q Numbering Contract based on template"/>
@@ -33,7 +33,7 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-<!--
+
     <test name="AT-75: MSW Classic: Wrong numbering after adding new paragraphs" preserve-order="true">
         <parameter name="contractName" value="MSW Classic: Wrong numbering"/>
         <classes>
@@ -84,7 +84,7 @@
             <class name="tests.regression.at95.VisitAdministrationCreateUserAndChangeValues"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 
     <test name="AT-123: Sorting by CN" preserve-order="true">
         <classes>
@@ -95,7 +95,7 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-<!--
+
     <test name="AT-140: Document board: 2 open discussions should NOT be shown to the same paragraph" preserve-order="true">
         <parameter name="contractName" value="CTR AT-140"/>
         <classes>
@@ -121,7 +121,7 @@
             <class name="tests.regression.at142.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
-    </test> -->
+    </test>
 
     <test name="AT-161: Document with DOCX extension (all capital) cannot be expanded" preserve-order="true">
         <parameter name="contractName" value="AT-161 ctr"/>
@@ -135,7 +135,7 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-<!--
+
     <test name="AT-163: Document in Negotiate will not open/Expand" preserve-order="true">
         <parameter name="contractName" value="CTR_AT163"/>
         <classes>
@@ -236,5 +236,5 @@
             <class name="tests.regression.at141.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 </suite>
