@@ -39,9 +39,10 @@ public class AddContractFromTemplateAndCheck
         contractInformation.clickSave();
 
         new AddDocuments().clickSelectTemplateTab().selectTemplate("TemplateDOCXCapital_AT-161");
+        $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
 
-        $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.text("has been successfully uploaded."));
-        $(".notification-stack").waitUntil(Condition.disappear, 55_000);
+        $(".notification-stack").waitUntil(Condition.appear, 60_000).shouldHave(Condition.text("has been successfully uploaded."));
+        $(".notification-stack").waitUntil(Condition.disappear, 75_000);
         openedContract = new OpenedContract();
 
         logger.info("Assert that contract is in expanded state...");

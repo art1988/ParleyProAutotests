@@ -25,7 +25,7 @@ public class AddTemplateAndPublish
 
         templatesPage.clickNewTemplate().clickUploadTemplatesButton(Const.REGRESSION_TEMPLATE_DOCX_AT161);
 
-        $(".notification-stack").waitUntil(Condition.visible, 45_000).shouldHave(Condition.text("Template TemplateDOCXCapital_AT-161 was added."));
+        $(".notification-stack").waitUntil(Condition.visible, 60_000).shouldHave(Condition.text("Template TemplateDOCXCapital_AT-161 was added."));
 
         EditTemplatePage editTemplatePage = templatesPage.selectTemplate("TemplateDOCXCapital_AT-161");
         Assert.assertEquals(editTemplatePage.getTitle(), "TemplateDOCXCapital_AT-161", "Title of opened template is wrong !!!");
