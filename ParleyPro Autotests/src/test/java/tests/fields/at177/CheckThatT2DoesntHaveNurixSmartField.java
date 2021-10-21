@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.EditTemplatePage;
 import pages.TemplatesPage;
+import tests.LoginBase;
 import utils.Cache;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -57,7 +58,10 @@ public class CheckThatT2DoesntHaveNurixSmartField
     {
         new DashboardPage().getSideBar().logout();
 
-        logger.info("Switching to the original tab with T1 tenant...");
-        WebDriverRunner.getWebDriver().switchTo().window(Cache.getInstance().getCachedCurrentTabHandle());
+        if( !LoginBase.isProd() )
+        {
+            logger.info("Switching to the original tab with T1 tenant...");
+            WebDriverRunner.getWebDriver().switchTo().window(Cache.getInstance().getCachedCurrentTabHandle());
+        }
     }
 }
