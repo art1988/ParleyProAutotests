@@ -37,9 +37,9 @@ public class AddNewContractFromTemplateAndCheckError
         new AddDocuments().clickSelectTemplateTab().selectTemplate("Template_silent_error_AT-90");
 
         logger.info("Assert that 'Failed to process the template' error was displayed...");
-        $(".notification-stack").waitUntil(Condition.appear, 15_000).shouldHave(Condition.exactText("Failed to process the template. Please, contact the support."));
+        $(".notification-stack").waitUntil(Condition.appear, 70_000).shouldHave(Condition.exactText("Failed to process the template. Please, contact the support."));
         Assert.assertEquals($(".notification-stack").getText(), "Failed to process the template. Please, contact the support.", "Didn't get 'Failed to process the template' error message !!!");
         Screenshoter.makeScreenshot();
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").waitUntil(Condition.disappear, 75_000);
     }
 }

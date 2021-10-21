@@ -54,7 +54,7 @@ public class AddTemplateAndCreateContract
         contractInformation.clickSave();
 
         new AddDocuments().clickSelectTemplateTab().selectTemplate("Template_AT-164-Manufacturing_Agreement");
-        $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.exactText("Document Template_AT-164-Manufacturing_Agreement has been successfully uploaded."));
+        $(".notification-stack").waitUntil(Condition.appear, 60_000).shouldHave(Condition.exactText("Document Template_AT-164-Manufacturing_Agreement has been successfully uploaded."));
 
         Screenshoter.makeScreenshot();
     }

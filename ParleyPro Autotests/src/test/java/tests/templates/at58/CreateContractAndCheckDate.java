@@ -49,9 +49,9 @@ public class CreateContractAndCheckDate
     {
         OpenedContract openedContract = new AddDocuments().clickSelectTemplateTab().selectTemplate("nurix_date_problem");
 
-        $(".notification-stack").waitUntil(Condition.visible, 7_000)
+        $(".notification-stack").waitUntil(Condition.visible, 60_000)
                 .shouldHave(Condition.exactText("Document nurix_date_problem has been successfully uploaded."));
-        $(".notification-stack").waitUntil(Condition.disappear, 7_000);
+        $(".notification-stack").waitUntil(Condition.disappear, 75_000);
 
         logger.info("Assert that date is equal to: Date: 07/01/2020");
         Assert.assertEquals($(".document-paragraph__content-text").getText().trim(), "Date: 07/01/2020");

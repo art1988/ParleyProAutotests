@@ -43,8 +43,8 @@ public class CreateContractAndSelectTemplate
                           .selectTemplate("downloaded_Modified");
 
         logger.info("Assert that notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Document downloaded_Modified has been successfully uploaded."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").waitUntil(Condition.visible, 60_000).shouldHave(Condition.exactText("Document downloaded_Modified has been successfully uploaded."));
+        $(".notification-stack").waitUntil(Condition.disappear, 75_000);
 
         logger.info("Assert that necessary text is present...");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"“Alternative Base Rate\")').length === 1 && " +

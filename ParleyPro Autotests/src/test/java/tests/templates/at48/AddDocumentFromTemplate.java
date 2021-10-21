@@ -45,8 +45,8 @@ public class AddDocumentFromTemplate
         OpenedContract openedContract = addDocuments.selectTemplate("Template_AT48[ EDITED ]");
 
         logger.info("Assert that notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Document Template_AT48[ EDITED ] has been successfully uploaded."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").waitUntil(Condition.visible, 60_000).shouldHave(Condition.exactText("Document Template_AT48[ EDITED ] has been successfully uploaded."));
+        $(".notification-stack").waitUntil(Condition.disappear, 75_000);
 
         FieldsPanel fieldsPanel = openedContract.getFieldsPanel();
 
