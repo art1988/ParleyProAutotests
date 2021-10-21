@@ -57,9 +57,6 @@ public class CheckThatT2DoesntHaveNurixSmartField
     {
         new DashboardPage().getSideBar().logout();
 
-        logger.info("Closing current tab with T2...");
-        WebDriverRunner.getWebDriver().close();
-
         logger.info("Switching to the original tab with T1 tenant...");
         WebDriverRunner.getWebDriver().switchTo().window(Cache.getInstance().getCachedCurrentTabHandle());
     }
