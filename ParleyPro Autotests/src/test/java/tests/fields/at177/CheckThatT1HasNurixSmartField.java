@@ -25,7 +25,7 @@ public class CheckThatT1HasNurixSmartField
         TemplatesPage templatesPage =  new DashboardPage().getSideBar().clickTemplates(true);
         templatesPage.clickNewTemplate().clickUploadTemplatesButton( Const.TEMPLATE_AT77 );
 
-        $(".notification-stack").waitUntil(Condition.appear, 25_000).shouldHave(Condition.text(" was added."));
+        $(".notification-stack").waitUntil(Condition.appear, 60_000).shouldHave(Condition.text(" was added."));
 
         EditTemplatePage editTemplatePage = templatesPage.selectTemplate("Template_AT-77_dummy");
 

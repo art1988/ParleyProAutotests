@@ -38,7 +38,7 @@ public class AddTemplateCopyLinkAndOpen
         templatesPage.clickNewTemplate()
                      .clickUploadTemplatesButton(Const.TEMPLATE_AT135);
 
-        $(".notification-stack").waitUntil(Condition.appear, 25_000).shouldHave(Condition.exactText("Template AT-135_Template_identical was added."));
+        $(".notification-stack").waitUntil(Condition.appear, 60_000).shouldHave(Condition.exactText("Template AT-135_Template_identical was added."));
         $(".notification-stack .notification__close").click();
 
         EditTemplatePage editTemplatePage = templatesPage.selectTemplate("AT-135_Template_identical");

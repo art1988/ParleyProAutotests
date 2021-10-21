@@ -22,7 +22,7 @@ public class UploadAndPublishTemplate
 
         templatesPage.clickNewTemplate().clickUploadTemplatesButton( Const.TEMPLATE_AT58 );
 
-        $(".notification-stack").waitUntil(Condition.appear, 25_000).shouldHave(Condition.exactText("Template nurix_date_problem was added."));
+        $(".notification-stack").waitUntil(Condition.appear, 60_000).shouldHave(Condition.exactText("Template nurix_date_problem was added."));
         $(".notification-stack .notification__close").click();
 
         EditTemplatePage editTemplatePage = templatesPage.selectTemplate("nurix_date_problem");

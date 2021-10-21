@@ -32,7 +32,7 @@ public class AddTemplateAndCreateContract
         AddTemplates addTemplates = templatesPage.clickNewTemplate();
 
         addTemplates.clickUploadTemplatesButton( Const.TEMPLATE_AT164 );
-        $(".notification-stack").waitUntil(Condition.appear, 25_000).shouldHave(Condition.exactText("Template Template_AT-164-Manufacturing_Agreement was added."));
+        $(".notification-stack").waitUntil(Condition.appear, 60_000).shouldHave(Condition.exactText("Template Template_AT-164-Manufacturing_Agreement was added."));
 
         templatesPage.selectTemplate("Template_AT-164-Manufacturing_Agreement").clickPublishButton();
         $$(".template__status").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("Published"));
