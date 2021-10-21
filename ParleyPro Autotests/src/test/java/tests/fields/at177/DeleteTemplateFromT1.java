@@ -2,11 +2,14 @@ package tests.fields.at177;
 
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Description;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
+import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
 
+@Listeners({ScreenShotOnFailListener.class})
 public class DeleteTemplateFromT1
 {
     @Test
@@ -17,7 +20,5 @@ public class DeleteTemplateFromT1
         new DashboardPage().getSideBar().clickTemplates(false).clickActionMenuTemplate("Template_AT-77_dummy").clickDelete().clickDelete();
 
         $(".notification-stack").waitUntil(Condition.visible, 20_000).shouldHave(Condition.text(" has been deleted."));
-
-        new DashboardPage().getSideBar().logout();
     }
 }

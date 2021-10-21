@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Fields suite" configfailurepolicy="continue">
+<suite name = "Fields suite" configfailurepolicy="continue"><!--
     <test name="AT-115: Gray screen on Fields layout page" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -93,6 +93,20 @@
             <class name="tests.fields.at120.PerformCombinations"/>
             <class name="tests.fields.at120.RemoveFields"/>
             <class name="tests.Logout"/>
+        </classes>
+    </test> -->
+
+    <test name="AT-177: Nurix autosequence numbering name is applied to all tenants" preserve-order="true">
+        <classes>
+            <class name="tests.fields.at177.EnableAutoSequenceLabelPropertyForT1"/>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.fields.at177.CheckThatT1HasNurixSmartField"/>
+            <class name="tests.fields.at177.OpenNewTab"/>
+            <class name="tests.LoginToTrackChangesTenant"/>
+            <class name="tests.fields.at177.CheckThatT2DoesntHaveNurixSmartField"/>
+            <class name="tests.fields.at177.DeleteTemplateFromT1"/>
+            <class name="tests.Logout"/>
+            <class name="tests.fields.at177.DisableAutoSequenceLabelPropertyForT1"/>
         </classes>
     </test>
 </suite>
