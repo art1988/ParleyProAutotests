@@ -15,8 +15,6 @@ import static org.hamcrest.Matchers.*;
 
 public class DisableNamingConvention extends LoginBase
 {
-    private static Logger logger = Logger.getLogger(DisableNamingConvention.class);
-
     @BeforeTest
     public void setup()
     {
