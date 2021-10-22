@@ -38,7 +38,7 @@ public class LoginAsRequesterAndCheck
         DashboardPage dashboardPage = loginPage.clickSignIn();
 
         ContractRequest contractRequest = dashboardPage.getSideBar().clickInProgressContracts(true).clickNewRequestButton();
-        contractRequest.uploadDocuments(new File[]{Const.DOCUMENT_DISCUSSIONS_SAMPLE});
+        contractRequest.uploadCounterpartyDocuments(new File[]{Const.DOCUMENT_DISCUSSIONS_SAMPLE});
         $(".upload-field__file-name").waitUntil(Condition.visible, 10_000).shouldHave(Condition.text("AT-14.docx"));
 
         contractRequest.setValueForDropdown("requestField", "v1");

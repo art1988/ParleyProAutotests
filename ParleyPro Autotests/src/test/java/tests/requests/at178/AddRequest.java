@@ -25,7 +25,7 @@ public class AddRequest
     private static Logger logger = Logger.getLogger(AddRequest.class);
 
     @Test(priority = 1)
-    public void loginAsRequesterAndAddRequest()
+    public void loginAsRequesterAndAddRequest() throws InterruptedException
     {
         logger.info("Login as Requester...");
 
@@ -40,7 +40,7 @@ public class AddRequest
         ContractRequest contractRequest = inProgressContractsPage.clickNewRequestButton();
 
         contractRequest.selectValueForField("REQ1", "Yes");
-        contractRequest.uploadDocuments(new File[]{Const.DOCUMENT_DISCUSSIONS_SAMPLE});
+        contractRequest.uploadCounterpartyDocuments(new File[]{ Const.DOCUMENT_DISCUSSIONS_SAMPLE });
         $(".upload-field__file-name").waitUntil(Condition.visible, 10_000).shouldHave(Condition.text("AT-14.docx"));
         contractRequest.clickSubmitRequest();
 

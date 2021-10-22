@@ -3,9 +3,9 @@ package tests.requests.at124;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.ex.ElementNotFound;
 import constants.Const;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -47,7 +47,7 @@ public class LoginBackAsCNAndCheck
         try
         {
             $(".contract-create__form .spinner").waitUntil(Condition.appear, 10_000);
-        } catch( NoSuchElementException e ) { } // ignore absence of spinner in case if it wasn't shown here
+        } catch( ElementNotFound e ) { } // ignore absence of spinner in case if it wasn't shown here
         $(".contract-create__form .spinner").waitUntil(Condition.disappear, 25_000);
 
         logger.info("Making sure that 2 word documents become docs in contract and 1 jpeg img become attachment...");
@@ -98,11 +98,10 @@ public class LoginBackAsCNAndCheck
         $("#counterpartyChiefNegotiator").sendKeys("arthur.khasanov+autotestcn@parleypro.com");
         $(".button.btn.btn-common.btn-blue.btn.btn-default").click(); // click Save
 
-        logger.info("Checking that status was switched to Negotiate...");
-        $$(".lifecycle__item.active").first().waitUntil(Condition.exactText("NEGOTIATE\n(2)"), 40_000);
-        $$(".lifecycle__item.active").get(1).waitUntil(Condition.exactText("NEGOTIATE"), 40_000);
-        $$(".lifecycle__item.active").last().waitUntil(Condition.exactText("NEGOTIATE"), 40_000);
+        logger.info("Checking that status is still in DRAFT..."); // since both docs were uploaded via my team button
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(3));
+        $(".contract-header__status .lifecycle__item.active").shouldHave(Condition.exactText("DRAFT\n(2)"));
+        $$(".documents__content .lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("DRAFT", "DRAFT"));
 
         logger.info("Making sure that attachment was saved too...");
         $(".supporting-documents__document-name").shouldBe(Condition.visible).shouldHave(Condition.exactText("IMG_JPEG.jpeg"));

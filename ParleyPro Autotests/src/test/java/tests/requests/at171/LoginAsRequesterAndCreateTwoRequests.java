@@ -27,7 +27,7 @@ public class LoginAsRequesterAndCreateTwoRequests
 
     @Test(priority = 1)
     @Description("This test creates two requests.")
-    public void loginAsRequesterAndCreateTwoRequests()
+    public void loginAsRequesterAndCreateTwoRequests() throws InterruptedException
     {
         LoginPage loginPage = new LoginPage();
 
@@ -47,7 +47,7 @@ public class LoginAsRequesterAndCreateTwoRequests
         contractRequest = inProgressContractsPage.clickNewRequestButton();
 
         contractRequest.selectValueForField("reqField", "val1");
-        contractRequest.uploadDocuments(new File[]{Const.DOCUMENT_CLASSIC_AT40});
+        contractRequest.uploadCounterpartyDocuments(new File[]{ Const.DOCUMENT_CLASSIC_AT40 });
         contractRequest.clickSubmitRequest();
 
         logger.info("Making sure that both requests were created and are displayed...");

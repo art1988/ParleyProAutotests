@@ -25,7 +25,7 @@ public class LoginAsRequesterAndSubmitRequest
     private static Logger logger = Logger.getLogger(LoginAsRequesterAndSubmitRequest.class);
 
     @Test(priority = 1)
-    public void loginAsRequesterAndSubmitRequest()
+    public void loginAsRequesterAndSubmitRequest() throws InterruptedException
     {
         // Logout first
         LoginPage loginPage = new DashboardPage().getSideBar().logout();
@@ -46,11 +46,12 @@ public class LoginAsRequesterAndSubmitRequest
         contractRequest.setContractType("type3");
         contractRequest.setContractCurrency("EUR");
         contractRequest.setContractValue("4500");
-        contractRequest.uploadDocuments(new File[]{ Const.DOCUMENT_DISCUSSIONS_SAMPLE, Const.IMG_JPEG_SAMPLE });
+
+        contractRequest.uploadMyTeamDocuments(new File[]{ Const.DOCUMENT_DISCUSSIONS_SAMPLE });
+        contractRequest.uploadAttachment(new File[]{ Const.IMG_JPEG_SAMPLE });
 
         logger.info("Assert that 2 files were added. Assert that Attachments label appeared...");
-        $(".upload-field__label-title").waitUntil(Condition.visible, 10_000).shouldHave(Condition.exactText("Attachments"));
-        $$(".upload-field__files-and-attachments .upload-field__file-name").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("AT-14.docx", "IMG_JPEG.jpeg"));
+        $$(".upload-field__files").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("AT-14.docx", "IMG_JPEG.jpeg"));
 
         contractRequest.clickSubmitRequest();
 
@@ -65,17 +66,18 @@ public class LoginAsRequesterAndSubmitRequest
 
     @Test(priority = 2)
     @Description("This test opens just added contract request and adds one more doc, changes Contracting country and updates request.")
-    public void updateRequest()
+    public void updateRequest() throws InterruptedException
     {
         new InProgressContractsPage(false).selectContract("Contract request");
 
         ContractRequest editContractRequestForm = new ContractRequest(true);
 
         logger.info("Adding of one more doc...");
-        editContractRequestForm.uploadDocuments(new File[]{ Const.DOCUMENT_LIFECYCLE_SAMPLE });
+        editContractRequestForm.uploadMyTeamDocuments(new File[]{ Const.DOCUMENT_LIFECYCLE_SAMPLE });
 
         logger.info("Assert that 3 files are in the list...");
-        $$(".upload-field__files-and-attachments .upload-field__file-name").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("AT-14.docx", "IMG_JPEG.jpeg", "pramata.docx"));
+        $$(".upload-field__file").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("AT-14.docx", "pramata.docx"));
+        $$(".upload-field__document-name").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("IMG_JPEG.jpeg"));
 
         editContractRequestForm.setValueForSelect("Contracting country", "country1");
         editContractRequestForm.clickUpdateRequest();
