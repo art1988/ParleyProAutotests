@@ -53,7 +53,7 @@ public class CheckThatT2DoesntHaveNurixSmartField
     }
 
     @Test(priority = 2)
-    @Description("Logout from T2, close current tab, switch to original tab with T1.")
+    @Description("Logout from T2, switch to original tab with T1.")
     public void logoutFromT2()
     {
         new DashboardPage().getSideBar().logout();
