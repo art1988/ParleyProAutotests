@@ -2,10 +2,10 @@ package forms;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.ElementNotFound;
 import io.qameta.allure.Attachment;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -29,7 +29,7 @@ public class UploadDocumentDetectedChanges
             $(".modal-body-description").waitUntil(Condition.visible, 7_000)
                     .shouldHave(Condition.exactText("We detected changes in the document. Parley Pro will create discussions based on these changes."));
         }
-        catch (NoSuchElementException e) // in case if pop up was never shown
+        catch (ElementNotFound e) // in case if pop up was never shown
         {
             String errMessage = "!!! Looks like that popup 'We detected changes in the document. Parley Pro will create discussions based on these changes.' wasn't shown !!!";
 
