@@ -26,38 +26,38 @@
         </classes>
     </test>
 
-    <test name="AT-171: User with full rights not seeing requests until updated by admin" preserve-order="true">
-        <classes>
-            <class name="tests.LoginToDashboard"/>
-            <class name="tests.requests.at171.AddRequestCustomField"/>
-            <class name="tests.requests.at171.AddRoutingWorkflow"/>
-            <class name="tests.requests.at171.LoginAsRequesterAndCreateTwoRequests"/>
-            <class name="tests.requests.at171.LoginAsUserWithAllRolesAndCheck"/>
-            <class name="tests.requests.at171.CleanUp"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
+        <test name="AT-171: User with full rights not seeing requests until updated by admin" preserve-order="true">
+            <classes>
+                <class name="tests.LoginToDashboard"/>
+                <class name="tests.requests.at171.AddRequestCustomField"/>
+                <class name="tests.requests.at171.AddRoutingWorkflow"/>
+                <class name="tests.requests.at171.LoginAsRequesterAndCreateTwoRequests"/>
+                <class name="tests.requests.at171.LoginAsUserWithAllRolesAndCheck"/>
+                <class name="tests.requests.at171.CleanUp"/>
+                <class name="tests.Logout"/>
+            </classes>
+        </test>
 
-    <test name="AT-178: Request wofkflow" preserve-order="true">
-        <classes>
-            <class name="tests.LoginToDashboard"/>
-            <class name="tests.requests.at178.AddFieldAndWorkflow"/>
-            <class name="tests.requests.at178.AddRequest"/>
-            <class name="tests.requests.at178.SaveRequestAndCheck"/>
-            <class name="tests.requests.at178.CleanUp"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
+        <test name="AT-178: Request wofkflow" preserve-order="true">
+            <classes>
+                <class name="tests.LoginToDashboard"/>
+                <class name="tests.requests.at178.AddFieldAndWorkflow"/>
+                <class name="tests.requests.at178.AddRequest"/>
+                <class name="tests.requests.at178.SaveRequestAndCheck"/>
+                <class name="tests.requests.at178.CleanUp"/>
+                <class name="tests.Logout"/>
+            </classes>
+        </test>
 
-    <test name="AT-174: Request AND Summary fields triggering" preserve-order="true">
-        <parameter name="contractName" value="CTR for at-174"/>
-        <classes>
-            <class name="tests.LoginToDashboard"/>
-            <class name="tests.requests.at174.AddFieldAndWorkflow"/>
-            <class name="tests.requests.at174.CreateContractUploadDocAndCheck"/>
-            <class name="tests.requests.at174.CleanUp"/>
-            <class name="tests.DeleteContractFromInProgress"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
+        <test name="AT-174: Request AND Summary fields triggering" preserve-order="true">
+            <parameter name="contractName" value="CTR for at-174"/>
+            <classes>
+                <class name="tests.LoginToDashboard"/>
+                <class name="tests.requests.at174.AddFieldAndWorkflow"/>
+                <class name="tests.requests.at174.CreateContractUploadDocAndCheck"/>
+                <class name="tests.requests.at174.CleanUp"/>
+                <class name="tests.DeleteContractFromInProgress"/>
+                <class name="tests.Logout"/>
+            </classes>
+        </test>
 </suite>
