@@ -106,17 +106,69 @@ public class ContractRequest
         $("#contractvalue").setValue(value);
     }
 
-    public void uploadDocuments(File[] filesToUpload)
+    /**
+     * Clicks by 'Upload document' tab and 'Upload my team documents'
+     * @param filesToUpload
+     * @throws InterruptedException
+     */
+    public void uploadMyTeamDocuments(File[] filesToUpload) throws InterruptedException
     {
+        // Click 'Upload document' tab
+        $(".js-upload-document-tab").click();
+        Thread.sleep(500);
+
+        // 1. make <input> visible
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').closest('.upload__body').find(\"input\").css(\"height\",\"auto\")");
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').closest('.upload__body').find(\"input\").css(\"visibility\",\"visible\")");
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').closest('.upload__body').find(\"input\").css(\"display\",\"block\")");
+
+        // 2. trying to upload...
+        SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+        uploadMyTeamDocumentsButton.uploadFile(filesToUpload);
+    }
+
+    /**
+     * Clicks by 'Upload document' tab and 'Upload counterparty documents'
+     * @param filesToUpload
+     * @throws InterruptedException
+     */
+    public void uploadCounterpartyDocuments(File[] filesToUpload) throws InterruptedException
+    {
+        // Click 'Upload document' tab
+        $(".js-upload-document-tab").click();
+        Thread.sleep(500);
+
+        // 1. make <input> visible
+        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').closest('.upload__body').find(\"input\").css(\"height\",\"auto\")");
+        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').closest('.upload__body').find(\"input\").css(\"visibility\",\"visible\")");
+        Selenide.executeJavaScript("$('.js-upload-cp-document-btn').closest('.upload__body').find(\"input\").css(\"display\",\"block\")");
+
+        // 2. trying to upload...
+        SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+        uploadCounterpartyDocumentsButton.uploadFile(filesToUpload);
+    }
+
+    /**
+     * Clicks by 'Upload attachment' tab and 'UPLOAD FROM YOUR COMPUTER'
+     * @param filesToUpload
+     */
+    public void uploadAttachment(File[] filesToUpload) throws InterruptedException
+    {
+        // Click 'Upload attachment' tab
+        $(".js-upload-attachment-tab").click();
+        Thread.sleep(500);
+
         // 1. make <input> visible
         Selenide.executeJavaScript("$('.upload__body input').css(\"height\",\"auto\")");
         Selenide.executeJavaScript("$('.upload__body input').css(\"visibility\",\"visible\")");
         Selenide.executeJavaScript("$('.upload__body input').css(\"display\",\"block\")");
 
         // 2. trying to upload...
-        SelenideElement uploadExecutedDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+        SelenideElement uploadFromYourComputerButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
-        uploadExecutedDocumentsButton.uploadFile(filesToUpload);
+        uploadFromYourComputerButton.uploadFile(filesToUpload);
     }
 
     public void clickCancel()
