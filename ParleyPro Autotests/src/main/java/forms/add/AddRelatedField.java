@@ -6,8 +6,10 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.or;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * Represents form that appears after clicking on '+ Add related field' link
@@ -54,17 +56,18 @@ public class AddRelatedField
     {
         if( $(".modal-body input[data-label='Fields']").isDisplayed() )
         {
-            $("input[data-label='Fields']").click(); // click by input to expand dropdown
-            Selenide.executeJavaScript("$('.multi-select__option span:contains(\"" + fieldToSelect + "\")').click()"); // select field
-            $("input[data-label='Fields']").click(); // click by input to collapse dropdown
+            $("input[data-label='Fields']").click(); // expand dropdown
+            $$(".multi-select__option span").find(exactText(fieldToSelect)).click(); // select value
+            $("input[data-label='Fields']").click(); // collapse dropdown
         }
         else
         {
             // set id
             Selenide.executeJavaScript("$('.input__label-title:contains(\"Related field\")').parent().parent().find(\"input\").attr('id', 'relatedFieldId')");
 
-            $("#relatedFieldId").sendKeys(fieldToSelect);
-            $("#relatedFieldId").pressEnter();
+            $("#relatedFieldId").click(); // expand dropdown
+            $$(".multi-select__option span").find(exactText(fieldToSelect)).click(); // select value
+            $("#relatedFieldId").click(); // collapse dropdown
         }
 
         return this;

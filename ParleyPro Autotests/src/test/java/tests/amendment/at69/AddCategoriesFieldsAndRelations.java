@@ -76,7 +76,7 @@ public class AddCategoriesFieldsAndRelations
         Fields fieldsTab = new DashboardPage().getSideBar().clickAdministration().clickFieldsTab();
         FieldsRelations fieldsRelations = fieldsTab.clickFieldsRelations();
 
-        // adding related field for 'Testcat' category
+        // adding related field for 'CatTest' category
         for( int i = 1; i <= 10; i++ )
         {
             fieldsRelations.addRelatedField("Contract category")
@@ -85,7 +85,7 @@ public class AddCategoriesFieldsAndRelations
                            .clickMakeRelated();
         }
 
-        // adding related fields for 'Amendment - Testcat' category [ Field1 - Field10 ]
+        // adding related fields for 'AmendmentTestcat' category [ Field1 - Field10 ]
         for( int i = 1; i <= 10; i++ )
         {
             fieldsRelations.addRelatedField("Contract category")
