@@ -23,8 +23,10 @@ public class DeleteContractFromInProgress
 
     @Test
     @Parameters("contractName")
-    public void deleteContractFromInProgress(String contractName)
+    public void deleteContractFromInProgress(String contractName) throws InterruptedException
     {
+        Thread.sleep(2_000);
+
         new DashboardPage().getSideBar()
                            .clickInProgressContracts(false)
                            .selectContract(contractName);
