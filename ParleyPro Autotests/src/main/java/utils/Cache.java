@@ -16,6 +16,7 @@ public class Cache
     private static String KEY_CONTRACT_TITLE     = "KEY_CONTRACT_TITLE";
     private static String KEY_CURRENT_TAB_HANDLE = "KEY_CURRENT_TAB_HANDLE";
     private static String KEY_TAB_1_HANDLE       = "KEY_TAB_1_HANDLE";
+    private static String KEY_EMAIL              = "KEY_EMAIL";
 
     private Cache() {}
 
@@ -47,6 +48,16 @@ public class Cache
     public String getCachedTab1Handle()
     {
         return hashTable.get(KEY_TAB_1_HANDLE);
+    }
+
+    public void setEmail(String email)
+    {
+        hashTable.put(KEY_EMAIL, email);
+    }
+
+    public String getCachedEmail()
+    {
+        return hashTable.get(KEY_EMAIL);
     }
 
     public static Cache getInstance()

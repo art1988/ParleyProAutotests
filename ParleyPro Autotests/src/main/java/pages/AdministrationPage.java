@@ -3,10 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
-import pages.administration.Fields;
-import pages.administration.ManageUsers;
-import pages.administration.Teams;
-import pages.administration.Workflows;
+import pages.administration.*;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -39,6 +36,15 @@ public class AdministrationPage
         logger.info("Manage users tab was clicked");
 
         return new ManageUsers();
+    }
+
+    public Integrations clickIntegrationsTab()
+    {
+        integrationsTab.click();
+
+        logger.info("Integrations tab was clicked");
+
+        return new Integrations();
     }
 
     public Workflows clickWorkflowsTab()
