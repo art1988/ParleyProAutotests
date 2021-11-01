@@ -25,6 +25,7 @@ public class AddProperty
     @BeforeTest
     public void setup()
     {
+        /*
         RequestSpecification requestSpec = new RequestSpecBuilder()
                      .setBaseUri("https://master.api.parleypro.net/tenants/properties") // TODO: add support for rc and prod
                      .setContentType(ContentType.JSON)
@@ -32,7 +33,7 @@ public class AddProperty
                      .addHeader("x-api-key", Const.QA_TENANT_API_KEY) // TODO: same for api key
                      .build();
 
-        RestAssured.requestSpecification = requestSpec;
+        RestAssured.requestSpecification = requestSpec;*/
     }
 
     @Test
