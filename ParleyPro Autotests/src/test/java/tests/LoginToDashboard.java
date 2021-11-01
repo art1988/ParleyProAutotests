@@ -78,10 +78,10 @@ public class LoginToDashboard
     {
         LoginPage loginPage = new LoginPage();
 
+        logger.info("Entering email...");
         loginPage.setEmail(Const.PREDEFINED_USER_CN_ROLE.getEmail());
+        logger.info("Entering password...");
         loginPage.setPassword(Const.PREDEFINED_USER_CN_ROLE.getPassword());
-
-        logger.info("Making sure that Dashboard was loaded correctly...");
 
         DashboardPage dashboardPage = loginPage.clickSignIn();
 

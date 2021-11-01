@@ -57,7 +57,7 @@ public class LoginPage
     {
         logger.info("Trying to login as: " + emailField.getValue());
 
-        signInButton.click();
+        signInButton.shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("Sign In button was clicked");
 
