@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import pages.ContractInfo;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
@@ -90,13 +91,12 @@ public class LoginBackAsCNAndCheck
     public void fillFieldsAndSaveContract()
     {
         logger.info("Fill in CP and CCN fields and Save...");
-        $("#counterpartyOrganization").sendKeys("CounterpartyAT");
-        $(".Select-loading").waitUntil(Condition.disappear, 7_000); // wait until spinner for Counterparty organization will disappear
-        $("#counterpartyOrganization").pressEnter();
-        $(".select__loading").waitUntil(Condition.disappear, 7_000); // wait until spinner for CCN field will disappear
 
-        $("#counterpartyChiefNegotiator").sendKeys("arthur.khasanov+autotestcn@parleypro.com");
-        $(".button.btn.btn-common.btn-blue.btn.btn-default").click(); // click Save
+        ContractInfo contractInfo = new ContractInfo(true);
+
+        contractInfo.setCounterpartyOrganization("CounterpartyAT");
+        contractInfo.setCounterpartyChiefNegotiator("arthur.khasanov+autotestcn@parleypro.com");
+        contractInfo.clickSave();
 
         logger.info("Checking that status is still in DRAFT..."); // since both docs were uploaded via my team button
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(3));
