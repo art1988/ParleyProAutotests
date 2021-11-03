@@ -89,7 +89,7 @@ public class UploadDocsWithImage
         new AddDocuments().clickUploadMyTeamDocuments( Const.REGRESSION_FLOATING_TEXT_DOC );
 
         logger.info("Assert that document wasn't loaded correctly and we see one warning...");
-        $(".notification-stack .notification-stack__item").waitUntil(Condition.visible, 7_000);
+        $(".notification-stack .notification-stack__item").waitUntil(Condition.visible, 30_000);
         $$(".notification-stack .notification-stack__item").shouldHave(CollectionCondition.size(2)); // two notification popups
         $$(".notification-stack .notification-stack__item").shouldHave(CollectionCondition.textsInAnyOrder("1 unsupported formatting attributes were found. Navigate to see all replacements\nkeyboard_arrow_left\n1/1\nkeyboard_arrow_right",
                                                                                                                      "Document Floating_text_box has been successfully uploaded."));
