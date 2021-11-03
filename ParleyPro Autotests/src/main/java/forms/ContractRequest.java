@@ -16,10 +16,12 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class ContractRequest
 {
+    private SelenideElement requestTitleField   = $("input[data-label='Request title']");
     private SelenideElement submitRequestButton = $("._button.scheme_blue.size_lg"); // the same for 'Update Request'
     private SelenideElement cancelButton        = $("._button.scheme_gray.size_lg");
 
     private static Logger logger = Logger.getLogger(ContractRequest.class);
+
 
     public ContractRequest()
     {
@@ -39,6 +41,16 @@ public class ContractRequest
     {
         $(".spinner").waitUntil(Condition.disappear, 15_000);
         $(".modal-title").waitUntil(Condition.visible, 10_000).shouldHave(Condition.exactText("Edit Contract Request"));
+    }
+
+    /**
+     * Sets Request title.
+     * If field 'Request title' wasn't set, the default name will be 'Contract request'.
+     * @param title
+     */
+    public void setRequestTitle(String title)
+    {
+        requestTitleField.sendKeys(title);
     }
 
     public void selectValueForField(String fieldName, String value)
