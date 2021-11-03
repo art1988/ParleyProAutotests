@@ -16,6 +16,20 @@
         </classes>
     </test>
 
+    <test name="AT-184: Request creation bypassed filling in required fields after uploading counterparty document" preserve-order="true">
+        <parameter name="contractName" value="Request_CP_at184"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.requests.at184.AddFieldAndWorkflow"/>
+            <class name="tests.requests.at184.CreateRequest"/>
+            <class name="tests.requests.at184.LoginAsCNAndUploadCPDocument"/>
+            <class name="tests.requests.at184.CleanUp"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <!--
     <test name="AT-149: User who is CN and Requester at the same time cannot add discussions to contract converted from request" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -59,5 +73,5 @@
                 <class name="tests.DeleteContractFromInProgress"/>
                 <class name="tests.Logout"/>
             </classes>
-        </test>
+        </test>-->
 </suite>
