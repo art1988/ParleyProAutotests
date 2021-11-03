@@ -399,7 +399,7 @@ public class OpenedContract
      */
     public AddDocuments clickNewDocument()
     {
-        newDocumentButton.click();
+        newDocumentButton.shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("+ NEW DOCUMENT button was clicked");
 
