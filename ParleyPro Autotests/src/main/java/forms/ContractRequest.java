@@ -88,6 +88,16 @@ public class ContractRequest
         $(selectElement).sendKeys(value);
     }
 
+    public void setCounterpartyOrganization(String counterpartyOrganization)
+    {
+        $("#counterpartyorganization").sendKeys(counterpartyOrganization);
+    }
+
+    public void setCounterpartyChiefNegotiator(String counterpartyChiefNegotiator)
+    {
+        $("#counterpartychiefnegotiator").sendKeys(counterpartyChiefNegotiator);
+    }
+
     /**
      * Set _one_ contract type
      * @param type
@@ -138,6 +148,26 @@ public class ContractRequest
         SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
         uploadMyTeamDocumentsButton.uploadFile(filesToUpload);
+    }
+
+    /**
+     * Upload document with revisions
+     * @param filesToUpload
+     * @return
+     */
+    public UploadDocumentDetectedChanges clickUploadMyTeamDocumentsWithDetectedChanges(File[] filesToUpload)
+    {
+        // 1. make <input> visible
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+        Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
+
+        // 2. trying to upload...
+        SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+        uploadMyTeamDocumentsButton.uploadFile(filesToUpload);
+
+        return new UploadDocumentDetectedChanges();
     }
 
     /**
