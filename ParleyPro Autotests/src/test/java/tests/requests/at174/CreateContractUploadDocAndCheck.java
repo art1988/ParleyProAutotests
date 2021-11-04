@@ -43,8 +43,8 @@ public class CreateContractUploadDocAndCheck
         new OpenedContract().switchDocumentToReview("pramata").clickStart();
 
         // Wait until status was changed to REVIEW
-        $$(".lifecycle__item.active").first().waitUntil(Condition.exactText("REVIEW\n(1)"), 17_000);
-        $$(".lifecycle__item.active").last().waitUntil(Condition.exactText("REVIEW"), 17_000);
+        $$(".lifecycle__item.active").first().waitUntil(Condition.exactText("REVIEW\n(1)"), 40_000);
+        $$(".lifecycle__item.active").last().waitUntil(Condition.exactText("REVIEW"), 40_000);
 
         logger.info("Checking that users weren't triggered...");
         Thread.sleep(4_000); // sleep for 4 sec

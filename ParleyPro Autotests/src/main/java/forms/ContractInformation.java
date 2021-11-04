@@ -86,7 +86,7 @@ public class ContractInformation
     }
 
     /**
-     * Always sets current date. TODO: re-implement later for any value
+     * Always sets current date.
      */
     public void setDueDate()
     {
