@@ -50,7 +50,7 @@ public class UploadDocumentDetectedChanges
      * @param cpOrganization
      * @throws InterruptedException
      */
-    public void setCounterpartyOrganization(String cpOrganization) throws InterruptedException
+    public UploadDocumentDetectedChanges setCounterpartyOrganization(String cpOrganization) throws InterruptedException
     {
         cpOrganizationField.clear();
         Thread.sleep(500);
@@ -60,6 +60,8 @@ public class UploadDocumentDetectedChanges
         Thread.sleep(500);
         cpOrganizationField.pressEnter();
         Thread.sleep(500);
+
+        return this;
     }
 
     /**
@@ -67,7 +69,7 @@ public class UploadDocumentDetectedChanges
      * @param cpNegotiatorEmail
      * @throws InterruptedException
      */
-    public void setCounterpartyNegotiatorEmail(String cpNegotiatorEmail) throws InterruptedException
+    public UploadDocumentDetectedChanges setCounterpartyNegotiatorEmail(String cpNegotiatorEmail) throws InterruptedException
     {
         cpNegotiatorEmailField.clear();
         Thread.sleep(500);
@@ -77,6 +79,8 @@ public class UploadDocumentDetectedChanges
         Thread.sleep(500);
         cpNegotiatorEmailField.pressEnter();
         Thread.sleep(500);
+
+        return this;
     }
 
     public void clickOk()
