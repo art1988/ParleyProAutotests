@@ -14,6 +14,7 @@ public class ApprovalWorkflow
     private SelenideElement minValueField  = $("#contractValueRange");
     private SelenideElement maxValueField  = $("#contractValueRange_max");
 
+    private SelenideElement contractRequestParticipantField  = $("#workfowApprovalUsers_Contract-Request");
     private SelenideElement priorToNegotiateParticipantField = $("#workfowApprovalUsers_Prior-to-Negotiate");
     private SelenideElement priorToSignParticipantField      = $("#workfowApprovalUsers_Prior-to-Sign");
 
@@ -151,6 +152,23 @@ public class ApprovalWorkflow
         $("input[data-label='Value']").click(); // expand Value dropdown
         Selenide.executeJavaScript("$('.workflows-approval-fields .dropdown-menu .checkbox__label:contains(\"" + value + "\")').click() "); // choose value
         $("input[data-label='Value']").click(); // click again by Value field to collapse dropdown
+    }
+
+    /**
+     * Click + Contract Request blue link
+     */
+    public void clickContractRequest()
+    {
+        Selenide.executeJavaScript("$('.workflows-approval-events__item div:contains(\"Contract Request\")').click()");
+
+        logger.info("Contract Request was clicked");
+    }
+
+    public void setContractRequestParticipant(String participant)
+    {
+        contractRequestParticipantField.sendKeys(participant);
+        contractRequestParticipantField.sendKeys(Keys.DOWN);
+        contractRequestParticipantField.sendKeys(Keys.ENTER);
     }
 
     /**
