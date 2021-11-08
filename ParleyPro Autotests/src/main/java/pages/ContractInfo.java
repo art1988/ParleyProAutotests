@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import forms.ApproveRequest;
 import forms.delete.DeleteContract;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
@@ -397,6 +398,18 @@ public class ContractInfo
         }
 
         logger.info("Save button was clicked");
+    }
+
+    /**
+     * Click by APPROVE button in case of _request_
+     */
+    public ApproveRequest clickApproveRequest()
+    {
+        $$(".modal-footer button").findBy(Condition.text("APPROVE")).click();
+
+        logger.info("APPROVE button was clicked");
+
+        return new ApproveRequest();
     }
 
     /**
