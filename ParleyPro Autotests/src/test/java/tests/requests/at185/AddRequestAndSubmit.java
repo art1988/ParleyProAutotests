@@ -20,9 +20,10 @@ import static com.codeborne.selenide.Selenide.$$;
 @Listeners({ScreenShotOnFailListener.class})
 public class AddRequestAndSubmit
 {
+    private DashboardPage dashboardPage;
     private static Logger logger = Logger.getLogger(AddRequestAndSubmit.class);
 
-    @Test
+    @Test(priority = 1)
     public void addRequestAndSubmit() throws InterruptedException
     {
         LoginPage loginPage = new LoginPage();
@@ -31,7 +32,7 @@ public class AddRequestAndSubmit
         loginPage.setEmail( Const.PREDEFINED_REQUESTER.getEmail() );
         loginPage.setPassword( Const.PREDEFINED_REQUESTER.getPassword() );
 
-        DashboardPage dashboardPage = loginPage.clickSignIn();
+        dashboardPage = loginPage.clickSignIn();
 
         ContractRequest contractRequest = dashboardPage.getSideBar().clickInProgressContracts(true).clickNewRequestButton();
 
@@ -59,5 +60,11 @@ public class AddRequestAndSubmit
         contractRequest.clickSubmitRequest();
 
         $(".notification-stack").shouldHave(Condition.text("Your contract request has been submitted."));
+    }
+
+    @Test(priority = 2)
+    public void logoutRequester()
+    {
+        dashboardPage.getSideBar().logout();
     }
 }
