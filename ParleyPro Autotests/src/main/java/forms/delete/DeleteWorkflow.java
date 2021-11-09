@@ -26,6 +26,6 @@ public class DeleteWorkflow
 
         logger.info("Delete button was clicked");
 
-        title.waitUntil(Condition.disappear, 6_000);
+        title.should(Condition.disappear);
     }
 }

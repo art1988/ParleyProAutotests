@@ -61,6 +61,15 @@ public class LoginAsCNAndSaveRequest
                 .shouldHave(Condition.exactText("AT185-Lists-D2")); // my team doc is in draft
         $$(".document__header.unselectable .lifecycle__item").findBy(Condition.exactText("NEGOTIATE")).closest(".document__header").find(".document__header-rename > span")
                 .shouldHave(Condition.exactText("AT185-Manufacturing Agreement-redlines-D1")); // doc with redlines is in negotiate
+        $$(".document__header.unselectable .lifecycle__item").findBy(Condition.exactText("NEGOTIATE")).closest(".document__header").find(".discussion-indicator__count")
+                .shouldHave(Condition.exactText("2")); // doc that is in NEGOTIATE has 2 discussions
+
+        Screenshoter.makeScreenshot();
+
+        $(".menu-disc-doc__discussions").click(); // click by DISCUSSIONS tab
+        logger.info("Assert that 2 discussions are external and have 'Need response' badge...");
+        $$(".discussion2-label__status").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("EXTERNAL", "EXTERNAL"));
+        $$("div[class^='style__actions']").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("NEED RESPONSE", "NEED RESPONSE"));
 
         Screenshoter.makeScreenshot();
     }
