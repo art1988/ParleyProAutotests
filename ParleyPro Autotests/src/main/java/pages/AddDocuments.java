@@ -42,10 +42,10 @@ public class AddDocuments
             $$(".tab-menu span").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.texts("Upload document", "Select template", "Upload attachment")); // check tabs
             $$(".upload__button").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.texts("Upload my team documents", "Upload Counterparty documents")); // check buttons
         }
-        else if( $$(".tab-menu span").size() == 2 ) // For 'Executed contracts' page
+        else if( $$(".tab-menu span").size() == 2 ) // For 'Executed contracts' page or for AddDocuments popup of CCN
         {
-            $$(".tab-menu span").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.texts("Upload executed", "Upload attachment")); // check tabs
-            $$(".upload__button").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("Upload executed documents")); // check buttons
+            $$(".tab-menu span").shouldHave(CollectionCondition.size(2));
+            $$(".upload__button").shouldHave(CollectionCondition.size(1)).first().shouldBe(Condition.visible, Condition.enabled);
         }
         else
         {
