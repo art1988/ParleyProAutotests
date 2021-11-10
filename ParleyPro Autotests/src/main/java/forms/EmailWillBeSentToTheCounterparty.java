@@ -82,11 +82,11 @@ public class EmailWillBeSentToTheCounterparty
      */
     public void clickStart()
     {
-        startButton.click();
+        startButton.shouldBe(Condition.enabled).click();
 
         logger.info("Start button was clicked");
 
-        title.waitUntil(Condition.disappear, 25_000);
+        title.should(Condition.disappear);
     }
 
 }
