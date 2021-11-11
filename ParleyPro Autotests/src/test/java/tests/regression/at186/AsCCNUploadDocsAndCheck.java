@@ -38,8 +38,8 @@ public class AsCCNUploadDocsAndCheck
     @Test(priority = 1)
     public void getCounterpartyEmailAndLogin() throws InterruptedException
     {
-        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
-        Thread.sleep(30_000);
+        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        Thread.sleep(60_000);
 
         contractName = Cache.getInstance().getCachedContractTitle();
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "[qa-autotests] autotest_cn fn ln shared contract \"" + contractName + "\" with you"),
@@ -83,5 +83,20 @@ public class AsCCNUploadDocsAndCheck
         Screenshoter.makeScreenshot();
 
         Selenide.executeJavaScript("$('.document__menu li[role=\"presentation\"]:visible').hide()"); // close popup
+    }
+
+    @Test(priority = 3)
+    public void logoutCCN()
+    {
+        dashboardPage.getSideBar().logout();
+    }
+
+    @Test(priority = 4)
+    public void loginAsMyTeamCN()
+    {
+        LoginPage loginPage = new LoginPage();
+        loginPage.setEmail(Const.PREDEFINED_USER_CN_ROLE.getEmail());
+        loginPage.setPassword(Const.PREDEFINED_USER_CN_ROLE.getPassword());
+        loginPage.clickSignIn();
     }
 }
