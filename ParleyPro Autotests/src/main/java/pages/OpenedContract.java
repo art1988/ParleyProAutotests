@@ -354,7 +354,7 @@ public class OpenedContract
 
     public ContractInformation clickContractInfo()
     {
-        contractInfoButton.click();
+        contractInfoButton.shouldBe(Condition.enabled).click();
 
         logger.info("Contract info button was clicked");
 

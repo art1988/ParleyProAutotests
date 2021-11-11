@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * Util class that saves useful data within one single test.
- * May be useful to retrieve 'Contract title', 'Current tab handle' from another test-class within one single test.
+ * May be useful to retrieve 'Contract title', 'Current tab handle', etc. from another test-class within one single test.
  */
 public class Cache
 {
@@ -13,10 +13,11 @@ public class Cache
 
     private static Map<String, String> hashTable = new HashMap<>();
 
-    private static String KEY_CONTRACT_TITLE     = "KEY_CONTRACT_TITLE";
-    private static String KEY_CURRENT_TAB_HANDLE = "KEY_CURRENT_TAB_HANDLE";
-    private static String KEY_TAB_1_HANDLE       = "KEY_TAB_1_HANDLE";
-    private static String KEY_EMAIL              = "KEY_EMAIL";
+    private static String KEY_CONTRACT_TITLE               = "KEY_CONTRACT_TITLE";
+    private static String KEY_CURRENT_TAB_HANDLE           = "KEY_CURRENT_TAB_HANDLE";
+    private static String KEY_TAB_1_HANDLE                 = "KEY_TAB_1_HANDLE";
+    private static String KEY_EMAIL                        = "KEY_EMAIL";
+    private static String KEY_ADDITIONAL_COUNTERPARTY_USER = "KEY_ADDITIONAL_COUNTERPARTY_USER";
 
     private Cache() {}
 
@@ -58,6 +59,16 @@ public class Cache
     public String getCachedEmail()
     {
         return hashTable.get(KEY_EMAIL);
+    }
+
+    public void setAdditionalCounterpartyUser(String user)
+    {
+        hashTable.put(KEY_ADDITIONAL_COUNTERPARTY_USER, user);
+    }
+
+    public String getCachedAdditionalCounterpartyUser()
+    {
+        return hashTable.get(KEY_ADDITIONAL_COUNTERPARTY_USER);
     }
 
     public static Cache getInstance()
