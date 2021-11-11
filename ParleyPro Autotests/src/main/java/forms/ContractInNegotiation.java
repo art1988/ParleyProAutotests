@@ -20,16 +20,16 @@ public class ContractInNegotiation
 
     public ContractInNegotiation(String contractName)
     {
-        title.waitUntil(Condition.visible, 30_000).shouldHave(Condition.exactText("Contract \"" + contractName + "\" is now in Negotiation but is not visible to your Countertparty"));
-        body.waitUntil(Condition.visible, 30_000).shouldHave(Condition.exactText("At this time, no notifications will be sent to the Counterparty"));
+        title.shouldBe(Condition.visible).shouldHave(Condition.exactText("Contract \"" + contractName + "\" is now in Negotiation but is not visible to your Countertparty"));
+        body.shouldBe(Condition.visible).shouldHave(Condition.exactText("At this time, no notifications will be sent to the Counterparty"));
     }
 
     public void clickOk()
     {
-        okButton.click();
+        okButton.shouldBe(Condition.enabled).click();
 
         logger.info("OK button was clicked");
 
-        $(".modal-content").waitUntil(Condition.disappear, 20_000);
+        $(".modal-content").should(Condition.disappear);
     }
 }
