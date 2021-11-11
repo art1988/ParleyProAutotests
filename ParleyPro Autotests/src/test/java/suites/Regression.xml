@@ -228,6 +228,15 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+<!--
+    <test name="AT-186: Cancel option should not be available for counterparty" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at186.AddContractInviteCCN"/>
+            <class name="tests.regression.at186.AsCCNUploadDocsAndCheck"/>
+        </classes>
+    </test>-->
+
 
     <test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
         <classes>
