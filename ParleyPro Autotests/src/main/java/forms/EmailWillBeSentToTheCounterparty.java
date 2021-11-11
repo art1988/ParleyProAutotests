@@ -6,11 +6,14 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * Form that appears after clicking on Next button in Negotiate status.
  * If it is not classic contract => Title would be "The email will be sent to the Counterparty Chief Negotiator."
  * If it is classic contract => Title would be "The Counterparty information is missing."
+ *
+ * Also appears after clicking SEND INVITE button (after clicking NEXT).
  */
 public class EmailWillBeSentToTheCounterparty
 {
@@ -25,19 +28,19 @@ public class EmailWillBeSentToTheCounterparty
 
     public EmailWillBeSentToTheCounterparty(boolean isClassic)
     {
-        $(".select__loading").waitUntil(Condition.disappear, 7_000);
+        $(".select__loading").should(Condition.disappear);
 
         if( isClassic )
         {
-            title.waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("The Counterparty information is missing."));
+            title.shouldBe(Condition.visible).shouldHave(Condition.exactText("The Counterparty information is missing."));
         }
         else
         {
-            title.waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("The email will be sent to the Counterparty Chief Negotiator."));
+            title.shouldBe(Condition.visible).shouldHave(Condition.exactText("The email will be sent to the Counterparty Chief Negotiator."));
         }
 
-        counterpartyOrganizationField.waitUntil(Condition.visible, 16_000);
-        counterpartyChiefNegotiatorField.waitUntil(Condition.visible, 16_000);
+        counterpartyOrganizationField.shouldBe(Condition.visible);
+        counterpartyChiefNegotiatorField.shouldBe(Condition.visible);
     }
 
     public EmailWillBeSentToTheCounterparty setCounterpartyOrganization(String organization) throws InterruptedException
@@ -74,6 +77,37 @@ public class EmailWillBeSentToTheCounterparty
     public String getCounterpartyChiefNegotiator()
     {
         return counterpartyChiefNegotiatorField.getValue();
+    }
+
+    /**
+     * Click by blue link '+ Add counterparty users'
+     */
+    public EmailWillBeSentToTheCounterparty clickAddCounterpartyUsers()
+    {
+        $$(".modal-content span").filter(Condition.text("Add counterparty users")).first().click();
+
+        logger.info("'+ Add counterparty users' blue link was clicked");
+
+        return this;
+    }
+
+    /**
+     * Set Additional Counterparty users
+     * @param user
+     * @return
+     * @throws InterruptedException
+     */
+    public EmailWillBeSentToTheCounterparty setAdditionalCounterpartyUsers(String user) throws InterruptedException
+    {
+        SelenideElement input = $$(".modal-content span").filter(Condition.exactText("Additional Counterparty users"))
+                .first().closest("div").find("input");
+
+        input.sendKeys(user);
+        Thread.sleep(500);
+        input.pressEnter();
+        Thread.sleep(500);
+
+        return this;
     }
 
     /**
