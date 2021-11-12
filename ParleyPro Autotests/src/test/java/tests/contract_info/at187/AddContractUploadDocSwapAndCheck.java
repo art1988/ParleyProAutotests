@@ -24,12 +24,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class AddContractUploadDoc
+public class AddContractUploadDocSwapAndCheck
 {
     private OpenedContract openedContract;
     private ContractInformation contractInformation;
     private String contractTitle = "AT-187 CONTRACT";
-    private static Logger logger = Logger.getLogger(AddContractUploadDoc.class);
+    private static Logger logger = Logger.getLogger(AddContractUploadDocSwapAndCheck.class);
 
 
     @Test(priority = 1)
