@@ -26,6 +26,8 @@ import static com.codeborne.selenide.Selenide.$$;
 @Listeners({ScreenShotOnFailListener.class})
 public class AddContractUploadDoc
 {
+    private OpenedContract openedContract;
+    private ContractInformation contractInformation;
     private String contractTitle = "AT-187 CONTRACT";
     private static Logger logger = Logger.getLogger(AddContractUploadDoc.class);
 
@@ -55,11 +57,11 @@ public class AddContractUploadDoc
     @Test(priority = 2)
     public void senInvite() throws InterruptedException
     {
-        String additionalCounterpartyUser = "arthur.khasanov+additional_ccn_" + new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime()) + "@parleypro.com";
+        String additionalCounterpartyUser = "arthur.khasanov+additional_cp_user_" + new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime()) + "@parleypro.com";
 
         Cache.getInstance().setAdditionalCounterpartyUser(additionalCounterpartyUser);
 
-        OpenedContract openedContract = new OpenedContract();
+        openedContract = new OpenedContract();
 
         openedContract.clickSendInvite().clickNext(false)
                                         .setCounterpartyChiefNegotiator(Const.PREDEFINED_CCN.getEmail())
@@ -68,13 +70,93 @@ public class AddContractUploadDoc
                                         .clickStart();
 
         logger.info("Assert that both CCN and Additional Counterparty user were saved...");
-        ContractInformation contractInformation = openedContract.clickContractInfo();
+        contractInformation = openedContract.clickContractInfo();
 
-        Assert.assertTrue($("#counterpartyChiefNegotiator").getValue().contains("arthur.khasanov+ccn_at@parleypro.com"), "Counterparty Chief Negotiator is missing !!!");
+        Assert.assertTrue($("#counterpartyChiefNegotiator").getValue().contains(Const.PREDEFINED_CCN.getEmail()), "Counterparty Chief Negotiator is missing !!!");
+        Assert.assertEquals($$(".tags-input span").filter(Condition.exactText("Additional Counterparty users")).first().closest("div").find(".tags-input__tag").getText(),
+                additionalCounterpartyUser, "Additional Counterparty user is missing !!!");
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 3)
+    public void swapCounterpartyUsersAndCheck() throws InterruptedException
+    {
+        logger.info("Swapping counterparty users...");
+
+        // clear [Counterparty Chief Negotiator] field
+        $("#counterpartyChiefNegotiator").click();
+        Thread.sleep(1_000);
+        $(".select__clear").click();
+        Thread.sleep(1_000);
+
+        $("#counterpartyChiefNegotiator").sendKeys(Cache.getInstance().getCachedAdditionalCounterpartyUser());
+        Thread.sleep(500);
+        $("#counterpartyChiefNegotiator").pressEnter();
+        Thread.sleep(500);
+
+        // clear [Additional Counterparty users] field by clicking 'x' icon => 'Add counterparty users' link become active
+        $$(".tags-input span").filter(Condition.exactText("Additional Counterparty users")).first().closest("div").find(".tags-input__tag__cross").click();
+        Thread.sleep(1_000);
+
+        $$(".contract-create__form span").filter(Condition.text("Add counterparty users")).first().click();
+        SelenideElement input = $$(".contract-create__form span").filter(Condition.exactText("Additional Counterparty users"))
+                .first().closest("div").find("input");
+
+        input.sendKeys(Const.PREDEFINED_CCN.getEmail());
+        Thread.sleep(500);
+        input.pressEnter();
+        Thread.sleep(500);
+
+        $$(".modal-footer button").filter(Condition.text("SAVE")).first().click(); // click SAVE
+        $(".documents-contract-edit.contract-edit").shouldBe(Condition.hidden);
+
+        contractInformation = openedContract.clickContractInfo();
+
+        logger.info("Checking that swapped users were saved...");
+        Assert.assertEquals($("#counterpartyChiefNegotiator").getValue(), Cache.getInstance().getCachedAdditionalCounterpartyUser(), "Counterparty Chief Negotiator is missing !!!");
+        Assert.assertEquals($$(".tags-input span").filter(Condition.exactText("Additional Counterparty users")).first().closest("div").find(".tags-input__tag").getText(),
+                Const.PREDEFINED_CCN.getEmail(), "Additional Counterparty user is missing !!!");
+        Screenshoter.makeScreenshot();
+    }
+
+    @Test(priority = 4)
+    public void swapAgain() throws InterruptedException
+    {
+        logger.info("Swapping counterparty users again...");
+
+        // clear [Counterparty Chief Negotiator] field
+        $("#counterpartyChiefNegotiator").click();
+        Thread.sleep(1_000);
+        $(".select__clear").click();
+        Thread.sleep(1_000);
+
+        $("#counterpartyChiefNegotiator").sendKeys(Const.PREDEFINED_CCN.getEmail());
+        Thread.sleep(500);
+        $("#counterpartyChiefNegotiator").pressEnter();
+        Thread.sleep(500);
+
+        // clear [Additional Counterparty users] field by clicking 'x' icon => 'Add counterparty users' link become active
+        $$(".tags-input span").filter(Condition.exactText("Additional Counterparty users")).first().closest("div").find(".tags-input__tag__cross").click();
+        Thread.sleep(1_000);
+
+        $$(".contract-create__form span").filter(Condition.text("Add counterparty users")).first().click();
+        SelenideElement input = $$(".contract-create__form span").filter(Condition.exactText("Additional Counterparty users"))
+                .first().closest("div").find("input");
+
+        input.sendKeys(Cache.getInstance().getCachedAdditionalCounterpartyUser());
+        Thread.sleep(500);
+        input.pressEnter();
+        Thread.sleep(500);
+
+        $$(".modal-footer button").filter(Condition.text("SAVE")).first().click(); // click SAVE
+        $(".documents-contract-edit.contract-edit").shouldBe(Condition.hidden);
+
+        contractInformation = openedContract.clickContractInfo();
+
+        logger.info("Checking that swapped users were saved...");
+        Assert.assertTrue($("#counterpartyChiefNegotiator").getValue().contains(Const.PREDEFINED_CCN.getEmail()), "Counterparty Chief Negotiator is missing !!!");
         Assert.assertEquals($$(".tags-input span").filter(Condition.exactText("Additional Counterparty users")).first().closest("div").find(".tags-input__tag").getText(),
                 Cache.getInstance().getCachedAdditionalCounterpartyUser(), "Additional Counterparty user is missing !!!");
         Screenshoter.makeScreenshot();
-
-        $$(".modal-footer button").filter(Condition.exactText("CANCEL")).first().click(); // close 'Contract Info' right panel
     }
 }
