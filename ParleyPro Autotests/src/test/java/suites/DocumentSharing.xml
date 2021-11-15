@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Document sharing suite" configfailurepolicy="continue">
-    <test name="Sharing functionality" preserve-order="true">
+    <test name="AT-54: Sharing functionality" preserve-order="true">
         <parameter name="contractName" value="Contract DOCUMENT Sharing"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -13,7 +13,7 @@
         </classes>
     </test>
 
-    <test name="Adding of new users via share modal" preserve-order="true">
+    <test name="AT-60: Adding of new users via share modal" preserve-order="true">
         <parameter name="contractName" value="Contract DOCUMENT Sharing"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -24,7 +24,7 @@
         </classes>
     </test>
 
-    <test name="Canceling added users in document sharing" preserve-order="true">
+    <test name="AT-55: Canceling added users in document sharing" preserve-order="true">
         <parameter name="contractName" value="Contract DOCUMENT Sharing"/>
         <classes>
             <class name="tests.LoginToDashboard"/>

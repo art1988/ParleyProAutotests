@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Approval workflow" configfailurepolicy="continue">
-    <test name="Create and Edit Team" preserve-order="true">
+    <test name="AT-28: Create and Edit Team" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.approval_workflow.CreateAndEditTeam"/>
@@ -10,7 +10,7 @@
         </classes>
     </test>
 
-    <test name="Create Approval workflow" preserve-order="true">
+    <test name="AT-29: Create Approval workflow" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.approval_workflow.CreateApprovalWorkflow"/>
@@ -18,7 +18,7 @@
         </classes>
     </test>
 
-    <test name="Approval workflow negative case: wrong category" preserve-order="true">
+    <test name="AT-29: Approval workflow negative case: wrong category" preserve-order="true">
         <parameter name="contractName" value="Approval workflow negative case [wrong category]"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -27,7 +27,7 @@
         </classes>
     </test>
 
-    <test name="Approval workflow negative case: wrong value range" preserve-order="true">
+    <test name="AT-33: Approval workflow negative case: wrong value range" preserve-order="true">
         <parameter name="contractName" value="Approval workflow negative case [wrong value range]"/>
         <classes>
             <class name="tests.approval_workflow.CreateContractNegativeValueRange"/>
@@ -36,7 +36,7 @@
         </classes>
     </test>
 
-    <test name="Approval workflow positive case" preserve-order="true">
+    <test name="AT-34: Approval workflow positive case" preserve-order="true">
         <parameter name="contractName" value="Approval workflow positive"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -48,7 +48,7 @@
         </classes>
     </test>
 
-    <test name="Approval rejection" preserve-order="true">
+    <test name="AT-66: Approval rejection" preserve-order="true">
         <parameter name="contractName" value="Approval rejection contract"/>
         <classes>
             <class name="tests.LoginToDashboard"/>

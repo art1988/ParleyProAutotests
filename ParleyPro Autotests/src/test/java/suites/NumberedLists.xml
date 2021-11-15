@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Numbered lists" configfailurepolicy="continue">
-    <test name="Numbered list recalculation" preserve-order="true">
+    <test name="AT-25: Numbered list recalculation" preserve-order="true">
         <parameter name="contractName" value="Contract numbered list autotest"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -14,7 +14,7 @@
         </classes>
     </test>
 
-    <test name="Numbered list recalculation with multiple sub-lists" preserve-order="true">
+    <test name="AT-53: Numbered list recalculation with multiple sub-lists" preserve-order="true">
         <parameter name="contractName" value="Contract numbered list with sub-lists"/>
         <classes>
             <class name="tests.LoginToDashboard"/>

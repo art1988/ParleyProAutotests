@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "CCN tests" configfailurepolicy="continue">
-    <test name="Invite counterparty chief-negotiator" preserve-order="true">
+    <test name="AT-85: Invite counterparty chief-negotiator" preserve-order="true">
         <parameter name="contractName" value="Invite CCN"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
