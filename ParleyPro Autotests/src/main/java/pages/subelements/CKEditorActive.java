@@ -14,7 +14,8 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class CKEditorActive
 {
-    private SelenideElement postButton = $("#create-discussion__submit, #create-post__submit");
+    private SelenideElement postButton   = $("#create-discussion__submit, #create-post__submit");
+    private SelenideElement cancelButton = $("button[class*='create-discussion__cancel']");
 
 
     private static Logger logger = Logger.getLogger(CKEditorActive.class);
@@ -103,6 +104,23 @@ public class CKEditorActive
         Thread.sleep(1_000); // 1 second delay - necessary for correct saving of comment
 
         return this;
+    }
+
+    /**
+     * Get separate WebElement of comment field of active CKEditor.
+     * May be useful to simulate typing, like typing '@' symbol to invoke popup for mentioning.
+     * @return
+     */
+    public WebElement getCommentInstance()
+    {
+        StringBuffer jsCode = new StringBuffer("var names = [];");
+        jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
+        jsCode.append("var comment_instance = names[1];");
+        jsCode.append("return $(comment_instance.element.$).next().find(\"div[contenteditable='true']\")[0];");
+
+        WebElement commentInputField = Selenide.executeJavaScript(jsCode.toString());
+
+        return commentInputField;
     }
 
     /**
@@ -229,5 +247,15 @@ public class CKEditorActive
         logger.info("POST button was clicked...");
 
         return new StartExternalDiscussion(paragraphText, cpOrganization);
+    }
+
+    /**
+     * Click by gray 'X' button to close editor
+     */
+    public void clickCancel()
+    {
+        cancelButton.click();
+
+        logger.info("Cancel button was clicked...");
     }
 }
