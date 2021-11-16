@@ -8,7 +8,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.search.FlagTerm;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Properties;
 
 public class EmailChecker
@@ -50,15 +49,6 @@ public class EmailChecker
             // Fetch unseen messages from inbox folder
             Message[] messages = inbox.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));
             logger.info("Amount of emails : " + messages.length);
-
-            logger.info("Sort messages from recent to oldest...");
-            Arrays.sort( messages, (m1, m2 ) -> {
-                try {
-                    return m2.getSentDate().compareTo( m1.getSentDate() );
-                } catch ( MessagingException e ) {
-                    throw new RuntimeException( e );
-                }
-            } );
 
             for ( Message message : messages )
             {
