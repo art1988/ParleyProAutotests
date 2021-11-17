@@ -48,8 +48,8 @@ public class PerformMentioning
     }
 
     @Test(priority = 2)
-    @Description("This test mentions two users (Felix, Mary) and creates discussion.")
-    public void mentionTwoUsers() throws InterruptedException
+    @Description("This test mentions user Felix, checks email and creates discussion.")
+    public void mentionUser() throws InterruptedException
     {
         ckEditorInstance = openedContract.clickByParagraph("Paragraph 2");
 
@@ -71,6 +71,27 @@ public class PerformMentioning
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "You are mentioned in discussions"),
                 "Email with subject: You are mentioned in discussions was not found !!!");
 
+        openedContract.clickByDiscussionIconSoft("Paragraph 2");
+        $$(".discussion2-post").last().find(".discussion2-post__comment").click(); // click by last post
+        ckEditorInstance = new CKEditorActive();
+        Assert.assertEquals(ckEditorInstance.getCommentInstance().getText(), "@arthur.khasanov+felix  user were mentioned...", "Comment field content is wrong !!!");
+        Screenshoter.makeScreenshot();
 
+        logger.info("Mention one more user...");
+        ckEditorInstance.getCommentInstance().sendKeys(" @");
+        popup = $$(".atwho-view").filterBy(Condition.visible).shouldHaveSize(1).first();
+        popup.findAll("ul li").filterBy(Condition.text("Mary")).first().click();
+        Thread.sleep(1_000);
+
+        ckEditorInstance.clickPost();
+        $(".notification-stack").shouldHave(Condition.text("Internal post has been successfully created."));
+
+        $$(".contract-header__right .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("AL", "FW", "MJ")); // users were added in contract header
+        $$(".header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("AL", "FW", "MJ")); // users were added in document header
+
+        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
+        Thread.sleep(30_000);
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "You are mentioned in discussions"),
+                "Email with subject: You are mentioned in discussions was not found !!!");
     }
 }
