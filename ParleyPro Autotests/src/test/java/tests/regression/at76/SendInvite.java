@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$;
 @Listeners({ScreenShotOnFailListener.class})
 public class SendInvite
 {
-    private String host     = "imap.gmail.com";
+    private String host     = "pop.gmail.com";
     private String username = "arthur.khasanov@parleypro.com";
     private String password = "ParGd881";
 

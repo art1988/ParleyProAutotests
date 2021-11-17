@@ -23,7 +23,7 @@ public class LoginToPopoversTenantAsViewer
 {
     private static Logger logger = Logger.getLogger(LoginToPopoversTenantAsViewer.class);
 
-    private String host = "imap.gmail.com";
+    private String host = "pop.gmail.com";
     private String username = "arthur.khasanov@parleypro.com";
     private String password = "ParGd881";
 

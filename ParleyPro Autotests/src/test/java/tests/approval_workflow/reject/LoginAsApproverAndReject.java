@@ -96,7 +96,7 @@ public class LoginAsApproverAndReject
         auditTrail.clickOk();
 
         logger.info("Checking CN e-mail...");
-        Assert.assertTrue(EmailChecker.assertEmailBySubject("imap.gmail.com", "arthur.khasanov@parleypro.com", "ParGd881", "Document \"pramata\" rejected by arthur.khasanov+approval1@parleypro.com"),
+        Assert.assertTrue(EmailChecker.assertEmailBySubject("pop.gmail.com", "arthur.khasanov@parleypro.com", "ParGd881", "Document \"pramata\" rejected by arthur.khasanov+approval1@parleypro.com"),
                 "Email with subject: Document \"pramata\" rejected by arthur.khasanov+approval1@parleypro.com was not found !!!");
     }
 }

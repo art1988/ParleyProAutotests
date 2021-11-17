@@ -4,10 +4,13 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Description;
+import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
 import pages.subelements.CKEditorActive;
+import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -17,8 +20,14 @@ import static com.codeborne.selenide.Selenide.$$;
 @Listeners({ScreenShotOnFailListener.class})
 public class PerformMentioning
 {
+    private String host = "pop.gmail.com";
+    private String username = "arthur.khasanov@parleypro.com";
+    private String password = "ParGd881";
+
     private CKEditorActive ckEditorInstance;
     private OpenedContract openedContract;
+
+    private static Logger logger = Logger.getLogger(PerformMentioning.class);
 
 
     @Test(priority = 1)
@@ -49,13 +58,18 @@ public class PerformMentioning
         popup.findAll("ul li").filterBy(Condition.text("Felix")).first().click();
         Thread.sleep(1_000);
 
-        ckEditorInstance.getCommentInstance().sendKeys("@");
-        popup = $$(".atwho-view").filterBy(Condition.visible).shouldHaveSize(1).first();
-        popup.findAll("ul li").filterBy(Condition.text("Mary")).first().click();
-        Thread.sleep(1_000);
-
-        ckEditorInstance.setComment(" two users were mentioned...").clickPost();
+        ckEditorInstance.setComment(" user were mentioned...").clickPost();
         $(".notification-stack").shouldHave(Condition.text(" has been successfully created."));
+
+        $$(".contract-header__right .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("AL", "FW")); // users were added in contract header
+        $$(".header-users .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("AL", "FW")); // users were added in document header
+
+        $$(".document__body .discussion-indicator").shouldHave(CollectionCondition.size(1)).first().shouldBe(Condition.visible); // discussion icon is visible
+
+        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
+        Thread.sleep(30_000);
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "You are mentioned in discussions"),
+                "Email with subject: You are mentioned in discussions was not found !!!");
 
 
     }

@@ -14,7 +14,7 @@ import utils.Screenshoter;
 @Listeners({ScreenShotOnFailListener.class})
 public class UploadNewVerAndCheckEmail
 {
-    private String host     = "imap.gmail.com";
+    private String host     = "pop.gmail.com";
     private String username = "arthur.khasanov@parleypro.com";
     private String password = "ParGd881";
 

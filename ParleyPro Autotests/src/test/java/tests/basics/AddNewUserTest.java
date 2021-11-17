@@ -17,7 +17,7 @@ import utils.Screenshoter;
 @Listeners({ScreenShotOnFailListener.class})
 public class AddNewUserTest
 {
-    private String host = "imap.gmail.com";
+    private String host = "pop.gmail.com";
     private String username = "arthur.khasanov@parleypro.com";
     private String password = "ParGd881";
 

@@ -25,7 +25,7 @@ import static constants.SideBarItems.IN_PROGRESS_CONTRACTS;
 @Listeners({ScreenShotOnFailListener.class})
 public class AsCCNUploadDocsAndCheck
 {
-    private String host     = "imap.gmail.com";
+    private String host     = "pop.gmail.com";
     private String username = "arthur.khasanov@parleypro.com";
     private String password = "ParGd881";
 

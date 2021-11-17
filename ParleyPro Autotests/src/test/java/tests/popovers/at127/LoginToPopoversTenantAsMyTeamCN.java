@@ -30,7 +30,7 @@ public class LoginToPopoversTenantAsMyTeamCN extends LoginBase
     private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToPopoversTenantAsMyTeamCN.class);
 
-    private String host = "imap.gmail.com";
+    private String host = "pop.gmail.com";
     private String username = "arthur.khasanov@parleypro.com";
     private String password = "ParGd881";
 
