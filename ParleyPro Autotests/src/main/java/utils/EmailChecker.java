@@ -34,13 +34,15 @@ public class EmailChecker
         {
             Properties properties = new Properties();
 
-            properties.put("mail.imap.host", host);
-            properties.put("mail.imap.port", "993");
-            properties.put("mail.imap.starttls.enable", "true");
-            properties.put("mail.imap.ssl.trust", host);
+            properties.put("mail.pop3s.auth", "true");
+            properties.put("mail.store.protocol", "pop3s");
+            properties.put("mail.pop3.host", host);
+            properties.put("mail.pop3.user", user);
+            properties.put("mail.pop3.port", 995);
+            properties.put("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
             Session emailSession = Session.getDefaultInstance(properties);
-            Store store = emailSession.getStore("imaps");
+            Store store = emailSession.getStore();
 
             store.connect(host, user, password);
 
@@ -62,11 +64,11 @@ public class EmailChecker
 
             for ( Message message : messages )
             {
-                if( message.getSubject().equals(emailSubject) )
+                if( message.getSubject().trim().equals(emailSubject) )
                 {
                     found = true;
 
-                    logger.info("Email was found: " + message.getSubject() + " , " + message.getReceivedDate());
+                    logger.info("Email was found: " + message.getSubject() + " , " + message.getSentDate());
                     Address[] froms = message.getFrom();
                     String email = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
 
@@ -81,7 +83,7 @@ public class EmailChecker
                 }
             }
 
-            inbox.close(false);
+            inbox.close(true);
             store.close();
         } catch (NoSuchProviderException e) {
             logger.error("NoSuchProviderException", e);
