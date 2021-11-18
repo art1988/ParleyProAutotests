@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
+import pages.OpenedDiscussion;
 import pages.subelements.CKEditorActive;
 import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
@@ -51,6 +52,7 @@ public class PerformMentioning
     @Description("This test mentions user Felix, checks email and creates discussion.")
     public void mentionUser() throws InterruptedException
     {
+        logger.info("Mention user Felix...");
         ckEditorInstance = openedContract.clickByParagraph("Paragraph 2");
 
         ckEditorInstance.getCommentInstance().sendKeys("@");
@@ -71,13 +73,13 @@ public class PerformMentioning
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "You are mentioned in discussions"),
                 "Email with subject: You are mentioned in discussions was not found !!!");
 
-        openedContract.clickByDiscussionIconSoft("Paragraph 2");
-        $$(".discussion2-post").last().find(".discussion2-post__comment").click(); // click by last post
+        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIconSoft("Paragraph 2");
+        $$(".discussion2-post").last().find(".discussion2-post__comment").click(); // click by last post to activate editor
         ckEditorInstance = new CKEditorActive();
         Assert.assertEquals(ckEditorInstance.getCommentInstance().getText(), "@arthur.khasanov+felix  user were mentioned...", "Comment field content is wrong !!!");
         Screenshoter.makeScreenshot();
 
-        logger.info("Mention one more user...");
+        logger.info("Mention one more user (Mary)...");
         ckEditorInstance.getCommentInstance().sendKeys(" @");
         popup = $$(".atwho-view").filterBy(Condition.visible).shouldHaveSize(1).first();
         popup.findAll("ul li").filterBy(Condition.text("Mary")).first().click();
@@ -89,9 +91,28 @@ public class PerformMentioning
         $$(".contract-header__right .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("AL", "FW", "MJ")); // users were added in contract header
         $$(".header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("AL", "FW", "MJ")); // users were added in document header
 
+        logger.info("Assert that post has been updated...");
+        String textFromPost = $$(".discussion2-post").last().find(".discussion2-post__comment p").getText();
+        Assert.assertTrue(textFromPost.contains("@arthur.khasanov+felix") && textFromPost.contains("user were mentioned...") && textFromPost.contains("@arthur.khasanov+mary"));
+
         logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
         Thread.sleep(30_000);
+        logger.info("Delete those 2 emails with subject 'You are mentioned in discussions'...");
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "You are mentioned in discussions"),
-                "Email with subject: You are mentioned in discussions was not found !!!");
+                "Email with subject: You are mentioned in discussions was not found !!!"); // first email with subject 'You are mentioned in discussions'
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "You are mentioned in discussions"),
+                "Email with subject: You are mentioned in discussions was not found !!!"); // second email with subject 'You are mentioned in discussions'
+
+        openedDiscussion.close();
+    }
+
+    @Test(priority = 3)
+    public void addOneMoreDiscussion() throws InterruptedException
+    {
+        ckEditorInstance = openedContract.clickByParagraph("Paragraph 3");
+
+        ckEditorInstance.setText(". Some added text").clickPost();
+        $(".notification-stack").shouldHave(Condition.text(" has been successfully created."));
+        $$(".document__body-content .discussion-indicator").shouldHave(CollectionCondition.size(2)); // 2 discussion icons
     }
 }
