@@ -66,12 +66,11 @@ public class StartPreSignApproval
 
         confirmApproversForm.clickStartApproval();
 
-        $((WebElement) Selenide.executeJavaScript("return $('.document__header-row span[title]:contains(\"pramata\")').parent().parent().parent().next().find('.lifecycle:contains(\"APPROVAL\")')[0]"))
-                .waitUntil(Condition.visible, 8_000);
+        $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
 
         logger.info("Assert that approvers icons are visible: Approval_User_2 and Team#2");
-        $(".header-users .user").waitUntil(Condition.appear, 15_000); // wait until users icons will appear
-        $(".header-users .team").waitUntil(Condition.appear, 15_000);
+        $(".header-users .user").should(Condition.appear);
+        $(".header-users .team").should(Condition.appear);
         $$(".header-users .user").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("Ar")); // one User...
         $$(".header-users .team").shouldHave(CollectionCondition.size(1)); // ...and one Team
 
