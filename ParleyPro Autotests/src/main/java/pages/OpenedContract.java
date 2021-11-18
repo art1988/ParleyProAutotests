@@ -479,4 +479,17 @@ public class OpenedContract
             return $(".contract-header__status .discussion-indicator__count").getText();
         }
     }
+
+    /**
+     * Click by DISCUSSIONS tab.
+     * @return
+     */
+    public Discussions clickByDiscussions()
+    {
+        $(".menu-disc-doc__discussions").shouldBe(Condition.visible, Condition.enabled).click();
+
+        logger.info("DISCUSSIONS tab was clicked...");
+
+        return new Discussions(contractName.getText());
+    }
 }
