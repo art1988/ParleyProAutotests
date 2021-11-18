@@ -13,7 +13,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.DiscussionsOfSingleContract;
+import pages.Discussions;
 import pages.DocumentComparePreview;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
@@ -62,7 +62,7 @@ public class UploadNewVersionAndCheckChanges
                 "Icons of deleted/commented/added/edited paragraphs are wrong !!!");
 
         logger.info("Assert that there are only 5 opened discussions");
-        DiscussionsOfSingleContract discussionsInContract = comparePreview.clickUpload(true);
+        Discussions discussionsInContract = comparePreview.clickUpload(true);
         softAssert.assertEquals(discussionsInContract.getDiscussionCount(), "5", "Looks like that discussions are empty or not equal 5 !");
         $$(".discussion-list .discussion2.discussion2_collapsed_yes").shouldHave(CollectionCondition.size(5));
 

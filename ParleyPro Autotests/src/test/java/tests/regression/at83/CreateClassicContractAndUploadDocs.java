@@ -77,8 +77,8 @@ public class CreateClassicContractAndUploadDocs
         DocumentComparePreview documentComparePreview = uploadNewVersionOfDocument
                 .clickUploadMyTeamDocument( Const.REGRESSION_DOC_AT83_BDOC2, documentName, contractName );
 
-        DiscussionsOfSingleContract discussionsOfSingleContract = documentComparePreview.clickUpload(true);
-        discussionsOfSingleContract.clickDocumentsTab();
+        Discussions discussions = documentComparePreview.clickUpload(true);
+        discussions.clickDocumentsTab();
 
         Screenshoter.makeScreenshot();
     }

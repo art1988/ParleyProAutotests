@@ -9,7 +9,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.DiscussionsOfSingleContract;
+import pages.Discussions;
 import pages.DocumentComparePreview;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
@@ -62,6 +62,6 @@ public class UploadNewVersionFromCP
             return;
         }
 
-        DiscussionsOfSingleContract discussionsOfSingleContract = comparePreview.clickUpload(true);
+        Discussions discussions = comparePreview.clickUpload(true);
     }
 }

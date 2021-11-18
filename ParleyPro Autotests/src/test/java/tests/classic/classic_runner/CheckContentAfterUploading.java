@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pages.DiscussionsOfSingleContract;
+import pages.Discussions;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -26,14 +26,14 @@ public class CheckContentAfterUploading
                                            String textOnFirstPage,
                                            String textOnLastPage) throws InterruptedException
     {
-        DiscussionsOfSingleContract discussionsOfSingleContract = new DiscussionsOfSingleContract(contractName);
+        Discussions discussions = new Discussions(contractName);
 
         logger.info("Checking number of discussions...");
-        Assert.assertTrue(Integer.parseInt(discussionsOfSingleContract.getDiscussionCount()) >= Integer.parseInt(numberOfDiscussions),
+        Assert.assertTrue(Integer.parseInt(discussions.getDiscussionCount()) >= Integer.parseInt(numberOfDiscussions),
                 "Looks like that discussions are empty or not greater or equal to " + numberOfDiscussions);
         //Assert.assertEquals(discussionsOfSingleContract.getDiscussionCount(), numberOfDiscussions);
 
-        OpenedContract openedContract = discussionsOfSingleContract.clickDocumentsTab();
+        OpenedContract openedContract = discussions.clickDocumentsTab();
         logger.info("Waiting until spinner will disappear [up to 2 minute]...");
         $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
         $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);

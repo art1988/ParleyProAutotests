@@ -79,7 +79,7 @@ public class DocumentComparePreview
      * @param isClassic
      * @return DiscussionsOfSingleContract if contract is in classic mode, null otherwise
      */
-    public DiscussionsOfSingleContract clickUpload(boolean isClassic)
+    public Discussions clickUpload(boolean isClassic)
     {
         uploadButton.shouldBe(Condition.visible).click();
         logger.info("UPLOAD button was clicked");
@@ -89,7 +89,7 @@ public class DocumentComparePreview
 
         if( isClassic )
         {
-            return new DiscussionsOfSingleContract(contractName);
+            return new Discussions(contractName);
         }
 
         return null;

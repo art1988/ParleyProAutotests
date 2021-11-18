@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pages.DiscussionsOfSingleContract;
+import pages.Discussions;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -23,13 +23,13 @@ public class CheckTableAfterUploading
                                          String textInFirstRow,
                                          String textInLastRow) throws InterruptedException
     {
-        DiscussionsOfSingleContract discussionsOfSingleContract = new DiscussionsOfSingleContract(contractName);
+        Discussions discussions = new Discussions(contractName);
 
         logger.info("Checking number of discussions...");
-        Assert.assertTrue(Integer.parseInt(discussionsOfSingleContract.getDiscussionCount()) > Integer.parseInt(numberOfDiscussions));
+        Assert.assertTrue(Integer.parseInt(discussions.getDiscussionCount()) > Integer.parseInt(numberOfDiscussions));
         //Assert.assertEquals(discussionsOfSingleContract.getDiscussionCount(), numberOfDiscussions);
 
-        OpenedContract openedContract = discussionsOfSingleContract.clickDocumentsTab();
+        OpenedContract openedContract = discussions.clickDocumentsTab();
 
         logger.info("Checking text in first table row...");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text tbody td span:contains(\"" + textInFirstRow + "\")').length > 1"));
