@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * DISCUSSIONS board.
@@ -23,7 +24,9 @@ public class Discussions
     public Discussions(String contractName)
     {
         logger.info("Waiting until spinner will disappear [up to 5 minutes]...");
+
         $(".spinner").waitUntil(Condition.disappear, 60_000 * 5); // (5 minutes) for very heavy docs with macros
+
         contractTitle.waitUntil(Condition.visible, 60_000).shouldHave(Condition.exactText(contractName));
     }
 
@@ -33,7 +36,13 @@ public class Discussions
      */
     public void expandDiscussion(String titleOfDiscussion)
     {
+        $$(".discussion2-header__name").filterBy(Condition.text(titleOfDiscussion)).first().click();
 
+        $(".discussion2:not(.discussion2_collapsed_yes)").shouldBe(Condition.visible);
+        $(".discussion2:not(.discussion2_collapsed_yes)").find(".discussion2-original").shouldBe(Condition.visible);
+        $(".discussion2:not(.discussion2_collapsed_yes)").find(".discussion2-post").shouldBe(Condition.visible);
+
+        logger.info("Discussion '" + titleOfDiscussion + "' has been expanded...");
     }
 
     public String getDiscussionCount()
@@ -43,7 +52,7 @@ public class Discussions
 
     public OpenedContract clickDocumentsTab()
     {
-        documentsTab.waitUntil(Condition.visible, 20_000).click();
+        documentsTab.shouldBe(Condition.visible).click();
 
         logger.info("DOCUMENTS tab was clicked");
 
