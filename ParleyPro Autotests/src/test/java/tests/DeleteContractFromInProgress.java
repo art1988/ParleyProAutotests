@@ -6,7 +6,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
-import pages.InProgressContractsPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -19,7 +18,7 @@ import static com.codeborne.selenide.Selenide.$;
 @Listeners({ScreenShotOnFailListener.class})
 public class DeleteContractFromInProgress
 {
-    private static Logger logger = Logger.getLogger(DeleteContractFromExecuted.class);
+    private static Logger logger = Logger.getLogger(DeleteContractFromInProgress.class);
 
     @Test
     @Parameters("contractName")
