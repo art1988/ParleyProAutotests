@@ -33,14 +33,14 @@ public class EditDocumentAndReSave
         editDocumentPage.insertTable().clickOk();
 
         logger.info("Assert that Table was added in Edit document view...");
-        $(".editor-popup-editor__body table").waitUntil(Condition.visible, 7_000); // wait until table is visible
+        $(".editor-popup-editor__body table").shouldBe(Condition.visible); // wait until table is visible
         boolean tableDoesntExist = Selenide.executeJavaScript("return ($('.editor-popup-editor__body table').length === 0)");
         Assert.assertFalse(tableDoesntExist);
 
         editDocumentPage.clickSave();
 
         logger.info("Assert that Table was added in main document after saving");
-        $(".document-paragraph__content-text table").waitUntil(Condition.visible, 15_000);
+        $(".document-paragraph__content-text table").shouldBe(Condition.visible);
         $$(".document-paragraph__content-text table").shouldHave(CollectionCondition.size(4));
 
         // Edit again
@@ -50,7 +50,7 @@ public class EditDocumentAndReSave
         editDocumentPage.clickSave();
 
         logger.info("Assert that table is visible after re-saving...");
-        $(".document-paragraph__content-text table").waitUntil(Condition.visible, 15_000);
+        $(".document-paragraph__content-text table").shouldBe(Condition.visible);
         $$(".document-paragraph__content-text table").shouldHave(CollectionCondition.size(4));
 
         Screenshoter.makeScreenshot();
