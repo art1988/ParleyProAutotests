@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class CKEditorActive
 {
-    private SelenideElement postButton   = $("#create-discussion__submit, #create-post__submit");
+    private SelenideElement postButton   = $("#create-discussion__submit, #create-post__submit, .js-dicussion-post-submit");
     private SelenideElement cancelButton = $("button[class*='create-discussion__cancel']");
 
 
