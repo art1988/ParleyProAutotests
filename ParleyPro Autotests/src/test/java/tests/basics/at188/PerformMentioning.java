@@ -60,7 +60,7 @@ public class PerformMentioning
         popup.findAll("ul li").filterBy(Condition.text("Felix")).first().click();
         Thread.sleep(1_000);
 
-        ckEditorInstance.setComment(" user were mentioned...").clickPost();
+        ckEditorInstance.setComment(" user was mentioned...").clickPost();
         $(".notification-stack").shouldHave(Condition.text(" has been successfully created."));
 
         $$(".contract-header__right .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("AL", "FW")); // users were added in contract header
@@ -68,15 +68,15 @@ public class PerformMentioning
 
         $$(".document__body .discussion-indicator").shouldHave(CollectionCondition.size(1)).first().shouldBe(Condition.visible); // discussion icon is visible
 
-        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
-        Thread.sleep(30_000);
+        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        Thread.sleep(60_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "You are mentioned in discussions"),
                 "Email with subject: You are mentioned in discussions was not found !!!");
 
         OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIconSoft("Paragraph 2");
         $$(".discussion2-post").last().find(".discussion2-post__comment").click(); // click by last post to activate editor
         ckEditorInstance = new CKEditorActive();
-        Assert.assertEquals(ckEditorInstance.getCommentInstance().getText(), "@arthur.khasanov+felix  user were mentioned...", "Comment field content is wrong !!!");
+        Assert.assertEquals(ckEditorInstance.getCommentInstance().getText(), "@arthur.khasanov+felix  user was mentioned...", "Comment field content is wrong !!!");
         Screenshoter.makeScreenshot();
 
         logger.info("Mention one more user (Mary)...");
@@ -93,10 +93,10 @@ public class PerformMentioning
 
         logger.info("Assert that post has been updated...");
         String textFromPost = $$(".discussion2-post").last().find(".discussion2-post__comment p").getText();
-        Assert.assertTrue(textFromPost.contains("@arthur.khasanov+felix") && textFromPost.contains("user were mentioned...") && textFromPost.contains("@arthur.khasanov+mary"));
+        Assert.assertTrue(textFromPost.contains("@arthur.khasanov+felix") && textFromPost.contains("user was mentioned...") && textFromPost.contains("@arthur.khasanov+mary"));
 
-        logger.info("Waiting for 30 seconds to make sure that email has been delivered...");
-        Thread.sleep(30_000);
+        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        Thread.sleep(60_000);
         logger.info("Delete those 2 emails with subject 'You are mentioned in discussions'...");
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "You are mentioned in discussions"),
                 "Email with subject: You are mentioned in discussions was not found !!!"); // first email with subject 'You are mentioned in discussions'

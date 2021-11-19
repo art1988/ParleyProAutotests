@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Basics" configfailurepolicy="continue">
+<suite name = "Basics" configfailurepolicy="continue"><!--
     <test name = "Basic contract lifecycle" preserve-order="true">
         <parameter name="contractName" value="Contract lifecycle autotest"/>
         <classes>
@@ -86,6 +86,18 @@
             <class name="tests.LoginToDashboard"/>
             <class name="tests.basics.AddNewContract"/>
             <class name="tests.basics.attachments.UploadAndDownloadAttachments"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-188: CK editor: mention doesn't work properly" preserve-order="true">
+        <parameter name="contractName" value="CKE_Mentioning ctr"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.basics.at188.AddContractUploadDoc"/>
+            <class name="tests.basics.at188.PerformMentioning"/>
+            <class name="tests.basics.at188.MentionOnDiscussionBoard"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>

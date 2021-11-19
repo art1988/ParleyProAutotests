@@ -3,6 +3,7 @@ package tests.basics.at188;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -28,6 +29,7 @@ public class MentionOnDiscussionBoard
 
 
     @Test
+    @Description("This test mention user (Greg) from discussion board.")
     public void mentionOnDiscussionBoard() throws InterruptedException
     {
         Discussions discussions = new OpenedContract().clickByDiscussions();
@@ -55,8 +57,8 @@ public class MentionOnDiscussionBoard
         Assert.assertTrue(textFromPost.contains("@arthur.khasanov+greg") && textFromPost.contains("Greg was mentioned too !"));
         Screenshoter.makeScreenshot();
 
-        logger.info("Waiting for 30 seconds... Going to delete email with subject 'You are mentioned in discussions'...");
-        Thread.sleep(30_000);
+        logger.info("Waiting for 60 seconds... Going to delete email with subject 'You are mentioned in discussions'...");
+        Thread.sleep(60_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "You are mentioned in discussions"),
                 "Email with subject: You are mentioned in discussions was not found !!!");
     }
