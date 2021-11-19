@@ -113,6 +113,8 @@ public class Const
     public static final File   DOC_1_AT185                   = new File(System.getProperty("user.dir") + "/Documents/AT185-Manufacturing Agreement-redlines-D1.docx");
     public static final File   DOC_2_AT185                   = new File(System.getProperty("user.dir") + "/Documents/AT185-Lists-D2.docx");
 
+    public static final File   DOC_FORMATTING_AT190          = new File(System.getProperty("user.dir") + "/Documents/AT_190-SoW_CASS_Hybrid-Platform_2022_from Patrick.docx");
+
     // Directories
     // Directory of docs from clients. Used in Classic
     public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Documents/classicClientDocs");
