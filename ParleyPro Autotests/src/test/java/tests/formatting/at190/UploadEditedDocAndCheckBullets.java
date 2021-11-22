@@ -29,6 +29,7 @@ public class UploadEditedDocAndCheckBullets
     @Description("This test uploads edited doc and checks that bulleted items have text.")
     public void uploadEditedDocAndCheckBullets()
     {
+        logger.info("Uploading edited doc...");
         new AddDocuments()
                 .clickUploadMyTeamDocuments(new File(Const.DOWNLOAD_DIR.getAbsolutePath() + "/" + Cache.getInstance().getCachedFile()));
 
