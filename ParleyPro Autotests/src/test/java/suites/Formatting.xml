@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Formatting suite" configfailurepolicy="continue"><!--
+<suite name = "Formatting suite" configfailurepolicy="continue">
     <test name="AT-20: Online formatting" preserve-order="true">
         <parameter name="contractName" value="AT20 online formatting contract"/>
         <classes>
@@ -36,7 +36,7 @@
             <class name="tests.DeleteTemplate"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-190: Download - Bulleted section disappears after online formatting" preserve-order="true">
         <parameter name="contractName" value="IEEE Bullets CTR"/>
