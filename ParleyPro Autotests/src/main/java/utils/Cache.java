@@ -18,6 +18,7 @@ public class Cache
     private static String KEY_TAB_1_HANDLE                 = "KEY_TAB_1_HANDLE";
     private static String KEY_EMAIL                        = "KEY_EMAIL";
     private static String KEY_ADDITIONAL_COUNTERPARTY_USER = "KEY_ADDITIONAL_COUNTERPARTY_USER";
+    private static String KEY_FILE                         = "KEY_FILE";
 
     private Cache() {}
 
@@ -69,6 +70,16 @@ public class Cache
     public String getCachedAdditionalCounterpartyUser()
     {
         return hashTable.get(KEY_ADDITIONAL_COUNTERPARTY_USER);
+    }
+
+    public void setFile(String fileName)
+    {
+        hashTable.put(KEY_FILE, fileName);
+    }
+
+    public String getCachedFile()
+    {
+        return hashTable.get(KEY_FILE);
     }
 
     public static Cache getInstance()

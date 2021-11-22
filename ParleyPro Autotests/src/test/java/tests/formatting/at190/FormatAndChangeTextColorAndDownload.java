@@ -10,6 +10,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.EditDocumentPage;
 import pages.OpenedContract;
+import utils.Cache;
 import utils.ScreenShotOnFailListener;
 
 import java.io.File;
@@ -20,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
@@ -52,6 +54,7 @@ public class FormatAndChangeTextColorAndDownload
     }
 
     @Test(priority = 2)
+    @Description("This test downloads just edited doc.")
     public void download() throws IOException, InterruptedException
     {
         new OpenedContract().clickDocumentActionsMenu("AT_190-SoW_CASS_Hybrid-Platform_2022_from Patrick")
@@ -79,8 +82,22 @@ public class FormatAndChangeTextColorAndDownload
         }
 
         logger.info("Rename just downloaded file...");
+        String fileName = "downloaded_AT_190-SoW_CASS.docx";
+        Cache.getInstance().setFile(fileName);
+
         Path source = Optional.ofNullable(downloadedFile).get().toPath();
-        Path target = Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath() + "/" + "downloaded_AT_190-SoW_CASS.docx");
-        downloadedFile = Files.move(source, target).toFile();
+        Path target = Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath() + "/" + fileName);
+
+        File renamed = Files.move(source, target).toFile();
+        Assert.assertTrue(renamed.exists(), "Can't rename file !");
+    }
+
+    @Test(priority = 3)
+    public void deletePreviousDoc()
+    {
+        new OpenedContract().clickDocumentActionsMenu("AT_190-SoW_CASS_Hybrid-Platform_2022_from Patrick")
+                            .clickDelete().clickDelete();
+
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text(" has been deleted."));
     }
 }
