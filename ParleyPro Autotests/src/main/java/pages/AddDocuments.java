@@ -45,7 +45,7 @@ public class AddDocuments
         else if( $$(".tab-menu span").size() == 2 ) // For 'Executed contracts' page or for AddDocuments popup of CCN
         {
             $$(".tab-menu span").shouldHave(CollectionCondition.size(2));
-            $$(".upload__button").shouldHave(CollectionCondition.size(1)).first().shouldBe(Condition.visible, Condition.enabled);
+            $$(".upload__button").forEach(button -> button.shouldBe(Condition.visible, Condition.enabled));
         }
         else
         {
