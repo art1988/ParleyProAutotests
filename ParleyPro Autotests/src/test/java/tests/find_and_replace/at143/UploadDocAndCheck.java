@@ -1,4 +1,4 @@
-package tests.find_and_replace;
+package tests.find_and_replace.at143;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -6,7 +6,6 @@ import constants.Const;
 import forms.ContractInformation;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;

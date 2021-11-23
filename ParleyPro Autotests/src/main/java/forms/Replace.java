@@ -18,9 +18,9 @@ public class Replace
 
     public Replace()
     {
-        $(".modal-content").waitUntil(Condition.visible, 10_000);
+        $(".modal-content").shouldBe(Condition.visible);
 
-        saveButton.shouldBe(Condition.enabled).shouldBe(Condition.visible);
+        saveButton.shouldBe(Condition.enabled, Condition.visible);
         $(".modal-content .scrollbar-container").shouldBe(Condition.visible);
     }
 
@@ -30,6 +30,6 @@ public class Replace
 
         logger.info("SAVE button was clicked...");
 
-        $(".modal-content").waitUntil(Condition.disappear, 30_000);
+        $(".modal-content").should(Condition.disappear);
     }
 }
