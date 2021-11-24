@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
+import pages.DashboardPage;
 import utils.Cache;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -30,6 +31,8 @@ public class UploadEditedDocAndCheckBullets
     public void uploadEditedDocAndCheckBullets()
     {
         logger.info("Uploading edited doc...");
+        new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("IEEE Bullets CTR");
+
         new AddDocuments()
                 .clickUploadMyTeamDocuments(new File(Const.DOWNLOAD_DIR.getAbsolutePath() + "/" + Cache.getInstance().getCachedFile()));
 
