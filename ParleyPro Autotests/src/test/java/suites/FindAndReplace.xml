@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Find and Replace suite" configfailurepolicy="continue"><!--
+<suite name = "Find and Replace suite" configfailurepolicy="continue">
     <test name="AT-143: Review stage, My Team doc" preserve-order="true">
         <parameter name="contractName" value="Contr AT-143 // Find and Replace"/>
         <classes>
@@ -10,7 +10,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-191: CN clicks Find and Replace - replaces word but PP does not show discussion/edit" preserve-order="true">
         <classes>
