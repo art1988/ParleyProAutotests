@@ -40,7 +40,7 @@ public class OpenedDiscussion
         $(".discussion2-original").shouldBe(Condition.enabled);
         $(".discussion-header__title-name").waitUntil(Condition.visible, 7_000).shouldHave(Condition.text(title));
 
-        try { Thread.sleep(500); } catch (InterruptedException e) { logger.error("InterruptedException", e); }
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { logger.error("InterruptedException", e); }
     }
 
     /**
@@ -54,7 +54,7 @@ public class OpenedDiscussion
 
         $(".discussion2-original").shouldBe(Condition.enabled);
 
-        try { Thread.sleep(500); } catch (InterruptedException e) { logger.error("InterruptedException", e); }
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { logger.error("InterruptedException", e); }
     }
 
     /**
@@ -115,6 +115,8 @@ public class OpenedDiscussion
      */
     public AcceptPost clickAccept(AcceptTypes type, String post)
     {
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { logger.error("InterruptedException", e); }
+
         Selenide.executeJavaScript("$('.paragraph-discussions .discussion2-post .discussion2-post__text:contains(\"" + post + "\")').parent().next().find(\"i\").click()");
 
         return new AcceptPost(type);

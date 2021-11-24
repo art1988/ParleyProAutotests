@@ -14,7 +14,7 @@ public class DashboardPage
 
     public DashboardPage()
     {
-        $(".spinner").waitUntil(Condition.disappear, 15_000);
+        $(".spinner").should(Condition.disappear);
 
         Assert.assertTrue(isInit());
 
