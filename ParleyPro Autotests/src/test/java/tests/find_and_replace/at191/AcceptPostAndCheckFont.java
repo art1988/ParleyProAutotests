@@ -94,5 +94,7 @@ public class AcceptPostAndCheckFont
         logger.info("Making sure that there are no del/ins tags left...");
         $$("del").shouldHave(CollectionCondition.size(0));
         $$("ins").shouldHave(CollectionCondition.size(0));
+
+        Screenshoter.makeScreenshot();
     }
 }
