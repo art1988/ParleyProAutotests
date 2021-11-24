@@ -1,13 +1,24 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Find and Replace suite" configfailurepolicy="continue">
+<suite name = "Find and Replace suite" configfailurepolicy="continue"><!--
     <test name="AT-143: Review stage, My Team doc" preserve-order="true">
         <parameter name="contractName" value="Contr AT-143 // Find and Replace"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.find_and_replace.UploadDocAndCheck"/>
+            <class name="tests.find_and_replace.at143.UploadDocAndCheck"/>
             <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-191: CN clicks Find and Replace - replaces word but PP does not show discussion/edit" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToTrackChangesTenant"/>
+            <class name="tests.find_and_replace.at191.UploadDoc"/>
+            <class name="tests.find_and_replace.at191.MakeReplaceAndCheck"/>
+            <class name="tests.find_and_replace.at191.AcceptPostAndCheckFont"/>
+            <class name="tests.find_and_replace.at191.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
