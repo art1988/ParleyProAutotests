@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import pages.subelements.ListOfPosts;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -67,6 +67,15 @@ public class ManageDiscussions
         return this;
     }
 
+    public ManageDiscussions acceptInternalDiscussions()
+    {
+        $$(".scheme_internal button").findBy(text("Accept")).click();
+
+        logger.info("ACCEPT button for internal discussions was clicked...");
+
+        return this;
+    }
+
     public ManageDiscussions acceptExternalDiscussions()
     {
         $$(".scheme_external button").findBy(text("Accept")).click();
@@ -119,7 +128,7 @@ public class ManageDiscussions
 
         logger.info("MAKE EXTERNAL button was clicked");
 
-        $(".spinner").waitUntil(Condition.disappear, 20_000);
+        $(".spinner").should(disappear);
 
         return this;
     }
@@ -130,7 +139,7 @@ public class ManageDiscussions
 
         logger.info("MAKE QUEUED button was clicked");
 
-        $(".spinner").waitUntil(Condition.disappear, 20_000);
+        $(".spinner").should(disappear);
 
         return this;
     }
@@ -145,17 +154,17 @@ public class ManageDiscussions
 
         logger.info("ACCEPT button was clicked");
 
-        $(".spinner").waitUntil(Condition.disappear, 20_000);
+        $(".spinner").should(disappear);
 
         return this;
     }
 
     public void clickDone()
     {
-        doneButton.waitUntil(Condition.visible, 10_000).waitUntil(Condition.enabled, 10_000).click();
+        doneButton.shouldBe(visible, enabled).click();
 
         logger.info("DONE was clicked");
 
-        $(".manage-discussions-sections").waitUntil(Condition.disappear, 20_000);
+        $(".manage-discussions-sections").should(disappear);
     }
 }
