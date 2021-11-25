@@ -86,13 +86,4 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-
-    <test name="AT-144: Gray screen in search in template bundles" preserve-order="true">
-        <classes>
-            <class name="tests.LoginToDashboard"/>
-            <class name="tests.templates.bundles.at144.UploadTemplatesCreateBundlesAndCheck"/>
-            <class name="tests.templates.bundles.at144.CleanUp"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
 </suite>
