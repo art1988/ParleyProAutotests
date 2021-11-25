@@ -35,7 +35,7 @@ public class UploadTemplateAndCheck
                      .clickIntegrationsCheckmark()
                      .clickSave();
 
-        logger.info("Making sure that templates has been opened without errors...");
+        logger.info("Making sure that template has been opened without errors...");
 
         EditTemplatePage editTemplatePage = templatesPage.selectTemplate("AT-135_Template_identical");
 
