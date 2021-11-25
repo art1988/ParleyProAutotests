@@ -23,9 +23,9 @@ public class TemplateInformation
 
     public TemplateInformation()
     {
-        $(".spinner").waitUntil(Condition.disappear, 7_000);
+        $(".spinner").should(Condition.disappear);
 
-        $(".modal-body-title").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Template information"));
+        $(".modal-body-title").shouldBe(Condition.visible).shouldHave(Condition.exactText("Template information"));
     }
 
     public void setTemplateName(String name) throws InterruptedException
@@ -88,11 +88,16 @@ public class TemplateInformation
         return $("input[data-label='Contract types']").getValue();
     }
 
-    public void clickIntegrationsCheckmark()
+    /**
+     * Click by 'Available through integrations' checkbox
+     */
+    public TemplateInformation clickIntegrationsCheckmark()
     {
         Selenide.executeJavaScript("$('#templateFormExternal').next().next().click()");
 
-        logger.info("Available through integrations checkmark was selected...");
+        logger.info("'Available through integrations' checkbox was selected...");
+
+        return this;
     }
 
     public void setDescription(String text)
@@ -117,7 +122,8 @@ public class TemplateInformation
         logger.info("SAVE button was clicked...");
 
         saveButton.click();
-        $(".modal-content").waitUntil(Condition.disappear, 7_000);
+
+        $(".modal-content").should(Condition.disappear);
     }
 
 }

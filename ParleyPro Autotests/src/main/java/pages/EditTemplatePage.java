@@ -17,10 +17,10 @@ public class EditTemplatePage
 
     public EditTemplatePage()
     {
-        $(".spinner").waitUntil(Condition.disappear, 20_000);
+        $(".spinner").should(Condition.disappear);
 
-        $(".rename > span").waitUntil(Condition.visible, 20_000);
-        $(".cke_inner").waitUntil(Condition.visible, 20_000);
+        $(".rename > span").shouldBe(Condition.visible);
+        $(".cke_inner").shouldBe(Condition.visible);
     }
 
     /**
