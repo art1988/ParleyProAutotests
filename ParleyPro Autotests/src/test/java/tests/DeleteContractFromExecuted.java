@@ -34,9 +34,9 @@ public class DeleteContractFromExecuted
                            .clickDelete();
 
         logger.info("Assert delete notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract " + contractName + " has been deleted."));
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.exactText("Contract " + contractName + " has been deleted."));
 
-        $(".contracts__create").waitUntil(Condition.visible, 15_000).shouldHave(Condition.text("There are no executed contracts.\nYou can start a new executed  contract by clicking the button below"));
+        $(".contracts__create").should(Condition.appear).shouldHave(Condition.text("There are no executed contracts.\nYou can start a new executed  contract by clicking the button below"));
 
         Screenshoter.makeScreenshot();
     }
