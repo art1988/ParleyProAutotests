@@ -18,12 +18,13 @@ public class ValidatePreviouslySavedSettings
     private static Logger logger = Logger.getLogger(ValidatePreviouslySavedSettings.class);
 
     @Test
-    public void validatePreviouslySavedSettings()
+    public void validatePreviouslySavedSettings() throws InterruptedException
     {
         Integrations integrationsTab = new DashboardPage().getSideBar().clickAdministration().clickIntegrationsTab();
 
         logger.info("Scroll down to Google Drive...");
         Selenide.executeJavaScript("$('.integrations-google-drive')[0].scrollIntoView({});");
+        Thread.sleep(1_000);
 
         logger.info("Checking saved settings for Google Drive...");
         Assert.assertEquals(integrationsTab.getGoogleDriveOwnerEmail(), Cache.getInstance().getCachedEmail(), "Drive Owner Email wasn't saved !!!");
