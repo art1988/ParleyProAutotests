@@ -4,6 +4,8 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Issues;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -81,6 +83,9 @@ public class MakeExternalAndUploadDocsV2V3V4
     }
 
     @Test(priority = 3)
+    @Issues({
+            @Issue("PAR-15109")
+    })
     public void uploadDocV3AsMyTeam()
     {
         new OpenedContract().clickUploadNewVersionButton(documentName)
@@ -158,6 +163,9 @@ public class MakeExternalAndUploadDocsV2V3V4
     }
 
     @Test(priority = 6)
+    @Issues({
+            @Issue("PAR-15109")
+    })
     public void uploadFinalDocV4AndCheck()
     {
         new OpenedContract().clickUploadNewVersionButton(documentName)
