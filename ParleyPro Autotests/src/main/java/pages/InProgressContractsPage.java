@@ -9,7 +9,6 @@ import forms.ContractRequest;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.SkipException;
-import pages.subelements.SideBar;
 
 import java.io.FileNotFoundException;
 
@@ -110,6 +109,15 @@ public class InProgressContractsPage
 
         $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
         $(".document__body .spinner").waitUntil(Condition.disappear, 60_000 * 2);
+    }
+
+    public Discussions clickDiscussionsTab()
+    {
+        $$(".tab-menu__item").filterBy(Condition.text("DISCUSSIONS")).first().click();
+
+        logger.info("DISCUSSIONS tab was clicked...");
+
+        return new Discussions();
     }
 
     public void search(String searchString)
