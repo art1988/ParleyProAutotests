@@ -21,6 +21,10 @@ public class Discussions
 
     private static Logger logger = Logger.getLogger(Discussions.class);
 
+    /**
+     * In case if Discussions board was clicked via already opened contract.
+     * @param contractName
+     */
     public Discussions(String contractName)
     {
         logger.info("Waiting until spinner will disappear [up to 5 minutes]...");
@@ -28,6 +32,18 @@ public class Discussions
         $(".spinner").waitUntil(Condition.disappear, 60_000 * 5); // (5 minutes) for very heavy docs with macros
 
         contractTitle.waitUntil(Condition.visible, 60_000).shouldHave(Condition.exactText(contractName));
+    }
+
+    /**
+     * In case if Discussions board was clicked via contracts page.
+     */
+    public Discussions()
+    {
+        logger.info("Waiting until spinner will disappear [up to 5 minutes]...");
+
+        $(".spinner").waitUntil(Condition.disappear, 60_000 * 5); // (5 minutes) for very heavy docs with macros
+
+        $(".discussions-contracts-list-scroll").shouldBe(Condition.visible, Condition.enabled);
     }
 
     /**
