@@ -230,7 +230,7 @@
         </classes>
     </test>
 
-    <test name="Client doc #12 [APLL]: AT-181 - APLL: Could not upload document">
+    <test name="[FLAKY] Client doc #12 [APLL]: AT-181 - APLL: Could not upload document">
         <parameter name="contractName" value="Classic contract - client docs"/>
         <parameter name="documentName" value="Kellogg Company_Warehouse Services Agreement Master_short.docx"/>
         <parameter name="cpDocumentName" value="Kellogg Company_Warehouse Services Agreement Master_short.docx"/>

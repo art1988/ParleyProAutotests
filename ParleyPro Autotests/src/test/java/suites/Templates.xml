@@ -65,7 +65,7 @@
         </classes>
     </test>
 
-    <test name="AT-114: Template Bundles" preserve-order="true">
+    <test name="[FLAKY] AT-114: Template Bundles" preserve-order="true">
         <parameter name="contractName" value="Unmatched settings for bundle"/>
         <classes>
             <class name="tests.LoginToDashboard"/>

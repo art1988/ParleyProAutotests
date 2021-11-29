@@ -146,7 +146,7 @@
         </classes>
     </test>
 
-    <test name="AT-162: Allow My team to move contract to Pre-Sign approval even Counterparty has open internal discussion" preserve-order="true">
+    <test name="[FLAKY] AT-162: Allow My team to move contract to Pre-Sign approval even Counterparty has open internal discussion" preserve-order="true">
         <parameter name="contractName" value="AT-162 Contract"/>
         <parameter name="contractNameEmail" value="AT-162 Contract"/>
         <classes>
@@ -161,7 +161,7 @@
         </classes>
     </test>
 
-    <test name="AT-165: Allow My team to move contract to Sign status even Counterparty has open internal discussion" preserve-order="true">
+    <test name="[FLAKY] AT-165: Allow My team to move contract to Sign status even Counterparty has open internal discussion" preserve-order="true">
         <parameter name="contractName" value="AT-165 SIGN CTR"/>
         <parameter name="contractNameEmail" value="AT-165 SIGN CTR"/>
         <classes>
