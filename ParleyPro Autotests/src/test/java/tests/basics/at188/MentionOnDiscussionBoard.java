@@ -40,10 +40,10 @@ public class MentionOnDiscussionBoard
         $(".discussion2:not(.discussion2_collapsed_yes)").find(".js-discussion-continue").click();
         CKEditorActive ckEditorInstance = new CKEditorActive();
 
-        ckEditorInstance.getCommentInstance().sendKeys("@");
+        ckEditorInstance.getCommentInstance().sendKeys("@G"); // Find user by first letter G -> only Greg should be displayed
 
         SelenideElement popup = $$(".atwho-view").filterBy(Condition.visible).shouldHaveSize(1).first();
-        popup.findAll("ul li").shouldHave(CollectionCondition.sizeGreaterThan(3));
+        popup.findAll("ul li").shouldHave(CollectionCondition.size(1));
         Screenshoter.makeScreenshot();
 
         popup.findAll("ul li").filterBy(Condition.text("Greg")).first().click();
