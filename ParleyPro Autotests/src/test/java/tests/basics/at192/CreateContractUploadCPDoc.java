@@ -3,6 +3,7 @@ package tests.basics.at192;
 import com.codeborne.selenide.CollectionCondition;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
+import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
@@ -16,6 +17,8 @@ import static com.codeborne.selenide.Selenide.$$;
 @Listeners({ScreenShotOnFailListener.class})
 public class CreateContractUploadCPDoc
 {
+    private static Logger logger = Logger.getLogger(CreateContractUploadCPDoc.class);
+
     @Test
     public void createContractUploadCPDoc()
     {
@@ -32,6 +35,8 @@ public class CreateContractUploadCPDoc
         contractInformationForm.setContractType("type1");
 
         contractInformationForm.clickSave();
+
+        logger.info("Uploading Kellogg Company_Warehouse Services Agreement Master_short.docx...");
 
         AddDocuments addDocuments = new AddDocuments();
         addDocuments.clickUploadCounterpartyDocuments(new File(System.getProperty("user.dir") + "/Documents/classicClientDocs/Kellogg Company_Warehouse Services Agreement Master_short.docx"));
