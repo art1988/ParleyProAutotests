@@ -46,10 +46,11 @@ jobs:
       
 
       - run:
-          name: Run Migration suite
+          name: Run Basics suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
-
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          no_output_timeout: 20m
+          
       
 
       - save_cache:
