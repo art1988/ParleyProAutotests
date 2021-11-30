@@ -63,7 +63,7 @@ jobs:
           command: sudo allure generate --clean
 
       - store_artifacts:
-          path: "./ParleyPro Autotests/Downloads"
+          path: "./ParleyPro Autotests/target/allure-report"
           destination: Report/Allure
           when: always
 
