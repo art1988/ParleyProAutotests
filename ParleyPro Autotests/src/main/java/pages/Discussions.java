@@ -61,11 +61,54 @@ public class Discussions
         logger.info("Discussion '" + titleOfDiscussion + "' has been expanded...");
     }
 
+    public void collapseDiscussion(String titleOfDiscussion)
+    {
+        $$(".discussion2-header__name").filterBy(Condition.text(titleOfDiscussion)).first().click();
+
+        $(".discussion2:not(.discussion2_collapsed_yes)").shouldBe(Condition.hidden);
+        $(".discussion2:not(.discussion2_collapsed_yes)").find(".discussion2-original").shouldBe(Condition.hidden);
+        $(".discussion2:not(.discussion2_collapsed_yes)").find(".discussion2-post").shouldBe(Condition.hidden);
+
+        logger.info("Discussion '" + titleOfDiscussion + "' has been collapsed...");
+    }
+
     public String getDiscussionCount()
     {
         return $(".discussions-info .discussion-indicator__count").getText();
     }
 
+    /**
+     * Filter discussions
+     * @param by may be "Open", "All", "With Counterparty", etc
+     */
+    public void filter(String by)
+    {
+        $$(".contracts-tabs__right button").first().click(); // Expand dropdown
+
+        $$(".dropdown.open ul[role='menu'] span").filterBy(Condition.text(by)).first().click();
+
+        logger.info("Filter by " + by + " was chosen...");
+
+        $(".spinner").should(Condition.disappear);
+    }
+
+    /**
+     * Click by column to activate sorting
+     * @param columnName
+     */
+    public void sortColumn(String columnName)
+    {
+        $$(".head div").filterBy(Condition.exactText(columnName)).first().click();
+
+        logger.info("Clicked by column for sorting: " + columnName);
+
+        $(".spinner").should(Condition.disappear);
+    }
+
+    /**
+     * Is available if Discussions was opened via specific contract.
+     * @return
+     */
     public OpenedContract clickDocumentsTab()
     {
         documentsTab.shouldBe(Condition.visible).click();
