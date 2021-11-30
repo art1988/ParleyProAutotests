@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Basics" configfailurepolicy="continue">
+<suite name = "Basics" configfailurepolicy="continue"><!--
     <test name = "Basic contract lifecycle" preserve-order="true">
         <parameter name="contractName" value="Contract lifecycle autotest"/>
         <classes>
@@ -98,6 +98,17 @@
             <class name="tests.basics.at188.AddContractUploadDoc"/>
             <class name="tests.basics.at188.PerformMentioning"/>
             <class name="tests.basics.at188.MentionOnDiscussionBoard"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-192: Discussions board tests" preserve-order="true">
+        <parameter name="contractName" value="Discussions board CTR"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.basics.at192.CreateContractUploadCPDoc"/>
+            <class name="tests.basics.at192.VisitDiscussionsBoardOfContracts"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
