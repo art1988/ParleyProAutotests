@@ -115,6 +115,8 @@ public class Const
 
     public static final File   DOC_FORMATTING_AT190          = new File(System.getProperty("user.dir") + "/Documents/AT_190-SoW_CASS_Hybrid-Platform_2022_from Patrick.docx");
 
+    public static final File   AVATAR_IMG_SAMPLE             = new File(System.getProperty("user.dir") + "/Documents/avatar_user_test.png");
+
     // Directories
     // Directory of docs from clients. Used in Classic
     public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Documents/classicClientDocs");
