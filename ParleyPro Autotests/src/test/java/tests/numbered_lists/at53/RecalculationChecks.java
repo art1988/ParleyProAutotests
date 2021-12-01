@@ -160,7 +160,7 @@ public class RecalculationChecks
         }
 
         logger.info("And finally accept deleted...");
-        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("L1_Letter_capital_B");
+        ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("capital_B");
         paragraphActionsPopup.clickAcceptChangesOnParagraph(AcceptTypes.DELETE).clickAcceptText();
 
         logger.info("Assert notification...");
