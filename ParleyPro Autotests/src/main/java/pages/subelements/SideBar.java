@@ -128,10 +128,24 @@ public class SideBar
         return new AdministrationPage();
     }
 
+    public Profile clickProfile()
+    {
+        userIcon.click();
+        $(".page-menu .dropdown-menu").shouldBe(Condition.visible);
+
+        $$(".page-menu .dropdown-menu a").filter(Condition.exactText("Profile"))
+                                                  .first()
+                                                  .click();
+
+        logger.info("Profile was clicked");
+
+        return new Profile();
+    }
+
     public LoginPage logout()
     {
         userIcon.click();
-        $(".page-menu .dropdown-menu").waitUntil(Condition.visible, 10_000);
+        $(".page-menu .dropdown-menu").shouldBe(Condition.visible);
 
         $$(".page-menu .dropdown-menu a").filter(Condition.exactText("Logout"))
                                                    .first()
