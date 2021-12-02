@@ -56,13 +56,13 @@ public class UploadAndDownloadPDFDocument
         $$(".lifecycle__item.active").first().getCssValue("background-color").equals("#7f6fcf;");
         $$(".lifecycle__item.active").last().getCssValue("background-color").equals("#7f6fcf;");
 
-        logger.info("Waiting until document is fully loaded...");
-        $(".document__body .spinner").waitUntil(Condition.disappear, 30_000);
+        logger.info("Waiting until document is fully loaded[up to 1 min]...");
+        $(".document__body .spinner").waitUntil(Condition.disappear, 60_000);
 
         // Main check that PDF was uploaded - is to see if canvas is on page or not
         logger.info("Checking canvas of uploaded PDF file...");
-        $$(".document__body canvas").first().waitUntil(Condition.visible, 10_000);
-        $$(".document__body canvas").last().waitUntil(Condition.visible, 10_000);
+        $$(".document__body canvas").first().shouldBe(Condition.visible);
+        $$(".document__body canvas").last().shouldBe(Condition.visible);
         $$(".document__body canvas").shouldBe(CollectionCondition.sizeGreaterThan(2));
 
         logger.info("Check that PDF icon is displayed in document header...");
@@ -86,7 +86,7 @@ public class UploadAndDownloadPDFDocument
         try
         {
             openedContract.clickDocumentActionsMenu(docName).clickDownload(false);
-            $(".spinner").waitUntil(Condition.disappear, 35_000);
+            $(".spinner").should(Condition.disappear);
 
             logger.info("Assert that file was downloaded...");
             Thread.sleep(3_000);
