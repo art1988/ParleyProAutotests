@@ -1,5 +1,6 @@
 package tests.basics.at193;
 
+import com.codeborne.selenide.Condition;
 import constants.Const;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
@@ -55,10 +56,23 @@ public class UserProfileTest
     }
 
     @Test(priority = 2)
-    public void uploadUserImage() throws InterruptedException
+    @Description("This test uploads user's avatar, checks that image was applied and removes it, so that user's initials are visible again.")
+    public void uploadUserAvatarTest() throws InterruptedException
     {
+        logger.info("Uploading user's avatar...");
         profilePage.uploadAvatar(Const.AVATAR_IMG_SAMPLE).clickApply();
 
-        Thread.sleep(5_000);
+        $(".spinner").should(Condition.disappear);
+
+        $("div[class*='styles__avatar'] img").shouldBe(Condition.visible);
+        Assert.assertTrue($("div[class*='styles__avatar'] img").isImage(), "Avatar has not been loaded !!!");
+
+        Screenshoter.makeScreenshot();
+
+        profilePage.removeAvatar();
+
+        logger.info("Check that initials are back...");
+        $("div[class*='styles__avatar'] > span").shouldHave(Condition.exactText("AL"));
+        Assert.assertEquals(profilePage.getUsername(), "autotest_cn fn ln", "User name has not been changed !!!");
     }
 }
