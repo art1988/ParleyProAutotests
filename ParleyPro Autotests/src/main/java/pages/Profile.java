@@ -54,4 +54,19 @@ public class Profile
 
         return new CropImage();
     }
+
+    public void removeAvatar() throws InterruptedException
+    {
+        // hover image so that Edit button is visible
+        $("div[class*='styles__avatar']").hover();
+        Thread.sleep(500);
+
+        // click Edit button
+        $("div[class*='styles__avatar_dropdown'] button").click();
+
+        $$("div[class*='styles__avatar_dropdown'] ul li").findBy(Condition.exactText("Remove photo"))
+                .shouldBe(Condition.visible, Condition.enabled).click();
+
+        logger.info("Remove photo was clicked");
+    }
 }
