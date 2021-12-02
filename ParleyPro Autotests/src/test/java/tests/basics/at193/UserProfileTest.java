@@ -67,6 +67,10 @@ public class UserProfileTest
         $("div[class*='styles__avatar'] img").shouldBe(Condition.visible);
         Assert.assertTrue($("div[class*='styles__avatar'] img").isImage(), "Avatar has not been loaded !!!");
 
+        logger.info("Check that in left bottom corner image was also applied...");
+        $(".page-menu span img").shouldBe(Condition.visible);
+        Assert.assertTrue($(".page-menu span img").isImage(), "Avatar has not been applied in left bottom corner !!!");
+
         Screenshoter.makeScreenshot();
 
         profilePage.removeAvatar();
