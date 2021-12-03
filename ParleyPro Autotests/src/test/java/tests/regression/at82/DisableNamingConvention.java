@@ -5,10 +5,9 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import tests.LoginBase;
+import utils.LoginBase;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;

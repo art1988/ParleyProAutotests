@@ -9,7 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import tests.LoginBase;
+import utils.LoginBase;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;

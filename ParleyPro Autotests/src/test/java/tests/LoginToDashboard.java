@@ -10,6 +10,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
+import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 

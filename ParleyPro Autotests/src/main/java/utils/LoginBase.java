@@ -1,4 +1,4 @@
-package tests;
+package utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -38,7 +38,7 @@ public class LoginBase {
         }
         else
         {
-            logger.info("No ENV was specified, use MASTER");
+            logger.info("No ENV was specified, run tests against MASTER by default");
         }
 
         final String filePath = "src/main/resources/" + configName + ".properties";

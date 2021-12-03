@@ -2,7 +2,6 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.proxy.SelenideProxyServer;
 import constants.Const;
@@ -12,6 +11,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
+import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
