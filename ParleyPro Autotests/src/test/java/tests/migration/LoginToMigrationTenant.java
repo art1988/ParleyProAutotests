@@ -11,7 +11,8 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
-import tests.LoginBase;
+import utils.Cache;
+import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -71,6 +72,8 @@ public class LoginToMigrationTenant
                 continue;
             }
         }
+
+        Cache.getInstance().setLoginBaseInstance(loginBase);
     }
 
     @Test()
