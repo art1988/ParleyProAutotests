@@ -3,6 +3,7 @@ package tests.migration;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import constants.Const;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.BeforeSuite;
@@ -10,16 +11,17 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
+import tests.LoginBase;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.open;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class LoginToAT50Tenant
+public class LoginToMigrationTenant
 {
     private final static int MAX_RETRY_COUNT = 5;
-    private static Logger logger = Logger.getLogger(LoginToAT50Tenant.class);
+    private static Logger logger = Logger.getLogger(LoginToMigrationTenant.class);
 
     @BeforeSuite
     private void setup()
@@ -37,12 +39,14 @@ public class LoginToAT50Tenant
         Configuration.downloadsFolder = Const.DOWNLOAD_DIR.getAbsolutePath();
         Configuration.reportsFolder   = Const.SCREENSHOTS_DIR.getAbsolutePath();
 
+        LoginBase loginBase = new LoginBase();
+
         int retryCount = 0;
         while(true)
         {
             try
             {
-                open( Const.AT50_TENANT_URL );
+                open( loginBase.getMigrationUrl() );
                 break;
             }
             catch(WebDriverException e)
@@ -70,7 +74,8 @@ public class LoginToAT50Tenant
     }
 
     @Test()
-    public void loginToAT50Tenant()
+    @Description("Logins to at50.parleypro as yevhen.uvin+at50@parleypro.com")
+    public void loginToMigrationTenant()
     {
         LoginPage loginPage = new LoginPage();
 
