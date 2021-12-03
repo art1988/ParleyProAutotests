@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Priority Dashboard suite" configfailurepolicy="continue">
+<suite name = "Dashboards suite" configfailurepolicy="continue">
     <test name="AT-155: PD 1.4. Create new in-progress contract" preserve-order="true">
         <parameter name="contractName" value="Contract for in-progress created from PD"/>
         <classes>
