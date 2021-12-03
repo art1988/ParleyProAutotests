@@ -125,7 +125,7 @@ public class CheckContracts
         $$(".js-linked-contracts-stage").first().shouldHave(Condition.exactText("Managed"));
         $$(".js-linked-contracts-stage").last().shouldHave(Condition.exactText("Negotiate"));
 
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nSupplemented by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 16, 2022\nParent to:\nClassic\nStage:\nNegotiate"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nSupplemented by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 22, 2025\nParent to:\nClassic\nStage:\nNegotiate"));
 
         Screenshoter.makeScreenshot();
     }
@@ -139,10 +139,10 @@ public class CheckContracts
         logger.info("Assert _first_ row in a table...");
         $$(".contracts-list__table a").get(0).shouldHave(Condition.exactText("Long values and that is a long long " +
                 "long long long long long long long long long long long long long long long long long long long long long long " +
-                "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nJan 16, 2022"));
+                "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nJan 22, 2025"));
 
         logger.info("Assert _second_ row in a table...");
-        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 17, 2020 Dec 17, 2020 Dec 17, 2021 Jan 16, 2022"));
+        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 17, 2020 Dec 17, 2020 Dec 17, 2021 Jan 22, 2025"));
 
         logger.info("Assert _third_ row in a table...");
         $$(".contracts-list__table a").get(2).shouldHave(Condition.exactText("Normal values in contract\nEugene's Counterparty Organization\nmanaged\nUSD 10,000.00 Dec 16, 2020 Dec 31, 2020"));
@@ -176,7 +176,7 @@ public class CheckContracts
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Contract was amended: 1"));
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 16, 2022"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 22, 2025"));
 
         Screenshoter.makeScreenshot();
 
@@ -193,7 +193,7 @@ public class CheckContracts
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Linked contracts: 1"));
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 1\nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 16, 2022"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 1\nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 22, 2025"));
 
         Screenshoter.makeScreenshot();
 
