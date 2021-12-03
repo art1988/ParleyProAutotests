@@ -1,4 +1,4 @@
-package tests.migration.at52;
+package tests.migration;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
@@ -27,7 +27,7 @@ public class LoginToAT50Tenant
         Configuration.proxyEnabled   = true;
         Configuration.fileDownload   = FileDownloadMode.PROXY;
         Configuration.browserSize = "1920x1080";
-        Configuration.timeout = 10_000;
+        Configuration.timeout = 40_000;
 
         System.setProperty( "chromeoptions.args", "--no-sandbox --disable-dev-shm-usage" );
 
@@ -79,7 +79,7 @@ public class LoginToAT50Tenant
 
         logger.info("Making sure that Dashboard was loaded correctly...");
 
-        DashboardPage dashboardPage = loginPage.clickSignIn(true).selectTenant("at50");
+        DashboardPage dashboardPage = loginPage.clickSignIn();
         dashboardPage.getSideBar().clickInProgressContracts(false);
 
         Screenshoter.makeScreenshot();
