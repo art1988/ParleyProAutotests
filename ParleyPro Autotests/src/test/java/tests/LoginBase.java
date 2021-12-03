@@ -36,6 +36,10 @@ public class LoginBase {
             logger.info("Use env: " + env);
             configName = configName + "-" + env.toLowerCase();
         }
+        else
+        {
+            logger.info("No ENV was specified, use MASTER");
+        }
 
         final String filePath = "src/main/resources/" + configName + ".properties";
 
