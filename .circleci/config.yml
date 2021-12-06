@@ -42,13 +42,15 @@ jobs:
       - run:
           name: Update chromedriver
           command: cd; wget https://www.slimjet.com/chrome/download-chrome.php?file=files%2F86.0.4240.75%2Fgoogle-chrome-stable_current_amd64.deb; sudo apt install ./download-chrome.php\?file\=files%2F86.0.4240.75%2Fgoogle-chrome-stable_current_amd64.deb; sudo rm -f /usr/local/bin/chromedriver; wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv ./chromedriver /usr/local/bin/; chmod 775 `which chromedriver`; chromedriver -v; ls -la `which chromedriver`
-
+      
+      
 
       - run:
-          name: Run Migration suite
+          name: Run Basics suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
-
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          no_output_timeout: 20m
+          
      
 
       - save_cache:
