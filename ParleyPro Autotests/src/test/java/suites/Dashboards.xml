@@ -21,4 +21,13 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-195: Check Dashboard Examples page" preserve-order="true">
+        <parameter name="enableProxy" value="false"/>
+        <classes>
+            <class name="tests.migration.LoginToMigrationTenant"/>
+            <class name="tests.dashboards.at195.VisitDashboardChartExamples"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
