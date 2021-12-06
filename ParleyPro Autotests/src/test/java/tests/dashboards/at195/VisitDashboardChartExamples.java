@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import utils.Cache;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -35,6 +36,8 @@ public class VisitDashboardChartExamples
         logger.info("Making sure that there is no grey screen on page...");
         softAssert.assertTrue(Selenide.executeJavaScript("return $('.dashboard__body').find(\".error-boundary\").length == 0"), "There is at least one grey screen for dashboard on page !!!");
 
+        Screenshoter.makeScreenshot();
+
         logger.info("Click by EXECUTED CONTRACTS tab...");
         $$(".tab-menu__item").filterBy(Condition.exactText("EXECUTED CONTRACTS")).first().click();
         Thread.sleep(1_000);
@@ -48,5 +51,7 @@ public class VisitDashboardChartExamples
         softAssert.assertTrue(Selenide.executeJavaScript("return $('.dashboard__body').find(\".error-boundary\").length == 0"), "There is at least one grey screen for dashboard on page !!!");
 
         softAssert.assertAll();
+
+        Screenshoter.makeScreenshot();
     }
 }
