@@ -38,8 +38,8 @@ public class CreateDiscussionsDownloadAndVerify
                       .selectQueued()
                       .clickPost();
 
-        $(".notification-stack").waitUntil(Condition.appear, 7_000).shouldHave(Condition.text("Queued discussion Paragraph 1"));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.text("Queued discussion Paragraph 1"));
+        $(".notification-stack").should(Condition.disappear);
 
         downloadForCounterparty(openedContract);
 
@@ -55,8 +55,8 @@ public class CreateDiscussionsDownloadAndVerify
                       .selectInternal()
                       .clickPost();
 
-        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Internal post has been successfully created."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.exactText("Internal post has been successfully created."));
+        $(".notification-stack").should(Condition.disappear);
 
         downloadForCounterparty(openedContract);
 
