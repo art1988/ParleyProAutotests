@@ -46,12 +46,11 @@ jobs:
       
 
       - run:
-          name: Run Basics suite
+          name: Run Migration suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
-          no_output_timeout: 20m
-          
-     
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
+
+      
 
       - save_cache:
           key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}
