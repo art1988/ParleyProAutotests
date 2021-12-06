@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
@@ -16,6 +17,7 @@ import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
+import static com.codeborne.selenide.FileDownloadMode.HTTPGET;
 import static com.codeborne.selenide.Selenide.open;
 
 @Listeners({ScreenShotOnFailListener.class})
@@ -25,10 +27,22 @@ public class LoginToMigrationTenant
     private static Logger logger = Logger.getLogger(LoginToMigrationTenant.class);
 
     @BeforeSuite
-    private void setup()
+    @Parameters("enableProxy")
+    private void setup(boolean enableProxy)
     {
-        Configuration.proxyEnabled   = true;
-        Configuration.fileDownload   = FileDownloadMode.PROXY;
+        if(enableProxy == true)
+        {
+            logger.info("Proxy ON");
+            Configuration.proxyEnabled   = true;
+            Configuration.fileDownload   = FileDownloadMode.PROXY;
+        }
+        else
+        {
+            logger.info("Proxy OFF");
+            Configuration.proxyEnabled = false;
+            Configuration.fileDownload = HTTPGET;
+        }
+
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 40_000;
 
