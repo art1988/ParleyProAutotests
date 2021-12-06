@@ -26,12 +26,23 @@ public class LoginToMigrationTenant
     private final static int MAX_RETRY_COUNT = 5;
     private static Logger logger = Logger.getLogger(LoginToMigrationTenant.class);
 
-    @BeforeSuite
+    @Test(priority = 1)
     @Parameters("enableProxy")
-    private void setup(boolean enableProxy)
+    public void setup(boolean enableProxy)
     {
+        LoginBase loginBase = new LoginBase();
+
+        label:
         if(enableProxy == true)
         {
+            if( LoginBase.isProd() )
+            {
+                logger.info("Proxy OFF");
+                Configuration.proxyEnabled = false;
+                Configuration.fileDownload = HTTPGET;
+                break label;
+            }
+
             logger.info("Proxy ON");
             Configuration.proxyEnabled   = true;
             Configuration.fileDownload   = FileDownloadMode.PROXY;
@@ -53,8 +64,6 @@ public class LoginToMigrationTenant
 
         Configuration.downloadsFolder = Const.DOWNLOAD_DIR.getAbsolutePath();
         Configuration.reportsFolder   = Const.SCREENSHOTS_DIR.getAbsolutePath();
-
-        LoginBase loginBase = new LoginBase();
 
         int retryCount = 0;
         while(true)
@@ -90,7 +99,7 @@ public class LoginToMigrationTenant
         Cache.getInstance().setLoginBaseInstance(loginBase);
     }
 
-    @Test()
+    @Test(priority = 2)
     @Description("Logins to at50.parleypro as yevhen.uvin+at50@parleypro.com")
     public void loginToMigrationTenant()
     {
