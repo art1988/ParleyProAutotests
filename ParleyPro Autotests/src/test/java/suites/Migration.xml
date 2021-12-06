@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Data migration suite" configfailurepolicy="continue">
+    <parameter name="enableProxy" value="false"/>
     <test name="AT-52: Check all data on In-progress/Executed contracts page." preserve-order="true">
         <classes>
             <class name="tests.migration.LoginToMigrationTenant"/>
