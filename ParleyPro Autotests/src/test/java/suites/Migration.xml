@@ -2,8 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Data migration suite" configfailurepolicy="continue">
-    <parameter name="enableProxy" value="false"/>
     <test name="AT-52: Check all data on In-progress/Executed contracts page." preserve-order="true">
+        <parameter name="enableProxy" value="true"/>
         <classes>
             <class name="tests.migration.LoginToMigrationTenant"/>
             <class name="tests.migration.at52.CheckContracts"/>
@@ -12,6 +12,7 @@
     </test>
 
     <test name="AT-91: Check CSV's from In-progress and Executed contracts pages." preserve-order="true">
+        <parameter name="enableProxy" value="true"/>
         <classes>
             <class name="tests.migration.LoginToMigrationTenant"/>
             <class name="tests.migration.at91.CheckCSVsFromExecutedAndInProgress"/>
