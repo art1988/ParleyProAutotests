@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
+import utils.Cache;
 import utils.ScreenShotOnFailListener;
 
 import java.io.File;
@@ -25,6 +26,8 @@ public class CheckCSVsFromExecutedAndInProgress
     @Test(priority = 1)
     public void goToExecutedContractsAndDownloadCSV() throws FileNotFoundException
     {
+        if(Cache.getInstance().getCachedLoginBase().isProd()) return;
+
         new DashboardPage().getSideBar().clickExecutedContracts(false).clickDownloadContractData();
 
         File executedMetadataCSV = new File(Const.DOWNLOAD_DIR.getAbsolutePath(), "executed-metadata.csv");
@@ -48,6 +51,8 @@ public class CheckCSVsFromExecutedAndInProgress
     @Test(priority = 2)
     public void goToInProgressContractsAndDownloadCSV() throws FileNotFoundException
     {
+        if(Cache.getInstance().getCachedLoginBase().isProd()) return;
+
         new DashboardPage().getSideBar().clickInProgressContracts(false).clickDownloadContractData();
 
         File activeMetadataCSV = new File(Const.DOWNLOAD_DIR.getAbsolutePath(), "active-metadata.csv");

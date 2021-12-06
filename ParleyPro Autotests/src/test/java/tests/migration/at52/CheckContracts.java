@@ -15,6 +15,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.ContractInfo;
 import pages.DashboardPage;
+import utils.Cache;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
@@ -339,21 +340,24 @@ public class CheckContracts
 
         Screenshoter.makeScreenshot();
 
-        logger.info("Trying to download Attachment...");
-        try
+        if( !Cache.getInstance().getCachedLoginBase().isProd() )
         {
-            $(".supporting-documents__document-ico").download();
+            logger.info("Trying to download Attachment...");
+            try
+            {
+                $(".supporting-documents__document-ico").download();
 
-            new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
-                    until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "Faro_-_July_2014_(7).jpg").toFile().exists());
+                new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
+                        until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "Faro_-_July_2014_(7).jpg").toFile().exists());
 
-            Assert.assertTrue(new File(Const.DOWNLOAD_DIR.getAbsolutePath() + "/Faro_-_July_2014_(7).jpg").exists());
+                Assert.assertTrue(new File(Const.DOWNLOAD_DIR.getAbsolutePath() + "/Faro_-_July_2014_(7).jpg").exists());
+            }
+            catch (FileNotFoundException e)
+            {
+                logger.error("FileNotFoundException", e);
+            }
+
+            FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
         }
-        catch (FileNotFoundException e)
-        {
-            logger.error("FileNotFoundException", e);
-        }
-
-        FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
     }
 }
