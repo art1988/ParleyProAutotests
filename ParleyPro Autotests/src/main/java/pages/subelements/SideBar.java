@@ -97,6 +97,15 @@ public class SideBar
         return new ExecutedContractsPage(isBlank);
     }
 
+    public ChartsPage clickDashboard()
+    {
+        $(sideBarItems.get(DASHBOARD)).click();
+
+        logger.info("Dashboard button was clicked");
+
+        return new ChartsPage();
+    }
+
     /**
      * Use this method to ignore whether previous templates were added on page or not.
      * @return
