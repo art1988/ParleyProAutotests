@@ -316,7 +316,7 @@ public class ContractInfo
         cpOrganizationField.sendKeys(cpOrganization);
 
         // wait until spinner for Counterparty organization will disappear
-        $(".Select-loading").waitUntil(Condition.disappear, 17_000);
+        $(".new-select__indicator").waitUntil(Condition.disappear, 17_000);
 
         cpOrganizationField.pressEnter();
 

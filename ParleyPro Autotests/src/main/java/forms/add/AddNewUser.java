@@ -102,7 +102,7 @@ public class AddNewUser
      */
     public AddNewUser setRole(String roleName)
     {
-        WebElement input = Selenide.executeJavaScript("return $('.Select-placeholder').parent().find(\".Select-input input\")[0]");
+        WebElement input = Selenide.executeJavaScript("return $('.new-select__placeholder').parent().find(\".new-select__input input\")[0]");
 
         $(input).sendKeys(roleName);
         $(input).pressEnter();
@@ -112,7 +112,7 @@ public class AddNewUser
 
     public String getRole()
     {
-        return $(".Select-value").text();
+        return $(".new-select__single-value").text();
     }
 
     /**

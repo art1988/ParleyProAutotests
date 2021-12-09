@@ -49,7 +49,7 @@ public class ContractInformation
     public ContractInformation(boolean openedViaContractInfo)
     {
         $(".spinner").waitUntil(Condition.disappear, 30_000); // General spinner
-        $(".Select-loading").waitUntil(Condition.disappear, 15_000); // this spinner appears inside 'Counterparty organization' input
+        $(".new-select__indicator").waitUntil(Condition.disappear, 15_000); // this spinner appears inside 'Counterparty organization' input
 
         try
         {
@@ -200,7 +200,7 @@ public class ContractInformation
         cpOrganizationField.sendKeys(cpOrganization);
 
         // wait until spinner for Counterparty organization will disappear
-        //$(".Select-loading").waitUntil(Condition.disappear, 17_000);
+        //$(".new-select__indicator").waitUntil(Condition.disappear, 17_000);
         $(".new-select__menu-notice").should(Condition.disappear);
 
         cpOrganizationField.pressEnter();
@@ -211,9 +211,9 @@ public class ContractInformation
 
     public String getCounterpartyOrganization()
     {
-        $(".Select-loading").waitUntil(Condition.disappear, 15_000);
+        $(".new-select__indicator").waitUntil(Condition.disappear, 15_000);
 
-        return Selenide.executeJavaScript("return $('#counterpartyOrganization').parent().prev().text()");
+        return Selenide.executeJavaScript("return $('#counterpartyOrganization').closest('div[class*=\"container\"]').text()");
     }
 
     public void setCounterpartyChiefNegotiator(String cpChiefNegotiator)
@@ -238,7 +238,7 @@ public class ContractInformation
 
     public String getContractingRegion()
     {
-        return Selenide.executeJavaScript("return $('#contractingRegion').parent().prev().find(\"span\").text()");
+        return Selenide.executeJavaScript("return $('#contractingRegion').closest('div[class*=\"container\"]').text()");
     }
 
     public void setContractingCountry(String country)
@@ -250,7 +250,7 @@ public class ContractInformation
 
     public String getContractingCountry()
     {
-        return Selenide.executeJavaScript("return $('#contractingCountry').parent().prev().find(\"span\").text()");
+        return Selenide.executeJavaScript("return $('#contractingCountry').closest('div[class*=\"container\"]').text()");
     }
 
     public void setContractEntity(String entity)
@@ -262,7 +262,7 @@ public class ContractInformation
 
     public String getContractEntity()
     {
-        return Selenide.executeJavaScript("return $('#contractEntity').parent().prev().find(\"span\").text()");
+        return Selenide.executeJavaScript("return $('#contractEntity').closest('div[class*=\"container\"]').text()");
     }
 
     public void setContractingDepartment(String department)
@@ -274,7 +274,7 @@ public class ContractInformation
 
     public String getContractingDepartment()
     {
-        return Selenide.executeJavaScript("return $('#ContractingDepartment').parent().prev().find(\"span\").text()");
+        return Selenide.executeJavaScript("return $('#ContractingDepartment').closest('div[class*=\"container\"]').text()");
     }
 
     /**
@@ -306,7 +306,7 @@ public class ContractInformation
 
     public String getContractCategory()
     {
-        return Selenide.executeJavaScript("return $('#contractCategory').parent().prev().find(\"span\").text()");
+        return Selenide.executeJavaScript("return $('#contractCategory').closest('div[class*=\"container\"]').text()");
     }
 
     /**
@@ -391,8 +391,8 @@ public class ContractInformation
 
         input.sendKeys(relatedContract);
         // wait until spinner inside this field will disappear
-        $(".Select-loading").waitUntil(Condition.appear, 5_000);
-        $(".Select-loading").waitUntil(Condition.disappear, 30_000);
+        $(".new-select__indicator").waitUntil(Condition.appear, 5_000);
+        $(".new-select__indicator").waitUntil(Condition.disappear, 30_000);
 
         input.pressEnter();
 
@@ -426,9 +426,7 @@ public class ContractInformation
 
     public String getChiefNegotiator()
     {
-        String chiefNegotiator = Selenide.executeJavaScript("return $('#ChiefNegotiator').parent().prev().text()");
-
-        return chiefNegotiator;
+        return Selenide.executeJavaScript("return $('#ChiefNegotiator').closest('div[class*=\"container\"]').text()");
     }
 
     /**

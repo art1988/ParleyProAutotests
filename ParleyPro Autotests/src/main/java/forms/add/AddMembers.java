@@ -33,7 +33,7 @@ public class AddMembers
         Selenide.executeJavaScript("$('#teamsAddParticipant').val('');"); // Clear previous entered value cuz clear doesn't work here
         addParticipantField.sendKeys(nameOrEmail);
 
-        $(".Select-loading").waitUntil(Condition.disappear, 14_000);
+        $(".new-select__indicator").waitUntil(Condition.disappear, 14_000);
 
         addParticipantField.sendKeys(Keys.DOWN);
         addParticipantField.pressEnter();
