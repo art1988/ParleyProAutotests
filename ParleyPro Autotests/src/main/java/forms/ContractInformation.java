@@ -200,7 +200,8 @@ public class ContractInformation
         cpOrganizationField.sendKeys(cpOrganization);
 
         // wait until spinner for Counterparty organization will disappear
-        $(".Select-loading").waitUntil(Condition.disappear, 17_000);
+        //$(".Select-loading").waitUntil(Condition.disappear, 17_000);
+        $(".new-select__menu-notice").should(Condition.disappear);
 
         cpOrganizationField.pressEnter();
 
@@ -218,6 +219,8 @@ public class ContractInformation
     public void setCounterpartyChiefNegotiator(String cpChiefNegotiator)
     {
         cpChiefNegotiatorField.sendKeys(cpChiefNegotiator);
+
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
         cpChiefNegotiatorField.pressEnter();
     }
 
