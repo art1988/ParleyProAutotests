@@ -114,8 +114,7 @@ public class AddContractUploadDocSwapAndCheck
 
         logger.info("Checking that swapped users were saved...");
         Assert.assertEquals($("#counterpartyChiefNegotiator").getValue(), Cache.getInstance().getCachedAdditionalCounterpartyUser(), "Counterparty Chief Negotiator is missing !!!");
-        Assert.assertEquals($$(".tags-input span").filter(Condition.exactText("Additional Counterparty users")).first().closest("div").find(".tags-input__tag").getText(),
-                Const.PREDEFINED_CCN.getEmail(), "Additional Counterparty user is missing !!!");
+        Assert.assertTrue($$(".tags-input span").filter(Condition.exactText("Additional Counterparty users")).first().closest("div").find(".tags-input__tag").getText().contains(Const.PREDEFINED_CCN.getEmail()), "Additional Counterparty user is missing !!!");
         Screenshoter.makeScreenshot();
     }
 

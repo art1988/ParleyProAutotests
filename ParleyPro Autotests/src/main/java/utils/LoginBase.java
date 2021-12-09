@@ -1,4 +1,4 @@
-package tests;
+package utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -10,6 +10,7 @@ public class LoginBase {
     public static final String PROP_TENANT_URL          = "tenant_url";
     public static final String PROP_POPOVERS_TENANT_URL = "popovers_tenant_url";
     public static final String PROP_TRACK_CHANGES_URL   = "track_changes_url";
+    public static final String PROP_MIGRATION_URL       = "migration_url";
     public static final String PROP_API_KEY             = "api_key";
     public static final String PROP_TENANT_ID           = "tenant_id";
     public static final String PROP_BASE_URL            = "base_url";
@@ -34,6 +35,10 @@ public class LoginBase {
         if(StringUtils.isNotBlank(env)) {
             logger.info("Use env: " + env);
             configName = configName + "-" + env.toLowerCase();
+        }
+        else
+        {
+            logger.info("No ENV was specified, run tests against MASTER by default");
         }
 
         final String filePath = "src/main/resources/" + configName + ".properties";
@@ -120,6 +125,17 @@ public class LoginBase {
         logger.info("--------------------------------");
 
         return track_changes_url;
+    }
+
+    public String getMigrationUrl()
+    {
+        String migration_url = property.getProperty(PROP_MIGRATION_URL);
+
+        logger.info("--------------------------------");
+        logger.info("Use migration_url: " + migration_url);
+        logger.info("--------------------------------");
+
+        return migration_url;
     }
 
     public String getApiKey()

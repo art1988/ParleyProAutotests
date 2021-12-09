@@ -9,7 +9,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
-import tests.LoginBase;
+import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;

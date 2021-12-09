@@ -20,6 +20,8 @@ public class Cache
     private static String KEY_ADDITIONAL_COUNTERPARTY_USER = "KEY_ADDITIONAL_COUNTERPARTY_USER";
     private static String KEY_FILE                         = "KEY_FILE";
 
+    private static LoginBase loginBaseInstance;
+
     private Cache() {}
 
     public void setContractTitle(String contractTitle)
@@ -80,6 +82,16 @@ public class Cache
     public String getCachedFile()
     {
         return hashTable.get(KEY_FILE);
+    }
+
+    public void setLoginBaseInstance(LoginBase loginBase)
+    {
+        loginBaseInstance = loginBase;
+    }
+
+    public LoginBase getCachedLoginBase()
+    {
+        return loginBaseInstance;
     }
 
     public static Cache getInstance()

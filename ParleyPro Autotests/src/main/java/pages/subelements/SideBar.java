@@ -97,6 +97,15 @@ public class SideBar
         return new ExecutedContractsPage(isBlank);
     }
 
+    public ChartsPage clickDashboard()
+    {
+        $(sideBarItems.get(DASHBOARD)).click();
+
+        logger.info("Dashboard button was clicked");
+
+        return new ChartsPage();
+    }
+
     /**
      * Use this method to ignore whether previous templates were added on page or not.
      * @return
@@ -128,10 +137,24 @@ public class SideBar
         return new AdministrationPage();
     }
 
+    public Profile clickProfile()
+    {
+        userIcon.click();
+        $(".page-menu .dropdown-menu").shouldBe(Condition.visible);
+
+        $$(".page-menu .dropdown-menu a").filter(Condition.exactText("Profile"))
+                                                  .first()
+                                                  .click();
+
+        logger.info("Profile was clicked");
+
+        return new Profile();
+    }
+
     public LoginPage logout()
     {
         userIcon.click();
-        $(".page-menu .dropdown-menu").waitUntil(Condition.visible, 10_000);
+        $(".page-menu .dropdown-menu").shouldBe(Condition.visible);
 
         $$(".page-menu .dropdown-menu a").filter(Condition.exactText("Logout"))
                                                    .first()
