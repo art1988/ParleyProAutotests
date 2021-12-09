@@ -30,4 +30,13 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-196: Check Dashboards for crashes" preserve-order="true">
+        <parameter name="enableProxy" value="false"/>
+        <classes>
+            <class name="tests.migration.LoginToMigrationTenant"/>
+            <class name="tests.dashboards.at196.VisitDashboardPageAndCheck"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
