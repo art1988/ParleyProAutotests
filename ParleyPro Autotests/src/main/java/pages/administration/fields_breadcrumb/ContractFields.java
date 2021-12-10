@@ -44,7 +44,7 @@ public class ContractFields
         $("input[data-label='Field name'][value='']").waitUntil(Condition.visible, 5_000).sendKeys(fieldName);
 
         // Set id for input field dynamically
-        Selenide.executeJavaScript("$('input[data-label=\"Field name\"][value=\"" + fieldName + "\"]').parent().parent().parent().parent().find('.Select-control input').attr('id', 'fieldTypeID" + fieldTypeID + "')");
+        Selenide.executeJavaScript("$('input[data-label=\"Field name\"][value=\"" + fieldName + "\"]').parent().parent().parent().parent().find('.new-select input').attr('id', 'fieldTypeID" + fieldTypeID + "')");
 
         // Set Field type
         if( fieldType.equals(FieldType.TEXT) ) // some specific logic for choosing only TEXT type

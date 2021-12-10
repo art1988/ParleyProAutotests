@@ -28,8 +28,8 @@ public class AddMembers
      */
     public void addParticipant(String nameOrEmail)
     {
-        $(".Select-placeholder").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Add a participant by name or email address"));
-        $(".Select-placeholder").click();
+        $(".new-select__placeholder").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Add a participant by name or email address"));
+        $(".new-select__placeholder").click();
         Selenide.executeJavaScript("$('#teamsAddParticipant').val('');"); // Clear previous entered value cuz clear doesn't work here
         addParticipantField.sendKeys(nameOrEmail);
 

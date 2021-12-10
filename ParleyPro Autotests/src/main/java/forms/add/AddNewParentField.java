@@ -27,7 +27,7 @@ public class AddNewParentField
     public void selectParentField(String fieldName)
     {
         // Set id for input field dynamically
-        Selenide.executeJavaScript("$('.Select-control input').attr('id', 'fieldTypeID');");
+        Selenide.executeJavaScript("$('.new-select input').attr('id', 'fieldTypeID');");
 
         $("#fieldTypeID").setValue(fieldName).sendKeys(Keys.DOWN);
         $("#fieldTypeID").pressEnter();

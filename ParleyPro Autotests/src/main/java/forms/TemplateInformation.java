@@ -56,7 +56,7 @@ public class TemplateInformation
 
     public String getRegion()
     {
-        return Selenide.executeJavaScript("return $('#template_region .Select-value').text()");
+        return Selenide.executeJavaScript("return $('#template_region .new-select__single-value').text()");
     }
 
     public void setCategory(String categoryName) throws InterruptedException
@@ -70,7 +70,7 @@ public class TemplateInformation
 
     public String getCategory()
     {
-        return Selenide.executeJavaScript("return $('#template_category .Select-value').text()");
+        return Selenide.executeJavaScript("return $('#template_category .new-select__single-value').text()");
     }
 
     public void setType(String type) throws InterruptedException
