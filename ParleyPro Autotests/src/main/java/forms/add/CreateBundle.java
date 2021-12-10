@@ -153,8 +153,8 @@ public class CreateBundle
     public CreateBundle setRegion(String region)
     {
         $("#template_region div").waitUntil(Condition.visible, 7_000).click(); // expand dropdown
-        $(".Select-menu-outer").waitUntil(Condition.appear, 7_000);
-        WebElement item = Selenide.executeJavaScript("return $('.Select-menu-outer .Select-option:contains(\"" + region + "\")')[0]");
+        $(".new-select__menu").waitUntil(Condition.appear, 7_000);
+        WebElement item = Selenide.executeJavaScript("return $('.new-select__menu .new-select__option:contains(\"" + region + "\")')[0]");
         $(item).click();
 
         return this;
@@ -163,8 +163,8 @@ public class CreateBundle
     public CreateBundle setDepartment(String department)
     {
         $("#template_department div").waitUntil(Condition.visible, 7_000).click(); // expand dropdown
-        $(".Select-menu-outer").waitUntil(Condition.appear, 7_000);
-        WebElement item = Selenide.executeJavaScript("return $('.Select-menu-outer .Select-option:contains(\"" + department + "\")')[0]");
+        $(".new-select__menu").waitUntil(Condition.appear, 7_000);
+        WebElement item = Selenide.executeJavaScript("return $('.new-select__menu .new-select__option:contains(\"" + department + "\")')[0]");
         $(item).click();
 
         return this;
@@ -173,8 +173,8 @@ public class CreateBundle
     public CreateBundle setCategory(String category)
     {
         $("#template_category div").waitUntil(Condition.visible, 7_000).click(); // expand dropdown
-        $(".Select-menu-outer").waitUntil(Condition.appear, 7_000);
-        WebElement item = Selenide.executeJavaScript("return $('.Select-menu-outer .Select-option:contains(\"" + category + "\")')[0]");
+        $(".new-select__menu").waitUntil(Condition.appear, 7_000);
+        WebElement item = Selenide.executeJavaScript("return $('.new-select__menu .new-select__option:contains(\"" + category + "\")')[0]");
         $(item).click();
 
         return this;

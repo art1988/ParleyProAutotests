@@ -48,7 +48,7 @@ public class AddExecutedContractAndCheckOrder
         // Scroll Contract Info right panel to the bottom
         Selenide.executeJavaScript("$('.contract-execute-form .modal__scrollable-body').scrollTop($('.contract-execute-form .modal__scrollable-body')[0].scrollHeight);");
         logger.info("Check post-execution field order on Contract Info right panel...");
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.row span:contains(\"linked2\")').parent().parent().parent().parent().text()"),
+        Assert.assertEquals(Selenide.executeJavaScript("return $('.row span:contains(\"linked2\")').parent().parent().parent().parent().find('label').text()"),
                 "linked2ff1ff2linked1",
                 "The order of post-execution fields linked2, ff1, ff2 and linked1 is wrong !!!");
 
