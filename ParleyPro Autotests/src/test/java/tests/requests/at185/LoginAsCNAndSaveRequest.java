@@ -39,10 +39,10 @@ public class LoginAsCNAndSaveRequest
         ContractInfo contractInfo = new ContractInfo(true);
 
         Assert.assertEquals($("#counterpartyorganization").getValue(), "CounterpartyAT", "Counterparty organization has wrong value !!!");
-        Assert.assertEquals($("#counterpartyOrganization").closest(".Select").find(".Select-value").getText() , "CounterpartyAT", "Counterparty organization has wrong value !!!");
+        Assert.assertEquals($("#counterpartyOrganization").closest(".new-select__value-container").find(".new-select__single-value").getText() , "CounterpartyAT", "Counterparty organization has wrong value !!!");
 
         Assert.assertEquals($("#counterpartychiefnegotiator").getValue(), "arthur.khasanov+cpat@parleypro.com", "Counterparty Chief Negotiator has wrong value !!!");
-        Assert.assertTrue($("#counterpartyChiefNegotiator").getValue().contains("arthur.khasanov+cpat@parleypro.com"), "Counterparty Chief Negotiator has wrong value !!!");
+        Assert.assertTrue($("#counterpartyChiefNegotiator").closest(".new-select__value-container").find(".new-select__single-value").getText().contains("arthur.khasanov+cpat@parleypro.com"), "Counterparty Chief Negotiator has wrong value !!!");
 
         contractInfo.setContractingRegion("region1");
         contractInfo.setContractingCountry("country1");

@@ -226,7 +226,7 @@ public class ContractInformation
 
     public String getCounterpartyChiefNegotiator()
     {
-        return $(".modal-dialog #counterpartyChiefNegotiator").getValue();
+        return $(".modal-dialog #counterpartyChiefNegotiator").closest(".new-select__value-container").find(".new-select__single-value").getText();
     }
 
     public void setContractingRegion(String region)
@@ -391,8 +391,8 @@ public class ContractInformation
 
         input.sendKeys(relatedContract);
         // wait until spinner inside this field will disappear
-        $(".new-select__indicator").waitUntil(Condition.appear, 5_000);
-        $(".new-select__indicator").waitUntil(Condition.disappear, 30_000);
+        $(".new-select__indicator").should(Condition.appear);
+        $(".new-select__indicator").should(Condition.disappear);
 
         input.pressEnter();
 
@@ -426,7 +426,7 @@ public class ContractInformation
 
     public String getChiefNegotiator()
     {
-        return Selenide.executeJavaScript("return $('#ChiefNegotiator').closest('div[class*=\"container\"]').text()");
+        return $("#ChiefNegotiator").closest(".new-select__value-container").find(".new-select__single-value").getText();
     }
 
     /**

@@ -95,11 +95,11 @@ public class AddingOfNewUsersViaShareModal
                 continue; // first hover over all user icons - nothing to check
             }
 
-            $(".rc-tooltip-content").waitUntil(Condition.appear, 15_000);
-            $(".rc-tooltip-inner .spinner").waitUntil(Condition.disappear, 25_000);
+            $(".rc-tooltip-content").should(Condition.appear);
+            $(".rc-tooltip-inner .spinner").should(Condition.disappear);
 
-            String userRole = $(".contract-user__status").waitUntil(Condition.visible, 5_000).getText(),
-                   userName = $(".contract-user__name").waitUntil(Condition.visible, 5_000).getText();
+            String userRole = $(".contract-user__status").shouldBe(Condition.visible).getText(),
+                   userName = $(".contract-user__name").shouldBe(Condition.visible).getText();
 
             // Since we don't know the order of icons in header, we check that for Lead it should be uniqueEmailUser1...
             if( userRole.equals("LEAD") )

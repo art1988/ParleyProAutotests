@@ -318,6 +318,8 @@ public class ContractInfo
         // wait until spinner for Counterparty organization will disappear
         $(".new-select__indicator").waitUntil(Condition.disappear, 17_000);
 
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
+
         cpOrganizationField.pressEnter();
 
         // wait until spinner for CCN field will disappear
@@ -327,6 +329,7 @@ public class ContractInfo
     public void setCounterpartyChiefNegotiator(String cpChiefNegotiator)
     {
         cpChiefNegotiatorField.sendKeys(cpChiefNegotiator);
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
         cpChiefNegotiatorField.pressEnter();
     }
 
