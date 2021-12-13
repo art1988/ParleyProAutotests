@@ -29,9 +29,6 @@ public class VisitDashboardPageAndCheck
         $(".spinner").should(Condition.disappear);
         Thread.sleep(3_000);
 
-        logger.info("Making sure that there is no 'No data available' label on page...");
-        softAssert.assertTrue(Selenide.executeJavaScript("return $('span:contains(\"No data\")').length == 0"), "Page has 'No data available' label !!!");
-
         logger.info("Making sure that there is no grey screen on page...");
         softAssert.assertTrue(Selenide.executeJavaScript("return $('.dashboard__body').find(\".error-boundary\").length == 0"), "There is at least one grey screen for dashboard on page !!!");
 
@@ -46,7 +43,6 @@ public class VisitDashboardPageAndCheck
 
         $(byText("Contract executed in the past 6 months")).shouldBe(Condition.visible);
 
-        softAssert.assertTrue(Selenide.executeJavaScript("return $('span:contains(\"No data\")').length == 0"), "Page has 'No data available' label !!!");
         softAssert.assertTrue(Selenide.executeJavaScript("return $('.dashboard__body').find(\".error-boundary\").length == 0"), "There is at least one grey screen for dashboard on page !!!");
 
         softAssert.assertAll();
