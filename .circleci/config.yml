@@ -46,25 +46,9 @@ jobs:
       
 
       - run:
-          name: Run Attachment runner suite
+          name: Run Templates suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/AttachmentRunner.xml
-
-      - run: sleep 10
-
-      - run:
-          name: Run CCN suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CounterpartyChiefNegotiator.xml
-          no_output_timeout: 20m
-
-      - run: sleep 10
-
-      - run:
-          name: Run Requests suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Requests.xml
-          no_output_timeout: 20m
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Templates.xml
 
       
 
