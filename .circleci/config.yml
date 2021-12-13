@@ -46,10 +46,9 @@ jobs:
       
 
       - run:
-          name: Run Regression suite
+          name: Run Formatting suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
-          no_output_timeout: 20m
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Formatting.xml
 
       
 
