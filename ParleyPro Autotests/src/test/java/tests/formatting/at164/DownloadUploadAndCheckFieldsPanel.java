@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -49,6 +50,10 @@ public class DownloadUploadAndCheckFieldsPanel
 
             String downloadedFile = matchingFile.get();
             Assert.assertTrue(new File(Const.DOWNLOAD_DIR.getAbsolutePath() + "/" + downloadedFile).exists(), "Looks like that " + downloadedFile + " has not been downloaded !!!");
+        }
+        catch (NoSuchElementException e)
+        {
+            logger.error("Unable to download file !!!", e);
         }
 
         logger.info("Assert that FORMATTING label was shown...");
