@@ -94,7 +94,7 @@ public class AddInProgressContract
         softAssert.assertEquals($("input[data-id='numericfld']").val(), "2147483647", "Numeric field wasn't saved !!!");
         softAssert.assertEquals($("input[data-id='decimalfld']").val(), "1234567890123.99", "Decimal field wasn't saved !!!");
         softAssert.assertTrue(Selenide.executeJavaScript("return $('.radio-group__label-text:contains(\"RadioFld\")').closest(\".radio-group\").find(\"input\")[0].checked"), "Radio button R1 should be selected !!!");
-        softAssert.assertEquals($("#onlyselectfld").val(), "S1", "Select field wasn't saved !!!");
+        softAssert.assertEquals($("#onlyselectfld").closest(".new-select__value-container").find(".new-select__single-value").getText(), "S1", "Select field wasn't saved !!!");
         softAssert.assertEquals($("#textfld").val(), "Qui assumenda corporis ipsum voluptatem. Similique saepe omnis dicta provident pariatur atque est. Nemo est aut laborum qui eos. Rerum temporibus et quaerat vitae impedit. Recusandae architecto temporibus eum esse dolore quia expedita iure", "Text field wasn't saved !!!");
         softAssert.assertEquals($("textarea[inputid='textareafld']").val(), "Nulla voluptatum vitae a sapiente nisi natus. Ad dolor omnis deleniti qui recusandae et. Corrupti ducimus rerum tenetur non ut hic. Voluptates sunt beatae corrupti deleniti adipisci nobis cum. Sapiente corporis fugiat minima architecto voluptas est nesciunt. Magni nesciunt accusamus quas eveniet numquam voluptatem odit iure.\n" +
                 "\n" +
@@ -200,7 +200,7 @@ public class AddInProgressContract
 
         softAssert.assertEquals($("input[data-id='decimalfld']").val(), "0.01", "Decimal field wasn't saved !!!");
         softAssert.assertTrue(Selenide.executeJavaScript("return $('.radio-group__label-text:contains(\"RadioFld\")').closest(\".radio-group\").find(\"input\")[1].checked"), "Radio button R2 should be selected !!!");
-        softAssert.assertEquals($("#onlyselectfld").val(), "S2", "Select field wasn't saved !!!");
+        softAssert.assertEquals($("#onlyselectfld").closest(".new-select__value-container").find(".new-select__single-value").getText(), "S2", "Select field wasn't saved !!!");
         softAssert.assertEquals($("#textfld").val(), "", "Text field wasn't saved !!!");
         softAssert.assertEquals($("textarea[inputid='textareafld']").val(), "TEST dolores pariatur quas voluptas aut ut. Corporis sed voluptatem aliquid officia pariatur id pariatur nostrum. Omnis nobis qui temporibus voluptatum consequatur voluptas illum molestias.\n" +
                         "\n" +

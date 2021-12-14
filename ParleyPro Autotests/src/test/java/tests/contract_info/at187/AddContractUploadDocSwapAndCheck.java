@@ -72,7 +72,7 @@ public class AddContractUploadDocSwapAndCheck
         logger.info("Assert that both CCN and Additional Counterparty user were saved...");
         contractInformation = openedContract.clickContractInfo();
 
-        Assert.assertTrue($("#counterpartyChiefNegotiator").getValue().contains(Const.PREDEFINED_CCN.getEmail()), "Counterparty Chief Negotiator is missing !!!");
+        Assert.assertTrue($("#counterpartyChiefNegotiator").closest(".new-select__value-container").find(".new-select__single-value").getText().contains(Const.PREDEFINED_CCN.getEmail()), "Counterparty Chief Negotiator is missing !!!");
         Assert.assertEquals($$(".tags-input span").filter(Condition.exactText("Additional Counterparty users")).first().closest("div").find(".tags-input__tag").getText(),
                 additionalCounterpartyUser, "Additional Counterparty user is missing !!!");
         Screenshoter.makeScreenshot();
@@ -84,9 +84,7 @@ public class AddContractUploadDocSwapAndCheck
         logger.info("Swapping counterparty users...");
 
         // clear [Counterparty Chief Negotiator] field
-        $("#counterpartyChiefNegotiator").click();
-        Thread.sleep(1_000);
-        $(".select__clear").click();
+        $("#counterpartyChiefNegotiator").closest(".new-select__control").find(".new-select__clear-indicator").click();
         Thread.sleep(1_000);
 
         $("#counterpartyChiefNegotiator").sendKeys(Cache.getInstance().getCachedAdditionalCounterpartyUser());
@@ -113,7 +111,7 @@ public class AddContractUploadDocSwapAndCheck
         contractInformation = openedContract.clickContractInfo();
 
         logger.info("Checking that swapped users were saved...");
-        Assert.assertEquals($("#counterpartyChiefNegotiator").getValue(), Cache.getInstance().getCachedAdditionalCounterpartyUser(), "Counterparty Chief Negotiator is missing !!!");
+        Assert.assertEquals($("#counterpartyChiefNegotiator").closest(".new-select__control").find(".new-select__single-value").getText(), Cache.getInstance().getCachedAdditionalCounterpartyUser(), "Counterparty Chief Negotiator is missing !!!");
         Assert.assertTrue($$(".tags-input span").filter(Condition.exactText("Additional Counterparty users")).first().closest("div").find(".tags-input__tag").getText().contains(Const.PREDEFINED_CCN.getEmail()), "Additional Counterparty user is missing !!!");
         Screenshoter.makeScreenshot();
     }
@@ -124,9 +122,7 @@ public class AddContractUploadDocSwapAndCheck
         logger.info("Swapping counterparty users again...");
 
         // clear [Counterparty Chief Negotiator] field
-        $("#counterpartyChiefNegotiator").click();
-        Thread.sleep(1_000);
-        $(".select__clear").click();
+        $("#counterpartyChiefNegotiator").closest(".new-select__control").find(".new-select__clear-indicator").click();
         Thread.sleep(1_000);
 
         $("#counterpartyChiefNegotiator").sendKeys(Const.PREDEFINED_CCN.getEmail());
@@ -153,7 +149,7 @@ public class AddContractUploadDocSwapAndCheck
         contractInformation = openedContract.clickContractInfo();
 
         logger.info("Checking that swapped users were saved...");
-        Assert.assertTrue($("#counterpartyChiefNegotiator").getValue().contains(Const.PREDEFINED_CCN.getEmail()), "Counterparty Chief Negotiator is missing !!!");
+        Assert.assertTrue($("#counterpartyChiefNegotiator").closest(".new-select__control").find(".new-select__single-value").getText().contains(Const.PREDEFINED_CCN.getEmail()), "Counterparty Chief Negotiator is missing !!!");
         Assert.assertEquals($$(".tags-input span").filter(Condition.exactText("Additional Counterparty users")).first().closest("div").find(".tags-input__tag").getText(),
                 Cache.getInstance().getCachedAdditionalCounterpartyUser(), "Additional Counterparty user is missing !!!");
         Screenshoter.makeScreenshot();
