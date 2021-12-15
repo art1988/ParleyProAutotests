@@ -82,7 +82,8 @@ public class UploadDocumentAndTryToDownload
         }
         catch (NoSuchElementException e)
         {
-            logger.error("Unable to download file !!!", e);
+            logger.error("Unable to download document !!!", e);
+            Assert.fail("Unable to download document !!!");
         }
     }
 

@@ -54,6 +54,7 @@ public class DownloadUploadAndCheckFieldsPanel
         catch (NoSuchElementException e)
         {
             logger.error("Unable to download file !!!", e);
+            Assert.fail("Unable to download document !!!");
         }
 
         logger.info("Assert that FORMATTING label was shown...");
