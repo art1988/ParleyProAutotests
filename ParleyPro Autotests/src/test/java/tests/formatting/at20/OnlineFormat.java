@@ -55,14 +55,14 @@ public class OnlineFormat
         }
 
         logger.info("Making sure that FORMATTING label is visible...");
-        $(".label.label_theme_lblue").waitUntil(Condition.visible, 16_000).shouldHave(Condition.exactText("FORMATTING"));
+        $(".label.label_theme_lblue").waitUntil(Condition.visible, 60_000).shouldHave(Condition.exactText("FORMATTING"));
 
         Screenshoter.makeScreenshot();
 
         // cancel formatting...
         openedContract.clickDocumentActionsMenu("AT-40").clickCancelFormatting();
         logger.info("Making sure that FORMATTING label is gone...");
-        $(".label.label_theme_lblue").waitUntil(Condition.disappear, 16_000).shouldNotBe(Condition.visible);
+        $(".label.label_theme_lblue").waitUntil(Condition.disappear, 60_000).shouldNotBe(Condition.visible);
 
         logger.info("Download again via MS Word option...");
         try

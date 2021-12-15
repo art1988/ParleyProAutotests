@@ -43,8 +43,8 @@ public class CreateContractForOnlineFormattingAT20
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"delete me\")')");
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Unused extra\")')");
 
-        $(".notification-stack").waitUntil(Condition.appear, 6_000).shouldHave(Condition.exactText("Document AT-40 has been successfully uploaded."));
-        $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.exactText("Document AT-40 has been successfully uploaded."));
+        $(".notification-stack").should(Condition.disappear);
 
         Screenshoter.makeScreenshot();
     }
