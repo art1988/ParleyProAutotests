@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Approval workflow" configfailurepolicy="continue"><!--
+<suite name="Approval workflow" configfailurepolicy="continue">
     <test name="AT-28: Create and Edit Team" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -70,7 +70,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-201: Do not allow empty Request Approver" preserve-order="true">
         <classes>
