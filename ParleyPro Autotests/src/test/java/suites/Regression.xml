@@ -110,7 +110,7 @@
         </classes>
     </test>
 
-    <!-- temporarily disabled because of https://parley.atlassian.net/browse/PAR-15218
+    <!-- temporarily disabled because of https://parley.atlassian.net/browse/PAR-15218 -->
     <test name="AT-142: If Contract Department is empty, user with Department restriction can see that contract in Executed contracts" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -122,7 +122,7 @@
             <class name="tests.regression.at142.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-161: Document with DOCX extension (all capital) cannot be expanded" preserve-order="true">
         <parameter name="contractName" value="AT-161 ctr"/>
