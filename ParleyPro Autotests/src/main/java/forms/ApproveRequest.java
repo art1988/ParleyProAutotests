@@ -17,7 +17,7 @@ public class ApproveRequest
 
     public ApproveRequest()
     {
-        $(".modal-body-title").shouldBe(Condition.visible).shouldHave(Condition.exactText("Are you sure want to approve contract request?"));
+        $(".modal-body-title").shouldBe(Condition.visible).shouldHave(Condition.exactText("Are you sure you want to approve contract request?"));
         $$(".modal-content .modal-footer button").shouldHave(CollectionCondition.size(2));
     }
 
