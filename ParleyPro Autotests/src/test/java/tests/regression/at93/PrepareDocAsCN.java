@@ -62,7 +62,7 @@ public class PrepareDocAsCN
                       .clickStart();
 
         $(".notification-stack").waitUntil(Condition.visible, 15_000)
-                .shouldHave(Condition.exactText("Contract Grey screen - CCN is now visible to the Counterparty. The email was sent to arthur.khasanov+ccn_at@parleypro.com"));
+                .shouldHave(Condition.text("Contract Grey screen - CCN is now visible to the Counterparty."));
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         CKEditorActive ckEditorActive = openedContract.hover(paragraph1).clickAddComment();
