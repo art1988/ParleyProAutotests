@@ -10,7 +10,7 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
-
+<!--
     <test name="AT-91: Check CSV's from In-progress and Executed contracts pages." preserve-order="true">
         <parameter name="enableProxy" value="true"/>
         <classes>
@@ -19,5 +19,5 @@
             <class name="tests.migration.at91.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
