@@ -51,8 +51,17 @@ public class CheckContracts
         Assert.assertTrue(Selenide.executeJavaScript(jsCode.toString()));
         // 1 end
 
+        // 2 start
         logger.info("Assert the second row of table...");
-        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Normal contract\nEugene's Counterparty Organization Parley Pro\ndraft\nDec 21, 2020 10:58 AM\nNov 29, 2022"));
+        jsCode = new StringBuffer("var firstRow = $('.contracts-list__table a').eq(1).text();");
+        jsCode.append("var lastActivity = $('.contracts-list__table a').eq(1).find(\".contracts-list__cell-activity\").text();");
+        jsCode.append("var res = firstRow.replace(lastActivity, \"\");");
+        jsCode.append("return res;");
+
+        rowWithoutLastActivity = Selenide.executeJavaScript(jsCode.toString());
+
+        Assert.assertEquals(rowWithoutLastActivity, "Normal contractEugene's Counterparty OrganizationParley ProDRAFTNov 30, 2024");
+        // 2 end
 
         // 3 start
         logger.info("Assert the third row of table...");
