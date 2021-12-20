@@ -251,7 +251,7 @@ public class CheckContracts
         // The following expected values are all hardcoded and are correct only for 'Short' contract
         Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 17, 2020");
         Assert.assertEquals(contractInfo.getEffectiveDate(), "Dec 17, 2020");
-        Assert.assertEquals(contractInfo.getInitialTerm(), "1");
+        Assert.assertEquals(contractInfo.getInitialTerm(), "4");
         Assert.assertEquals(contractInfo.getInitialTermDuration(), "Years");
         Assert.assertTrue(contractInfo.getAutoRenewalState());
         Assert.assertTrue( Selenide.executeJavaScript("return $('label span:contains(\"Number of renewals\")').is(':visible')") );
