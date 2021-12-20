@@ -16,7 +16,7 @@
         <classes>
             <class name="tests.migration.LoginToMigrationTenant"/>
             <class name="tests.migration.at91.CheckCSVsFromExecutedAndInProgress"/>
-            <!--<class name="tests.migration.at91.CleanUp"/>-->
+            <class name="tests.migration.at91.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
