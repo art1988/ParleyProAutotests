@@ -23,7 +23,7 @@
         </classes>
     </test>
 
-<!-- temporarily disabled because of https://parley.atlassian.net/browse/PAR-15209 -->
+<!-- temporarily disabled because of https://parley.atlassian.net/browse/PAR-15209
     <test name="AT-164: Document moves from Review to Draft">
         <parameter name="contractName" value="AT-164 // CTR - Document moves from Review to Draft"/>
         <parameter name="templateName" value="Template_AT-164-Manufacturing_Agreement"/>
@@ -37,7 +37,7 @@
             <class name="tests.DeleteTemplate"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test> -->
 
     <test name="AT-190: Download - Bulleted section disappears after online formatting" preserve-order="true">
         <parameter name="contractName" value="IEEE Bullets CTR"/>
