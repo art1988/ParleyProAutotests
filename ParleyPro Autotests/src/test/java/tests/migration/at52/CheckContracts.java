@@ -135,7 +135,7 @@ public class CheckContracts
         $$(".js-linked-contracts-stage").first().shouldHave(Condition.exactText("Managed"));
         $$(".js-linked-contracts-stage").last().shouldHave(Condition.exactText("Negotiate"));
 
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nSupplemented by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 21, 2025\nParent to:\nClassic\nStage:\nNegotiate"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nSupplemented by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2024\nExpiration date:\nJan 16, 2025\nParent to:\nClassic\nStage:\nNegotiate"));
 
         Screenshoter.makeScreenshot();
     }
