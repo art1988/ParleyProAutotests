@@ -60,7 +60,7 @@ public class CheckContracts
 
         rowWithoutLastActivity = Selenide.executeJavaScript(jsCode.toString());
 
-        Assert.assertEquals(rowWithoutLastActivity, "Normal contractEugene's Counterparty OrganizationParley ProDRAFTNov 30, 2024");
+        Assert.assertEquals(rowWithoutLastActivity, "Normal contractEugene's Counterparty OrganizationParley ProDRAFTNov 29, 2024");
         // 2 end
 
         // 3 start
