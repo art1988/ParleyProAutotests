@@ -149,10 +149,10 @@ public class CheckContracts
         logger.info("Assert _first_ row in a table...");
         $$(".contracts-list__table a").get(0).shouldHave(Condition.exactText("Long values and that is a long long " +
                 "long long long long long long long long long long long long long long long long long long long long long long " +
-                "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nJan 21, 2025"));
+                "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nJan 16, 2025"));
 
         logger.info("Assert _second_ row in a table...");
-        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 17, 2020 Dec 17, 2020 Dec 17, 2021 Jan 21, 2025"));
+        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 17, 2020 Dec 17, 2020 Dec 17, 2021 Jan 16, 2025"));
 
         logger.info("Assert _third_ row in a table...");
         $$(".contracts-list__table a").get(2).shouldHave(Condition.exactText("Normal values in contract\nEugene's Counterparty Organization\nmanaged\nUSD 10,000.00 Dec 16, 2020 Dec 31, 2020"));
