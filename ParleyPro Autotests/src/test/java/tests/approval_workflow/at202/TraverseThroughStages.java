@@ -1,6 +1,8 @@
 package tests.approval_workflow.at202;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import constants.Const;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
@@ -73,6 +75,8 @@ public class TraverseThroughStages
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("REVIEW\n(1)", "REVIEW"));
         }
 
+        hideTooltip();
+
         ////// Move document to pre-negotiation approval stage
         {
             openedContract.switchDocumentToPreNegotiateApproval(docName).clickStartApproval();
@@ -84,6 +88,8 @@ public class TraverseThroughStages
             $(byText("BACK TO DOCUMENTS")).click();
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
         }
+
+        hideTooltip();
 
         ////// Click Approve button
         {
@@ -99,6 +105,8 @@ public class TraverseThroughStages
             $(byText("BACK TO DOCUMENTS")).click();
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
         }
+
+        hideTooltip();
 
         ////// Move document to negotiation stage
         {
@@ -113,6 +121,8 @@ public class TraverseThroughStages
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("NEGOTIATE\n(1)", "NEGOTIATE"));
         }
 
+        hideTooltip();
+
         ////// Move document to pre-signature approval stage.
         {
             openedContract.switchDocumentToPreSignApproval(docName).clickStartApproval();
@@ -125,6 +135,8 @@ public class TraverseThroughStages
             $(byText("BACK TO DOCUMENTS")).click();
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
         }
+
+        hideTooltip();
 
         ////// Click Approve button
         {
@@ -141,6 +153,8 @@ public class TraverseThroughStages
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
         }
 
+        hideTooltip();
+
         ////// Click Sign and initiate manual signature process
         {
             openedContract.switchDocumentToSign(docName).clickStart();
@@ -154,6 +168,8 @@ public class TraverseThroughStages
             $(byText("BACK TO DOCUMENTS")).click();
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("SIGN\n(1)", "SIGN"));
         }
+
+        hideTooltip();
 
         ////// Complete signature
         {
@@ -170,6 +186,16 @@ public class TraverseThroughStages
             logger.info("Checking status on DISCUSSIONS tab[should be MANAGED]...");
 
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("MANAGED"));
+        }
+    }
+
+    private void hideTooltip()
+    {
+        SelenideElement tooltip = $(".rc-tooltip-inner");
+
+        if( tooltip.isDisplayed() )
+        {
+            Selenide.executeJavaScript("$('.rc-tooltip-inner').hide()");
         }
     }
 }
