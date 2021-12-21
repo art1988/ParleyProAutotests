@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Approval workflow" configfailurepolicy="continue">
+<suite name="Approval workflow" configfailurepolicy="continue"><!--
     <test name="AT-28: Create and Edit Team" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -76,6 +76,18 @@
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.approval_workflow.at201.TryToSaveWkflowWithEmptyRequestApprover"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-202: Bug with stages during the approval workflow" preserve-order="true">
+        <parameter name="contractName" value="AT-202 Traverse ctr"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.approval_workflow.at202.AddApprovalWorkflow"/>
+            <class name="tests.approval_workflow.at202.TraverseThroughStages"/>
+            <class name="tests.approval_workflow.at202.CleanUp"/>
+            <class name="tests.DeleteContractFromExecuted"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
