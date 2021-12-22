@@ -49,7 +49,7 @@ public class OpenedContract
     }
 
     /**
-     * Use this constructor in case if opened contract page was scrolled so no headings are not visible
+     * Use this constructor in case if opened contract page was scrolled so that headings are not visible
      * @param disableInitialAssert
      */
     public OpenedContract(boolean disableInitialAssert)
