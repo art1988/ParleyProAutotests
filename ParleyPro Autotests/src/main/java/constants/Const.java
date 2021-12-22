@@ -22,7 +22,7 @@ public class Const
     public static final User   USER_FELIX                    = new User("Felix", "Wilson", "arthur.khasanov+felix@parleypro.com", "Parley650!");
 
     public static final User   EVHEN_AT50_USER               = new User("Parley", "Pro", "yevhen.uvin+at50@parleypro.com", "Parley650!");
-    public static final User   EVHEN_TRACKCHANGES_USER       = new User("Parley", "Pro", "yevhen.uvin+trackchanges@parleypro.com", "Parley650!");
+    public static final User   TRACKCHANGES_USER       = new User("Arthur", "Trackchanges", "arthur.khasanov+trackchanges@parleypro.com", "Parley650!");
 
     public static final User   Aaron_Aaronson                = new User("Aaron", "Aaronson", "arthur.khasanov+aaron.aaronson@parleypro.com", "Parley650!");
     public static final User   Bartholomew_Aaronson          = new User("Bartholomew", "Aaronson", "arthur.khasanov+bartholomew.aaronson@parleypro.com", "Parley650!");
@@ -92,6 +92,9 @@ public class Const
     public static final File   TRACK_CHANGES_AT110_V2        = new File(System.getProperty("user.dir") + "/Documents/AT110/V5 Acorns Engagement Letter_v2.docx");
     public static final File   TRACK_CHANGES_AT110_V3        = new File(System.getProperty("user.dir") + "/Documents/AT110/V6 Acorns Engagement Letter-CNM_v3.docx");
     public static final File   TRACK_CHANGES_AT110_V4        = new File(System.getProperty("user.dir") + "/Documents/AT110/V6 Acorns Engagement Letter-CNM_v4.docx");
+
+    public static final File   TRACK_CHANGES_CLASSIC_AT206    = new File(System.getProperty("user.dir") + "/Documents/AT_206_eGain Master Agreement LM edits July_9.docx");
+    public static final File   TRACK_CHANGES_CLASSIC_AT206_V2 = new File(System.getProperty("user.dir") + "/Documents/AT_206_eGain Master Agreement LM edits July 9 (SS07132021) Updated v2.docx");
 
     public static final File   DOCUMENT_AT65_GLUE            = new File(System.getProperty("user.dir") + "/Documents/Dynatrace_Vendor_Addendum.docx");
     public static final File   DOCUMENT_AT65_GLUE_V2         = new File(System.getProperty("user.dir") + "/Documents/Dynatrace_Vendor_Addendum_v2.docx");
