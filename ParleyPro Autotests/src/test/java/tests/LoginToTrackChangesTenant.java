@@ -96,8 +96,8 @@ public class LoginToTrackChangesTenant
     {
         LoginPage loginPage = new LoginPage();
 
-        loginPage.setEmail( Const.EVHEN_TRACKCHANGES_USER.getEmail() );
-        loginPage.setPassword( Const.EVHEN_TRACKCHANGES_USER.getPassword() );
+        loginPage.setEmail( Const.TRACKCHANGES_USER.getEmail() );
+        loginPage.setPassword( Const.TRACKCHANGES_USER.getPassword() );
 
         logger.info("Making sure that Dashboard was loaded correctly...");
 
