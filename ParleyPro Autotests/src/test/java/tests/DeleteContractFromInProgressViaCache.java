@@ -1,4 +1,4 @@
-package tests.regression.at141;
+package tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
@@ -11,16 +11,22 @@ import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * General test for deleting contracts from 'In-progress contracts' page that takes contract name from cache
+ */
 @Listeners({ScreenShotOnFailListener.class})
-public class CleanUp
+public class DeleteContractFromInProgressViaCache
 {
     @Test
-    public void cleanUp()
+    public void deleteContractFromInProgressViaCache() throws InterruptedException
     {
         Selenide.refresh();
 
-        new DashboardPage().getSideBar().clickInProgressContracts(false)
-                                        .selectContract( Cache.getInstance().getCachedContractTitle() );
+        Thread.sleep(2_000);
+
+        new DashboardPage().getSideBar()
+                           .clickInProgressContracts(false)
+                           .selectContract( Cache.getInstance().getCachedContractTitle() );
 
         new OpenedContract().clickContractActionsMenu()
                             .clickDeleteContract()

@@ -13,7 +13,7 @@ import utils.Screenshoter;
 import static com.codeborne.selenide.Selenide.$;
 
 /**
- * General test for deleting contracts from 'In-progress contracts' page
+ * General test for deleting contracts from 'In-progress contracts' page that takes contract name from parameter
  */
 @Listeners({ScreenShotOnFailListener.class})
 public class DeleteContractFromInProgress
