@@ -1,4 +1,4 @@
-package tests.basics;
+package tests.basics.at21;
 
 import constants.Const;
 import forms.ContractInformation;

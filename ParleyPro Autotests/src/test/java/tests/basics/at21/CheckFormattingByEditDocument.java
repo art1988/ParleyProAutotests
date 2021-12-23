@@ -1,4 +1,4 @@
-package tests.basics;
+package tests.basics.at21;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;

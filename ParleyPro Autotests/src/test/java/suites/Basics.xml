@@ -2,14 +2,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Basics" configfailurepolicy="continue">
-    <test name = "Basic contract lifecycle" preserve-order="true">
+    <test name = "AT-8: Basic contract lifecycle" preserve-order="true">
         <parameter name="contractName" value="Contract lifecycle autotest"/>
         <classes>
             <class name="tests.SetupLogger"/>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.basics.AddNewContract"/>
-            <class name="tests.basics.UploadDocument"/>
-            <class name="tests.basics.ProceedThroughLifecycleStages"/>
+            <class name="tests.basics.at8.AddNewContract"/>
+            <class name="tests.basics.at8.UploadDocument"/>
+            <class name="tests.basics.at8.ProceedThroughLifecycleStages"/>
             <class name="tests.DeleteContractFromExecuted"/>
             <class name="tests.Logout"/>
         </classes>
@@ -19,8 +19,8 @@
         <parameter name="contractName" value="Contract discussions autotest"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.basics.CreateContractForDiscussions"/>
-            <class name="tests.basics.ParagraphActions"/>
+            <class name="tests.basics.at14.CreateContractForDiscussions"/>
+            <class name="tests.basics.at14.ParagraphActions"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -30,8 +30,8 @@
         <parameter name="contractName" value="Contract formatting autotest"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.basics.CreateContractForFormatting"/>
-            <class name="tests.basics.CheckFormattingByEditDocument"/>
+            <class name="tests.basics.at21.CreateContractForFormatting"/>
+            <class name="tests.basics.at21.CheckFormattingByEditDocument"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -49,8 +49,8 @@
         <parameter name="contractName" value="Contract - [delete and cancel documents AT]"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.basics.CreateContractAndUploadTwoDocumentsAT61"/>
-            <class name="tests.basics.DeleteAndCancelDocuments"/>
+            <class name="tests.basics.at61.CreateContractAndUploadTwoDocumentsAT61"/>
+            <class name="tests.basics.at61.DeleteAndCancelDocuments"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
@@ -61,7 +61,7 @@
         <parameter name="documentName" value="Address_as_the_ABA_president.pdf"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.basics.AddNewContract"/>
+            <class name="tests.basics.at8.AddNewContract"/>
             <class name="tests.basics.pdf_upload.UploadAndDownloadPDFDocument"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
@@ -73,7 +73,7 @@
         <parameter name="documentName" value="wiki_article.pdf"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.basics.AddNewContract"/>
+            <class name="tests.basics.at8.AddNewContract"/>
             <class name="tests.basics.pdf_upload.UploadAndDownloadPDFDocument"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
@@ -84,7 +84,7 @@
         <parameter name="contractName" value="Contract lifecycle autotest"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.basics.AddNewContract"/>
+            <class name="tests.basics.at8.AddNewContract"/>
             <class name="tests.basics.attachments.UploadAndDownloadAttachments"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>

@@ -1,4 +1,4 @@
-package tests.basics;
+package tests.basics.at61;
 
 import com.codeborne.selenide.Condition;
 import constants.Const;

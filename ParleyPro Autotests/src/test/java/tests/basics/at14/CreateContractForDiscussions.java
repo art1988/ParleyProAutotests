@@ -1,4 +1,4 @@
-package tests.basics;
+package tests.basics.at14;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
