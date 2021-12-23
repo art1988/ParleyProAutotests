@@ -1,6 +1,7 @@
 package tests.classic.at206;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
 import org.apache.log4j.Logger;
@@ -9,8 +10,10 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.Discussions;
 import pages.OpenedContract;
+import pages.OpenedDiscussion;
 import utils.Cache;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -60,6 +63,25 @@ public class AddParagraphUploadNewVerAndCheck
                                                          .clickUploadCounterpartyDocument(Const.TRACK_CHANGES_CLASSIC_AT206_V2, docName, Cache.getInstance().getCachedContractTitle())
                                                          .clickUpload(true);
 
-        discussionsTab.clickDocumentsTab();
+        OpenedContract openedContract = discussionsTab.clickDocumentsTab();
+
+        logger.info("Check recalculation...");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Affiliate\")').closest('.document-paragraph__content').find('del').first().text() === '1.1'"));
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Agreement Term\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.1'"));
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"eGain\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.2'"));
+
+        logger.info("Checking that post was added only once...");
+        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIconSoft("Affiliate");
+
+        $$(".discussion2__body .discussion2-post").shouldHave(CollectionCondition.size(3)); // total posts
+        $$(".discussion2__body .discussion2-post").last().findAll(".diff del").shouldHave(CollectionCondition.size(2)); // the last post should have 2 <del>'s
+        $$(".discussion2__body .discussion2-post").last().find(".discussion2-post__comment").shouldHave(Condition.text("Ss Note: Moving this to Glossary")); // comment is present
+
+        logger.info("Checking that first paragraph was deleted on document view...");
+        String wholeDelText = Selenide.executeJavaScript("return $('.document__body-content del').text()");
+        Assert.assertTrue(wholeDelText.startsWith("1.1"), "Looks like that first paragraph wasn't deleted !!!");
+        Assert.assertTrue(wholeDelText.contains("Affiliate") && wholeDelText.contains("LMHC") && wholeDelText.contains("Agreement shall also be considered"), "Looks like that first paragraph wasn't deleted !!!");
+
+        Screenshoter.makeScreenshot();
     }
 }

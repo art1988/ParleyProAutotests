@@ -22,7 +22,7 @@ public class Const
     public static final User   USER_FELIX                    = new User("Felix", "Wilson", "arthur.khasanov+felix@parleypro.com", "Parley650!");
 
     public static final User   EVHEN_AT50_USER               = new User("Parley", "Pro", "yevhen.uvin+at50@parleypro.com", "Parley650!");
-    public static final User   TRACKCHANGES_USER       = new User("Arthur", "Trackchanges", "arthur.khasanov+trackchanges@parleypro.com", "Parley650!");
+    public static final User   TRACKCHANGES_USER             = new User("Arthur", "Trackchanges", "arthur.khasanov+trackchanges@parleypro.com", "Parley650!");
 
     public static final User   Aaron_Aaronson                = new User("Aaron", "Aaronson", "arthur.khasanov+aaron.aaronson@parleypro.com", "Parley650!");
     public static final User   Bartholomew_Aaronson          = new User("Bartholomew", "Aaronson", "arthur.khasanov+bartholomew.aaronson@parleypro.com", "Parley650!");
