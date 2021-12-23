@@ -58,7 +58,7 @@ public class AddParagraphUploadNewVerAndCheck
     @Test(priority = 3)
     @Description("Final check of AT-206 test: only one discussion has been created for item 1.1. Item 1.1 is shown as removed. The next items have been recalculated." +
             "Comment is present for the post.")
-    public void uploadNewVerAndCheck()
+    public void uploadNewVerAndCheck() throws InterruptedException
     {
         String docName = "AT_206_eGain Master Agreement LM edits July_9";
 
@@ -75,6 +75,7 @@ public class AddParagraphUploadNewVerAndCheck
 
         logger.info("Checking that post was added only once...");
         OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIconSoft("Affiliate");
+        Thread.sleep(3_000);
 
         $$(".discussion2__body .discussion2-post").shouldHave(CollectionCondition.size(3)); // total posts
         $$(".discussion2__body .discussion2-post").last().findAll(".diff del").shouldHave(CollectionCondition.size(2)); // the last post should have 2 <del>'s
