@@ -3,12 +3,15 @@ package tests.basics.at21;
 import constants.Const;
 import forms.ContractInformation;
 import io.qameta.allure.Description;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContractForFormatting
 {
     @Test

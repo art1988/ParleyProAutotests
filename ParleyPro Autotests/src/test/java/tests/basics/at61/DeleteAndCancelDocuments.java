@@ -4,13 +4,16 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+@Listeners({ScreenShotOnFailListener.class})
 public class DeleteAndCancelDocuments
 {
     private static Logger logger = Logger.getLogger(DeleteAndCancelDocuments.class);
