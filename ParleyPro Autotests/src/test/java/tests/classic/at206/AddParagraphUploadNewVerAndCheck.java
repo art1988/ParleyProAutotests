@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -55,6 +56,8 @@ public class AddParagraphUploadNewVerAndCheck
     }
 
     @Test(priority = 3)
+    @Description("Final check of AT-206 test: only one discussion has been created for item 1.1. Item 1.1 is shown as removed. The next items have been recalculated." +
+            "Comment is present for the post.")
     public void uploadNewVerAndCheck()
     {
         String docName = "AT_206_eGain Master Agreement LM edits July_9";
