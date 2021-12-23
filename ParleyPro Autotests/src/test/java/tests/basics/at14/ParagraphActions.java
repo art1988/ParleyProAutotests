@@ -2,6 +2,7 @@ package tests.basics.at14;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import constants.AcceptTypes;
 import forms.AcceptPost;
 import forms.DiscardDiscussion;
@@ -30,12 +31,14 @@ import static com.codeborne.selenide.Selenide.$;
 public class ParagraphActions
 {
     private static Logger logger = Logger.getLogger(ParagraphActions.class);
-
+    private static String currentURL;
 
     @Test(priority = 1)
     @Description("This test deletes Paragraph 1 and check redlines")
     public void deleteParagraph() throws InterruptedException
     {
+        currentURL = WebDriverRunner.getWebDriver().getCurrentUrl();
+
         OpenedContract openedContract = new OpenedContract();
 
         ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("delete me");
@@ -52,7 +55,15 @@ public class ParagraphActions
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert that deleted paragraph has redline...");
-        Assert.assertTrue( $("del").getAttribute("style").equals("color: rgb(181, 8, 46);") );
+        if( currentURL.startsWith("https://trackchanges") || currentURL.startsWith("https://rc_1.parleypro"))
+        {
+
+        }
+        else
+        {
+            Assert.assertTrue( $("del").getAttribute("style").equals("color: rgb(181, 8, 46);") );
+        }
+
 
         logger.info("Check that deleted paragraph has discussion...");
 
