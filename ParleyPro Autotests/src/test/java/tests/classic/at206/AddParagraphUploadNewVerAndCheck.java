@@ -11,7 +11,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.Discussions;
 import pages.OpenedContract;
-import pages.OpenedDiscussion;
 import utils.Cache;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -39,8 +38,8 @@ public class AddParagraphUploadNewVerAndCheck
         $$(".discussion-indicator.queued").shouldHave(CollectionCondition.size(1));
         Assert.assertEquals($(".discussion-indicator.queued").closest(".document-paragraph__content").find("span[list-item='true']").text(),
                 "1.1", "Queued post has wrong number !!! Should be 1.1 !!!");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Agreement Term\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.2'"));
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"eGain\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.3'"));
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Agreement Term\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.2'"), "Recalculation is wrong !!! Should be 1.2");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"eGain\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.3'"), "Recalculation is wrong !!! Should be 1.3");
     }
 
     @Test(priority = 2)
@@ -58,7 +57,7 @@ public class AddParagraphUploadNewVerAndCheck
     @Test(priority = 3)
     @Description("Final check of AT-206 test: only one discussion has been created for item 1.1. Item 1.1 is shown as removed. The next items have been recalculated." +
             "Comment is present for the post.")
-    public void uploadNewVerAndCheck() throws InterruptedException
+    public void uploadNewVerAndCheck()
     {
         String docName = "AT_206_eGain Master Agreement LM edits July_9";
 
@@ -69,15 +68,15 @@ public class AddParagraphUploadNewVerAndCheck
         OpenedContract openedContract = discussionsTab.clickDocumentsTab();
 
         logger.info("Check recalculation...");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Affiliate\")').closest('.document-paragraph__content').find('del').first().text() === '1.1'"));
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Agreement Term\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.1'"));
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"eGain\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.2'"));
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Affiliate\")').closest('.document-paragraph__content').find('del').first().text() === '1.1'"), "Recalculation is wrong !!! Should be 1.1");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Agreement Term\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.1'"), "Recalculation is wrong !!! Should be 1.1");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"eGain\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.2'"), "Recalculation is wrong !!! Should be 1.2");
 
         logger.info("Checking that post was added only once...");
-        OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIconSoft("Affiliate");
-        Thread.sleep(3_000);
+        openedContract.clickByDiscussionIconSoft("Affiliate");
 
         $$(".discussion2__body .discussion2-post").shouldHave(CollectionCondition.size(3)); // total posts
+        $$(".discussion2__body .discussion2-post").filter(Condition.cssClass(".diff del")).stream().forEach(del -> del.shouldBe(Condition.visible));
         $$(".discussion2__body .discussion2-post").last().findAll(".diff del").shouldHave(CollectionCondition.size(2)); // the last post should have 2 <del>'s
         $$(".discussion2__body .discussion2-post").last().find(".discussion2-post__comment").shouldHave(Condition.text("Ss Note: Moving this to Glossary")); // comment is present
 
