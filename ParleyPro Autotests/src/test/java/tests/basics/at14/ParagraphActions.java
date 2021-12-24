@@ -55,9 +55,9 @@ public class ParagraphActions
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert that deleted paragraph has redline...");
-        if( currentURL.startsWith("https://trackchanges") || currentURL.startsWith("https://rc_1.parleypro"))
+        if( currentURL.startsWith("https://trackchanges") || currentURL.startsWith("https://rc_1.parleypro") )
         {
-
+            Assert.assertTrue( $("del").getCssValue("color").equals("rgba(213, 48, 87, 1)") );
         }
         else
         {
@@ -205,8 +205,16 @@ public class ParagraphActions
         Screenshoter.makeScreenshot();
 
         logger.info("Assert that redlines were applied for both paragraphs...");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Paragraph 5\")').find(\"del\").attr(\"style\") === \"color:#b5082e\""));
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Paragraph 6\")').find(\"del\").attr(\"style\") === \"color:#b5082e\""));
+        if( currentURL.startsWith("https://trackchanges") || currentURL.startsWith("https://rc_1.parleypro") )
+        {
+            Assert.assertTrue( Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Paragraph 5\")').find('del').css('color') === 'rgb(213, 48, 87)'") );
+            Assert.assertTrue( Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Paragraph 6\")').find('del').css('color') === 'rgb(213, 48, 87)'") );
+        }
+        else
+        {
+            Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Paragraph 5\")').find(\"del\").attr(\"style\") === \"color:#b5082e\""));
+            Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Paragraph 6\")').find(\"del\").attr(\"style\") === \"color:#b5082e\""));
+        }
     }
 
     @Test(priority = 6)
@@ -384,7 +392,7 @@ public class ParagraphActions
 
         logger.info("Assert that Non-standard post appeared...");
         Thread.sleep(15_000);
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").text()"), "Autotest TAG");
+        Assert.assertTrue(((String) Selenide.executeJavaScript("return $('.discussion2-post:contains(\"Non-standard:\")').find(\".discussion2-post__term-name\").text()")).contains("Autotest TAG"));
 
         Screenshoter.makeScreenshot();
     }
