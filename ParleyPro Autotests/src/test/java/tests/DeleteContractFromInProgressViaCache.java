@@ -20,9 +20,10 @@ public class DeleteContractFromInProgressViaCache
     @Test
     public void deleteContractFromInProgressViaCache() throws InterruptedException
     {
+        // Before deletion - refresh page, because previous opened modal forms may still be active preventing clicking by sidebar icons
         Selenide.refresh();
 
-        Thread.sleep(2_000);
+        Thread.sleep(3_000);
 
         new DashboardPage().getSideBar()
                            .clickInProgressContracts(false)
