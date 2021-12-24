@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import constants.Const;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -25,8 +26,13 @@ public class DeleteContractFromExecuted
 
     @Test(priority = 1)
     @Parameters("contractName")
-    public void deleteContractFromExecuted(String contractName)
+    public void deleteContractFromExecuted(String contractName) throws InterruptedException
     {
+        // Before deletion - refresh page, because previous opened modal forms may still be active preventing clicking by sidebar icons
+        Selenide.refresh();
+
+        Thread.sleep(3_000);
+
         new DashboardPage().getSideBar()
                            .clickExecutedContracts(false)
                            .selectContract(contractName)

@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
@@ -20,8 +21,13 @@ public class DeleteTemplate
 
     @Test
     @Parameters("templateName")
-    public void deleteTemplate(String templateName)
+    public void deleteTemplate(String templateName) throws InterruptedException
     {
+        // Before deletion - refresh page, because previous opened modal forms may still be active preventing clicking by sidebar icons
+        Selenide.refresh();
+
+        Thread.sleep(3_000);
+
         new DashboardPage().getSideBar()
                            .clickTemplates(false)
                            .clickActionMenuTemplate(templateName)
