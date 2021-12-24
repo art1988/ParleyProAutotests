@@ -41,7 +41,8 @@ public class UploadDocAndCheck
 
         new AddDocuments().clickUploadCounterpartyDocuments(Const.REGRESSION_DOC_AT163);
 
-        $(".notification-stack").waitUntil(Condition.visible, 45_000).shouldHave(Condition.text("1 unsupported formatting attributes")).find(".notification__close").click();
+        // This notification not shows anymore
+        //$(".notification-stack").waitUntil(Condition.visible, 45_000).shouldHave(Condition.text("1 unsupported formatting attributes")).find(".notification__close").click();
         new ContractInNegotiation("CTR_AT163").clickOk();
 
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Cover Page\")')");
