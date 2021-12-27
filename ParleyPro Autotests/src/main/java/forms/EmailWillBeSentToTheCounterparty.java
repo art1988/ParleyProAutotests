@@ -110,6 +110,15 @@ public class EmailWillBeSentToTheCounterparty
         return this;
     }
 
+    public void clickCancel()
+    {
+        $("#ccn-email-form-cancel-button").click();
+
+        logger.info("CANCEL button was clicked");
+
+        $(".modal-content").should(Condition.disappear);
+    }
+
     /**
      * Click START button.
      * Or this button may have SEND name in case if Send Invite button was clicked.
@@ -118,9 +127,7 @@ public class EmailWillBeSentToTheCounterparty
     {
         startButton.shouldBe(Condition.enabled).click();
 
-        logger.info("Start button was clicked");
-
-        title.should(Condition.disappear);
+        logger.info("START button was clicked");
     }
 
 }
