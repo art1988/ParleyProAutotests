@@ -15,7 +15,6 @@ import pages.InProgressContractsPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
-import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -46,16 +45,9 @@ public class CreateClassicContractAT40
         contractInformationForm.clickSave();
 
         // 2. UPLOAD MY TEAM DOCUMENTS
-        AddDocuments addDocuments = new AddDocuments();
+        new AddDocuments().clickUploadMyTeamDocuments( Const.DOCUMENT_CLASSIC_AT40 );
 
-        addDocuments.clickUploadMyTeamDocuments( Const.DOCUMENT_CLASSIC_AT40 );
-
-        // Wait until document is fully loaded...
-        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"delete me\")')");
-        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Unused extra\")')");
-
-        $(".notification-stack").waitUntil(Condition.appear, 6_000).shouldHave(Condition.exactText("Document AT-40 has been successfully uploaded."));
-        $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+        $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("DRAFT\n(1)", "DRAFT"));
 
         Screenshoter.makeScreenshot();
     }
