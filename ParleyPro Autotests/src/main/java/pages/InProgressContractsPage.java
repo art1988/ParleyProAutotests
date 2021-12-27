@@ -20,7 +20,7 @@ public class InProgressContractsPage
     private SelenideElement newContractButton          = $(".contracts__create button[type='button'], .js-create-contract-btn");
     private SelenideElement newRequestButton           = $("button:not(.js-create-contract-btn)");
     private SelenideElement searchBar                  = $(".contracts-search-input__text");
-    private SelenideElement downloadContractDataButton = $(".contracts-head__download");
+    private SelenideElement downloadContractDataButton = $(".download-button");
 
 
     private static Logger logger = Logger.getLogger(InProgressContractsPage.class);
