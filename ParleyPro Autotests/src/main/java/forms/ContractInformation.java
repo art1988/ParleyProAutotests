@@ -32,7 +32,7 @@ public class ContractInformation
     private SelenideElement notesField                 = $(".modal-dialog #notes");
 
     private SelenideElement cancelButton = $(".modal-content .btn.btn-common.btn-link.btn-link-pseudo");
-    private SelenideElement saveButton   = $(".modal-content .button.btn.btn-common.btn-blue.btn.btn-default");
+    private SelenideElement saveButton   = $(".modal-content .button.btn.btn-common.btn-blue.btn.btn-default, .modal-footer button[type='submit']");
 
 
     private static Logger logger = Logger.getLogger(ContractInformation.class);
