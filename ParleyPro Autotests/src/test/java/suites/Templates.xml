@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Templates suite" configfailurepolicy="continue">
+<suite name = "Templates suite" configfailurepolicy="continue"><!--
     <test name="AT-48: Create template with fields" preserve-order="true">
         <parameter name="contractName" value="ContractThatDoesNotMatchTemplate_AT48"/>
         <parameter name="templateName" value="Template_AT48[ EDITED ]"/>
@@ -92,6 +92,16 @@
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.templates.at189.UploadTemplateAndCheck"/>
+            <class name="tests.DeleteTemplate"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-207: Template not found when Ctrl+V its title into search" preserve-order="true">
+        <parameter name="templateName" value="Template_AT48"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.templates.at207.AddTemplateAndSearch"/>
             <class name="tests.DeleteTemplate"/>
             <class name="tests.Logout"/>
         </classes>
