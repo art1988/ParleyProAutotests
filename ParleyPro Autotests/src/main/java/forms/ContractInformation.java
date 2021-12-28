@@ -561,4 +561,18 @@ public class ContractInformation
         // wait until Contract information form disappear
         $(".modal-content").waitUntil(Condition.disappear, 60_000);
     }
+
+    /**
+     * Use this method to click SAVE after Amendment.
+     * Separate method because save has different selector.
+     */
+    public void clickSaveFromAmendment()
+    {
+        $$(".modal-content button").filter(Condition.text("SAVE")).first().click();
+
+        logger.info("SAVE button was clicked");
+
+        // wait until Contract information form disappear
+        $(".modal-content").waitUntil(Condition.disappear, 60_000);
+    }
 }

@@ -40,7 +40,7 @@ public class AmendExpiredContract
                            .clickExecutedContracts(false)
                            .selectContract("Executed Expired");
 
-        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSave();
+        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSaveFromAmendment();
         AddDocuments addDocuments = new AddDocuments();
 
         softAssert.assertEquals(addDocuments.getContractTitle(), "Executed Expired-A", "Contract title is wrong !!!");
@@ -69,7 +69,7 @@ public class AmendExpiredContract
                            .clickExecutedContracts(false)
                            .selectContract("Executed Signed");
 
-        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSave();
+        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSaveFromAmendment();
         AddDocuments addDocuments = new AddDocuments();
 
         logger.info("Checking B in the name...");
@@ -113,7 +113,7 @@ public class AmendExpiredContract
                            .clickExecutedContracts(false)
                            .selectContract("Executed Signed-A");
 
-        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSave();
+        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSaveFromAmendment();
         AddDocuments addDocuments = new AddDocuments();
 
         logger.info("Checking double A in the name...");
