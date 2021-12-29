@@ -42,8 +42,6 @@ public class DeleteContractFromExecuted
         logger.info("Assert delete notification...");
         $(".notification-stack").should(Condition.appear).shouldHave(Condition.exactText("Contract " + contractName + " has been deleted."));
 
-        $(".contracts__create").should(Condition.appear).shouldHave(Condition.text("There are no executed contracts.\nYou can start a new executed  contract by clicking the button below"));
-
         Screenshoter.makeScreenshot();
     }
 
