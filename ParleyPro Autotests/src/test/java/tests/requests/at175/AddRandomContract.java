@@ -15,9 +15,10 @@ import static com.codeborne.selenide.Selenide.$;
 @Listeners({ScreenShotOnFailListener.class})
 public class AddRandomContract
 {
+    private DashboardPage dashboardPage;
     private static Logger logger = Logger.getLogger(AddRandomContract.class);
 
-    @Test
+    @Test(priority = 1)
     public void addRandomContract()
     {
         logger.info("Login as CN...");
@@ -27,8 +28,9 @@ public class AddRandomContract
         loginPage.setEmail( Const.PREDEFINED_USER_CN_ROLE.getEmail() );
         loginPage.setPassword( Const.PREDEFINED_USER_CN_ROLE.getPassword() );
 
-        DashboardPage dashboardPage = loginPage.clickSignIn();
+        dashboardPage = loginPage.clickSignIn();
 
+        logger.info("Making random contract with name 'Test AT-175'...");
         ContractInformation contractInformation = dashboardPage.getSideBar().clickInProgressContracts(false).clickNewContractButton();
 
         contractInformation.setContractTitle("Test AT-175");
@@ -41,5 +43,11 @@ public class AddRandomContract
         contractInformation.clickSave();
 
         $(".contract-header__name").shouldHave(Condition.text("Test AT-175"));
+    }
+
+    @Test(priority = 2)
+    public void logoutAsCN()
+    {
+        dashboardPage.getSideBar().logout();
     }
 }

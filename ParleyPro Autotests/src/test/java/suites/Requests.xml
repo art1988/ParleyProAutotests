@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Contract request suite" configfailurepolicy="continue">
+<suite name = "Contract request suite" configfailurepolicy="continue"><!--
     <test name="AT-124: Create request" preserve-order="true">
         <parameter name="contractName" value="Contract request"/>
         <classes>
@@ -72,7 +72,8 @@
                 <class name="tests.DeleteContractFromInProgress"/>
                 <class name="tests.Logout"/>
             </classes>
-        </test>
+        </test>-->
+
 <!-- disabled due to https://parley.atlassian.net/browse/PAR-15257
     <test name="AT-185: You no longer have access error when CN tries to create contract from approved request with redlined My team document" preserve-order="true">
         <parameter name="contractName" value="Request for at-185"/>
@@ -87,4 +88,16 @@
             <class name="tests.Logout"/>
         </classes>
     </test>-->
+
+    <test name="AT-175: Request email redirects to wrong contract" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.requests.at175.PreSetup"/>
+            <class name="tests.requests.at175.AddRequest"/>
+            <class name="tests.requests.at175.AddRandomContract"/>
+            <class name="tests.requests.at175.GetEmailAndCheckRedirect"/>
+            <class name="tests.requests.at175.CleanUp"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
