@@ -74,7 +74,7 @@
             </classes>
         </test>
 
-<!-- disabled due to https://parley.atlassian.net/browse/PAR-15257
+<!-- disabled due to https://parley.atlassian.net/browse/PAR-15257 -->
     <test name="AT-185: You no longer have access error when CN tries to create contract from approved request with redlined My team document" preserve-order="true">
         <parameter name="contractName" value="Request for at-185"/>
         <classes>
@@ -87,7 +87,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-175: Request email redirects to wrong contract" preserve-order="true">
         <classes>
