@@ -109,5 +109,5 @@
             <class name="tests.requests.at210.AddRequestUploadAndDeleteDoc"/>
             <class name="tests.requests.at210.ConvertRequestToContract"/>
         </classes>
-    </test>->>
+    </test> -->
 </suite>
