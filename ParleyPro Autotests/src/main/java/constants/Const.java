@@ -118,6 +118,8 @@ public class Const
 
     public static final File   AVATAR_IMG_SAMPLE             = new File(System.getProperty("user.dir") + "/Documents/avatar_user_test.png");
 
+    public static final File   DOC_AT211                     = new File(System.getProperty("user.dir") + "/Documents/MSA - Ray Fortin v2a.docx");
+
     // Directories
     // Directory of docs from clients. Used in Classic
     public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Documents/classicClientDocs");
