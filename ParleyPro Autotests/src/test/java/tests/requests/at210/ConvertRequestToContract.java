@@ -42,6 +42,7 @@ public class ConvertRequestToContract
         contractInfo.setContractType("type1");
         contractInfo.clickSave();
 
+        logger.info("Checking that request was successfully converted to contract...");
         $(".label.label_theme_purple").should(Condition.disappear);
         $(".documents-add__title").shouldBe(Condition.visible).shouldHave(Condition.exactText("Add Documents"));
         $(".js-upload-my-team-document-btn").shouldBe(Condition.visible);
