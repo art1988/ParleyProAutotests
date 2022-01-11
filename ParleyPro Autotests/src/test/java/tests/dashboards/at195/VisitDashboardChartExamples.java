@@ -2,6 +2,8 @@ package tests.dashboards.at195;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Issues;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -22,6 +24,9 @@ public class VisitDashboardChartExamples
 
 
     @Test
+    @Issues({
+            @Issue("PAR-15275")
+    })
     public void visitDashboardChartExamples() throws InterruptedException
     {
         logger.info("Opening /dashboard-chart-examples...");
