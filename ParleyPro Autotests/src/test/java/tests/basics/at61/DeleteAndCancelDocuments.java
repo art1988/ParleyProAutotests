@@ -27,8 +27,8 @@ public class DeleteAndCancelDocuments
         logger.info("Trying to delete document [Formatting]...");
         openedContract.clickDocumentActionsMenu("Formatting").clickDelete().clickDelete();
 
-        $(".notification-stack").waitUntil(Condition.appear, 20_000).shouldHave(Condition.exactText("Document Formatting has been deleted."));
-        $(".notification-stack").waitUntil(Condition.disappear, 30_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Document Formatting has been deleted."));
+        $(".notification-stack").should(Condition.disappear);
 
         logger.info("Making sure that only one document left...");
         $$(".rename.document__header-rename").shouldHave(CollectionCondition.size(1)).shouldHave(CollectionCondition.exactTexts("AT-40"));
@@ -38,13 +38,16 @@ public class DeleteAndCancelDocuments
         logger.info("Trying to cancel document [AT-40]...");
         openedContract.clickDocumentActionsMenu("AT-40").clickCancel().clickCancel();
 
-        $(".notification-stack").waitUntil(Condition.appear, 20_000).shouldHave(Condition.exactText("Document AT-40 has been cancelled."));
-        $(".notification-stack").waitUntil(Condition.disappear, 30_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Document AT-40 has been cancelled."));
+        $(".notification-stack").should(Condition.disappear);
 
         logger.info("Making sure that status of document was changed to CANCELLED...");
-        $(".document .lifecycle").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("CANCELLED"));
+        $(".document .lifecycle").shouldBe(Condition.visible).shouldHave(Condition.exactText("CANCELLED"));
 
-        // TODO: add check that there is no Cancel option after cancelling after fixing of PAR-13248
+        logger.info("Click document menu again and check that there is no CANCEL option...");
+        $(".document__menu button").click();
+        $$(".document__menu .dropdown-menu.dropdown-menu-right li[role='presentation']").shouldHave(CollectionCondition.size(2))
+                        .shouldHave(CollectionCondition.textsInAnyOrder("Download", "Delete"));
 
         Screenshoter.makeScreenshot();
     }
