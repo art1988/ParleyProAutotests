@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Numbered lists" configfailurepolicy="continue">
+<suite name = "Numbered lists" configfailurepolicy="continue"><!--
     <test name="AT-25: Numbered list recalculation" preserve-order="true">
         <parameter name="contractName" value="Contract numbered list autotest"/>
         <classes>
@@ -12,7 +12,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="AT-53: Numbered list recalculation with multiple sub-lists" preserve-order="true">
         <parameter name="contractName" value="Contract numbered list with sub-lists"/>
