@@ -74,7 +74,7 @@ public class LoginAsRequesterAddRequestUpdateValidate
     }
 
     @Test(priority = 3)
-    @Description("Main asserting happens here. Tests verifies that request fields were updated.")
+    @Description("Main assertion happens here. Tests verifies that request fields were updated.")
     public void openAndValidate()
     {
         logger.info("Opening request and check request fields...");
