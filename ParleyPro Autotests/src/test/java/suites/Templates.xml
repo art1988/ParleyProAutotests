@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Templates suite" configfailurepolicy="continue"><!--
+<suite name = "Templates suite" configfailurepolicy="continue">
     <test name="AT-48: Create template with fields" preserve-order="true">
         <parameter name="contractName" value="ContractThatDoesNotMatchTemplate_AT48"/>
         <parameter name="templateName" value="Template_AT48[ EDITED ]"/>
@@ -105,7 +105,7 @@
             <class name="tests.DeleteTemplate"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-213: Error 'Tag 'NUM' is not well-formed. Token 'NUM' is unexpected.' when creating from template" preserve-order="true">
         <parameter name="contractName" value="AT-213_Tag_NUM"/>
