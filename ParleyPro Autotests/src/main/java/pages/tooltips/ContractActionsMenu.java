@@ -3,6 +3,7 @@ package pages.tooltips;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import forms.ContractInformation;
+import forms.ReassignChiefNegotiator;
 import forms.delete.DeleteContract;
 import org.apache.log4j.Logger;
 
@@ -10,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 /**
  * Class that represents menu with 'Cancel' and 'Delete' contract options.
+ * Also, applicable for [requests] with it's 'Reassign Chief Negotiator' menu item, etc.
  * In executed status additional menu items were added: 'Amend contract' and 'Terminate contract'.
  */
 public class ContractActionsMenu
@@ -62,5 +64,17 @@ public class ContractActionsMenu
         logger.info("Amend contract was clicked...");
 
         return new ContractInformation();
+    }
+
+    /**
+     * This option is available only for requests
+     */
+    public ReassignChiefNegotiator clickReassignChiefNegotiator()
+    {
+        Selenide.executeJavaScript("$('.contract-header__menu .dropdown-menu.dropdown-menu-right a:contains(\"Reassign\")')[0].click()");
+
+        logger.info("Reassign Chief Negotiator was clicked...");
+
+        return new ReassignChiefNegotiator();
     }
 }
