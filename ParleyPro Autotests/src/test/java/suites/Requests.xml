@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Contract request suite" configfailurepolicy="continue"><!--
+<suite name = "Contract request suite" configfailurepolicy="continue">
     <test name="AT-124: Create request" preserve-order="true">
         <parameter name="contractName" value="Contract request"/>
         <classes>
@@ -121,7 +121,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-215: Marvell: User with full permissions does not see contract converted from request" preserve-order="true">
         <parameter name="contractName" value="AT-215 Request"/>
