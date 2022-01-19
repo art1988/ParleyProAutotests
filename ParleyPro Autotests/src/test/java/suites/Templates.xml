@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Templates suite" configfailurepolicy="continue">
-    <test name="AT-48: Create template with fields" preserve-order="true">
+    <!--<test name="AT-48: Create template with fields" preserve-order="true">
         <parameter name="contractName" value="ContractThatDoesNotMatchTemplate_AT48"/>
         <parameter name="templateName" value="Template_AT48[ EDITED ]"/>
         <classes>
@@ -113,6 +113,18 @@
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.templates.at213.AddTemplateAndMakeDocument"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.DeleteTemplate"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-216: Failed to process Template" preserve-order="true">
+        <parameter name="contractName" value="AT-216: Failed to process Template"/>
+        <parameter name="templateName" value="AT_216_NAM_APLL Master Services Agreement"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.templates.at216.AddTemplateAndMakeDocument"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.DeleteTemplate"/>
             <class name="tests.Logout"/>
