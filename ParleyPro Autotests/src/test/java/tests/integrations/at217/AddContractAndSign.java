@@ -77,7 +77,7 @@ public class AddContractAndSign
         signatureButton.click();
         logger.info("Signature field has been clicked...");
 
-        $("image").click(10, 10); // click by <image> tag with offset to place Signature field
+        $("image").click(); // click by <image> tag by the center of image
         Thread.sleep(1_000);
 
         Screenshoter.makeScreenshot();
@@ -85,6 +85,7 @@ public class AddContractAndSign
         $("button[data-qa='send-button']").click();
         logger.info("Yellow button SEND was clicked...");
 
+        logger.info("Redirecting back to ParleyPro... Wait until status became SIGN...");
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("SIGN\n(1)", "SIGN"));
     }
 }

@@ -13,7 +13,7 @@ import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ ScreenShotOnFailListener.class})
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContractForOnlineFormattingAT20
 {
     @Test
