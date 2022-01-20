@@ -1,0 +1,12 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Integrations suite" configfailurepolicy="continue">
+    <test name="AT-217: DocuSign basics" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.integrations.at217.ConnectDocuSign"/>
+            <class name="tests.integrations.at217.AddContractAndSign"/>
+        </classes>
+    </test>
+</suite>
