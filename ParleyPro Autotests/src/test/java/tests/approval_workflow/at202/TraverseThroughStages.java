@@ -157,7 +157,7 @@ public class TraverseThroughStages
 
         ////// Click Sign and initiate manual signature process
         {
-            openedContract.switchDocumentToSign(docName).clickStart();
+            openedContract.switchDocumentToSign(docName, false).clickStart();
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.exactTexts("SIGN\n(1)", "SIGN"));
 
             openedContract.clickByDiscussions();

@@ -89,7 +89,7 @@ public class ProceedThroughLifecycleStages
     {
         OpenedContract openedContract = new OpenedContract();
 
-        SignContract signContractForm = openedContract.switchDocumentToSign(DOCUMENT_NAME);
+        SignContract signContractForm = openedContract.switchDocumentToSign(DOCUMENT_NAME, false);
 
         try
         {

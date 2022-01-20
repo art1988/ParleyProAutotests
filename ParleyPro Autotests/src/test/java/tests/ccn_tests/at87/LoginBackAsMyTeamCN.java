@@ -61,7 +61,7 @@ public class LoginBackAsMyTeamCN
     public void signAndCompleteSign()
     {
         String documentName = "AT-14";
-        SignContract signContractForm = openedContract.switchDocumentToSign(documentName);
+        SignContract signContractForm = openedContract.switchDocumentToSign(documentName, false);
 
         try
         {

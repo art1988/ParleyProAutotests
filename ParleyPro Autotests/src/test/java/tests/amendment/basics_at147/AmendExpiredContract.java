@@ -101,7 +101,7 @@ public class AmendExpiredContract
 
         OpenedContract openedContract = new OpenedContract();
 
-        openedContract.switchDocumentToSign("AT-14").clickStart();
+        openedContract.switchDocumentToSign("AT-14", false).clickStart();
         $("#COMPLETE_MANUAL_DOCUMENT").waitUntil(Condition.visible, 10_000);
         openedContract.clickCompleteSign("AT-14").clickComplete();
     }

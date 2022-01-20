@@ -221,7 +221,7 @@ public class StartPreSignApproval
     {
         OpenedContract openedContract = new OpenedContract();
 
-        SignContract signContractForm = openedContract.switchDocumentToSign("pramata");
+        SignContract signContractForm = openedContract.switchDocumentToSign("pramata", false);
 
         try
         {
