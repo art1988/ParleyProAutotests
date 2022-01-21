@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class AuditTrail
 {
     private SelenideElement title    = $(".modal-title");
-    private SelenideElement okButton = $("button[type='submit']");
+    private SelenideElement okButton = $(".modal-content button[type='submit']");
 
 
     private static Logger logger = Logger.getLogger(AuditTrail.class);
