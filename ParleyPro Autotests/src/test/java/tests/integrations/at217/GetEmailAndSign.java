@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utils.EmailChecker;
+import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -50,7 +51,14 @@ public class GetEmailAndSign
         Thread.sleep(1_000);
         logger.info("Sign yellow box was clicked...");
 
-        $("#action-bar-btn-finish").click();
+        // For PROD there is additional button 'USED SAVED' that need to be clicked
+        if( LoginBase.isProd() )
+        {
+            $("button[data-qa='use-saved-signature']").shouldBe(Condition.visible, Condition.enabled).click();
+            logger.info("USED SAVED yellow button was clicked...");
+        }
+
+        $("#action-bar-btn-finish").shouldBe(Condition.visible, Condition.enabled).click();
         logger.info("FINISH yellow button was clicked...");
         
         $("#psContent_title").shouldBe(Condition.visible).shouldHave(Condition.text("You’ve finished signing!"));

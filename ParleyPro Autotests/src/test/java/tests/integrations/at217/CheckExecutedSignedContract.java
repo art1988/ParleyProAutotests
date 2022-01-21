@@ -71,7 +71,6 @@ public class CheckExecutedSignedContract
         $$(".timeline-title").shouldHave(CollectionCondition.sizeGreaterThan(9));
         List<String> allEvents = $$(".timeline-title").stream().map(SelenideElement::text).collect(Collectors.toList());
 
-        System.out.println(allEvents);
         Assert.assertTrue(allEvents.contains("Docusign event: Opened"), "There is no such event as 'Docusign event: Opened' !!!");
         Assert.assertTrue(allEvents.contains("Docusign event: Viewed"), "There is no such event as 'Docusign event: Viewed' !!!");
         Assert.assertTrue(allEvents.contains("Docusign event: Signed"), "There is no such event as 'Docusign event: Signed' !!!");
