@@ -48,13 +48,12 @@ public class GetEmailAndSign
         logger.info("CONTINUE yellow button was clicked...");
 
         $(".signature-tab-content").shouldBe(Condition.visible, Condition.enabled).click();
-        Thread.sleep(1_000);
+        Thread.sleep(3_000);
         logger.info("Sign yellow box was clicked...");
 
-        // For PROD there is additional button 'USED SAVED' that need to be clicked
-        if( LoginBase.isProd() )
+        if( $("button[data-qa='use-saved-signature']").isDisplayed() )
         {
-            $("button[data-qa='use-saved-signature']").shouldBe(Condition.visible, Condition.enabled).click();
+            $("button[data-qa='use-saved-signature']").click();
             logger.info("USED SAVED yellow button was clicked...");
         }
 
