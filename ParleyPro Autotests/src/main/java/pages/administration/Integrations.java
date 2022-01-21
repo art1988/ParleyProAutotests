@@ -85,4 +85,13 @@ public class Integrations
 
         return new DocuSign();
     }
+
+    public void clickDisconnectDocuSign()
+    {
+        docuSignConnectButton.click();
+
+        logger.info("DocuSign DISCONNECT button was clicked");
+
+        $(".spinner").should(Condition.disappear);
+    }
 }

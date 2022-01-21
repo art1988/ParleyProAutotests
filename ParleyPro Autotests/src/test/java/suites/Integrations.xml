@@ -3,10 +3,16 @@
 
 <suite name = "Integrations suite" configfailurepolicy="continue">
     <test name="AT-217: DocuSign basics" preserve-order="true">
+        <parameter name="contractName" value="AT-217: DocuSign basics CTR"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.integrations.at217.ConnectDocuSign"/>
             <class name="tests.integrations.at217.AddContractAndSign"/>
+            <class name="tests.integrations.at217.GetEmailAndSign"/>
+            <class name="tests.integrations.at217.CheckExecutedSignedContract"/>
+            <class name="tests.DeleteContractFromExecuted"/>
+            <class name="tests.integrations.at217.DisconnectDocuSign"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
