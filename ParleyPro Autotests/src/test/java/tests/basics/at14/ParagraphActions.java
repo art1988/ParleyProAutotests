@@ -324,6 +324,9 @@ public class ParagraphActions
         logger.info("Assert that paragraph's color become black...");
         $("ins").shouldNotBe(Condition.visible);
         $$("ins").shouldHave(CollectionCondition.size(0));
+
+        boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').find(\"del\").length === 0)");
+        Assert.assertTrue(colorTagDoestExist);
     }
 
     @Test(priority = 10)
