@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Basics" configfailurepolicy="continue">
+<suite name = "Basics" configfailurepolicy="continue"><!--
     <test name = "AT-8: Basic contract lifecycle" preserve-order="true">
         <parameter name="contractName" value="Contract lifecycle autotest"/>
         <classes>
@@ -54,8 +54,19 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
+    </test>-->
+
+    <test name="AT-220: Executed documents test" preserve-order="true">
+        <parameter name="contractName" value="AT-220 dif types"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.basics.at220.AddExecutedContractAndUploadDifferentTypes"/>
+            <class name="tests.DeleteContractFromExecuted"/>
+            <class name="tests.Logout"/>
+        </classes>
     </test>
 
+    <!--
     <test name="PDF uploading #1" preserve-order="true">
         <parameter name="contractName" value="Contract lifecycle autotest"/>
         <parameter name="documentName" value="Address_as_the_ABA_president.pdf"/>
@@ -130,5 +141,5 @@
             <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
