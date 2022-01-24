@@ -1,5 +1,6 @@
 package tests.basics.at14;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
@@ -26,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ ScreenShotOnFailListener.class})
 public class ParagraphActions
@@ -51,8 +53,8 @@ public class ParagraphActions
         String paragraphTitle = "Paragraph 1: Hello";
 
         logger.info("Assert that internal discussion notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.text("Internal discussion " + paragraphTitle));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Internal discussion " + paragraphTitle));
+        $(".notification-stack").should(Condition.disappear);
 
         logger.info("Assert that deleted paragraph has redline...");
         if( currentURL.startsWith("https://trackchanges") || currentURL.startsWith("https://rc_1.parleypro") )
@@ -126,8 +128,8 @@ public class ParagraphActions
         ckEditorActive.clickPost();
 
         logger.info("Assert that internal discussion notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Internal discussion " + addedText + " has been successfully created."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Internal discussion " + addedText + " has been successfully created."));
+        $(".notification-stack").should(Condition.disappear);
 
         OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(addedText);
 
@@ -163,8 +165,8 @@ public class ParagraphActions
         ckEditorActive.clickPost();
 
         logger.info("Assert that internal discussion notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Internal discussion " + addedText + " has been successfully created."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Internal discussion " + addedText + " has been successfully created."));
+        $(".notification-stack").should(Condition.disappear);
 
         OpenedDiscussion openedDiscussion = openedContract.clickByDiscussionIcon(addedText);
 
@@ -199,8 +201,8 @@ public class ParagraphActions
         multipleDeleteOverlay.clickPost();
 
         logger.info("Assert that 'External discussion on deleted paragraph...' notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("External discussion on deleted paragraph has been successfully created."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("External discussion on deleted paragraph has been successfully created."));
+        $(".notification-stack").should(Condition.disappear);
 
         Screenshoter.makeScreenshot();
 
@@ -232,8 +234,8 @@ public class ParagraphActions
         discardDiscussionForm.clickDiscardDiscussion();
 
         logger.info("Assert that 'discussion closed' notification was shown...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.text("Discussion " + paragraphTitle));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Discussion " + paragraphTitle));
+        $(".notification-stack").should(Condition.disappear);
 
         openedDiscussion.close();
 
@@ -263,18 +265,15 @@ public class ParagraphActions
         acceptPostForm.clickAcceptText();
 
         logger.info("Assert notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText(" post has been successfully created."));
+        $(".notification-stack").should(Condition.disappear);
 
         openedDiscussion.close();
 
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"" + addedText + "\")')");
 
         logger.info("Assert that paragraph's color become black...");
-        // According to jQuery documentation if length == 0 it means that element doesn't exist
-        // see: https://learn.jquery.com/using-jquery-core/faq/how-do-i-test-whether-an-element-exists/
-        boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + addedText + "\")').find(\"ins\").length === 0)");
-        Assert.assertTrue(colorTagDoestExist);
+        $$("ins").shouldHave(CollectionCondition.size(1)); // only one <ins> tag remains on page from prev. adding
 
         Screenshoter.makeScreenshot();
     }
@@ -294,12 +293,12 @@ public class ParagraphActions
         acceptPostForm.clickAcceptText();
 
         logger.info("Assert notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText(" post has been successfully created."));
+        $(".notification-stack").should(Condition.disappear);
 
         logger.info("Assert that paragraph's color become black...");
-        boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + addedText + "\")').find(\"ins\").length === 0)");
-        Assert.assertTrue(colorTagDoestExist);
+        $("ins").shouldNotBe(Condition.visible);
+        $$("ins").shouldHave(CollectionCondition.size(0)); // there should be no <ins> tags after accepting all added
 
         Screenshoter.makeScreenshot();
     }
@@ -319,12 +318,12 @@ public class ParagraphActions
         revertToOriginalForm.clickCloseDiscussion();
 
         logger.info("Assert notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText(" post has been successfully created."));
+        $(".notification-stack").should(Condition.disappear);
 
         logger.info("Assert that paragraph's color become black...");
-        boolean colorTagDoestExist = Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"" + paragraphTitle + "\")').find(\"del\").length === 0)");
-        Assert.assertTrue(colorTagDoestExist);
+        $("ins").shouldNotBe(Condition.visible);
+        $$("ins").shouldHave(CollectionCondition.size(0));
     }
 
     @Test(priority = 10)
