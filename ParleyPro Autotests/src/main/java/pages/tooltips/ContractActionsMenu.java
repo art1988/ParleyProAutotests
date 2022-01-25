@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import forms.ContractInformation;
 import forms.ReassignChiefNegotiator;
+import forms.TerminateContract;
 import forms.delete.DeleteContract;
 import org.apache.log4j.Logger;
 
@@ -76,5 +77,17 @@ public class ContractActionsMenu
         logger.info("Reassign Chief Negotiator was clicked...");
 
         return new ReassignChiefNegotiator();
+    }
+
+    /**
+     * This option is available only for managed contracts
+     */
+    public TerminateContract clickTerminateContract()
+    {
+        Selenide.executeJavaScript("$('.contract-header__menu .dropdown-menu.dropdown-menu-right a:contains(\"Terminate\")')[0].click()");
+
+        logger.info("Terminate contract was clicked...");
+
+        return new TerminateContract(contractName);
     }
 }
