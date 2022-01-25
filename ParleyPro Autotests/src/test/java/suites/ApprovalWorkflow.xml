@@ -81,7 +81,7 @@
     </test>
 
     <test name="AT-202: Bug with stages during the approval workflow" preserve-order="true">
-        <parameter name="contractName" value="AT-202 Traverse ctr"/>
+        <parameter name="contractNameExecuted" value="AT-202 Traverse ctr"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.approval_workflow.at202.AddApprovalWorkflow"/>

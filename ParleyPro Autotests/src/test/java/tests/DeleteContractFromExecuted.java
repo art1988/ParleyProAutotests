@@ -25,8 +25,8 @@ public class DeleteContractFromExecuted
     private static Logger logger = Logger.getLogger(DeleteContractFromExecuted.class);
 
     @Test(priority = 1)
-    @Parameters("contractName")
-    public void deleteContractFromExecuted(String contractName) throws InterruptedException
+    @Parameters("contractNameExecuted")
+    public void deleteContractFromExecuted(String contractNameExecuted) throws InterruptedException
     {
         // Before deletion - refresh page, because previous opened modal forms may still be active preventing clicking by sidebar icons
         Selenide.refresh();
@@ -35,12 +35,12 @@ public class DeleteContractFromExecuted
 
         new DashboardPage().getSideBar()
                            .clickExecutedContracts(false)
-                           .selectContract(contractName)
-                           .deleteContract(contractName)
+                           .selectContract(contractNameExecuted)
+                           .deleteContract(contractNameExecuted)
                            .clickDelete();
 
         logger.info("Assert delete notification...");
-        $(".notification-stack").should(Condition.appear).shouldHave(Condition.exactText("Contract " + contractName + " has been deleted."));
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.exactText("Contract " + contractNameExecuted + " has been deleted."));
 
         Screenshoter.makeScreenshot();
     }

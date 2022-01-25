@@ -162,7 +162,7 @@
     </test>
 
     <test name="[FLAKY] AT-165: Allow My team to move contract to Sign status even Counterparty has open internal discussion" preserve-order="true">
-        <parameter name="contractName" value="AT-165 SIGN CTR"/>
+        <parameter name="contractNameExecuted" value="AT-165 SIGN CTR"/>
         <parameter name="contractNameEmail" value="AT-165 SIGN CTR"/>
         <classes>
             <class name="tests.LoginToDashboard"/>

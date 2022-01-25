@@ -13,7 +13,7 @@
     </test>
 
     <test name="AT-156: PD 1.5. Create new executed contract" preserve-order="true">
-        <parameter name="contractName" value="Contract for executed created from PD"/>
+        <parameter name="contractNameExecuted" value="Contract for executed created from PD"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.priority_dashboard.at156.CreateContractFromPDAndCheck"/>
