@@ -44,6 +44,10 @@ public class SignContract
             case "Docusign":
                 title.shouldHave(Condition.exactText("You have asked to start the sign process via DocuSign."));
             break;
+
+            case "":
+                title.shouldHave(Condition.exactText("You have asked to start the sign process via Adobe Sign."));
+            break;
         }
     }
 
@@ -72,5 +76,14 @@ public class SignContract
         logger.info("Docusign was clicked");
 
         return new SignContract(true, "Docusign");
+    }
+
+    public SignContract clickAdobeSign()
+    {
+        $$(".modal-footer button").filterBy(Condition.exactText("Adobe Sign")).first().click();
+
+        logger.info("Adobe Sign was clicked");
+
+        return new SignContract(true, "Adobesign");
     }
 }
