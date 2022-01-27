@@ -43,7 +43,19 @@ jobs:
           name: Update chromedriver
           command: cd; wget https://www.slimjet.com/chrome/download-chrome.php?file=files%2F86.0.4240.75%2Fgoogle-chrome-stable_current_amd64.deb; sudo apt install ./download-chrome.php\?file\=files%2F86.0.4240.75%2Fgoogle-chrome-stable_current_amd64.deb; sudo rm -f /usr/local/bin/chromedriver; wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip; unzip chromedriver_linux64.zip; sudo mv ./chromedriver /usr/local/bin/; chmod 775 `which chromedriver`; chromedriver -v; ls -la `which chromedriver`
       
+      - run:
+          name: Run Numbered lists suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/NumberedLists.xml
       
+      - run: sleep 10
+      
+      - run:
+          name: Run Grey Screens suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/GreyScreens.xml
+
+      - run: sleep 10
 
       - run:
           name: Run Basics suite
@@ -51,7 +63,138 @@ jobs:
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
           no_output_timeout: 20m
           
-     
+      - run: sleep 10
+      
+      - run:
+          name: Run Dashboards suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Dashboards.xml
+          
+      - run: sleep 10
+
+      - run:
+          name: Run ApprovalWorkflow suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ApprovalWorkflow.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+
+      - run:
+          name: Run ContractRoutingWorkflow suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractRoutingWorkflow.xml
+
+      - run: sleep 10
+
+      - run:
+          name: Run Classic suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+
+      - run:
+          name: Run Formatting suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Formatting.xml
+
+      - run: sleep 10
+
+      - run:
+          name: Run Templates suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Templates.xml
+
+      - run: sleep 10
+
+      - run:
+          name: Run Fields suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Fields.xml
+
+      - run: sleep 10
+
+      - run:
+          name: Run Document Sharing suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/DocumentSharing.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+
+      - run:
+          name: Run Regression suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+
+      - run:
+          name: Run Attachment runner suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/AttachmentRunner.xml
+
+      - run: sleep 10
+
+      - run:
+          name: Run CCN suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CounterpartyChiefNegotiator.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+
+      - run:
+          name: Run Requests suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Requests.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+
+      - run:
+          name: Run Migration suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
+
+      - run: sleep 10
+
+      - run:
+          name: Run Popovers suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Popovers.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+
+      - run:
+          name: Run Amendment suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Amendment.xml
+          
+      - run: sleep 10
+      
+      - run:
+          name: Run Contract Info suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractInfo.xml
+          
+      - run: sleep 10
+      
+      - run:
+          name: Run Find and Replace suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/FindAndReplace.xml
+      
+      - run: sleep 10  
+      
+      - run:
+          name: Run Integrations suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Integrations.xml
 
       - save_cache:
           key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}
