@@ -135,6 +135,10 @@ public class Const
     // Dir for screenshots of failed tests
     public static final File   SCREENSHOTS_DIR               = new File(System.getProperty("user.dir") + "/ScreenshotsOfFailedTests");
 
+    public static final String HOST_GMAIL      = "pop.gmail.com";
+    public static final String USERNAME_GMAIL  = "arthur.khasanov@parleypro.com";
+    public static final String PASSWORD_GMAIL  = "ParGd881";
+
 
     private Const() {}
 }
