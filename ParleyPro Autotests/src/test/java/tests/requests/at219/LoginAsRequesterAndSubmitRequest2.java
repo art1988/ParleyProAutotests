@@ -23,7 +23,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import static constants.SideBarItems.*;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class LoginAsRequesterAndSubmitRequest
+public class LoginAsRequesterAndSubmitRequest2
 {
     private SideBar sideBar;
     private static Logger logger = Logger.getLogger(LoginAsRequesterAndSubmitRequest.class);

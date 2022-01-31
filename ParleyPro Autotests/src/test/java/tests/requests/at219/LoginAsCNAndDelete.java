@@ -1,22 +1,27 @@
 package tests.requests.at219;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import constants.Const;
+import io.qameta.allure.Description;
+import model.User;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.ContractInfo;
 import pages.LoginPage;
+import pages.OpenedContract;
 import pages.subelements.SideBar;
 import utils.ScreenShotOnFailListener;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class LoginAsCNAndCheck
+public class LoginAsCNAndDelete
 {
     private SideBar sideBar;
-    private static Logger logger = Logger.getLogger(LoginAsCNAndCheck.class);
+    private static Logger logger = Logger.getLogger(LoginAsCNAndDelete.class);
 
 
     @Test(priority = 1)
@@ -28,7 +33,7 @@ public class LoginAsCNAndCheck
         loginPage.setPassword( Const.PREDEFINED_USER_CN_ROLE.getPassword() );
 
         sideBar = loginPage.clickSignIn().getSideBar();
-
+        logger.info("Convert request to contract...");
         sideBar.clickInProgressContracts(false).selectContract("request for at-219");
 
         ContractInfo contractInfo = new ContractInfo(true);
@@ -49,6 +54,23 @@ public class LoginAsCNAndCheck
     @Test(priority = 2)
     public void deleteUserWithRequesterRole()
     {
+        logger.info("Delete USER_AT219_Requester...");
+        sideBar.clickAdministration().clickManageUsersTab().clickActionMenu("USER_AT219_Requester")
+                .clickDelete(new User("USER_AT219_RequesterUSER_AT219_Requester fn", "USER_AT219_Requester ln", "arthur.khasanov+at219_requester@parleypro.com", "Parley650!"))
+                .clickDelete();
 
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text(" USER_AT219_Requester ln deleted successfully"));
+    }
+
+    @Test(priority = 3)
+    @Description("Final assertion happens here: test verifies that contract can be deleted.")
+    public void deleteContract()
+    {
+        logger.info("Trying to delete contract...");
+        sideBar.clickInProgressContracts(false).selectContract("request for at-219");
+
+        new OpenedContract().clickContractActionsMenu().clickDeleteContract().clickDelete();
+
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Contract request for at-219 has been deleted."));
     }
 }

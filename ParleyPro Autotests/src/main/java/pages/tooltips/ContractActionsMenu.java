@@ -2,6 +2,7 @@ package pages.tooltips;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import forms.CancelContract;
 import forms.ContractInformation;
 import forms.ReassignChiefNegotiator;
 import forms.TerminateContract;
@@ -41,6 +42,15 @@ public class ContractActionsMenu
         logger.info("Delete contract was clicked...");
 
         return new DeleteContract(contractName);
+    }
+
+    public CancelContract clickCancelContract()
+    {
+        Selenide.executeJavaScript("$('.contract-header__menu .dropdown-menu.dropdown-menu-right a:contains(\"Cancel\")')[0].click()");
+
+        logger.info("Cancel contract was clicked...");
+
+        return new CancelContract();
     }
 
     /**
