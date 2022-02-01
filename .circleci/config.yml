@@ -50,6 +50,14 @@ jobs:
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
           no_output_timeout: 20m
+          
+      - run: sleep 10
+
+      - run:
+          name: Run Requests suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Requests.xml
+          no_output_timeout: 20m
 
      
 
