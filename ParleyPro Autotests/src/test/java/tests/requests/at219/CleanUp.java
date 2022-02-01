@@ -2,7 +2,6 @@ package tests.requests.at219;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import model.User;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -34,8 +33,5 @@ public class CleanUp
         fieldsTab.clickContractFields().removeField("ReqField_AT219_Trigger").clickDelete();
         fieldsTab.clickSave();
         $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Contract fields have been saved."));
-
-        logger.info("Remove user USER_AT219_Requester...");
-        administrationPage.clickManageUsersTab().clickActionMenu("USER_AT219_Requester").clickDelete(new User("USER_AT219_Requester fn", ""))
     }
 }

@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import constants.Const;
 import constants.SideBarItems;
 import forms.ContractRequest;
+import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -62,19 +63,33 @@ public class LoginAsRequesterAndSubmitRequest
     }
 
     @Test(priority = 2)
-    public void submitRequest() throws InterruptedException
+    @Description("Adds 2 requests: request for at-219 DELETE_ME and request for at-219 CANCEL_ME")
+    public void submitTwoRequests() throws InterruptedException
     {
+        logger.info("Adding first request...");
         $$("button").filterBy(Condition.exactText("NEW REQUEST")).first().click();
 
         ContractRequest contractRequest = new ContractRequest();
-
-        contractRequest.setRequestTitle("request for at-219");
+        contractRequest.setRequestTitle("request for at-219 DELETE_ME");
         contractRequest.setValueForSelect("ReqField_AT219_Trigger", "v1");
         contractRequest.uploadMyTeamDocuments(new File[]{Const.DOCUMENT_DISCUSSIONS_SAMPLE});
         contractRequest.clickSubmitRequest();
+        $(byText("request for at-219 DELETE_ME")).shouldBe(Condition.visible);
 
-        $(byText("request for at-219")).shouldBe(Condition.visible);
+        logger.info("Adding second request...");
+        $$("button").filterBy(Condition.exactText("NEW REQUEST")).first().click();
 
+        contractRequest = new ContractRequest();
+        contractRequest.setRequestTitle("request for at-219 CANCEL_ME");
+        contractRequest.setValueForSelect("ReqField_AT219_Trigger", "v1");
+        contractRequest.uploadMyTeamDocuments(new File[]{Const.DOCUMENT_DISCUSSIONS_SAMPLE});
+        contractRequest.clickSubmitRequest();
+        $(byText("request for at-219 CANCEL_ME")).shouldBe(Condition.visible);
+    }
+
+    @Test(priority = 3)
+    public void logout()
+    {
         logger.info("Logout as requester...");
         sideBar.logout();
     }
