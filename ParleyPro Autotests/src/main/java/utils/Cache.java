@@ -1,5 +1,7 @@
 package utils;
 
+import model.User;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +16,7 @@ public class Cache
     private static Map<String, String> hashTable = new HashMap<>();
 
     private static String KEY_CONTRACT_TITLE               = "KEY_CONTRACT_TITLE";
+    private static String KEY_CONTRACT_ID                  = "KEY_CONTRACT_ID";
     private static String KEY_CURRENT_TAB_HANDLE           = "KEY_CURRENT_TAB_HANDLE";
     private static String KEY_TAB_1_HANDLE                 = "KEY_TAB_1_HANDLE";
     private static String KEY_EMAIL                        = "KEY_EMAIL";
@@ -21,6 +24,7 @@ public class Cache
     private static String KEY_FILE                         = "KEY_FILE";
 
     private static LoginBase loginBaseInstance;
+    private static User user;
 
     private Cache() {}
 
@@ -32,6 +36,16 @@ public class Cache
     public String getCachedContractTitle()
     {
         return hashTable.get(KEY_CONTRACT_TITLE);
+    }
+
+    public void setContractId(String contractId)
+    {
+        hashTable.put(KEY_CONTRACT_ID, contractId);
+    }
+
+    public String getCachedContractId()
+    {
+        return hashTable.get(KEY_CONTRACT_ID);
     }
 
     public void setCurrentTabHandle(String currentTabHandle)
@@ -92,6 +106,16 @@ public class Cache
     public LoginBase getCachedLoginBase()
     {
         return loginBaseInstance;
+    }
+
+    public void setUser(User userToBeCached)
+    {
+        user = userToBeCached;
+    }
+
+    public User getCachedUser()
+    {
+        return user;
     }
 
     public static Cache getInstance()
