@@ -90,7 +90,5 @@ public class LoginToDashboard
         DashboardPage dashboardPage = loginPage.clickSignIn();
 
         dashboardPage.getSideBar().clickInProgressContracts(true);
-
-        Screenshoter.makeScreenshot();
     }
 }
