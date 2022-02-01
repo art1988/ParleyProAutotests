@@ -103,7 +103,5 @@ public class LoginToTrackChangesTenant
 
         DashboardPage dashboardPage = loginPage.clickSignIn();
         dashboardPage.getSideBar().clickInProgressContracts(false);
-
-        Screenshoter.makeScreenshot();
     }
 }
