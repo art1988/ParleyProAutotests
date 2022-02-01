@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Contract request suite" configfailurepolicy="continue">
+<suite name = "Contract request suite" configfailurepolicy="continue"><!--
     <test name="AT-124: Create request" preserve-order="true">
         <parameter name="contractName" value="Contract request"/>
         <classes>
@@ -133,6 +133,17 @@
             <class name="tests.requests.at215.AsUserWithFullRightsCheckPresenceOfContract"/>
             <class name="tests.requests.at215.CleanUp"/>
             <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-219: Can not delete contract if requester user was deleted" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.requests.at219.PreSetup"/>
+            <class name="tests.requests.at219.LoginAsRequesterAndSubmitRequest"/>
+            <class name="tests.requests.at219.AsCNDeleteAndCancel"/>
+            <class name="tests.requests.at219.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
