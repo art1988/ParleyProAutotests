@@ -34,7 +34,7 @@ public class LoginAsRequesterAndSubmitRequest
     public void getEmailAndSign() throws InterruptedException
     {
         logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
-        Thread.sleep(30_000);
+        Thread.sleep(60_000);
 
         Assert.assertTrue(EmailChecker.assertEmailBySubject(Const.HOST_GMAIL, Const.USERNAME_GMAIL, Const.PASSWORD_GMAIL, "Role assignment: Requester"),
                 "Email with subject: Role assignment: Requester was not found !!!");
