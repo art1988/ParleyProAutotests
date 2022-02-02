@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -37,25 +38,25 @@ public class CreateParleyProAccountPage
 
     public void setFirstName(String firstName)
     {
-        firstNameField.clear();
+        firstNameField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
         firstNameField.sendKeys(firstName);
     }
 
     public void setLastName(String lastName)
     {
-        lastNameField.clear();
+        lastNameField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
         lastNameField.sendKeys(lastName);
     }
 
     public void setPassword(String password)
     {
-        passwordField.clear();
+        passwordField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
         passwordField.sendKeys(password);
     }
 
     public void setConfirmPassword(String confirmPassword)
     {
-        confirmPasswordField.clear();
+        confirmPasswordField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
         confirmPasswordField.sendKeys(confirmPassword);
     }
 

@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Basics" configfailurepolicy="continue">
-   <test name = "AT-8: Basic contract lifecycle" preserve-order="true">
+<!--   <test name = "AT-8: Basic contract lifecycle" preserve-order="true">
         <parameter name="contractNameExecuted" value="Contract lifecycle autotest"/>
         <classes>
             <class name="tests.SetupLogger"/>
@@ -37,7 +37,7 @@
         </classes>
     </test>
 
-    <test name="AT-224: New my team user can successfully register " preserve-order="true">
+    <test name="AT-224: New my team user can successfully register" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.basics.at224.AddContractAndShare"/>
@@ -45,17 +45,17 @@
             <class name="tests.basics.at224.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
-    <test name="AT-44, 45: User creation" preserve-order="true">
+    <test name="AT-225(AT-44 and 45): Add new user and update roles in Administration" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
-            <class name="tests.basics.AddNewUserTest"/>
+            <class name="tests.basics.at225.AddNewUserTest"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
 
-    <test name="AT-61: Deletion and canceling of documents; Terminate executed" preserve-order="true">
+    <!--<test name="AT-61: Deletion and canceling of documents; Terminate executed" preserve-order="true">
         <parameter name="contractName" value="Contract - [delete and cancel documents AT]"/>
         <parameter name="contractNameExecuted" value="AT-61: terminate me"/>
         <classes>
@@ -153,5 +153,5 @@
             <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
