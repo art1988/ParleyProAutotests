@@ -51,11 +51,13 @@ jobs:
           no_output_timeout: 20m
 
       - run: sleep 10
-      
+
       - run:
-          name: Run Integrations suite
+          name: Run Migration suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Integrations.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
+
+      
 
       - save_cache:
           key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}
