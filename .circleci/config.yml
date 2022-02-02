@@ -50,7 +50,41 @@ jobs:
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
           no_output_timeout: 20m
           
-     
+      - run: sleep 10
+
+
+
+      - run:
+          name: Run Templates suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Templates.xml
+
+      - run: sleep 10
+
+
+
+
+
+      - run:
+          name: Run CCN suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CounterpartyChiefNegotiator.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+
+      - run:
+          name: Run Requests suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Requests.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+      
+      - run:
+          name: Run Integrations suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Integrations.xml
 
       - save_cache:
           key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}
