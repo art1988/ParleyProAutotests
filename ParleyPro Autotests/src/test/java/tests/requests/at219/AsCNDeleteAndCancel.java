@@ -75,7 +75,7 @@ public class AsCNDeleteAndCancel
     {
         logger.info("Delete USER_AT219_Requester...");
         sideBar.clickAdministration().clickManageUsersTab().clickActionMenu("USER_AT219_Requester")
-               .clickDelete(new User("USER_AT219_RequesterUSER_AT219_Requester fn", "USER_AT219_Requester ln", "arthur.khasanov+at219_requester@parleypro.com", "Parley650!"))
+               .clickDelete(new User("USER_AT219_Requester fn", "USER_AT219_Requester ln", "arthur.khasanov+at219_requester@parleypro.com", "Parley650!"))
                .clickDelete();
 
         $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text(" USER_AT219_Requester ln deleted successfully"));
