@@ -15,7 +15,7 @@
         </classes>
     </test>
 
-    <!--<test name="AT-14: Core discussions functionality" preserve-order="true">
+    <test name="AT-14: Core discussions functionality" preserve-order="true">
         <parameter name="contractName" value="Contract discussions autotest"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -153,5 +153,5 @@
             <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 </suite>
