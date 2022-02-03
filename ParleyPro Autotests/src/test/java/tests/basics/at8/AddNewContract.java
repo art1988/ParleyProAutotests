@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -29,6 +30,7 @@ public class AddNewContract
     private static Logger logger = Logger.getLogger(AddNewContract.class);
 
     @Test
+    @Step
     public void addNewContract() throws InterruptedException
     {
         InProgressContractsPage inProgressContractsPage = new InProgressContractsPage(true);

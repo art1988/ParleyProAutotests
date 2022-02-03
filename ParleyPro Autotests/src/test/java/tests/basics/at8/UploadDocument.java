@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -21,6 +22,7 @@ public class UploadDocument
 
 
     @Test
+    @Step
     public void uploadDocument()
     {
         InProgressContractsPage inProgressContractsPage = new InProgressContractsPage(false);

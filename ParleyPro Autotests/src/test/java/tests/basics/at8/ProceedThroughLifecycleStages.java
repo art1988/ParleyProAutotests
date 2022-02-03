@@ -6,6 +6,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import forms.*;
+import io.qameta.allure.Step;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,6 +36,7 @@ public class ProceedThroughLifecycleStages
     private static Logger logger = Logger.getLogger(ProceedThroughLifecycleStages.class);
 
     @Test(priority = 1)
+    @Step
     public void switchToReview()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -58,6 +60,7 @@ public class ProceedThroughLifecycleStages
     }
 
     @Test(priority = 2)
+    @Step
     public void switchToNegotiate()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -85,6 +88,7 @@ public class ProceedThroughLifecycleStages
     }
 
     @Test(priority = 3)
+    @Step
     public void switchToSign()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -123,6 +127,7 @@ public class ProceedThroughLifecycleStages
     }
 
     @Test(priority = 4)
+    @Step
     public void switchToManaged()
     {
         OpenedContract openedContract = new OpenedContract();
@@ -145,6 +150,7 @@ public class ProceedThroughLifecycleStages
     }
 
     @Test(priority = 5)
+    @Step
     public void verifyExecutedStatus()
     {
         DashboardPage dashboardPage = new DashboardPage();
