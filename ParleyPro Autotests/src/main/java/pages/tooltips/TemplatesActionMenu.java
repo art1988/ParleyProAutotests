@@ -3,8 +3,8 @@ package pages.tooltips;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import forms.delete.DeleteTemplate;
 import forms.TemplateInformation;
+import forms.delete.DeleteTemplate;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 

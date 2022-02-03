@@ -6,7 +6,6 @@ import constants.Const;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;

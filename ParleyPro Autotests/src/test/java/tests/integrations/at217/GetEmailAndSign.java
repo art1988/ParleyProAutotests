@@ -8,7 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utils.EmailChecker;
-import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;

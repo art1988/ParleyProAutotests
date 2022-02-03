@@ -13,7 +13,6 @@ import pages.DashboardPage;
 import pages.LoginPage;
 import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
-import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getSelenideProxy;

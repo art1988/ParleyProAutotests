@@ -1,7 +1,6 @@
 package tests.fields.at101;
 
 import com.codeborne.selenide.Condition;
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;

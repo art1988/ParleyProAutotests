@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
-import pages.OpenedDiscussion;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 

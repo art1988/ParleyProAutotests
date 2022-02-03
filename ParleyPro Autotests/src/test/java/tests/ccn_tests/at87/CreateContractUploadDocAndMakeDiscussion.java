@@ -13,7 +13,6 @@ import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
-import pages.subelements.CKEditorActive;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;

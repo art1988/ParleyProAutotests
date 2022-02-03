@@ -1,20 +1,14 @@
 package tests.approval_workflow;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import constants.Const;
 import io.qameta.allure.Description;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.AdministrationPage;
 import pages.DashboardPage;
-import pages.LoginPage;
 import pages.OpenedContract;
-import pages.administration.Teams;
-import pages.administration.Workflows;
 import utils.ScreenShotOnFailListener;
 
 import java.io.IOException;

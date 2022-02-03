@@ -4,25 +4,26 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
-import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+@Listeners({ScreenShotOnFailListener.class})
 public class UploadDocument
 {
     private static Logger logger = Logger.getLogger(UploadDocument.class);
 
 
     @Test
-    @Step
     public void uploadDocument()
     {
         InProgressContractsPage inProgressContractsPage = new InProgressContractsPage(false);

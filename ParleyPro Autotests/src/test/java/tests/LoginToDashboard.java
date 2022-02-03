@@ -13,7 +13,6 @@ import pages.LoginPage;
 import utils.Cache;
 import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
-import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.open;
 

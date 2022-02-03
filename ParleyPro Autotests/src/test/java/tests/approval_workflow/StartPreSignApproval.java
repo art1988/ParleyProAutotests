@@ -9,7 +9,6 @@ import forms.*;
 import forms.workflows.ApprovalWorkflow;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -17,12 +16,12 @@ import org.testng.annotations.Test;
 import pages.*;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
-import utils.Waiter;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ ScreenShotOnFailListener.class})
 public class StartPreSignApproval
