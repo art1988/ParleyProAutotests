@@ -8,16 +8,18 @@ import constants.Const;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import pages.OpenedDiscussion;
 import utils.Cache;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class UploadNewVerAndCheckParagraph
 {
     private String documentName = "Quotient_DCSA_QuotientEdits_14703_AT_167";

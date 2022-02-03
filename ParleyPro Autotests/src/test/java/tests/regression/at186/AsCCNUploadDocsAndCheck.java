@@ -7,12 +7,14 @@ import constants.Const;
 import constants.SideBarItems;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
 import utils.Cache;
 import utils.EmailChecker;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -20,7 +22,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import static constants.SideBarItems.EXECUTED_CONTRACTS;
 import static constants.SideBarItems.IN_PROGRESS_CONTRACTS;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AsCCNUploadDocsAndCheck
 {
     private String host     = "pop.gmail.com";

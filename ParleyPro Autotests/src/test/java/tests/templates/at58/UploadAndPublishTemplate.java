@@ -2,15 +2,17 @@ package tests.templates.at58;
 
 import com.codeborne.selenide.Condition;
 import constants.Const;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.EditTemplatePage;
 import pages.TemplatesPage;
 import pages.subelements.SideBar;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class UploadAndPublishTemplate
 {
     @Test

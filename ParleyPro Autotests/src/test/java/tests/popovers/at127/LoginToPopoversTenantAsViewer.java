@@ -7,16 +7,18 @@ import forms.SendMessage;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
 import utils.EmailChecker;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginToPopoversTenantAsViewer
 {
     private static Logger logger = Logger.getLogger(LoginToPopoversTenantAsViewer.class);

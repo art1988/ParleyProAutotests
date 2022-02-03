@@ -11,18 +11,20 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
-import utils.EmailChecker;
 import utils.LoginBase;
+import utils.EmailChecker;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginToPopoversTenantAsMyTeamCN extends LoginBase
 {
     private final static int MAX_RETRY_COUNT = 5;

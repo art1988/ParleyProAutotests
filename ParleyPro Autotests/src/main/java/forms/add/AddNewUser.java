@@ -6,6 +6,8 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+
 import static com.codeborne.selenide.Selenide.$;
 
 /**

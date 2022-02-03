@@ -6,15 +6,17 @@ import constants.Const;
 import constants.SideBarItems;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$$;
 import static constants.SideBarItems.*;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginAsUser2AndCheck
 {
     private static Logger logger = Logger.getLogger(LoginAsUser2AndCheck.class);

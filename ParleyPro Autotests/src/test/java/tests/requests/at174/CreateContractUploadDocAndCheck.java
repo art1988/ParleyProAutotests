@@ -4,16 +4,19 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
+import forms.StartReview;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContractUploadDocAndCheck
 {
     private static Logger logger = Logger.getLogger(CreateContractUploadDocAndCheck.class);

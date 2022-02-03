@@ -3,15 +3,17 @@ package tests.requests.at124;
 import com.codeborne.selenide.Condition;
 import constants.FieldType;
 import io.qameta.allure.Description;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Fields;
 import pages.administration.fields_breadcrumb.ContractFields;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AddContractRequestFields
 {
     @Test

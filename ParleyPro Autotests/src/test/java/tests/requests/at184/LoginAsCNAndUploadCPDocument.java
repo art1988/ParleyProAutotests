@@ -4,14 +4,16 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginAsCNAndUploadCPDocument
 {
     private static Logger logger = Logger.getLogger(LoginAsCNAndUploadCPDocument.class);

@@ -5,13 +5,15 @@ import constants.Const;
 import forms.workflows.ApprovalWorkflow;
 import forms.workflows.ContractRoutingWorkflow;
 import io.qameta.allure.Description;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AddWorkflows
 {
     @Test(priority = 1)

@@ -6,15 +6,17 @@ import com.codeborne.selenide.SelenideElement;
 import forms.StartExternalDiscussion;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.Discussions;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class VisitDiscussionsBoardOfContracts
 {
     private static Logger logger = Logger.getLogger(VisitDiscussionsBoardOfContracts.class);

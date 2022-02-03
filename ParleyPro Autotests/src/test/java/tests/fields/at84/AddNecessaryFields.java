@@ -4,14 +4,16 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.FieldType;
 import forms.LinkedValues;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Fields;
 import pages.administration.fields_breadcrumb.ContractFields;
+import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AddNecessaryFields
 {
     @Test

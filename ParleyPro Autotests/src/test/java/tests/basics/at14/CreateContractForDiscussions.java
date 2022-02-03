@@ -7,10 +7,12 @@ import forms.ContractInformation;
 import forms.StartReview;
 import io.qameta.allure.Description;
 import org.apache.commons.io.FilenameUtils;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
@@ -19,7 +21,7 @@ import static com.codeborne.selenide.Selenide.$$;
 /**
  * This single test prepares contract with one single document AT-14
  */
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContractForDiscussions
 {
     @Test

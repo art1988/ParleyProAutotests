@@ -7,16 +7,18 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Issue;
 import io.qameta.allure.Issues;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import utils.Cache;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class VisitDashboardChartExamples
 {
     private SoftAssert softAssert = new SoftAssert();

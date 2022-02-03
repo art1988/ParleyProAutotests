@@ -5,17 +5,20 @@ import constants.Const;
 import constants.SideBarItems;
 import forms.ContractRequest;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import pages.LoginPage;
+import utils.ScreenShotOnFailListener;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Selenide.$;
 import static constants.SideBarItems.*;
+import static constants.SideBarItems.DASHBOARD;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AddRequest
 {
     private DashboardPage dashboardPage;

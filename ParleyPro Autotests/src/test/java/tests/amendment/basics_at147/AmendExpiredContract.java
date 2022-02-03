@@ -5,16 +5,20 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
+import forms.CompleteSign;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.AddDocuments;
 import pages.DashboardPage;
+import pages.ExecutedContractsPage;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.FileNotFoundException;
@@ -23,7 +27,7 @@ import java.util.Set;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AmendExpiredContract
 {
     private static Logger logger = Logger.getLogger(AmendExpiredContract.class);

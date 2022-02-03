@@ -7,11 +7,13 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AuditTrail;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import utils.Cache;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.util.List;
@@ -21,7 +23,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CheckExecutedSignedContract
 {
     private static Logger logger = Logger.getLogger(CheckExecutedSignedContract.class);

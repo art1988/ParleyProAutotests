@@ -4,11 +4,13 @@ import com.codeborne.selenide.CollectionCondition;
 import constants.Const;
 import forms.ContractInformation;
 import org.apache.commons.io.FilenameUtils;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
 import utils.Cache;
+import utils.ScreenShotOnFailListener;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +18,7 @@ import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContractAndUploadDoc
 {
     @Test

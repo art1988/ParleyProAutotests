@@ -6,14 +6,16 @@ import forms.ContractInformation;
 import forms.ShareForm;
 import forms.StartReview;
 import org.apache.commons.io.FilenameUtils;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class UploadDocAndShare
 {
     @Test(priority = 1)

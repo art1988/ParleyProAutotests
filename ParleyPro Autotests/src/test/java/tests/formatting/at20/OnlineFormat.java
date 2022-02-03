@@ -8,9 +8,11 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DocumentComparePreview;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.File;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class OnlineFormat
 {
     private static Logger logger = Logger.getLogger(OnlineFormat.class);

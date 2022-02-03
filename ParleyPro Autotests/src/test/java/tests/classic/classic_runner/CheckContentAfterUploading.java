@@ -4,15 +4,17 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.Discussions;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CheckContentAfterUploading
 {
     private static Logger logger = Logger.getLogger(CheckContentAfterUploading.class);

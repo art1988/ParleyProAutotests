@@ -8,18 +8,17 @@ import forms.ContractInformation;
 import forms.StartReview;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.AddDocuments;
-import pages.DashboardPage;
-import pages.InProgressContractsPage;
-import pages.OpenedContract;
+import pages.*;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContractAndStartApproval
 {
     private static Logger logger = Logger.getLogger(CreateContractAndStartApproval.class);

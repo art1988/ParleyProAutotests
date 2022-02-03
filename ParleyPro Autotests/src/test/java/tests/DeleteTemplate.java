@@ -3,16 +3,18 @@ package tests;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
+import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
 
 /**
  * General test for deleting templates from 'Templates' page
  */
-
+@Listeners({ScreenShotOnFailListener.class})
 public class DeleteTemplate
 {
     private static Logger logger = Logger.getLogger(DeleteTemplate.class);

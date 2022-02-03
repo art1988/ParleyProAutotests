@@ -6,10 +6,12 @@ import constants.SideBarItems;
 import forms.ContractRequest;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import pages.LoginPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.File;
@@ -17,7 +19,7 @@ import java.io.File;
 import static com.codeborne.selenide.Selenide.$$;
 import static constants.SideBarItems.*;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginAsRequesterAndCreateTwoRequests
 {
     private DashboardPage dashboardPage;

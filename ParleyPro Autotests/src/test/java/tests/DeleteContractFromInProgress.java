@@ -3,10 +3,12 @@ package tests;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -14,7 +16,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * General test for deleting contracts from 'In-progress contracts' page that takes contract name from parameter
  */
-
+@Listeners({ScreenShotOnFailListener.class})
 public class DeleteContractFromInProgress
 {
     private static Logger logger = Logger.getLogger(DeleteContractFromInProgress.class);

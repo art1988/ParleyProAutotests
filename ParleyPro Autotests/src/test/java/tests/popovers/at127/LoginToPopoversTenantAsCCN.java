@@ -9,18 +9,20 @@ import forms.SendMessage;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
-import utils.EmailChecker;
 import utils.LoginBase;
+import utils.EmailChecker;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginToPopoversTenantAsCCN extends LoginBase
 {
     private String host = "pop.gmail.com";

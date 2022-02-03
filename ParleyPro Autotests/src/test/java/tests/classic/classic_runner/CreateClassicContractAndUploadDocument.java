@@ -9,11 +9,13 @@ import forms.EmailWillBeSentToTheCounterparty;
 import forms.StartNegotiation;
 import forms.UploadDocumentDetectedChanges;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.File;
@@ -21,7 +23,7 @@ import java.io.File;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateClassicContractAndUploadDocument
 {
     private String documentName;

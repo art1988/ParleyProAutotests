@@ -8,9 +8,11 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
 import pages.OpenedDiscussion;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.FileNotFoundException;
@@ -20,7 +22,7 @@ import java.nio.file.Paths;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateDiscussionsDownloadAndVerify
 {
     private static Logger logger = Logger.getLogger(CreateDiscussionsDownloadAndVerify.class);

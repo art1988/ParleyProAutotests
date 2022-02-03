@@ -11,17 +11,19 @@ import forms.workflows.ContractRoutingWorkflow;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
 import pages.subelements.CKEditorActive;
 import utils.EmailChecker;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContractPositiveForContractRoutingWorkflow
 {
     private static String contractName = "Contract routing workflow positive";

@@ -4,16 +4,18 @@ import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContractUploadDocAndShare
 {
     @Test(priority = 1)

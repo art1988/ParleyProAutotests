@@ -6,11 +6,13 @@ import constants.Const;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
@@ -20,7 +22,7 @@ import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AddNewContract
 {
     private SoftAssert softAssert = new SoftAssert();

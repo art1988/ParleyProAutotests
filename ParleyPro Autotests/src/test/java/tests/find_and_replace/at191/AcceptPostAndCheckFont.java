@@ -7,10 +7,12 @@ import constants.AcceptTypes;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
 import pages.OpenedDiscussion;
 import pages.tooltips.ParagraphActionsPopup;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AcceptPostAndCheckFont
 {
     private OpenedContract openedContract;

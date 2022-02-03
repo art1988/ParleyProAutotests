@@ -2,14 +2,16 @@ package tests.dashboards.at151;
 
 import com.codeborne.selenide.CollectionCondition;
 import io.qameta.allure.Description;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.PriorityDashboardPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class ClickByPriorityDashboard
 {
     @Test

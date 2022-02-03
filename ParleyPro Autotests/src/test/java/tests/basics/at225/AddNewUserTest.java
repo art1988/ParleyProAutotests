@@ -10,6 +10,7 @@ import io.qameta.allure.Description;
 import model.User;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.CreateParleyProAccountPage;
 import pages.DashboardPage;
@@ -19,12 +20,13 @@ import pages.administration.ManageUsers;
 import pages.administration.fields_breadcrumb.ContractFields;
 import pages.subelements.SideBar;
 import utils.EmailChecker;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AddNewUserTest
 {
     private SideBar sideBar;

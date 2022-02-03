@@ -3,13 +3,15 @@ package tests.requests.at171;
 import com.codeborne.selenide.CollectionCondition;
 import constants.Const;
 import forms.workflows.ContractRoutingWorkflow;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AddRoutingWorkflow
 {
     @Test(priority = 1)

@@ -5,15 +5,17 @@ import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AdministrationPage;
 import pages.DashboardPage;
 import pages.administration.Teams;
 import pages.administration.Workflows;
+import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class RemoveWorkflowAndTeams
 {
     private static Logger logger = Logger.getLogger(RemoveWorkflowAndTeams.class);

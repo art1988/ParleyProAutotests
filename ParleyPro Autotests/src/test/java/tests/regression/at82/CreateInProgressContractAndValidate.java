@@ -4,12 +4,14 @@ import forms.ContractInformation;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateInProgressContractAndValidate
 {
     private String relatedContractName = "3Qcategory1"; // this contract name _should_ always be the same

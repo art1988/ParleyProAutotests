@@ -10,11 +10,13 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import pages.subelements.FieldsPanel;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.IOException;
@@ -25,7 +27,7 @@ import java.time.format.DateTimeFormatter;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AddDocumentFromTemplate
 {
     private String yesterdayDate;

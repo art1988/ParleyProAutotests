@@ -4,15 +4,17 @@ import com.codeborne.selenide.CollectionCondition;
 import constants.Const;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import pages.LoginPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginAsUserWithAllRolesAndCheck
 {
     private DashboardPage dashboardPage;

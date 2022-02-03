@@ -4,13 +4,15 @@ import com.codeborne.selenide.Selenide;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Integrations;
 import utils.Cache;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class ValidatePreviouslySavedSettings
 {
     private static Logger logger = Logger.getLogger(ValidatePreviouslySavedSettings.class);

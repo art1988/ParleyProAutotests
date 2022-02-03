@@ -5,9 +5,11 @@ import constants.Const;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import utils.Cache;
+import utils.ScreenShotOnFailListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,7 +18,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CheckCSVsFromExecutedAndInProgress
 {
     private static Logger logger = Logger.getLogger(CheckCSVsFromExecutedAndInProgress.class);

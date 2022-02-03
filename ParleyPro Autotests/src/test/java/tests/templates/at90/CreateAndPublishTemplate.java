@@ -2,14 +2,16 @@ package tests.templates.at90;
 
 import com.codeborne.selenide.Condition;
 import constants.Const;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.TemplatesPage;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateAndPublishTemplate
 {
     @Test(priority = 1)

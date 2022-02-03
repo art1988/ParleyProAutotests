@@ -5,10 +5,12 @@ import io.qameta.allure.Issue;
 import io.qameta.allure.Issues;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CheckNumbering
 {
     private static Logger logger = Logger.getLogger(CheckNumbering.class);

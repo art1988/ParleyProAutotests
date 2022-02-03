@@ -1,10 +1,12 @@
 package tests.regression.at142;
 
 import forms.ContractInformation;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
+import utils.ScreenShotOnFailListener;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContract1AndContract2
 {
     @Test(priority = 1)

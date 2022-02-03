@@ -5,19 +5,21 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.ex.ElementShould;
 import constants.Const;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.Discussions;
 import pages.DocumentComparePreview;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class UploadNewVersionFromCP
 {
     private SoftAssert softAssert = new SoftAssert();

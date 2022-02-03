@@ -6,17 +6,19 @@ import constants.Const;
 import io.qameta.allure.Description;
 import model.User;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.ContractInfo;
 import pages.LoginPage;
 import pages.OpenedContract;
 import pages.subelements.SideBar;
+import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AsCNDeleteAndCancel
 {
     private SideBar sideBar;

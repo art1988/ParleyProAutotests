@@ -8,11 +8,13 @@ import forms.ContractRequest;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.CreateParleyProAccountPage;
 import pages.OpenedContract;
 import pages.subelements.SideBar;
 import utils.EmailChecker;
+import utils.ScreenShotOnFailListener;
 
 import java.io.File;
 
@@ -21,7 +23,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static constants.SideBarItems.*;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginAsRequesterAndSubmitRequest
 {
     private SideBar sideBar;

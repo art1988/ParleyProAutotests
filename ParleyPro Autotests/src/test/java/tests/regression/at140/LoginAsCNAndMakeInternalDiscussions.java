@@ -5,17 +5,19 @@ import com.codeborne.selenide.Condition;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
 import pages.OpenedDiscussion;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginAsCNAndMakeInternalDiscussions
 {
     private static Logger logger = Logger.getLogger( LoginAsCNAndMakeInternalDiscussions.class );

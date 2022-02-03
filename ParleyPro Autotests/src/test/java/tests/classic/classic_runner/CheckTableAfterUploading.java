@@ -3,13 +3,15 @@ package tests.classic.classic_runner;
 import com.codeborne.selenide.Selenide;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.Discussions;
 import pages.OpenedContract;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class CheckTableAfterUploading
 {
     private static Logger logger = Logger.getLogger(CheckTableAfterUploading.class);

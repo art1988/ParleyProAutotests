@@ -5,16 +5,18 @@ import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import forms.ContractInformation;
 import model.User;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
 import utils.Cache;
+import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class AddContractAndShare
 {
     @Test(priority = 1)

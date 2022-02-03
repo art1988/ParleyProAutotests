@@ -6,17 +6,19 @@ import constants.AcceptTypes;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
 import pages.OpenedDiscussion;
 import pages.subelements.CKEditorActive;
 import pages.tooltips.ParagraphActionsPopup;
+import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class RecalculationsOfNumberedList
 {
     private static Logger logger = Logger.getLogger(RecalculationsOfNumberedList.class);

@@ -7,15 +7,18 @@ import com.codeborne.selenide.proxy.SelenideProxyServer;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import utils.LoginBase;
+import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getSelenideProxy;
 
-
+@Listeners({ScreenShotOnFailListener.class})
 public class LoginToTrackChangesTenant
 {
     private final static int MAX_RETRY_COUNT = 5;
