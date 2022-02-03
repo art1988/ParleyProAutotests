@@ -1,12 +1,10 @@
 package tests.regression.at78;
 
 import forms.ContractInformation;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.InProgressContractsPage;
-import utils.ScreenShotOnFailListener;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CreateContract
 {
     @Test

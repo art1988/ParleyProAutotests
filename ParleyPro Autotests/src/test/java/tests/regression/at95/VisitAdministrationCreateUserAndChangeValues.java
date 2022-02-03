@@ -4,14 +4,12 @@ import forms.add.AddNewUser;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.ManageUsers;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class VisitAdministrationCreateUserAndChangeValues
 {
     private static Logger logger = Logger.getLogger(VisitAdministrationCreateUserAndChangeValues.class);

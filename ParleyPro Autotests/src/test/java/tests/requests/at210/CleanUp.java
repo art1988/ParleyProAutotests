@@ -4,18 +4,16 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.OpenedContract;
 import pages.administration.Fields;
 import pages.subelements.SideBar;
-import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CleanUp
 {
     private SideBar sideBar;

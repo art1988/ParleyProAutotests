@@ -5,17 +5,15 @@ import constants.Const;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.EditTemplatePage;
 import pages.TemplatesPage;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CreateTemplatePasteTextAndVerify
 {
     private String templateName = "Template_AT-77_dummy";

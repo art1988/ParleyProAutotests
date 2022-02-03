@@ -8,17 +8,15 @@ import forms.add.AddNewTeam;
 import forms.add.AddNewUser;
 import forms.workflows.ApprovalWorkflow;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Fields;
 import pages.administration.Workflows;
 import pages.administration.fields_breadcrumb.ContractFields;
-import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class PreSetup
 {
     @Test(priority = 1)

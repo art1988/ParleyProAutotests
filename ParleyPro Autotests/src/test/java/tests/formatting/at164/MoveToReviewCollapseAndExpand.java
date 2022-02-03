@@ -3,20 +3,17 @@ package tests.formatting.at164;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.OpenedContract;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class MoveToReviewCollapseAndExpand
 {
     private static Logger logger = Logger.getLogger(MoveToReviewCollapseAndExpand.class);

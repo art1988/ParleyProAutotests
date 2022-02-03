@@ -8,13 +8,11 @@ import forms.ContractInformation;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
 import utils.Cache;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.time.LocalDateTime;
@@ -23,7 +21,7 @@ import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CreateContractUploadDocAndChange
 {
     private static Logger logger = Logger.getLogger(CreateContractUploadDocAndChange.class);

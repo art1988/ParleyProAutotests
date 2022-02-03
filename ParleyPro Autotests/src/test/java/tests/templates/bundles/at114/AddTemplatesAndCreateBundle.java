@@ -13,10 +13,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.File;
@@ -26,7 +24,7 @@ import java.util.stream.Collectors;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddTemplatesAndCreateBundle
 {
     private LinkedList<String> uploadedTemplates = new LinkedList<>(); // stores uploaded templates as it was shown on UI

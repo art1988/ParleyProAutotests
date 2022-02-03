@@ -6,18 +6,16 @@ import constants.Const;
 import forms.ContractRequest;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
-import utils.ScreenShotOnFailListener;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddRequestAndSubmit
 {
     private DashboardPage dashboardPage;

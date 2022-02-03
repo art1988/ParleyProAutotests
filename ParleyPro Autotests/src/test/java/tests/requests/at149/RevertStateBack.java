@@ -4,16 +4,14 @@ import com.codeborne.selenide.Condition;
 import constants.Const;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.administration.Fields;
-import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class RevertStateBack
 {
     private static Logger logger = Logger.getLogger(RevertStateBack.class);

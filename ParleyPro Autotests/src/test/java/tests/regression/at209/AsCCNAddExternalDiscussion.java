@@ -5,17 +5,15 @@ import com.codeborne.selenide.Condition;
 import constants.Const;
 import constants.SideBarItems;
 import org.apache.log4j.Logger;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
 import utils.Cache;
-import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AsCCNAddExternalDiscussion
 {
     private DashboardPage dashboardPage;

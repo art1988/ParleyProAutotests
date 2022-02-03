@@ -9,18 +9,16 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Fields;
 import pages.administration.fields_breadcrumb.ContractFields;
 import pages.administration.fields_breadcrumb.Layout;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddSummaryFields
 {
     private static Logger logger = Logger.getLogger(AddSummaryFields.class);

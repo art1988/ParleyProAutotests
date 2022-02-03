@@ -4,20 +4,18 @@ import com.codeborne.selenide.Condition;
 import constants.Const;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.ContractInfo;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class LoginBackAsCNAndCompleteSign
 {
     private String contractName = "AT-165 SIGN CTR";

@@ -1,15 +1,13 @@
 package tests.templates.bundles.at144;
 
 import com.codeborne.selenide.Condition;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.TemplatesPage;
-import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CleanUp
 {
     @Test

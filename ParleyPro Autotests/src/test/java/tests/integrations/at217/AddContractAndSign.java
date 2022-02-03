@@ -7,18 +7,16 @@ import constants.Const;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
 import pages.OpenedContract;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddContractAndSign
 {
     private static Logger logger = Logger.getLogger(AddContractAndSign.class);

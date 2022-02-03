@@ -4,17 +4,15 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
 import pages.subelements.FindAndReplacePopup;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class MakeReplaceAndCheck
 {
     private static Logger logger = Logger.getLogger(MakeReplaceAndCheck.class);

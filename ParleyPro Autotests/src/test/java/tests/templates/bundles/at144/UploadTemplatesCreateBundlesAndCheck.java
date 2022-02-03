@@ -6,11 +6,9 @@ import constants.Const;
 import forms.add.CreateBundle;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.TemplatesPage;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.File;
@@ -18,7 +16,7 @@ import java.io.File;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class UploadTemplatesCreateBundlesAndCheck
 {
     private TemplatesPage templatesPage;

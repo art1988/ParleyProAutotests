@@ -6,17 +6,15 @@ import forms.workflows.ContractRoutingWorkflow;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Workflows;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$$;
 import static constants.Const.*;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CreateContractRoutingWorkflow
 {
     private static Logger logger = Logger.getLogger(CreateContractRoutingWorkflow.class);

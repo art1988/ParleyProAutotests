@@ -7,19 +7,17 @@ import forms.add.AddRelatedField;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Fields;
 import pages.administration.fields_breadcrumb.ContractFields;
 import pages.administration.fields_breadcrumb.FieldsRelations;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddRequestFieldsAndAddRelatedField
 {
     private Fields fieldsTab;

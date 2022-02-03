@@ -3,17 +3,15 @@ package tests.routing_workflow.at56;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import io.qameta.allure.Description;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class LoginAsVPUserAndApprove
 {
     @Test(priority = 1)

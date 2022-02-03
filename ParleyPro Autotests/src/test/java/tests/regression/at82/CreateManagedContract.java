@@ -3,17 +3,15 @@ package tests.regression.at82;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.ContractInfo;
 import pages.DashboardPage;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CreateManagedContract
 {
     @Test

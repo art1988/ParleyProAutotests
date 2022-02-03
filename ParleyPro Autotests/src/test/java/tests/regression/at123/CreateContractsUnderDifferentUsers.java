@@ -2,15 +2,13 @@ package tests.regression.at123;
 
 import constants.Const;
 import forms.ContractInformation;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
 import pages.LoginPage;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CreateContractsUnderDifferentUsers
 {
     private static LoginPage loginPage;

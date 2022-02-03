@@ -5,14 +5,12 @@ import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utils.Cache;
-import utils.ScreenShotOnFailListener;
 
 import java.util.Set;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class OpenNewTab
 {
     private static WebDriver driver;

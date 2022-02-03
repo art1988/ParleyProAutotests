@@ -9,14 +9,12 @@ import constants.SideBarItems;
 import model.User;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.CreateParleyProAccountPage;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import utils.Cache;
 import utils.EmailChecker;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selectors.byText;
@@ -24,7 +22,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static constants.SideBarItems.*;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class GetEmailRegisterAndCheckRedirect
 {
     private static Logger logger = Logger.getLogger(GetEmailRegisterAndCheckRedirect.class);

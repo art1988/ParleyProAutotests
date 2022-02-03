@@ -5,15 +5,13 @@ import com.codeborne.selenide.SelenideElement;
 import constants.Const;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
-import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddContractUploadDoc
 {
     @Test

@@ -6,19 +6,17 @@ import constants.Const;
 import forms.ContractInformation;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
 import pages.subelements.FindAndReplacePopup;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class UploadDocAndCheck
 {
     private OpenedContract openedContract;

@@ -7,18 +7,16 @@ import constants.Const;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.Discussions;
 import pages.OpenedContract;
 import utils.Cache;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddParagraphUploadNewVerAndCheck
 {
     private static final String textToPaste = "Affiliate(s) means Liberty Mutual Holding Company Inc. (“LMHC”), the ultimate parent of Customer, and any entity that directly or indirectly through one or more intermediaries is majority owned, or is controlled by, or is under common control with LMHC all of which comprise the Liberty Mutual Group of Companies. Further, any entity that becomes affiliated with LMHC after the Effective Date of the Agreement shall also be considered an Affiliate.";

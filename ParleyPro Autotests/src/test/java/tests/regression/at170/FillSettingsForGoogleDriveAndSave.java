@@ -4,18 +4,16 @@ import com.codeborne.selenide.Selenide;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Integrations;
 import utils.Cache;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class FillSettingsForGoogleDriveAndSave
 {
     private static Logger logger = Logger.getLogger(FillSettingsForGoogleDriveAndSave.class);

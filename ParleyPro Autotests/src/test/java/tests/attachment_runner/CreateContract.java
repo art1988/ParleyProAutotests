@@ -1,12 +1,10 @@
 package tests.attachment_runner;
 
 import forms.ContractInformation;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.subelements.SideBar;
-import utils.ScreenShotOnFailListener;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CreateContract
 {
     @Test

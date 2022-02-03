@@ -4,19 +4,17 @@ import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
 import forms.UploadDocumentDetectedChanges;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DocumentComparePreview;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CreateContractAndUploadNewVersion
 {
     private String contractName = "MSW Classic: Wrong numbering";

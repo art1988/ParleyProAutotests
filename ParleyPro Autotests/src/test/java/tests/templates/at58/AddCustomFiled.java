@@ -1,20 +1,14 @@
 package tests.templates.at58;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
 import constants.FieldType;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.administration.Fields;
 import pages.subelements.SideBar;
-import utils.ScreenShotOnFailListener;
-import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddCustomFiled
 {
     @Test

@@ -3,18 +3,16 @@ package tests.classic.at206;
 import constants.Const;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
 import utils.Cache;
-import utils.ScreenShotOnFailListener;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddContractAndUploadDoc
 {
     @Test

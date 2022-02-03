@@ -7,20 +7,18 @@ import constants.Const;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import pages.OpenedDiscussion;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CreateContractAndUploadFirstDoc
 {
     private static Logger logger = Logger.getLogger(CreateContractAndUploadFirstDoc.class);

@@ -8,17 +8,15 @@ import io.qameta.allure.Issue;
 import io.qameta.allure.Issues;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
 import utils.Cache;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class MakeExternalAndUploadDocsV2V3V4
 {
     private String documentName = "Acorns Engagement Letter_party_changes_v1";

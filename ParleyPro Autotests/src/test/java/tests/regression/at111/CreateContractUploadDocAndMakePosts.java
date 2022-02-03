@@ -7,20 +7,18 @@ import forms.ContractInformation;
 import forms.ManageDiscussions;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
 import pages.subelements.ListOfPosts;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CreateContractUploadDocAndMakePosts
 {
     private String paragraph = "Paragraph 3: Insert something above me";

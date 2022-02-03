@@ -5,18 +5,16 @@ import constants.Const;
 import constants.SideBarItems;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class LoginAsCCNAndMakeInternalDiscussions
 {
     private Logger logger = Logger.getLogger( LoginAsCCNAndMakeInternalDiscussions.class );

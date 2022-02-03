@@ -7,18 +7,16 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Integrations;
 import utils.LoginBase;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CleanSettingsAndValidate extends LoginBase
 {
     @BeforeTest

@@ -8,20 +8,18 @@ import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.DashboardPage;
 import pages.EditTemplatePage;
 import pages.TemplatesPage;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.util.Set;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddTemplateCopyLinkAndOpen
 {
     private SoftAssert softAssert = new SoftAssert();

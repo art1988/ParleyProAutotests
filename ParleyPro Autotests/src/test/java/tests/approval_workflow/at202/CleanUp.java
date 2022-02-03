@@ -2,12 +2,10 @@ package tests.approval_workflow.at202;
 
 import com.codeborne.selenide.Selenide;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
-import utils.ScreenShotOnFailListener;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CleanUp
 {
     @Test

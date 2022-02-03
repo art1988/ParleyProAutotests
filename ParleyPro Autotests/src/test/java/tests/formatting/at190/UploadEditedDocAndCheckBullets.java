@@ -7,12 +7,10 @@ import io.qameta.allure.Description;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
 import utils.Cache;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.File;
@@ -21,7 +19,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class UploadEditedDocAndCheckBullets
 {
     private static Logger logger = Logger.getLogger(UploadEditedDocAndCheckBullets.class);

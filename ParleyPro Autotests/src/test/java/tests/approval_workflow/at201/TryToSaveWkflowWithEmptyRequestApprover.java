@@ -7,17 +7,15 @@ import constants.Const;
 import forms.workflows.ApprovalWorkflow;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class TryToSaveWkflowWithEmptyRequestApprover
 {
     private String workflowName = "Empty_Request_Approver";

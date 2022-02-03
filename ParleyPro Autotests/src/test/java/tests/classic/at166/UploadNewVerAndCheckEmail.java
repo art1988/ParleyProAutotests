@@ -3,15 +3,13 @@ package tests.classic.at166;
 import constants.Const;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import utils.EmailChecker;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class UploadNewVerAndCheckEmail
 {
     private String host     = "pop.gmail.com";

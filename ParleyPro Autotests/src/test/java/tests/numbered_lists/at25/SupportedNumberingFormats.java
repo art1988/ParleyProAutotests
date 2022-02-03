@@ -8,17 +8,15 @@ import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OpenedContract;
 import pages.subelements.CKEditorActive;
 import pages.tooltips.ParagraphActionsPopup;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class SupportedNumberingFormats
 {
     private static Logger logger = Logger.getLogger(SupportedNumberingFormats.class);

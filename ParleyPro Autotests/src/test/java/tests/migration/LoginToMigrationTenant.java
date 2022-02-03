@@ -6,21 +6,18 @@ import constants.Const;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import utils.Cache;
 import utils.LoginBase;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.FileDownloadMode.HTTPGET;
 import static com.codeborne.selenide.Selenide.open;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class LoginToMigrationTenant
 {
     private final static int MAX_RETRY_COUNT = 5;

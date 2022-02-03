@@ -6,10 +6,8 @@ import com.codeborne.selenide.SelenideElement;
 import constants.Const;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
-import utils.ScreenShotOnFailListener;
 
 import java.io.FileNotFoundException;
 
@@ -17,7 +15,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class TraverseThroughStages
 {
     private String docName = "AT-14";

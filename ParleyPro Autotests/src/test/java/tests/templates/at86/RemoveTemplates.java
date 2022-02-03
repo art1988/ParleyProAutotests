@@ -4,16 +4,14 @@ import com.codeborne.selenide.Condition;
 import constants.Const;
 import io.qameta.allure.Description;
 import org.apache.commons.io.FileUtils;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
-import utils.ScreenShotOnFailListener;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class RemoveTemplates
 {
     @Test(priority = 1)

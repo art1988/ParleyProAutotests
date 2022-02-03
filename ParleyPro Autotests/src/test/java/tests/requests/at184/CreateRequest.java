@@ -3,15 +3,13 @@ package tests.requests.at184;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractRequest;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
-import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CreateRequest
 {
     @Test

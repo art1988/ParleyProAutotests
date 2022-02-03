@@ -5,11 +5,9 @@ import com.codeborne.selenide.Selenide;
 import constants.Const;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.IOException;
@@ -19,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * General test for deleting contracts from 'Executed contracts' page
  */
-@Listeners({ScreenShotOnFailListener.class})
+
 public class DeleteContractFromExecuted
 {
     private static Logger logger = Logger.getLogger(DeleteContractFromExecuted.class);

@@ -3,14 +3,12 @@ package tests.requests.at124;
 import constants.Const;
 import forms.workflows.ContractRoutingWorkflow;
 import io.qameta.allure.Description;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Workflows;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddRoutingWorkflow
 {
     @Test

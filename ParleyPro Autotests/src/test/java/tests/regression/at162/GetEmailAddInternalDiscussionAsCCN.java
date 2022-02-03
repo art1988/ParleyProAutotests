@@ -6,14 +6,12 @@ import constants.Const;
 import constants.SideBarItems;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
 import utils.EmailChecker;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -22,7 +20,7 @@ import static com.codeborne.selenide.Selenide.$;
  * This test will be used in AT-162 _and_ in AT-165
  * Parameter contractNameEmail - just name of the contract that will be used in email subject
  */
-@Listeners({ScreenShotOnFailListener.class})
+
 public class GetEmailAddInternalDiscussionAsCCN
 {
     private String host     = "pop.gmail.com";

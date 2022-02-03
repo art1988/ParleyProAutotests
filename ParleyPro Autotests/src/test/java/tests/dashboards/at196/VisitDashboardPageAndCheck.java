@@ -3,19 +3,17 @@ package tests.dashboards.at196;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.apache.log4j.Logger;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.ChartsPage;
 import pages.DashboardPage;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class VisitDashboardPageAndCheck
 {
     private SoftAssert softAssert = new SoftAssert();

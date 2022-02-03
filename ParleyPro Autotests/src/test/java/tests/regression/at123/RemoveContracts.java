@@ -1,16 +1,14 @@
 package tests.regression.at123;
 
 import com.codeborne.selenide.Condition;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
-import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class RemoveContracts
 {
     @Test

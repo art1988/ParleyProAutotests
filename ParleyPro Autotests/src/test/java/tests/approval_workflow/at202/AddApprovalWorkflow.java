@@ -3,15 +3,13 @@ package tests.approval_workflow.at202;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.workflows.ApprovalWorkflow;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
-import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class AddApprovalWorkflow
 {
     private String wrkflowName = "AT-202 approval wkfl";

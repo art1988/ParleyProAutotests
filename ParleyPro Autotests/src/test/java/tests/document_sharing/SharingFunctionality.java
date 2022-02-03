@@ -9,14 +9,12 @@ import io.qameta.allure.Description;
 import model.User;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AuditTrail;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import pages.administration.ManageUsers;
 import utils.EmailChecker;
-import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.text.SimpleDateFormat;
@@ -27,7 +25,7 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class SharingFunctionality
 {
     private String host     = "pop.gmail.com";

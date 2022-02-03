@@ -3,19 +3,17 @@ package tests.requests.at178;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import org.apache.log4j.Logger;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AdministrationPage;
 import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
 import pages.administration.Fields;
-import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class CleanUp
 {
     private static Logger logger = Logger.getLogger(CleanUp.class);

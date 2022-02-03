@@ -6,19 +6,17 @@ import constants.Const;
 import constants.FieldType;
 import forms.add.AddNewUser;
 import forms.workflows.ContractRoutingWorkflow;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.administration.Fields;
 import pages.administration.fields_breadcrumb.ContractFields;
 import pages.subelements.SideBar;
-import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+
 public class PreSetup
 {
     private SideBar sideBar;
