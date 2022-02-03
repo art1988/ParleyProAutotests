@@ -35,7 +35,16 @@ public class ProceedThroughLifecycleStages
 
     private static Logger logger = Logger.getLogger(ProceedThroughLifecycleStages.class);
 
-    @Test(priority = 1)
+    @Test
+    public void proceedThroughLifecycleStages()
+    {
+        switchToReview();
+        switchToNegotiate();
+        switchToSign();
+        switchToManaged();
+        verifyExecutedStatus();
+    }
+
     @Step
     public void switchToReview()
     {
@@ -59,7 +68,6 @@ public class ProceedThroughLifecycleStages
         Screenshoter.makeScreenshot();
     }
 
-    @Test(priority = 2)
     @Step
     public void switchToNegotiate()
     {
@@ -87,7 +95,6 @@ public class ProceedThroughLifecycleStages
         Screenshoter.makeScreenshot();
     }
 
-    @Test(priority = 3)
     @Step
     public void switchToSign()
     {
@@ -126,7 +133,6 @@ public class ProceedThroughLifecycleStages
         Screenshoter.makeScreenshot();
     }
 
-    @Test(priority = 4)
     @Step
     public void switchToManaged()
     {
@@ -149,7 +155,6 @@ public class ProceedThroughLifecycleStages
         Screenshoter.makeScreenshot();
     }
 
-    @Test(priority = 5)
     @Step
     public void verifyExecutedStatus()
     {
