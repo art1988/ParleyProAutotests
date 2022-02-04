@@ -98,7 +98,7 @@ public class Discussions
      */
     public void sortColumn(String columnName)
     {
-        $$(".head div").filterBy(Condition.exactText(columnName)).first().click();
+        $$(".sortable-head div").filterBy(Condition.exactText(columnName)).first().click();
 
         logger.info("Clicked by column for sorting: " + columnName);
 
