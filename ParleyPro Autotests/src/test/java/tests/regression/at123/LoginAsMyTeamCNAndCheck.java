@@ -36,13 +36,13 @@ public class LoginAsMyTeamCNAndCheck
 
         logger.info("#1 Click by Chief Negotiator column...");
         inProgressContractsPage.clickByChiefNegotiatorColumn();
-        logger.info("Assert that order of rows is: [ Bartholomew Bronson, Bartholomew Aaronson, Aaron Aaronson ]...");
+        logger.info("Assert that order of rows is: [ Aaron Aaronson, Bartholomew Aaronson, Bartholomew Bronson ]...");
         $$(".ui-tr.contract-item .contracts-list__chief-negotiator-cell").shouldHave(CollectionCondition.exactTexts("Aaron Aaronson", "Bartholomew Aaronson", "Bartholomew Bronson"));
         Screenshoter.makeScreenshot();
 
         logger.info("#2 Click by Chief Negotiator column...");
         inProgressContractsPage.clickByChiefNegotiatorColumn();
-        logger.info("Assert that order of rows is: [ Aaron Aaronson, Bartholomew Aaronson, Bartholomew Bronson ]...");
+        logger.info("Assert that order of rows is: [ Bartholomew Bronson, Bartholomew Aaronson, Aaron Aaronson ]...");
         $$(".ui-tr.contract-item .contracts-list__chief-negotiator-cell").shouldHave(CollectionCondition.exactTexts("Bartholomew Bronson", "Bartholomew Aaronson", "Aaron Aaronson"));
         Screenshoter.makeScreenshot();
 
