@@ -1,11 +1,10 @@
 package tests.customer_params.at223;
 
+import io.qameta.allure.Description;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import utils.LoginBase;
@@ -13,7 +12,7 @@ import utils.LoginBase;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class SetPostExecutionParam extends LoginBase
+public class RemovePostExecutionParam extends LoginBase
 {
     @BeforeTest
     public void setup()
@@ -29,31 +28,22 @@ public class SetPostExecutionParam extends LoginBase
     }
 
     @Test
-    public void setPostExecutionParam()
+    public void removePostExecutionParam()
     {
-        JSONObject requestParams = new JSONObject();
+        logger.info("Removing postExecutionForLibertyMutual setting...");
 
-        requestParams.put("key", "postExecutionForLibertyMutual");
-        requestParams.put("value", true);
-        requestParams.put("nameSpace", "FRONTEND");
-
-        JSONArray array = new JSONArray();
-        array.add(requestParams);
-
-        logger.info("Enabling postExecutionForLibertyMutual setting...");
         given().
-                body(array).
-                    when().
-                        post().
-                            then().assertThat().statusCode(200);
+                when().
+                    delete("/" + getTenantId() + "/postExecutionForLibertyMutual")
+                        .then().statusCode(200);
 
-        logger.info("Checking that postExecutionForLibertyMutual setting was enabled...");
+        logger.info("Checking that postExecutionForLibertyMutual setting was removed...");
         given().
                 when().
                     get("/" + getTenantId()).
                         then().
-                            body("$", hasItem(allOf(hasEntry("key", "postExecutionForLibertyMutual"))));
+                            body("$", not(allOf(hasEntry("key", "postExecutionForLibertyMutual"))));
 
-        logger.info("postExecutionForLibertyMutual setting was successfully added...");
+        logger.info("postExecutionForLibertyMutual setting was successfully removed...");
     }
 }
