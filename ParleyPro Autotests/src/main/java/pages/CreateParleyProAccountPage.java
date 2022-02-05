@@ -36,27 +36,35 @@ public class CreateParleyProAccountPage
         $$("input").shouldHave(CollectionCondition.size(4));
     }
 
+    private void clearField(SelenideElement input)
+    {
+        for( int i = 0; i < 50; i++ )
+        {
+            input.sendKeys(Keys.BACK_SPACE);
+        }
+    }
+
     public void setFirstName(String firstName)
     {
-        firstNameField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+        clearField(firstNameField);
         firstNameField.sendKeys(firstName);
     }
 
     public void setLastName(String lastName)
     {
-        lastNameField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+        clearField(lastNameField);
         lastNameField.sendKeys(lastName);
     }
 
     public void setPassword(String password)
     {
-        passwordField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+        clearField(passwordField);
         passwordField.sendKeys(password);
     }
 
     public void setConfirmPassword(String confirmPassword)
     {
-        confirmPasswordField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+        clearField(confirmPasswordField);
         confirmPasswordField.sendKeys(confirmPassword);
     }
 
