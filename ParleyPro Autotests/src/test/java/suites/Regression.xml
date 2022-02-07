@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Regression" configfailurepolicy="continue">
-    <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
+   <!-- <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -184,7 +184,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="AT-150: Linked contract is not showing in UI" preserve-order="true">
         <classes>
@@ -196,7 +196,7 @@
         </classes>
     </test>
 
-    <test name="AT-182: Frontend crashes when user adds comment to existing post" preserve-order="true">
+    <!--<test name="AT-182: Frontend crashes when user adds comment to existing post" preserve-order="true">
         <parameter name="contractName" value="AT-182 CTR"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -288,5 +288,5 @@
             <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
