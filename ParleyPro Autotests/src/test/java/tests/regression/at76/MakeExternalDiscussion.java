@@ -9,7 +9,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AuditTrail;
 import pages.OpenedContract;
-import pages.subelements.CKEditorActive;
 import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;

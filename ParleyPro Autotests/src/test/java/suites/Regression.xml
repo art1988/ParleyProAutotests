@@ -162,7 +162,7 @@
     </test>
 
     <test name="[FLAKY] AT-165: Allow My team to move contract to Sign status even Counterparty has open internal discussion" preserve-order="true">
-        <parameter name="contractName" value="AT-165 SIGN CTR"/>
+        <parameter name="contractNameExecuted" value="AT-165 SIGN CTR"/>
         <parameter name="contractNameEmail" value="AT-165 SIGN CTR"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -240,12 +240,43 @@
         </classes>
     </test>
 
+    <test name="AT-199: Can not download document" preserve-order="true">
+        <parameter name="contractName" value="AT-199 ctr"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at199.UploadDocumentAndTryToDownload"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-209: Contract value should NOT disappear after Counterparty creates discussion" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at209.UploadDocAndShareWithCCN"/>
+            <class name="tests.regression.at209.AsCCNAddExternalDiscussion"/>
+            <class name="tests.regression.at209.AsCNCheckValue"/>
+            <class name="tests.DeleteContractFromInProgressViaCache"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-211: Resolve Marine: Upload My Team document on 1st upload. Document will not open." preserve-order="true">
+        <parameter name="contractName" value="Resolve Marine_AT-211"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at211.UploadDocExpandAndCheck"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
     <test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
         <classes>
             <class name="tests.LoginToTrackChangesTenant"/>
             <class name="tests.regression.at110.CreateContractAndUploadCPDocument"/>
             <class name="tests.regression.at110.MakeExternalAndUploadDocsV2V3V4"/>
-            <class name="tests.regression.at110.CleanUp"/>
+            <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
@@ -254,7 +285,7 @@
         <classes>
             <class name="tests.LoginToTrackChangesTenant"/>
             <class name="tests.regression.at141.CreateContractUploadDocAndChange"/>
-            <class name="tests.regression.at141.CleanUp"/>
+            <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
     </test>

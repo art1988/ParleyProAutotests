@@ -36,7 +36,7 @@ public class CompleteSignAsCN
 
         OpenedContract openedContract = new OpenedContract();
 
-        openedContract.switchDocumentToSign("AT-14").clickStart();
+        openedContract.switchDocumentToSign("AT-14", false).clickStart();
 
         logger.info("Assert that status was changed to SIGN...");
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("SIGN\n(1)", "SIGN"));

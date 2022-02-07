@@ -32,7 +32,7 @@ public class ContractInformation
     private SelenideElement notesField                 = $(".modal-dialog #notes");
 
     private SelenideElement cancelButton = $(".modal-content .btn.btn-common.btn-link.btn-link-pseudo");
-    private SelenideElement saveButton   = $(".modal-content .button.btn.btn-common.btn-blue.btn.btn-default");
+    private SelenideElement saveButton   = $(".modal-content .button.btn.btn-common.btn-blue.btn.btn-default, .modal-footer button[type='submit']");
 
 
     private static Logger logger = Logger.getLogger(ContractInformation.class);
@@ -556,6 +556,20 @@ public class ContractInformation
     {
         // wait until SAVE button is enabled
         saveButton.waitUntil(Condition.enabled, 30_000).click();
+
+        logger.info("SAVE button was clicked");
+
+        // wait until Contract information form disappear
+        $(".modal-content").waitUntil(Condition.disappear, 60_000);
+    }
+
+    /**
+     * Use this method to click SAVE after Amendment.
+     * Separate method because save has different selector.
+     */
+    public void clickSaveFromAmendment()
+    {
+        $$(".modal-content button").filter(Condition.text("SAVE")).first().click();
 
         logger.info("SAVE button was clicked");
 

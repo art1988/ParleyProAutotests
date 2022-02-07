@@ -5,7 +5,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
-import forms.CompleteSign;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -16,7 +15,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.AddDocuments;
 import pages.DashboardPage;
-import pages.ExecutedContractsPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -40,7 +38,7 @@ public class AmendExpiredContract
                            .clickExecutedContracts(false)
                            .selectContract("Executed Expired");
 
-        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSave();
+        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSaveFromAmendment();
         AddDocuments addDocuments = new AddDocuments();
 
         softAssert.assertEquals(addDocuments.getContractTitle(), "Executed Expired-A", "Contract title is wrong !!!");
@@ -69,7 +67,7 @@ public class AmendExpiredContract
                            .clickExecutedContracts(false)
                            .selectContract("Executed Signed");
 
-        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSave();
+        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSaveFromAmendment();
         AddDocuments addDocuments = new AddDocuments();
 
         logger.info("Checking B in the name...");
@@ -101,7 +99,7 @@ public class AmendExpiredContract
 
         OpenedContract openedContract = new OpenedContract();
 
-        openedContract.switchDocumentToSign("AT-14").clickStart();
+        openedContract.switchDocumentToSign("AT-14", false).clickStart();
         $("#COMPLETE_MANUAL_DOCUMENT").waitUntil(Condition.visible, 10_000);
         openedContract.clickCompleteSign("AT-14").clickComplete();
     }
@@ -113,7 +111,7 @@ public class AmendExpiredContract
                            .clickExecutedContracts(false)
                            .selectContract("Executed Signed-A");
 
-        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSave();
+        new OpenedContract().clickContractActionsMenu().clickAmendContract().clickSaveFromAmendment();
         AddDocuments addDocuments = new AddDocuments();
 
         logger.info("Checking double A in the name...");

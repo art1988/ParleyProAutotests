@@ -182,12 +182,26 @@ jobs:
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractInfo.xml
           
-      - run: sleep 10    
+      - run: sleep 10
       
       - run:
           name: Run Find and Replace suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/FindAndReplace.xml
+      
+      - run: sleep 10
+    
+      - run:
+          name: Run Customer Specific Parameters suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CustomerSpecificParameters.xml
+          
+      - run: sleep 10    
+      
+      - run:
+          name: Run Integrations suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Integrations.xml
 
       - save_cache:
           key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}

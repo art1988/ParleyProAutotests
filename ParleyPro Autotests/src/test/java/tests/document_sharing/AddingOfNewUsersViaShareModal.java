@@ -63,6 +63,7 @@ public class AddingOfNewUsersViaShareModal
         Thread.sleep(60_000);
 
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Role assignment: Lead"), "Email with subject: Role assignment: Lead was not found !!!");
+        Thread.sleep(3_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"), "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
 
         logger.info("Check user icons in document header...");

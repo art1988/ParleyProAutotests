@@ -26,7 +26,7 @@ public class CheckTableAfterUploading
         Discussions discussions = new Discussions(contractName);
 
         logger.info("Checking number of discussions...");
-        Assert.assertTrue(Integer.parseInt(discussions.getDiscussionCount()) > Integer.parseInt(numberOfDiscussions));
+        Assert.assertTrue(Integer.parseInt(discussions.getDiscussionCount()) >= Integer.parseInt(numberOfDiscussions));
         //Assert.assertEquals(discussionsOfSingleContract.getDiscussionCount(), numberOfDiscussions);
 
         OpenedContract openedContract = discussions.clickDocumentsTab();

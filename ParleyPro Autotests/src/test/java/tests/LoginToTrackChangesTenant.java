@@ -13,7 +13,6 @@ import pages.DashboardPage;
 import pages.LoginPage;
 import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
-import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getSelenideProxy;
@@ -96,14 +95,12 @@ public class LoginToTrackChangesTenant
     {
         LoginPage loginPage = new LoginPage();
 
-        loginPage.setEmail( Const.EVHEN_TRACKCHANGES_USER.getEmail() );
-        loginPage.setPassword( Const.EVHEN_TRACKCHANGES_USER.getPassword() );
+        loginPage.setEmail( Const.TRACKCHANGES_USER.getEmail() );
+        loginPage.setPassword( Const.TRACKCHANGES_USER.getPassword() );
 
         logger.info("Making sure that Dashboard was loaded correctly...");
 
         DashboardPage dashboardPage = loginPage.clickSignIn();
         dashboardPage.getSideBar().clickInProgressContracts(false);
-
-        Screenshoter.makeScreenshot();
     }
 }

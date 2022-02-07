@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
@@ -13,7 +14,7 @@ import utils.Screenshoter;
 import static com.codeborne.selenide.Selenide.$;
 
 /**
- * General test for deleting contracts from 'In-progress contracts' page
+ * General test for deleting contracts from 'In-progress contracts' page that takes contract name from parameter
  */
 @Listeners({ScreenShotOnFailListener.class})
 public class DeleteContractFromInProgress
@@ -24,7 +25,10 @@ public class DeleteContractFromInProgress
     @Parameters("contractName")
     public void deleteContractFromInProgress(String contractName) throws InterruptedException
     {
-        Thread.sleep(2_000);
+        // Before deletion - refresh page, because previous opened modal forms may still be active preventing clicking by sidebar icons
+        Selenide.refresh();
+
+        Thread.sleep(3_000);
 
         new DashboardPage().getSideBar()
                            .clickInProgressContracts(false)

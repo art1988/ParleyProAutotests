@@ -16,7 +16,7 @@ public class ExecutedContractsPage
 {
     private SelenideElement searchBar                  = $(".contracts-search-input__text");
     private SelenideElement newContractButton          = $(".js-create-contract-btn");
-    private SelenideElement downloadContractDataButton = $(".contracts-head__download");
+    private SelenideElement downloadContractDataButton = $(".download-button");
 
 
     private static Logger logger = Logger.getLogger(ExecutedContractsPage.class);

@@ -10,9 +10,9 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
+import utils.Cache;
 import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
-import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -72,6 +72,8 @@ public class LoginToDashboard
         }
         // headless mode: need to set window size for correct running
         //WebDriverRunner.getWebDriver().manage().window().setSize(new Dimension(1920, 1080));
+
+        Cache.getInstance().setLoginBaseInstance(loginBase);
     }
 
     @Test
@@ -87,7 +89,5 @@ public class LoginToDashboard
         DashboardPage dashboardPage = loginPage.clickSignIn();
 
         dashboardPage.getSideBar().clickInProgressContracts(true);
-
-        Screenshoter.makeScreenshot();
     }
 }

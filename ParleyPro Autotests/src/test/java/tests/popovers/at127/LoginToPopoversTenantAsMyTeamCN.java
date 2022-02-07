@@ -16,8 +16,8 @@ import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
-import utils.LoginBase;
 import utils.EmailChecker;
+import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 

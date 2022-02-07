@@ -72,7 +72,18 @@ public class EmailChecker
                     Address[] froms = message.getFrom();
                     String email = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
 
-                    Assert.assertEquals(email, "notification@parleypro.com");
+                    if( email.equals("notification@parleypro.com") )
+                    {
+                        Assert.assertEquals(email, "notification@parleypro.com");
+                    }
+                    else if( email.equals("dse_demo@docusign.net") )
+                    {
+                        Assert.assertEquals(email, "dse_demo@docusign.net");
+                    }
+                    else
+                    {
+                        Assert.fail(email + " wasn't found !!!");
+                    }
 
                     messageText = getTextFromMessage(message); // store email's body text
 

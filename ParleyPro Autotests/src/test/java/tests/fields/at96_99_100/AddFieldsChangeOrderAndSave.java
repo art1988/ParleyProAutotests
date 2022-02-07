@@ -94,7 +94,7 @@ public class AddFieldsChangeOrderAndSave
         $(field_2).hover(); // to make drag-handle <i> element visible
         Thread.sleep(500);
 
-        actions.moveToElement($(field_2).find(".admin-fields-layout__drag-handle")).build().perform();
+        actions.moveToElement($(field_2).find(".admin-fields-layout__drag-handle"), 50, 50).build().perform();
         Thread.sleep(500);
         actions.release().build().perform();
         Thread.sleep(500);

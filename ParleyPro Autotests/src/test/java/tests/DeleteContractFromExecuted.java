@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import constants.Const;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -24,19 +25,22 @@ public class DeleteContractFromExecuted
     private static Logger logger = Logger.getLogger(DeleteContractFromExecuted.class);
 
     @Test(priority = 1)
-    @Parameters("contractName")
-    public void deleteContractFromExecuted(String contractName)
+    @Parameters("contractNameExecuted")
+    public void deleteContractFromExecuted(String contractNameExecuted) throws InterruptedException
     {
+        // Before deletion - refresh page, because previous opened modal forms may still be active preventing clicking by sidebar icons
+        Selenide.refresh();
+
+        Thread.sleep(3_000);
+
         new DashboardPage().getSideBar()
                            .clickExecutedContracts(false)
-                           .selectContract(contractName)
-                           .deleteContract(contractName)
+                           .selectContract(contractNameExecuted)
+                           .deleteContract(contractNameExecuted)
                            .clickDelete();
 
         logger.info("Assert delete notification...");
-        $(".notification-stack").should(Condition.appear).shouldHave(Condition.exactText("Contract " + contractName + " has been deleted."));
-
-        $(".contracts__create").should(Condition.appear).shouldHave(Condition.text("There are no executed contracts.\nYou can start a new executed  contract by clicking the button below"));
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.exactText("Contract " + contractNameExecuted + " has been deleted."));
 
         Screenshoter.makeScreenshot();
     }

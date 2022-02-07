@@ -18,7 +18,7 @@
         <parameter name="documentName" value="Video Sponsorship Master Agreement (Editable).docx"/>
         <parameter name="cpDocumentName" value="Video Sponsorship Master Agreement (Editable) Kyle Edits.docx"/>
         <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="10"/>
+        <parameter name="numberOfDiscussions" value="9"/>
         <parameter name="textOnFirstPage" value="VIDEO SPONSORSHIP MANAGEMENT AGREEMENT"/>
         <parameter name="textOnLastPage" value="The remainder of this page left intentionally blank"/>
         <classes>
@@ -36,7 +36,7 @@
         <parameter name="documentName" value="ERGO_Verpflichtungserklaerung_Vertraulichkeit (1)(1).docx"/>
         <parameter name="cpDocumentName" value="2020-11-09_ERGO_Verpflichtungserklaerung_Vertraulichkeit_ERGO(1).docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="10"/>
+        <parameter name="numberOfDiscussions" value="12"/>
         <parameter name="textInFirstRow" value="Verpflichtungserklärung zur Vertraulichkeit"/>
         <parameter name="textInLastRow" value="Firmenbezeichnung des Informationsempfängers"/>
         <classes>
@@ -91,7 +91,7 @@
         <parameter name="documentName" value="Dana Farber Cancer Institute MCDA Draft 110620.docx"/>
         <parameter name="cpDocumentName" value="Dana Farber Cancer Institute MCDA Draft 110620 QIS edits.docx"/>
         <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="10"/>
+        <parameter name="numberOfDiscussions" value="14"/>
         <parameter name="textOnFirstPage" value="MUTUAL CONFIDENTIAL DISCLOSURE AGREEMENT"/>
         <parameter name="textOnLastPage" value="Read and Acknowledged:"/>
         <classes>
@@ -127,7 +127,7 @@
         <parameter name="documentName" value="ACCTTWO MASTER SERVICES AGREEMENT_WM Comments 6_3_20.docx"/>
         <parameter name="cpDocumentName" value="ACCTTWO MASTER SERVICES AGREEMENT_A2 comments 06_22 (1).docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="numberOfDiscussions" value="21"/>
         <parameter name="textOnFirstPage" value="ACCTTWO MASTER SERVICES AGREEMENT"/>
         <parameter name="textOnLastPage" value="ADDENDUM B: California Consumer Privacy Act"/>
         <classes>
@@ -145,7 +145,7 @@
         <parameter name="documentName" value="Parley Pro DPA (5).docx"/>
         <parameter name="cpDocumentName" value="Parley Pro DPA (Copy 010421)_LK 20210111 (1).docx"/>
         <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="numberOfDiscussions" value="36"/>
         <parameter name="textOnFirstPage" value="Addendum"/>
         <parameter name="textOnLastPage" value="For All Customers"/>
         <classes>
@@ -163,7 +163,7 @@
         <parameter name="documentName" value="Harold Young Inc Addendum to SuperFresh Frozen Broker Agreement 3-12-15.doc"/>
         <parameter name="cpDocumentName" value="Webco General Partnership - SuperFresh Frozen Assignment 3-12-15.doc"/>
         <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="20"/>
+        <parameter name="numberOfDiscussions" value="21"/>
         <parameter name="textOnFirstPage" value="Jan Rathbun"/>
         <parameter name="textOnLastPage" value="Scott Cameron"/>
         <classes>
@@ -199,7 +199,7 @@
         <parameter name="documentName" value="numbering_1_AT72.docx"/>
         <parameter name="cpDocumentName" value="numbering_2_AT72.docx"/>
         <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="1"/>
+        <parameter name="numberOfDiscussions" value="2"/>
         <parameter name="textOnFirstPage" value="Point one"/>
         <parameter name="textOnLastPage" value="test"/>
         <classes>
@@ -217,7 +217,7 @@
         <parameter name="documentName" value="IOC_Framework_Agreement-Learnship.docx"/>
         <parameter name="cpDocumentName" value="2020-07-17_KV-00168_IOC_Framework Agreement_v5_IOC.docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="40"/>
+        <parameter name="numberOfDiscussions" value="43"/>
         <parameter name="textOnFirstPage" value="KV-00168"/>
         <parameter name="textOnLastPage" value="OLYMPIC COMMITTEE:"/>
         <classes>
@@ -235,7 +235,7 @@
         <parameter name="documentName" value="Kellogg Company_Warehouse Services Agreement Master_short.docx"/>
         <parameter name="cpDocumentName" value="Kellogg Company_Warehouse Services Agreement Master_short.docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="80"/>
+        <parameter name="numberOfDiscussions" value="84"/>
         <parameter name="textOnFirstPage" value="KELLOGG NORTH AMERICA"/>
         <parameter name="textOnLastPage" value="SCHEDULE"/>
         <classes>
@@ -253,7 +253,7 @@
         <parameter name="documentName" value="2021-09-07_OSRAM GmbH_Framework Agreement_Learnship_v6_0_revKB(2).docx"/>
         <parameter name="cpDocumentName" value="2021-09-15_OSRAM GmbH_Framework Agreement_Learnship_v7_0_revTU(1).docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="170"/>
+        <parameter name="numberOfDiscussions" value="178"/>
         <parameter name="textOnFirstPage" value="Frame Purchase Agreement"/>
         <parameter name="textOnLastPage" value="TRAINER-LED"/>
         <classes>
@@ -358,6 +358,26 @@
             <class name="tests.classic.at167.CreateContractAndUploadFirstDoc"/>
             <class name="tests.classic.at167.UploadNewVerAndCheckParagraph"/>
             <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-203: Can not move to Negotiation when changing to Classic" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.classic.at203.AddContractUploadDoc"/>
+            <class name="tests.classic.at203.SwitchToClassicAndMoveToNegotiate"/>
+            <class name="tests.DeleteContractFromInProgressViaCache"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-206: Liberty Mutual - Classic: comment is added to the incorrect paragraph" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToTrackChangesTenant"/>
+            <class name="tests.classic.at206.AddContractAndUploadDoc"/>
+            <class name="tests.classic.at206.AddParagraphUploadNewVerAndCheck"/>
+            <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
     </test>

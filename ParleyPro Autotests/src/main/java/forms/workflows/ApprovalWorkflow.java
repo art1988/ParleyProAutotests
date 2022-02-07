@@ -235,15 +235,25 @@ public class ApprovalWorkflow
     {
         saveButton.click();
 
-        logger.info("Save button was clicked");
+        logger.info("SAVE button was clicked");
 
         $(".modal-content").waitUntil(Condition.disappear, 10_000);
+    }
+
+    /**
+     * Use this if you know in advance that error will happen and modal will not close
+     */
+    public void clickSaveExpectingError()
+    {
+        saveButton.click();
+
+        logger.info("SAVE button was clicked");
     }
 
     public void clickCancel()
     {
         cancelButton.click();
 
-        logger.info("Cancel button was clicked");
+        logger.info("CANCEL button was clicked");
     }
 }

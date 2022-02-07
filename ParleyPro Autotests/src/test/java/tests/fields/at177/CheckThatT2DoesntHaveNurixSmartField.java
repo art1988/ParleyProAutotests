@@ -12,8 +12,8 @@ import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.EditTemplatePage;
 import pages.TemplatesPage;
-import utils.LoginBase;
 import utils.Cache;
+import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 

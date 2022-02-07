@@ -55,7 +55,7 @@ public class PerformMentioning
         logger.info("Mention user Felix...");
         ckEditorInstance = openedContract.clickByParagraph("Paragraph 2");
 
-        ckEditorInstance.getCommentInstance().sendKeys("@");
+        ckEditorInstance.getCommentInstance().sendKeys("@F");
         SelenideElement popup = $$(".atwho-view").filterBy(Condition.visible).shouldHaveSize(1).first();
         popup.findAll("ul li").filterBy(Condition.text("Felix")).first().click();
         Thread.sleep(1_000);

@@ -66,7 +66,7 @@ public class AmendManagedContract
         contractInformation.setTag("New tag for amendment_managed");
         contractInformation.setNotes("Additional notes for amendment_managed. ABC.");
 
-        contractInformation.clickSave();
+        contractInformation.clickSaveFromAmendment();
 
         AddDocuments addDocuments = new AddDocuments();
         softAssert.assertEquals(addDocuments.getContractTitle(), "New val for Executed Managed-A", "Contract title is wrong !!!");

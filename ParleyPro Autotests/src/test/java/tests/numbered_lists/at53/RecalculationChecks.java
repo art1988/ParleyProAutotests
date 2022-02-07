@@ -155,19 +155,20 @@ public class RecalculationChecks
             paragraphActionsPopup.clickAcceptChangesOnParagraph(AcceptTypes.INSERT).clickAcceptText();
 
             logger.info("Assert notification...");
-            $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
-            $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+            $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText(" post has been successfully created."));
+            $(".notification-stack").should(Condition.disappear);
         }
+
+        Thread.sleep(3_000);
 
         logger.info("And finally accept deleted...");
         ParagraphActionsPopup paragraphActionsPopup = openedContract.hover("capital_B");
         paragraphActionsPopup.clickAcceptChangesOnParagraph(AcceptTypes.DELETE).clickAcceptText();
 
         logger.info("Assert notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText(" post has been successfully created."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText(" post has been successfully created."));
+        $(".notification-stack").should(Condition.disappear);
 
-        Thread.sleep(3_000);
         Assert.assertEquals(getWholeList(), "1." + itemsToAdd[0] + ",2.L0_Num_Point_1,3.L0_Num_Point_2,4." + itemsToAdd[1] + "," +
                 "A.L1_Letter_capital_A,\uF0A7L2_Bullet_1,\uF0A7L2_Bullet_2,\uF0A7" + itemsToAdd[3] + ",\uF0A7L2_Bullet_3," +
                 "B.L1_Letter_capital_C,C.L1_Letter_capital_D,D." + itemsToAdd[2] + ",5.L0_Num_Point_3,6.L0_Num_Point_4");

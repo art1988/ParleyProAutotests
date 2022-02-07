@@ -1,7 +1,6 @@
 package tests.regression.at163;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractInNegotiation;
@@ -12,7 +11,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
 import pages.DashboardPage;
-import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
@@ -41,7 +39,8 @@ public class UploadDocAndCheck
 
         new AddDocuments().clickUploadCounterpartyDocuments(Const.REGRESSION_DOC_AT163);
 
-        $(".notification-stack").waitUntil(Condition.visible, 45_000).shouldHave(Condition.text("1 unsupported formatting attributes")).find(".notification__close").click();
+        // This notification not shows anymore
+        //$(".notification-stack").waitUntil(Condition.visible, 45_000).shouldHave(Condition.text("1 unsupported formatting attributes")).find(".notification__close").click();
         new ContractInNegotiation("CTR_AT163").clickOk();
 
         Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"Cover Page\")')");

@@ -51,8 +51,17 @@ public class CheckContracts
         Assert.assertTrue(Selenide.executeJavaScript(jsCode.toString()));
         // 1 end
 
+        // 2 start
         logger.info("Assert the second row of table...");
-        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Normal contract\nEugene's Counterparty Organization Parley Pro\ndraft\nDec 21, 2020 10:58 AM\nNov 29, 2022"));
+        jsCode = new StringBuffer("var firstRow = $('.contracts-list__table a').eq(1).text();");
+        jsCode.append("var lastActivity = $('.contracts-list__table a').eq(1).find(\".contracts-list__cell-activity\").text();");
+        jsCode.append("var res = firstRow.replace(lastActivity, \"\");");
+        jsCode.append("return res;");
+
+        rowWithoutLastActivity = Selenide.executeJavaScript(jsCode.toString());
+
+        Assert.assertEquals(rowWithoutLastActivity, "Normal contractEugene's Counterparty OrganizationParley ProDRAFTNov 29, 2024");
+        // 2 end
 
         // 3 start
         logger.info("Assert the third row of table...");
@@ -126,7 +135,7 @@ public class CheckContracts
         $$(".js-linked-contracts-stage").first().shouldHave(Condition.exactText("Managed"));
         $$(".js-linked-contracts-stage").last().shouldHave(Condition.exactText("Negotiate"));
 
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nSupplemented by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 21, 2025\nParent to:\nClassic\nStage:\nNegotiate"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 2\nSupplemented by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2024\nExpiration date:\nJan 16, 2025\nParent to:\nClassic\nStage:\nNegotiate"));
 
         Screenshoter.makeScreenshot();
     }
@@ -140,10 +149,10 @@ public class CheckContracts
         logger.info("Assert _first_ row in a table...");
         $$(".contracts-list__table a").get(0).shouldHave(Condition.exactText("Long values and that is a long long " +
                 "long long long long long long long long long long long long long long long long long long long long long long " +
-                "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nJan 21, 2025"));
+                "long title\nEugene's Counterparty with a Long Long Long Long Long Long Long Long Long Long Long Long Long Name, Inc.\nsigned\nUSD 1,000,000,000.00\nJan 16, 2025"));
 
         logger.info("Assert _second_ row in a table...");
-        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 17, 2020 Dec 17, 2020 Dec 17, 2021 Jan 21, 2025"));
+        $$(".contracts-list__table a").get(1).shouldHave(Condition.exactText("Short\nEugene's Counterparty Organization\nmanaged\nUSD 1.00 Dec 17, 2020 Dec 17, 2020 Dec 17, 2024 Jan 16, 2025"));
 
         logger.info("Assert _third_ row in a table...");
         $$(".contracts-list__table a").get(2).shouldHave(Condition.exactText("Normal values in contract\nEugene's Counterparty Organization\nmanaged\nUSD 10,000.00 Dec 16, 2020 Dec 31, 2020"));
@@ -177,7 +186,7 @@ public class CheckContracts
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Contract was amended: 1"));
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 21, 2025"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2024\nExpiration date:\nJan 16, 2025"));
 
         Screenshoter.makeScreenshot();
 
@@ -194,7 +203,7 @@ public class CheckContracts
         $(".js-linked-contracts-title").shouldHave(Condition.exactText("Linked contracts: 1"));
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
-        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 1\nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2021\nExpiration date:\nJan 21, 2025"));
+        $(".rc-tooltip-inner").shouldHave(Condition.exactText("Linked contracts: 1\nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2024\nExpiration date:\nJan 16, 2025"));
 
         Screenshoter.makeScreenshot();
 
@@ -242,21 +251,21 @@ public class CheckContracts
         // The following expected values are all hardcoded and are correct only for 'Short' contract
         Assert.assertEquals(contractInfo.getSignatureDate(), "Dec 17, 2020");
         Assert.assertEquals(contractInfo.getEffectiveDate(), "Dec 17, 2020");
-        Assert.assertEquals(contractInfo.getInitialTerm(), "1");
+        Assert.assertEquals(contractInfo.getInitialTerm(), "4");
         Assert.assertEquals(contractInfo.getInitialTermDuration(), "Years");
         Assert.assertTrue(contractInfo.getAutoRenewalState());
         Assert.assertTrue( Selenide.executeJavaScript("return $('label span:contains(\"Number of renewals\")').is(':visible')") );
         Assert.assertTrue(contractInfo.getAutoRenewalState());
 
         Assert.assertEquals(contractInfo.getSubsequentTermMonths(), "1");
-        Assert.assertEquals(contractInfo.getRenewal(), "Dec 17, 2021");
+        Assert.assertEquals(contractInfo.getRenewal(), "Dec 17, 2024");
         Assert.assertEquals(contractInfo.getSubsequentTermNotification(), "1d");
         Assert.assertTrue(contractInfo.getRenewalEmailTo().contains("you@example.com") && contractInfo.getRenewalEmailTo().contains("my@example.com"));
         Assert.assertEquals(contractInfo.getNoticeOfNonRenewal(), "15");
-        Assert.assertEquals(contractInfo.getNotice(), "Jan 2, 2022");
+        Assert.assertEquals(contractInfo.getNotice(), "Dec 2, 2024");
         Assert.assertEquals(contractInfo.getNoticeOfNonRenewalNotification(), "1d");
         Assert.assertTrue(contractInfo.getNoticeEmailTo().contains("you@example.com") && contractInfo.getNoticeEmailTo().contains("my@example.com"));
-        Assert.assertEquals(contractInfo.getExpirationDate(), "Jan 21, 2025");
+        Assert.assertEquals(contractInfo.getExpirationDate(), "Jan 16, 2025");
         Assert.assertEquals(contractInfo.getExpirationDateNotification(), "1d");
         Assert.assertTrue(contractInfo.getExpirationEmailTo().contains("you@example.com") && contractInfo.getExpirationEmailTo().contains("my@example.com"));
 

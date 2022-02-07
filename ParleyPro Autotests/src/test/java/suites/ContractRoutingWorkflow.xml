@@ -20,7 +20,7 @@
     </test>
 
     <test name="AT-56: Routing and Approval combined" preserve-order="true">
-        <parameter name="contractName" value="CTR-AT56"/>
+        <parameter name="contractNameExecuted" value="CTR-AT56"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.routing_workflow.at56.AddTeamAndTwoCustomFields"/>

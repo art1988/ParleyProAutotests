@@ -2,7 +2,10 @@ package pages.tooltips;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import forms.CancelContract;
 import forms.ContractInformation;
+import forms.ReassignChiefNegotiator;
+import forms.TerminateContract;
 import forms.delete.DeleteContract;
 import org.apache.log4j.Logger;
 
@@ -10,6 +13,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 /**
  * Class that represents menu with 'Cancel' and 'Delete' contract options.
+ * Also, applicable for [requests] with it's 'Reassign Chief Negotiator' menu item, etc.
  * In executed status additional menu items were added: 'Amend contract' and 'Terminate contract'.
  */
 public class ContractActionsMenu
@@ -40,6 +44,15 @@ public class ContractActionsMenu
         return new DeleteContract(contractName);
     }
 
+    public CancelContract clickCancelContract()
+    {
+        Selenide.executeJavaScript("$('.contract-header__menu .dropdown-menu.dropdown-menu-right a:contains(\"Cancel\")')[0].click()");
+
+        logger.info("Cancel contract was clicked...");
+
+        return new CancelContract();
+    }
+
     /**
      * In case of enabled "key": "CONTRACT_NAME_TEMPLATE", contract name may be dynamic => we can't know in advance contract title => do not match by contractName in popup
      * Just match to "Are you sure you want to delete contract" text
@@ -62,5 +75,29 @@ public class ContractActionsMenu
         logger.info("Amend contract was clicked...");
 
         return new ContractInformation();
+    }
+
+    /**
+     * This option is available only for requests
+     */
+    public ReassignChiefNegotiator clickReassignChiefNegotiator()
+    {
+        Selenide.executeJavaScript("$('.contract-header__menu .dropdown-menu.dropdown-menu-right a:contains(\"Reassign\")')[0].click()");
+
+        logger.info("Reassign Chief Negotiator was clicked...");
+
+        return new ReassignChiefNegotiator();
+    }
+
+    /**
+     * This option is available only for managed contracts
+     */
+    public TerminateContract clickTerminateContract()
+    {
+        Selenide.executeJavaScript("$('.contract-header__menu .dropdown-menu.dropdown-menu-right a:contains(\"Terminate\")')[0].click()");
+
+        logger.info("Terminate contract was clicked...");
+
+        return new TerminateContract(contractName);
     }
 }

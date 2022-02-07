@@ -14,7 +14,7 @@
     </test>
 
     <test name="AT-87: CCN // READY FOR SIGNATURE button availability" preserve-order="true">
-        <parameter name="contractName" value="CCN: READY FOR SIGNATURE button contract"/>
+        <parameter name="contractNameExecuted" value="CCN: READY FOR SIGNATURE button contract"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.ccn_tests.at87.CreateContractUploadDocAndMakeDiscussion"/>

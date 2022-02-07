@@ -68,7 +68,7 @@ public class CreateAmendmentAndCheckFields
             Thread.sleep(500);
         }
 
-        contractInformationAfterAmend.clickSave();
+        contractInformationAfterAmend.clickSaveFromAmendment();
         Thread.sleep(5_000);
 
         ContractInformation contractInformation = new OpenedContract(true).clickContractInfo();

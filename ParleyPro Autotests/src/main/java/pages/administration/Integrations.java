@@ -2,12 +2,15 @@ package pages.administration;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import forms.DocuSign;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class Integrations
 {
+    private SelenideElement docuSignConnectButton        = $(".integrations-docusign__status");
+
     private SelenideElement googleDriveOwnerEmailField   = $("input[data-label='Drive Owner Email']");
     private SelenideElement googleDrivePPUserField       = $(".integrations-google-drive input[placeholder*=\"Select a user\"]");
     private SelenideElement googleDriveBackupFolderField = $(".integrations-google-drive input[data-label=\"Backup Folder\"]");
@@ -72,5 +75,23 @@ public class Integrations
         getGoogleDriveSaveButton.shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("SAVE button was clicked");
+    }
+
+    public DocuSign clickConnectDocuSign()
+    {
+        docuSignConnectButton.click();
+
+        logger.info("DocuSign CONNECT button was clicked");
+
+        return new DocuSign();
+    }
+
+    public void clickDisconnectDocuSign()
+    {
+        docuSignConnectButton.click();
+
+        logger.info("DocuSign DISCONNECT button was clicked");
+
+        $(".spinner").should(Condition.disappear);
     }
 }

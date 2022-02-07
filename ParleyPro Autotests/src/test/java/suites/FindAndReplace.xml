@@ -18,7 +18,7 @@
             <class name="tests.find_and_replace.at191.UploadDoc"/>
             <class name="tests.find_and_replace.at191.MakeReplaceAndCheck"/>
             <class name="tests.find_and_replace.at191.AcceptPostAndCheckFont"/>
-            <class name="tests.find_and_replace.at191.CleanUp"/>
+            <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
     </test>

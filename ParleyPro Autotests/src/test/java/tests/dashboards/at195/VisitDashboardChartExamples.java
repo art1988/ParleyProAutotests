@@ -1,7 +1,11 @@
 package tests.dashboards.at195;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Issues;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -22,6 +26,9 @@ public class VisitDashboardChartExamples
 
 
     @Test
+    @Issues({
+            @Issue("PAR-15275")
+    })
     public void visitDashboardChartExamples() throws InterruptedException
     {
         logger.info("Opening /dashboard-chart-examples...");
@@ -31,7 +38,17 @@ public class VisitDashboardChartExamples
         Thread.sleep(3_000);
 
         logger.info("Making sure that there is no 'No data available' label on page...");
-        softAssert.assertTrue(Selenide.executeJavaScript("return $('span:contains(\"No data\")').length == 0"), "Page has 'No data available' label !!!");
+        ElementsCollection charts = $$(".diagram-container");
+        for(SelenideElement chart : charts)
+        {
+            // Skip 'Number of Requests per Week **' chart
+            if( chart.find(".is-empty").closest(".diagram").find(".diagram__header").has(Condition.text("Number of Requests")) )
+            {
+                continue;
+            }
+
+            softAssert.assertFalse(chart.find(".is-empty").isDisplayed(), "Chart " + chart + " has 'No data available' label !!!");
+        }
 
         logger.info("Making sure that there is no grey screen on page...");
         softAssert.assertTrue(Selenide.executeJavaScript("return $('.dashboard__body').find(\".error-boundary\").length == 0"), "There is at least one grey screen for dashboard on page !!!");

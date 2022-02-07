@@ -6,7 +6,6 @@ import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
-import io.qameta.allure.Description;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.testng.Assert;

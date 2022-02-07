@@ -53,7 +53,7 @@ public class AmendSignedContract
         softAssert.assertAll();
         Screenshoter.makeScreenshot();
 
-        contractInformation.clickSave();
+        contractInformation.clickSaveFromAmendment();
         AddDocuments addDocuments = new AddDocuments();
 
         softAssert.assertEquals(addDocuments.getContractTitle(), "Executed Signed-A", "Contract title is wrong !!!");

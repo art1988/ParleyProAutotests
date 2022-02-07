@@ -16,7 +16,6 @@ import java.io.File;
 
 import static com.codeborne.selenide.Selenide.$;
 import static constants.SideBarItems.*;
-import static constants.SideBarItems.DASHBOARD;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class AddRequest

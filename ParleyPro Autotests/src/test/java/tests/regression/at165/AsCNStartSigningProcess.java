@@ -40,7 +40,7 @@ public class AsCNStartSigningProcess
 
         OpenedContract openedContract = new OpenedContract();
 
-        openedContract.switchDocumentToSign("AT-14").clickStart();
+        openedContract.switchDocumentToSign("AT-14", false).clickStart();
 
         logger.info("Assert that file was downloaded...");
         Thread.sleep(4_000);

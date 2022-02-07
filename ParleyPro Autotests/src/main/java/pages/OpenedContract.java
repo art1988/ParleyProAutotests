@@ -49,7 +49,7 @@ public class OpenedContract
     }
 
     /**
-     * Use this constructor in case if opened contract page was scrolled so no headings are not visible
+     * Use this constructor in case if opened contract page was scrolled so that headings are not visible
      * @param disableInitialAssert
      */
     public OpenedContract(boolean disableInitialAssert)
@@ -123,7 +123,7 @@ public class OpenedContract
         logger.info("NEGOTIATE was clicked");
     }
 
-    public SignContract switchDocumentToSign(String documentName)
+    public SignContract switchDocumentToSign(String documentName, boolean integrationEnabled)
     {
         String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
 
@@ -139,7 +139,7 @@ public class OpenedContract
 
         logger.info("SIGN was clicked");
 
-        return new SignContract(contractName.text());
+        return new SignContract(contractName.text(), integrationEnabled);
     }
 
     /**

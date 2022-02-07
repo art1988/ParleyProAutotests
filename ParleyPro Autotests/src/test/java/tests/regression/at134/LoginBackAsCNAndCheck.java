@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OpenedContract;
-import pages.OpenedDiscussion;
 import pages.subelements.CKEditorActive;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;

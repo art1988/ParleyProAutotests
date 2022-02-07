@@ -113,6 +113,33 @@ public class ContractInfo
         logger.info("The following Expiration date was set: " + date);
     }
 
+    public void setExpirationEmailTo(String email) throws InterruptedException
+    {
+        WebElement expirationEmailToInput = Selenide.executeJavaScript("return $('label:contains(\"Expiration email\")').parent().find(\"input\")[0]");
+
+        expirationEmailToInput.sendKeys(email);
+        Thread.sleep(500);
+        $(expirationEmailToInput).pressEnter();
+        Thread.sleep(1_000);
+
+        logger.info("Expiration email to was set as: " + email);
+    }
+
+    /**
+     * Set 'Notification' field.
+     * Become required after filling 'Expiration email to'.
+     * @param val may be '1 day', '3 days', ..., '3 months', '6 months'
+     */
+    public void setNotification(String val)
+    {
+        $("input[data-label='Notification']").click(); // expand dropdown
+
+        // select value
+        Selenide.executeJavaScript("$('input[data-label=\"Notification\"]').closest('.multi-select').find(\".dropdown-menu\").find(\"span:contains('" + val + "')\").click()");
+
+        $("input[data-label='Notification']").click(); // collapse dropdown
+    }
+
     public void setInitialTerm(String initialTermVal)
     {
         WebElement initialTermInput = Selenide.executeJavaScript("return $('label:contains(\"Initial term\")').parent().find(\"input\")[0]");

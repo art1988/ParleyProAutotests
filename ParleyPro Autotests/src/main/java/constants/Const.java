@@ -18,11 +18,11 @@ public class Const
     public static final User   USER_GREG                     = new User("Greg", "Smith", "arthur.khasanov+greg@parleypro.com", "Parley650!");
     public static final User   USER_MARY                     = new User("Mary", "Jones", "arthur.khasanov+mary@parleypro.com", "Parley650!");
 
-    /** Predefined user with all roles except Requester */
+    /** Predefined user with all roles */
     public static final User   USER_FELIX                    = new User("Felix", "Wilson", "arthur.khasanov+felix@parleypro.com", "Parley650!");
 
     public static final User   EVHEN_AT50_USER               = new User("Parley", "Pro", "yevhen.uvin+at50@parleypro.com", "Parley650!");
-    public static final User   EVHEN_TRACKCHANGES_USER       = new User("Parley", "Pro", "yevhen.uvin+trackchanges@parleypro.com", "Parley650!");
+    public static final User   TRACKCHANGES_USER             = new User("Arthur", "Trackchanges", "arthur.khasanov+trackchanges@parleypro.com", "Parley650!");
 
     public static final User   Aaron_Aaronson                = new User("Aaron", "Aaronson", "arthur.khasanov+aaron.aaronson@parleypro.com", "Parley650!");
     public static final User   Bartholomew_Aaronson          = new User("Bartholomew", "Aaronson", "arthur.khasanov+bartholomew.aaronson@parleypro.com", "Parley650!");
@@ -64,6 +64,8 @@ public class Const
     public static final File   TEMPLATE_AT135                = new File(System.getProperty("user.dir") + "/Documents/AT-135_Template_identical.docx");
     public static final File   TEMPLATE_AT164                = new File(System.getProperty("user.dir") + "/Documents/Template_AT-164-Manufacturing_Agreement.docx");
     public static final File   TEMPLATE_TO_UPLOAD_OVER_AT164 = new File(System.getProperty("user.dir") + "/Documents/SimpleTemplate_Word_formatting_AT-164.docx");
+    public static final File   TEMPLATE_AT213                = new File(System.getProperty("user.dir") + "/Documents/AT_213_Supply Agreement_DEBUG_.docx");
+    public static final File   TEMPLATE_AT216                = new File(System.getProperty("user.dir") + "/Documents/AT_216_NAM_APLL Master Services Agreement.docx");
 
     public static final File   REGRESSION_DOC_AT83_BDOC1     = new File(System.getProperty("user.dir") + "/Documents/bdoc1.docx");
     public static final File   REGRESSION_DOC_AT83_BDOC2     = new File(System.getProperty("user.dir") + "/Documents/bdoc2.docx");
@@ -93,6 +95,9 @@ public class Const
     public static final File   TRACK_CHANGES_AT110_V3        = new File(System.getProperty("user.dir") + "/Documents/AT110/V6 Acorns Engagement Letter-CNM_v3.docx");
     public static final File   TRACK_CHANGES_AT110_V4        = new File(System.getProperty("user.dir") + "/Documents/AT110/V6 Acorns Engagement Letter-CNM_v4.docx");
 
+    public static final File   TRACK_CHANGES_CLASSIC_AT206    = new File(System.getProperty("user.dir") + "/Documents/AT_206_eGain Master Agreement LM edits July_9.docx");
+    public static final File   TRACK_CHANGES_CLASSIC_AT206_V2 = new File(System.getProperty("user.dir") + "/Documents/AT_206_eGain Master Agreement LM edits July 9 (SS07132021) Updated v2.docx");
+
     public static final File   DOCUMENT_AT65_GLUE            = new File(System.getProperty("user.dir") + "/Documents/Dynatrace_Vendor_Addendum.docx");
     public static final File   DOCUMENT_AT65_GLUE_V2         = new File(System.getProperty("user.dir") + "/Documents/Dynatrace_Vendor_Addendum_v2.docx");
 
@@ -111,8 +116,11 @@ public class Const
     public static final File   DOC_2_AT185                   = new File(System.getProperty("user.dir") + "/Documents/AT185-Lists-D2.docx");
 
     public static final File   DOC_FORMATTING_AT190          = new File(System.getProperty("user.dir") + "/Documents/AT_190-SoW_CASS_Hybrid-Platform_2022_from Patrick.docx");
+    public static final File   DOC_AT199_DOWNLOAD            = new File(System.getProperty("user.dir") + "/Documents/D&B Hoovers - Order Agreement for.docx");
 
     public static final File   AVATAR_IMG_SAMPLE             = new File(System.getProperty("user.dir") + "/Documents/avatar_user_test.png");
+
+    public static final File   DOC_AT211                     = new File(System.getProperty("user.dir") + "/Documents/MSA - Ray Fortin v2a.docx");
 
     // Directories
     // Directory of docs from clients. Used in Classic
@@ -126,6 +134,10 @@ public class Const
     public static final File   DOWNLOAD_DIR                  = new File(System.getProperty("user.dir") + "/Downloads");
     // Dir for screenshots of failed tests
     public static final File   SCREENSHOTS_DIR               = new File(System.getProperty("user.dir") + "/ScreenshotsOfFailedTests");
+
+    public static final String HOST_GMAIL      = "pop.gmail.com";
+    public static final String USERNAME_GMAIL  = "arthur.khasanov@parleypro.com";
+    public static final String PASSWORD_GMAIL  = "ParGd881";
 
 
     private Const() {}

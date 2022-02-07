@@ -23,15 +23,14 @@ public class ManipulateWithTemplates
     private static Logger logger = Logger.getLogger(ManipulateWithTemplates.class);
 
     @Test(priority = 1)
-    public void publishAllTemplates() throws InterruptedException
+    public void publishAllTemplates()
     {
         TemplatesPage templatesPage = new DashboardPage().getSideBar().clickTemplates(false);
 
-        for( int i = 0; i < $$(".templates-board__list tbody .template__title").size(); i++ )
+        String[] templatesToPublish = {"Template_AT-77_dummy", "Template_AT-86_text_cut_off", "Template_AT48"};
+        for( int i = 0; i < templatesToPublish.length; i++ )
         {
-            Selenide.executeJavaScript("$('.templates-board__list tbody .template__title').eq(" + i + ").find(\".template__belongs\").detach()"); // remove counter near with title
-            templatesPage.selectTemplate($$(".templates-board__list tbody .template__title").get(i).getText()).clickPublishButton(); // selects and publish
-            Thread.sleep(500);
+            templatesPage.selectTemplate(templatesToPublish[i]).clickPublishButton(); // selects and publish
         }
 
         logger.info("Assert that all templates become published...");

@@ -87,4 +87,64 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-175: Request email redirects to wrong contract" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.requests.at175.PreSetup"/>
+            <class name="tests.requests.at175.AddRequest"/>
+            <class name="tests.requests.at175.AddRandomContract"/>
+            <class name="tests.requests.at175.GetEmailAndCheckRedirect"/>
+            <class name="tests.requests.at175.CleanUp"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-210: Request cannot be converted to a contract after document is deleted" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.requests.at210.PreSetup"/>
+            <class name="tests.requests.at210.AddRequestUploadAndDeleteDoc"/>
+            <class name="tests.requests.at210.ConvertRequestToContract"/>
+            <class name="tests.requests.at210.CleanUp"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-212: Marvell: Requester should be able to update Request form but are not able to" preserve-order="true">
+        <parameter name="contractName" value="Request_AT-212"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.requests.at212.PreSetup"/>
+            <class name="tests.requests.at212.LoginAsRequesterAddRequestUpdateValidate"/>
+            <class name="tests.requests.at212.CleanUp"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-215: Marvell: User with full permissions does not see contract converted from request" preserve-order="true">
+        <parameter name="contractName" value="AT-215 Request"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.requests.at215.PreSetup"/>
+            <class name="tests.requests.at215.CreateRequestAndReassignCN"/>
+            <class name="tests.requests.at215.AsCNConvertRequestToContract"/>
+            <class name="tests.requests.at215.AsUserWithFullRightsCheckPresenceOfContract"/>
+            <class name="tests.requests.at215.CleanUp"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-219: Can not delete contract if requester user was deleted" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.requests.at219.PreSetup"/>
+            <class name="tests.requests.at219.LoginAsRequesterAndSubmitRequest"/>
+            <class name="tests.requests.at219.AsCNDeleteAndCancel"/>
+            <class name="tests.requests.at219.CleanUp"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>

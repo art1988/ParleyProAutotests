@@ -96,4 +96,38 @@
             <class name="tests.Logout"/>
         </classes>
     </test>
+
+    <test name="AT-207: Template not found when Ctrl+V its title into search" preserve-order="true">
+        <parameter name="templateName" value="Template_AT48"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.templates.at207.AddTemplateAndSearch"/>
+            <class name="tests.DeleteTemplate"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-213: Error 'Tag 'NUM' is not well-formed. Token 'NUM' is unexpected.' when creating from template" preserve-order="true">
+        <parameter name="contractName" value="AT-213_Tag_NUM"/>
+        <parameter name="templateName" value="AT_213_Supply Agreement_DEBUG_"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.templates.at213.AddTemplateAndMakeDocument"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.DeleteTemplate"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-216: Failed to process Template" preserve-order="true">
+        <parameter name="contractName" value="AT-216: Failed to process Template"/>
+        <parameter name="templateName" value="AT_216_NAM_APLL Master Services Agreement"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.templates.at216.AddTemplateAndMakeDocument"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.DeleteTemplate"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
 </suite>
