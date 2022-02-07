@@ -50,41 +50,7 @@ jobs:
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
 
-      - run: sleep 10
-
-      - run:
-          name: Run Popovers suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Popovers.xml
-          no_output_timeout: 20m
-
-      - run: sleep 10
-
-      - run:
-          name: Run Amendment suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Amendment.xml
-          
-      - run: sleep 10
       
-      - run:
-          name: Run Contract Info suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractInfo.xml
-          
-      - run: sleep 10
-      
-      - run:
-          name: Run Find and Replace suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/FindAndReplace.xml
-      
-      - run: sleep 10
-    
-      - run:
-          name: Run Customer Specific Parameters suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CustomerSpecificParameters.xml
           
 
 
