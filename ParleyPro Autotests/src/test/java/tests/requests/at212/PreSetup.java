@@ -36,7 +36,7 @@ public class PreSetup
 
         // reopen user and check that both roles are in place
         AddNewUser addNewUser = sideBar.clickAdministration().clickManageUsersTab().clickActionMenu("Requester_User ln").clickEdit();
-        $$(".user-edit-roles__role .Select-value-label").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("Contract Manager", "Requester"));
+        $$(".user-edit-roles__role .new-select__single-value").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("Contract Manager", "Requester"));
         addNewUser.clickCancel();
     }
 
