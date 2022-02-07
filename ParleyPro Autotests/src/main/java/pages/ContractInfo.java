@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import constants.FieldType;
 import forms.ApproveRequest;
 import forms.delete.DeleteContract;
 import org.apache.log4j.Logger;
@@ -324,9 +325,22 @@ public class ContractInfo
      * @param customFieldName name of custom field value of which we want to obtain
      * @return
      */
-    public String getValueFromCustomField(String customFieldName)
+    public String getValueFromCustomField(String customFieldName, FieldType fieldType)
     {
-        return Selenide.executeJavaScript("return $('label:contains(\"" + customFieldName + "\")').parent().find(\"input:visible\").val()");
+        switch (fieldType)
+        {
+            case SELECT:
+                return Selenide.executeJavaScript("return $('label span:contains(\"" + customFieldName + "\")').closest('.new-select').find('.new-select__single-value').text()");
+
+            case MULTI_SELECT:
+                return Selenide.executeJavaScript("return $('input[data-label=\"" + customFieldName + "\"]').val()");
+
+            case TEXT:
+            case DATE:
+                return Selenide.executeJavaScript("return $('.input__label-title:contains(\"" + customFieldName + "\")').closest('div').find('input').val()");
+        }
+
+        return "N/A";
     }
 
     /**

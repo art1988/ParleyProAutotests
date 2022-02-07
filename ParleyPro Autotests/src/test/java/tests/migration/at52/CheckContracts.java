@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
+import constants.FieldType;
 import io.qameta.allure.Description;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -273,12 +274,12 @@ public class CheckContracts
         Selenide.executeJavaScript("$('label:contains(\"Notes\")').parent().find(\"textarea\")[0].scrollIntoView({});");
 
         // Assert Custom fields
-        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select One"), "Yes");
-        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select Two"), "1");
-        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Multi Select"), "A very long long long long long long long long long long long long long long long long long long long long long long long value");
-        Assert.assertEquals(contractInfo.getValueFromCustomField("Some strange date"), "Nov 30, 2020");
-        Assert.assertEquals(contractInfo.getValueFromCustomField("Title"), "Custom Field");
-        Assert.assertEquals(contractInfo.getValueFromCustomField("Value"), "1");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select One", FieldType.SELECT), "Yes");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select Two", FieldType.SELECT), "1");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Multi Select", FieldType.MULTI_SELECT), "A very long long long long long long long long long long long long long long long long long long long long long long long value");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("Some strange date", FieldType.DATE), "Nov 30, 2020");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("Title", FieldType.SELECT), "Custom Field");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("Value", FieldType.TEXT), "1");
         Assert.assertEquals(contractInfo.getNotes(), "Note from me.");
 
         Screenshoter.makeScreenshot();
@@ -300,10 +301,10 @@ public class CheckContracts
         Assert.assertEquals(contractInfo.getExpirationDate(), "");
         Assert.assertEquals(contractInfo.getExpirationEmailTo(), "");
 
-        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select One"), "");
-        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select Two"), "");
-        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Multi Select"), "");
-        Assert.assertEquals(contractInfo.getValueFromCustomField("Some strange date"), "");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select One", FieldType.SELECT), "");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Select Two", FieldType.SELECT), "");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("PE Multi Select", FieldType.MULTI_SELECT), "");
+        Assert.assertEquals(contractInfo.getValueFromCustomField("Some strange date", FieldType.DATE), "");
 
         Assert.assertEquals(contractInfo.getNotes(), "");
 
