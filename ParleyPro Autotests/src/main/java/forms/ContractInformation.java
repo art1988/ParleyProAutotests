@@ -437,10 +437,10 @@ public class ContractInformation
     public void setTag(String tag) throws InterruptedException
     {
         tagsField.setValue(tag);
-        Thread.sleep(1_000); // necessary sleep to preserve order during adding of multiple tags
+        Thread.sleep(500); // necessary sleep to preserve order during adding of multiple tags
 
         tagsField.pressEnter();
-        Thread.sleep(1_000); // the same
+        Thread.sleep(500); // the same
 
         logger.info("Tag " + tag + " was added...");
     }

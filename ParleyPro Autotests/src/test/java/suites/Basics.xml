@@ -15,7 +15,7 @@
         </classes>
     </test>
 
-    <test name="AT-14: Core discussions functionality" preserve-order="true">
+   <!-- <test name="AT-14: Core discussions functionality" preserve-order="true">
         <parameter name="contractName" value="Contract discussions autotest"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -45,7 +45,7 @@
             <class name="tests.basics.at224.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <!--<test name="AT-225(AT-44 and 45): Add new user and update roles in Administration" preserve-order="true">
         <classes>
@@ -55,7 +55,7 @@
         </classes>
     </test>-->
 
-    <test name="AT-61: Deletion and canceling of documents; Terminate executed" preserve-order="true">
+   <!-- <test name="AT-61: Deletion and canceling of documents; Terminate executed" preserve-order="true">
         <parameter name="contractName" value="Contract - [delete and cancel documents AT]"/>
         <parameter name="contractNameExecuted" value="AT-61: terminate me"/>
         <classes>
@@ -77,7 +77,7 @@
             <class name="tests.DeleteContractFromExecuted"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="PDF uploading #1" preserve-order="true">
         <parameter name="contractName" value="Contract lifecycle autotest"/>
