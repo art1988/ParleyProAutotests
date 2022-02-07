@@ -91,7 +91,7 @@
         </classes>
     </test>
 
-    <test name="PDF uploading #2" preserve-order="true">
+    <!--<test name="PDF uploading #2" preserve-order="true">
         <parameter name="contractName" value="Contract lifecycle autotest"/>
         <parameter name="documentName" value="wiki_article.pdf"/>
         <classes>
@@ -153,5 +153,5 @@
             <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
