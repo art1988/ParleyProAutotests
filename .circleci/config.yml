@@ -88,14 +88,6 @@ jobs:
       - run: sleep 10
 
       - run:
-          name: Run Classic suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
-          no_output_timeout: 20m
-
-      - run: sleep 10
-
-      - run:
           name: Run Formatting suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Formatting.xml
@@ -196,12 +188,6 @@ jobs:
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CustomerSpecificParameters.xml
           
-      - run: sleep 10    
-      
-      - run:
-          name: Run Integrations suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Integrations.xml
 
       - save_cache:
           key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}
