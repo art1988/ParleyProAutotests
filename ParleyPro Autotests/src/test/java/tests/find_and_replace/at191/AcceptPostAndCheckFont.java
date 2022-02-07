@@ -79,7 +79,7 @@ public class AcceptPostAndCheckFont
 
         openedContract.clickManageDiscussions().acceptInternalDiscussions().confirmAccept().clickDone();
 
-        Thread.sleep(1_000);
+        Thread.sleep(4_000);
 
         logger.info("Assert that amount of discussions is empty...");
         Assert.assertEquals(openedContract.getAmountOfContractDiscussion(), "none", "Amount of discussions should be empty !!!");
