@@ -375,12 +375,14 @@ public class ContractInformation
         return this;
     }
 
-    public void setRelationType(String relationType)
+    public void setRelationType(String relationType) throws InterruptedException
     {
         SelenideElement input = $$(".modal-content .linked-contracts").filter(Condition.text("Relation type"))
                                                                                 .first().parent().parent().find("input");
         input.sendKeys(relationType);
+        Thread.sleep(1_000);
         input.pressEnter();
+        Thread.sleep(1_000);
 
         logger.info("Relation type was set as: " + relationType);
     }

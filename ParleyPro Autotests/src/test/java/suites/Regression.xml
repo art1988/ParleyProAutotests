@@ -196,7 +196,7 @@
         </classes>
     </test>
 
-    <!--<test name="AT-182: Frontend crashes when user adds comment to existing post" preserve-order="true">
+    <test name="AT-182: Frontend crashes when user adds comment to existing post" preserve-order="true">
         <parameter name="contractName" value="AT-182 CTR"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -288,5 +288,5 @@
             <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 </suite>

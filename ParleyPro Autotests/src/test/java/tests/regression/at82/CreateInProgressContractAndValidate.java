@@ -19,7 +19,7 @@ public class CreateInProgressContractAndValidate
 
     @Test
     @Description("This test verifies that after creating contract with linked one, contract title is not empty.")
-    public void createInProgressContractAndValidate()
+    public void createInProgressContractAndValidate() throws InterruptedException
     {
         ContractInformation contractInformation = new DashboardPage().getSideBar().clickInProgressContracts(true).clickNewContractButton();
 
