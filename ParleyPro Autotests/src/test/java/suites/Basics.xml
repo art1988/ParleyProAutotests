@@ -47,13 +47,13 @@
         </classes>
     </test>
 
-    <test name="AT-225(AT-44 and 45): Add new user and update roles in Administration" preserve-order="true">
+    <!--<test name="AT-225(AT-44 and 45): Add new user and update roles in Administration" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.basics.at225.AddNewUserTest"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="AT-61: Deletion and canceling of documents; Terminate executed" preserve-order="true">
         <parameter name="contractName" value="Contract - [delete and cancel documents AT]"/>
