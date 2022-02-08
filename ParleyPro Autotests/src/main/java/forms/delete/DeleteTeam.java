@@ -17,7 +17,7 @@ public class DeleteTeam
     public DeleteTeam()
     {
         title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Delete team"));
-        $(".modal-body-description").shouldHave(Condition.exactText("Are you sure to delete team"));
+        $(".modal-body-description").shouldHave(Condition.text("Are you sure you want to delete the team"));
     }
 
     public void clickDelete()
