@@ -119,7 +119,7 @@ public class AddNewUser
      */
     public AddNewUser deleteRole(String roleName)
     {
-        Selenide.executeJavaScript("$('.Select-value span:contains(\"" + roleName + "\")').parent().parent().parent().parent().parent().parent().parent().find('.contract-execute-form__remove').click()");
+        Selenide.executeJavaScript("$('.new-select__single-value:contains(\"" + roleName + "\")').parent().parent().parent().parent().parent().parent().find('.contract-execute-form__remove').click()");
 
         logger.info("Role " + roleName + " was removed...");
 
