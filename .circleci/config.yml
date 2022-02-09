@@ -156,21 +156,6 @@ jobs:
       - run: sleep 10
 
       - run:
-          name: Run Migration suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
-
-      - run: sleep 10
-
-      - run:
-          name: Run Popovers suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Popovers.xml
-          no_output_timeout: 20m
-
-      - run: sleep 10
-
-      - run:
           name: Run Amendment suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Amendment.xml
