@@ -37,7 +37,7 @@
         </classes>
     </test>
 
-    <!--<test name="AT-224: New my team user can successfully register" preserve-order="true">
+    <test name="AT-224: New my team user can successfully register" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.basics.at224.AddContractAndShare"/>
@@ -53,7 +53,7 @@
             <class name="tests.basics.at225.AddNewUserTest"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-61: Deletion and canceling of documents; Terminate executed" preserve-order="true">
         <parameter name="contractName" value="Contract - [delete and cancel documents AT]"/>
