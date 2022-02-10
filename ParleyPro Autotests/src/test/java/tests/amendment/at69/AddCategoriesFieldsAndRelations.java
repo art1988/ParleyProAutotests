@@ -80,7 +80,7 @@ public class AddCategoriesFieldsAndRelations
         for( int i = 1; i <= 10; i++ )
         {
             fieldsRelations.addRelatedField("Contract category")
-                           .selectValueForField("Category", "CatTest")
+                           .selectValueForField("Categories", "CatTest")
                            .selectRelatedField("Field" + i)
                            .clickMakeRelated();
         }
@@ -89,7 +89,7 @@ public class AddCategoriesFieldsAndRelations
         for( int i = 1; i <= 10; i++ )
         {
             fieldsRelations.addRelatedField("Contract category")
-                           .selectValueForField("Category", "AmendmentTestcat")
+                           .selectValueForField("Categories", "AmendmentTestcat")
                            .selectRelatedField("Field" + i)
                            .clickMakeRelated();
         }
@@ -97,7 +97,7 @@ public class AddCategoriesFieldsAndRelations
         for( int i = 1; i <= 5; i++ )
         {
             fieldsRelations.addRelatedField("Contract category")
-                           .selectValueForField("Category", "AmendmentTestcat")
+                           .selectValueForField("Categories", "AmendmentTestcat")
                            .selectRelatedField("AmendFld" + i)
                            .clickMakeRelated();
         }

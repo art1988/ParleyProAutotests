@@ -69,7 +69,7 @@ public class AddRequestFieldsAndAddRelatedField
     {
         FieldsRelations fieldsRelations = fieldsTab.clickFieldsRelations();
 
-        AddNewParentField addNewParentFieldForm = fieldsRelations.addNewParentField();
+        AddNewParentField addNewParentFieldForm = fieldsRelations.addNewParentFieldForRequest();
         addNewParentFieldForm.selectParentField("Field1");
         addNewParentFieldForm.clickCreate();
 

@@ -12,7 +12,8 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class FieldsRelations
 {
-    private SelenideElement addNewParentField = $("#add-new-parent-field");
+    private SelenideElement addNewParentFieldRequest = $("#add-new-parent-field_type_request");
+    private SelenideElement addNewParentFieldSummary = $("#add-new-parent-field_type_contract");
 
     private static Logger logger = Logger.getLogger(FieldsRelations.class);
 
@@ -22,9 +23,9 @@ public class FieldsRelations
                 .shouldHave(CollectionCondition.exactTexts("Summary", "Contract Request"));
     }
 
-    public AddNewParentField addNewParentField()
+    public AddNewParentField addNewParentFieldForRequest()
     {
-        addNewParentField.click();
+        addNewParentFieldRequest.click();
 
         logger.info("Add new parent field link was clicked");
 

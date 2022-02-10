@@ -33,8 +33,7 @@ public class AddRequestFieldsAndAddRelations
         contractFieldsTab.createNewFiled("Contract Request", "f2", FieldType.TEXT, false);
 
         FieldsRelations fieldsRelationsTab = fieldsPage.clickFieldsRelations();
-
-        AddNewParentField addNewParentFieldForm = fieldsRelationsTab.addNewParentField();
+        AddNewParentField addNewParentFieldForm = fieldsRelationsTab.addNewParentFieldForRequest();
         addNewParentFieldForm.selectParentField("R1");
         addNewParentFieldForm.clickCreate();
 

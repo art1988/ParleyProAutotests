@@ -26,9 +26,9 @@ public class AddRelatedField
                 .shouldHave(Condition.exactText("Related field"));
 
         $(".modal-body-description").waitUntil(Condition.visible, 30_000)
-                .shouldHave(or("message on popup", Condition.exactText("Select field value and relevant field you wish to relate it to"),
-                                                         Condition.exactText("Select the category and related field."),
-                                                         Condition.exactText("Select the type and related field.")));
+                .shouldHave(or("message on popup", Condition.exactText("Select the Custom field and related field."),
+                                                         Condition.exactText("Select the categories and related field."),
+                                                         Condition.exactText("Select the types and related field.")));
     }
 
     /**
