@@ -21,7 +21,7 @@ public class FillSettingsForGoogleDriveAndSave
     private static Logger logger = Logger.getLogger(FillSettingsForGoogleDriveAndSave.class);
 
     @Test(priority = 1)
-    public void fillSettingsForGoogleDriveAndSave()
+    public void fillSettingsForGoogleDriveAndSave() throws InterruptedException
     {
         Integrations integrationsTab = new DashboardPage().getSideBar().clickAdministration().clickIntegrationsTab();
 
@@ -35,6 +35,7 @@ public class FillSettingsForGoogleDriveAndSave
         integrationsTab.setGoogleDriveBackupFolder("/subdir/BackupFolderTEST");
         integrationsTab.setGoogleDriveDDTemplate("/templates/DDTemplate");
         integrationsTab.googleDriveSaveSettings();
+        Thread.sleep(1_000);
 
         Assert.assertTrue(Selenide.executeJavaScript("return $('.integrations-google-drive button').is(':disabled')"),
                 "Looks like that SAVE button is still enabled, but shouldn't !!!");
