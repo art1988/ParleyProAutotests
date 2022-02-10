@@ -10,7 +10,7 @@ public class Layout
 {
     public Layout()
     {
-        $(".admin-fields-layout__description").waitUntil(Condition.visible, 7_000)
+        $(".admin-fields-layout__description").shouldBe(Condition.visible)
                 .shouldHave(Condition.exactText("Drag and resize the cells to change layout"));
 
         $$(".admin-fields__title").shouldHave(CollectionCondition.size(3))
