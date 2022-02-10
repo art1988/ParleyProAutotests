@@ -485,9 +485,12 @@ public class ContractInformation
         {
             id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('textarea').attr('inputid')");
 
-            // clear text area field by hitting Ctrl+A + DEL
-            $("textarea[inputid=\"" + id + "\"]").sendKeys(Keys.chord(Keys.CONTROL, "a"));
-            $("textarea[inputid=\"" + id + "\"]").sendKeys(Keys.DELETE);
+            // clear text area field
+            SelenideElement textArea = $("textarea[inputid=\"" + id + "\"]");
+            for( int i = 0; i < 40; i++ )
+            {
+                textArea.sendKeys(Keys.BACK_SPACE);
+            }
 
             $("textarea[inputid=\"" + id + "\"]").sendKeys(value);
         }
