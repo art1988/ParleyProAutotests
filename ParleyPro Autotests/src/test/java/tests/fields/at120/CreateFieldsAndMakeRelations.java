@@ -47,46 +47,46 @@ public class CreateFieldsAndMakeRelations
         FieldsRelations fieldsRelations = fieldsTab.clickFieldsRelations();
 
         fieldsRelations.addRelatedField("Contract category")
-                       .selectValueForField("Categories", "category1")
+                       .selectValueForField("Contract category", "category1")
                        .selectRelatedField("Field1")
                        .clickMakeRelated();
 
         fieldsRelations.addRelatedField("Contract category")
-                       .selectValueForField("Categories", "category1")
+                       .selectValueForField("Contract category", "category1")
                        .selectRelatedField("Field2")
                        .clickMakeRelated();
 
         //
 
         fieldsRelations.addRelatedField("Contract type")
-                       .selectValueForField("Types", "type1")
+                       .selectValueForField("Contract type", "type1")
                        .selectRelatedField("Field1")
                        .clickMakeRelated();
 
         fieldsRelations.addRelatedField("Contract type")
-                       .selectValueForField("Types", "type1")
+                       .selectValueForField("Contract type", "type1")
                        .selectRelatedField("Field3")
                        .clickMakeRelated();
 
         fieldsRelations.addRelatedField("Contract type")
-                       .selectValueForField("Types", "type1")
+                       .selectValueForField("Contract type", "type1")
                        .selectRelatedField("Field6")
                        .clickMakeRelated();
 
         //
 
         fieldsRelations.addRelatedField("Contract type")
-                       .selectValueForField("Types", "type2")
+                       .selectValueForField("Contract type", "type2")
                        .selectRelatedField("Field4")
                        .clickMakeRelated();
 
         fieldsRelations.addRelatedField("Contract type")
-                       .selectValueForField("Types", "type2")
+                       .selectValueForField("Contract type", "type2")
                        .selectRelatedField("Field5")
                        .clickMakeRelated();
 
         fieldsRelations.addRelatedField("Contract type")
-                       .selectValueForField("Types", "type2")
+                       .selectValueForField("Contract type", "type2")
                        .selectRelatedField("Field6")
                        .clickMakeRelated();
 
