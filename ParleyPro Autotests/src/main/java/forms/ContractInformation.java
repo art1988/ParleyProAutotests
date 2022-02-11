@@ -477,7 +477,7 @@ public class ContractInformation
      *              <br/>
      *              For radiobutton - value to set
      */
-    public void setValueForCustomField(String fieldName, FieldType fieldType, String value)
+    public void setValueForCustomField(String fieldName, FieldType fieldType, String value) throws InterruptedException
     {
         String id = "";
 
@@ -536,6 +536,8 @@ public class ContractInformation
             $("#" + id).sendKeys(value);
             $("#" + id).pressEnter(); // to collapse dropdown
         }
+
+        Thread.sleep(500);
     }
 
     /**

@@ -115,18 +115,18 @@ public class AddInProgressContract
         for( int n = 0; n < 14; n++ ) $("#dueDate").sendKeys(Keys.BACK_SPACE); // clean DueDate field
         contractInformation.setDueDate("Feb 29, 2040");
 
-        contractInformation.setContractValue("0");
-        contractInformation.setContractRadioButton("Sell");
-        contractInformation.setMyCompanyTemplate(false);
-        contractInformation.setContractVisibility(); // uncheck
-        contractInformation.setContractingRegion("region2");
-        contractInformation.setContractingCountry("country2");
-        contractInformation.setContractEntity("entity2");
-        contractInformation.setContractingDepartment("department2");
-        contractInformation.setContractCategory("category2");
-        contractInformation.setContractType(new String[]{"type2", "type3"});
+        contractInformation.setContractValue("0"); Thread.sleep(500);
+        contractInformation.setContractRadioButton("Sell"); Thread.sleep(500);
+        contractInformation.setMyCompanyTemplate(false); Thread.sleep(500);
+        contractInformation.setContractVisibility(); Thread.sleep(500); // uncheck
+        contractInformation.setContractingRegion("region2"); Thread.sleep(500);
+        contractInformation.setContractingCountry("country2"); Thread.sleep(500);
+        contractInformation.setContractEntity("entity2"); Thread.sleep(500);
+        contractInformation.setContractingDepartment("department2"); Thread.sleep(500);
+        contractInformation.setContractCategory("category2"); Thread.sleep(500);
+        contractInformation.setContractType(new String[]{"type2", "type3"}); Thread.sleep(500);
 
-        contractInformation.setValueForCustomField("CheckboxFld", FieldType.CHECKBOX, "uncheck");
+        contractInformation.setValueForCustomField("CheckboxFld", FieldType.CHECKBOX, "uncheck"); Thread.sleep(500);
 
         for( int n = 0; n < 14; n++ ) $("#datefld").sendKeys(Keys.BACK_SPACE); // clean custom DateFld before setting new val
         contractInformation.setValueForCustomField("DateFld", FieldType.DATE, "Feb 29, 2032");
