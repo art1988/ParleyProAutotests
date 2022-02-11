@@ -28,7 +28,7 @@ public class CreateContractAndCheckDate
 
     @Test(priority = 1)
     @Description("This test creates new contract and fills 'Effective Date' custom field with 'Jul 1, 2020' value")
-    public void createContract()
+    public void createContract() throws InterruptedException
     {
         ContractInformation contractInformation = new SideBar().clickInProgressContracts(true).clickNewContractButton();
 

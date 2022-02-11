@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class CreateExecutedContract
 {
     @Test(priority = 1)
-    public void createExecutedContract()
+    public void createExecutedContract() throws InterruptedException
     {
         ContractInformation contractInformation = new DashboardPage().getSideBar()
                                                                      .clickExecutedContracts(true)
