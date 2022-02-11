@@ -485,14 +485,15 @@ public class ContractInformation
         {
             id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('textarea').attr('inputid')");
 
-            // clear text area field
             SelenideElement textArea = $("textarea[inputid=\"" + id + "\"]");
-            for( int i = 0; i < 40; i++ )
-            {
-                textArea.sendKeys(Keys.BACK_SPACE);
-            }
 
-            $("textarea[inputid=\"" + id + "\"]").sendKeys(value);
+            // clear text area field by hitting Ctrl+A + DEL
+            textArea.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+
+            // (Ctrl+A+DEL) adds strange square symbol □ Since Chrome v.98 => del this symbol too
+            for( int i = 0; i < 5; i++ ) textArea.sendKeys(Keys.BACK_SPACE);
+
+            textArea.sendKeys(value);
         }
         else if( fieldType.equals(FieldType.TEXT) )
         {

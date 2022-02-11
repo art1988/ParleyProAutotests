@@ -452,14 +452,17 @@ public class OpenedContract
 
         $("button[class*='rename__icon']").click();
 
-        // delete previous text
-        $("form[class='rename-form'] textarea").sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        $("form[class='rename-form'] textarea").sendKeys(Keys.DELETE);
 
-        $("form[class='rename-form'] textarea").sendKeys(newNameOfContract);
+        SelenideElement contractNameTextArea = $("form[class='rename-form'] textarea");
+
+        // delete previous text
+        contractNameTextArea.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        // (Ctrl+A+DEL) adds strange square symbol □ Since Chrome v.98 => del this symbol too
+        for( int i = 0; i < 5; i++ ) contractNameTextArea.sendKeys(Keys.BACK_SPACE);
+        contractNameTextArea.sendKeys(newNameOfContract);
 
         $(".rename-form__buttons button[type='submit']").click(); // click blue button to accept
-        $(".spinner").waitUntil(Condition.disappear, 20_000); // wait until spinner will disappear
+        $(".spinner").should(Condition.disappear); // wait until spinner will disappear
     }
 
     /**
