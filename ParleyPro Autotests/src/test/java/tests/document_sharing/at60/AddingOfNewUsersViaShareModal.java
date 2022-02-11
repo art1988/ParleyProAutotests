@@ -1,4 +1,4 @@
-package tests.document_sharing;
+package tests.document_sharing.at60;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
