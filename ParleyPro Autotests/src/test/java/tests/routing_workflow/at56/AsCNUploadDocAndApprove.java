@@ -22,7 +22,7 @@ public class AsCNUploadDocAndApprove
 {
     @Test(priority = 1)
     @Description("This test uploads doc and approves as USERCN.")
-    public void asCNUploadDocAndApprove()
+    public void asCNUploadDocAndApprove() throws InterruptedException
     {
         ContractInformation contractInformation = new DashboardPage().getSideBar()
                                                                      .clickInProgressContracts(true)
