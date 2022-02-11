@@ -24,7 +24,7 @@ public class CreateContractUploadDocDeactivateUserAndCheck
     private static Logger logger = Logger.getLogger(CreateContractUploadDocDeactivateUserAndCheck.class);
 
     @Test(priority = 1)
-    public void createContractAndUploadDoc()
+    public void createContractAndUploadDoc() throws InterruptedException
     {
         ContractInformation contractInformation = new DashboardPage().getSideBar()
                                                                      .clickInProgressContracts(true)
