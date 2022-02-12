@@ -36,31 +36,32 @@ public class RemoveFieldAndCheckUI
         contractFields.removeField("Field2").clickDelete();
         fieldsTab.clickSave();
 
-        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Contract fields have been saved."));
+        $(".notification-stack").should(Condition.disappear);
         Screenshoter.makeScreenshot();
-        Thread.sleep(1_000);
 
         fieldsTab.clickNext();
         Thread.sleep(1_000);
 
         logger.info("Assert that we still can see Field Relations tab...");
         new FieldsRelations();
-        $$(".admin-fields-relations__field-head").shouldHave(CollectionCondition.size(2))
-                .shouldHave(CollectionCondition.textsInAnyOrder("Contract category\nadd\nAdd related field", "Contract type\nadd\nAdd related field"));
+        $$(".admin-fields-relations__field-head").shouldHave(CollectionCondition.size(6));
 
         Screenshoter.makeScreenshot();
     }
 
     @Test(priority = 2)
-    public void cleanUp()
+    public void cleanUp() throws InterruptedException
     {
         logger.info("Go back to CONTRACT FIELDS and remove Field1...");
 
         ContractFields contractFields = fieldsTab.clickContractFields();
+        Thread.sleep(1_000);
 
         contractFields.removeField("Field1").clickDelete();
         fieldsTab.clickSave();
 
-        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Contract fields have been saved."));
+        $(".notification-stack").should(Condition.disappear);
     }
 }

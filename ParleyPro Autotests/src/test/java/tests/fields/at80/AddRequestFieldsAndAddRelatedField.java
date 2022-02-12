@@ -82,7 +82,11 @@ public class AddRequestFieldsAndAddRelatedField
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
 
         logger.info("Assert that related field was added...");
-        Assert.assertEquals($("div[class^='styles__field_value_header']").getText(), "Fields related to \nValue1\n value\n1\narrow_drop_down");
+        Assert.assertEquals($(".admin-fields-relations__field-category").getText(), "Fields related to \n" +
+                "Value1\n" +
+                " Field1\n" +
+                "1\n" +
+                "arrow_drop_down");
 
         Screenshoter.makeScreenshot();
     }
