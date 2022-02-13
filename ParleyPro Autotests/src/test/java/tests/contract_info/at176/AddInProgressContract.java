@@ -136,7 +136,8 @@ public class AddInProgressContract
         Selenide.executeJavaScript("$('input[data-id=\"multiselectfld\"]').closest('div[class=\"input\"]').next().find(\".multi-select__option:contains('MS2')\").find(\"span\").click()"); // set new val MS2
         $("input[data-id='multiselectfld']").click(); // collapse MULTI_SELECT field
 
-        contractInformation.setValueForCustomField("NumericFld", FieldType.NUMERIC, "0");
+        Thread.sleep(500);
+        contractInformation.setValueForCustomField("NumericFld", FieldType.NUMERIC, "0"); Thread.sleep(500);
 
         for( int n = 0; n < 20; n++ ) $("#decimalfld").sendKeys(Keys.BACK_SPACE); // clean decimal val
         contractInformation.setValueForCustomField("DecimalFld", FieldType.DECIMAL, "0.01");

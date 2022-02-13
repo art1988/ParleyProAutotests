@@ -522,8 +522,9 @@ public class ContractInformation
         else if( fieldType.equals(FieldType.NUMERIC) )
         {
             id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('data-id')");
-            Selenide.executeJavaScript("$('#" + id + "').val('')");
-            $("#" + id).sendKeys(value);
+            SelenideElement numericField = $("#" + id);
+            for( int i = 0; i < 20; i++ ) numericField.sendKeys(Keys.BACK_SPACE);
+            numericField.sendKeys(value);
         }
         else if( fieldType.equals(FieldType.DECIMAL) )
         {
