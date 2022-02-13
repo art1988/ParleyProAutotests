@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Contract Info suite" configfailurepolicy="continue">
-    <test name="AT-169: Post-execution won't save if auto-renewal cleared and re-filled" preserve-order="true">
+<!--    <test name="AT-169: Post-execution won't save if auto-renewal cleared and re-filled" preserve-order="true">
         <parameter name="contractNameExecuted" value="AT-169 auto-renewal"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -11,7 +11,7 @@
             <class name="tests.DeleteContractFromExecuted"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="AT-176: Contract summary editing" preserve-order="true">
         <parameter name="contractName" value="TEST aliquam ut consequuntur sint. Velit placeat et veniam sint veritatis esse quidem. Iusto consequatur est fuga at voluptas molestias distinctio. Magni saepe quia qui ipsam quis voluptas qui. Exercitationem sit dolor ullam dolorum enim eaque enim. Optio ratione corrupti eos aut ut ratione velit ea"/>
@@ -25,7 +25,7 @@
         </classes>
     </test>
 
-    <test name="AT-187: Error when trying to add counterparty additional contact" preserve-order="true">
+<!--    <test name="AT-187: Error when trying to add counterparty additional contact" preserve-order="true">
         <parameter name="contractName" value="AT-187 CONTRACT"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -33,5 +33,5 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
