@@ -57,6 +57,11 @@ public class ShareForm
         return new RoleSelectorTooltip(username);
     }
 
+    /**
+     * Clicks by Enable/Disable tumbler for given username/team
+     * @param username
+     * @return
+     */
     public ShareForm disableUser(String username)
     {
         Selenide.executeJavaScript("$('.active .manage-users-user__fullname:contains(\"" + username + "\")').parent().parent().next().next().find(\".tumbler\").click()");
