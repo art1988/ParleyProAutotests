@@ -196,8 +196,7 @@ public class AddInProgressContract
         softAssert.assertEquals($("#datefld").val(), "Feb 29, 2032", "Date field wasn't saved !!!");
         softAssert.assertEquals($("input[data-id='multiselectfld']").val(), "MS2", "Multi Select field wasn't saved !!!");
 
-        //TODO: fix this after fixing of PAR-14899
-        //softAssert.assertEquals($("input[data-id='numericfld']").val(), "0", "Numeric field wasn't saved !!!");
+        softAssert.assertEquals($("input[data-id='numericfld']").val(), "0", "Numeric field wasn't saved !!!");
 
         softAssert.assertEquals($("input[data-id='decimalfld']").val(), "0.01", "Decimal field wasn't saved !!!");
         softAssert.assertTrue(Selenide.executeJavaScript("return $('.radio-group__label-text:contains(\"RadioFld\")').closest(\".radio-group\").find(\"input\")[1].checked"), "Radio button R2 should be selected !!!");
