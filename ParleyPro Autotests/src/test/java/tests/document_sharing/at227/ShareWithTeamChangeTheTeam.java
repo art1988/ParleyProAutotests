@@ -9,6 +9,7 @@ import forms.add.AddNewTeam;
 import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
@@ -18,8 +19,7 @@ import pages.subelements.SideBar;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -80,9 +80,6 @@ public class ShareWithTeamChangeTheTeam
         shareContractWithTEAM1();
         addOneMoreUserToTeam();
         returnToTheContractAndShareAgain();
-
-        // cleanup
-        removeTeam();
     }
 
     @Step("Share the contract with TEAM1")
@@ -114,20 +111,21 @@ public class ShareWithTeamChangeTheTeam
     {
         sideBar.clickInProgressContracts(false).selectContract("AT-227 CNTR");
 
-        OpenedContract openedContract = new OpenedContract();
-
-        ShareForm shareForm = openedContract.clickSHARE("AT-14");
+        ShareForm shareForm = new OpenedContract().clickSHARE("AT-14");
 
         logger.info("Checking that Share form has been opened and participants are in the list...");
         Assert.assertNotNull(shareForm, "Unable to open SHARE form !!!");
         $$(".manage-users-user__fullname").shouldHave(CollectionCondition.size(2))
                 .shouldHave(CollectionCondition.textsInAnyOrder("autotest_cn fn ln", "TEAM1"));
 
+        shareForm.disableUser("TEAM1");
+        $$(".state_disabled").shouldHave(CollectionCondition.size(1)).first().shouldBe(enabled, visible);
+
         Screenshoter.makeScreenshot();
         shareForm.clickDone();
     }
 
-    @Step("Cleanup TEAM1")
+    @AfterMethod(description = "Cleanup TEAM1")
     public void removeTeam()
     {
         sideBar.clickAdministration().clickTeamsTab().clickActionMenu("TEAM1").clickDelete().clickDelete();
