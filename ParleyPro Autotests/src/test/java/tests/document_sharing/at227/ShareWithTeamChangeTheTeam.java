@@ -10,6 +10,7 @@ import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
@@ -32,7 +33,6 @@ public class ShareWithTeamChangeTheTeam
     private static Logger logger = Logger.getLogger(ShareWithTeamChangeTheTeam.class);
 
 
-    @Step("Add TEAM1 with 2 users: Mary and Greg")
     public void addTeamWithTwoUsers()
     {
         sideBar = new DashboardPage().getSideBar();
@@ -50,7 +50,6 @@ public class ShareWithTeamChangeTheTeam
         $(byText("TEAM1")).shouldBe(visible);
     }
 
-    @Step("Add contract and upload simple my team document")
     public void addContract()
     {
         ContractInformation contractInformation = sideBar.clickInProgressContracts(true).clickNewContractButton();
@@ -69,14 +68,16 @@ public class ShareWithTeamChangeTheTeam
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("DRAFT\n(1)", "DRAFT"));
     }
 
+    @BeforeMethod(description = "Add TEAM1 with 2 users: Mary and Greg; Add contract and upload simple my team document")
+    public void preSetup()
+    {
+        addTeamWithTwoUsers();
+        addContract();
+    }
+
     @Test
     public void shareWithTeam() throws InterruptedException
     {
-        // pre-setup
-        addTeamWithTwoUsers();
-        addContract();
-
-        // main flow
         shareContractWithTEAM1();
         addOneMoreUserToTeam();
         returnToTheContractAndShareAgain();
