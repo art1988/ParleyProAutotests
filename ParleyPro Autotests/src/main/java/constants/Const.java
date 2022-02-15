@@ -123,6 +123,7 @@ public class Const
     public static final File   AVATAR_IMG_SAMPLE             = new File(System.getProperty("user.dir") + "/Documents/avatar_user_test.png");
 
     public static final File   DOC_AT211                     = new File(System.getProperty("user.dir") + "/Documents/MSA - Ray Fortin v2a.docx");
+    public static final File   DOC_AT229_CLAUSE              = new File(System.getProperty("user.dir") + "/Documents/AT-229-test_clauses.docx");
 
     // Directories
     // Directory of docs from clients. Used in Classic
