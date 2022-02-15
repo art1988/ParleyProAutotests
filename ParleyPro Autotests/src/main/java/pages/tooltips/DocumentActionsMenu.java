@@ -37,7 +37,7 @@ public class DocumentActionsMenu
         Waiter.smartWaitUntilVisible("$('.document__menu .dropdown-menu.dropdown-menu-right:visible')");
 
         String allMenuItems = Selenide.executeJavaScript("return $('.document__menu .dropdown-menu.dropdown-menu-right:visible li[role=\"presentation\"]').text()");
-        Assert.assertTrue(allMenuItems.contains("DownloadCancel"));
+        Assert.assertTrue(allMenuItems.contains("DownloadCancel") || allMenuItems.contains("DownloadDelete"));
     }
 
     public DocumentFormattingOption clickFormat()
