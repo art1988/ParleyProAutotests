@@ -46,7 +46,7 @@ public class AddTemplateAndMakeDocument
 
     @Test(priority = 2)
     @Description("Final check of test happens here. Test verifies that document was successfully added from template.")
-    public void makeDocumentOutOfTemplate()
+    public void makeDocumentOutOfTemplate() throws InterruptedException
     {
         ContractInformation contractInformationForm = sideBar.clickInProgressContracts(true).clickNewContractButton();
 
@@ -66,6 +66,7 @@ public class AddTemplateAndMakeDocument
 
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("DRAFT\n(1)", "DRAFT"));
         $(".document__body-content").shouldBe(Condition.visible);
+        Thread.sleep(1_000);
         Assert.assertTrue(Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"SUPPLY AGREEMENT\")').length === 1) && " +
                 "($('.document-paragraph__content-text:contains(\"SUPPLY AGREEMENT\")').length === 1)"));
         Screenshoter.makeScreenshot();
