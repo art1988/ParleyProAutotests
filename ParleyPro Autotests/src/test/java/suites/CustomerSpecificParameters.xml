@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Customer specific parameters suite" configfailurepolicy="continue">
-    <test name="AT-223: Liberty Mutual custom postexec default" preserve-order="true">
+<!--    <test name="AT-223: Liberty Mutual custom postexec default" preserve-order="true">
         <parameter name="contractNameExecuted" value="AT-223 executed postExecutionForLibertyMutual"/>
         <classes>
             <class name="tests.customer_params.at223.AddPostExecutionParam"/>
@@ -10,6 +10,18 @@
             <class name="tests.customer_params.at223.AddExecutedAndCheck"/>
             <class name="tests.DeleteContractFromExecuted"/>
             <class name="tests.customer_params.at223.RemovePostExecutionParam"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+    
+    <test name="AT-229: Clause Library" preserve-order="true">
+        <parameter name="contractName" value="AT-229_Clause_CTR"/>
+        <classes>
+            <class name="tests.customer_params.at229.AddParam"/>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.customer_params.at229.CheckClause"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.customer_params.at229.RemoveParam"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
