@@ -3,6 +3,7 @@ package pages.subelements;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import forms.ClauseLibrary;
 import forms.StartExternalDiscussion;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
@@ -16,6 +17,7 @@ public class CKEditorActive
 {
     private SelenideElement postButton   = $("#create-discussion__submit, #create-post__submit, .js-dicussion-post-submit");
     private SelenideElement cancelButton = $("button[class*='create-discussion__cancel']");
+    private SelenideElement clauseButton = $(".create-discussion__clause");
 
 
     private static Logger logger = Logger.getLogger(CKEditorActive.class);
@@ -247,6 +249,18 @@ public class CKEditorActive
         logger.info("POST button was clicked...");
 
         return new StartExternalDiscussion(paragraphText, cpOrganization);
+    }
+
+    /**
+     * Clicks by (?) button
+     */
+    public ClauseLibrary clickClauseButton()
+    {
+        clauseButton.shouldBe(Condition.visible, Condition.enabled).click();
+
+        logger.info("Clause button (?) has been clicked...");
+
+        return new ClauseLibrary();
     }
 
     /**

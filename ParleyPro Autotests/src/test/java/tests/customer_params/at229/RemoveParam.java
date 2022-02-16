@@ -1,4 +1,4 @@
-package tests.customer_params.at223;
+package tests.customer_params.at229;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -11,7 +11,7 @@ import utils.LoginBase;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class RemovePostExecutionParam extends LoginBase
+public class RemoveParam extends LoginBase
 {
     @BeforeTest
     public void setup()
@@ -27,22 +27,22 @@ public class RemovePostExecutionParam extends LoginBase
     }
 
     @Test
-    public void removePostExecutionParam()
+    public void removeСlauseLibraryParam()
     {
-        logger.info("Removing postExecutionForLibertyMutual setting...");
+        logger.info("Removing clauseLibrary setting...");
 
         given().
                 when().
-                    delete("/" + getTenantId() + "/postExecutionForLibertyMutual")
+                    delete("/" + getTenantId() + "/clauseLibrary")
                         .then().statusCode(200);
 
-        logger.info("Checking that postExecutionForLibertyMutual setting was removed...");
+        logger.info("Checking that clauseLibrary setting was removed...");
         given().
                 when().
                     get("/" + getTenantId()).
                         then().
-                            body("$", not(allOf(hasEntry("key", "postExecutionForLibertyMutual"))));
+                            body("$", not(allOf(hasEntry("key", "clauseLibrary"))));
 
-        logger.info("postExecutionForLibertyMutual setting was successfully removed...");
+        logger.info("clauseLibrary setting was successfully removed...");
     }
 }
