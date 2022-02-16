@@ -46,9 +46,10 @@ jobs:
       
     
       - run:
-          name: Run Customer Specific Parameters suite
+          name: Run Popovers suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CustomerSpecificParameters.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Popovers.xml
+          no_output_timeout: 20m
           
       
 
