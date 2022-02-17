@@ -9,6 +9,7 @@ import forms.ContractRequest;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.SkipException;
+import pages.subelements.SearchFilterForm;
 
 import java.io.FileNotFoundException;
 
@@ -122,8 +123,18 @@ public class InProgressContractsPage
 
     public void search(String searchString)
     {
-        searchBar.setValue(searchString);
+        searchBar.sendKeys(searchString);
         searchBar.pressEnter();
+        $(".spinner").should(Condition.disappear);
+    }
+
+    public SearchFilterForm expandSearchFilter()
+    {
+        $(".contracts-search-input__toggle").click();
+
+        logger.info("Search filter toggle has been clicked...");
+
+        return new SearchFilterForm();
     }
 
     /**
