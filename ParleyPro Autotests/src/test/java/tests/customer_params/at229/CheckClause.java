@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInNegotiation;
 import forms.ContractInformation;
+import io.qameta.allure.Description;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -46,6 +47,7 @@ public class CheckClause
     }
 
     @Test
+    @Description("Test checks that clause has been accepted.")
     public void checkClause()
     {
         CKEditorActive ckEditorActive = new OpenedContract().clickByParagraph("Test clauses");
