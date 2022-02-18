@@ -32,22 +32,22 @@ public class TemplatesPage
     public TemplatesPage(boolean isBlank)
     {
         // Assert page header
-        $(".page-head__cell.page-head__left").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Templates"));
+        $(".page-head__cell.page-head__left").shouldBe(Condition.visible).shouldHave(Condition.exactText("Templates"));
 
         if( isBlank )
         {
             // Assert that title is present
-            $(".templates-board__empty").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("There are no templates"));
+            $(".templates-board__empty").shouldBe(Condition.visible).shouldHave(Condition.exactText("There are no templates"));
         }
         else
         {
-            $(".spinner").waitUntil(Condition.disappear, 10_000);
+            $(".spinner").should(Condition.disappear);
 
             // Assert that heading of table is visible
-            $(".templates-board__list thead").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Template name Status Last activity"));
+            $(".templates-board__list thead").shouldBe(Condition.visible).shouldHave(Condition.exactText("Template name Status Last activity"));
 
             // Make sure that + NEW TEMPLATE button is also visible
-            newTemplateButton.shouldBe(Condition.visible).shouldBe(Condition.enabled);
+            newTemplateButton.shouldBe(Condition.visible, Condition.enabled);
         }
     }
 
