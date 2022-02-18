@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-@Listeners({ScreenShotOnFailListener.class, SkipMigrationOnRCAndProdListener.class})
+@Listeners({ScreenShotOnFailListener.class})
 public class CheckCSVsFromExecutedAndInProgress
 {
     private static Logger logger = Logger.getLogger(CheckCSVsFromExecutedAndInProgress.class);

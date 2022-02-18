@@ -32,7 +32,7 @@ import java.nio.file.Paths;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class, SkipMigrationOnRCAndProdListener.class})
+@Listeners({ScreenShotOnFailListener.class})
 public class CheckContracts
 {
     private static Logger logger = Logger.getLogger(CheckContracts.class);
