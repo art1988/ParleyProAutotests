@@ -26,16 +26,6 @@ public class CheckCSVsFromExecutedAndInProgress
 {
     private static Logger logger = Logger.getLogger(CheckCSVsFromExecutedAndInProgress.class);
 
-    @BeforeTest
-    public void skipMigrationOnRCAndPROD()
-    {
-        if(LoginBase.isRc() || LoginBase.isProd())
-        {
-            logger.warn("Do not run Migration suite on RC/PROD ! Skipping !");
-            throw new SkipException("Do not run Migration suite on RC/PROD ! Skipping !");
-        }
-    }
-
     @Test(priority = 1)
     public void goToExecutedContractsAndDownloadCSV() throws FileNotFoundException
     {
