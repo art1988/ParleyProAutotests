@@ -46,10 +46,25 @@ jobs:
       
 
       - run:
-          name: Run Fields suite
+          name: Run Requests suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Fields.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Requests.xml
+          no_output_timeout: 20m
 
+      - run: sleep 10
+
+      - run:
+          name: Run Migration suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
+
+      - run: sleep 10
+
+      - run:
+          name: Run Amendment suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Amendment.xml
+          
       
 
       - save_cache:
