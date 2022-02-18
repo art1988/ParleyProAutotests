@@ -1,11 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Data migration suite" configfailurepolicy="continue">
-    <listeners>
-        <listener class-name = "tests.migration.SkipMigrationOnRCAndProdListener"/>
-    </listeners>
-
+<suite name = "Data migration suite" configfailurepolicy="skip">
     <test name="AT-52: Check all data on In-progress/Executed contracts page." preserve-order="true">
         <parameter name="enableProxy" value="true"/>
         <classes>
