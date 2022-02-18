@@ -47,9 +47,9 @@ jobs:
 
 
       - run:
-          name: Run Migration suite
+          name: Run Search suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Migration.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Search.xml
 
           
       
