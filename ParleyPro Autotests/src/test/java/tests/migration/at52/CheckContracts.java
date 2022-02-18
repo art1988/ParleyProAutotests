@@ -13,12 +13,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.SkipException;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.ContractInfo;
 import pages.DashboardPage;
-import tests.migration.SkipMigrationOnRCAndProdListener;
 import utils.Cache;
 import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
@@ -36,6 +35,16 @@ import static com.codeborne.selenide.Selenide.$$;
 public class CheckContracts
 {
     private static Logger logger = Logger.getLogger(CheckContracts.class);
+
+    @BeforeMethod
+    public void skipMigrationOnRCAndProd()
+    {
+        if(LoginBase.isRc() || LoginBase.isProd())
+        {
+            logger.warn("Do not run Migration suite on RC/PROD ! Skipping !");
+            throw new SkipException("Do not run Migration suite on RC/PROD ! Skipping !");
+        }
+    }
 
     @Test(priority = 1)
     @Description("This test checks that both contracts are in the list, and all icons are in place and linked contracts are present")
