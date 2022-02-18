@@ -18,6 +18,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.ContractInfo;
 import pages.DashboardPage;
+import tests.migration.SkipMigrationOnRCAndProdListener;
 import utils.Cache;
 import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
@@ -31,7 +32,7 @@ import java.nio.file.Paths;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ScreenShotOnFailListener.class})
+@Listeners({ScreenShotOnFailListener.class, SkipMigrationOnRCAndProdListener.class})
 public class CheckContracts
 {
     private static Logger logger = Logger.getLogger(CheckContracts.class);

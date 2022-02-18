@@ -6,7 +6,7 @@
         <parameter name="enableProxy" value="true"/>
         <classes>
             <class name="tests.migration.LoginToMigrationTenant"/>
-            <class name="tests.migration.SkipMigrationOnRCAndProd"/>
+
             <class name="tests.migration.at52.CheckContracts"/>
             <class name="tests.Logout"/>
         </classes>
@@ -16,7 +16,7 @@
         <parameter name="enableProxy" value="true"/>
         <classes>
             <class name="tests.migration.LoginToMigrationTenant"/>
-            <class name="tests.migration.SkipMigrationOnRCAndProd"/>
+
             <class name="tests.migration.at91.CheckCSVsFromExecutedAndInProgress"/>
             <class name="tests.migration.at91.CleanUp"/>
             <class name="tests.Logout"/>

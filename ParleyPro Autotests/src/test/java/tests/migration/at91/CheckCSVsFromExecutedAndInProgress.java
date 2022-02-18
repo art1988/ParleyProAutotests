@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
+import tests.migration.SkipMigrationOnRCAndProdListener;
 import utils.Cache;
 import utils.LoginBase;
 import utils.ScreenShotOnFailListener;
@@ -21,7 +22,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-@Listeners({ScreenShotOnFailListener.class})
+@Listeners({ScreenShotOnFailListener.class, SkipMigrationOnRCAndProdListener.class})
 public class CheckCSVsFromExecutedAndInProgress
 {
     private static Logger logger = Logger.getLogger(CheckCSVsFromExecutedAndInProgress.class);
