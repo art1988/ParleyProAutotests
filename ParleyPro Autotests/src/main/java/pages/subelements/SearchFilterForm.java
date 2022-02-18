@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -52,6 +53,38 @@ public class SearchFilterForm
         input.click(); // expand
         $$(".new-select__menu .new-select__option").filterBy(Condition.text(cnToSearch)).first().click();
         logger.info(cnToSearch + " was selected");
+
+        return this;
+    }
+
+    public SearchFilterForm setNotes(String notesToSearch)
+    {
+        $("input[data-label='Notes']").sendKeys(notesToSearch);
+
+        return this;
+    }
+
+    /**
+     *
+     * @param option can be All, Yes or No
+     * @return
+     */
+    public SearchFilterForm setClassicNegotiation(String option)
+    {
+        $$(".contracts-search__body .radio-buttons__label").filterBy(Condition.text("Classic negotiation")).first()
+                .parent().findAll("label").filterBy(Condition.text(option)).first().click();
+        logger.info("Classic negotiation = " + option + " has been selected...");
+
+        return this;
+    }
+
+    public SearchFilterForm setContractValue(String from, String to)
+    {
+        SelenideElement fromInput = $((WebElement) Selenide.executeJavaScript("return $('.input__label-title:contains(\"Contract value\")').closest('.row').find('input[placeholder=\"from\"]')[0]")),
+                        toInput   = $((WebElement) Selenide.executeJavaScript("return $('.input__label-title:contains(\"Contract value\")').closest('.row').find('input[placeholder=\"to\"]')[0]"));
+
+        fromInput.sendKeys(from);
+        toInput.sendKeys(to);
 
         return this;
     }

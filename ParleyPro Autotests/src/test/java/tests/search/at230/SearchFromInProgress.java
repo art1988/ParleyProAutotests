@@ -30,6 +30,9 @@ public class SearchFromInProgress
         searchByContractingRegion();
         searchByCustomField();
         searchByContractNegotiator();
+        searchByNotes();
+        searchByClassicNegotiation();
+        searchByContractValue();
     }
 
     @Step("Search by contract title = contract")
@@ -76,5 +79,32 @@ public class SearchFromInProgress
         $$(".contracts-list__contract-name").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("Classic", "Normal contract", "Online Contract One With a Long Long"));
         $(".contracts-tabs a[class*='ui']").shouldBe(Condition.visible).shouldHave(Condition.text("3 Executed contracts"));
         $(".contracts-search-input__close").click(); // clear previous search
+    }
+
+    @Step("Search by ‘Notes’ field = The volcano rises 2,100 metres")
+    public void searchByNotes()
+    {
+        inProgressContractsPage.expandSearchFilter().setNotes("The volcano rises 2,100 metres").clickSearch();
+        $$(".contracts-search-input__rule").shouldHave(CollectionCondition.size(1)).first().shouldHave(Condition.text("Notes"));
+        $$(".contracts-list__contract-name").shouldHave(CollectionCondition.size(1)).first().shouldHave(Condition.text("Online Contract One With a Long"));
+        $(".contracts-search-input__close").click(); // clear previous search
+    }
+
+    @Step("Search by Classic negotiation = Yes")
+    public void searchByClassicNegotiation()
+    {
+        inProgressContractsPage.expandSearchFilter().setClassicNegotiation("Yes").clickSearch();
+        $$(".contracts-search-input__rule").shouldHave(CollectionCondition.size(1)).first().shouldHave(Condition.text("Classic negotiation"));
+        $$(".contracts-list__contract-name").shouldHave(CollectionCondition.size(1)).first().shouldHave(Condition.text("Classic"));
+        $(".contracts-tabs a[class*='ui']").shouldBe(Condition.visible).shouldHave(Condition.text("2 Executed contracts"));
+        $(".contracts-search-input__close").click(); // clear previous search
+    }
+
+    @Step("Search by ‘Contract value’ from 12000 to 13000")
+    public void searchByContractValue()
+    {
+        inProgressContractsPage.expandSearchFilter().setContractValue("12000", "13000").clickSearch();
+        $$(".contracts-search-input__rule").shouldHave(CollectionCondition.size(1)).first().shouldHave(Condition.text("Contract value"));
+        $$(".contracts-list__contract-name").shouldHave(CollectionCondition.size(1)).first().shouldHave(Condition.text("Classic"));
     }
 }
