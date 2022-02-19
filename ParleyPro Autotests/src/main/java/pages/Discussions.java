@@ -81,10 +81,10 @@ public class Discussions
      * Filter discussions
      * @param by may be "Open", "All", "With Counterparty", etc
      */
-    public void filter(String by)
+    public void filter(String by) throws InterruptedException
     {
         $$(".contracts-tabs__right button").first().click(); // Expand dropdown
-
+        Thread.sleep(1_000);
         $$(".dropdown.open ul[role='menu'] span").filterBy(Condition.text(by)).first().click();
 
         logger.info("Filter by " + by + " was chosen...");
