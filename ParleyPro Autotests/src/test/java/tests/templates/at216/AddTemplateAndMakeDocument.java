@@ -67,6 +67,10 @@ public class AddTemplateAndMakeDocument
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("DRAFT\n(1)", "DRAFT"));
         $(".document__body-content").shouldBe(Condition.visible);
         $(".documents-placeholders__title").shouldHave(Condition.exactText("Fields"));
+
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text(" has been successfully uploaded."));
+        $(".notification-stack").should(Condition.disappear);
+
         Assert.assertTrue(Selenide.executeJavaScript("return ($('.document-paragraph__content-text:contains(\"MASTER SERVICES AGREEMENT\")').length === 2) && " +
                 "($('.document-paragraph__content-text:contains(\"APLL Location\")').length === 2) && ($('.document-paragraph__content-text:contains(\"COPY TO\")').length === 2)"));
         Screenshoter.makeScreenshot();
