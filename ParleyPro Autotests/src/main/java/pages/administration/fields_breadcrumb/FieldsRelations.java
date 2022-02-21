@@ -27,7 +27,16 @@ public class FieldsRelations
     {
         addNewParentFieldRequest.click();
 
-        logger.info("Add new parent field link was clicked");
+        logger.info("Add new parent field for request link was clicked");
+
+        return new AddNewParentField();
+    }
+
+    public AddNewParentField addNewParentFieldForSummary()
+    {
+        addNewParentFieldSummary.click();
+
+        logger.info("Add new parent field for summary link was clicked");
 
         return new AddNewParentField();
     }
