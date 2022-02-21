@@ -94,5 +94,6 @@ public class SearchFilterForm
         $$(".contracts-search__foot button").filterBy(Condition.text("Search")).first().click();
         logger.info("SEARCH button was clicked...");
         $(".spinner").should(Condition.disappear);
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
     }
 }
