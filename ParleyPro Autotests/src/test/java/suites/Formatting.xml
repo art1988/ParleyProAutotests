@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Formatting suite" configfailurepolicy="continue">
-   <!-- <test name="AT-20: Online formatting" preserve-order="true">
+    <test name="AT-20: Online formatting" preserve-order="true">
         <parameter name="contractName" value="AT20 online formatting contract"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -48,7 +48,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-231: Image disappearing" preserve-order="true">
         <parameter name="contractName" value="AT-231 // Image disappearing"/>
