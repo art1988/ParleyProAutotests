@@ -125,6 +125,8 @@ public class Const
     public static final File   DOC_AT211                     = new File(System.getProperty("user.dir") + "/Documents/MSA - Ray Fortin v2a.docx");
     public static final File   DOC_AT229_CLAUSE              = new File(System.getProperty("user.dir") + "/Documents/AT-229-test_clauses.docx");
 
+    public static final File   DOC_AT231_IMG_DISAPPEARING    = new File(System.getProperty("user.dir") + "/Documents/AT_231_Document1.docx");
+
     // Directories
     // Directory of docs from clients. Used in Classic
     public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Documents/classicClientDocs");
