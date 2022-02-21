@@ -15,7 +15,9 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:8u222-stretch-browsers
-      
+    
+    parallelism: 4
+    
     steps:
       - checkout
       
