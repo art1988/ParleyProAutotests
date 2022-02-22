@@ -1,0 +1,452 @@
+{
+    "categories": [
+        {
+            "id": "93f68e00-9392-11ec-a23c-87f6ddff0d76",
+            "value": "category1"
+        },
+        {
+            "id": "9418bc00-9392-11ec-a23c-87f6ddff0d76",
+            "value": "category2"
+        }
+    ],
+    "types": [
+        {
+            "id": "943a74d0-9392-11ec-a23c-87f6ddff0d76",
+            "value": "type1"
+        },
+        {
+            "id": "945772b0-9392-11ec-a23c-87f6ddff0d76",
+            "value": "type2"
+        },
+        {
+            "id": "9475a910-9392-11ec-a23c-87f6ddff0d76",
+            "value": "type3"
+        }
+    ],
+    "regions": [
+        {
+            "id": "92e1c2a0-9392-11ec-a23c-87f6ddff0d76",
+            "value": "region1"
+        },
+        {
+            "id": "92fdd620-9392-11ec-a23c-87f6ddff0d76",
+            "value": "region2"
+        },
+        {
+            "id": "931c5aa0-9392-11ec-a23c-87f6ddff0d76",
+            "value": "region3"
+        }
+    ],
+    "divisions": [
+        {
+            "id": "20f16b00-9397-11ec-b0f6-b57b159f960b",
+            "value": "department1"
+        },
+        {
+            "id": "2107d930-9397-11ec-b0f6-b57b159f960b",
+            "value": "department2"
+        }
+    ],
+    "countries": [
+        {
+            "id": "9339a6a0-9392-11ec-a23c-87f6ddff0d76",
+            "value": "country1"
+        },
+        {
+            "id": "93582b20-9392-11ec-a23c-87f6ddff0d76",
+            "value": "country2"
+        }
+    ],
+    "entities": [
+        {
+            "id": "9374b3d0-9392-11ec-a23c-87f6ddff0d76",
+            "value": "entity1"
+        },
+        {
+            "id": "9393fba0-9392-11ec-a23c-87f6ddff0d76",
+            "value": "entity2"
+        }
+    ],
+    "customFields": [],
+    "options": [],
+    "linkedFields": [
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "2225d470-a9c8-11eb-a80d-0f79ec0ef603",
+            "triggerFieldValueId": "226cef90-a9c8-11eb-a80d-0f79ec0ef603",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "22ada210-a9c8-11eb-a80d-0f79ec0ef603"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "7c8f1fc0-a9c8-11eb-bb59-83a3bd5ea4e4",
+            "triggerFieldValueId": "7cc76dd0-a9c8-11eb-bb59-83a3bd5ea4e4",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "7cfa3da0-a9c8-11eb-bb59-83a3bd5ea4e4"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "7c8f1fc0-a9c8-11eb-bb59-83a3bd5ea4e4",
+            "triggerFieldValueId": "7cc76dd0-a9c8-11eb-bb59-83a3bd5ea4e4",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "7d285280-a9c8-11eb-bb59-83a3bd5ea4e4"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "c4197020-aa27-11eb-8d18-f7d00f86fca3",
+            "triggerFieldValueId": "c45d56f0-aa27-11eb-8d18-f7d00f86fca3",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "c491fb80-aa27-11eb-8d18-f7d00f86fca3"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "bfad65d0-aa5b-11eb-a40e-87b30c9d6370",
+            "triggerFieldValueId": "bfdf2430-aa5b-11eb-a40e-87b30c9d6370",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "c00b8b60-aa5b-11eb-a40e-87b30c9d6370"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "11d0ecb0-aa5c-11eb-9ec4-5144a31359cb",
+            "triggerFieldValueId": "1200af40-aa5c-11eb-9ec4-5144a31359cb",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "122af390-aa5c-11eb-9ec4-5144a31359cb"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "11d0ecb0-aa5c-11eb-9ec4-5144a31359cb",
+            "triggerFieldValueId": "1200af40-aa5c-11eb-9ec4-5144a31359cb",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "1256be80-aa5c-11eb-9ec4-5144a31359cb"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "c541b4b0-aaf1-11eb-9bf1-4544fba4d6bf",
+            "triggerFieldValueId": "c578f150-aaf1-11eb-9bf1-4544fba4d6bf",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "c5ab7300-aaf1-11eb-9bf1-4544fba4d6bf"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "14e43600-aaf2-11eb-ab28-470188f9f277",
+            "triggerFieldValueId": "150f64b0-aaf2-11eb-ab28-470188f9f277",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "15362690-aaf2-11eb-ab28-470188f9f277"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "14e43600-aaf2-11eb-ab28-470188f9f277",
+            "triggerFieldValueId": "150f64b0-aaf2-11eb-ab28-470188f9f277",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "155cc160-aaf2-11eb-ab28-470188f9f277"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "3bd98fc0-abbb-11eb-8b6a-2543e10214b3",
+            "triggerFieldValueId": "3c19cd10-abbb-11eb-8b6a-2543e10214b3",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "3c51cd00-abbb-11eb-8b6a-2543e10214b3"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "928a3fe0-abbb-11eb-bbe1-81a327bb2eb3",
+            "triggerFieldValueId": "92c266e0-abbb-11eb-bbe1-81a327bb2eb3",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "92f8b920-abbb-11eb-bbe1-81a327bb2eb3"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "928a3fe0-abbb-11eb-bbe1-81a327bb2eb3",
+            "triggerFieldValueId": "92c266e0-abbb-11eb-bbe1-81a327bb2eb3",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "932917f0-abbb-11eb-bbe1-81a327bb2eb3"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "6d688900-ac84-11eb-862d-130af4a5335d",
+            "triggerFieldValueId": "6d9e8d20-ac84-11eb-862d-130af4a5335d",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "6dd30aa0-ac84-11eb-862d-130af4a5335d"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "fa379810-aca9-11eb-adf7-51d72a98df78",
+            "triggerFieldValueId": "fa6b2b30-aca9-11eb-adf7-51d72a98df78",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "fa994010-aca9-11eb-adf7-51d72a98df78"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "904a7110-acc3-11eb-86a9-099c34f1e5f0",
+            "triggerFieldValueId": "90877a10-acc3-11eb-86a9-099c34f1e5f0",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "90b7fff0-acc3-11eb-86a9-099c34f1e5f0"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "fbd437d0-acfb-11eb-b747-63e2a6a4267a",
+            "triggerFieldValueId": "fc1167e0-acfb-11eb-b747-63e2a6a4267a",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "fc51f350-acfb-11eb-b747-63e2a6a4267a"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "6c1da3f0-acfc-11eb-b4e6-fffcd7041a76",
+            "triggerFieldValueId": "6c4d1860-acfc-11eb-b4e6-fffcd7041a76",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "6c84f140-acfc-11eb-b4e6-fffcd7041a76"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "6c1da3f0-acfc-11eb-b4e6-fffcd7041a76",
+            "triggerFieldValueId": "6c4d1860-acfc-11eb-b4e6-fffcd7041a76",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "6caee770-acfc-11eb-b4e6-fffcd7041a76"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "99af9480-ad4d-11eb-a7ea-97f249755e4b",
+            "triggerFieldValueId": "99f465b0-ad4d-11eb-a7ea-97f249755e4b",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "9a3936e0-ad4d-11eb-a7ea-97f249755e4b"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "243b1e50-ae46-11eb-b617-53c29260994e",
+            "triggerFieldValueId": "24939e90-ae46-11eb-b617-53c29260994e",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "24d9cf50-ae46-11eb-b617-53c29260994e"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "b9226530-af47-11eb-af5a-7f31c40b7728",
+            "triggerFieldValueId": "b9600a70-af47-11eb-af5a-7f31c40b7728",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "b9979530-af47-11eb-af5a-7f31c40b7728"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "3f46caf0-afa9-11eb-9b07-7b73a39a3cca",
+            "triggerFieldValueId": "3f914170-afa9-11eb-9b07-7b73a39a3cca",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "3fd464f0-afa9-11eb-9b07-7b73a39a3cca"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "97138010-b072-11eb-86e1-2f1b468167e2",
+            "triggerFieldValueId": "97503af0-b072-11eb-86e1-2f1b468167e2",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "978d43f0-b072-11eb-86e1-2f1b468167e2"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "5680f1d0-b13b-11eb-b5b0-4369ee710866",
+            "triggerFieldValueId": "56bd5e90-b13b-11eb-b5b0-4369ee710866",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "56ee3290-b13b-11eb-b5b0-4369ee710866"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "ac3344c0-b13b-11eb-985f-9d4d16c99246",
+            "triggerFieldValueId": "ac672600-b13b-11eb-985f-9d4d16c99246",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "ac93b440-b13b-11eb-985f-9d4d16c99246"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "ac3344c0-b13b-11eb-985f-9d4d16c99246",
+            "triggerFieldValueId": "ac672600-b13b-11eb-985f-9d4d16c99246",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "acc0b7b0-b13b-11eb-985f-9d4d16c99246"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "b3c07540-b204-11eb-9cd7-756978f51e1b",
+            "triggerFieldValueId": "b4034aa0-b204-11eb-9cd7-756978f51e1b",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "b4400580-b204-11eb-9cd7-756978f51e1b"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "0ce6e050-b205-11eb-822b-f57b63609c42",
+            "triggerFieldValueId": "0d1e6b10-b205-11eb-822b-f57b63609c42",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "0d4ddf80-b205-11eb-822b-f57b63609c42"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "0ce6e050-b205-11eb-822b-f57b63609c42",
+            "triggerFieldValueId": "0d1e6b10-b205-11eb-822b-f57b63609c42",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "0d778790-b205-11eb-822b-f57b63609c42"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "1a852920-b259-11eb-8fcd-3d7b231664b1",
+            "triggerFieldValueId": "1abefdd0-b259-11eb-8fcd-3d7b231664b1",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "1af2b800-b259-11eb-8fcd-3d7b231664b1"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "6ea34780-b259-11eb-b175-dfb6cee88642",
+            "triggerFieldValueId": "6ed1f8a0-b259-11eb-b175-dfb6cee88642",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "6efbc7c0-b259-11eb-b175-dfb6cee88642"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "6ea34780-b259-11eb-b175-dfb6cee88642",
+            "triggerFieldValueId": "6ed1f8a0-b259-11eb-b175-dfb6cee88642",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "6f2548c0-b259-11eb-b175-dfb6cee88642"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "76ae5b30-b2cd-11eb-8fa5-9d5ac2e8bc0e",
+            "triggerFieldValueId": "76e103f0-b2cd-11eb-8fa5-9d5ac2e8bc0e",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "77175630-b2cd-11eb-8fa5-9d5ac2e8bc0e"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "28ecbf70-aa28-11eb-add9-a7997dea06e1",
+            "triggerFieldValueId": "291c33e0-aa28-11eb-add9-a7997dea06e1",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "2945dbf0-aa28-11eb-add9-a7997dea06e1"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "28ecbf70-aa28-11eb-add9-a7997dea06e1",
+            "triggerFieldValueId": "291c33e0-aa28-11eb-add9-a7997dea06e1",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "29763ac0-aa28-11eb-add9-a7997dea06e1"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "cdb1bc50-ac84-11eb-9fb3-d5d57373514b",
+            "triggerFieldValueId": "cde9bc40-ac84-11eb-9fb3-d5d57373514b",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "ce16e6c0-ac84-11eb-9fb3-d5d57373514b"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "cdb1bc50-ac84-11eb-9fb3-d5d57373514b",
+            "triggerFieldValueId": "cde9bc40-ac84-11eb-9fb3-d5d57373514b",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "ce3bd3e0-ac84-11eb-9fb3-d5d57373514b"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "6856d130-acaa-11eb-b453-b93741c873dd",
+            "triggerFieldValueId": "6883ad90-acaa-11eb-b453-b93741c873dd",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "68b85220-acaa-11eb-b453-b93741c873dd"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "6856d130-acaa-11eb-b453-b93741c873dd",
+            "triggerFieldValueId": "6883ad90-acaa-11eb-b453-b93741c873dd",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "68e5a3b0-acaa-11eb-b453-b93741c873dd"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "e5725e50-acc3-11eb-a805-b102e66d7e20",
+            "triggerFieldValueId": "e5a33250-acc3-11eb-a805-b102e66d7e20",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "e5d05cd0-acc3-11eb-a805-b102e66d7e20"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "e5725e50-acc3-11eb-a805-b102e66d7e20",
+            "triggerFieldValueId": "e5a33250-acc3-11eb-a805-b102e66d7e20",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "e6043e10-acc3-11eb-a805-b102e66d7e20"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "f62be150-ad4d-11eb-b87c-c1b4b54b932c",
+            "triggerFieldValueId": "f6759480-ad4d-11eb-b87c-c1b4b54b932c",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "f6bb7720-ad4d-11eb-b87c-c1b4b54b932c"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "f62be150-ad4d-11eb-b87c-c1b4b54b932c",
+            "triggerFieldValueId": "f6759480-ad4d-11eb-b87c-c1b4b54b932c",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "f6ebd5f0-ad4d-11eb-b87c-c1b4b54b932c"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "83b5b700-ae46-11eb-be04-e92063b8e0d6",
+            "triggerFieldValueId": "83eaf7d0-ae46-11eb-be04-e92063b8e0d6",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "842086c0-ae46-11eb-be04-e92063b8e0d6"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "83b5b700-ae46-11eb-be04-e92063b8e0d6",
+            "triggerFieldValueId": "83eaf7d0-ae46-11eb-be04-e92063b8e0d6",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "8455eea0-ae46-11eb-be04-e92063b8e0d6"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "0e5e9dc0-af48-11eb-a276-4f74b5f308e3",
+            "triggerFieldValueId": "0e8f23a0-af48-11eb-a276-4f74b5f308e3",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "0ebbd8f0-af48-11eb-a276-4f74b5f308e3"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "0e5e9dc0-af48-11eb-a276-4f74b5f308e3",
+            "triggerFieldValueId": "0e8f23a0-af48-11eb-a276-4f74b5f308e3",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "0eecd400-af48-11eb-a276-4f74b5f308e3"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "9ab63ba0-afa9-11eb-8dc9-6bdf9a34e2d9",
+            "triggerFieldValueId": "9afb5af0-afa9-11eb-8dc9-6bdf9a34e2d9",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "9b383ce0-afa9-11eb-8dc9-6bdf9a34e2d9"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "9ab63ba0-afa9-11eb-8dc9-6bdf9a34e2d9",
+            "triggerFieldValueId": "9afb5af0-afa9-11eb-8dc9-6bdf9a34e2d9",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "9b7c4ac0-afa9-11eb-8dc9-6bdf9a34e2d9"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "efd58400-b072-11eb-a7b2-cdc6382670ce",
+            "triggerFieldValueId": "f00d5ce0-b072-11eb-a7b2-cdc6382670ce",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "f04bc570-b072-11eb-a7b2-cdc6382670ce"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "efd58400-b072-11eb-a7b2-cdc6382670ce",
+            "triggerFieldValueId": "f00d5ce0-b072-11eb-a7b2-cdc6382670ce",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "f07bfd30-b072-11eb-a7b2-cdc6382670ce"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "c96102b0-b2cd-11eb-b540-b5352df7f041",
+            "triggerFieldValueId": "c993d280-b2cd-11eb-b540-b5352df7f041",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "c9c4f4a0-b2cd-11eb-b540-b5352df7f041"
+        },
+        {
+            "triggerFieldType": "CUSTOM_FIELD",
+            "triggerFieldId": "c96102b0-b2cd-11eb-b540-b5352df7f041",
+            "triggerFieldValueId": "c993d280-b2cd-11eb-b540-b5352df7f041",
+            "dependentFieldType": "CUSTOM_FIELD",
+            "dependentFieldId": "c9f04a60-b2cd-11eb-b540-b5352df7f041"
+        }
+    ]
+}

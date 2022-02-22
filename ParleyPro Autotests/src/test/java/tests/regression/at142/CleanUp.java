@@ -5,9 +5,11 @@ import constants.Const;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.*;
-import pages.administration.Fields;
-import pages.administration.fields_breadcrumb.ContractFields;
+import pages.AddDocuments;
+import pages.ExecutedContractsPage;
+import pages.LoginPage;
+import pages.OpenedContract;
+import pages.subelements.SideBar;
 import utils.ScreenShotOnFailListener;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -15,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$;
 @Listeners({ScreenShotOnFailListener.class})
 public class CleanUp
 {
-    private DashboardPage dashboardPage;
+    private SideBar sideBar;
     private static Logger logger = Logger.getLogger(CleanUp.class);
 
 
@@ -28,34 +30,15 @@ public class CleanUp
         loginPage.setEmail(Const.PREDEFINED_USER_CN_ROLE.getEmail());
         loginPage.setPassword(Const.PREDEFINED_USER_CN_ROLE.getPassword());
 
-        dashboardPage = loginPage.clickSignIn();
+        sideBar = loginPage.clickSignIn().getSideBar();
     }
 
     @Test(priority = 2)
-    public void restoringDepartmentValues()
-    {
-        ///
-        logger.info("Restoring department values...");
-        Fields fieldsPage = dashboardPage.getSideBar().clickAdministration().clickFieldsTab();
-        ContractFields contractFieldsPage = fieldsPage.clickContractFields();
-
-        contractFieldsPage.clickEditValues("Contracting department");
-
-        contractFieldsPage.setNewValue("Contracting department", "department1", 1);
-        contractFieldsPage.setNewValue("Contracting department", "department2", 2);
-
-        fieldsPage.clickSave();
-
-        $(".notification-stack").should(Condition.appear).shouldHave(Condition.exactText("Contract fields have been saved."));
-    }
-
-    @Test(priority = 3)
     public void restoringUserGregRoles()
     {
         ///
         logger.info("Restoring user Greg roles...");
-        dashboardPage.getSideBar()
-                     .clickAdministration()
+              sideBar.clickAdministration()
                      .clickManageUsersTab()
                      .clickActionMenu(Const.USER_GREG.getFirstName())
                      .clickEdit()
@@ -65,12 +48,12 @@ public class CleanUp
         $(".notification-stack").should(Condition.appear).shouldHave(Condition.text("updated successfully"));
     }
 
-    @Test(priority = 4)
+    @Test(priority = 3)
     public void removeExecutedContracts()
     {
         ///
         logger.info("Removing contracts...");
-        ExecutedContractsPage executedContractsPage = dashboardPage.getSideBar().clickExecutedContracts(false);
+        ExecutedContractsPage executedContractsPage = sideBar.clickExecutedContracts(false);
 
         for( int i = 0; i <= 2; i++ )
         {
