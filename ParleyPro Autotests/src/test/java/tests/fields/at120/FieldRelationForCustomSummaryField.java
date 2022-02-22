@@ -6,6 +6,7 @@ import constants.FieldType;
 import forms.ContractInformation;
 import forms.add.AddNewParentField;
 import io.qameta.allure.Step;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -15,6 +16,7 @@ import pages.administration.fields_breadcrumb.ContractFields;
 import pages.administration.fields_breadcrumb.FieldsRelations;
 import pages.subelements.SideBar;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -54,12 +56,13 @@ public class FieldRelationForCustomSummaryField
 
         // Scroll Contract information to bottom
         Selenide.executeJavaScript("$('.modal__scrollable-body').scrollTop($('.modal__scrollable-body')[0].scrollHeight);");
-
         $(byText("Field8")).shouldNotBe(Condition.visible);
 
         contractInformation.setValueForCustomField("CustomSummarySelect", FieldType.SELECT, "2");
-
         $(byText("Field8")).shouldBe(Condition.visible);
+        Screenshoter.makeScreenshot();
+
+        contractInformation.clickCancel();
     }
 
     @Step
@@ -80,5 +83,18 @@ public class FieldRelationForCustomSummaryField
         fieldsTab.clickSave();
 
         $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Contract fields have been saved."));
+    }
+
+    @AfterMethod
+    public void removeFields()
+    {
+        fieldsTab = sideBar.clickAdministration().clickFieldsTab();
+
+        ContractFields contractFieldsTab = fieldsTab.clickContractFields();
+        contractFieldsTab.removeField("CustomSummarySelect").clickDelete();
+        contractFieldsTab.removeField("Field8").clickDelete();
+
+        fieldsTab.clickSave();
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.text("Contract fields have been saved."));
     }
 }
