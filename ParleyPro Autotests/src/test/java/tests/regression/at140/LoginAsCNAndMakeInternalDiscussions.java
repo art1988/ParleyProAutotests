@@ -36,6 +36,7 @@ public class LoginAsCNAndMakeInternalDiscussions
                            .selectContract("CTR AT-140");
 
         logger.info("Creating internal discussion for the first paragraph...");
+        $(".spinner").should(Condition.disappear);
         new OpenedContract().clickByParagraph("Paragraph 1")
                             .sendSpecificKeys(new CharSequence[]{Keys.END, " CN was here №1"})
                             .selectInternal()

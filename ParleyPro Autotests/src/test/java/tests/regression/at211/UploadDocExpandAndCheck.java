@@ -42,13 +42,13 @@ public class UploadDocExpandAndCheck
 
         logger.info("Collapsing doc...");
         $(".document__header-row .expand-collapse").click();
-        Thread.sleep(2_000);
+        Thread.sleep(5_000);
         logger.info("Making sure that no text is visible...");
         Assert.assertFalse(Selenide.executeJavaScript("return $('.document__body-content').is(\":visible\");"));
 
         logger.info("Expand doc...");
         $(".document__header-row .expand-collapse").click();
-        Thread.sleep(2_000);
+        Thread.sleep(5_000);
 
         logger.info("Making sure that text is visible again...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"MARINE SERVICES AGREEMENT\")').text().trim()"), "MARINE SERVICES AGREEMENT", "There is no 'MARINE SERVICES AGREEMENT' text on the page !!!");
