@@ -1,7 +1,9 @@
 package tests.fields.at120;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import constants.FieldType;
+import forms.ContractInformation;
 import forms.add.AddNewParentField;
 import io.qameta.allure.Step;
 import org.testng.annotations.BeforeMethod;
@@ -14,6 +16,7 @@ import pages.administration.fields_breadcrumb.FieldsRelations;
 import pages.subelements.SideBar;
 import utils.ScreenShotOnFailListener;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ScreenShotOnFailListener.class})
@@ -32,8 +35,9 @@ public class FieldRelationForCustomSummaryField
         ContractFields contractFields = fieldsTab.clickContractFields();
 
         contractFields.createNewFiled("Summary", "CustomSummarySelect", FieldType.SELECT, false);
-        contractFields.addValues("CustomSummarySelect", "2");
         contractFields.addValues("CustomSummarySelect", "1");
+        contractFields.addValues("CustomSummarySelect", "2");
+        contractFields.addValues("CustomSummarySelect", "3");
 
         contractFields.createNewFiled("Summary", "Field8", FieldType.TEXT, false);
 
@@ -42,11 +46,20 @@ public class FieldRelationForCustomSummaryField
     }
 
     @Test
-    public void checkPresenceOnForm()
+    public void checkPresenceOnForm() throws InterruptedException
     {
         makeRelation();
 
-        sideBar.clickInProgressContracts(true).clickNewContractButton();
+        ContractInformation contractInformation = sideBar.clickInProgressContracts(true).clickNewContractButton();
+
+        // Scroll Contract information to bottom
+        Selenide.executeJavaScript("$('.modal__scrollable-body').scrollTop($('.modal__scrollable-body')[0].scrollHeight);");
+
+        $(byText("Field8")).shouldNotBe(Condition.visible);
+
+        contractInformation.setValueForCustomField("CustomSummarySelect", FieldType.SELECT, "2");
+
+        $(byText("Field8")).shouldBe(Condition.visible);
     }
 
     @Step
@@ -60,7 +73,7 @@ public class FieldRelationForCustomSummaryField
         addNewParentField.clickCreate();
 
         fieldsRelations.addRelatedField("CustomSummarySelect")
-                       .selectValueForField("CustomSummarySelect", "1")
+                       .selectValueForField("CustomSummarySelect", "2")
                        .selectRelatedField("Field8")
                        .clickMakeRelated();
 
