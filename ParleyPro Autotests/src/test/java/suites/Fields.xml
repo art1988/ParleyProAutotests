@@ -84,6 +84,7 @@
             <class name="tests.fields.at120.CreateFieldsAndMakeRelations"/>
             <class name="tests.fields.at120.PerformCombinations"/>
             <class name="tests.fields.at120.RemoveFields"/>
+            <class name="tests.fields.at120.FieldRelationForCustomSummaryField"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
