@@ -4,23 +4,30 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import utils.Cache;
 import utils.LoginBase;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class RemovePostExecutionParam extends LoginBase
+public class RemovePostExecutionParam
 {
+    private static Logger logger = Logger.getLogger(RemovePostExecutionParam.class);
+    private LoginBase loginBase;
+
     @BeforeTest
     public void setup()
     {
+        loginBase = Cache.getInstance().getCachedLoginBase();
+
         RequestSpecification requestSpec = new RequestSpecBuilder()
-                .setBaseUri(getBaseUrl() + "/tenants/properties")
+                .setBaseUri(loginBase.getBaseUrl() + "/tenants/properties")
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
-                .addHeader("x-api-key", getApiKey())
+                .addHeader("x-api-key", loginBase.getApiKey())
                 .build();
 
         RestAssured.requestSpecification = requestSpec;
@@ -33,13 +40,13 @@ public class RemovePostExecutionParam extends LoginBase
 
         given().
                 when().
-                    delete("/" + getTenantId() + "/postExecutionForLibertyMutual")
+                    delete("/" + loginBase.getTenantId() + "/postExecutionForLibertyMutual")
                         .then().statusCode(200);
 
         logger.info("Checking that postExecutionForLibertyMutual setting was removed...");
         given().
                 when().
-                    get("/" + getTenantId()).
+                    get("/" + loginBase.getTenantId()).
                         then().
                             body("$", not(allOf(hasEntry("key", "postExecutionForLibertyMutual"))));
 
