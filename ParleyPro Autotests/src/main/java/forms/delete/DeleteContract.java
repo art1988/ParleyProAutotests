@@ -21,8 +21,8 @@ public class DeleteContract
      */
     public DeleteContract(String contractName)
     {
-        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Are you sure you want to delete contract “" + contractName + "”?"));
-        $(".modal-body-description").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("The contract and contract documents will be permanently removed."));
+        title.shouldBe(Condition.visible).shouldHave(Condition.exactText("Are you sure you want to delete contract “" + contractName + "”?"));
+        $(".modal-body-description").shouldBe(Condition.visible).shouldHave(Condition.exactText("The contract and contract documents will be permanently removed."));
     }
 
     /**
@@ -32,8 +32,8 @@ public class DeleteContract
      */
     public DeleteContract(boolean doNotMatchByContractName)
     {
-        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.text("Are you sure you want to delete contract"));
-        $(".modal-body-description").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("The contract and contract documents will be permanently removed."));
+        title.shouldBe(Condition.visible).shouldHave(Condition.text("Are you sure you want to delete contract"));
+        $(".modal-body-description").shouldBe(Condition.visible).shouldHave(Condition.exactText("The contract and contract documents will be permanently removed."));
     }
 
     public void clickDelete()
