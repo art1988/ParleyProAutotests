@@ -189,6 +189,7 @@ public class ContractInfo
     public void setSubsequentTermMonths(String val)
     {
         WebElement input = Selenide.executeJavaScript("return $('label:contains(\"Subsequent term (months)\")').parent().find(\"input\")[0]");
+        for( int i = 0; i < 10; i++ ) $(input).sendKeys(Keys.BACK_SPACE);
         $(input).sendKeys(val);
     }
 
