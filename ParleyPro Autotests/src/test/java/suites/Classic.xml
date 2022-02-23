@@ -319,7 +319,7 @@
         </classes>
     </test>
 
-<!--    <test name="AT-152: Counterparty receives unexpected emails from Classic negotiation contracts" preserve-order="true">
+    <test name="AT-152: Counterparty receives unexpected emails from Classic negotiation contracts" preserve-order="true">
         <parameter name="contractName" value="AT152 - Counterparty receives unexpected emails"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -327,7 +327,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-139: Microvention is unable to upload the document" preserve-order="true">
         <parameter name="contractName" value="AT-139 Microvention doc"/>
@@ -340,7 +340,7 @@
         </classes>
     </test>
 
-<!--    <test name="AT-166: When uploading new version, counterparty receives unexpected emails from Classic negotiation contracts" preserve-order="true">
+    <test name="AT-166: When uploading new version, counterparty receives unexpected emails from Classic negotiation contracts" preserve-order="true">
         <parameter name="contractName" value="AT-166 CTR"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -349,7 +349,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-167: Classic: item incorrectly removed after new version was uploaded" preserve-order="true">
         <parameter name="contractName" value="AT-167 classic ctr"/>
