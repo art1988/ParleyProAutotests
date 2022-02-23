@@ -55,7 +55,7 @@ public class CreateManagedContractAndFillFields
         ContractInfo contractInfo = new ContractInfo();
 
         contractInfo.clickAutoRenewalTumbler();
-        Thread.sleep(500);
+        Thread.sleep(1_000);
 
         logger.info("Filling the fields...");
 

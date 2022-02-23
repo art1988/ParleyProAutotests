@@ -27,15 +27,15 @@ public class DisableEnableAutoRenewalFillAgainAndCheck
 
         contractInfo = new ContractInfo();
 
-        logger.info("Disable auto-renewal...");
+        logger.info("Disable auto-renewal. After that all fields should be cleared...");
         contractInfo.clickAutoRenewalTumbler();
-        Thread.sleep(500);
+        Thread.sleep(1_000);
 
         logger.info("Enable auto-renewal...");
         contractInfo.clickAutoRenewalTumbler();
-        Thread.sleep(500);
+        Thread.sleep(1_000);
 
-        logger.info("Fill the fields back...");
+        logger.info("Filling in the fields back...");
         contractInfo.setSubsequentTermMonths("1");
         renewalVal = contractInfo.getRenewal(); // since Renewal sets automatically => save it
         contractInfo.setSubsequentTermNotification("3 days");
