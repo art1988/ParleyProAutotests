@@ -124,7 +124,7 @@ public class ContractInformation
 
     public void setContractValue(String value)
     {
-        contractValueField.clear();
+        for( int i = 0; i < 30; i++ ) contractValueField.sendKeys(Keys.BACK_SPACE);
         contractValueField.setValue(value);
     }
 
@@ -498,8 +498,12 @@ public class ContractInformation
         else if( fieldType.equals(FieldType.TEXT) )
         {
             id = Selenide.executeJavaScript("return $('.input__label:contains(\"" + fieldName + "\")').parent().find('input').attr('data-id')");
-            Selenide.executeJavaScript("$('#" + id + "').val('')");
-            $("#" + id).sendKeys(value);
+
+            SelenideElement textField = $("#" + id);
+            textField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+            for( int i = 0; i < 5; i++ ) textField.sendKeys(Keys.BACK_SPACE);
+
+            textField.sendKeys(value);
         }
         else if( fieldType.equals(FieldType.CHECKBOX) )
         {
