@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Basics" configfailurepolicy="continue">
-<!--   <test name = "AT-8: Basic contract lifecycle" preserve-order="true">
+   <test name = "AT-8: Basic contract lifecycle" preserve-order="true">
         <parameter name="contractNameExecuted" value="Contract lifecycle autotest"/>
         <classes>
             <class name="tests.SetupLogger"/>
@@ -13,7 +13,7 @@
             <class name="tests.DeleteContractFromExecuted"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-14: Core discussions functionality" preserve-order="true">
         <parameter name="contractName" value="Contract discussions autotest"/>
@@ -26,7 +26,7 @@
         </classes>
     </test>
 
-   <!-- <test name="AT-21: Formatting of just uploaded document" preserve-order="true">
+    <test name="AT-21: Formatting of just uploaded document" preserve-order="true">
         <parameter name="contractName" value="Contract formatting autotest"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -163,5 +163,5 @@
             <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 </suite>
