@@ -17,7 +17,7 @@ public class DeleteContracts
     @Description("This test deletes both contracts with title '3Qcategory1' from in-progress and executed.")
     public void deleteContracts()
     {
-        new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("3Q");
+        new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("3Qcategory1 -A");
         new OpenedContract().clickContractActionsMenu().clickDeleteContract(true).clickDelete();
         $(".notification-stack").waitUntil(Condition.appear, 20_000).shouldHave(Condition.text("has been deleted."));
 
