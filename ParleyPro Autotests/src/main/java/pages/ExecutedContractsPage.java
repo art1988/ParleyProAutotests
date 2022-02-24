@@ -31,9 +31,9 @@ public class ExecutedContractsPage
      */
     public ExecutedContractsPage(boolean isBlank)
     {
-        $(".spinner").waitUntil(Condition.disappear, 30_000);
+        $(".spinner").should(Condition.disappear);
 
-        if( isBlank )
+        /*if( isBlank )
         {
             $(".contracts__empty-greetings").waitUntil(Condition.visible, 7_000)
                     .shouldHave(Condition.exactText("Welcome to your contracts!"));
@@ -45,14 +45,14 @@ public class ExecutedContractsPage
             $(".page-head__left").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Executed contracts"));
             $(".contracts-list__table").shouldBe(Condition.visible);
             $$(".contracts-list__table a").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
-        }
+        }*/
 
         try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
     }
 
     public ContractInformation clickNewContractButton()
     {
-        newContractButton.click();
+        newContractButton.shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("+ NEW CONTRACT button was clicked");
 
@@ -74,7 +74,7 @@ public class ExecutedContractsPage
     {
         logger.info("Download contract data button was clicked.");
 
-        downloadContractDataButton.download();
+        downloadContractDataButton.shouldBe(Condition.visible, Condition.enabled).download();
     }
 
     /**

@@ -13,6 +13,7 @@ import pages.subelements.SearchFilterForm;
 
 import java.io.FileNotFoundException;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -38,7 +39,7 @@ public class InProgressContractsPage
     {
         $(".spinner").waitUntil(Condition.disappear, 45_000);
 
-        if( isBlank )
+        /*if( isBlank )
         {
             // Check for presence of 500 error
             // If button + NEW CONTRACT doesn't exist - it means that 500 occurred
@@ -75,12 +76,12 @@ public class InProgressContractsPage
         {
             $(".contracts-list__table").waitUntil(Condition.visible, 20_000);
             $$(".contracts-list__table a").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
-        }
+        }*/
     }
 
     public ContractInformation clickNewContractButton()
     {
-        newContractButton.click();
+        newContractButton.shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("+ NEW CONTRACT button was clicked");
 
@@ -89,7 +90,7 @@ public class InProgressContractsPage
 
     public ContractRequest clickNewRequestButton()
     {
-        newRequestButton.click();
+        newRequestButton.shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("+ NEW REQUEST button was clicked");
 
@@ -104,7 +105,9 @@ public class InProgressContractsPage
      */
     public void selectContract(String contractName)
     {
-        Selenide.executeJavaScript("$('.contracts-list__contract-name:contains(\"" + contractName + "\")').click()");
+        $(byText(contractName)).shouldBe(Condition.visible, Condition.enabled).click();
+
+        //Selenide.executeJavaScript("$('.contracts-list__contract-name:contains(\"" + contractName + "\")').click()");
 
         logger.info("Contract '" + contractName + "' was selected");
 
