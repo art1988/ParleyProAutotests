@@ -23,10 +23,10 @@ import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -352,6 +352,7 @@ public class ParagraphActions
         Assert.assertTrue(hasHighPriorityMark, "Looks like that high priority mark wasn't added !!!");
 
         String addedTag = "Autotest TAG: " + DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now());
+        logger.info("Current timezone: " + ZonedDateTime.now(ZoneId.systemDefault()));
         openedDiscussion.setNonStandardTerm(addedTag);
 
         logger.info("Check that paragraph has tag from the left...");
