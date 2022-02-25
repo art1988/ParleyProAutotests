@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import pages.OpenedContract;
 import pages.subelements.SideBar;
 import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
@@ -34,6 +35,7 @@ public class LoginAsRequesterAndSendMessage
         sideBar = loginPage.clickSignIn(new SideBarItems[]{ PRIORITY_DASHBOARD, IN_PROGRESS_CONTRACTS, EXECUTED_CONTRACTS, DASHBOARD}).getSideBar();
 
         sideBar.clickInProgressContracts(false).selectContract("Request_for_AT223");
+        new OpenedContract();
 
         logger.info("Hover over CN’s avatar...");
         $$(".contract-header-users .user").filterBy(Condition.exactText("AL")).first().hover();

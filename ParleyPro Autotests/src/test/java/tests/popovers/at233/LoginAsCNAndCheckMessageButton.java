@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import pages.ContractInfo;
 import pages.InProgressContractsPage;
 import pages.LoginPage;
+import pages.OpenedContract;
 import pages.subelements.SideBar;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
@@ -50,6 +51,7 @@ public class LoginAsCNAndCheckMessageButton
 
         logger.info("As CN open request...");
         inProgressContractsPage.selectContract("Request_for_AT223");
+        new OpenedContract();
 
         logger.info("Hover over Requester’s avatar and check Message button...");
         $$(".contract-header-users .user").filterBy(Condition.exactText("RL")).first().hover();
