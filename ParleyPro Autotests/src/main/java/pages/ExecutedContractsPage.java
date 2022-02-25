@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import java.io.FileNotFoundException;
 
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -83,7 +84,7 @@ public class ExecutedContractsPage
      */
     public ContractInfo selectContract(String contractName)
     {
-        Selenide.executeJavaScript("$('.contracts-list__table div:contains(\"" + contractName + "\")').click()");
+        $(withText(contractName)).shouldBe(Condition.visible, Condition.enabled).click();
         logger.info("Contract '" + contractName + "' was selected...");
 
         return new ContractInfo();

@@ -14,6 +14,7 @@ import pages.subelements.SearchFilterForm;
 import java.io.FileNotFoundException;
 
 import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -105,9 +106,7 @@ public class InProgressContractsPage
      */
     public void selectContract(String contractName)
     {
-        $(byText(contractName)).shouldBe(Condition.visible, Condition.enabled).click();
-
-        //Selenide.executeJavaScript("$('.contracts-list__contract-name:contains(\"" + contractName + "\")').click()");
+        $(withText(contractName)).shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("Contract '" + contractName + "' was selected");
 
