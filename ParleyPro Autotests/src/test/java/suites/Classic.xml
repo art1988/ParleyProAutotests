@@ -145,7 +145,7 @@
         <parameter name="documentName" value="Parley Pro DPA (5).docx"/>
         <parameter name="cpDocumentName" value="Parley Pro DPA (Copy 010421)_LK 20210111 (1).docx"/>
         <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="36"/>
+        <parameter name="numberOfDiscussions" value="27"/>
         <parameter name="textOnFirstPage" value="Addendum"/>
         <parameter name="textOnLastPage" value="For All Customers"/>
         <classes>
@@ -217,7 +217,7 @@
         <parameter name="documentName" value="IOC_Framework_Agreement-Learnship.docx"/>
         <parameter name="cpDocumentName" value="2020-07-17_KV-00168_IOC_Framework Agreement_v5_IOC.docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="43"/>
+        <parameter name="numberOfDiscussions" value="42"/>
         <parameter name="textOnFirstPage" value="KV-00168"/>
         <parameter name="textOnLastPage" value="OLYMPIC COMMITTEE:"/>
         <classes>
@@ -253,7 +253,7 @@
         <parameter name="documentName" value="2021-09-07_OSRAM GmbH_Framework Agreement_Learnship_v6_0_revKB(2).docx"/>
         <parameter name="cpDocumentName" value="2021-09-15_OSRAM GmbH_Framework Agreement_Learnship_v7_0_revTU(1).docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="178"/>
+        <parameter name="numberOfDiscussions" value="142"/>
         <parameter name="textOnFirstPage" value="Frame Purchase Agreement"/>
         <parameter name="textOnLastPage" value="TRAINER-LED"/>
         <classes>
