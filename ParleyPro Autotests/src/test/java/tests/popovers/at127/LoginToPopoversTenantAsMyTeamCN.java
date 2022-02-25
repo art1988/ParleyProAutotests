@@ -10,7 +10,6 @@ import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.testng.Assert;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
@@ -34,7 +33,7 @@ public class LoginToPopoversTenantAsMyTeamCN extends LoginBase
     private String username = "arthur.khasanov@parleypro.com";
     private String password = "ParGd881";
 
-    @BeforeSuite
+    @Test(priority = 1)
     private void setup()
     {
         Configuration.proxyEnabled   = true;
@@ -80,7 +79,7 @@ public class LoginToPopoversTenantAsMyTeamCN extends LoginBase
         }
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void loginToDashboard()
     {
         LoginPage loginPage = new LoginPage();
@@ -95,7 +94,7 @@ public class LoginToPopoversTenantAsMyTeamCN extends LoginBase
         Screenshoter.makeScreenshot();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     @Description("Under [My Team CN] user (AL) this test hovers over user icons and checks that MESSAGE button is present. Sends message and verify that email has been received.")
     public void checkTooltipsOverUserIconsAndSendMessages() throws InterruptedException
     {
@@ -146,7 +145,7 @@ public class LoginToPopoversTenantAsMyTeamCN extends LoginBase
         // ~~~~~~~~~~~~~~~~~~~
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void logout()
     {
         new DashboardPage().getSideBar().logout();
