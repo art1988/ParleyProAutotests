@@ -148,6 +148,7 @@ public class ContractRequest
         SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
         uploadMyTeamDocumentsButton.uploadFile(filesToUpload);
+        Thread.sleep(1_000);
     }
 
     /**

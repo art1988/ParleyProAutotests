@@ -73,7 +73,6 @@ public class LoginAsRequesterAndSubmitRequest
         contractRequest.setRequestTitle("request for at-219 DELETE_ME");
         contractRequest.setValueForSelect("ReqField_AT219_Trigger", "v1");
         contractRequest.uploadMyTeamDocuments(new File[]{Const.DOCUMENT_DISCUSSIONS_SAMPLE});
-        Thread.sleep(1_000);
         contractRequest.clickSubmitRequest();
         $(byText("request for at-219 DELETE_ME")).shouldBe(Condition.visible);
 
@@ -84,7 +83,6 @@ public class LoginAsRequesterAndSubmitRequest
         contractRequest.setRequestTitle("request for at-219 CANCEL_ME");
         contractRequest.setValueForSelect("ReqField_AT219_Trigger", "v1");
         contractRequest.uploadMyTeamDocuments(new File[]{Const.DOCUMENT_DISCUSSIONS_SAMPLE});
-        Thread.sleep(1_000);
         contractRequest.clickSubmitRequest();
         $(byText("request for at-219 CANCEL_ME")).shouldBe(Condition.visible);
     }
