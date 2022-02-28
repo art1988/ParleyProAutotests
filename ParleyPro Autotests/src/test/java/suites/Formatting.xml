@@ -50,7 +50,7 @@
         </classes>
     </test>
 
-<!--    <test name="AT-231: Image disappearing" preserve-order="true">
+    <test name="AT-231: Image disappearing" preserve-order="true">
         <parameter name="contractName" value="AT-231 // Image disappearing"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -58,5 +58,5 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 </suite>
