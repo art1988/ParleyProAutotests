@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Regression" configfailurepolicy="continue">
-   <test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
+   <!--<test name="AT-35: Contract/Edit document: cannot re-save document with the table inserted from the editor" preserve-order="true">
         <parameter name="contractName" value="Re-Save contract regress"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -270,9 +270,19 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
+    </test>-->
+
+    <test name="AT-234: Manage Discussions button should be present on the Discussion board " preserve-order="true">
+        <parameter name="contractName" value="AT-234_ManageDiscussionsButton"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.regression.at234.CheckManageDiscussionsButton"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
     </test>
 
-    <test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
+    <!--<test name="AT-110: Track changes: Upload new document does not recognize the changes" preserve-order="true">
         <classes>
             <class name="tests.LoginToTrackChangesTenant"/>
             <class name="tests.regression.at110.CreateContractAndUploadCPDocument"/>
@@ -289,5 +299,5 @@
             <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
