@@ -95,12 +95,13 @@ public class ProceedThroughLifecycleStages
         {
             signContractForm.clickStart();
 
+            Thread.sleep(5_000);
             logger.info("Assert that file was downloaded...");
 
             Assert.assertTrue(new WebDriverWait(WebDriverRunner.getWebDriver(), 20).
                     until(d -> Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), DOCUMENT_NAME + ".pdf").toFile().exists()));
         }
-        catch (FileNotFoundException e)
+        catch (FileNotFoundException | InterruptedException e)
         {
             logger.error("FileNotFoundException", e);
         }
