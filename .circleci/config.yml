@@ -46,9 +46,10 @@ jobs:
       
 
       - run:
-          name: Run Formatting suite
+          name: Run Basics suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Formatting.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          no_output_timeout: 20m
 
       
 
