@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Document sharing suite" configfailurepolicy="continue">
-    <!--<test name="AT-54: Sharing functionality" preserve-order="true">
+    <test name="AT-54: Sharing functionality" preserve-order="true">
         <parameter name="contractName" value="Contract DOCUMENT Sharing"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -43,7 +43,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-235: PDF document: share with CCN, create discussions" preserve-order="true">
         <parameter name="contractName" value="AT-235_PDF_share"/>
