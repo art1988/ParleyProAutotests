@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class CKEditorActive
 {
-    private SelenideElement postButton   = $("#create-discussion__submit, #create-post__submit, .js-dicussion-post-submit");
+    private SelenideElement postButton   = $("#create-discussion__submit, #create-post__submit, .js-dicussion-post-submit, .documents-pdf-discussion-footer__form-footer-buttons button[type='submit']");
     private SelenideElement cancelButton = $("button[class*='create-discussion__cancel']");
     private SelenideElement clauseButton = $(".create-discussion__clause");
 
@@ -126,6 +126,32 @@ public class CKEditorActive
     }
 
     /**
+     * Use this method _only_ for setting comments for uploaded PDF documents
+     * @param comment
+     * @return
+     * @throws InterruptedException
+     */
+    public CKEditorActive setCommentForPDFDiscussion(String comment) throws InterruptedException
+    {
+        $(".editor-area").shouldBe(Condition.visible);
+
+        Thread.sleep(1_000);
+
+        StringBuffer jsCode = new StringBuffer("var names = [];");
+        jsCode.append("for (var i in CKEDITOR.instances) { names.push(CKEDITOR.instances[i]) }");
+        jsCode.append("var editor_instance = names[0];");
+        jsCode.append("var comment_instance = names[1];");
+        jsCode.append("editor_instance.focusManager.focus();");
+        jsCode.append("editor_instance.insertText('" + comment + "')");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        Thread.sleep(1_000); // 1-second delay - necessary for correct saving of text
+
+        return this;
+    }
+
+    /**
      * Selects all text inside opened editor and presses DEL key to delete text.
      * @return
      * @throws InterruptedException
@@ -194,6 +220,7 @@ public class CKEditorActive
     public CKEditorActive selectInternal()
     {
         Selenide.executeJavaScript("$('.create-discussion__states input[id^=\"INT\"]').next().click()");
+        Selenide.executeJavaScript("$('.post-state-radio input[id^=\"INT\"]').next().click()"); // for PDF's docs
 
         logger.info("Internal radio button was selected...");
 
@@ -220,6 +247,7 @@ public class CKEditorActive
     public CKEditorActive selectExternal()
     {
         Selenide.executeJavaScript("$('.create-discussion__states input[id^=\"EXT\"]').next().click()");
+        Selenide.executeJavaScript("$('.post-state-radio input[id^=\"EXT\"]').next().click()"); // for PDF's docs
 
         logger.info("External radio button was selected...");
 
