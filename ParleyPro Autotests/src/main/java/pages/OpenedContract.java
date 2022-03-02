@@ -37,6 +37,9 @@ public class OpenedContract
     private SelenideElement newDocumentButton       = $("button[tooltip='Add new document']");
     private SelenideElement readyForSignatureButton = $(".ready_to_sign");
 
+    // Blue button that appears only for PDF's
+    private SelenideElement startDiscussionButton   = $(".document__pdf-discussion-button");
+
     // In case if document was created from template
     private FieldsPanel fieldsPanel;
 
@@ -359,6 +362,18 @@ public class OpenedContract
         logger.info("Contract info button was clicked");
 
         return new ContractInformation(true);
+    }
+
+    /**
+     * Click by round blue button 'Start discussion' that available only for uploaded PDF's
+     */
+    public OpenedDiscussionPDF clickStartDiscussion()
+    {
+        startDiscussionButton.click();
+
+        logger.info("Blue round button 'Start discussion' was clicked...");
+
+        return new OpenedDiscussionPDF();
     }
 
     /**
