@@ -83,6 +83,11 @@ public class LoginAsRequesterAddRequestUpdateValidate
         sideBar.clickInProgressContracts(false).selectContract("Request_AT-212");
         ContractRequest contractRequest = new ContractRequest(true);
 
+        $("#reqfield_at212_trigger").shouldBe(Condition.visible);
+        $("#reqfield_at212_select").shouldBe(Condition.visible);
+        $("#reqfield_at212_text").shouldBe(Condition.visible);
+        $("#reqfield_at212_num").shouldBe(Condition.visible);
+
         Assert.assertEquals(Selenide.executeJavaScript("return $('#reqfield_at212_trigger').closest('.new-select__control').find('.new-select__single-value').text()"), "val_1", "Value of ReqField_AT212_Trigger field is wrong !!!");
         Assert.assertEquals(Selenide.executeJavaScript("return $('#reqfield_at212_select').closest('.new-select__control').find('.new-select__single-value').text()"), "SEL_val_2", "Value of ReqField_AT212_SELECT field is wrong !!!");
         Assert.assertEquals(Selenide.executeJavaScript("return $('#reqfield_at212_text').val()"), "Updated val for text field_at212", "Value of ReqField_AT212_TEXT field is wrong !!!");
