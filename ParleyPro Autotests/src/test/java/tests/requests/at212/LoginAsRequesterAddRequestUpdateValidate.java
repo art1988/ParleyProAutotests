@@ -81,8 +81,8 @@ public class LoginAsRequesterAddRequestUpdateValidate
         logger.info("Opening request and check request fields...");
 
         sideBar.clickInProgressContracts(false).selectContract("Request_AT-212");
+        ContractRequest contractRequest = new ContractRequest(true);
 
-                               // Selenide.executeJavaScript("return $('#reqfield_at212_trigger').closest('.new-select__control').find('.new-select__single-value').text()
         Assert.assertEquals(Selenide.executeJavaScript("return $('#reqfield_at212_trigger').closest('.new-select__control').find('.new-select__single-value').text()"), "val_1", "Value of ReqField_AT212_Trigger field is wrong !!!");
         Assert.assertEquals(Selenide.executeJavaScript("return $('#reqfield_at212_select').closest('.new-select__control').find('.new-select__single-value').text()"), "SEL_val_2", "Value of ReqField_AT212_SELECT field is wrong !!!");
         Assert.assertEquals(Selenide.executeJavaScript("return $('#reqfield_at212_text').val()"), "Updated val for text field_at212", "Value of ReqField_AT212_TEXT field is wrong !!!");
@@ -91,7 +91,7 @@ public class LoginAsRequesterAddRequestUpdateValidate
 
         Screenshoter.makeScreenshot();
 
-        new ContractRequest(true).clickCancel();
+        contractRequest.clickCancel();
     }
 
     @Test(priority = 4)
