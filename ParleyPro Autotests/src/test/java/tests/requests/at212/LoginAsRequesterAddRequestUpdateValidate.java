@@ -1,6 +1,7 @@
 package tests.requests.at212;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractRequest;
 import io.qameta.allure.Description;
@@ -81,10 +82,11 @@ public class LoginAsRequesterAddRequestUpdateValidate
 
         sideBar.clickInProgressContracts(false).selectContract("Request_AT-212");
 
-        Assert.assertEquals($("#reqfield_at212_trigger").getValue(), "val_1", "Value of ReqField_AT212_Trigger field is wrong !!!");
-        Assert.assertEquals($("#reqfield_at212_select").getValue(), "SEL_val_2", "Value of ReqField_AT212_SELECT field is wrong !!!");
-        Assert.assertEquals($("#reqfield_at212_text").getValue(), "Updated val for text field_at212", "Value of ReqField_AT212_TEXT field is wrong !!!");
-        Assert.assertEquals($("#reqfield_at212_num").getValue(), "333199", "Value of ReqField_AT212_NUM field is wrong !!!");
+                               // Selenide.executeJavaScript("return $('#reqfield_at212_trigger').closest('.new-select__control').find('.new-select__single-value').text()
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#reqfield_at212_trigger').closest('.new-select__control').find('.new-select__single-value').text()"), "val_1", "Value of ReqField_AT212_Trigger field is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#reqfield_at212_select').closest('.new-select__control').find('.new-select__single-value').text()"), "SEL_val_2", "Value of ReqField_AT212_SELECT field is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#reqfield_at212_text').val()"), "Updated val for text field_at212", "Value of ReqField_AT212_TEXT field is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#reqfield_at212_num').val()"), "333199", "Value of ReqField_AT212_NUM field is wrong !!!");
         $(".upload-field__file").shouldBe(Condition.visible).shouldHave(Condition.text("AT-14.docx"));
 
         Screenshoter.makeScreenshot();

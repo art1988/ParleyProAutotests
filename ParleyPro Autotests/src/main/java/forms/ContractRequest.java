@@ -86,6 +86,7 @@ public class ContractRequest
 
         $(selectElement).sendKeys(Keys.BACK_SPACE); // to clear previous value
         $(selectElement).sendKeys(value);
+        $(selectElement).pressEnter();
     }
 
     public void setCounterpartyOrganization(String counterpartyOrganization)

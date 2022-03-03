@@ -56,11 +56,11 @@ public class LoginBackAsCNAndCheck
         $(".supporting-documents__document-name").shouldBe(Condition.visible).shouldHave(Condition.exactText("IMG_JPEG.jpeg"));
 
         logger.info("Checking request fields...");
-        Assert.assertEquals($("#contractingregion").val(), "region1", "[Request field] Contracting region is wrong !!!");
-        Assert.assertEquals($("#contractingcountry").val(), "country1", "[Request field] Contracting country is wrong !!!");
-        Assert.assertEquals($("#contractentity").val(), "entity1", "[Request field] Contract entity is wrong !!!");
-        Assert.assertEquals($("#contractingdepartment").val(), "department2", "[Request field] Contracting department is wrong !!!");
-        Assert.assertEquals($("#contractcategory").val(), "category2", "[Request field] Contract category is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#contractingregion').closest('.new-select__control').find('.new-select__single-value').text()"), "region1", "[Request field] Contracting region is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#contractingcountry').closest('.new-select__control').find('.new-select__single-value').text()"), "country1", "[Request field] Contracting country is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#contractentity').closest('.new-select__control').find('.new-select__single-value').text()"), "entity1", "[Request field] Contract entity is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#contractingdepartment').closest('.new-select__control').find('.new-select__single-value').text()"), "department2", "[Request field] Contracting department is wrong !!!");
+        Assert.assertEquals(Selenide.executeJavaScript("return $('#contractcategory').closest('.new-select__control').find('.new-select__single-value').text()"), "category2", "[Request field] Contract category is wrong !!!");
         Assert.assertEquals($("input[data-id=\"contracttype\"]").val(), "type3", "[Request field] Contract type is wrong !!!");
         Assert.assertEquals(Selenide.executeJavaScript("return $('span:contains(\"Contract value\")').parent().next().find(\"button\").text().trim()"), "EUR EUR", "Currency is wrong !!!");
         Assert.assertEquals($("#contractvalue").val(), "4,500", "[Request field] Contract value is wrong !!!");
