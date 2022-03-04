@@ -135,6 +135,7 @@ public class CheckTextAndValues
         Assert.assertTrue(Selenide.executeJavaScript("return $('.admin-fields-relations__field-head:contains(\"SF1\")').next().find('.admin-fields-relations__field-item').eq(1).text().includes(\"V1-2 SF1\")"), "Second related field for SF1 is missing !!!");
     }
 
+    @Step("Click by 'Add related field' link for RF2 and check text")
     public void checkTextAndValuesForRF2AndAddOneMoreValue() throws InterruptedException
     {
         FieldsRelations fieldsRelations = fieldsTab.clickFieldsRelations();
