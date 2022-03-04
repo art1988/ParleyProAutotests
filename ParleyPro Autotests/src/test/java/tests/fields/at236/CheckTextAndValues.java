@@ -42,7 +42,7 @@ public class CheckTextAndValues
 
         ContractFields contractFields = fieldsTab.clickContractFields();
 
-        // Summary
+        logger.info("Adding custom summary fields...");
         contractFields.createNewFiled("Summary", "SF1", FieldType.SELECT, false);
         contractFields.addValues("SF1", "V1-1");
         contractFields.addValues("SF1", "V1-2");
@@ -55,7 +55,7 @@ public class CheckTextAndValues
         contractFields.addValues("SF3", "V3-1");
         contractFields.addValues("SF3", "V3-2");
 
-        // Contract Request
+        logger.info("Adding custom contract request fields...");
         contractFields.createNewFiled("Contract Request", "RF1", FieldType.MULTI_SELECT, false);
         contractFields.addValues("RF1", "V4-1");
         contractFields.addValues("RF1", "V4-2");
