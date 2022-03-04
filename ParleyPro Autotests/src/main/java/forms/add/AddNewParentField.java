@@ -8,6 +8,9 @@ import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Form that appears after clicking by 'Add new parent field' link on FIELD RELATIONS tab
+ */
 public class AddNewParentField
 {
     private SelenideElement createButton = $(".modal-footer button[type=\"submit\"]");
