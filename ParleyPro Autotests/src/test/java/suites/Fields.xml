@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Fields suite" configfailurepolicy="continue">
-    <test name="AT-116: Check that predefined fields may be deleted" preserve-order="true">
+    <!--<test name="AT-116: Check that predefined fields may be deleted" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.fields.at116.DeletePredefinedFields"/>
@@ -100,6 +100,15 @@
             <class name="tests.fields.at177.DeleteTemplateFromT1"/>
             <class name="tests.Logout"/>
             <class name="tests.fields.at177.DisableAutoSequenceLabelPropertyForT1"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-236: Field relations: Add related field button should add related fields to the appropriate parent field" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.fields.at236.CheckTextAndValues"/>
+            <class name="tests.regression.at142.RestoreDepartmentValues"/>
+            <class name="tests.Logout"/>
         </classes>
     </test>
 </suite>
