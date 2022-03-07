@@ -99,7 +99,7 @@ public class InProgressContractsPage
     }
 
     /**
-     * This method selects [contract] OR [request] by name.
+     * This method selects [contract] OR [request] by name (CONTAINING given name).
      * May return new page with 'Add Documents' or already uploaded contract ( OpenedContract ).
      * <hr>
      * Also, may return 'Edit Contract Request' form in case of [request].

@@ -2,44 +2,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Approval workflow" configfailurepolicy="continue">
-    <test name="AT-28: Create and Edit Team" preserve-order="true">
+    <test name="AT-28: Create and Edit Team;
+                AT-29: Create Approval workflow" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.approval_workflow.CreateAndEditTeam"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
-
-    <test name="AT-29: Create Approval workflow" preserve-order="true">
-        <classes>
-            <class name="tests.LoginToDashboard"/>
             <class name="tests.approval_workflow.CreateApprovalWorkflow"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
 
-    <test name="AT-29: Approval workflow negative case: wrong category" preserve-order="true">
-        <parameter name="contractName" value="Approval workflow negative case [wrong category]"/>
+    <test name="AT-29: Approval workflow negative case: wrong category;
+                AT-33: Approval workflow negative case: wrong value range;
+                AT-34: Approval workflow positive case" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.approval_workflow.CreateContractNegativeCategory"/>
-            <class name="tests.DeleteContractFromInProgress"/>
-        </classes>
-    </test>
-
-    <test name="AT-33: Approval workflow negative case: wrong value range" preserve-order="true">
-        <parameter name="contractName" value="Approval workflow negative case [wrong value range]"/>
-        <classes>
             <class name="tests.approval_workflow.CreateContractNegativeValueRange"/>
-            <class name="tests.DeleteContractFromInProgress"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>
-
-    <test name="AT-34: Approval workflow positive case" preserve-order="true">
-        <parameter name="contractName" value="Approval workflow positive"/>
-        <classes>
-            <class name="tests.LoginToDashboard"/>
             <class name="tests.approval_workflow.CreateContractPositiveForApprovalWorkflow"/>
             <class name="tests.approval_workflow.StartPreNegotiateApproval"/>
             <class name="tests.approval_workflow.StartPreSignApproval"/>
@@ -55,7 +34,7 @@
             <class name="tests.approval_workflow.reject.CreateContractAndStartApproval"/>
             <class name="tests.approval_workflow.reject.LoginAsApproverAndReject"/>
             <class name="tests.DeleteContractFromInProgress"/>
-            <class name="tests.approval_workflow.reject.RemoveWorkflowAndTeams"/>
+            <class name="tests.approval_workflow.reject.RemoveWorkflowAndTeams"/> <!-- deletes workflow and teams from previous(!!!) tests AT-28,29 -->
             <class name="tests.Logout"/>
         </classes>
     </test>

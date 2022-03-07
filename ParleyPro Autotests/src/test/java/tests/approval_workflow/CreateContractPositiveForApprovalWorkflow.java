@@ -12,6 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
+import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
@@ -30,10 +31,7 @@ public class CreateContractPositiveForApprovalWorkflow
     @Description("This test creates contract that satisfies Approval Workflow settings and verifies that APPROVE stage is available")
     public void createContractPositiveForApprovalWorkflow()
     {
-        // 1. + NEW CONTRACT
-        InProgressContractsPage inProgressContractsPage = new InProgressContractsPage(true);
-
-        ContractInformation contractInformationForm = inProgressContractsPage.clickNewContractButton();
+        ContractInformation contractInformationForm = new DashboardPage().getSideBar().clickInProgressContracts(false).clickNewContractButton();
 
         contractInformationForm.setContractTitle("Approval workflow positive");
         contractInformationForm.setContractCurrency("GBP");
@@ -44,20 +42,15 @@ public class CreateContractPositiveForApprovalWorkflow
         contractInformationForm.setContractingDepartment("department2"); // correct department
         contractInformationForm.setContractCategory("category2");        // correct category
         contractInformationForm.setContractType("type2");                // correct type
-
         contractInformationForm.clickSave();
 
-        // 2. UPLOAD MY TEAM DOCUMENTS
-        AddDocuments addDocuments = new AddDocuments();
 
-        addDocuments.clickUploadMyTeamDocuments( Const.DOCUMENT_LIFECYCLE_SAMPLE );
-
-        // Wait until document is fully loaded...
-        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"PRAMATA\")')");
+        new AddDocuments().clickUploadMyTeamDocuments( Const.DOCUMENT_LIFECYCLE_SAMPLE );
+        $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("DRAFT\n(1)", "DRAFT"));
 
         logger.info("Assert upload notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 25_000).shouldHave(Condition.exactText("Document pramata has been successfully uploaded."));
-        $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.exactText("Document pramata has been successfully uploaded."));
+        $(".notification-stack").should(Condition.disappear);
 
         logger.info("Assert that _contract_ header have APPROVE option...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.contract-header__status .lifecycle').text()"), "DRAFT(1)REVIEWAPPROVALNEGOTIATEAPPROVALSIGNMANAGED");

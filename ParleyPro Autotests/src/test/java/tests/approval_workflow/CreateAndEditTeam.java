@@ -100,7 +100,7 @@ public class CreateAndEditTeam
     }
 
     @Test(priority = 2)
-    @Description("This test adds one more team with 2 users")
+    @Description("This test adds one more team (Team #2) with 2 users")
     public void addOneMoreTeamWith2Users()
     {
         Teams teamsTabPage = new Teams();

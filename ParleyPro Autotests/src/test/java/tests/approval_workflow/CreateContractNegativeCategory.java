@@ -1,5 +1,6 @@
 package tests.approval_workflow;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
@@ -10,12 +11,14 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
+import pages.DashboardPage;
 import pages.InProgressContractsPage;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 import utils.Waiter;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ ScreenShotOnFailListener.class})
 public class CreateContractNegativeCategory
@@ -26,10 +29,7 @@ public class CreateContractNegativeCategory
     @Description("Document approval workflow negative case : this test creates new contract with category that differs from approval workflow")
     public void createContractNegativeCategory()
     {
-        // 1. + NEW CONTRACT
-        InProgressContractsPage inProgressContractsPage = new InProgressContractsPage(true);
-
-        ContractInformation contractInformationForm = inProgressContractsPage.clickNewContractButton();
+        ContractInformation contractInformationForm = new DashboardPage().getSideBar().clickInProgressContracts(true).clickNewContractButton();
 
         contractInformationForm.setContractTitle("Approval workflow negative case [wrong category]");
         contractInformationForm.setContractCurrency("GBP");
@@ -40,22 +40,15 @@ public class CreateContractNegativeCategory
         contractInformationForm.setContractingDepartment("department2");
         contractInformationForm.setContractCategory("category1"); // !!!     category1 instead of category2
         contractInformationForm.setContractType("type2");
-
-        Screenshoter.makeScreenshot();
-
         contractInformationForm.clickSave();
 
-        // 2. UPLOAD MY TEAM DOCUMENTS
-        AddDocuments addDocuments = new AddDocuments();
 
-        addDocuments.clickUploadMyTeamDocuments( Const.DOCUMENT_LIFECYCLE_SAMPLE );
-
-        // Wait until document is fully loaded...
-        Waiter.smartWaitUntilVisible("$('.document-paragraph__content-text:contains(\"PRAMATA\")')");
+        new AddDocuments().clickUploadMyTeamDocuments( Const.DOCUMENT_LIFECYCLE_SAMPLE );
+        $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("DRAFT\n(1)", "DRAFT"));
 
         logger.info("Assert upload notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 25_000).shouldHave(Condition.exactText("Document pramata has been successfully uploaded."));
-        $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.exactText("Document pramata has been successfully uploaded."));
+        $(".notification-stack").should(Condition.disappear);
 
         logger.info("Assert that _contract_ header doesn't have APPROVE option...");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.contract-header__status .lifecycle').text()"), "DRAFT(1)REVIEWNEGOTIATESIGNMANAGED");

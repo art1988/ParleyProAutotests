@@ -9,6 +9,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.OpenedContract;
+import pages.subelements.SideBar;
 import utils.ScreenShotOnFailListener;
 
 import java.io.IOException;
@@ -24,21 +25,32 @@ public class CleanUp
     @Description("This test clean up download dir")
     public void cleanUpDownloadDir() throws IOException
     {
-        // Clean download dir
         FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
     }
 
     @Test(priority = 2)
-    @Description("This test delete contract: Approval workflow positive")
-    public void deleteContract()
+    @Description("Delete the following contracts: Approval workflow negative case [wrong category], Approval workflow negative case [wrong value range], Approval workflow positive")
+    public void deleteContracts()
     {
-        new DashboardPage().getSideBar().clickExecutedContracts(false).selectContract("Approval workflow positive");
+        SideBar sideBar = new DashboardPage().getSideBar();
+
+        logger.info("Delete 'Approval workflow positive' contract from executed...");
+        sideBar.clickExecutedContracts(false).selectContract("Approval workflow positive");
 
         OpenedContract openedContract = new OpenedContract();
-
         openedContract.clickContractActionsMenu().clickDeleteContract().clickDelete();
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.text("Contract Approval workflow positive has been deleted."));
 
-        logger.info("Assert delete contract notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Contract Approval workflow positive has been deleted."));
+        logger.info("Delete 'Approval workflow negative case [wrong value range]' contract from in-progress...");
+        sideBar.clickInProgressContracts(false).selectContract("[wrong value range]");
+        openedContract = new OpenedContract();
+        openedContract.clickContractActionsMenu().clickDeleteContract().clickDelete();
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.text("Contract Approval workflow negative case [wrong value range] has been deleted."));
+
+        logger.info("Delete 'Approval workflow negative case [wrong category]' contract from in-progress...");
+        sideBar.clickInProgressContracts(false).selectContract("[wrong category]");
+        openedContract = new OpenedContract();
+        openedContract.clickContractActionsMenu().clickDeleteContract().clickDelete();
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.text("Contract Approval workflow negative case [wrong category] has been deleted."));
     }
 }
