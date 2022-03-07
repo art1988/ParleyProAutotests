@@ -118,7 +118,7 @@
             <class name="tests.regression.at142.CreateContract1AndContract2"/>
             <class name="tests.regression.at142.AddViewerRoleAndSetDepartment"/>
             <class name="tests.regression.at142.LoginAsUser2AndCheck"/>
-            <class name="tests.regression.at142.RestoreDepartmentValues"/>
+            <class name="tests.regression.at142.RestoreDefaultFields"/>
             <class name="tests.regression.at142.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>

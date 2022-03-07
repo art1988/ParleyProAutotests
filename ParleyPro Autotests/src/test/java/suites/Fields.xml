@@ -107,7 +107,7 @@
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.fields.at236.CheckTextAndValues"/>
-            <class name="tests.regression.at142.RestoreDepartmentValues"/>
+            <class name="tests.regression.at142.RestoreDefaultFields"/>
             <class name="tests.Logout"/>
         </classes>
     </test>

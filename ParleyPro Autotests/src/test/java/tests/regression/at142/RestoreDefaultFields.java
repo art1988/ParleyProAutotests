@@ -20,9 +20,25 @@ import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
 
-public class RestoreDepartmentValues
+/**
+ * General step to restore Fields in Administration via API call:
+ *
+ * Only these [Summary] fields will be restored:
+ *
+ * <ul>
+ *  <li>[Contracting region]     with values region1, region2, region3</li>
+ *  <li>[Contracting country]    with values country1, country2</li>
+ *  <li>[Contract entity]        with values entity1, entity2</li>
+ *  <li>[Contracting department] with values department1, department2</li>
+ *  <li>[Contract category]      with values category1, category2</li>
+ *  <li>[Contract type]          with values type1, type2, type3</li>
+ * </ul>
+ *
+ * [Post-execution] fields and [Contract Request] fields will be erased and will stay empty !!!
+ */
+public class RestoreDefaultFields
 {
-    private static Logger logger = Logger.getLogger(RestoreDepartmentValues.class);
+    private static Logger logger = Logger.getLogger(RestoreDefaultFields.class);
     private LoginBase loginBase;
 
 
@@ -43,7 +59,7 @@ public class RestoreDepartmentValues
 
     @Test
     @Description("Restore department to default values(department1 and department2) via API call")
-    public void restoreDepartmentValues() throws ParseException, IOException
+    public void restoreDefaultFields() throws ParseException, IOException
     {
         JSONParser parser = new JSONParser();
 
