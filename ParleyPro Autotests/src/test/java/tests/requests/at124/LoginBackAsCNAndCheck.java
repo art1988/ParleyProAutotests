@@ -56,6 +56,14 @@ public class LoginBackAsCNAndCheck
         $(".supporting-documents__document-name").shouldBe(Condition.visible).shouldHave(Condition.exactText("IMG_JPEG.jpeg"));
 
         logger.info("Checking request fields...");
+        // simple $("#contractingregion").shouldBe(visible) will not work !!! -> get closest(".new-select__control")
+        // even though input is visible but disabled(has grey background)
+        $("#contractingregion").closest(".new-select__control").shouldBe(Condition.visible);
+        $("#contractingcountry").closest(".new-select__control").shouldBe(Condition.visible);
+        $("#contractentity").closest(".new-select__control").shouldBe(Condition.visible);
+        $("#contractingdepartment").closest(".new-select__control").shouldBe(Condition.visible);
+        $("#contractcategory").closest(".new-select__control").shouldBe(Condition.visible);
+        Thread.sleep(2_000); // additional timings
         Assert.assertEquals(Selenide.executeJavaScript("return $('#contractingregion').closest('.new-select__control').find('.new-select__single-value').text()"), "region1", "[Request field] Contracting region is wrong !!!");
         Assert.assertEquals(Selenide.executeJavaScript("return $('#contractingcountry').closest('.new-select__control').find('.new-select__single-value').text()"), "country1", "[Request field] Contracting country is wrong !!!");
         Assert.assertEquals(Selenide.executeJavaScript("return $('#contractentity').closest('.new-select__control').find('.new-select__single-value').text()"), "entity1", "[Request field] Contract entity is wrong !!!");
@@ -66,6 +74,11 @@ public class LoginBackAsCNAndCheck
         Assert.assertEquals($("#contractvalue").val(), "4,500", "[Request field] Contract value is wrong !!!");
 
         logger.info("Checking that summary fields values were populated from request fields...");
+        $("#contractingRegion").shouldBe(Condition.visible);
+        $("#contractingCountry").shouldBe(Condition.visible);
+        $("#contractEntity").shouldBe(Condition.visible);
+        $("#ContractingDepartment").shouldBe(Condition.visible);
+        $("#contractCategory").shouldBe(Condition.visible);
         Assert.assertEquals(Selenide.executeJavaScript("return $('#contractingRegion').closest('.new-select__value-container').find(\".new-select__single-value\").text()"), "region1", "[Summary field] Contracting region is wrong !!!");
         Assert.assertEquals(Selenide.executeJavaScript("return $('#contractingCountry').closest('.new-select__value-container').find(\".new-select__single-value\").text()"), "country1", "[Summary field] Contracting country is wrong !!!");
         Assert.assertEquals(Selenide.executeJavaScript("return $('#contractEntity').closest('.new-select__value-container').find(\".new-select__single-value\").text()"), "entity1", "[Summary field] Contract entity is wrong !!!");
