@@ -40,8 +40,8 @@ jobs:
           command: sudo curl -o allure-2.13.8.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.tgz && sudo tar -zxvf allure-2.13.8.tgz -C /opt/ && sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure && allure --version      
           
       - run:
-          name: Install chromium
-          command: sudo apt install -y chromium-browser; sudo apt --fix-broken install -y
+          name: Install Chrome
+          command: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo dpkg -i google-chrome-stable_current_amd64.deb; sudo apt install -y google-chrome-stable; sudo apt --fix-broken install -y
       
       - run:
           name: Run Numbered lists suite
