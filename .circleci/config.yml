@@ -44,16 +44,9 @@ jobs:
           command: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo apt -f install; sudo apt-get update; sudo apt-get install libnspr4; sudo apt-get install libnss3; sudo dpkg -i google-chrome-stable_current_amd64.deb; sudo apt install -y google-chrome-stable; sudo apt --fix-broken install -y
       
       - run:
-          name: Run Numbered lists suite
+          name: Run Regression suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/NumberedLists.xml
-          
-      - run: sleep 10    
-      
-      - run:
-          name: Run Basics suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
           no_output_timeout: 20m
 
       - save_cache:
