@@ -546,6 +546,34 @@ public class ContractInformation
     }
 
     /**
+     * Click by '+ Add a field' blue link => After that 'Title' and 'Value' selects will appear.
+     * <br/>
+     * Use methods setNewFieldName() and setNewFieldsValue() afterwards.
+     */
+    public void clickAddAField()
+    {
+        $$(".contract-create-fields__add").filterBy(Condition.exactText("Add a field")).first().click();
+
+        logger.info("+ Add a field link was clicked");
+    }
+
+    public void setNewFieldsName(String fieldName)
+    {
+        // set id for Title select
+        Selenide.executeJavaScript("return $('.input__label:contains(\"Title\")').parent().find('input').attr('id', 'nf_id')");
+
+        $("#nf_id").sendKeys(fieldName);
+    }
+
+    public void setNewFieldsValue(String value)
+    {
+        // set id for Value select
+        Selenide.executeJavaScript("return $('.input__label:contains(\"Value\")').parent().find('input').attr('id', 'nfVal_id')");
+
+        $("#nfVal_id").sendKeys(value);
+    }
+
+    /**
      * Get value from arbitrary Custom Field
      * @param customFieldName name of custom field value of which we want to obtain
      * @return
