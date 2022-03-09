@@ -17,12 +17,17 @@ import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import static com.codeborne.selenide.Selenide.$;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class AddInProgressContract
 {
     private SoftAssert softAssert = new SoftAssert();
+    private String newFieldsName;
+
     private static Logger logger = Logger.getLogger(AddInProgressContract.class);
 
     @Test(priority = 1)
@@ -61,6 +66,12 @@ public class AddInProgressContract
                 "Minus dolores pariatur quas voluptas aut ut. Corporis sed voluptatem aliquid officia pariatur id pariatur nostrum. Omnis nobis qui temporibus voluptatum consequatur voluptas illum molestias.\n" +
                 "\n" +
                 "Ab pariatur corrupti dolores ipsa provident. Dicta eum nobis porro ab et error quis voluptas. Ea dignissimos nulla eos corporis maiores cum unde quos. Aliquid fuga laboriosam tempore. Labore soluta libero est iure quo molestias harum nostrum.");
+
+        /*newFieldsName = "field_" + new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime());
+
+        contractInformation.clickAddAField();
+        contractInformation.setNewFieldsName(newFieldsName);
+        contractInformation.setNewFieldsValue("val for just added field");*/
 
         contractInformation.setTag("My tag 1");
         contractInformation.clickSave();
