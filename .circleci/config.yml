@@ -14,7 +14,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/openjdk:8u222-stretch-browsers
+      - image: cimg/openjdk:8.0.322-browsers
       
     steps:
       - checkout
