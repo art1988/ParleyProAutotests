@@ -45,7 +45,7 @@
         </classes>
     </test>
 
-    <test name="AT-76: PROD ISSUE: APLL: ~50 emails sent to user" preserve-order="true">
+<!--    <test name="AT-76: PROD ISSUE: APLL: ~50 emails sent to user" preserve-order="true">
         <parameter name="contractName" value="APLL: 50 emails"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -55,7 +55,7 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="AT-78: Floating objects and images upload" preserve-order="true">
         <parameter name="contractName" value="Floating objects and images"/>
@@ -110,7 +110,7 @@
         </classes>
     </test>
 
-    <test name="AT-142: If Contract Department is empty, user with Department restriction can see that contract in Executed contracts" preserve-order="true">
+<!--    <test name="AT-142: If Contract Department is empty, user with Department restriction can see that contract in Executed contracts" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.regression.at142.DisableDepartmentField"/>
@@ -122,7 +122,7 @@
             <class name="tests.regression.at142.CleanUp"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="AT-161: Document with DOCX extension (all capital) cannot be expanded" preserve-order="true">
         <parameter name="contractName" value="AT-161 ctr"/>
@@ -147,7 +147,7 @@
         </classes>
     </test>
 
-    <test name="[FLAKY] AT-162: Allow My team to move contract to Pre-Sign approval even Counterparty has open internal discussion" preserve-order="true">
+<!--    <test name="[FLAKY] AT-162: Allow My team to move contract to Pre-Sign approval even Counterparty has open internal discussion" preserve-order="true">
         <parameter name="contractName" value="AT-162 Contract"/>
         <parameter name="contractNameEmail" value="AT-162 Contract"/>
         <classes>
@@ -175,7 +175,7 @@
             <class name="tests.DeleteContractFromExecuted"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 
     <test name="AT-148: Classic: discussion for removed paragraph hasn't been created after new version upload" preserve-order="true">
         <parameter name="contractName" value="AT-148 contract"/>

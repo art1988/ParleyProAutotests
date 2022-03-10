@@ -44,13 +44,55 @@ jobs:
           command: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo apt -f install; sudo apt-get update; sudo apt-get install libnspr4; sudo apt-get install libnss3; sudo dpkg -i google-chrome-stable_current_amd64.deb; sudo apt install -y google-chrome-stable; sudo apt --fix-broken install -y
 
       
-      
+     
       
       - run:
-          name: Run Contract Info suite
+          name: Run Grey Screens suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractInfo.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/GreyScreens.xml
+
+      - run: sleep 10
+
+      - run:
+          name: Run Basics suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          no_output_timeout: 20m
           
+      - run: sleep 10
+      
+      
+
+      - run:
+          name: Run Classic suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+
+      - run:
+          name: Run Formatting suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Formatting.xml
+
+      - run: sleep 10
+
+      
+
+      - run:
+          name: Run Regression suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+
+      - run:
+          name: Run Attachment runner suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/AttachmentRunner.xml
+
       
 
       - save_cache:
