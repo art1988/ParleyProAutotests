@@ -67,11 +67,11 @@ public class AddInProgressContract
                 "\n" +
                 "Ab pariatur corrupti dolores ipsa provident. Dicta eum nobis porro ab et error quis voluptas. Ea dignissimos nulla eos corporis maiores cum unde quos. Aliquid fuga laboriosam tempore. Labore soluta libero est iure quo molestias harum nostrum.");
 
-        /*newFieldsName = "field_" + new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime());
+        newFieldsName = "field_" + new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime());
 
         contractInformation.clickAddAField();
         contractInformation.setNewFieldsName(newFieldsName);
-        contractInformation.setNewFieldsValue("val for just added field");*/
+        contractInformation.setNewFieldsValue("val for just added field");
 
         contractInformation.setTag("My tag 1");
         contractInformation.clickSave();
@@ -114,6 +114,8 @@ public class AddInProgressContract
                 "Ab pariatur corrupti dolores ipsa provident. Dicta eum nobis porro ab et error quis voluptas. Ea dignissimos nulla eos corporis maiores cum unde quos. Aliquid fuga laboriosam tempore. Labore soluta libero est iure quo molestias harum nostrum.",
                 "Text Area field wasn't saved !!!");
         contractInformation.getTags().shouldHaveSize(1).shouldHave(CollectionCondition.exactTexts("My tag 1"));
+        softAssert.assertEquals(contractInformation.getNewFieldsName(), newFieldsName, "Name of added new field is wrong !!!");
+        softAssert.assertEquals(contractInformation.getNewFieldsValue(), "val for just added field", "Value of added new field is wrong !!!");
 
         softAssert.assertAll();
     }
@@ -218,6 +220,8 @@ public class AddInProgressContract
                         "Ab pariatur corrupti dolores ipsa provident. Dicta eum nobis porro ab et error quis voluptas. Ea dignissimos nulla eos corporis maiores cum unde quos. Aliquid fuga laboriosam tempore. Labore soluta libero est iure quo molestias harum nostrum.",
                 "Text Area field wasn't saved !!!");
         contractInformation.getTags().shouldHaveSize(2).shouldHave(CollectionCondition.textsInAnyOrder("My tag 3", "My tag 2"));
+        softAssert.assertEquals(contractInformation.getNewFieldsName(), newFieldsName, "Name of added new field is wrong !!!");
+        softAssert.assertEquals(contractInformation.getNewFieldsValue(), "val for just added field", "Value of added new field is wrong !!!");
 
         softAssert.assertAll();
         Screenshoter.makeScreenshot();

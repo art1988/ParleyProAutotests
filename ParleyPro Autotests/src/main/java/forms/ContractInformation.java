@@ -1,12 +1,10 @@
 package forms;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 import constants.FieldType;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -560,17 +558,34 @@ public class ContractInformation
     public void setNewFieldsName(String fieldName)
     {
         // set id for Title select
-        Selenide.executeJavaScript("return $('.input__label:contains(\"Title\")').parent().find('input').attr('id', 'nf_id')");
+        Selenide.executeJavaScript("$('.input__label:contains(\"Title\")').parent().find('input').attr('id', 'nf_id')");
 
         $("#nf_id").sendKeys(fieldName);
+
+        Actions actionProvider = new Actions(WebDriverRunner.getWebDriver());
+        actionProvider.click($$(".new-select__menu .new-select__option").filterBy(Condition.text("Create")).first().toWebElement()).build().perform();
     }
 
     public void setNewFieldsValue(String value)
     {
         // set id for Value select
-        Selenide.executeJavaScript("return $('.input__label:contains(\"Value\")').parent().find('input').attr('id', 'nfVal_id')");
+        Selenide.executeJavaScript("$('.input__label:contains(\"Value\")').parent().find('input').attr('id', 'nfVal_id')");
 
         $("#nfVal_id").sendKeys(value);
+    }
+
+    public String getNewFieldsName()
+    {
+        Selenide.executeJavaScript("$('.input__label:contains(\"Title\")').parent().find('input').attr('id', 'nf_id')");
+
+        return $("#nf_id").closest(".new-select__value-container").getText();
+    }
+
+    public String getNewFieldsValue()
+    {
+        Selenide.executeJavaScript("$('.input__label:contains(\"Value\")').parent().find('input').attr('id', 'nfVal_id')");
+
+        return $("#nfVal_id").getValue();
     }
 
     /**
