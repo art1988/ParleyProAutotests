@@ -23,6 +23,8 @@ public class CancelContract
 
     public CancelContract checkLeaveCommentCheckbox()
     {
+        $("input[type='checkbox']").shouldBe(Condition.visible, Condition.enabled);
+
         Actions actionProvider = new Actions(WebDriverRunner.getWebDriver());
         actionProvider.click($("input[type='checkbox']").toWebElement()).build().perform();
 
