@@ -2,6 +2,7 @@ package tests.basics.at238;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import constants.Const;
 import forms.ContractInformation;
 import io.qameta.allure.Step;
@@ -11,10 +12,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AddDocuments;
+import pages.AuditTrail;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import pages.subelements.SideBar;
 import utils.ScreenShotOnFailListener;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -72,6 +77,7 @@ public class ContractCancellationWithCommentTest
         cancelContract();
         traverseThroughAllDiscussions();
         restartContract();
+        checkAuditTrail();
     }
 
     @Step("Cancel contract with message, check status")
@@ -121,5 +127,20 @@ public class ContractCancellationWithCommentTest
         logger.info("Check first discussion after restarting...");
         openedContract.clickByDiscussionIconSoft("Paragraph 1");
         $$(".discussion2-post__foot div").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("MAKE EXTERNAL", "MAKE QUEUED"));
+    }
+
+    @Step("Open Audit trail, check events and cancel message")
+    public void checkAuditTrail()
+    {
+        AuditTrail auditTrail = openedContract.clickAuditTrail();
+
+        $$(".timeline-title").shouldHave(CollectionCondition.size(6));
+        List<String> allEvents = $$(".timeline-title").stream().map(SelenideElement::text).collect(Collectors.toList());
+
+        Assert.assertTrue(allEvents.contains("Contract cancelled"), "There is no such event as 'Contract cancelled' !!!");
+        Assert.assertTrue(allEvents.contains("Contract restarted"), "There is no such event as 'Contract restarted' !!!");
+        $$(".timeline-body__message").shouldHave(CollectionCondition.size(1)).first().shouldHave(Condition.text("This is a cancellation reason"));
+
+        auditTrail.clickOk();
     }
 }
