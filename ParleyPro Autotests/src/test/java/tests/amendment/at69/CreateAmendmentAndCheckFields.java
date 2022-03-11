@@ -30,13 +30,16 @@ public class CreateAmendmentAndCheckFields
         ContractInformation contractInformationAfterAmend = new OpenedContract().clickContractActionsMenu()
                                                                                 .clickAmendContract();
 
+        Thread.sleep(4_000);
         logger.info("Assert fields on Contract information after clicking of amendment...");
         Assert.assertEquals(contractInformationAfterAmend.getContractTitle(), "at-69 Amendment-A", "Wrong title of contract after amendment !!!");
         Assert.assertEquals(Selenide.executeJavaScript("return $('.js-linked-contracts-title:visible').text()"), "Linked contracts: 1", "Wrong number of linked contracts after amendment !!!");
         Assert.assertEquals($(".js-linked-contracts-head").getText(), "Amendment to:\nat-69 Amendment", "Amendment to refers to wrong contract !!!");
 
+        Thread.sleep(4_000);
         // Scroll to 'Contract category' field
         Selenide.executeJavaScript("$('.modal-content label span:contains(\"category\")')[0].scrollIntoView({})");
+        Thread.sleep(1_000);
 
         contractInformationAfterAmend.chooseNewContractCategory("AmendmentTestcat"); // switching Category from 'CatTest' to 'AmendmentTestcat'
         $(".modal-content label[for='field1']").shouldBe(Condition.visible); // and other are visible too...
