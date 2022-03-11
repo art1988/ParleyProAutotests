@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Basics" configfailurepolicy="continue">
-   <!--<test name = "AT-8: Basic contract lifecycle" preserve-order="true">
+   <test name = "AT-8: Basic contract lifecycle" preserve-order="true">
         <parameter name="contractNameExecuted" value="Contract lifecycle autotest"/>
         <classes>
             <class name="tests.SetupLogger"/>
@@ -155,22 +155,22 @@
         </classes>
     </test>
 
-    <test name="AT-208: Core discussions functionality against TrackChanges tenant" preserve-order="true">
-        <classes>
-            <class name="tests.LoginToTrackChangesTenant"/>
-            <class name="tests.basics.at208.CreateContractAndUploadDoc"/>
-            <class name="tests.basics.at14.ParagraphActions"/>
-            <class name="tests.DeleteContractFromInProgressViaCache"/>
-            <class name="tests.Logout"/>
-        </classes>
-    </test>-->
-
     <test name="AT-238: Check contract cancellation with a comment and restart contract" preserve-order="true">
         <parameter name="contractName" value="AT-223 Contract Cancellation"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.basics.at238.ContractCancellationWithCommentTest"/>
             <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
+    <test name="AT-208: Core discussions functionality against TrackChanges tenant" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToTrackChangesTenant"/>
+            <class name="tests.basics.at208.CreateContractAndUploadDoc"/>
+            <class name="tests.basics.at14.ParagraphActions"/>
+            <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
     </test>
