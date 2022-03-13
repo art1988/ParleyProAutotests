@@ -59,7 +59,7 @@ public class FindAndReplacePopup
 
     public Replace clickReviewAndReplaceButton()
     {
-        reviewAndReplaceButton.waitUntil(Condition.enabled, 7_000).click();
+        reviewAndReplaceButton.shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("REVIEW AND REPLACE button was clicked...");
 

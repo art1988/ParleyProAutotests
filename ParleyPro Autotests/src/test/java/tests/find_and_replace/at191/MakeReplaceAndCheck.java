@@ -20,7 +20,7 @@ public class MakeReplaceAndCheck
     private static Logger logger = Logger.getLogger(MakeReplaceAndCheck.class);
 
     @Test(priority = 1)
-    public void makeReplace()
+    public void makeReplace() throws InterruptedException
     {
         FindAndReplacePopup findAndReplacePopup = new OpenedContract().clickFindAndReplaceButton("AT-166_Manufacturing Agreement_1")
                                                                       .clickReplaceTab()
@@ -32,6 +32,7 @@ public class MakeReplaceAndCheck
 
         Screenshoter.makeScreenshot();
 
+        Thread.sleep(2_000);
         findAndReplacePopup.clickReviewAndReplaceButton()
                            .clickSave();
 
