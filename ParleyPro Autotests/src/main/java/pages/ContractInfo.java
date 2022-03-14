@@ -1,15 +1,13 @@
 package pages;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 import constants.FieldType;
 import forms.ApproveRequest;
 import forms.delete.DeleteContract;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -430,6 +428,51 @@ public class ContractInfo
         Selenide.executeJavaScript("$('span:contains(\"Contract type\")').parent().parent().next().find(\"label:contains('" + type + "')\").click()");
         $(".spinner").waitUntil(Condition.disappear, 15_000);
         Selenide.executeJavaScript("$('input[data-id=\"contractType\"]').click()"); // click by input to collapse dropdown
+    }
+
+    /**
+     * Click by '+ Add a field' blue link => After that 'Title' and 'Value' selects will appear.
+     * <br/>
+     * Use methods setNewFieldName() and setNewFieldsValue() afterwards.
+     */
+    public void clickAddAField()
+    {
+        $$(".contract-create-fields__add").filterBy(Condition.exactText("Add a field")).first().click();
+
+        logger.info("+ Add a field link was clicked");
+    }
+
+    public void setNewFieldsName(String fieldName)
+    {
+        // set id for Title select
+        Selenide.executeJavaScript("$('.input__label:contains(\"Title\")').parent().find('input').attr('id', 'nf_id')");
+
+        $("#nf_id").sendKeys(fieldName);
+
+        Actions actionProvider = new Actions(WebDriverRunner.getWebDriver());
+        actionProvider.click($$(".new-select__menu .new-select__option").filterBy(Condition.text("Create")).first().toWebElement()).build().perform();
+    }
+
+    public void setNewFieldsValue(String value)
+    {
+        // set id for Value select
+        Selenide.executeJavaScript("$('.input__label:contains(\"Value\")').parent().find('input').attr('id', 'nfVal_id')");
+
+        $("#nfVal_id").sendKeys(value);
+    }
+
+    public String getNewFieldsName()
+    {
+        Selenide.executeJavaScript("$('.input__label:contains(\"Title\")').parent().find('input').attr('id', 'nf_id')");
+
+        return $("#nf_id").closest(".new-select__value-container").getText();
+    }
+
+    public String getNewFieldsValue()
+    {
+        Selenide.executeJavaScript("$('.input__label:contains(\"Value\")').parent().find('input').attr('id', 'nfVal_id')");
+
+        return $("#nfVal_id").getValue();
     }
 
     public void clickSave()
