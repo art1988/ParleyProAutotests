@@ -2,7 +2,6 @@ package tests.basics.at8;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import constants.Const;
 import forms.*;
@@ -18,11 +17,13 @@ import pages.ExecutedContractsPage;
 import pages.OpenedContract;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
-import utils.Waiter;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -68,7 +69,7 @@ public class ProceedThroughLifecycleStages
         emailWillBeSentToTheCounterpartyForm.clickStart();
 
         logger.info("Assert visible to the counterparty notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 10_000).shouldHave(Condition.exactText("Contract Contract lifecycle autotest is now visible to the Counterparty. The email was sent to " + Const.PREDEFINED_USER_CN_ROLE.getEmail()));
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Contract Contract lifecycle autotest is now visible to the Counterparty. The email was sent to " + Const.PREDEFINED_USER_CN_ROLE.getEmail()));
 
         logger.info("Assert that status was changed to NEGOTIATE...");
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("NEGOTIATE\n(1)", "NEGOTIATE"));
@@ -148,23 +149,41 @@ public class ProceedThroughLifecycleStages
     @Test(priority = 5)
     public void verifyExecutedStatus()
     {
-        DashboardPage dashboardPage = new DashboardPage();
-
-        ExecutedContractsPage executedContractsPage = dashboardPage.getSideBar().clickExecutedContracts(false);
+        ExecutedContractsPage executedContractsPage = new DashboardPage().getSideBar().clickExecutedContracts(false);
 
         executedContractsPage.search("Contract lifecycle autotest");
 
         logger.info("Assert that Found: 1 Executed contract...");
         $(".contracts-tabs").waitUntil(Condition.visible, 7_000);
-
-        Waiter.smartWaitUntilVisible("$('.contracts-tabs span:contains(\"1 Executed contract\")')");
-
-        boolean labelIsVisible = Selenide.executeJavaScript("return $('.contracts-tabs span:contains(\"1 Executed contract\")').is(':visible')");
-
-        Assert.assertTrue(labelIsVisible);
+        $(byText("1 Executed contract")).shouldBe(Condition.visible);
 
         logger.info("Assert that found contract has Managed stage...");
         $(".contracts-list__cell-stage").shouldBe(Condition.visible).shouldHave(Condition.exactText("MANAGED"));
+    }
+
+    @Test(priority = 6)
+    public void addFieldInPostExecution() throws InterruptedException
+    {
+        ContractInfo contractInfo = new DashboardPage().getSideBar().clickExecutedContracts(false).selectContract("Contract lifecycle autotest");
+
+        String newFieldsName  = "fieldPE_" + new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime()),
+               newFieldsValue = "post execution value for just added field";
+
+        contractInfo.clickAddAField();
+        contractInfo.setNewFieldsName(newFieldsName);
+        contractInfo.setNewFieldsValue(newFieldsValue);
+        contractInfo.clickSave();
+
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Contract has been updated"));
+
+        logger.info("Revisit managed contract and check that field has been saved...");
+        contractInfo = new DashboardPage().getSideBar().clickExecutedContracts(false).selectContract("Contract lifecycle autotest");
+
+        $(byText("Title")).shouldBe(Condition.visible);
+        $(byText("Value")).shouldBe(Condition.visible);
+        Thread.sleep(2_000);
+        Assert.assertEquals(contractInfo.getNewFieldsName(), newFieldsName, "Name of added new field is wrong !!!");
+        Assert.assertEquals(contractInfo.getNewFieldsValue(), newFieldsValue, "Value of added new field is wrong !!!");
 
         Screenshoter.makeScreenshot();
     }
