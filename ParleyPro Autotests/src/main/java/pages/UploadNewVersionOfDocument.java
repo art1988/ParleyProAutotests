@@ -66,6 +66,46 @@ public class UploadNewVersionOfDocument
     }
 
     /**
+     * Use this method for uploading document as Counterparty <b>for PDF documents only</b> because after that DocumentComparePreview
+     * window will never appear.
+     */
+    public void clickUploadCounterpartyDocumentPDF(File fileToUpload, String documentName, String contractName)
+    {
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); }
+
+        try
+        {
+            $(".js-upload-cp-document-btn").waitUntil(Condition.visible, 7_000);
+            $(".js-upload-cp-document-btn").waitUntil(Condition.enabled, 7_000);
+
+            // 1. make <input> visible
+            Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+            Thread.sleep(200);
+            Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+            Thread.sleep(200);
+            Selenide.executeJavaScript("$('.js-upload-cp-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
+            Thread.sleep(200);
+
+            $(".js-upload-cp-document-btn").parent().parent().find("input").waitUntil(Condition.visible, 7_000);
+            $(".js-upload-cp-document-btn").parent().parent().find("input").waitUntil(Condition.enabled, 7_000);
+
+            Thread.sleep(1_000);
+
+            // 2. trying to upload...
+            SelenideElement uploadCounterpartyDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+            uploadCounterpartyDocumentsButton.shouldBe(Condition.visible).shouldBe(Condition.enabled).uploadFile(fileToUpload);
+            Thread.sleep(4_000);
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
+
+        logger.info("Uploading Counterparty document: " + fileToUpload.toPath().getFileName());
+    }
+
+    /**
      * Important! : Green button 'Upload my team document' may not be present on this form.
      * To make it available, issue setDomainConfig('<domain_name>')
      * @param fileToUpload
