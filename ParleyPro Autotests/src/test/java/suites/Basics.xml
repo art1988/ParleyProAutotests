@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Basics" configfailurepolicy="continue">
-   <test name = "AT-8: Basic contract lifecycle" preserve-order="true">
+   <!--<test name = "AT-8: Basic contract lifecycle" preserve-order="true">
         <parameter name="contractNameExecuted" value="Contract lifecycle autotest"/>
         <classes>
             <class name="tests.SetupLogger"/>
@@ -101,9 +101,19 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
+    </test>-->
+
+    <test name="AT-240: PDF - upload new version and sign" preserve-order="true">
+        <parameter name="contractName" value="AT-240: PDF upload new version and sign"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.basics.at240.PDFUploadNewVersionAndSign"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
     </test>
 
-    <test name="AT-64: Attachments: upload and download" preserve-order="true">
+    <!--<test name="AT-64: Attachments: upload and download" preserve-order="true">
         <parameter name="contractName" value="Contract lifecycle autotest"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -173,5 +183,5 @@
             <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
