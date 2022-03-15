@@ -369,7 +369,7 @@ public class OpenedContract
      */
     public OpenedDiscussionPDF clickStartDiscussion()
     {
-        startDiscussionButton.click();
+        startDiscussionButton.shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("Blue round button 'Start discussion' was clicked...");
 
