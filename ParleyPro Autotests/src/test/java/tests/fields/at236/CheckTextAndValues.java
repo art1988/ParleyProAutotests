@@ -120,7 +120,7 @@ public class CheckTextAndValues
         AddRelatedField addRelatedField = fieldsRelations.addRelatedField("SF1");
         $(".modal-body-description").shouldHave(Condition.text("Select the sf1 and related field"));
 
-        Selenide.executeJavaScript("$('.input__label-title:contains(\"SF1\")').parent().parent().find(\"input\").attr('id', 'inp')");
+        Selenide.executeJavaScript("$('input[type=text]').eq(0).attr('id', 'inp')");
         // expand dropdown
         Actions actionProvider = new Actions(WebDriverRunner.getWebDriver());
         actionProvider.clickAndHold($("#inp").toWebElement()).build().perform();
@@ -143,7 +143,7 @@ public class CheckTextAndValues
         AddRelatedField addRelatedField = fieldsRelations.addRelatedField("RF2");
         $(".modal-body-description").shouldHave(Condition.text("Select the rf2 and related field"));
 
-        Selenide.executeJavaScript("$('.input__label-title:contains(\"RF2\")').parent().parent().find(\"input\").attr('id', 'inp2')");
+        Selenide.executeJavaScript("$('input[type=text]').eq(0).attr('id', 'inp2')");
         // expand dropdown
         Actions actionProvider = new Actions(WebDriverRunner.getWebDriver());
         actionProvider.clickAndHold($("#inp2").toWebElement()).build().perform();

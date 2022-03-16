@@ -39,7 +39,7 @@ public class AddRelatedField
     public AddRelatedField selectValueForField(String fieldName, String value)
     {
         // Set id dynamically for input
-        Selenide.executeJavaScript("$('.input__label-title:contains(\"" + fieldName + "\")').parent().parent().find(\"input\").attr('id', 'inp')");
+        Selenide.executeJavaScript("$('input[type=text]').eq(0).attr('id', 'inp')");
 
         $("#inp").sendKeys(value);
         $("#inp").sendKeys(Keys.DOWN);
@@ -63,7 +63,7 @@ public class AddRelatedField
         else
         {
             // set id
-            Selenide.executeJavaScript("$('.input__label-title:contains(\"Related field\")').parent().parent().find(\"input\").attr('id', 'relatedFieldId')");
+            Selenide.executeJavaScript("$('input[type=text]').eq(1).attr('id', 'relatedFieldId')");
 
             $("#relatedFieldId").click(); // expand dropdown
             $$(".multi-select__option span").find(exactText(fieldToSelect)).click(); // select value
