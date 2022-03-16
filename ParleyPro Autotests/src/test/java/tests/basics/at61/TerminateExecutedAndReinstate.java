@@ -2,6 +2,7 @@ package tests.basics.at61;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import constants.Const;
 import forms.ContractInformation;
 import io.qameta.allure.Description;
@@ -9,33 +10,35 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.AddDocuments;
-import pages.ContractInfo;
-import pages.DashboardPage;
-import pages.OpenedContract;
+import pages.*;
 import pages.subelements.SideBar;
 import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class TerminateExecuted
+public class TerminateExecutedAndReinstate
 {
+    private SideBar sideBar;
+
     private String host = "pop.gmail.com";
     private String username = "arthur.khasanov@parleypro.com";
     private String password = "ParGd881";
 
-    private static Logger logger = Logger.getLogger(TerminateExecuted.class);
+    private static Logger logger = Logger.getLogger(TerminateExecutedAndReinstate.class);
 
 
-    @Test
+    @Test(priority = 1)
     @Description("This test terminates executed contract and check it's status.")
     public void terminateExecuted() throws InterruptedException
     {
-        SideBar sideBar = new DashboardPage().getSideBar();
+        sideBar = new DashboardPage().getSideBar();
 
         ContractInformation contractInformation = sideBar.clickExecutedContracts(true).clickNewContractButton();
 
@@ -79,5 +82,30 @@ public class TerminateExecuted
 
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "AT-61: terminate me contract has been terminated"),
                 "Email with subject: 'AT-61: terminate me contract has been terminated' was not found !!!");
+    }
+
+    @Test(priority = 2)
+    @Description("This test opens previously terminated contract and make it reinstate.")
+    public void checkReinstate()
+    {
+        sideBar.clickExecutedContracts(false).selectContract("AT-61: terminate me");
+
+        OpenedContract openedContract = new OpenedContract();
+
+        openedContract.clickContractActionsMenu().clickReinstateContract().clickReinstate();
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text(" has been reinstated."));
+        $(".contract-header__right .label").should(Condition.disappear);
+
+        AuditTrail auditTrail = openedContract.clickAuditTrail();
+
+        $$(".timeline-title").shouldHave(CollectionCondition.size(5)); // 5 events in total
+        List<String> allEvents = $$(".timeline-title").stream().map(SelenideElement::text).collect(Collectors.toList());
+
+        Assert.assertTrue(allEvents.contains("Contract reinstated"), "There is no such event as 'Contract reinstated' !!!");
+        auditTrail.clickOk();
+
+        ExecutedContractsPage executedContractsPage = sideBar.clickExecutedContracts(false);
+        logger.info("Check that status become Managed...");
+        $(".contract-status").shouldBe(Condition.visible).shouldHave(Condition.exactText("MANAGED"));
     }
 }
