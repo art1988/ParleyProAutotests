@@ -45,29 +45,12 @@ jobs:
 
       
       
-      
-      - run:
-          name: Run Grey Screens suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/GreyScreens.xml
-
-      - run: sleep 10
-
-      
 
       - run:
-          name: Run Fields suite
+          name: Run Basics suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Fields.xml
-
-      - run: sleep 10
-
-      
-
-      - run:
-          name: Run Amendment suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Amendment.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          no_output_timeout: 20m
           
       
 
