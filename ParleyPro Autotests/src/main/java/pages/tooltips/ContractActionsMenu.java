@@ -106,4 +106,13 @@ public class ContractActionsMenu
 
         return new TerminateContract(contractName);
     }
+
+    public ReinstateContract clickReinstateContract()
+    {
+        Selenide.executeJavaScript("$('.contract-header__menu .dropdown-menu.dropdown-menu-right a:contains(\"Reinstate\")')[0].click()");
+
+        logger.info("Reinstate contract was clicked...");
+
+        return new ReinstateContract(contractName);
+    }
 }
