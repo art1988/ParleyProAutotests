@@ -58,7 +58,7 @@ public class StartPreSignApproval
     {
         OpenedContract openedContract = new OpenedContract();
 
-        ConfirmApprovers confirmApproversForm = openedContract.switchDocumentToPreSignApproval("pramata");
+        ConfirmApprovers confirmApproversForm = openedContract.switchDocumentToPreSignApproval("pramata").clickNext();
 
         logger.info("Assert that we see Approval_User_2 as first approver and Team #2 as second approver...");
         $$(".document-approval__user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("1\nAr\nApproval_User_2 (arthur.khasanov+approval2@parleypro.com)", "2\nTeam #2\n2 members"));

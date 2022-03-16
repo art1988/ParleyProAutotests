@@ -101,7 +101,7 @@ public class CreateAndEditTeam
 
     @Test(priority = 2)
     @Description("This test adds one more team (Team #2) with 2 users")
-    public void addOneMoreTeamWith2Users()
+    public void addOneMoreTeamWith2Users() throws InterruptedException
     {
         Teams teamsTabPage = new Teams();
 
@@ -123,6 +123,7 @@ public class CreateAndEditTeam
         $(".notification-stack").waitUntil(Condition.disappear, 15_000);
 
         logger.info("Assert that both teams are in the list...");
+        Thread.sleep(2_000);
         Assert.assertEquals(Selenide.executeJavaScript("return $('.teams-list tr').length"), Long.valueOf(3)); // check row count
         Assert.assertEquals(Selenide.executeJavaScript("return $('.teams-list__row').eq(1).find(\"td:nth('1')\").text()"), teamName); // assert second team name
         Assert.assertEquals(Selenide.executeJavaScript("return $('.teams-list__row').eq(1).find(\"td:nth('3')\").text()"), "2"); // assert member count

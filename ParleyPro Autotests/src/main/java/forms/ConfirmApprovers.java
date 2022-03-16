@@ -20,7 +20,7 @@ public class ConfirmApprovers
 
     public ConfirmApprovers(String documentName)
     {
-        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Confirm approvers for document \"" + documentName + "\""));
+        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Confirm approvers for contract \"" + documentName + "\""));
         $(".modal-content .spinner").waitUntil(Condition.disappear, 20_000);
 
         try { Thread.sleep(1_000); } catch (InterruptedException e) { logger.error(e); }
@@ -84,7 +84,7 @@ public class ConfirmApprovers
 
     public void clickCancel()
     {
-        cancelButton.click();
+        cancelButton.shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("CANCEL was clicked");
     }

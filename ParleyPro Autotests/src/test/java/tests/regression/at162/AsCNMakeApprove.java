@@ -34,6 +34,7 @@ public class AsCNMakeApprove
         OpenedContract openedContract = new OpenedContract();
 
         openedContract.switchDocumentToPreSignApproval("AT-14")
+                      .clickNext()
                       .addParticipant(Const.PREDEFINED_USER_CN_ROLE.getEmail())
                       .clickStartApproval();
 

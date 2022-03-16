@@ -79,7 +79,7 @@ public class TraverseThroughStages
 
         ////// Move document to pre-negotiation approval stage
         {
-            openedContract.switchDocumentToPreNegotiateApproval(docName).clickStartApproval();
+            openedContract.switchDocumentToPreNegotiateApproval(docName).clickNext().clickStartApproval();
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
 
             openedContract.clickByDiscussions();
@@ -125,7 +125,7 @@ public class TraverseThroughStages
 
         ////// Move document to pre-signature approval stage.
         {
-            openedContract.switchDocumentToPreSignApproval(docName).clickStartApproval();
+            openedContract.switchDocumentToPreSignApproval(docName).clickNext().clickStartApproval();
             $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
 
             openedContract.clickByDiscussions();

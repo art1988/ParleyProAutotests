@@ -31,7 +31,7 @@ public class StartPreNegotiateApproval
     {
         OpenedContract openedContract = new OpenedContract();
 
-        ConfirmApprovers confirmApproversForm = openedContract.switchDocumentToPreNegotiateApproval("pramata");
+        ConfirmApprovers confirmApproversForm = openedContract.switchDocumentToPreNegotiateApproval("pramata").clickNext();
 
         logger.info("Assert that we see one team: Autotest_TEAM_3 and one user: Approval_User_1");
         String listOfApprovers = confirmApproversForm.getListOfApprovers();

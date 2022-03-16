@@ -76,7 +76,7 @@ public class CreateContractAndStartApproval
     @Test(priority = 3)
     public void startPreNegotiateApproval() throws InterruptedException
     {
-        ConfirmApprovers confirmApproversForm = new OpenedContract().switchDocumentToPreNegotiateApproval("pramata");
+        ConfirmApprovers confirmApproversForm = new OpenedContract().switchDocumentToPreNegotiateApproval("pramata").clickNext();
 
         confirmApproversForm.deleteApprover("TEAM_3");
         confirmApproversForm.deleteApprover("Internal user1");

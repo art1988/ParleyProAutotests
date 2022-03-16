@@ -149,7 +149,7 @@ public class OpenedContract
      * Click by pre-negotiate approval button ( green one )
      * @param documentName
      */
-    public ConfirmApprovers switchDocumentToPreNegotiateApproval(String documentName)
+    public AboutToStartApproval switchDocumentToPreNegotiateApproval(String documentName)
     {
         String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
 
@@ -165,7 +165,7 @@ public class OpenedContract
 
         logger.info("Pre-Negotiate APPROVAL was clicked");
 
-        return new ConfirmApprovers(documentName);
+        return new AboutToStartApproval(contractName.getText());
     }
 
     /**
@@ -173,7 +173,7 @@ public class OpenedContract
      * @param documentName
      * @return
      */
-    public ConfirmApprovers switchDocumentToPreSignApproval(String documentName)
+    public AboutToStartApproval switchDocumentToPreSignApproval(String documentName)
     {
         String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
 
@@ -189,7 +189,7 @@ public class OpenedContract
 
         logger.info("Pre-Sign APPROVAL was clicked");
 
-        return new ConfirmApprovers(documentName);
+        return new AboutToStartApproval(contractName.getText());
     }
 
     public ApproveDocument clickApproveButton(String documentName)

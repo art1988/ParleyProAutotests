@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
 import constants.FieldType;
+import forms.AboutToStartApproval;
 import forms.ConfirmApprovers;
 import forms.ContractInformation;
 import org.apache.log4j.Logger;
@@ -49,7 +50,8 @@ public class CreateContractUploadDocDeactivateUserAndCheck
     @Test(priority = 2)
     public void clickApproval()
     {
-        ConfirmApprovers confirmApprovers = new OpenedContract().switchDocumentToPreNegotiateApproval("AT-14");
+        AboutToStartApproval aboutToStartApproval = new OpenedContract().switchDocumentToPreNegotiateApproval("AT-14");
+        ConfirmApprovers confirmApprovers = aboutToStartApproval.clickNext();
 
         logger.info("Assert that T1 is in the list...");
         Assert.assertEquals(confirmApprovers.getListOfApprovers(), "T1\n2 members",
@@ -58,6 +60,7 @@ public class CreateContractUploadDocDeactivateUserAndCheck
         Screenshoter.makeScreenshot();
 
         confirmApprovers.clickCancel();
+        aboutToStartApproval.clickCancel();
     }
 
     @Test(priority = 3)
@@ -78,7 +81,8 @@ public class CreateContractUploadDocDeactivateUserAndCheck
                            .clickInProgressContracts(false)
                            .selectContract("at-113 contract title");
 
-        ConfirmApprovers confirmApprovers = new OpenedContract().switchDocumentToPreNegotiateApproval("AT-14");
+        AboutToStartApproval aboutToStartApproval = new OpenedContract().switchDocumentToPreNegotiateApproval("AT-14");
+        ConfirmApprovers confirmApprovers = aboutToStartApproval.clickNext();
 
         logger.info("Assert that T1 is still in the list...");
         Assert.assertEquals(confirmApprovers.getListOfApprovers(), "T1\n1 member",
@@ -87,5 +91,6 @@ public class CreateContractUploadDocDeactivateUserAndCheck
         Screenshoter.makeScreenshot();
 
         confirmApprovers.clickCancel();
+        aboutToStartApproval.clickCancel();
     }
 }

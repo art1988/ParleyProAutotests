@@ -47,7 +47,7 @@ public class AsCNUploadDocAndApprove
         // move to Review
         openedContract.switchDocumentToReview("AT-14").clickStart();
         // move to Approval
-        openedContract.switchDocumentToPreNegotiateApproval("AT-14").clickStartApproval();
+        openedContract.switchDocumentToPreNegotiateApproval("AT-14").clickNext().clickStartApproval();
 
         $$(".lifecycle__item.active").first().waitUntil(Condition.exactText("APPROVAL\n(1)"), 60_000);
         $$(".lifecycle__item.active").last().waitUntil(Condition.exactText("APPROVAL"), 60_000);

@@ -38,7 +38,7 @@ public class LoginAsCNAndApprove_AndFinalLoginAsVPAndApprove
         $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.text("is now visible to the Counterparty"));
 
         // move to the pre-signature approval
-        openedContract.switchDocumentToPreSignApproval("AT-14").clickStartApproval();
+        openedContract.switchDocumentToPreSignApproval("AT-14").clickNext().clickStartApproval();
         $("#APPROVE_DOCUMENT").waitUntil(Condition.visible, 20_000);
 
         openedContract.clickApproveButton("AT-14").clickApproveButton();
