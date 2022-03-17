@@ -35,9 +35,12 @@ public class AddCategoriesFieldsAndRelations
 
         fieldsTab.clickSave();
 
-        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
-        Assert.assertEquals((long) Selenide.executeJavaScript("return $('input[data-label=\"Field name\"][value=\"Contract category\"]')" +
-                ".parent().parent().parent().parent().parent().find(\".admin-fields-field__values-item\").length"), 4, "Looks like that Contract Categories weren't added !!!");
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Contract fields have been saved."));
+        contractFields.clickEditValues("Contract category");
+        $("input[value='AmendmentTestcat']").shouldBe(Condition.visible);
+        $("input[value='category1']").shouldBe(Condition.visible);
+        $("input[value='category2']").shouldBe(Condition.visible);
+        $("input[value='CatTest']").shouldBe(Condition.visible);
     }
 
     @Test(priority = 2)
@@ -65,9 +68,9 @@ public class AddCategoriesFieldsAndRelations
         }
 
         fieldsTab.clickSave();
-        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
-        Assert.assertEquals((long) Selenide.executeJavaScript("return $('.admin-fields__title:contains(\"Summary\")')" +
-                ".parent().find(\".admin-fields-custom .js-item\").length"), 15, "Looks like that AmendFields[1-5] weren't added correctly !!!");
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Contract fields have been saved."));
+        for( int i = 1; i <= 10; i++ ) $("input[value='Field" + i + "']").shouldBe(Condition.visible);
+        for( int i = 1; i <= 5; i++ ) $("input[value='AmendFld" + i + "']").shouldBe(Condition.visible);
     }
 
     @Test(priority = 3)
@@ -103,6 +106,6 @@ public class AddCategoriesFieldsAndRelations
         }
 
         fieldsTab.clickSave();
-        $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Contract fields have been saved."));
     }
 }

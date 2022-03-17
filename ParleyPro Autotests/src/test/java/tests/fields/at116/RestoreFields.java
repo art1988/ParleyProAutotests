@@ -73,7 +73,7 @@ public class RestoreFields
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
 
         logger.info("Assert that values were added...");
-        Assert.assertEquals($$(".input .input__input.form-control").size(), 20, "Looks like that some values weren't set !!!");
+        Assert.assertEquals($$(".input .input__input.form-control").size(), 6, "Looks like that some values weren't set !!!");
 
         Screenshoter.makeScreenshot();
     }

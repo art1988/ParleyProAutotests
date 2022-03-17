@@ -49,7 +49,7 @@ public class CleanUp
         $(".notification-stack").waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Contract fields have been saved."));
 
         logger.info("Assert that only necessary fields are remain...");
-        Assert.assertEquals((long) Selenide.executeJavaScript("return $('.admin-fields__title:contains(\"Summary\")').parent().find(\".input\").length"), 8,
+        Assert.assertEquals((long) Selenide.executeJavaScript("return $('.admin-fields__title:contains(\"Summary\")').parent().find(\".input\").length"), 6,
                 "Looks like that some fields weren't deleted !!!");
     }
 
