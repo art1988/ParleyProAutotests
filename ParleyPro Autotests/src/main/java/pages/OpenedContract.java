@@ -169,6 +169,31 @@ public class OpenedContract
     }
 
     /**
+     * Click by pre-negotiate approval button ( green one ) for document (doc/docx/pdf) that _HAS_AT_LEAST_ONE_OPENED_DISCUSSION_
+     * I.e. you need to be sure that document has discussion.
+     * @param documentName
+     * @param contractHasOpenDiscussions just marker, has no meaning
+     */
+    public ContractHasOpenDiscussions switchDocumentToPreNegotiateApproval(String documentName, boolean contractHasOpenDiscussions)
+    {
+        String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
+
+        // hover over REVIEW
+        StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true});");
+        jsCode.append(documentLifecycleString + "[0].dispatchEvent(event);");
+
+        Selenide.executeJavaScript(jsCode.toString());
+
+        Waiter.smartWaitUntilVisible(documentLifecycleString + ".find(\"div:contains('APPROVAL')\")");
+
+        Selenide.executeJavaScript(documentLifecycleString + ".find('.lifecycle__item.review:contains(\"APPROVAL\")').click()");
+
+        logger.info("Pre-Negotiate APPROVAL was clicked for " + documentName);
+
+        return new ContractHasOpenDiscussions();
+    }
+
+    /**
      * Click by pre-sign approval button ( purple one )
      * @param documentName
      * @return
