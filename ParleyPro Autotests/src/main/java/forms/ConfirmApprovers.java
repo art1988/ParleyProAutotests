@@ -20,8 +20,8 @@ public class ConfirmApprovers
 
     public ConfirmApprovers(String documentName)
     {
-        title.waitUntil(Condition.visible, 7_000).shouldHave(Condition.exactText("Confirm approvers for contract \"" + documentName + "\""));
-        $(".modal-content .spinner").waitUntil(Condition.disappear, 20_000);
+        title.shouldBe(Condition.visible).shouldHave(Condition.exactText("Confirm approvers"));
+        $(".modal-content .spinner").should(Condition.disappear);
 
         try { Thread.sleep(1_000); } catch (InterruptedException e) { logger.error(e); }
 
@@ -36,13 +36,13 @@ public class ConfirmApprovers
         else
         {
             // ...otherwise wait until list of approval users is visible
-            $(".document-approval__users").waitUntil(Condition.visible, 7_000);
+            $(".document-approval__users").shouldBe(Condition.visible);
         }
     }
 
     public String getListOfApprovers()
     {
-        return $(".document-approval__users").waitUntil(Condition.visible, 7_000).getText();
+        return $(".document-approval__users").shouldBe(Condition.visible).getText();
     }
 
     /**
