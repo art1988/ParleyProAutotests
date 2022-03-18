@@ -83,7 +83,7 @@ public class OpenedContract
 
         Selenide.executeJavaScript(documentLifecycleString + ".find(\"div:contains('REVIEW')\").click()");
 
-        logger.info("REVIEW was clicked");
+        logger.info("REVIEW was clicked for " + documentName);
 
         return new StartReview(contractName.text());
     }
@@ -102,7 +102,7 @@ public class OpenedContract
 
         Selenide.executeJavaScript(documentLifecycleString + ".find(\"div:contains('NEGOTIATE')\").click()");
 
-        logger.info("NEGOTIATE was clicked");
+        logger.info("NEGOTIATE was clicked for " + documentName);
 
         return new StartNegotiation(contractName.text(), counterparty, isClassic);
     }
@@ -123,7 +123,7 @@ public class OpenedContract
 
         Waiter.smartWaitUntilVisible(documentLifecycleString+ ".find(\"div:contains('NEGOTIATE')\")");
         Selenide.executeJavaScript(documentLifecycleString + ".find(\"div:contains('NEGOTIATE')\").click()");
-        logger.info("NEGOTIATE was clicked");
+        logger.info("NEGOTIATE was clicked for " + documentName);
     }
 
     public SignContract switchDocumentToSign(String documentName, boolean integrationEnabled)
@@ -140,7 +140,7 @@ public class OpenedContract
 
         Selenide.executeJavaScript(documentLifecycleString + ".find(\"div:contains('SIGN')\").click()");
 
-        logger.info("SIGN was clicked");
+        logger.info("SIGN was clicked for " + documentName);
 
         return new SignContract(contractName.text(), integrationEnabled);
     }
@@ -163,7 +163,7 @@ public class OpenedContract
 
         Selenide.executeJavaScript(documentLifecycleString + ".find('.lifecycle__item.review:contains(\"APPROVAL\")').click()");
 
-        logger.info("Pre-Negotiate APPROVAL was clicked");
+        logger.info("Pre-Negotiate APPROVAL was clicked for " + documentName);
 
         return new AboutToStartApproval(contractName.getText());
     }
@@ -187,7 +187,7 @@ public class OpenedContract
 
         Selenide.executeJavaScript(documentLifecycleString + ".find('.lifecycle__item:contains(\"APPROVAL\")').click()");
 
-        logger.info("Pre-Sign APPROVAL was clicked");
+        logger.info("Pre-Sign APPROVAL was clicked for " + documentName);
 
         return new AboutToStartApproval(contractName.getText());
     }
