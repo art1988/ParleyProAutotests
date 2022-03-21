@@ -174,7 +174,7 @@ public class RecalculationsOfNumberedList
         logger.info("Assert recalculation of the first list after deletion...");
 
         Assert.assertEquals(getWholeList(), "1.L0_Number_Point_1,2.new added item - L0_Number_Point_A,2.L0_Number_Point_2," +
-                "3.L0_Number_Point_B with sublevels,3.1.L1_Number_Point_2_1,1.2.L1_Number_Point_2_2,3.1.1.L2_Number_Point_C in sublevel," +
+                "3.L0_Number_Point_B with sublevels,3.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2,3.1.1.L2_Number_Point_C in sublevel," +
                 "3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1,3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1," +
                 "3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4," +
                 "4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b,b.1.L1_Letter_lowercase_b_1," +
@@ -207,7 +207,7 @@ public class RecalculationsOfNumberedList
         logger.info("Assert recalculation of the first list after adding...");
 
         Assert.assertEquals(getWholeList(), "1." + addedItem + ",2.L0_Number_Point_1,3.new added item - L0_Number_Point_A," +
-                "2.L0_Number_Point_2,4.L0_Number_Point_B with sublevels,4.1.L1_Number_Point_2_1,1.2.L1_Number_Point_2_2,4.1.1.L2_Number_Point_C in sublevel," +
+                "2.L0_Number_Point_2,4.L0_Number_Point_B with sublevels,4.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2,4.1.1.L2_Number_Point_C in sublevel," +
                 "4.1.2.L2_Number_Point_2_2_1,4.1.2.1.L3_Number_Point_2_2_1_1,4.1.2.1.1.L4_Number_Point_2_2_1_1_1,4.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1," +
                 "4.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,4.1.3.L2_Number_Point_2_2_2,4.2.L1_Number_Point_2_3,4.3.L1_Number_Point_2_4," +
                 "5.L0_Number_Point_3,6.L0_Number_Point_4,7.L0_Number_Point_5,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b," +
@@ -241,7 +241,7 @@ public class RecalculationsOfNumberedList
         logger.info("Assert recalculation of the first list after adding...");
 
         Assert.assertEquals(getWholeList(), "1.above first item,2.L0_Number_Point_1,3.new added item - L0_Number_Point_A," +
-                "2.L0_Number_Point_2,4.L0_Number_Point_B with sublevels,4.1.L1_Number_Point_2_1,1.2.L1_Number_Point_2_2," +
+                "2.L0_Number_Point_2,4.L0_Number_Point_B with sublevels,4.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2," +
                 "4.1.1.L2_Number_Point_C in sublevel,4.1.2.L2_Number_Point_2_2_1,4.1.2.1.L3_Number_Point_2_2_1_1,4.1.2.1.1.L4_Number_Point_2_2_1_1_1," +
                 "4.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,4.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,4.1.3.L2_Number_Point_2_2_2," +
                 "4.2.L1_Number_Point_2_3,4.3.L1_Number_Point_2_4,5.L0_Number_Point_3,6.L0_Number_Point_4,7.L0_Number_Point_5," +
@@ -276,7 +276,7 @@ public class RecalculationsOfNumberedList
         logger.info("Assert recalculation of the first list after deletion...");
 
         Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.new added item - L0_Number_Point_A," +
-                "2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels,3.1.L1_Number_Point_2_1,1.2.L1_Number_Point_2_2," +
+                "2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels,3.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2," +
                 "3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1,3.1.2.1.1.L4_Number_Point_2_2_1_1_1," +
                 "3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,3.1.3.L2_Number_Point_2_2_2," +
                 "3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5," +
@@ -309,7 +309,7 @@ public class RecalculationsOfNumberedList
         logger.info("Assert recalculation of the first list after discard...");
 
         Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,2.L0_Number_Point_B with sublevels," +
-                "2.1.L1_Number_Point_2_1,1.2.L1_Number_Point_2_2,2.1.1.L2_Number_Point_C in sublevel,2.1.2.L2_Number_Point_2_2_1," +
+                "2.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2,2.1.1.L2_Number_Point_C in sublevel,2.1.2.L2_Number_Point_2_2_1," +
                 "2.1.2.1.L3_Number_Point_2_2_1_1,2.1.2.1.1.L4_Number_Point_2_2_1_1_1,2.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1," +
                 "2.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,2.1.3.L2_Number_Point_2_2_2,2.2.L1_Number_Point_2_3,2.3.L1_Number_Point_2_4," +
                 "3.L0_Number_Point_3,4.L0_Number_Point_4,5.L0_Number_Point_5,6.below last item,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b," +
@@ -342,7 +342,7 @@ public class RecalculationsOfNumberedList
         logger.info("Assert recalculation of the first list after discard...");
 
         Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
-                "3.1.L1_Number_Point_2_1,1.2.L1_Number_Point_2_2,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
+                "3.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1,3.1.2.1.L3_Number_Point_2_2_1_1," +
                 "3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1,3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1," +
                 "3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4,4.L0_Number_Point_3,5.L0_Number_Point_4," +
                 "6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b,b.1.L1_Letter_lowercase_b_1," +
@@ -372,7 +372,7 @@ public class RecalculationsOfNumberedList
         logger.info("Assert recalculation after accepting...");
 
         Assert.assertEquals(getWholeList(), "1.above first item,1.L0_Number_Point_1,2.L0_Number_Point_2,3.L0_Number_Point_B with sublevels," +
-                "3.1.L1_Number_Point_2_1,1.2.L1_Number_Point_2_2,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1," +
+                "3.1.L1_Number_Point_2_1,2.2.L1_Number_Point_2_2,3.1.1.L2_Number_Point_C in sublevel,3.1.2.L2_Number_Point_2_2_1," +
                 "3.1.2.1.L3_Number_Point_2_2_1_1,3.1.2.1.1.L4_Number_Point_2_2_1_1_1,3.1.2.1.1.1.L5_Number_Point_2_2_1_1_1_1," +
                 "3.1.2.1.1.1.1.L6_Number_Point_2_2_1_1_1_1_1,3.1.3.L2_Number_Point_2_2_2,3.2.L1_Number_Point_2_3,3.3.L1_Number_Point_2_4," +
                 "4.L0_Number_Point_3,5.L0_Number_Point_4,6.L0_Number_Point_5,7.below last item,a.L0_Letter_lowercase_a,b.L0_Letter_lowercase_b," +
