@@ -172,9 +172,8 @@ public class OpenedContract
      * Click by pre-negotiate approval button ( green one ) for document (doc/docx/pdf) that _HAS_AT_LEAST_ONE_OPENED_DISCUSSION_
      * I.e. you need to be sure that document has discussion.
      * @param documentName
-     * @param contractHasOpenDiscussions just marker, has no meaning
      */
-    public ContractHasOpenDiscussions switchDocumentToPreNegotiateApproval(String documentName, boolean contractHasOpenDiscussions)
+    public ContractHasOpenDiscussions switchDocumentWithOpenDiscussionToPreNegotiateApproval(String documentName)
     {
         String documentLifecycleString = "$('.document__header-row span[title]:contains(\"" + documentName + "\")').parent().parent().parent().next().find('.lifecycle')";
 
@@ -392,7 +391,7 @@ public class OpenedContract
     /**
      * Click by round blue button 'Start discussion' that available only for uploaded PDF's
      */
-    public OpenedDiscussionPDF clickStartDiscussion()
+    public OpenedDiscussionPDF clickStartDiscussionForPDF()
     {
         startDiscussionButton.shouldBe(Condition.visible, Condition.enabled).click();
 
