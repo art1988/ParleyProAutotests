@@ -122,8 +122,10 @@ public class CheckApprovalForDocxAndPDF
     public void switchPDFToApprove()
     {
         openedContract.switchDocumentToPreNegotiateApproval("sample").clickNext().clickStartApproval();
+
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
         $$(".contract-header-users__list .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("AL", "Ar")); // approver user icon was added to contract header
+        logger.info("Wait until approver user icon is displayed in document header...");
         $$(".document__header-info .user").shouldHave(CollectionCondition.size(1)).first().shouldHave(Condition.exactText("Ar")); // approver user icon was added to document header
     }
 
