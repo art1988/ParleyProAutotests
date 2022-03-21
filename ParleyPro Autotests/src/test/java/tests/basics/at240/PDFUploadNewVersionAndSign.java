@@ -85,7 +85,7 @@ public class PDFUploadNewVersionAndSign
 
         String commentToAdd = "Initiate discussion - pdf";
         openedContract = new OpenedContract();
-        OpenedDiscussionPDF openedDiscussionPDF = openedContract.clickStartDiscussion();
+        OpenedDiscussionPDF openedDiscussionPDF = openedContract.clickStartDiscussionForPDF();
         openedDiscussionPDF.clickAddComment().setCommentForPDFDiscussion(commentToAdd).clickPost();
         $$(".documents-pdf-discussion-post").shouldHave(CollectionCondition.size(1))
                 .first().find(".documents-pdf-discussion-post__comment").shouldHave(Condition.text(commentToAdd));

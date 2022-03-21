@@ -73,7 +73,7 @@ public class UploadPDFAndMakeDiscussion
     {
         String commentToAdd = "PDF // discussion by CN";
 
-        openedDiscussionPDF = openedContract.clickStartDiscussion();
+        openedDiscussionPDF = openedContract.clickStartDiscussionForPDF();
 
         openedDiscussionPDF.clickAddComment()
                            .setCommentForPDFDiscussion(commentToAdd)
