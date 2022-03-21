@@ -68,7 +68,7 @@ public class AddParagraphUploadNewVerAndCheck
         OpenedContract openedContract = discussionsTab.clickDocumentsTab();
 
         logger.info("Check recalculation...");
-        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Affiliate\")').closest('.document-paragraph__content').find('del').first().text() === '1.1'"), "Recalculation is wrong !!! Should be 1.1");
+        Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Affiliate\")').closest('.document-paragraph__content').find('del').first().text().trim() === '1.1'"), "Recalculation is wrong !!! Should be 1.1");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"Agreement Term\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.1'"), "Recalculation is wrong !!! Should be 1.1");
         Assert.assertTrue(Selenide.executeJavaScript("return $('.document-paragraph__content-text:contains(\"eGain\")').closest('.document-paragraph__content').find('span[list-item=\"true\"]').text() === '1.2'"), "Recalculation is wrong !!! Should be 1.2");
 
@@ -77,7 +77,7 @@ public class AddParagraphUploadNewVerAndCheck
 
         $$(".discussion2__body .discussion2-post").shouldHave(CollectionCondition.size(3)); // total posts
         $$(".discussion2__body .discussion2-post").filter(Condition.cssClass(".diff del")).stream().forEach(del -> del.shouldBe(Condition.visible));
-        $$(".discussion2__body .discussion2-post").last().findAll(".diff del").shouldHave(CollectionCondition.size(2)); // the last post should have 2 <del>'s
+        $$(".discussion2__body .discussion2-post").last().findAll(".diff del").shouldHave(CollectionCondition.size(1)); // the last post should have 1 <del>
         $$(".discussion2__body .discussion2-post").last().find(".discussion2-post__comment").shouldHave(Condition.text("Ss Note: Moving this to Glossary")); // comment is present
 
         logger.info("Checking that first paragraph was deleted on document view...");

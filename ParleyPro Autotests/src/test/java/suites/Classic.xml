@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Classic negotiation mode suite" configfailurepolicy="continue">
-    <test name="AT-40: Upload new version with redlines for my team documents" preserve-order="true">
+   <test name="AT-40: Upload new version with redlines for my team documents" preserve-order="true">
         <parameter name="contractName" value="AT40 Classic contract"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -91,7 +91,7 @@
         <parameter name="documentName" value="Dana Farber Cancer Institute MCDA Draft 110620.docx"/>
         <parameter name="cpDocumentName" value="Dana Farber Cancer Institute MCDA Draft 110620 QIS edits.docx"/>
         <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="14"/>
+        <parameter name="numberOfDiscussions" value="12"/>
         <parameter name="textOnFirstPage" value="MUTUAL CONFIDENTIAL DISCLOSURE AGREEMENT"/>
         <parameter name="textOnLastPage" value="Read and Acknowledged:"/>
         <classes>
@@ -127,7 +127,7 @@
         <parameter name="documentName" value="ACCTTWO MASTER SERVICES AGREEMENT_WM Comments 6_3_20.docx"/>
         <parameter name="cpDocumentName" value="ACCTTWO MASTER SERVICES AGREEMENT_A2 comments 06_22 (1).docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="21"/>
+        <parameter name="numberOfDiscussions" value="20"/>
         <parameter name="textOnFirstPage" value="ACCTTWO MASTER SERVICES AGREEMENT"/>
         <parameter name="textOnLastPage" value="ADDENDUM B: California Consumer Privacy Act"/>
         <classes>
@@ -145,7 +145,7 @@
         <parameter name="documentName" value="Parley Pro DPA (5).docx"/>
         <parameter name="cpDocumentName" value="Parley Pro DPA (Copy 010421)_LK 20210111 (1).docx"/>
         <parameter name="documentHasRevisions" value="false"/>
-        <parameter name="numberOfDiscussions" value="27"/>
+        <parameter name="numberOfDiscussions" value="26"/>
         <parameter name="textOnFirstPage" value="Addendum"/>
         <parameter name="textOnLastPage" value="For All Customers"/>
         <classes>
@@ -217,7 +217,7 @@
         <parameter name="documentName" value="IOC_Framework_Agreement-Learnship.docx"/>
         <parameter name="cpDocumentName" value="2020-07-17_KV-00168_IOC_Framework Agreement_v5_IOC.docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="42"/>
+        <parameter name="numberOfDiscussions" value="40"/>
         <parameter name="textOnFirstPage" value="KV-00168"/>
         <parameter name="textOnLastPage" value="OLYMPIC COMMITTEE:"/>
         <classes>
@@ -253,7 +253,7 @@
         <parameter name="documentName" value="2021-09-07_OSRAM GmbH_Framework Agreement_Learnship_v6_0_revKB(2).docx"/>
         <parameter name="cpDocumentName" value="2021-09-15_OSRAM GmbH_Framework Agreement_Learnship_v7_0_revTU(1).docx"/>
         <parameter name="documentHasRevisions" value="true"/>
-        <parameter name="numberOfDiscussions" value="142"/>
+        <parameter name="numberOfDiscussions" value="141"/>
         <parameter name="textOnFirstPage" value="Frame Purchase Agreement"/>
         <parameter name="textOnLastPage" value="TRAINER-LED"/>
         <classes>
