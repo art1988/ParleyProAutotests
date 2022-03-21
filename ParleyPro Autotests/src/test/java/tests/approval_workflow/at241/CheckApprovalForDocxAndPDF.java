@@ -182,7 +182,7 @@ public class CheckApprovalForDocxAndPDF
     {
         String wrkflowName = "AT-241 workflow";
 
-        new DashboardPage().getSideBar().clickAdministration().clickWorkflowsTab().clickActionMenu(wrkflowName).clickDelete().clickDelete();
+        sideBar.clickAdministration().clickWorkflowsTab().clickActionMenu(wrkflowName).clickDelete().clickDelete();
         $(byText(wrkflowName)).shouldNotBe(Condition.visible);
     }
 }
