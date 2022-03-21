@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Approval workflow" configfailurepolicy="continue">
-    <!--<test name="AT-28: Create and Edit Team;
+    <test name="AT-28: Create and Edit Team;
                 AT-29: Create Approval workflow" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -34,7 +34,7 @@
             <class name="tests.approval_workflow.reject.CreateContractAndStartApproval"/>
             <class name="tests.approval_workflow.reject.LoginAsApproverAndReject"/>
             <class name="tests.DeleteContractFromInProgress"/>
-            <class name="tests.approval_workflow.reject.RemoveWorkflowAndTeams"/> &lt;!&ndash; deletes workflow and teams from previous(!!!) tests AT-28,29 &ndash;&gt;
+            <class name="tests.approval_workflow.reject.RemoveWorkflowAndTeams"/> <!-- deletes workflow and teams from previous(!!!) tests AT-28,29 -->
             <class name="tests.Logout"/>
         </classes>
     </test>
@@ -69,7 +69,7 @@
             <class name="tests.DeleteContractFromExecuted"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-241: Document with discussion may switched to APPROVAL stage; PDF with discussion may switched to APPROVAL stage" preserve-order="true">
         <parameter name="contractName" value="at241 contract(Approval for docx and pdf)"/>
