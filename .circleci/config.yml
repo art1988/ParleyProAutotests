@@ -47,9 +47,19 @@ jobs:
       
 
       - run:
-          name: Run ApprovalWorkflow suite
+          name: Run Classic suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ApprovalWorkflow.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Classic.xml
+          no_output_timeout: 20m
+
+      - run: sleep 10
+
+      
+
+      - run:
+          name: Run Regression suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
           no_output_timeout: 20m
 
       
