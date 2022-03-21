@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.ContractInformation;
 import io.qameta.allure.Step;
+import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -29,6 +30,8 @@ public class CheckApprovalForDocxAndPDF
     private SideBar sideBar;
     private OpenedContract openedContract;
     private Discussions discussionBoard;
+
+    private static Logger logger = Logger.getLogger(CheckApprovalForDocxAndPDF.class);
 
 
     @BeforeMethod
@@ -131,6 +134,7 @@ public class CheckApprovalForDocxAndPDF
 
         loginPage.setEmail(Const.PREDEFINED_APPROVER_USER_1.getEmail());
         loginPage.setPassword(Const.PREDEFINED_APPROVER_USER_1.getPassword());
+
         sideBar = loginPage.clickSignIn().getSideBar();
 
         sideBar.clickInProgressContracts(false).selectContract(contractName);
@@ -139,7 +143,10 @@ public class CheckApprovalForDocxAndPDF
         $(".notification-stack").should(Condition.appear).shouldHave(Condition.text("Document sample has been approved"));
         $$(".lifecycle__item.active .lifecycle__item-tick").shouldHave(CollectionCondition.size(2)); // 2 checkmarks were shown near APPROVAL stage
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
+
+        logger.info("Wait until checkmark near user icon in document header appear...");
         $(".document__header .user .user-icon-checked").should(Condition.appear); // checkmarks near user icon in document header should appear
+
         Screenshoter.makeScreenshot();
     }
 
@@ -156,11 +163,15 @@ public class CheckApprovalForDocxAndPDF
         openedContract = new OpenedContract();
         $$(".lifecycle__item.active .lifecycle__item-tick").shouldHave(CollectionCondition.size(2)); // 2 checkmarks were shown near APPROVAL stage
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
+
+        logger.info("Wait until checkmark near user icon in document header appear...");
         $(".document__header .user .user-icon-checked").should(Condition.appear); // checkmarks near user icon in document header should appear
+
         $(byText("comment for pdf discussion")).shouldBe(Condition.visible);
         $(withText("A Simple PDF File")).shouldBe(Condition.visible);
         $(withText("And more text.")).shouldBe(Condition.visible);
         $(withText("The end, and just as well.")).shouldBe(Condition.visible);
+
         Screenshoter.makeScreenshot();
     }
 
