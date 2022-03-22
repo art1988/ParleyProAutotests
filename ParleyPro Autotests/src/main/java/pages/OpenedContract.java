@@ -216,6 +216,20 @@ public class OpenedContract
         return new AboutToStartApproval(contractName.getText());
     }
 
+    /**
+     * Click by pre-negotiate approval button ( green one ) in contract header.
+     * No need to pass arguments because contract is the only one on page and is opened.
+     * @return
+     */
+    public AboutToStartApproval switchContractToPreNegotiateApproval()
+    {
+        $(".contract-header__status .lifecycle").shouldBe(Condition.visible);
+
+        Selenide.executeJavaScript("$('.contract-header__status .lifecycle div:contains(\"APPROVAL\")').eq(0).click()"); // eq(0) - first APPROVAL button (pre-negotiate)
+
+        return new AboutToStartApproval(contractName.getText());
+    }
+
     public ApproveDocument clickApproveButton(String documentName)
     {
         approveDocumentButton.click();
