@@ -88,7 +88,7 @@ public class AddDocuments
 
     /**
      * Click 'Upload my team documents' button
-     * @param fileToUpload
+     * @param fileToUpload single file to upload
      */
     public void clickUploadMyTeamDocuments(File fileToUpload)
     {
@@ -111,6 +111,39 @@ public class AddDocuments
             SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
 
             uploadMyTeamDocumentsButton.shouldBe(Condition.visible).shouldBe(Condition.enabled).uploadFile(fileToUpload);
+            Thread.sleep(2_000); // this sleep after firing of uploadFile is necessary too
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
+    }
+
+    /**
+     * Click 'Upload my team documents' button
+     * @param filesToUpload array of files to upload
+     */
+    public void clickUploadMyTeamDocumentsMultiple(File[] filesToUpload)
+    {
+        try
+        {
+            // 1. make <input> visible
+            Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"height\",\"auto\")");
+            Thread.sleep(200);
+            Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"visibility\",\"visible\")");
+            Thread.sleep(200);
+            Selenide.executeJavaScript("$('.js-upload-my-team-document-btn').parent().parent().find(\"input\").css(\"display\",\"block\")");
+            Thread.sleep(200);
+
+            $(".js-upload-my-team-document-btn").parent().parent().find("input").waitUntil(Condition.visible, 7_000);
+            $(".js-upload-my-team-document-btn").parent().parent().find("input").waitUntil(Condition.enabled, 7_000);
+
+            Thread.sleep(1_000); // necessary sleep ! Without this sleep test may become flaky.
+
+            // 2. trying to upload...
+            SelenideElement uploadMyTeamDocumentsButton = $(".upload__body input[style='display: block; height: auto; visibility: visible;']");
+
+            uploadMyTeamDocumentsButton.shouldBe(Condition.visible).shouldBe(Condition.enabled).uploadFile(filesToUpload);
             Thread.sleep(2_000); // this sleep after firing of uploadFile is necessary too
         }
         catch (InterruptedException e)
