@@ -4,10 +4,12 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import forms.AboutToStartApproval;
+import forms.ApproveDocument;
 import forms.ConfirmApprovers;
 import forms.ContractInformation;
 import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -25,6 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -71,6 +74,7 @@ public class CreateContractAndUploadDocs
         moveContractToApproveWithoutD2();
         moveD2ToApproveAndApproveIt();
         loginAsApproverAndApproveD1AndD3();
+        loginBackAsCNAndMakePreSignApprove();
     }
 
     @Step
@@ -140,5 +144,67 @@ public class CreateContractAndUploadDocs
         logger.info("Check that buttons Approve and Reject are available...");
         $$(".document__header-rename > span").filterBy(Condition.exactText("D1")).first().closest(".document__header-row").findAll("button[id]").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("Approve", "Reject", ""));
         $$(".document__header-rename > span").filterBy(Condition.exactText("D3")).first().closest(".document__header-row").findAll("button[id]").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("Approve", "Reject", ""));
+
+        logger.info("Approve D1...");
+        $$(".document__header-rename > span").filterBy(Condition.exactText("D1")).first().closest(".document__header-row").findAll("button[id]").filterBy(Condition.text("Approve")).first().click();
+        new ApproveDocument("D1").clickApproveButton();
+
+        logger.info("Approve D3...");
+        $$(".document__header-rename > span").filterBy(Condition.exactText("D3")).first().closest(".document__header-row").findAll("button[id]").filterBy(Condition.text("Approve")).first().click();
+        new ApproveDocument("D3").clickApproveButton();
+
+        $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(2)", "APPROVAL", "APPROVAL"));
+        $("#APPROVE_DOCUMENT").shouldNotBe(Condition.visible);
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @Step
+    public void loginBackAsCNAndMakePreSignApprove()
+    {
+        LoginPage loginPage = sideBar.logout();
+
+        loginPage.setEmail(Const.PREDEFINED_USER_CN_ROLE.getEmail());
+        loginPage.setPassword(Const.PREDEFINED_USER_CN_ROLE.getPassword());
+
+        sideBar = loginPage.clickSignIn().getSideBar();
+
+        sideBar.clickInProgressContracts(false).selectContract(contractName);
+
+        // D1
+        AboutToStartApproval aboutToStartApproval = openedContract.switchDocumentToPreSignApproval("D1");
+        $$(".checkbox.with_label").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("D1", "D2", "D3"));
+
+        logger.info("Check that only D1 is selected...");
+        $$(".checkbox.with_label input[checked]").shouldHave(CollectionCondition.size(1)).first().parent().find("span").shouldHave(Condition.exactText("D1"));
+
+        aboutToStartApproval.clickNext().clickStartApproval();
+
+        logger.info("Check that only D1 was switched to Pre-sign Approval...");
+        $$(".documents__list-content .lifecycle__item.active.approval").shouldHave(CollectionCondition.size(1)).first().closest(".document__header").find("span[title]").shouldHave(Condition.exactText("D1"));
+        ////////
+
+
+        // D2
+        aboutToStartApproval = openedContract.switchDocumentToPreSignApproval("D2");
+        $$(".checkbox.with_label").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("D2", "D3"));
+
+        logger.info("Check that only D2 is selected...");
+        $$(".checkbox.with_label input[checked]").shouldHave(CollectionCondition.size(1)).first().parent().find("span").shouldHave(Condition.exactText("D2"));
+        aboutToStartApproval.checkDocument("D3").clickNext().clickStartApproval();
+
+        logger.info("Check that all 3 documents were switched to Pre-Sign Approval...");
+        $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(4)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(3)", "APPROVAL", "APPROVAL", "APPROVAL"));
+
+        Screenshoter.makeScreenshot();
+    }
+
+    @AfterMethod
+    public void removeWorkflow()
+    {
+        String wrkflowName = "AT-241 workflow";
+
+        sideBar.clickAdministration().clickWorkflowsTab().clickActionMenu(wrkflowName).clickDelete().clickDelete();
+        $(byText(wrkflowName)).shouldNotBe(Condition.visible);
     }
 }

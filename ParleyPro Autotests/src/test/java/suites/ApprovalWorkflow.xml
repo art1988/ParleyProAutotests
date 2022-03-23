@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Approval workflow" configfailurepolicy="continue">
-    <test name="AT-28: Create and Edit Team;
+    <!--<test name="AT-28: Create and Edit Team;
                 AT-29: Create Approval workflow" preserve-order="true">
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -34,7 +34,7 @@
             <class name="tests.approval_workflow.reject.CreateContractAndStartApproval"/>
             <class name="tests.approval_workflow.reject.LoginAsApproverAndReject"/>
             <class name="tests.DeleteContractFromInProgress"/>
-            <class name="tests.approval_workflow.reject.RemoveWorkflowAndTeams"/> <!-- deletes workflow and teams from previous(!!!) tests AT-28,29 -->
+            <class name="tests.approval_workflow.reject.RemoveWorkflowAndTeams"/> &lt;!&ndash; deletes workflow and teams from previous(!!!) tests AT-28,29 &ndash;&gt;
             <class name="tests.Logout"/>
         </classes>
     </test>
@@ -77,6 +77,17 @@
             <class name="tests.LoginToDashboard"/>
             <class name="tests.approval_workflow.at241.AddApprovalWorkflow"/>
             <class name="tests.approval_workflow.at241.CheckApprovalForDocxAndPDF"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-242: Approval for multiple documents" preserve-order="true">
+        <parameter name="contractName" value="AT-242: multiple documents approval contract"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.approval_workflow.at241.AddApprovalWorkflow"/>
+            <class name="tests.approval_workflow.at242.CreateContractAndUploadDocs"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
