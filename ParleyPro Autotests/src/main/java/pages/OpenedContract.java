@@ -208,7 +208,7 @@ public class OpenedContract
         Selenide.executeJavaScript(jsCode.toString());
 
         Waiter.smartWaitUntilVisible(documentLifecycleString + ".find(\"div:contains('APPROVAL')\")");
-        try { Thread.sleep(1_000); } catch (InterruptedException e) { e.printStackTrace(); } // necessary sleep too !
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { logger.error("InterruptedException", e); } // necessary sleep too !
 
         Selenide.executeJavaScript(documentLifecycleString + ".find('.lifecycle__item:contains(\"APPROVAL\")').click()");
 
