@@ -32,7 +32,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class CreateContractAndUploadDocs
+public class MultipleApprovalDocumentsTest
 {
     private final String contractName = "AT-242: multiple documents approval contract";
     public static final Path MULTIPLE_DOCS_DIR = Paths.get(System.getProperty("user.dir") + "/Documents/AT242");
@@ -40,7 +40,7 @@ public class CreateContractAndUploadDocs
     private SideBar sideBar;
     private OpenedContract openedContract;
 
-    private static Logger logger = Logger.getLogger(CreateContractAndUploadDocs.class);
+    private static Logger logger = Logger.getLogger(MultipleApprovalDocumentsTest.class);
 
 
     @BeforeMethod

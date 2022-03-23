@@ -87,7 +87,7 @@
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.approval_workflow.at241.AddApprovalWorkflow"/>
-            <class name="tests.approval_workflow.at242.CreateContractAndUploadDocs"/>
+            <class name="tests.approval_workflow.at242.MultipleApprovalDocumentsTest"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
