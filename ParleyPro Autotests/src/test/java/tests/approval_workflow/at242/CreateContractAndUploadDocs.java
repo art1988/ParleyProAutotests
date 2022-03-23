@@ -137,6 +137,7 @@ public class CreateContractAndUploadDocs
         sideBar = loginPage.clickSignIn().getSideBar();
 
         sideBar.clickInProgressContracts(false).selectContract(contractName);
+        openedContract = new OpenedContract();
 
         logger.info("Check that only D1 and D3 are in list...");
         $$(".document .document__header-rename > span").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("D1", "D3"));
@@ -170,6 +171,7 @@ public class CreateContractAndUploadDocs
         sideBar = loginPage.clickSignIn().getSideBar();
 
         sideBar.clickInProgressContracts(false).selectContract(contractName);
+        openedContract = new OpenedContract();
 
         // D1
         AboutToStartApproval aboutToStartApproval = openedContract.switchDocumentToPreSignApproval("D1");
