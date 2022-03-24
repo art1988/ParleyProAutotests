@@ -234,7 +234,7 @@ public class AddInProgressContract
         InProgressContractsPage inProgressContractsPage = new DashboardPage().getSideBar().clickInProgressContracts(false);
 
         logger.info("Checking that new contract's title was saved...");
-        softAssert.assertEquals($(".contracts-list__contract-name").attr("title"), "TEST aliquam ut consequuntur sint. Velit placeat et veniam sint veritatis esse quidem. Iusto consequatur est fuga at voluptas molestias distinctio. Magni saepe quia qui ipsam quis voluptas qui. Exercitationem sit dolor ullam dolorum enim eaque enim. Optio ratione corrupti eos aut ut ratione velit ea",
+        softAssert.assertEquals($(".contracts-list__contract-name").getText(), "TEST aliquam ut consequuntur sint. Velit placeat et veniam sint veritatis esse quidem. Iusto consequatur est fuga at voluptas molestias distinctio. Magni saepe quia qui ipsam quis voluptas qui. Exercitationem sit dolor ullam dolorum enim eaque enim. Optio ratione corrupti eos aut ut ratione velit ea",
                 "Looks like that new contract's title wasn't saved !!!");
         softAssert.assertAll();
         Screenshoter.makeScreenshot();
