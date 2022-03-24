@@ -2,6 +2,8 @@ package tests.templates.at90;
 
 import com.codeborne.selenide.Condition;
 import forms.ContractInformation;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Issues;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -19,6 +21,9 @@ public class AddNewContractFromTemplateAndCheckError
     private static Logger logger = Logger.getLogger(AddNewContractFromTemplateAndCheckError.class);
 
     @Test(priority = 1)
+    @Issues({
+            @Issue("PAR-15560")
+    })
     public void addNewContractFromTemplate()
     {
         ContractInformation contractInformationForm = new DashboardPage().getSideBar().clickInProgressContracts(true).clickNewContractButton();
