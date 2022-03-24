@@ -111,7 +111,7 @@ public class MultipleApprovalDocumentsTest
         $$(".document__header-rename > span").filterBy(Condition.exactText("D2")).first().closest(".document__header").find(".lifecycle").shouldHave(Condition.exactText("APPROVAL"));
 
         logger.info("Check that Approve, Reject and Cancel approval buttons are available for D2...");
-        $$(".document__header-rename > span").filterBy(Condition.exactText("D2")).first().closest(".document__header-row").findAll("button[id]").shouldHave(CollectionCondition.size(4)).shouldHave(CollectionCondition.textsInAnyOrder("Approve", "Reject", "Cancel approval", ""));
+        $$(".document__header-rename > span").filterBy(Condition.exactText("D2")).first().closest(".document__header-row").findAll("button[id]").shouldHave(CollectionCondition.size(5)).shouldHave(CollectionCondition.textsInAnyOrder("Approve", "Reject", "Cancel approval", "", ""));
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(4)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(3)", "APPROVAL", "APPROVAL", "APPROVAL"));
 
         openedContract.clickApproveButton("D2").clickApproveButton();
