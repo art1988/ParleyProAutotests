@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -47,7 +48,7 @@ public class CheckExecutedSignedContract
             Thread.sleep(10_000);
 
             logger.info("Checking whether contract became visible on Executed page...");
-            if( $(byText("AT-217: DocuSign basics CTR")).isDisplayed() )
+            if( $(withText("AT-217_DocuSign_basics_CTR")).isDisplayed() )
             {
                 break;
             }
@@ -55,7 +56,7 @@ public class CheckExecutedSignedContract
             logger.info("[retry #" + i++ + "] : Can't find contract... Wait one more time...");
         }
 
-        new DashboardPage().getSideBar().clickExecutedContracts(false).selectContract("AT-217: DocuSign basics CTR");
+        new DashboardPage().getSideBar().clickExecutedContracts(false).selectContract("AT-217_DocuSign_basics_CTR");
 
         logger.info("Assert that signed pdf document is in the list...");
         $(".label.label_theme_purple").shouldBe(Condition.visible).click(); // expand doc by clicking purple label

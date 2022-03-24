@@ -3,7 +3,7 @@
 
 <suite name = "Integrations suite" configfailurepolicy="continue">
     <test name="AT-217: DocuSign basics" preserve-order="true">
-        <parameter name="contractNameExecuted" value="AT-217: DocuSign basics CTR"/>
+        <parameter name="contractNameExecuted" value="AT-217_DocuSign_basics_CTR"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.integrations.at217.ConnectDocuSign"/>

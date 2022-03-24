@@ -28,7 +28,7 @@ public class AddContractAndSign
     {
         ContractInformation contractInformationForm = new DashboardPage().getSideBar().clickInProgressContracts(true).clickNewContractButton();
 
-        contractInformationForm.setContractTitle("AT-217: DocuSign basics CTR");
+        contractInformationForm.setContractTitle("AT-217_DocuSign_basics_CTR");
         contractInformationForm.setContractingRegion("region1");
         contractInformationForm.setContractingCountry("country1");
         contractInformationForm.setContractEntity("entity1");

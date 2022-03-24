@@ -29,7 +29,7 @@ public class GetEmailAndSign
         logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
         Thread.sleep(60_000);
 
-        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Sign contract AT-217: DocuSign basics CTR"),
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Sign contract AT-217_DocuSign_basics_CTR"),
                 "Email with subject 'Sign contract AT-217: DocuSign basics CTR' was not found !!!");
 
         String bodyText = EmailChecker.assertEmailBodyText("Please sign contract AT-217");
