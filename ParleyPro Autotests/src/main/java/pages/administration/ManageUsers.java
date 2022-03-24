@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ManageUsers
 {
-    private SelenideElement newUserButton = $("button[tooltip='Add new user']");
+    private SelenideElement newUserButton = $("#add-new-user");
 
 
     private static Logger logger = Logger.getLogger(ManageUsers.class);

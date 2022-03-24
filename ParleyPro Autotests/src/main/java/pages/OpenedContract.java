@@ -34,7 +34,7 @@ public class OpenedContract
     private SelenideElement rejectDocumentButton   = $("#REJECT_DOCUMENT");
     private SelenideElement uploadNewVersionButton = $("#UPLOAD_VERSION_DOCUMENT");
 
-    private SelenideElement newDocumentButton       = $("button[tooltip='Add new document']");
+    private SelenideElement newDocumentButton       = $("#add-new-document");
     private SelenideElement readyForSignatureButton = $(".ready_to_sign");
 
     // Blue button that appears only for PDF's
