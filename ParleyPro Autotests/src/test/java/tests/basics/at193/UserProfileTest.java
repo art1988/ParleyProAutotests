@@ -3,6 +3,8 @@ package tests.basics.at193;
 import com.codeborne.selenide.Condition;
 import constants.Const;
 import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Issues;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -56,6 +58,9 @@ public class UserProfileTest
     }
 
     @Test(priority = 2)
+    @Issues({
+            @Issue("PAR-15575")
+    })
     @Description("This test uploads user's avatar, checks that image was applied and removes it, so that user's initials are visible again.")
     public void uploadUserAvatarTest() throws InterruptedException
     {
