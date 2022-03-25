@@ -47,12 +47,13 @@ jobs:
       
 
       - run:
-          name: Run Requests suite
+          name: Run ApprovalWorkflow suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Requests.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ApprovalWorkflow.xml
           no_output_timeout: 20m
 
       
+
       - save_cache:
           key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}
           paths:
