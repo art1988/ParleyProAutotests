@@ -8,17 +8,21 @@ import constants.Const;
 import forms.*;
 import forms.workflows.ApprovalWorkflow;
 import io.qameta.allure.Description;
+import model.AuditTrailEvent;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.*;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -195,7 +199,7 @@ public class StartPreSignApproval
 
     @Test(priority = 7)
     @Description("This test opens Audit trail and checks that all messages are correct")
-    public void checkAuditTrail()
+    public void checkAuditTrail() throws InterruptedException
     {
         OpenedContract openedContract = new OpenedContract();
 
@@ -203,11 +207,33 @@ public class StartPreSignApproval
 
         logger.info("Assert that all messages are correct");
         $(".timeline-heading h4").waitUntil(Condition.visible, 7_000);
-        String actual = Selenide.executeJavaScript("return $('.timeline-heading h4').text()");
-        Assert.assertEquals(actual, "Approval completedApproved by teamTeam request sentApprovedUser approve request was sent" +
-                "Pre-signature approval startedTeam assignedDocument user assignedOnline negotiation startedApproval completedApproved" +
-                "User approve request was sentApprovedUser approve request was sentPre-negotiation approval startedDocument user assigned" +
-                "Document user assignedDocument uploadedContract created");
+
+        List<AuditTrailEvent> actualEvents = auditTrailPage.collectAllEvents();
+
+        List<AuditTrailEvent> expectedEvents = new ArrayList<>();
+        expectedEvents.add(new AuditTrailEvent("Approval completed"));
+        expectedEvents.add(new AuditTrailEvent("Approved by team"));
+        expectedEvents.add(new AuditTrailEvent("Team request sent"));
+        expectedEvents.add(new AuditTrailEvent("Approved"));
+        expectedEvents.add(new AuditTrailEvent("User approve request was sent"));
+        expectedEvents.add(new AuditTrailEvent("Pre-signature approval started"));
+        expectedEvents.add(new AuditTrailEvent("Team assigned"));
+        expectedEvents.add(new AuditTrailEvent("Document user assigned"));
+        expectedEvents.add(new AuditTrailEvent("Online negotiation started"));
+        expectedEvents.add(new AuditTrailEvent("Approval completed"));
+        expectedEvents.add(new AuditTrailEvent("Approved"));
+        expectedEvents.add(new AuditTrailEvent("User approve request was sent"));
+        expectedEvents.add(new AuditTrailEvent("Approved"));
+        expectedEvents.add(new AuditTrailEvent("User approve request was sent"));
+        expectedEvents.add(new AuditTrailEvent("Pre-negotiation approval started"));
+        expectedEvents.add(new AuditTrailEvent("Document user assigned"));
+        expectedEvents.add(new AuditTrailEvent("Document user assigned"));
+        expectedEvents.add(new AuditTrailEvent("Document uploaded"));
+        expectedEvents.add(new AuditTrailEvent("Contract created"));
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(actualEvents, expectedEvents, "Some events are missing !!! \n Actual events:" + actualEvents + " \n Expected events:" + expectedEvents);
+        softAssert.assertAll();
 
         Screenshoter.makeScreenshot();
 
