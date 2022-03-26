@@ -150,7 +150,8 @@ public class ManageDiscussions
      */
     public ManageDiscussions confirmAccept()
     {
-        makeExternalButton.click(); // the same button
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { logger.error("InterruptedException", e); }
+        makeExternalButton.shouldBe(visible, enabled).click(); // the same button
 
         logger.info("ACCEPT button was clicked");
 
