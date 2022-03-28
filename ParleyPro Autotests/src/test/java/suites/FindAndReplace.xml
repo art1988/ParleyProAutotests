@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Find and Replace suite" configfailurepolicy="continue">
-    <test name="AT-143: Review stage, My Team doc" preserve-order="true">
+   <test name="AT-143: Review stage, My Team doc" preserve-order="true">
         <parameter name="contractName" value="Contr AT-143 // Find and Replace"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
