@@ -3,12 +3,12 @@ package tests.integrations.at217;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Description;
+import model.AuditTrailEvent;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.AuditTrail;
 import pages.DashboardPage;
 import pages.OpenedContract;
@@ -17,7 +17,6 @@ import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
@@ -70,12 +69,14 @@ public class CheckExecutedSignedContract
         AuditTrail auditTrail = new OpenedContract().clickAuditTrail();
 
         $$(".timeline-title").shouldHave(CollectionCondition.sizeGreaterThan(9));
-        List<String> allEvents = $$(".timeline-title").stream().map(SelenideElement::text).collect(Collectors.toList());
+        List<AuditTrailEvent> allEvents = auditTrail.collectAllEvents();
 
-        Assert.assertTrue(allEvents.contains("Docusign event: Opened"), "There is no such event as 'Docusign event: Opened' !!!");
-        Assert.assertTrue(allEvents.contains("Docusign event: Viewed"), "There is no such event as 'Docusign event: Viewed' !!!");
-        Assert.assertTrue(allEvents.contains("Docusign event: Signed"), "There is no such event as 'Docusign event: Signed' !!!");
-        Assert.assertTrue(allEvents.contains("Document imported from Docusign"), "There is no such event as 'Document imported from Docusign' !!!");
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(allEvents.contains(new AuditTrailEvent("Docusign event: Opened")), "There is no such event as 'Docusign event: Opened' !!!");
+        softAssert.assertTrue(allEvents.contains(new AuditTrailEvent("Docusign event: Viewed")), "There is no such event as 'Docusign event: Viewed' !!!");
+        softAssert.assertTrue(allEvents.contains(new AuditTrailEvent("Docusign event: Signed")), "There is no such event as 'Docusign event: Signed' !!!");
+        softAssert.assertTrue(allEvents.contains(new AuditTrailEvent("Document imported from Docusign")), "There is no such event as 'Document imported from Docusign' !!!");
+        softAssert.assertAll();
 
         Screenshoter.makeScreenshot();
 

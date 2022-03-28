@@ -6,11 +6,13 @@ import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ShareForm;
 import io.qameta.allure.Description;
+import model.AuditTrailEvent;
 import model.User;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.AuditTrail;
 import pages.DashboardPage;
 import pages.OpenedContract;
@@ -20,9 +22,7 @@ import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -146,8 +146,24 @@ public class SharingFunctionality
 
         logger.info("Check Audit trail events...");
         AuditTrail auditTrail = new OpenedContract().clickAuditTrail();
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.timeline-title').text()"),
-                "Document user assignedDocument user removedDocument user assignedDocument user assignedDocument user assignedInvitation reminder sentDocument user assignedDocument uploadedContract created");
+
+        List<AuditTrailEvent> actualEvents = auditTrail.collectAllEvents();
+
+        List<AuditTrailEvent> expectedEvents = new ArrayList<>();
+        expectedEvents.add(new AuditTrailEvent("Document user assigned"));
+        expectedEvents.add(new AuditTrailEvent("Document user removed"));
+        expectedEvents.add(new AuditTrailEvent("Document user assigned"));
+        expectedEvents.add(new AuditTrailEvent("Document user assigned"));
+        expectedEvents.add(new AuditTrailEvent("Document user assigned"));
+        expectedEvents.add(new AuditTrailEvent("Invitation reminder sent"));
+        expectedEvents.add(new AuditTrailEvent("Document user assigned"));
+        expectedEvents.add(new AuditTrailEvent("Document uploaded"));
+        expectedEvents.add(new AuditTrailEvent("Contract created"));
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(actualEvents, expectedEvents, "Some events are missing !!! \n Actual events:" + actualEvents + " \n Expected events:" + expectedEvents);
+        softAssert.assertAll();
+
         auditTrail.clickOk();
     }
 

@@ -2,15 +2,16 @@ package tests.basics.at238;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import constants.Const;
 import forms.ContractInformation;
 import io.qameta.allure.Step;
+import model.AuditTrailEvent;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.AddDocuments;
 import pages.AuditTrail;
 import pages.DashboardPage;
@@ -19,7 +20,6 @@ import pages.subelements.SideBar;
 import utils.ScreenShotOnFailListener;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -135,10 +135,14 @@ public class ContractCancellationWithCommentTest
         AuditTrail auditTrail = openedContract.clickAuditTrail();
 
         $$(".timeline-title").shouldHave(CollectionCondition.size(6));
-        List<String> allEvents = $$(".timeline-title").stream().map(SelenideElement::text).collect(Collectors.toList());
 
-        Assert.assertTrue(allEvents.contains("Contract cancelled"), "There is no such event as 'Contract cancelled' !!!");
-        Assert.assertTrue(allEvents.contains("Contract restarted"), "There is no such event as 'Contract restarted' !!!");
+        List<AuditTrailEvent> allEvents = auditTrail.collectAllEvents();
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(allEvents.contains(new AuditTrailEvent("Contract cancelled")), "There is no such event as 'Contract cancelled' !!!");
+        softAssert.assertTrue(allEvents.contains(new AuditTrailEvent("Contract restarted")), "There is no such event as 'Contract restarted' !!!");
+        softAssert.assertAll();
+
         $$(".timeline-body__message").shouldHave(CollectionCondition.size(1)).first().shouldHave(Condition.text("This is a cancellation reason"));
 
         auditTrail.clickOk();

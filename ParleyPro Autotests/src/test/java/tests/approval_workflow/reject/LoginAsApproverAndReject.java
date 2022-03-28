@@ -6,14 +6,19 @@ import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.RejectDocument;
 import io.qameta.allure.Description;
+import model.AuditTrailEvent;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.*;
 import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -91,8 +96,20 @@ public class LoginAsApproverAndReject
         logger.info("Checking audit trail events...");
         AuditTrail auditTrail = new OpenedContract().clickAuditTrail();
 
-        Assert.assertEquals(Selenide.executeJavaScript("return $('.timeline-title').text()"),
-                "Pre-negotiation approval rejectedUser approve request was sentPre-negotiation approval startedDocument user assignedDocument uploadedContract created");
+        List<AuditTrailEvent> actualEvents = auditTrail.collectAllEvents();
+
+        List<AuditTrailEvent> expectedEvents = new ArrayList<>();
+        expectedEvents.add(new AuditTrailEvent("Pre-negotiation approval rejected"));
+        expectedEvents.add(new AuditTrailEvent("User approve request was sent"));
+        expectedEvents.add(new AuditTrailEvent("Pre-negotiation approval started"));
+        expectedEvents.add(new AuditTrailEvent("Document user assigned"));
+        expectedEvents.add(new AuditTrailEvent("Document uploaded"));
+        expectedEvents.add(new AuditTrailEvent("Contract created"));
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(actualEvents, expectedEvents, "Some events are missing !!! \n Actual events:" + actualEvents + " \n Expected events:" + expectedEvents);
+        softAssert.assertAll();
+
         auditTrail.clickOk();
 
         logger.info("Checking CN e-mail...");
