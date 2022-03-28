@@ -9,13 +9,13 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class FindAndReplacePopup
 {
-    private SelenideElement findTab                = $(".js-document-search-find-tab");
-    private SelenideElement replaceTab             = $(".js-document-search-replace-tab");
+    private SelenideElement findTab                = $("div[class*=\"js-document-search-find-tab\"]");
+    private SelenideElement replaceTab             = $("div[class*=\"js-document-search-replace-tab\"]");
 
     private SelenideElement findInDocumentInput    = $(".js-document-search-find-input");
     private SelenideElement replaceWithInput       = $(".js-document-search-replace-input");
 
-    private SelenideElement reviewAndReplaceButton = $(".js-document-search-replace-btn");
+    private SelenideElement reviewAndReplaceButton = $("button[class*=\"js-document-search-replace-btn\"]");
 
 
     private static Logger logger = Logger.getLogger(FindAndReplacePopup.class);
