@@ -63,8 +63,8 @@ public class OpenedContract
     private boolean isInit()
     {
         $(".spinner").waitUntil(Condition.disappear, 60_000 * 2);
-        $(".contract-header__status").waitUntil(Condition.visible, 7_000);
-        $(".document__body .spinner").waitUntil(Condition.disappear, 30_000);
+        $(".contract-header__status").shouldBe(Condition.visible);
+        $(".document__body .spinner").should(Condition.disappear);
 
         return ( contractName.isDisplayed() );
     }

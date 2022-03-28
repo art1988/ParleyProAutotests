@@ -183,7 +183,7 @@ public class SharingFunctionality
                 continue; // first hover over all 4 icons - nothing to check
             }
 
-            $(".rc-tooltip-inner .spinner").waitUntil(Condition.disappear, 8_000);
+            $(".rc-tooltip-inner .spinner").should(Condition.disappear);
 
             switch( $$(cssClassName + " .user").get(i).getText() )
             {
