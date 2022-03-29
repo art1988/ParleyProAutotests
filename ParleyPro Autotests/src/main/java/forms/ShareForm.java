@@ -29,7 +29,7 @@ public class ShareForm
         $(".spinner").waitUntil(Condition.disappear, 7_000);
 
         $(".modal-title").waitUntil(Condition.visible, 7_000)
-                .shouldHave(Condition.exactText("Add internal users and assign roles for internal review of document “" + documentName + "”."));
+                .shouldHave(Condition.text("Add internal users and assign roles"));
 
         $(".manage-users-user").waitUntil(Condition.visible, 7_000);
     }
