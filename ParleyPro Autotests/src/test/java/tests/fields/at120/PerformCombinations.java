@@ -34,7 +34,7 @@ public class PerformCombinations
     }
 
     @Test(priority = 1)
-    public void cat2type3()
+    public void cat2type3() throws InterruptedException
     {
         contractInformation.setContractCategory("category2");
         contractInformation.setContractType("type3");
@@ -44,11 +44,13 @@ public class PerformCombinations
         {
             if( n == 7 )
             {
+                Thread.sleep(500);
                 Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field7 is NOT on the form !!!");
                 Assert.assertEquals(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').next().prop(\"tagName\")"), "TEXTAREA", "Field7 is not <textarea> !!!");
                 continue;
             }
 
+            Thread.sleep(500);
             Assert.assertFalse(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " IS on form, but shouldn't !!!");
         }
 
@@ -56,7 +58,7 @@ public class PerformCombinations
     }
 
     @Test(priority = 2)
-    public void cat1type3()
+    public void cat1type3() throws InterruptedException
     {
         contractInformation.setContractCategory("category1");
         contractInformation.setContractType("type3");
@@ -66,10 +68,12 @@ public class PerformCombinations
         {
             if( n == 1 || n == 2 || n == 7 )
             {
+                Thread.sleep(500);
                 Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
                 continue;
             }
 
+            Thread.sleep(500);
             Assert.assertFalse(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " IS on form, but shouldn't !!!");
         }
 
@@ -77,7 +81,7 @@ public class PerformCombinations
     }
 
     @Test(priority = 3)
-    public void cat2type1()
+    public void cat2type1() throws InterruptedException
     {
         contractInformation.setContractCategory("category2");
         contractInformation.setContractType("type1");
@@ -87,10 +91,12 @@ public class PerformCombinations
         {
             if( n == 1 || n == 3 || n == 6 || n == 7 )
             {
+                Thread.sleep(500);
                 Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
                 continue;
             }
 
+            Thread.sleep(500);
             Assert.assertFalse(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " IS on form, but shouldn't !!!");
         }
 
@@ -98,7 +104,7 @@ public class PerformCombinations
     }
 
     @Test(priority = 4)
-    public void cat2type2()
+    public void cat2type2() throws InterruptedException
     {
         contractInformation.setContractCategory("category2");
         contractInformation.setContractType("type2");
@@ -108,16 +114,19 @@ public class PerformCombinations
         {
             if( n == 4 || n == 6 || n == 7 )
             {
+                Thread.sleep(500);
                 Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
                 continue;
             }
             else if( n == 5 )
             {
+                Thread.sleep(500);
                 Assert.assertTrue(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
                 Assert.assertEquals(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').next().text()"), "radio 1radio 2", "There are no radio options !!!");
                 continue;
             }
 
+            Thread.sleep(500);
             Assert.assertFalse(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " IS on form, but shouldn't !!!");
         }
 
@@ -125,7 +134,7 @@ public class PerformCombinations
     }
 
     @Test(priority = 5)
-    public void cat1type1()
+    public void cat1type1() throws InterruptedException
     {
         contractInformation.setContractCategory("category1");
         contractInformation.setContractType("type1");
@@ -135,10 +144,12 @@ public class PerformCombinations
         {
             if( n == 4 || n == 5 )
             {
+                Thread.sleep(500);
                 Assert.assertFalse(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " IS on form, but shouldn't !!!");
                 continue;
             }
 
+            Thread.sleep(500);
             Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
         }
 
@@ -146,26 +157,29 @@ public class PerformCombinations
     }
 
     @Test(priority = 6)
-    public void cat1type2()
+    public void cat1type2() throws InterruptedException
     {
         contractInformation.setContractCategory("category1");
         contractInformation.setContractType("type2");
-        $(".modal-content .spinner").waitUntil(Condition.disappear, 7_000);
+        $(".modal-content .spinner").should(Condition.disappear);
 
         for( int n = 1; n <= 7; n++ )
         {
             if( n == 3 )
             {
+                Thread.sleep(500);
                 Assert.assertFalse(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " IS on form, but shouldn't !!!");
                 continue;
             }
             else if( n == 5 )
             {
+                Thread.sleep(500);
                 Assert.assertTrue(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
                 Assert.assertEquals(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').next().text()"), "radio 1radio 2", "There are no radio options !!!");
                 continue;
             }
 
+            Thread.sleep(500);
             Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
         }
 
@@ -173,7 +187,7 @@ public class PerformCombinations
     }
 
     @Test(priority = 7)
-    public void cat1type1type2()
+    public void cat1type1type2() throws InterruptedException
     {
         contractInformation.setContractCategory("category1");
         contractInformation.setContractType(new String[]{"type1", "type2"});
@@ -183,11 +197,13 @@ public class PerformCombinations
         {
             if( n == 5 )
             {
+                Thread.sleep(500);
                 Assert.assertTrue(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
                 Assert.assertEquals(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').next().text()"), "radio 1radio 2", "There are no radio options !!!");
                 continue;
             }
 
+            Thread.sleep(500);
             Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
         }
 
@@ -195,7 +211,7 @@ public class PerformCombinations
     }
 
     @Test(priority = 8)
-    public void cat2type1type2()
+    public void cat2type1type2() throws InterruptedException
     {
         contractInformation.setContractCategory("category2");
         contractInformation.setContractType(new String[]{"type1", "type2"});
@@ -205,17 +221,20 @@ public class PerformCombinations
         {
             if( n == 2 )
             {
+                Thread.sleep(500);
                 Assert.assertFalse(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " IS on form, but shouldn't !!!");
                 continue;
             }
 
             if( n == 5 )
             {
+                Thread.sleep(500);
                 Assert.assertTrue(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
                 Assert.assertEquals(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').next().text()"), "radio 1radio 2", "There are no radio options !!!");
                 continue;
             }
 
+            Thread.sleep(500);
             Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
         }
 
@@ -223,7 +242,7 @@ public class PerformCombinations
     }
 
     @Test(priority = 9)
-    public void cat2type1type2type3()
+    public void cat2type1type2type3() throws InterruptedException
     {
         contractInformation.setContractCategory("category2");
         contractInformation.setContractType(new String[]{"type1", "type2", "type3"});
@@ -233,17 +252,20 @@ public class PerformCombinations
         {
             if( n == 2 )
             {
+                Thread.sleep(500);
                 Assert.assertFalse(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " IS on form, but shouldn't !!!");
                 continue;
             }
 
             if( n == 5 )
             {
+                Thread.sleep(500);
                 Assert.assertTrue(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
                 Assert.assertEquals(Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Field5\")').next().text()"), "radio 1radio 2", "There are no radio options !!!");
                 continue;
             }
 
+            Thread.sleep(500);
             Assert.assertTrue(Selenide.executeJavaScript("return $('label:contains(\"Field" + n + "\")').length === 1"), "Looks like that Field" + n + " is NOT on the form !!!");
         }
 
