@@ -1,11 +1,11 @@
 package tests.ccn_tests.at244;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import constants.Const;
 import constants.SideBarItems;
 import forms.ContractInformation;
-import forms.ShareForm;
 import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -21,17 +21,19 @@ import utils.Screenshoter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import static com.codeborne.selenide.Selectors.withText;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
-public class CCN_InviteUsersAndResendInvite
+public class CCN_InviteUsers
 {
     private static final String CONTRACT_NAME = "AT-244: CCN Invite Users And Resend Invite";
 
     private SideBar sideBar;
     private OpenedContract openedContract;
 
-    private static Logger logger = Logger.getLogger(CCN_InviteUsersAndResendInvite.class);
+    private static Logger logger = Logger.getLogger(CCN_InviteUsers.class);
 
 
     @BeforeMethod
@@ -65,11 +67,10 @@ public class CCN_InviteUsersAndResendInvite
     }
 
     @Test
-    public void ttttt() throws InterruptedException
+    public void ccn_InviteUsers() throws InterruptedException
     {
         asCCNInviteNewUser();
         getEmailDocumentReviewRequestRegisterNewUserAndLogin();
-        loginBackAsCCNAndAddOneMoreParticipant();
     }
 
     @Step
@@ -123,37 +124,20 @@ public class CCN_InviteUsersAndResendInvite
         openedContract = new OpenedContract();
         $$(".contract-header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("CC", "II", "AL"));
         $$(".document__header-info .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("CC", "II", "AL"));
-        Screenshoter.makeScreenshot();
-    }
 
-    @Step
-    public void loginBackAsCCNAndAddOneMoreParticipant() throws InterruptedException
-    {
+        $(".label").shouldBe(Condition.visible).shouldHave(Condition.exactText("3RD PARTY"));
+
+        logger.info("Check that all paragraphs are visible...");
+        for( int i = 1; i <= 7; i++ ) $(withText("Paragraph " + i)).shouldBe(Condition.visible);
+
+        Screenshoter.makeScreenshot();
+
+        logger.info("Login back as My Team CN...");
         LoginPage loginPage = sideBar.logout();
 
-        loginPage.setEmail(Const.PREDEFINED_CCN.getEmail());
-        loginPage.setPassword(Const.PREDEFINED_CCN.getPassword());
-        sideBar = loginPage.clickSignIn(new SideBarItems[]{SideBarItems.IN_PROGRESS_CONTRACTS, SideBarItems.EXECUTED_CONTRACTS}).getSideBar();
+        loginPage.setEmail(Const.PREDEFINED_USER_CN_ROLE.getEmail());
+        loginPage.setPassword(Const.PREDEFINED_USER_CN_ROLE.getPassword());
 
-        openedContract = new OpenedContract();
-        ShareForm shareForm = openedContract.clickSHARE("AT-14");
-        shareForm.addParticipant(Const.USER_FELIX.getEmail());
-        shareForm.changeRoleOfInternalUser("fn ln").setLeadRole();
-        shareForm.clickSend();
-
-        $$(".contract-header-users .user").shouldHave(CollectionCondition.size(4)).shouldHave(CollectionCondition.textsInAnyOrder("CC", "II", "FL", "AL"));
-        $$(".document__header-info .user").shouldHave(CollectionCondition.size(4)).shouldHave(CollectionCondition.textsInAnyOrder("CC", "II", "FL", "AL"));
-        Screenshoter.makeScreenshot();
-
-        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
-        Thread.sleep(60_000);
-        Assert.assertTrue(EmailChecker.assertEmailBySubject(Const.HOST_GMAIL, Const.USERNAME_GMAIL, Const.PASSWORD_GMAIL, "Role assignment: Lead"),
-                "Email with subject: 'Role assignment: Lead' was not found !!!");
-    }
-
-    @Step
-    public void resendInvite()
-    {
-
+        sideBar = loginPage.clickSignIn().getSideBar();
     }
 }
