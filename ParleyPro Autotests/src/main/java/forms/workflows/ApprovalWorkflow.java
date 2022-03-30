@@ -28,11 +28,11 @@ public class ApprovalWorkflow
     {
         if ( inEditMode )
         {
-            $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Edit Approval Workflow"));
+            $(".workflows__title").shouldBe(Condition.visible).shouldHave(Condition.exactText("Edit Approval Workflow"));
         }
         else
         {
-            $(".workflows__title").waitUntil(Condition.visible, 6_000).shouldHave(Condition.exactText("Approval workflow"));
+            $(".workflows__title").shouldBe(Condition.visible).shouldHave(Condition.exactText("Approval workflow"));
         }
     }
 

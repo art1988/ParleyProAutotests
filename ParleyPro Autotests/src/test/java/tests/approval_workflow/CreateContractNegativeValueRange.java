@@ -19,7 +19,7 @@ import utils.Waiter;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Listeners({ ScreenShotOnFailListener.class})
+@Listeners({ScreenShotOnFailListener.class})
 public class CreateContractNegativeValueRange
 {
     private static Logger logger = Logger.getLogger(CreateContractNegativeValueRange.class);
