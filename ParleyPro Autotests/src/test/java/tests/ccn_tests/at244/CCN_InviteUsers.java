@@ -85,7 +85,9 @@ public class CCN_InviteUsers
         String uniqueTimestamp = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime());
         String newUsersEmail = "arthur.khasanov+at244_" + uniqueTimestamp + "@parleypro.com";
 
+        sideBar.clickInProgressContracts(false).selectContract(CONTRACT_NAME);
         openedContract = new OpenedContract();
+
         openedContract.clickSHARE("AT-14").addParticipant(newUsersEmail).clickSend();
         $$(".contract-header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("CC", "Ar", "AL"));
         $$(".document__header-info .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("CC", "Ar", "AL"));
