@@ -142,7 +142,7 @@ public class CheckApprovalForDocxAndPDF
         sideBar.clickInProgressContracts(false).selectContract(contractName);
         $(byText("comment for pdf discussion")).shouldBe(Condition.visible);
         openedContract.clickApproveButton("sample").clickApproveButton();
-        $(".notification-stack").should(Condition.appear).shouldHave(Condition.text("Document sample has been approved"));
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.text("Documents have been approved"));
         $$(".lifecycle__item.active .lifecycle__item-tick").shouldHave(CollectionCondition.size(2)); // 2 checkmarks were shown near APPROVAL stage
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(1)", "APPROVAL"));
 

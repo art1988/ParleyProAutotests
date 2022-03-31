@@ -19,7 +19,7 @@ public class ApproveDocument
 
     public ApproveDocument(String documentName)
     {
-        title.shouldBe(Condition.visible).shouldHave(Condition.exactText("Are you sure you want to approve document \"" + documentName + "\"?"));
+        title.shouldBe(Condition.visible).shouldHave(Condition.exactText("Document(s) approval confirmation"));
     }
 
     public void clickApproveButton()

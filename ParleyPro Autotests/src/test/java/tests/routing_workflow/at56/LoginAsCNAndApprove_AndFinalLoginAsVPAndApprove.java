@@ -42,7 +42,7 @@ public class LoginAsCNAndApprove_AndFinalLoginAsVPAndApprove
         $("#APPROVE_DOCUMENT").waitUntil(Condition.visible, 20_000);
 
         openedContract.clickApproveButton("AT-14").clickApproveButton();
-        $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.exactText("Document AT-14 has been approved"));
+        $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.exactText("Documents have been approved"));
 
         Screenshoter.makeScreenshot();
 
@@ -62,7 +62,7 @@ public class LoginAsCNAndApprove_AndFinalLoginAsVPAndApprove
         new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("CTR-AT56");
 
         new OpenedContract().clickApproveButton("AT-14").clickApproveButton();
-        $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.exactText("Document AT-14 has been approved"));
+        $(".notification-stack").waitUntil(Condition.appear, 35_000).shouldHave(Condition.exactText("Documents have been approved"));
 
         Screenshoter.makeScreenshot();
 

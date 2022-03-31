@@ -45,7 +45,7 @@ public class AsCNMakeApprove
         $("#APPROVE_DOCUMENT").shouldBe(Condition.visible).shouldBe(Condition.enabled);
 
         openedContract.clickApproveButton("AT-14").clickApproveButton();
-        $(".notification-stack").shouldHave(Condition.exactText("Document AT-14 has been approved"));
+        $(".notification-stack").shouldHave(Condition.exactText("Documents have been approved"));
 
         Screenshoter.makeScreenshot();
     }

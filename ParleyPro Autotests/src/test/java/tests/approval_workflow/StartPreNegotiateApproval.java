@@ -104,8 +104,8 @@ public class StartPreNegotiateApproval
         OpenedContract openedContract = new OpenedContract();
 
         logger.info("Assert that Approve and Reject buttons are present...");
-        $("#APPROVE_DOCUMENT").waitUntil(Condition.visible, 5_000).shouldBe(Condition.visible);
-        $("#REJECT_DOCUMENT").waitUntil(Condition.visible, 5_000).shouldBe(Condition.visible);
+        $("#APPROVE_DOCUMENT").shouldBe(Condition.visible);
+        $("#REJECT_DOCUMENT").shouldBe(Condition.visible);
 
         boolean approveButtonDoesntExist = Selenide.executeJavaScript("return ($('#APPROVE_DOCUMENT').length === 0)"),
                 rejectButtonDoesntExist  = Selenide.executeJavaScript("return ($('#REJECT_DOCUMENT').length === 0)");

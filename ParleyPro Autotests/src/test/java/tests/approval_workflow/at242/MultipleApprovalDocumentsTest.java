@@ -115,7 +115,7 @@ public class MultipleApprovalDocumentsTest
         $$(".lifecycle__item.active").shouldHave(CollectionCondition.size(4)).shouldHave(CollectionCondition.exactTexts("APPROVAL\n(3)", "APPROVAL", "APPROVAL", "APPROVAL"));
 
         openedContract.clickApproveButton("D2").clickApproveButton();
-        $(".notification-stack").should(Condition.appear).shouldHave(Condition.text("Document D2 has been approved"));
+        $(".notification-stack").should(Condition.appear).shouldHave(Condition.text("Documents have been approved"));
 
         logger.info("Wait until user AL with checkmark become visible for D2...");
         $$(".user-icon-checked").shouldHave(CollectionCondition.size(1)).first().parent().shouldHave(Condition.exactText("AL")); // checkmark for user icon become visible
