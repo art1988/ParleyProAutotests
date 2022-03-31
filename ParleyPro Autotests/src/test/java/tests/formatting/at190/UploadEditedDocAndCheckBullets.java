@@ -28,8 +28,10 @@ public class UploadEditedDocAndCheckBullets
 
     @Test(priority = 1)
     @Description("This test uploads edited doc and checks that bulleted items have text.")
-    public void uploadEditedDocAndCheckBullets()
+    public void uploadEditedDocAndCheckBullets() throws InterruptedException
     {
+        Thread.sleep(2_000);
+
         logger.info("Uploading edited doc...");
         new DashboardPage().getSideBar().clickInProgressContracts(false).selectContract("IEEE Bullets CTR");
 
@@ -37,7 +39,7 @@ public class UploadEditedDocAndCheckBullets
                 .clickUploadMyTeamDocuments(new File(Const.DOWNLOAD_DIR.getAbsolutePath() + "/" + Cache.getInstance().getCachedFile()));
 
         $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text(" has been successfully uploaded."));
-        $(".notification-stack").waitUntil(Condition.disappear, 25_000);
+        $(".notification-stack").should(Condition.disappear);
 
         $$(".lifecycle__item.first").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.exactTexts("DRAFT\n(1)", "DRAFT"));
 

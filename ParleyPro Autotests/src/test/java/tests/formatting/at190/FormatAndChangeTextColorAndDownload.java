@@ -93,11 +93,12 @@ public class FormatAndChangeTextColorAndDownload
     }
 
     @Test(priority = 3)
-    public void deletePreviousDoc()
+    public void deletePreviousDoc() throws InterruptedException
     {
         new OpenedContract().clickDocumentActionsMenu("AT_190-SoW_CASS_Hybrid-Platform_2022_from Patrick")
                             .clickDelete().clickDelete();
 
         $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text(" has been deleted."));
+        Thread.sleep(2_000);
     }
 }
