@@ -47,11 +47,11 @@ jobs:
       
 
       - run:
-          name: Run Basics suite
+          name: Run ApprovalWorkflow suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ApprovalWorkflow.xml
           no_output_timeout: 20m
-          
+
       
 
       - save_cache:

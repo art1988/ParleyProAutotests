@@ -27,6 +27,14 @@
         </classes>
     </test>
 
+    <test name="AT-245: Resend invite and send message for teams in approval" preserve-order="true">
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.approval_workflow.at245.CheckButtonsForTeamInApproval"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>
+
     <test name="AT-66: Approval rejection" preserve-order="true">
         <parameter name="contractName" value="Approval rejection contract"/>
         <classes>
@@ -39,7 +47,7 @@
         </classes>
     </test>
 
-    <test name="AT-113: Error 500 on approval when user is disabled in approving team" preserve-order="true">
+    <!--<test name="AT-113: Error 500 on approval when user is disabled in approving team" preserve-order="true">
         <parameter name="contractName" value="at-113 contract title"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -91,5 +99,5 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
