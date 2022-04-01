@@ -33,5 +33,7 @@ public class SendMessage
         $(".button.btn-common.btn.btn-primary").click();
 
         logger.info("SEND button was clicked...");
+
+        $(".modal-content").should(Condition.disappear);
     }
 }

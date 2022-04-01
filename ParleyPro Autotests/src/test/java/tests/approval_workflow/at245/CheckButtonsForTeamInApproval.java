@@ -184,7 +184,7 @@ public class CheckButtonsForTeamInApproval
             }
         }
 
-        Thread.sleep(1_000);
+        Thread.sleep(2_000);
         $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Message has been successfully sent"));
         Screenshoter.makeScreenshot();
     }
