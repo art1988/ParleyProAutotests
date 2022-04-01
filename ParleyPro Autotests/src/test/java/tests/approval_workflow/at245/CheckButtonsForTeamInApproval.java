@@ -165,7 +165,6 @@ public class CheckButtonsForTeamInApproval
             Thread.sleep(2_000);
             if( $(".users-tooltip__team-name").getText().contains("Autotest_TEAM_3") )
             {
-                Thread.sleep(2_000);
                 $(".rc-tooltip-content button").shouldBe(Condition.visible, Condition.enabled).shouldHave(Condition.exactText("MESSAGE")).click();
                 Selenide.executeJavaScript("$('.rc-tooltip-inner').hide()"); // hide tooltip because it overlaps MESSAGE button
                 Thread.sleep(2_000);
