@@ -103,6 +103,8 @@ public class CheckButtonsForTeamInApproval
             {
                 $(".rc-tooltip-content button").shouldBe(Condition.visible, Condition.enabled).shouldHave(Condition.exactText("SEND A REMINDER")).click();
                 new ResendInviteForm(null).clickResend(); // there is no parentForm => pass null
+                $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Reminder email has been successfully sent"));
+                Screenshoter.makeScreenshot();
                 break;
             }
             else
@@ -113,10 +115,6 @@ public class CheckButtonsForTeamInApproval
                 continue;
             }
         }
-
-        Thread.sleep(2_000);
-        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Reminder email has been successfully sent"));
-        Screenshoter.makeScreenshot();
     }
 
     @Step("Check that email with subject: 'Contract approval request' is present.")
@@ -171,6 +169,8 @@ public class CheckButtonsForTeamInApproval
                 Thread.sleep(1_000);
                 Selenide.executeJavaScript("$('.rc-tooltip-inner').hide()"); // hide tooltip because it overlaps MESSAGE button
                 new SendMessage("Autotest_TEAM_3 [EDITED]").setMessage("Notify all users from team 3...").clickSend();
+                $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Message has been successfully sent"));
+                Screenshoter.makeScreenshot();
                 break;
             }
             else
@@ -181,10 +181,6 @@ public class CheckButtonsForTeamInApproval
                 continue;
             }
         }
-
-        Thread.sleep(2_000);
-        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Message has been successfully sent"));
-        Screenshoter.makeScreenshot();
     }
 
     @Step("Check that email with subject: 'Contract new message' is present.")
