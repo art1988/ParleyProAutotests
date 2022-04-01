@@ -47,7 +47,7 @@
         </classes>
     </test>
 
-    <!--<test name="AT-113: Error 500 on approval when user is disabled in approving team" preserve-order="true">
+    <test name="AT-113: Error 500 on approval when user is disabled in approving team" preserve-order="true">
         <parameter name="contractName" value="at-113 contract title"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -99,5 +99,5 @@
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 </suite>
