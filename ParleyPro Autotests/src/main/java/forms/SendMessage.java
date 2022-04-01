@@ -21,7 +21,7 @@ public class SendMessage
 
     public SendMessage setMessage(String message)
     {
-        $(".modal-content textarea").sendKeys(message);
+        $(".modal-content textarea").shouldBe(Condition.visible, Condition.enabled).sendKeys(message);
 
         logger.info("Message was set...");
 
@@ -30,7 +30,7 @@ public class SendMessage
 
     public void clickSend()
     {
-        $(".button.btn-common.btn.btn-primary").click();
+        $(".button.btn-common.btn.btn-primary").shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("SEND button was clicked...");
 
