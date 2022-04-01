@@ -186,8 +186,8 @@ public class CheckButtonsForTeamInApproval
     @Step("Check that email with subject: 'Contract new message' is present.")
     public void checkContractNewMessageEmail() throws InterruptedException
     {
-        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
-        Thread.sleep(60_000);
+        logger.info("Waiting for 70 seconds to make sure that email has been delivered...");
+        Thread.sleep(70_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(Const.HOST_GMAIL, Const.USERNAME_GMAIL, Const.PASSWORD_GMAIL, "Contract \"" + CONTRACT_NAME + "\": new message"),
                 "Email with subject: " + "Contract \"" + CONTRACT_NAME + "\": new message" + " was not found !!!");
         EmailChecker.assertEmailBodyText("Notify all users from team 3"); // assert presence of message in this email too
