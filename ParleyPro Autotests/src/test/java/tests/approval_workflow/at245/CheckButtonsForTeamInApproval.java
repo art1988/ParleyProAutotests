@@ -91,7 +91,6 @@ public class CheckButtonsForTeamInApproval
     {
         logger.info("Hover 'Team #2'...");
 
-        ResendInviteForm resendInviteForm;
         ElementsCollection teamIcons = $$(".header-users > .team-icon.team").shouldHave(CollectionCondition.size(2));
         for( int i = 0; i < teamIcons.size(); i++ )
         {
@@ -103,8 +102,7 @@ public class CheckButtonsForTeamInApproval
             if( $(".users-tooltip__team-name").getText().contains("Team #2") )
             {
                 $(".rc-tooltip-content button").shouldBe(Condition.visible, Condition.enabled).shouldHave(Condition.exactText("SEND A REMINDER")).click();
-                resendInviteForm = new ResendInviteForm(null); // there is no parentForm => pass null
-                resendInviteForm.clickResend();
+                new ResendInviteForm(null).clickResend(); // there is no parentForm => pass null
                 break;
             }
             else
@@ -116,7 +114,7 @@ public class CheckButtonsForTeamInApproval
             }
         }
 
-        Thread.sleep(1_000);
+        Thread.sleep(2_000);
         $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Reminder email has been successfully sent"));
         Screenshoter.makeScreenshot();
     }

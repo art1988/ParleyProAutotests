@@ -43,5 +43,7 @@ public class ResendInviteForm
         $$(".modal-footer button").filterBy(Condition.exactText("RESEND")).first().shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("RESEND button was clicked...");
+
+        $(".modal-content").should(Condition.disappear);
     }
 }
