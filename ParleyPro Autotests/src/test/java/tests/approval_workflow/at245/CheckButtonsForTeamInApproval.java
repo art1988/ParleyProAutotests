@@ -7,10 +7,12 @@ import com.codeborne.selenide.Selenide;
 import constants.Const;
 import forms.ContractInformation;
 import forms.ResendInviteForm;
+import forms.SendMessage;
 import forms.workflows.ApprovalWorkflow;
 import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -21,6 +23,7 @@ import pages.OpenedContract;
 import pages.subelements.SideBar;
 import utils.EmailChecker;
 import utils.ScreenShotOnFailListener;
+import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -79,12 +82,14 @@ public class CheckButtonsForTeamInApproval
         checkSendReminderPresenceAndClick();
         checkContractApprovalRequestEmail();
         loginAsTeamMemberAndVisitContract();
+        loginAsMyTeamCNAndCheckMessageButtonForTeam3();
+        checkContractNewMessageEmail();
     }
 
-    @Step("Hover team icons in document header to find team by the name 'Team 2' and check that it has SEND A REMINDER button.")
+    @Step("Hover team icons in document header to find team by the name 'Team #2', check that it has SEND A REMINDER button, click it.")
     public void checkSendReminderPresenceAndClick() throws InterruptedException
     {
-        logger.info("Hover Team 2...");
+        logger.info("Hover 'Team #2'...");
 
         ResendInviteForm resendInviteForm;
         ElementsCollection teamIcons = $$(".header-users > .team-icon.team").shouldHave(CollectionCondition.size(2));
@@ -111,7 +116,9 @@ public class CheckButtonsForTeamInApproval
             }
         }
 
+        Thread.sleep(1_000);
         $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Reminder email has been successfully sent"));
+        Screenshoter.makeScreenshot();
     }
 
     @Step("Check that email with subject: 'Contract approval request' is present.")
@@ -137,9 +144,67 @@ public class CheckButtonsForTeamInApproval
         openedContract = new OpenedContract();
     }
 
-    @Step("Check that for team Autotest_TEAM_3 [EDITED] button MESSAGE become visible.")
-    public void loginAsMyTeamCNAndCheckMessageButtonForTeam3()
+    @Step("Check that for team Autotest_TEAM_3 [EDITED] button MESSAGE become visible. Click it.")
+    public void loginAsMyTeamCNAndCheckMessageButtonForTeam3() throws InterruptedException
     {
+        LoginPage loginPage = sideBar.logout();
 
+        loginPage.setEmail(Const.PREDEFINED_USER_CN_ROLE.getEmail());
+        loginPage.setPassword(Const.PREDEFINED_USER_CN_ROLE.getPassword());
+
+        sideBar = loginPage.clickSignIn().getSideBar();
+
+        sideBar.clickInProgressContracts(false).selectContract(CONTRACT_NAME);
+        openedContract = new OpenedContract();
+
+        logger.info("Hover 'Autotest_TEAM_3 [EDITED]' team...");
+
+        ElementsCollection teamIcons = $$(".header-users > .team-icon.team").shouldHave(CollectionCondition.size(2));
+        for( int i = 0; i < teamIcons.size(); i++ )
+        {
+            StringBuffer jsCode = new StringBuffer("var event = new MouseEvent('mouseover', {bubbles: true, cancelable: true}); ");
+            jsCode.append("$('.header-users > .team-icon.team').eq(" + i + ")[0].dispatchEvent(event);");
+            Selenide.executeJavaScript(jsCode.toString());
+
+            Thread.sleep(2_000);
+            if( $(".users-tooltip__team-name").getText().contains("Autotest_TEAM_3") )
+            {
+                $(".rc-tooltip-content button").shouldBe(Condition.visible, Condition.enabled).shouldHave(Condition.exactText("MESSAGE")).click();
+                Thread.sleep(1_000);
+                Selenide.executeJavaScript("$('.rc-tooltip-inner').hide()"); // hide tooltip because it overlaps MESSAGE button
+                new SendMessage("Autotest_TEAM_3 [EDITED]").setMessage("Notify all users from team 3...").clickSend();
+                break;
+            }
+            else
+            {
+                Thread.sleep(1_000);
+                Selenide.executeJavaScript("$('.rc-tooltip-inner').hide()");
+                Thread.sleep(1_000);
+                continue;
+            }
+        }
+
+        Thread.sleep(1_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Message has been successfully sent"));
+        Screenshoter.makeScreenshot();
+    }
+
+    @Step("Check that email with subject: 'Contract new message' is present.")
+    public void checkContractNewMessageEmail() throws InterruptedException
+    {
+        logger.info("Waiting for 60 seconds to make sure that email has been delivered...");
+        Thread.sleep(60_000);
+        Assert.assertTrue(EmailChecker.assertEmailBySubject(Const.HOST_GMAIL, Const.USERNAME_GMAIL, Const.PASSWORD_GMAIL, "Contract \"" + CONTRACT_NAME + "\": new message"),
+                "Email with subject: " + "Contract \"" + CONTRACT_NAME + "\": new message" + " was not found !!!");
+        EmailChecker.assertEmailBodyText("Notify all users from team 3"); // assert presence of message in this email too
+    }
+
+    @AfterMethod
+    public void deleteContract()
+    {
+        sideBar.clickInProgressContracts(false).selectContract(CONTRACT_NAME);
+        openedContract = new OpenedContract();
+        openedContract.clickContractActionsMenu().clickDeleteContract().clickDelete();
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text(" has been deleted."));
     }
 }

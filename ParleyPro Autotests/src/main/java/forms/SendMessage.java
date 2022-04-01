@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import static com.codeborne.selenide.Selenide.$;
 
 /**
- * Form that appears after clicking by MESSAGE button.
+ * Form that appears after clicking MESSAGE button that appear on user's tooltip.
  */
 public class SendMessage
 {
@@ -15,7 +15,7 @@ public class SendMessage
 
     public SendMessage(String sendTo)
     {
-        $(".modal-body-title").waitUntil(Condition.visible, 7_000)
+        $(".modal-body-title").shouldBe(Condition.visible)
                 .shouldHave(Condition.exactText("Send message to " + sendTo + "."));
     }
 
