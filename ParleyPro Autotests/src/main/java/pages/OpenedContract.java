@@ -278,6 +278,7 @@ public class OpenedContract
      */
     public ShareForm clickSHARE(String documentName)
     {
+        try { Thread.sleep(2_000); } catch (InterruptedException e) { logger.error("InterruptedException", e); }
         Selenide.executeJavaScript("$('.document__header-row span:contains(\"" + documentName + "\")').parent().parent().parent().next().find(\"button:contains('SHARE')\").click()");
 
         logger.info("SHARE button was clicked for: " + documentName);
