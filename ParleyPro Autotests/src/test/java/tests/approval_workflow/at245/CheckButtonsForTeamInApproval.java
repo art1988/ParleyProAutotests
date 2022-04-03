@@ -99,7 +99,7 @@ public class CheckButtonsForTeamInApproval
             Selenide.executeJavaScript(jsCode.toString());
 
             Thread.sleep(2_000);
-            if( $(".users-tooltip__team-name").getText().contains("Team #2") )
+            if( $(".rc-tooltip-content .users-tooltip__team-name").shouldBe(Condition.visible).getText().contains("Team #2") )
             {
                 $(".rc-tooltip-content button").shouldBe(Condition.visible, Condition.enabled).shouldHave(Condition.exactText("SEND A REMINDER")).click();
                 new ResendInviteForm(null).clickResend(); // there is no parentForm => pass null
@@ -110,7 +110,8 @@ public class CheckButtonsForTeamInApproval
             else
             {
                 Thread.sleep(1_000);
-                Selenide.executeJavaScript("$('.rc-tooltip-inner').hide()");
+                Selenide.executeJavaScript("$('.rc-tooltip-inner').hide()"); Thread.sleep(500);
+                Selenide.executeJavaScript("$('.rc-tooltip-inner').remove()");
                 Thread.sleep(1_000);
                 continue;
             }
@@ -163,7 +164,7 @@ public class CheckButtonsForTeamInApproval
             Selenide.executeJavaScript(jsCode.toString());
 
             Thread.sleep(2_000);
-            if( $(".users-tooltip__team-name").getText().contains("Autotest_TEAM_3") )
+            if( $(".rc-tooltip-content .users-tooltip__team-name").shouldBe(Condition.visible).getText().contains("Autotest_TEAM_3") )
             {
                 $(".rc-tooltip-content button").shouldBe(Condition.visible, Condition.enabled).shouldHave(Condition.exactText("MESSAGE")).click();
                 Selenide.executeJavaScript("$('.rc-tooltip-inner').hide()"); // hide tooltip because it overlaps MESSAGE button
@@ -177,7 +178,8 @@ public class CheckButtonsForTeamInApproval
             else
             {
                 Thread.sleep(1_000);
-                Selenide.executeJavaScript("$('.rc-tooltip-inner').hide()");
+                Selenide.executeJavaScript("$('.rc-tooltip-inner').hide()"); Thread.sleep(500);
+                Selenide.executeJavaScript("$('.rc-tooltip-inner').remove()");
                 Thread.sleep(1_000);
                 continue;
             }
