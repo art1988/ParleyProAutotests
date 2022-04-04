@@ -46,6 +46,7 @@ public class CKEditorActive
     public CKEditorActive setText(String text) throws InterruptedException
     {
         Waiter.smartWaitUntilVisible("$('.editor-area').eq(1)");
+        Waiter.smartWaitUntilVisible("$('.editor-area').eq(0)");
 
         Thread.sleep(1_000);
 
