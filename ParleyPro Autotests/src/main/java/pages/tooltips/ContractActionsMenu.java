@@ -24,8 +24,8 @@ public class ContractActionsMenu
     {
         this.contractName = contractName;
 
-        $(".contract-header__menu .dropdown-menu.dropdown-menu-right").
-                waitUntil(Condition.visible, 5_000).shouldHave(Condition.text("Delete contract"));
+        $(".contract-header__menu .dropdown-menu.dropdown-menu-right").waitUntil(Condition.visible, 10_000);
+        try { Thread.sleep(1_000); } catch (InterruptedException e) { logger.error("InterruptedException", e); }
     }
 
     /**

@@ -21,6 +21,19 @@ public class ReassignChiefNegotiator
         $$(".modal-content button").shouldHave(CollectionCondition.size(2));
     }
 
+    /**
+     * Click by (x) button to clear Chief Negotiator field
+     * @return
+     */
+    public ReassignChiefNegotiator clearChiefNegotiatorField()
+    {
+        $(".modal-content .new-select__clear-indicator").shouldBe(Condition.visible, Condition.enabled).click();
+
+        logger.info("Chief Negotiator field was cleared...");
+
+        return this;
+    }
+
     public ReassignChiefNegotiator setChiefNegotiator(String cnEmail) throws InterruptedException
     {
         SelenideElement input = $(".modal-content input");
@@ -39,7 +52,7 @@ public class ReassignChiefNegotiator
 
     public void clickReassign()
     {
-        $$(".modal-content button").filterBy(Condition.exactText("Reassign")).first().click();
+        $$(".modal-content button").filterBy(Condition.exactText("Reassign")).first().shouldBe(Condition.visible, Condition.enabled).click();
 
         logger.info("Reassign button was clicked");
     }

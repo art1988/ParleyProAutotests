@@ -13,6 +13,7 @@ public class Const
     public static final User   PREDEFINED_INTERNAL_USER_1    = new User("Internal user1", "Internal user1 last name", "arthur.khasanov+team1@parleypro.com", "Parley650!");
     public static final User   PREDEFINED_INTERNAL_USER_2    = new User("Internal user2", "Internal user2 last name", "arthur.khasanov+team2@parleypro.com", "Parley650!");
     public static final User   PREDEFINED_CCN                = new User("CCN AT fn", "CCN AT ln", "arthur.khasanov+ccn_at@parleypro.com", "Parley650!");
+    public static final User   PREDEFINED_CCN2               = new User("P CCN AT 2 fn", "F CCN AT 2 ln", "arthur.khasanov+ccn_at2@parleypro.com", "Parley650!");
     public static final User   PREDEFINED_REQUESTER          = new User("Requester_User", "ln", "arthur.khasanov+requester@parleypro.com", "Parley650!");
 
     public static final User   USER_GREG                     = new User("Greg", "Smith", "arthur.khasanov+greg@parleypro.com", "Parley650!");
