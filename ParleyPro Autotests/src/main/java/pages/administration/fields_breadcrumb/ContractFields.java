@@ -113,9 +113,18 @@ public class ContractFields
         $( (WebElement) Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"input[data-label='Value " + valueIndex + "']\")[0]")).val(value);
 
         WebElement linkToInput = Selenide.executeJavaScript("return $('input[value=\"" + fieldName + "\"]').parent().parent().parent().parent().parent().find(\"input[data-label='Value " + valueIndex++ + "']\").parent().parent().next().find(\"input:visible\")[0]");
-        $(linkToInput).click(); // expand Link to dropdown
-        Selenide.executeJavaScript("return $('.dropdown-menu:visible').find(\".checkbox__label:contains('" + linkToValue + "')\").parent().find(\".checkbox__label\").click()");
-        $(linkToInput).click(); // close dropdown
+        try
+        {
+            $(linkToInput).click(); // expand Link to dropdown
+            Thread.sleep(500);
+            Selenide.executeJavaScript("return $('.dropdown-menu:visible').find(\".checkbox__label:contains('" + linkToValue + "')\").parent().find(\".checkbox__label\").click()");
+            $(linkToInput).click(); // close dropdown
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e)
+        {
+            logger.error("InterruptedException", e);
+        }
     }
 
     /**
