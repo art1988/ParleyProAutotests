@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "CCN tests" configfailurepolicy="continue">
-    <test name="AT-85: Invite counterparty chief-negotiator" preserve-order="true">
+    <!--<test name="AT-85: Invite counterparty chief-negotiator" preserve-order="true">
         <parameter name="contractName" value="Invite CCN"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -30,6 +30,16 @@
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.ccn_tests.at244.CCN_InviteUsers"/>
+            <class name="tests.DeleteContractFromInProgress"/>
+            <class name="tests.Logout"/>
+        </classes>
+    </test>-->
+
+    <test name="AT-247: Counterparty side: reassign CN" preserve-order="true">
+        <parameter name="contractName" value="AT-247 // Counterparty side: reassign CN"/>
+        <classes>
+            <class name="tests.LoginToDashboard"/>
+            <class name="tests.ccn_tests.at247.ReassignCNTest"/>
             <class name="tests.DeleteContractFromInProgress"/>
             <class name="tests.Logout"/>
         </classes>
