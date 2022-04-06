@@ -47,9 +47,9 @@ jobs:
       
 
       - run:
-          name: Run CCN suite
+          name: Run Regression suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CounterpartyChiefNegotiator.xml
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Regression.xml
           no_output_timeout: 20m
 
       
