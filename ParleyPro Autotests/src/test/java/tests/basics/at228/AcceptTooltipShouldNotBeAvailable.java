@@ -131,7 +131,7 @@ public class AcceptTooltipShouldNotBeAvailable
     }
 
     @Step("Download the document for CP and upload it back as CP")
-    public void downloadDocAsCPAndUploadAgainAsCP()
+    public void downloadDocAsCPAndUploadAgainAsCP() throws InterruptedException
     {
         try
         {
@@ -158,6 +158,7 @@ public class AcceptTooltipShouldNotBeAvailable
         openedContract.clickDocumentActionsMenu("AT-166_Manufacturing Agreement_1").clickDelete().clickDelete();
         $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text(" has been deleted."));
 
+        Thread.sleep(2_000);
         sideBar.clickInProgressContracts(false).selectContract("AT-228 Accept_Tooltip");
         logger.info("Uploading just downloaded...");
         new AddDocuments().clickUploadCounterpartyDocuments(Paths.get(Const.DOWNLOAD_DIR.getAbsolutePath(), "AT-166_Manufacturing Agreement_1.docx").toFile());
