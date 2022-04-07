@@ -1,11 +1,9 @@
 package tests.find_and_replace.at191;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.*;
 import constants.AcceptTypes;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -14,8 +12,6 @@ import pages.OpenedDiscussion;
 import pages.tooltips.ParagraphActionsPopup;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
-
-import java.util.ArrayList;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -43,8 +39,13 @@ public class AcceptPostAndCheckFont
         Assert.assertEquals(openedContract.getAmountOfContractDiscussion(), "9", "Amount of discussions should be 9 !!!");
 
         logger.info("Checking font of accepted discussions of first paragraph...");
-        ArrayList<WebElement> spans = Selenide.executeJavaScript("return $('.discussion-indicator.closed').closest('div[class*=\"document-paragraph__content\"]').find(\"p\").find(\"span:not([style='-aw-import:ignore']\")");
-        spans.forEach(span -> Assert.assertTrue(span.getAttribute("style").contains("\"Times New Roman\""), "Looks like that at least one span doesn't have correct font !!!"));
+        ElementsCollection spans = $(".discussion-indicator.closed").parent().parent().find("p").findAll("span");
+        for(SelenideElement span: spans)
+        {
+            String styleAttr = span.getAttribute("style");
+            if( styleAttr.contains("-aw-import:ignore") || StringUtils.isBlank(styleAttr)) continue;
+            Assert.assertTrue(styleAttr.contains("Times New Roman"), "Looks like that at least one span doesn't have correct font !!!");
+        }
 
         Screenshoter.makeScreenshot();
     }
@@ -65,8 +66,13 @@ public class AcceptPostAndCheckFont
         openedDiscussion.close();
 
         logger.info("Checking font of accepted discussions of second paragraph...");
-        ArrayList<WebElement> spans = Selenide.executeJavaScript("return $('.discussion-indicator.closed').eq(1).closest('div[class*=\"document-paragraph__content\"]').find(\"p\").find(\"span:not([style='-aw-import:ignore']\")");
-        spans.forEach(span -> Assert.assertTrue(span.getAttribute("style").contains("\"Times New Roman\""), "Looks like that at least one span doesn't have correct font !!!"));
+        ElementsCollection spans = $$(".discussion-indicator.closed").get(1).parent().parent().find("p").findAll("span");
+        for(SelenideElement span: spans)
+        {
+            String styleAttr = span.getAttribute("style");
+            if( styleAttr.contains("-aw-import:ignore") || StringUtils.isBlank(styleAttr)) continue;
+            Assert.assertTrue(styleAttr.contains("Times New Roman"), "Looks like that at least one span doesn't have correct font !!!");
+        }
 
         Screenshoter.makeScreenshot();
     }
@@ -87,8 +93,13 @@ public class AcceptPostAndCheckFont
         logger.info("Checking font of all remaining closed discussions...");
         for( int i = 2; i < 10; i++ )
         {
-            ArrayList<WebElement> spans = Selenide.executeJavaScript("return $('.discussion-indicator.closed').eq(" + i + ").closest('div[class*=\"document-paragraph__content\"]').find(\"p\").find(\"span:not([style='-aw-import:ignore']\")");
-            spans.forEach(span -> Assert.assertTrue(span.getAttribute("style").contains("\"Times New Roman\""), "Looks like that at least one span doesn't have correct font !!!"));
+            ElementsCollection spans = $$(".discussion-indicator.closed").get(i).parent().parent().find("p").findAll("span");
+            for(SelenideElement span: spans)
+            {
+                String styleAttr = span.getAttribute("style");
+                if( styleAttr.contains("-aw-import:ignore") || StringUtils.isBlank(styleAttr)) continue;
+                Assert.assertTrue(styleAttr.contains("Times New Roman"), "Looks like that at least one span doesn't have correct font !!!");
+            }
         }
 
         logger.info("Making sure that there are no del/ins tags left...");
