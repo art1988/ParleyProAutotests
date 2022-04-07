@@ -117,9 +117,9 @@ public class ContractFields
         {
             $(linkToInput).click(); // expand Link to dropdown
             Thread.sleep(500);
-            Selenide.executeJavaScript("return $('.dropdown-menu:visible').find(\".checkbox__label:contains('" + linkToValue + "')\").parent().find(\".checkbox__label\").click()");
-            $(linkToInput).click(); // close dropdown
+            Selenide.executeJavaScript("$('.dropdown.open .checkbox__label:contains(\""+linkToValue + "\")').click()");
             Thread.sleep(500);
+            $(linkToInput).click(); // close dropdown
         }
         catch (InterruptedException e)
         {
