@@ -135,8 +135,10 @@ public class CreateClassicContractAndUploadDocs
 
     @Test(priority = 7)
     @Description("This test opens 'B. Client’s Right to Terminate.' discussion and checks that del post is present")
-    public void openDiscussion()
+    public void openDiscussion() throws InterruptedException
     {
+        Thread.sleep(2_000);
+
         logger.info("Scroll to 'B. Client’s Right to Terminate.' discussion...");
         Selenide.executeJavaScript("$('.document-paragraph__content-text:contains(\"5. Termination\")')[0].scrollIntoView({})");
 
