@@ -197,7 +197,7 @@ public class CheckContracts
 
         $(".spinner").waitUntil(Condition.disappear, 30_000);
         $(".rc-tooltip-content").waitUntil(Condition.visible, 15_000).shouldBe(Condition.visible);
-        $(".js-linked-contracts-title").shouldHave(Condition.exactText("Contract was amended: 1"));
+        $(".js-linked-contracts-title").shouldHave(Condition.exactText("Contract was modified: 1"));
         $(".js-linked-contracts-head").shouldHave(Condition.exactText("Amended by:\nShort"));
         $(".js-linked-contracts-stage").shouldHave(Condition.exactText("Managed"));
         $(".rc-tooltip-inner").shouldHave(Condition.exactText("Contract was amended: 1\nOriginal Expiration Date: \nAmended by:\nShort\nStage:\nManaged\nEffective date:\nDec 17, 2020\nRenewal date:\nDec 17, 2024\nExpiration date:\nJan 16, 2025"));
