@@ -2,6 +2,7 @@ package tests.find_and_replace.at191;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Issue;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -20,6 +21,7 @@ public class MakeReplaceAndCheck
     private static Logger logger = Logger.getLogger(MakeReplaceAndCheck.class);
 
     @Test(priority = 1)
+    @Issue("PAR-15583")
     public void makeReplace() throws InterruptedException
     {
         FindAndReplacePopup findAndReplacePopup = new OpenedContract().clickFindAndReplaceButton("AT-166_Manufacturing Agreement_1")
@@ -40,6 +42,7 @@ public class MakeReplaceAndCheck
     }
 
     @Test(priority = 2)
+    @Issue("PAR-15583")
     public void checkRedlines()
     {
         logger.info("Check redlines on the document view...");
