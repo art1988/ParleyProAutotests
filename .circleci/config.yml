@@ -43,34 +43,14 @@ jobs:
           name: Install Chrome
           command: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo apt -f install; sudo apt-get update; sudo apt-get install libnspr4; sudo apt-get install libnss3; sudo dpkg -i google-chrome-stable_current_amd64.deb; sudo apt install -y google-chrome-stable; sudo apt --fix-broken install -y
 
-      - run:
-          name: Run Basics suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
-          no_output_timeout: 20m
-          
-      - run: sleep 10
-
-      - run:
-          name: Run Requests suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Requests.xml
-          no_output_timeout: 20m
-
-      - run: sleep 10
-
-      - run:
-          name: Run Amendment suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Amendment.xml
-          
-      - run: sleep 10
       
+      
+
       - run:
-          name: Run Contract Info suite
+          name: Run Fields suite
           working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractInfo.xml
-          
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Fields.xml
+
       
 
       - save_cache:
