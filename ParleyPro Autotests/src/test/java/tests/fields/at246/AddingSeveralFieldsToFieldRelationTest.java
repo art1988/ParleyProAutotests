@@ -21,6 +21,7 @@ import utils.Screenshoter;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 @Listeners({ScreenShotOnFailListener.class})
 public class AddingSeveralFieldsToFieldRelationTest
@@ -136,7 +137,9 @@ public class AddingSeveralFieldsToFieldRelationTest
 
         logger.info("Check that relations are still showing after saving...");
         logger.info("Expand all related fields divs...");
-        $(".admin-fields-relations__field-toggle").click();
+        Selenide.executeJavaScript("$('.admin-fields__title:contains(\"Contract request\")')[0].scrollIntoView({})"); // scroll page to bottom
+        Thread.sleep(1_000);
+        $$(".admin-fields-relations__field-toggle").forEach(expandIcon -> expandIcon.click());
         Thread.sleep(2_000);
 
         Assert.assertTrue(Selenide.executeJavaScript("return $('.admin-fields-relations__field-head:contains(\"F2\")').next().find('.admin-fields-relations__field-item').eq(0).text().includes(\"V2\")"), "V2 is missing !!!");
