@@ -69,7 +69,7 @@ public class ContractFields
      * Click by 'Add values' link and sets Value field.
      * Important: if you want to add multiple values one after another, then invoke this method one after another.
      * @param fieldName name of the field for which values will be added
-     * @param value
+     * @param value value to add
      */
     public void addValues(String fieldName, String value)
     {
