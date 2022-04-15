@@ -58,7 +58,7 @@ public class UploadNewVerAndCheckParagraph
         // get the last post of this discussion and check
         SelenideElement lastPost = $$(".discussion2-post").last().find(".discussion2-post__text");
         Assert.assertFalse(lastPost.find("ins").exists(), "The last post has some inserts !!! But shouldn't !!!"); // no added text at all
-        lastPost.findAll("del").shouldHave(CollectionCondition.size(2)); // 2 del's
+        lastPost.findAll("del").shouldHave(CollectionCondition.size(3)); // 3 del's
         Assert.assertTrue(Selenide.executeJavaScript("return $('.discussion2-post').last().find(\".discussion2-post__text:contains('(b)')\").length === 1")); // (b) is only one
 
         Screenshoter.makeScreenshot();
