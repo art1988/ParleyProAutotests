@@ -107,7 +107,7 @@ public class ReassignCNTest
 
         Selenide.executeJavaScript("$('.rc-tooltip-inner').hide(); $('.rc-tooltip-inner').remove()");
         $$(".header-users .user").findBy(Condition.exactText("CC")).hover();
-        $(".contract-user__section .contract-user__status").shouldBe(Condition.visible).shouldHave(Condition.exactText("Lead"));
+        $(".contract-user__section .contract-user__status").shouldBe(Condition.visible).shouldHave(Condition.exactText("Reviewer"));
         Screenshoter.makeScreenshot();
     }
 
@@ -144,7 +144,7 @@ public class ReassignCNTest
 
         Selenide.executeJavaScript("$('.rc-tooltip-inner').hide(); $('.rc-tooltip-inner').remove()");
         $$(".header-users .user").findBy(Condition.exactText("CC")).hover();
-        $(".contract-user__section .contract-user__status").shouldBe(Condition.visible).shouldHave(Condition.exactText("Lead"));
+        $(".contract-user__section .contract-user__status").shouldBe(Condition.visible).shouldHave(Condition.exactText("Reviewer"));
         Screenshoter.makeScreenshot();
     }
 
