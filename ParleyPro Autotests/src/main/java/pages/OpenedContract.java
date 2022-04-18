@@ -249,6 +249,11 @@ public class OpenedContract
         return new RejectDocument(documentName);
     }
 
+    /**
+     * Click by 'Upload new version' button for the given document
+     * @param documentName
+     * @return
+     */
     public UploadNewVersionOfDocument clickUploadNewVersionButton(String documentName)
     {
         uploadNewVersionButton.click();
@@ -534,7 +539,7 @@ public class OpenedContract
         }
         else
         {
-            return $(".contract-header__status .discussion-indicator__count").getText();
+            return contractDiscussionCounter.getText();
         }
     }
 
