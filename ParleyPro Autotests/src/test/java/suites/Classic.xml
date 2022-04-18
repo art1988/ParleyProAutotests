@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Classic negotiation mode suite" configfailurepolicy="continue">
-   <!--<test name="AT-40: Upload new version with redlines for my team documents" preserve-order="true">
+   <test name="AT-40: Upload new version with redlines for my team documents" preserve-order="true">
         <parameter name="contractName" value="AT40 Classic contract"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -370,7 +370,7 @@
             <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 
     <test name="AT-243: Liberty Mutual: Can not upload new version" preserve-order="true">
         <parameter name="contractName" value="AT-243 Liberty Mutual Can not upload new version"/>
@@ -382,7 +382,7 @@
         </classes>
     </test>
 
-<!--    <test name="AT-206: Liberty Mutual - Classic: comment is added to the incorrect paragraph" preserve-order="true">
+    <test name="AT-206: Liberty Mutual - Classic: comment is added to the incorrect paragraph" preserve-order="true">
         <classes>
             <class name="tests.LoginToTrackChangesTenant"/>
             <class name="tests.classic.at206.AddContractAndUploadDoc"/>
@@ -390,5 +390,5 @@
             <class name="tests.DeleteContractFromInProgressViaCache"/>
             <class name="tests.Logout"/>
         </classes>
-    </test>-->
+    </test>
 </suite>
