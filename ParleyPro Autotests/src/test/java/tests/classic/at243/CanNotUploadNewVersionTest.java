@@ -55,6 +55,7 @@ public class CanNotUploadNewVersionTest
 
         openedContract = new OpenedContract();
 
+        logger.info("Check that amount of discussions is 13...");
         Assert.assertEquals(openedContract.getAmountOfContractDiscussion(), "13", "Amount of discussion is not equal 13 !!!");
 
         logger.info("Uploading new version...");
@@ -62,6 +63,7 @@ public class CanNotUploadNewVersionTest
                                                 .clickUploadCounterpartyDocument(Const.DOC_AT243_LM_2, "Custodia MSA_v1", CONTRACT_NAME)
                                                 .clickUpload(true);
 
+        logger.info("Check that amount of discussions is 17...");
         Assert.assertEquals(openedContract.getAmountOfContractDiscussion(), "17", "Amount of discussion is not equal 17 !!!");
     }
 }
