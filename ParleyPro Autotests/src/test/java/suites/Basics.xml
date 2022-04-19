@@ -104,11 +104,9 @@
     </test>
 
     <test name="AT-240: PDF - upload new version and sign" preserve-order="true">
-        <parameter name="contractNameExecuted" value="AT-240: PDF upload new version and sign"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
             <class name="tests.basics.at240.PDFUploadNewVersionAndSign"/>
-            <class name="tests.DeleteContractFromExecuted"/>
             <class name="tests.Logout"/>
         </classes>
     </test>

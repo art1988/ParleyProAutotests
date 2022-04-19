@@ -141,7 +141,7 @@ public class PDFUploadNewVersionAndSign
     }
 
     @Step
-    public void checkDiscussionBoard() throws InterruptedException
+    public void checkDiscussionBoard()
     {
         Discussions discussions = openedContract.clickByDiscussions();
 
@@ -151,14 +151,15 @@ public class PDFUploadNewVersionAndSign
         $$(".discussion2-label__status").shouldHave(CollectionCondition.size(1)).first().shouldHave(Condition.text("INTERNAL"));
 
         Screenshoter.makeScreenshot();
-
-        sideBar.clickAdministration();
-        Thread.sleep(2_000);
     }
 
     @AfterMethod
     public void cleanDownloadsDir() throws IOException
     {
         FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
+
+        openedContract.clickContractActionsMenu().clickDeleteContract().clickDelete();
+
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text(" has been deleted."));
     }
 }
