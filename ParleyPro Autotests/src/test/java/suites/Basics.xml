@@ -111,7 +111,7 @@
         </classes>
     </test>
 
-    <!--<test name="AT-64: Attachments: upload and download" preserve-order="true">
+    <test name="AT-64: Attachments: upload and download" preserve-order="true">
         <parameter name="contractName" value="Contract lifecycle autotest"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
@@ -122,7 +122,7 @@
         </classes>
     </test>
 
-    <test name="AT-188: CK editor: mention doesn't work properly" preserve-order="true">
+    <!--<test name="AT-188: CK editor: mention doesn't work properly" preserve-order="true">
         <parameter name="contractName" value="CKE_Mentioning ctr"/>
         <classes>
             <class name="tests.LoginToDashboard"/>
