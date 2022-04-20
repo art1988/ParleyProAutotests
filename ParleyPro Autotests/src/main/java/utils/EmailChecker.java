@@ -76,6 +76,10 @@ public class EmailChecker
                     {
                         Assert.assertEquals(email, "notification@parleypro.com");
                     }
+                    else if( email.equals("notifications@parleypro.com") )
+                    {
+                        Assert.assertEquals(email, "notifications@parleypro.com");
+                    }
                     else if( email.equals("dse_demo@docusign.net") )
                     {
                         Assert.assertEquals(email, "dse_demo@docusign.net");
