@@ -205,6 +205,14 @@ public class ApprovalWorkflow
         priorToSignParticipantField.sendKeys(Keys.ENTER);
     }
 
+    public void switchTumblerApprovalOrderOfContractRequest()
+    {
+        Selenide.executeJavaScript("$('.workflows-approval-events-event__title:contains(\"Contract Request\")').next().find(\"div:contains('Set')\").children().children().click()");
+        try { Thread.sleep(500); } catch (InterruptedException e) { e.printStackTrace(); }
+
+        logger.info("'Set approval order' of 'Contract Request' was switched");
+    }
+
     public void switchTumblerApprovalOrderOfPriorToSign()
     {
         Selenide.executeJavaScript("$('.workflows-approval-events-event__title:contains(\"Prior to Sign\")').next().find(\"div:contains('Set')\").children().children().click()");
