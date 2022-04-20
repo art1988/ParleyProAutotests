@@ -154,7 +154,7 @@ public class PDFUploadNewVersionAndSign
     }
 
     @AfterMethod
-    public void cleanDownloadsDir() throws IOException
+    public void cleanDownloadsDirAndDeleteContract() throws IOException
     {
         FileUtils.deleteDirectory(Const.DOWNLOAD_DIR);
 
