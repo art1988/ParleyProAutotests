@@ -10,6 +10,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.AuditTrail;
+import pages.ContractInfo;
 import pages.DashboardPage;
 import pages.OpenedContract;
 import utils.Cache;
@@ -62,8 +63,16 @@ public class CheckExecutedSignedContract
 
         $("canvas").shouldBe(Condition.visible);
         $(byText("PROVIDED BY DOCUSIGN ONLINE SIGNING SERVICE")).shouldBe(Condition.visible);
-
         Screenshoter.makeScreenshot();
+
+        logger.info("Filling post-execution fields...");
+        ContractInfo contractInfo = new ContractInfo();
+        contractInfo.setEffectiveDate();
+        contractInfo.clickSave();
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Contract has been updated."));
+
+        logger.info("Check that status become MANAGED...");
+        $(".lifecycle__item.active").shouldBe(Condition.visible).shouldHave(Condition.exactText("MANAGED"));
 
         logger.info("Opening Audit trail and check DocuSign events...");
         AuditTrail auditTrail = new OpenedContract().clickAuditTrail();
@@ -76,6 +85,7 @@ public class CheckExecutedSignedContract
         softAssert.assertTrue(allEvents.contains(new AuditTrailEvent("Docusign event: Viewed")), "There is no such event as 'Docusign event: Viewed' !!!");
         softAssert.assertTrue(allEvents.contains(new AuditTrailEvent("Docusign event: Signed")), "There is no such event as 'Docusign event: Signed' !!!");
         softAssert.assertTrue(allEvents.contains(new AuditTrailEvent("Document imported from Docusign")), "There is no such event as 'Document imported from Docusign' !!!");
+        softAssert.assertTrue(allEvents.contains(new AuditTrailEvent("Contract moved into Manage stage")), "There is no such event as 'Contract moved into Manage stage' !!!");
         softAssert.assertAll();
 
         Screenshoter.makeScreenshot();
