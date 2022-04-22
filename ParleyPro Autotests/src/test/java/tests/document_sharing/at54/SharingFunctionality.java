@@ -61,11 +61,10 @@ public class SharingFunctionality
         shareForm = new OpenedContract().clickSHARE("Formatting").resendInvite( Const.USER_GREG.getFirstName() ).clickSend();
 
         logger.info("Assert email send notification...");
-        $(".notification-stack").waitUntil(Condition.visible, 15_000).shouldHave(Condition.exactText("Email has been successfully sent."));
-        $(".notification-stack").waitUntil(Condition.disappear, 15_000);
+        $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.exactText("Email has been successfully sent."));
 
-        logger.info("Waiting for 70 seconds to make sure that email has been delivered...");
-        Thread.sleep(70_000);
+        logger.info("Waiting for 80 seconds to make sure that email has been delivered...");
+        Thread.sleep(80_000);
         Assert.assertTrue(EmailChecker.assertEmailBySubject(host, username, password, "Contract \"Contract DOCUMENT Sharing\": document review request"),
                 "Email with subject: Contract \"Contract DOCUMENT Sharing\": document review request was not found !!!");
 
