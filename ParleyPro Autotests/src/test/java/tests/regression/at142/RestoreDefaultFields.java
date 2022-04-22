@@ -76,7 +76,7 @@ public class RestoreDefaultFields
         String contentOfFile = FileUtils.readFileToString(new File(filePath), "UTF-8");
         JSONObject json = (JSONObject) parser.parse(contentOfFile);
 
-        logger.info("Restoring default department values...");
+        logger.info("Restoring default field values...");
         given().
            body(json).
                     when().

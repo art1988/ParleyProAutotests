@@ -107,6 +107,7 @@ public class RejectRequestApprovalTest
         openedContract = new OpenedContract();
         ContractInformation contractInformation = openedContract.clickContractInfo();
 
+        logger.info("Checking message about rejection on Contract Info panel...");
         $(".reject-request-message").shouldBe(Condition.visible).shouldHave(Condition.text("Contract request has been rejected by Approval_User_1"));
         $(".reject-request-message").shouldHave(Condition.text("Comment: AT-251 rejecting message"));
 
