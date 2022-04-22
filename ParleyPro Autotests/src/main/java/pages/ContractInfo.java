@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.*;
 import constants.FieldType;
 import forms.ApproveRequest;
+import forms.RejectRequest;
 import forms.delete.DeleteContract;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
@@ -498,6 +499,18 @@ public class ContractInfo
         logger.info("APPROVE button was clicked");
 
         return new ApproveRequest();
+    }
+
+    /**
+     * Click by REJECT REQUEST button
+     */
+    public RejectRequest clickRejectRequest()
+    {
+        $$(".modal-footer button").findBy(Condition.text("REJECT REQUEST")).click();
+
+        logger.info("REJECT REQUEST button was clicked");
+
+        return new RejectRequest();
     }
 
     /**
