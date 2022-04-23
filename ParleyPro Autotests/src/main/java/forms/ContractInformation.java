@@ -146,7 +146,7 @@ public class ContractInformation
      */
     public String getContractRadioButtonSelection()
     {
-        return Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Contract\")').next().find(\"input[checked]\").next().text()");
+        return Selenide.executeJavaScript("return $('.radio-group__label:contains(\"Contract\")').next().find(\"input[checked]\").parent().find('.radio-group-option__label').text()");
     }
 
     /**
@@ -171,7 +171,7 @@ public class ContractInformation
      */
     public String getMyCompanyTemplateRadioButtonSelection()
     {
-        return Selenide.executeJavaScript("return $('.radio-group__label:contains(\"My company template\")').next().find(\"input[checked]\").next().text()");
+        return Selenide.executeJavaScript("return $('.radio-group__label:contains(\"My company template\")').next().find(\"input[checked]\").parent().find('.radio-group-option__label').text()");
     }
 
     /**
