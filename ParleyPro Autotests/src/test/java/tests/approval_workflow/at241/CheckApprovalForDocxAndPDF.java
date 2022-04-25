@@ -180,7 +180,7 @@ public class CheckApprovalForDocxAndPDF
     @AfterMethod
     public void removeWorkflow()
     {
-        String wrkflowName = "AT-241 workflow";
+        String wrkflowName = "AT-241,252 workflow";
 
         sideBar.clickAdministration().clickWorkflowsTab().clickActionMenu(wrkflowName).clickDelete().clickDelete();
         $(byText(wrkflowName)).shouldNotBe(Condition.visible);

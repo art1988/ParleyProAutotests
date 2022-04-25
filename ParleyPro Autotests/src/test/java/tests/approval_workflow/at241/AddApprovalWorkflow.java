@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$;
 @Listeners({ScreenShotOnFailListener.class})
 public class AddApprovalWorkflow
 {
-    private String wrkflowName = "AT-241 workflow";
+    private String wrkflowName = "AT-241,252 workflow";
 
     @Test
     public void addApprovalWorkflow()
