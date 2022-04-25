@@ -68,6 +68,7 @@ public class IEEECantDownloadDocumentTest
 
             String downloadedFile = matchingFile.get();
             Assert.assertTrue(new File(Const.DOWNLOAD_DIR.getAbsolutePath() + "/" + downloadedFile).exists(), "Looks like that " + downloadedFile + " has not been downloaded !!!");
+            Assert.assertTrue(new File(Const.DOWNLOAD_DIR.getAbsolutePath() + "/" + downloadedFile).length() > 42_000, "The size of downloaded file is less than 42Kb !!!");
         }
         catch (NoSuchElementException | IOException e)
         {
