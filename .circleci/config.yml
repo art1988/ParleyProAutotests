@@ -44,41 +44,15 @@ jobs:
           command: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo apt -f install; sudo apt-get update; sudo apt-get install libnspr4; sudo apt-get install libnss3; sudo dpkg -i google-chrome-stable_current_amd64.deb; sudo apt install -y google-chrome-stable; sudo apt --fix-broken install -y
 
       
-     
-
-      - run:
-          name: Run Fields suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Fields.xml
-
-      - run: sleep 10
-
-     
-
-      - run:
-          name: Run CCN suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CounterpartyChiefNegotiator.xml
-          no_output_timeout: 20m
-
-      - run: sleep 10
-
-     
-
-      - run:
-          name: Run Popovers suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Popovers.xml
-          no_output_timeout: 20m
-
-      - run: sleep 10
-
-      - run:
-          name: Run Amendment suite
-          working_directory: "./ParleyPro Autotests"
-          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Amendment.xml
-          
       
+
+      - run:
+          name: Run ApprovalWorkflow suite
+          working_directory: "./ParleyPro Autotests"
+          command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ApprovalWorkflow.xml
+          no_output_timeout: 20m
+
+     
 
       - save_cache:
           key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}
