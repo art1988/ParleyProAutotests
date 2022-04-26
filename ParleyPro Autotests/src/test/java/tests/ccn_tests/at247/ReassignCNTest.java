@@ -66,7 +66,7 @@ public class ReassignCNTest
     public void reassignCNTest() throws InterruptedException
     {
         asCCNReassignChiefNegotiator();
-        openContractAndCheckUsersIconsInDocHeader();
+       // openContractAndCheckUsersIconsInDocHeader();
         checkEmail();
         loginAsNewChiefNegotiator();
     }
@@ -89,8 +89,7 @@ public class ReassignCNTest
                       .setChiefNegotiator(Const.PREDEFINED_CCN2.getEmail())
                       .clickReassign();
 
-        logger.info("Check that Chief Negotiator column was updated...");
-        $(".contract-item .contracts-list__chief-negotiator-cell").shouldBe(Condition.visible).shouldHave(Condition.text("P CCN AT 2 fn F CCN AT 2 ln"));
+        Selenide.sleep(2_000);
     }
 
     @Step
@@ -136,15 +135,15 @@ public class ReassignCNTest
         for(int pNum = 1; pNum <= 7; pNum++) $(withText("Paragraph " + pNum)).shouldBe(Condition.visible);
 
         logger.info("Checking user icons in document header...");
-        $$(".header-users .user").shouldHave(CollectionCondition.size(3)).shouldHave(CollectionCondition.textsInAnyOrder("PF", "CC", "AL"));
+        $$(".header-users .user").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.textsInAnyOrder("PF", "AL"));
 
         $$(".header-users .user").findBy(Condition.exactText("PF")).hover();
         $(".contract-user__section .contract-user__status").shouldBe(Condition.visible).shouldHave(Condition.exactText("Chief Negotiator"));
         Screenshoter.makeScreenshot();
 
         Selenide.executeJavaScript("$('.rc-tooltip-inner').hide(); $('.rc-tooltip-inner').remove()");
-        $$(".header-users .user").findBy(Condition.exactText("CC")).hover();
-        $(".contract-user__section .contract-user__status").shouldBe(Condition.visible).shouldHave(Condition.exactText("Reviewer"));
+        $$(".header-users .user").findBy(Condition.exactText("AL")).hover();
+        $(".contract-user__section .contract-user__status").shouldBe(Condition.visible).shouldHave(Condition.exactText("Chief Negotiator"));
         Screenshoter.makeScreenshot();
     }
 
