@@ -231,6 +231,15 @@ public class OpenedContract
         return new AboutToStartApproval(contractName.getText());
     }
 
+    public AboutToStartApproval switchContractToPreSignApproval()
+    {
+        $(".contract-header__status .lifecycle").shouldBe(Condition.visible);
+
+        Selenide.executeJavaScript("$('.contract-header__status .lifecycle div:contains(\"APPROVAL\")').eq(1).click()"); // eq(1) - second APPROVAL button (pre-sign)
+
+        return new AboutToStartApproval(contractName.getText());
+    }
+
     public ApproveDocument clickApproveButton(String documentName)
     {
         approveDocumentButton.click();
