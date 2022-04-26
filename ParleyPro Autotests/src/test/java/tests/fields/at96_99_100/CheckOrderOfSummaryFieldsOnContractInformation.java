@@ -11,6 +11,9 @@ import pages.DashboardPage;
 import utils.ScreenShotOnFailListener;
 import utils.Screenshoter;
 
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Selenide.$;
+
 @Listeners({ScreenShotOnFailListener.class})
 public class CheckOrderOfSummaryFieldsOnContractInformation
 {
@@ -21,6 +24,8 @@ public class CheckOrderOfSummaryFieldsOnContractInformation
     public void addNewContractAndCheckOrder()
     {
         ContractInformation contractInformationForm = new DashboardPage().getSideBar().clickInProgressContracts(true).clickNewContractButton();
+
+        $(".spinner").should(disappear);
 
         // Scroll Contract information to bottom
         Selenide.executeJavaScript("$('.modal__scrollable-body').scrollTop($('.modal__scrollable-body')[0].scrollHeight);");
