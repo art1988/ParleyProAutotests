@@ -29,10 +29,38 @@ public class ApproveDocument
      */
     public ApproveDocument markDocument(String docName)
     {
-        //$$(".modal-body .checkbox__label").filterBy(Condition.text(docName)).first().parent().find("input").click();
-        $(withText(docName)).click();
+        $$(".modal-body .checkbox__label").filterBy(Condition.text(docName)).first().click();
 
         logger.info("The following document was checked: " + docName);
+
+        return this;
+    }
+
+    /**
+     * Clicks by 'Select all documents' link
+     * @return
+     */
+    public ApproveDocument clickSelectAllDocuments()
+    {
+        $(".ui-link").click();
+
+        logger.info("'Select all documents' link was clicked");
+
+        return this;
+    }
+
+    public ApproveDocument clickLeaveCommentCheckbox()
+    {
+        $$(".modal-body .checkbox__label").filterBy(Condition.text("Leave comment")).first().click();
+
+        logger.info("'Leave comment' checkbox was clicked");
+
+        return this;
+    }
+
+    public ApproveDocument setComment(String commentMessage)
+    {
+        $(".modal-body textarea").shouldBe(Condition.visible, Condition.enabled).sendKeys(commentMessage);
 
         return this;
     }
