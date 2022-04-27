@@ -47,6 +47,16 @@ public class AddDocuments
             $$(".tab-menu span").shouldHave(CollectionCondition.size(2)).shouldHave(CollectionCondition.texts("Upload ", "Upload attachment")); // check tabs (first tab may be Upload document or Upload executed)
             $$(".upload__button").forEach(button -> button.shouldBe(Condition.visible, Condition.enabled));
         }
+        else if( $$(".tab-menu span").size() == 4 || $$(".modal-content .tab-menu span").size() == 4 ) // in case if 4 tabs are visible: Upload document, Select template, Upload executed, Upload attachment
+        {
+            if( $(".modal-content").isDisplayed() ) // in case if Add Documents opens in modal window
+            {
+                $$(".modal-content .tab-menu span").shouldHave(CollectionCondition.size(4)).shouldHave(CollectionCondition.textsInAnyOrder("Upload document", "Select template", "Upload executed", "Upload attachment"));
+                return true;
+            }
+
+            $$(".tab-menu span").shouldHave(CollectionCondition.size(4)).shouldHave(CollectionCondition.textsInAnyOrder("Upload document", "Select template", "Upload executed", "Upload attachment"));
+        }
         else
         {
             return false;
@@ -73,6 +83,15 @@ public class AddDocuments
         $(".spinner").waitUntil(Condition.disappear, 30_000);
 
         logger.info("'Select template' tab was selected");
+
+        return this;
+    }
+
+    public AddDocuments clickUploadExecutedTab()
+    {
+        $$(".tab-menu__item").filterBy(Condition.exactText("Upload executed")).first().shouldBe(Condition.visible, Condition.enabled).click();
+
+        logger.info("'Upload executed' tab was selected");
 
         return this;
     }
