@@ -66,6 +66,9 @@ public class ContractInfo
     {
         WebElement signatureDateInput = Selenide.executeJavaScript("return $('label:contains(\"Signature date\")').parent().find(\"input\")[0]");
 
+        signatureDateInput.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        for( int i = 0; i < 5; i++ ) signatureDateInput.sendKeys(Keys.BACK_SPACE);
+
         signatureDateInput.sendKeys(date);
         $(signatureDateInput).pressEnter(); // to close date picker popup
 
