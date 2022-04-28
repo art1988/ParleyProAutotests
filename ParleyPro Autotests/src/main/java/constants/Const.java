@@ -122,6 +122,7 @@ public class Const
     public static final File   DOC_AT199_DOWNLOAD            = new File(System.getProperty("user.dir") + "/Documents/D&B Hoovers - Order Agreement for.docx");
     public static final File   DOC_AT249_DOWNLOAD            = new File(System.getProperty("user.dir") + "/Documents/State Sponsorship Agreement - IEEE ICSE 2023_FINAL_short.docx");
     public static final File   DOC_AT253_DOWNLOAD            = new File(System.getProperty("user.dir") + "/Documents/2022 LAEDC Hotel Agreement.docx");
+    public static final File   DOC_AT255_DOWNLOAD            = new File(System.getProperty("user.dir") + "/Documents/Yards Brewery Word Agreement.docx");
 
     public static final File   AVATAR_IMG_SAMPLE             = new File(System.getProperty("user.dir") + "/Documents/avatar_user_test.png");
 
