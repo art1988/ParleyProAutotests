@@ -3,8 +3,10 @@ package forms.workflows;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -166,6 +168,7 @@ public class ApprovalWorkflow
 
     public void setContractRequestParticipant(String participant)
     {
+        Selenide.sleep(2_000); // necessary sleep in case of choosing team
         contractRequestParticipantField.sendKeys(participant);
         contractRequestParticipantField.sendKeys(Keys.DOWN);
         contractRequestParticipantField.sendKeys(Keys.ENTER);
