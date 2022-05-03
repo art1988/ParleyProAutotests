@@ -93,5 +93,7 @@ public class PreSetup
         approvalWorkflow.clickSave();
 
         $(byText("Approval Workflow AT256")).shouldBe(Condition.visible);
+
+        sideBar.logout();
     }
 }
