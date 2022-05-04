@@ -67,7 +67,7 @@ public class ApprovalWithATeamTest
         $(".contract-status").shouldBe(Condition.visible).shouldHave(Condition.text("APPROVAL"));
     }
 
-    @Step("Team member 1 is +team1@parleypro.com")
+    @Step("As Team member 1 (+team1@parleypro.com) make approve")
     public void loginAsTeamMember1()
     {
         LoginPage loginPage = sideBar.logout();
@@ -79,6 +79,8 @@ public class ApprovalWithATeamTest
 
         logger.info("Open request as team member 1...");
         sideBar.clickInProgressContracts(false).selectContract(REQUEST_NAME);
+        new OpenedContract();
+
         $(".label").shouldBe(Condition.visible).shouldHave(Condition.text("REQUEST"));
         $(".lifecycle__item.active").shouldBe(Condition.visible).shouldHave(Condition.text("APPROVAL"));
         $$(".team-icon").shouldHave(CollectionCondition.size(2));
@@ -88,7 +90,7 @@ public class ApprovalWithATeamTest
         $(".notification-stack").shouldBe(Condition.visible).shouldHave(Condition.text("Contract Request was successfully approved"));
     }
 
-    @Step("Team member 3 is GREG")
+    @Step("As Team member 3 (GREG) make approve")
     public void loginAsTeamMember3()
     {
         LoginPage loginPage = sideBar.logout();
@@ -100,6 +102,7 @@ public class ApprovalWithATeamTest
 
         logger.info("Open request as team member 3(User Greg)...");
         sideBar.clickInProgressContracts(false).selectContract(REQUEST_NAME);
+        new OpenedContract();
 
         $$(".team-icon").shouldHave(CollectionCondition.size(2));
         $$(".team-icon._show-checkbox_yes").shouldHave(CollectionCondition.size(1)); // only one team with checkmark
@@ -121,6 +124,7 @@ public class ApprovalWithATeamTest
 
         sideBar = loginPage.clickSignIn().getSideBar();
         sideBar.clickInProgressContracts(false).selectContract(REQUEST_NAME);
+        new OpenedContract();
 
         logger.info("Check that only CN and Requester avatars are visible...");
         $$(".contract-header-users__list .user").shouldHave(CollectionCondition.size(2))
