@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import pages.tooltips.TeamActionMenu;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * Represents selected team tab
@@ -42,7 +43,7 @@ public class Teams
      */
     public TeamActionMenu clickActionMenu(String teamName)
     {
-        Selenide.executeJavaScript("$('.teams-list__name:contains(\"" + teamName + "\")').parent().find(\".actions-menu button\").click()");
+        $$(".teams-list__name").filterBy(Condition.text(teamName)).first().parent().find("button").shouldBe(Condition.visible).click();
 
         logger.info("Action menu was clicked for " + teamName);
 
