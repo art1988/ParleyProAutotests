@@ -172,6 +172,7 @@ public class ApprovalWorkflow
         contractRequestParticipantField.sendKeys(participant);
         contractRequestParticipantField.sendKeys(Keys.DOWN);
         contractRequestParticipantField.sendKeys(Keys.ENTER);
+        Selenide.sleep(1_000);
     }
 
     /**

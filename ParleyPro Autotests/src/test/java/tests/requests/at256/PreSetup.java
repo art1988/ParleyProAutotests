@@ -89,6 +89,7 @@ public class PreSetup
         approvalWorkflow.setName("Approval Workflow AT256");
         approvalWorkflow.clickContractRequest();
         approvalWorkflow.setContractRequestParticipant("T1");
+        approvalWorkflow.setContractRequestParticipant("T2");
         approvalWorkflow.addFieldAndValue("AT256-RequestF", "All");
         approvalWorkflow.clickSave();
 
