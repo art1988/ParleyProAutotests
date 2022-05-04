@@ -19,7 +19,8 @@ public class TeamActionMenu
 
     public TeamActionMenu()
     {
-        $(".dropdown.open.btn-group ul").waitUntil(Condition.visible, 6_000);
+        Selenide.sleep(1_000);
+        $(".dropdown.open.btn-group ul").shouldBe(Condition.visible);
         $$(".dropdown.open.btn-group ul li").shouldHaveSize(3).shouldHave(CollectionCondition.exactTexts("Edit", "", "Delete"));
     }
 
