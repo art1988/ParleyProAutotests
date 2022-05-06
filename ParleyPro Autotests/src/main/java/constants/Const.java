@@ -134,6 +134,9 @@ public class Const
     public static final File   DOC_AT243_LM_1                = new File(System.getProperty("user.dir") + "/Documents/Custodia MSA_v1.docx");
     public static final File   DOC_AT243_LM_2                = new File(System.getProperty("user.dir") + "/Documents/Custodia MSA_v2.docx");
 
+    public static final File   DOC_AT257_MY_TEAM             = new File(System.getProperty("user.dir") + "/Documents/AT-257-1_myTeam.docx");
+    public static final File   DOC_AT257_CP                  = new File(System.getProperty("user.dir") + "/Documents/AT-257-2_CP.docx");
+
     // Directories
     // Directory of docs from clients. Used in Classic
     public static final File   CLIENT_DOCS_DIR               = new File(System.getProperty("user.dir") + "/Documents/classicClientDocs");
