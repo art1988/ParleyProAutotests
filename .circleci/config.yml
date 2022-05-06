@@ -10,20 +10,20 @@ parameters:
 
 orbs:
   slack: circleci/slack@4.0.2
-
+  
 jobs:
   build:
     docker:
       - image: cimg/openjdk:8.0.322-browsers
-
+      
     steps:
       - checkout
-
+      
       - run:
           name: Generate checksum file
           working_directory: "./ParleyPro Autotests"
           command: shasum pom.xml > checksum.tmp
-
+          
       - restore_cache:
           working_directory: "./ParleyPro Autotests"
           key: m2z-{{ checksum "~/project/ParleyPro Autotests/checksum.tmp" }}
@@ -38,19 +38,19 @@ jobs:
       - run:
           name: Install Allure
           command: sudo curl -o allure-2.13.8.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.tgz && sudo tar -zxvf allure-2.13.8.tgz -C /opt/ && sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure && allure --version
-
+          
       - run:
           name: Install Chrome
           command: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; sudo apt -f install; sudo apt-get update; sudo apt-get install libnspr4; sudo apt-get install libnss3; sudo dpkg -i google-chrome-stable_current_amd64.deb; sudo apt install -y google-chrome-stable; sudo apt --fix-broken install -y
 
-
+      
       - run:
           name: Run Numbered lists suite
           working_directory: "./ParleyPro Autotests"
           command: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/NumberedLists.xml
-
+      
       - run: sleep 10
-
+      
       - run:
           name: Run Grey Screens suite
           working_directory: "./ParleyPro Autotests"
@@ -63,14 +63,14 @@ jobs:
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml
           no_output_timeout: 20m
-
+          
       - run: sleep 10
-
+      
       - run:
           name: Run Dashboards suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Dashboards.xml
-
+          
       - run: sleep 10
 
       - run:
@@ -175,37 +175,37 @@ jobs:
           name: Run Amendment suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Amendment.xml
-
+          
       - run: sleep 10
-
+      
       - run:
           name: Run Contract Info suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/ContractInfo.xml
-
+          
       - run: sleep 10
-
+      
       - run:
           name: Run Find and Replace suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/FindAndReplace.xml
-
+      
       - run: sleep 10
-
+    
       - run:
           name: Run Customer Specific Parameters suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/CustomerSpecificParameters.xml
-
+          
       - run: sleep 10
-
+      
       - run:
           name: Run Search suite
           working_directory: "./ParleyPro Autotests"
           command: mvn test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Search.xml
-
-      - run: sleep 10
-
+          
+      - run: sleep 10    
+      
       - run:
           name: Run Integrations suite
           working_directory: "./ParleyPro Autotests"
@@ -242,8 +242,8 @@ jobs:
               ]
             }
           event: fail
-
-
+          
+            
 
 workflows:
   commit:
