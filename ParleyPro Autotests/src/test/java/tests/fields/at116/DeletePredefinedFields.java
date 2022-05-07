@@ -1,5 +1,6 @@
 package tests.fields.at116;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
@@ -31,7 +32,7 @@ public class DeletePredefinedFields
         ContractFields contractFields = fieldsTab.clickContractFields();
 
         logger.info("Check that all predefined fields are in place...");
-        Assert.assertEquals($$(".input__label-required").size(), 6, "Number of required fields is mismatched !!!");
+        $$(".input__label-required").shouldHave(CollectionCondition.size(6));
 
         logger.info("Removing of all predefined fields...");
         contractFields.removeField("Contracting region").clickDelete();
