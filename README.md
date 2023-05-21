@@ -9,4 +9,5 @@ Requirements:
 6. To generate Allure reports, run: ```mvn allure:serve```
 
 Look for ParleyPro Autotests folder.
+
 parley-tests was written by different person.
