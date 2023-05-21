@@ -8,6 +8,6 @@ Requirements:
 5. Use this command to run tests: ```mvn clean test -Dsurefire.suiteXmlFiles=./src/test/java/suites/Basics.xml```
 6. To generate Allure reports, run: ```mvn allure:serve```
 
-Look for ParleyPro Autotests folder.
-
-parley-tests was written by different person.
+<b>Note:</b>  
+Look for "ParleyPro Autotests" folder.  
+"parley-tests" was written by different person.  
